@@ -22,13 +22,17 @@ class Form extends CI_Controller {
 		  $data['password']=$this->input->post('password');
 		  $this->em = $this->doctrine->em;
 
-	        $user = new Entity\User;
+	        //$user = new Entity\User;
 
-			$user->setUsername($data['username']);
-			$user->setPassword( $data['password']);
-			$this->em->persist($user);
+			//$user->setUsername($data['username']);
+			$user = $this->em->getReference('Entity\User', $data['username']);
+			//$user->setPassword( $data['password']);
+			$this->em->remove($user);
+			//$this->em->merge($user);
+			//$this->em->persist($user);
 			$this->em->flush();
-			$this->smarty->view('index');
+			//$this->smarty->assign('data', $data); 
+			//$this->smarty->view('index');
 		}
 	}
 
