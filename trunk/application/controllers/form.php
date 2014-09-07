@@ -13,7 +13,7 @@ class Form extends CI_Controller {
 		if ($this->form_validation->run() == FALSE)
 		{
 			//$this->load->view('myform');
-			$this->smarty->assign('errors',validation_errors()); 
+			//$this->smarty->assign('errors',validation_errors()); 
 			 $this->smarty->view('myform');
 		}
 		else
