@@ -1,4 +1,4 @@
-<?php /*%%SmartyHeaderCode:28404540bb01d6f17f9-29009862%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:25593540bc3b8a2ac83-68576333%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -9,7 +9,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '28404540bb01d6f17f9-29009862',
+  'nocache_hash' => '25593540bc3b8a2ac83-68576333',
   'variables' => 
   array (
     'title' => 0,
@@ -17,9 +17,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_540bb01db26772_92450524',
+  'unifunc' => 'content_540bc3b8b83540_54580432',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_540bb01db26772_92450524')) {function content_540bb01db26772_92450524($_smarty_tpl) {?><p>index.tpl page shows the variables here:</p>
+<?php if ($_valid && !is_callable('content_540bc3b8b83540_54580432')) {function content_540bc3b8b83540_54580432($_smarty_tpl) {?><p>index.tpl page shows the variables here:</p>
 <p>title: Testing Smarty</p>
 <p>description: This is the testing page for integrating Smarty and CodeIgniter.</p><?php }} ?>

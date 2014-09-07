@@ -41,6 +41,15 @@
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
 
+//For pages those have a static name
+$route['{default_controller}/{default_method}/about.html'] = "{original_controller}/{original_method}";
+ 
+//rule to rout request with number values
+$route['{default_controller}/{default_method}/(:num)'] = "{original_controller}/{original_method}/$1";
+ 
+//rule to rout request with regular expression values
+$route['{default_controller}/{default_method}/([a-z]+)-{delimiter}'] = "{original_controller}/{original_method}/$1";
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
