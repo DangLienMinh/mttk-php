@@ -20,7 +20,7 @@ class Profile
     /**
      * @ManyToOne(targetEntity="user")
      **/
-    protected $user_name;
+    protected $email;
 
     /**
      * @ManyToOne(targetEntity="privacy_type")
@@ -93,6 +93,11 @@ class Profile
     protected $everything_else;
 
     /**
+     * @Column(type="string")
+     */
+    protected $address;
+
+    /**
      * @Column(type="datetime")
      */
     protected $created_at;
@@ -107,14 +112,14 @@ class Profile
         $this->profile_id = $profile_id;
         return $this;
     }
-    public function getUser_name()
+    public function getEmail()
     {
-        return $this->user_name;
+        return $this->email;
     }
-
-    public function setUser_name($user_name)
+    
+    public function setEmail($email)
     {
-        $this->user_name = $user_name;
+        $this->email = $email;
         return $this;
     }
     public function getPrivacy_type_id()
@@ -265,6 +270,17 @@ class Profile
     public function setCreated_at($created_at)
     {
         $this->created_at = $created_at;
+        return $this;
+    }
+
+    public function getAddress()
+    {
+        return $this->address;
+    }
+    
+    public function setAddress($address)
+    {
+        $this->address = $address;
         return $this;
     }
 }

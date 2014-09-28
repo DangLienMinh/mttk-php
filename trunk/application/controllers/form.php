@@ -2,41 +2,65 @@
 
 class Form extends CI_Controller {
 
-	public function index()
+	public function login()
+	{
+		$this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');
+		$this->smarty->view('myform');
+		
+	}
+	public function login1(){
+		$this->load->helper('url');
+		if($this->input->post('email_login')=='minh'){
+			$this->load->view('formsuccess');
+		}else{
+			echo $this->input->post('pass_login');
+		}
+	}
+	public function register()
 	{
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('username', 'Username', 'callback_username_check');
-		$this->form_validation->set_rules('password', 'Password', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|md5');
+		$this->form_validation->set_rules('first_name', 'First_name', 'trim|required');
+		$this->form_validation->set_rules('last_name', 'Last_name', 'trim|required');
+		$this->form_validation->set_rules('birthday', 'Birthday', 'trim|required');
 
 		if ($this->form_validation->run() == FALSE)
 		{
-			//$this->load->view('myform');
-			//$this->smarty->assign('errors',validation_errors()); 
 			 $this->smarty->view('myform');
 		}
 		else
 		{
-		  $data['username']=$this->input->post('username');
+		  $data['email']=$this->input->post('email');
 		  $data['password']=$this->input->post('password');
+		  $data['first_name']=$this->input->post('first_name');
+		  $data['last_name']=$this->input->post('last_name');
+		  $data['birthday']=$this->input->post('birthday');
 		  $this->em = $this->doctrine->em;
 
-	        //$user = new Entity\User;
+	      $user = new Entity\User;
 
-			//$user->setUsername($data['username']);
-			$user = $this->em->getReference('Entity\User', $data['username']);
+		  $user->setEmail($data['email']);
+		  $user->setPassword($data['password']);
+		  $user->setFirst_name($data['first_name']);
+		  $user->setLast_name($data['last_name']);
+		  $user->setBirthday($data['birthday']);
+
+			//$user = $this->em->getReference('Entity\User', $data['username']);
 			//$user->setPassword( $data['password']);
-			$this->em->remove($user);
+			//$this->em->remove($user);
 			//$this->em->merge($user);
-			//$this->em->persist($user);
-			$this->em->flush();
+		  $this->em->persist($user);
+		  $this->em->flush();
 			//$this->smarty->assign('data', $data); 
 			//$this->smarty->view('index');
 		}
 	}
 
-	public function username_check($str)
+	/*public function username_check($str)
 	{
 		if ($str == 'test')
 		{
@@ -47,7 +71,7 @@ class Form extends CI_Controller {
 		{
 			return TRUE;
 		}
-	}
+	}*/
 
 }
 ?>

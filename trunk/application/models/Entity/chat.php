@@ -20,7 +20,7 @@ class Chat
     /**
      * @ManyToOne(targetEntity="user")
      **/
-    protected $user_name;
+    protected $email;
 
     /**
      * @ManyToOne(targetEntity="user")
@@ -47,14 +47,14 @@ class Chat
         $this->chat_id = $chat_id;
         return $this;
     }
-    public function getUser_name()
+    public function getEmail()
     {
-        return $this->user_name;
+        return $this->email;
     }
     
-    public function setUser_name($user_name)
+    public function setEmail($email)
     {
-        $this->user_name = $user_name;
+        $this->email = $email;
         return $this;
     }
     public function getTo()

@@ -30,7 +30,7 @@ class Nickname
     /**
      * @ManyToOne(targetEntity="user")
      **/
-    protected $user_name;
+    protected $email;
 
     public function getNickname_id()
     {
@@ -62,14 +62,14 @@ class Nickname
 	    $this->privacy_type_id = $privacy_type_id;
 	    return $this;
 	}
-	public function getUser_name()
+	public function getEmail()
 	{
-	    return $this->user_name;
+	    return $this->email;
 	}
 	
-	public function setUser_name($user_name)
+	public function setEmail($email)
 	{
-	    $this->user_name = $user_name;
+	    $this->email = $email;
 	    return $this;
 	}
 }

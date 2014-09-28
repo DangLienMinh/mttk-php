@@ -40,7 +40,7 @@ class Notification
     /**
      * @ManyToOne(targetEntity="user")
      **/
-    protected $user_name;
+    protected $email;
 
     public function getNotification_id()
     {
@@ -92,14 +92,14 @@ class Notification
         $this->created_at = $created_at;
         return $this;
     }
-    public function getUser_name()
+    public function getEmail()
     {
-        return $this->user_name;
+        return $this->email;
     }
     
-    public function setUser_name($user_name)
+    public function setEmail($email)
     {
-        $this->user_name = $user_name;
+        $this->email = $email;
         return $this;
     }
    

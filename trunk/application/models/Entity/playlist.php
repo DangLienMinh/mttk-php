@@ -30,7 +30,7 @@ class Playlist
     /**
      * @ManyToOne(targetEntity="user")
      **/
-    protected $user_name;
+    protected $email;
 
     /**
      * @Column(type="string")
@@ -72,14 +72,14 @@ class Playlist
         $this->Playlist_created_date = $Playlist_created_date;
         return $this;
     }
-    public function getUser_name()
+    public function getEmail()
     {
-        return $this->user_name;
+        return $this->email;
     }
     
-    public function setUser_name($user_name)
+    public function setEmail($email)
     {
-        $this->user_name = $user_name;
+        $this->email = $email;
         return $this;
     }
     public function getMusic_list()
