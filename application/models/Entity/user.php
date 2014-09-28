@@ -10,11 +10,11 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class User
 {
-     /**
+    /**
      * @Id
      * @Column(type="string", nullable=false)
      */
-    protected $user_name;
+    protected $email;
 
     /**
      * @Column(type="string")
@@ -30,11 +30,6 @@ class User
      * @Column(type="string")
      */
     protected $last_name;
-    
-    /**
-     * @Column(type="string")
-     */
-    protected $email;
     
     /**
      * @Column(type="string")
@@ -55,17 +50,7 @@ class User
      * @Column(type="string")
      */
     protected $birthday;
-
-    public function getUser_name()
-    {
-        return $this->user_name;
-    }
     
-    public function setUser_name($user_name)
-    {
-        $this->user_name = $user_name;
-        return $this;
-    }
     public function getPassword()
     {
         return $this->password;

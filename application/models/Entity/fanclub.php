@@ -40,7 +40,7 @@ class FanClub
     /**
      * @ManyToOne(targetEntity="user")
      **/
-    protected $user_name;
+    protected $email;
    
 	  
     public function getFanClub_id()
@@ -93,14 +93,14 @@ class FanClub
         $this->Picture = $Picture;
         return $this;
     }
-    public function getUser_name()
+    public function getEmail()
     {
-        return $this->user_name;
+        return $this->email;
     }
     
-    public function setUser_name($user_name)
+    public function setEmail($email)
     {
-        $this->user_name = $user_name;
+        $this->email = $email;
         return $this;
     }
 }
