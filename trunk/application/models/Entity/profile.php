@@ -19,11 +19,13 @@ class Profile
 
     /**
      * @ManyToOne(targetEntity="user")
+     * @JoinColumn(name="email", referencedColumnName="email")
      **/
     protected $email;
 
     /**
      * @ManyToOne(targetEntity="privacy_type")
+     * @JoinColumn(name="privacy_type_id", referencedColumnName="privacy_type_id")
      **/
     protected $privacy_type_id;
 

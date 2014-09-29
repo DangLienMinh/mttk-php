@@ -29,11 +29,13 @@ class Thumb_up_down
 
     /**
      * @ManyToOne(targetEntity="status")
+     * @JoinColumn(name="status_id", referencedColumnName="status_id")
      **/
     protected $status_id;
 
     /**
      * @ManyToOne(targetEntity="user")
+     * @JoinColumn(name="friend_name", referencedColumnName="email")
      **/
     protected $friend_name;
 
