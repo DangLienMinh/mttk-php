@@ -35,9 +35,7 @@ class UserDAO
 
 	public function suaUser($data)
 	{
-		
 	    $user = $em->getReference('Entity\User', $email);
-	    
 		$this->em->merge($user);
 		$this->em->flush();
 	}
@@ -47,6 +45,19 @@ class UserDAO
 	    $user = $em->getReference('Entity\User', $email);
 	    $this->em->remove($user);
 	    $this->em->flush();
+	}
+
+	public function searchUser($name){
+		//$query = $this->em->createQuery("SELECT CONCAT(CONCAT(p.first_name,' '),p.last_name) FROM Entity\User p WHERE p.first_name like ?1");
+		$query = $this->em->createQuery("SELECT p.email,p.first_name,p.last_name FROM Entity\User p WHERE p.first_name like ?1");
+		$str=$name.'%';
+		$query->setParameter(1, $str);
+		$results=$query->getResult();
+		return json_encode($results);
+		/*foreach ($results AS $result) {
+			echo $result['first_name']." ".$result['last_name'];
+			echo "<br>";
+		}*/
 	}
 }
 ?>

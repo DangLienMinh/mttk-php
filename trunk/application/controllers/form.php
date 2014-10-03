@@ -7,7 +7,14 @@ class Form extends CI_Controller {
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
 		$this->smarty->view('myform');
-		
+	}
+	public function search()
+	{
+		$this->smarty->view('searchFriend');
+	}
+	public function seeWall($id)
+	{
+		echo $id;
 	}
 	public function login1(){
 		$this->load->helper('url');
@@ -66,7 +73,6 @@ class Form extends CI_Controller {
 		  $data['birthday']=$this->input->post('birthday');
 		  $em = $this->doctrine->em;
 		  $user = new Entity\UserDAO($em);
-		  
 		  $user->themUser($data);
 		  //$user->xoaUser('a@gmail.com');
 

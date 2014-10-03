@@ -7,8 +7,6 @@ class AddressProfile extends CI_Controller {
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('address', 'Address', 'trim|required');
-		
-		 
 		  if ($this->form_validation->run() == FALSE)
 		{
 			 $this->smarty->view('address');
@@ -34,9 +32,6 @@ class AddressProfile extends CI_Controller {
 			//$this->smarty->assign('data', $data); 
 			//$this->smarty->view('index');
 		}
-		  
-		
 	}
-
 }
 ?>
