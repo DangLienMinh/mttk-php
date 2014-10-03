@@ -23,6 +23,11 @@ class Status
     protected $message;
 
     /**
+     * @Column(type="string")
+     */
+    protected $music;
+
+    /**
      * @Column(type="datetime")
      */
     protected $created_at;
@@ -67,6 +72,16 @@ class Status
     public function setMessage($message)
     {
         $this->message = $message;
+        return $this;
+    }
+    public function getMusic()
+    {
+        return $this->music;
+    }
+    
+    public function setMusic($music)
+    {
+        $this->music = $music;
         return $this;
     }
     public function getCreated_at()
