@@ -14,6 +14,11 @@ class Upload extends CI_Controller {
 		$this->smarty->view('upload');
 	}
 
+	function player()
+	{
+		$this->smarty->view('updatestatus');
+	}
+
 	function do_upload()
 	{
 		$config['upload_path'] = './uploads/';
@@ -34,6 +39,35 @@ class Upload extends CI_Controller {
 			echo $data['upload_data']['full_path'];
 			
 		}
+	}
+
+	function chooseMusic(){
+		$musicLink="";
+		if(@$_POST['music_name']) {
+			$music=$_POST["music_name"];
+			$music = str_replace(' ', '+', $music);
+			$urlMusic="http://j.ginggong.com/jOut.ashx?k=".$music."&h=mp3.zing.vn&code=eaf53a54-3147-483c-97ba-f7e3e2d0145b";
+			$json = file_get_contents($urlMusic);
+			echo $json;
+			/*$obj = json_decode($json);
+			
+			foreach ($obj as $value) {
+				$new=$value->UrlJunDownload;
+		  	 	$musicLink.= "<a id='a' href='#'  onclick='testXem(".json_encode($new).")'>".$value->Title."</a>";
+		  	 	$musicLink.= "<br>";
+			}*/
+		}
+		/*$this->smarty->assign('musicLink',$musicLink); 
+		$this->smarty->view('player');*/
+	}
+	public function music()
+	{
+		$this->smarty->view('player');
+	}
+	public function updateStatus()
+	{
+		$music=$_POST["music_url"];
+		echo $music;
 	}
 }
 ?>

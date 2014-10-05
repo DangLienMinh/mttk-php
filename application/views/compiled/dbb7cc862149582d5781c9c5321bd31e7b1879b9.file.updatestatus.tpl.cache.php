@@ -1,0 +1,193 @@
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-05 17:46:17
+         compiled from "application\views\templates\updatestatus.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:13551543167c95458d0-55763659%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    'dbb7cc862149582d5781c9c5321bd31e7b1879b9' => 
+    array (
+      0 => 'application\\views\\templates\\updatestatus.tpl',
+      1 => 1412523973,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '13551543167c95458d0-55763659',
+  'function' => 
+  array (
+  ),
+  'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_543167c96eb990_63485094',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_543167c96eb990_63485094')) {function content_543167c96eb990_63485094($_smarty_tpl) {?><!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Tabs - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>
+css/jplayer.blue.monday.css">
+  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery.autogrowtextarea.min.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery.jplayer.min.js"></script>
+  
+  <script type="text/javascript">
+    window.chosenMusic = "";
+    function testXem(guid){
+      window.chosenMusic=guid;
+      $("#jquery_jplayer_1").jPlayer( "destroy" );
+          var player = $("#jquery_jplayer_1");
+          player.jPlayer({
+          ready: function (event) {
+            $(this).jPlayer("setMedia", {
+              title: "Bubble",
+              mp3: guid
+            }).jPlayer("play");
+          },
+          swfPath: "js",
+          supplied: "mp3",
+          wmode: "window",
+          smoothPlayBar: true,
+          keyEnabled: true,
+          remainingDuration: true,
+          toggleDuration: true
+          });
+      }
+  </script>
+  <script>
+  $(document).ready(function() {
+      $("#target").autoGrow();
+      $("#jquery_jplayer_1").jPlayer({
+        ready: function (event) {
+          $(this).jPlayer("setMedia", {
+            title: "",
+            mp3: ""
+          }).jPlayer("play");
+        },
+        swfPath: "js",
+        supplied: "mp3",
+        wmode: "window",
+        smoothPlayBar: true,
+        keyEnabled: true,
+        remainingDuration: true,
+        toggleDuration: true
+      });
+      $("#music_name").keyup(function(){
+        $.ajax({
+          type: "post",
+          url: "http://localhost:81/mttk-php/index.php/upload/chooseMusic",
+          cache: false,
+          data:'music_name='+$("#music_name").val(),
+          success: function(response){
+            $('#finalResult').html("");
+            var obj = JSON.parse(response);
+            if(obj.length>0){
+              try{
+                var items=[];
+                $.each(obj, function(i,val){
+                    items.push('<li class="result"><a href="#" onclick="testXem('  +"'"+ val.UrlJunDownload +"'"+ ')">' + val.Title+ '</a></li>');
+                });
+                $('#finalResult').append.apply($('#finalResult'), items);
+              }catch(e) {
+                alert('Exception while request..');
+              }
+            }else{
+              $('#finalResult').html($('<li/>').text("No Data Found"));
+            }
+          },
+          error: function(){
+            alert('Error while request..');
+          }
+
+        });
+      });
+
+      $('#finalResult').on('click', 'li a', function() {
+          $("#music_url").val(window.chosenMusic);
+      });
+    });
+  $(function() {
+    $( "#tabs" ).tabs();
+  });
+  </script>
+  <style type="text/css">
+    #tabs{
+      width:40%;
+      margin: 0px auto;
+    }
+    #target{
+      width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; 
+    }
+  </style>
+  
+</head>
+<body>
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">Update status</a></li>
+    <li><a href="#tabs-2">Add music</a></li>
+  </ul>
+  <div id="tabs-1">
+    <?php echo form_open('upload/updateStatus');?>
+
+    <textarea id="target" rows="4" placeholder="Enter textarea"></textarea>
+    <input type="text" name="music_name" id="music_name" />
+    <input type="hidden" name="music_url" id="music_url" />
+    <ul id="finalResult"></ul>
+    <input type="submit" value="submit"/>
+    <?php echo form_close();?>
+
+    <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+    <div id="jp_container_1" class="jp-audio">
+      <div class="jp-type-single">
+        <div class="jp-gui jp-interface">
+          <ul class="jp-controls">
+            <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+            <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+            <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+            <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+            <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+            <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+          </ul>
+          <div class="jp-progress">
+            <div class="jp-seek-bar">
+              <div class="jp-play-bar"></div>
+            </div>
+          </div>
+          <div class="jp-volume-bar">
+            <div class="jp-volume-bar-value"></div>
+          </div>
+          <div class="jp-time-holder">
+            <div class="jp-current-time"></div>
+            <div class="jp-duration"></div>
+
+            <ul class="jp-toggles">
+              <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+              <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="jp-details">
+          <ul>
+            <li><span class="jp-title"></span></li>
+          </ul>
+        </div>
+        <div class="jp-no-solution">
+          <span>Update Required</span>
+          To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="tabs-2">
+    <input type="file" value="Upload"/>
+  </div>
+</div>
+</body>
+</html><?php }} ?>

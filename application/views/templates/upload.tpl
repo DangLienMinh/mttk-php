@@ -6,10 +6,9 @@
 
 {$error}
 {form_open_multipart('upload/do_upload')}
-
+<textarea rows="4" cols="50" name="status"></textarea><br />
 <input type="file" name="userfile" size="20" />
-
-<br /><br />
+<br />
 
 <input type="submit" value="upload" />
 

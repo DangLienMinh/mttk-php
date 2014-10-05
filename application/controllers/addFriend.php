@@ -1,4 +1,4 @@
-<?php
+ <?php
 	class AddFriend extends CI_Controller {
 
 	public function index(){
