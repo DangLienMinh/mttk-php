@@ -10,35 +10,11 @@ class Upload extends CI_Controller {
 
 	function index()
 	{
-		$this->smarty->assign('error',' ' ); 
-		$this->smarty->view('upload');
 	}
 
 	function player()
 	{
 		$this->smarty->view('updatestatus');
-	}
-
-	function do_upload()
-	{
-		$config['upload_path'] = './uploads/';
-		$config['allowed_types'] = 'mp3';
-		$config['max_size']	= '10240';
-
-		$this->load->library('upload', $config);
-
-		if ( ! $this->upload->do_upload())
-		{
-			$error = $this->upload->display_errors();
-			$this->smarty->assign('error',$error); 
-			$this->smarty->view('upload');
-		}
-		else
-		{
-			$data = array('upload_data' => $this->upload->data());
-			echo $data['upload_data']['full_path'];
-			
-		}
 	}
 
 	function chooseMusic(){
@@ -60,14 +36,30 @@ class Upload extends CI_Controller {
 		/*$this->smarty->assign('musicLink',$musicLink); 
 		$this->smarty->view('player');*/
 	}
-	public function music()
-	{
-		$this->smarty->view('player');
-	}
+
 	public function updateStatus()
 	{
-		$music=$_POST["music_url"];
-		echo $music;
+		//$music=$_POST["music_url"];
+		if ($_FILES['musicFile']['error'] != 4) {
+			$config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'mp3';
+			$config['max_size']	= '10240';
+
+			$this->load->library('upload', $config);
+
+			if ( ! $this->upload->do_upload("musicFile"))
+			{
+				/*$error = $this->upload->display_errors();
+				$this->smarty->assign('error',$error); 
+				$this->smarty->view('upload');*/
+			}
+			else
+			{
+				$data = array('upload_data' => $this->upload->data());
+				echo $data['upload_data']['full_path'];
+			}
+		}
+		//echo $music;
 	}
 }
 ?>

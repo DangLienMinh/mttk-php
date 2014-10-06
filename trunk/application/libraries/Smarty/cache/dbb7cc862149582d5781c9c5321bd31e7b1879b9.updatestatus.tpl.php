@@ -1,21 +1,21 @@
-<?php /*%%SmartyHeaderCode:13551543167c95458d0-55763659%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1361254329b343e7388-99257389%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'dbb7cc862149582d5781c9c5321bd31e7b1879b9' => 
     array (
       0 => 'application\\views\\templates\\updatestatus.tpl',
-      1 => 1412523973,
+      1 => 1412602673,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '13551543167c95458d0-55763659',
+  'nocache_hash' => '1361254329b343e7388-99257389',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_543167c97389f9_68279721',
+  'unifunc' => 'content_54329b3454cd18_06763325',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_543167c97389f9_68279721')) {function content_543167c97389f9_68279721($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_54329b3454cd18_06763325')) {function content_54329b3454cd18_06763325($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -29,14 +29,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   
   <script type="text/javascript">
     window.chosenMusic = "";
-    function testXem(guid){
+    function testXem(guid,title){
       window.chosenMusic=guid;
       $("#jquery_jplayer_1").jPlayer( "destroy" );
           var player = $("#jquery_jplayer_1");
           player.jPlayer({
           ready: function (event) {
             $(this).jPlayer("setMedia", {
-              title: "Bubble",
+              title: title,
               mp3: guid
             }).jPlayer("play");
           },
@@ -81,7 +81,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
               try{
                 var items=[];
                 $.each(obj, function(i,val){
-                    items.push('<li class="result"><a href="#" onclick="testXem('  +"'"+ val.UrlJunDownload +"'"+ ')">' + val.Title+ '</a></li>');
+                    items.push('<li class="result"><a href="#" onclick="testXem('  +"'"+ val.UrlJunDownload +"','"+val.Title+"'"+ ')">' + val.Title+ '</a></li>');
                 });
                 $('#finalResult').append.apply($('#finalResult'), items);
               }catch(e) {
@@ -121,19 +121,19 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   
 </head>
 <body>
+<form action="http://localhost:81/mttk-php/upload/updateStatus" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 <div id="tabs">
   <ul>
     <li><a href="#tabs-1">Update status</a></li>
     <li><a href="#tabs-2">Add music</a></li>
   </ul>
+
   <div id="tabs-1">
-    <form action="http://localhost:81/mttk-php/upload/updateStatus" method="post" accept-charset="utf-8">
-    <textarea id="target" rows="4" placeholder="Enter textarea"></textarea>
+    <textarea name="status" id="target" rows="4" placeholder="Enter textarea"></textarea>
     <input type="text" name="music_name" id="music_name" />
     <input type="hidden" name="music_url" id="music_url" />
     <ul id="finalResult"></ul>
-    <input type="submit" value="submit"/>
-    </form>
+
     <div id="jquery_jplayer_1" class="jp-jplayer"></div>
     <div id="jp_container_1" class="jp-audio">
       <div class="jp-type-single">
@@ -177,8 +177,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     </div>
   </div>
   <div id="tabs-2">
-    <input type="file" value="Upload"/>
+    <input type="file" name="musicFile" value="Upload" size="20"/>
   </div>
+   <input type="submit" value="submit"/>
 </div>
+ </form>
 </body>
 </html><?php }} ?>

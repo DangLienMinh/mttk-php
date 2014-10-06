@@ -28,7 +28,7 @@ class Form extends CI_Controller {
                          'gender'=>$result[0]->gender,
                          'birth_date'=>$result[0]->birth_date
                       );
-           
+
            $this->session->set_userdata($data);
            redirect('profile');*/
 		}
@@ -41,13 +41,13 @@ class Form extends CI_Controller {
 		*/
 	}
 	function is_logged_in()
-        {
-            $is_logged_in = $this->session->userdata('is_logged_in');
-            if(!isset($is_logged_in) || $is_logged_in!=true){
-                echo "<h3>You don't have permission to access this page.</h3>";
-                die;
-            }
+    {
+        $is_logged_in = $this->session->userdata('is_logged_in');
+        if(!isset($is_logged_in) || $is_logged_in!=true){
+            echo "<h3>You don't have permission to access this page.</h3>";
+            die;
         }
+    }
 	public function register()
 	{
 		$this->load->helper(array('form', 'url'));
