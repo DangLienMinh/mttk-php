@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-05 17:46:17
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-06 15:37:56
          compiled from "application\views\templates\updatestatus.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:13551543167c95458d0-55763659%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1361254329b343e7388-99257389%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'dbb7cc862149582d5781c9c5321bd31e7b1879b9' => 
     array (
       0 => 'application\\views\\templates\\updatestatus.tpl',
-      1 => 1412523973,
+      1 => 1412602673,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '13551543167c95458d0-55763659',
+  'nocache_hash' => '1361254329b343e7388-99257389',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_543167c96eb990_63485094',
+  'unifunc' => 'content_54329b344d1ab6_82447468',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_543167c96eb990_63485094')) {function content_543167c96eb990_63485094($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_54329b344d1ab6_82447468')) {function content_54329b344d1ab6_82447468($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -36,14 +36,14 @@ js/jquery.jplayer.min.js"></script>
   
   <script type="text/javascript">
     window.chosenMusic = "";
-    function testXem(guid){
+    function testXem(guid,title){
       window.chosenMusic=guid;
       $("#jquery_jplayer_1").jPlayer( "destroy" );
           var player = $("#jquery_jplayer_1");
           player.jPlayer({
           ready: function (event) {
             $(this).jPlayer("setMedia", {
-              title: "Bubble",
+              title: title,
               mp3: guid
             }).jPlayer("play");
           },
@@ -88,7 +88,7 @@ js/jquery.jplayer.min.js"></script>
               try{
                 var items=[];
                 $.each(obj, function(i,val){
-                    items.push('<li class="result"><a href="#" onclick="testXem('  +"'"+ val.UrlJunDownload +"'"+ ')">' + val.Title+ '</a></li>');
+                    items.push('<li class="result"><a href="#" onclick="testXem('  +"'"+ val.UrlJunDownload +"','"+val.Title+"'"+ ')">' + val.Title+ '</a></li>');
                 });
                 $('#finalResult').append.apply($('#finalResult'), items);
               }catch(e) {
@@ -128,20 +128,19 @@ js/jquery.jplayer.min.js"></script>
   
 </head>
 <body>
+<?php echo form_open_multipart('upload/updateStatus');?>
+
 <div id="tabs">
   <ul>
     <li><a href="#tabs-1">Update status</a></li>
     <li><a href="#tabs-2">Add music</a></li>
   </ul>
-  <div id="tabs-1">
-    <?php echo form_open('upload/updateStatus');?>
 
-    <textarea id="target" rows="4" placeholder="Enter textarea"></textarea>
+  <div id="tabs-1">
+    <textarea name="status" id="target" rows="4" placeholder="Enter textarea"></textarea>
     <input type="text" name="music_name" id="music_name" />
     <input type="hidden" name="music_url" id="music_url" />
     <ul id="finalResult"></ul>
-    <input type="submit" value="submit"/>
-    <?php echo form_close();?>
 
     <div id="jquery_jplayer_1" class="jp-jplayer"></div>
     <div id="jp_container_1" class="jp-audio">
@@ -186,8 +185,11 @@ js/jquery.jplayer.min.js"></script>
     </div>
   </div>
   <div id="tabs-2">
-    <input type="file" value="Upload"/>
+    <input type="file" name="musicFile" value="Upload" size="20"/>
   </div>
+   <input type="submit" value="submit"/>
 </div>
+ <?php echo form_close();?>
+
 </body>
 </html><?php }} ?>

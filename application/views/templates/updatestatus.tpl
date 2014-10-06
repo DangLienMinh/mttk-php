@@ -12,14 +12,14 @@
   {literal}
   <script type="text/javascript">
     window.chosenMusic = "";
-    function testXem(guid){
+    function testXem(guid,title){
       window.chosenMusic=guid;
       $("#jquery_jplayer_1").jPlayer( "destroy" );
           var player = $("#jquery_jplayer_1");
           player.jPlayer({
           ready: function (event) {
             $(this).jPlayer("setMedia", {
-              title: "Bubble",
+              title: title,
               mp3: guid
             }).jPlayer("play");
           },
@@ -64,7 +64,7 @@
               try{
                 var items=[];
                 $.each(obj, function(i,val){
-                    items.push('<li class="result"><a href="#" onclick="testXem('  +"'"+ val.UrlJunDownload +"'"+ ')">' + val.Title+ '</a></li>');
+                    items.push('<li class="result"><a href="#" onclick="testXem('  +"'"+ val.UrlJunDownload +"','"+val.Title+"'"+ ')">' + val.Title+ '</a></li>');
                 });
                 $('#finalResult').append.apply($('#finalResult'), items);
               }catch(e) {
@@ -104,19 +104,19 @@
   {/literal}
 </head>
 <body>
+{form_open_multipart('upload/updateStatus')}
 <div id="tabs">
   <ul>
     <li><a href="#tabs-1">Update status</a></li>
     <li><a href="#tabs-2">Add music</a></li>
   </ul>
+
   <div id="tabs-1">
-    {form_open('upload/updateStatus')}
-    <textarea id="target" rows="4" placeholder="Enter textarea"></textarea>
+    <textarea name="status" id="target" rows="4" placeholder="Enter textarea"></textarea>
     <input type="text" name="music_name" id="music_name" />
     <input type="hidden" name="music_url" id="music_url" />
     <ul id="finalResult"></ul>
-    <input type="submit" value="submit"/>
-    {form_close()}
+
     <div id="jquery_jplayer_1" class="jp-jplayer"></div>
     <div id="jp_container_1" class="jp-audio">
       <div class="jp-type-single">
@@ -160,8 +160,10 @@
     </div>
   </div>
   <div id="tabs-2">
-    <input type="file" value="Upload"/>
+    <input type="file" name="musicFile" value="Upload" size="20"/>
   </div>
+   <input type="submit" value="submit"/>
 </div>
+ {form_close()}
 </body>
 </html>
