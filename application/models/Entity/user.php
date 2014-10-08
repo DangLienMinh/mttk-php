@@ -40,6 +40,11 @@ class User
      * @Column(type="integer")
      */
     protected $online;
+
+    /**
+     * @Column(type="datetime")
+     */
+    protected $last_login;
     
     /**
      * @Column(type="datetime")
@@ -129,6 +134,15 @@ class User
     public function setBirthday($birthday)
     {
         $this->birthday = $birthday;
+        return $this;
+    }
+    public function getLast_login()
+    {
+        return $this->last_login;
+    }
+    public function setLast_login($last_login)
+    {
+        $this->last_login = $last_login;
         return $this;
     }
 }

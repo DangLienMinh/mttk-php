@@ -19,11 +19,13 @@ class Chat
 
     /**
      * @ManyToOne(targetEntity="user")
+     * @JoinColumn(name="email", referencedColumnName="email")
      **/
     protected $email;
 
     /**
      * @ManyToOne(targetEntity="user")
+     * @JoinColumn(name="email", referencedColumnName="email")
      **/
     protected $to;
 

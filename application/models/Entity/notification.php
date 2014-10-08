@@ -23,12 +23,14 @@ class Notification
     protected $msg;
 
     /**
-     * @Column(type="integer")
-     */
+     * @ManyToOne(targetEntity="notification_type")
+     * @JoinColumn(name="noti_type", referencedColumnName="noti_type")
+     **/
     protected $type;
 
     /**
      * @ManyToOne(targetEntity="privacy_type")
+     * @JoinColumn(name="privacy_type_id", referencedColumnName="privacy_type_id")
      **/
     protected $privacy_type_id;
 
@@ -39,6 +41,7 @@ class Notification
 
     /**
      * @ManyToOne(targetEntity="user")
+     * @JoinColumn(name="email", referencedColumnName="email")
      **/
     protected $email;
 
