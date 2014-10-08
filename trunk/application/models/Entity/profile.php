@@ -99,11 +99,6 @@ class Profile
      */
     protected $address;
 
-    /**
-     * @Column(type="datetime")
-     */
-    protected $created_at;
-
     public function getProfile_id()
     {
         return $this->profile_id;
@@ -262,16 +257,6 @@ class Profile
     public function setEverything_else($everything_else)
     {
         $this->everything_else = $everything_else;
-        return $this;
-    }
-    public function getCreated_at()
-    {
-        return $this->created_at;
-    }
-    
-    public function setCreated_at($created_at)
-    {
-        $this->created_at = $created_at;
         return $this;
     }
 

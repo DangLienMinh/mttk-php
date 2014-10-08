@@ -43,10 +43,6 @@ class Status
      **/
     protected $privacy_type_id;
 
-    /**
-     * @Column(type="integer")
-     */
-    protected $is_reply;
 
     /**
      * @ManyToOne(targetEntity="user")
@@ -112,16 +108,6 @@ class Status
     public function setPrivacy_type_id($privacy_type_id)
     {
         $this->privacy_type_id = $privacy_type_id;
-        return $this;
-    }
-    public function getIs_reply()
-    {
-        return $this->is_reply;
-    }
-    
-    public function setIs_reply($is_reply)
-    {
-        $this->is_reply = $is_reply;
         return $this;
     }
     public function getEmail()

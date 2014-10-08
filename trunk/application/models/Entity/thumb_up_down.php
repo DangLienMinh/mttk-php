@@ -18,11 +18,6 @@ class Thumb_up_down
     protected $thumb_up_down_id;
 
     /**
-     * @Column(type="integer")
-     */
-    protected $flag;
-
-    /**
      * @Column(type="datetime")
      */
     protected $created_at;
@@ -47,16 +42,6 @@ class Thumb_up_down
     public function setThumb_up_down_id($thumb_up_down_id)
     {
         $this->thumb_up_down_id = $thumb_up_down_id;
-        return $this;
-    }
-    public function getFlag()
-    {
-        return $this->flag;
-    }
-    
-    public function setFlag($flag)
-    {
-        $this->flag = $flag;
         return $this;
     }
     public function getCreated_at()

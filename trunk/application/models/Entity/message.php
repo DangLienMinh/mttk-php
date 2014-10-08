@@ -33,12 +33,8 @@ class Message
     protected $is_read;
 
     /**
-     * @Column(type="integer")
-     */
-    protected $is_spam;
-
-    /**
      * @ManyToOne(targetEntity="user")
+     * @JoinColumn(name="email", referencedColumnName="email")
      **/
     protected $to;
 
@@ -49,6 +45,7 @@ class Message
 
     /**
      * @ManyToOne(targetEntity="user")
+     * @JoinColumn(name="email", referencedColumnName="email")
      **/
     protected $email;
 
@@ -90,16 +87,6 @@ class Message
     public function setIs_read($is_read)
     {
         $this->is_read = $is_read;
-        return $this;
-    }
-    public function getIs_spam()
-    {
-        return $this->is_spam;
-    }
-    
-    public function setIs_spam($is_spam)
-    {
-        $this->is_spam = $is_spam;
         return $this;
     }
     public function getTo()

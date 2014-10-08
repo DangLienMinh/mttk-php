@@ -22,6 +22,11 @@ class Friend
     protected $is_subscriber;
 
     /**
+     * @Column(type="integer")
+     */
+    protected $accept;
+
+    /**
      * @Column(type="datetime")
      */
     protected $created_at;
@@ -72,6 +77,15 @@ class Friend
         $this->email = $email;
         return $this;
     }
-	
+	public function getAccept()
+    {
+        return $this->accept;
+    }
+    
+    public function setEmail($accept)
+    {
+        $this->accept = $accept;
+        return $this;
+    }
 }
 ?>

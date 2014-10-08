@@ -6,16 +6,16 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @Entity
- * @Table(name="comment")
+ * @Table(name="share")
  */
-class Comment
+class Share
 {
      /**
      * @Id
      * @Column(type="integer", nullable=false)
      * @GeneratedValue
      */
-    protected $comment_id;
+    protected $share_id;
 
     /**
      * @Column(type="string")
@@ -39,14 +39,14 @@ class Comment
      **/
     protected $friend_name;
 
-    public function getComment_id()
+    public function getShare_id()
     {
-        return $this->comment_id;
+        return $this->share_id;
     }
     
-    public function setComment_id($comment_id)
+    public function setShare_id($share_id)
     {
-        $this->comment_id = $comment_id;
+        $this->share_id = $share_id;
         return $this;
     }
     public function getMessage()
@@ -89,6 +89,5 @@ class Comment
         $this->friend_name = $friend_name;
         return $this;
     }
-	
 }
 ?>
