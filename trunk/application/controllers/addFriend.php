@@ -7,7 +7,7 @@
 		$em = $this->doctrine->em;
 		$user = new Entity\UserDAO($em);
 		$search=  $this->input->post('search');
-		echo $user->searchUser($search);
+		echo $user->timUser($search);
 	}
 }
 
