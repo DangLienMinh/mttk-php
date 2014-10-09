@@ -18,10 +18,16 @@ class Form extends CI_Controller {
 	}
 	public function login1(){
 		$this->load->helper('url');
-		if($this->input->post('email_login')=='minh'){
+		$em = $this->doctrine->em;
+		$user = new Entity\UserDAO($em);
+		$data['email']=$this->input->post('email_login');
+		$data['password']=$this->input->post('pass_login');
+		$user->timUserLogin($data);
+
+		/*if($this->input->post('email_login')=='minh'){
 			$this->load->view('formsuccess');
 		}else{
-			/*$data = array('email'=>$this->input->post('email'),
+			$data = array('email'=>$this->input->post('email'),
                          'is_logged_in'=>true,
                          'first_name'=>$result[0]->first_name,
                          'last_name'=>$result[0]->last_name,
@@ -30,8 +36,8 @@ class Form extends CI_Controller {
                       );
 
            $this->session->set_userdata($data);
-           redirect('profile');*/
-		}
+           redirect('profile');
+		}*/
 	}
 	public function logout()
 	{

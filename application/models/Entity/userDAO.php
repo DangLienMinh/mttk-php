@@ -1,6 +1,7 @@
 <?php
 namespace Entity;
 use Doctrine\Common\Collections\ArrayCollection;
+
 class UserDAO
 {
 	private $em;
@@ -47,7 +48,7 @@ class UserDAO
 	    $this->em->flush();
 	}
 
-	public function searchUser($name){
+	public function timUser($name){
 		//$query = $this->em->createQuery("SELECT CONCAT(CONCAT(p.first_name,' '),p.last_name) FROM Entity\User p WHERE p.first_name like ?1");
 		$query = $this->em->createQuery("SELECT p.email,p.first_name,p.last_name FROM Entity\User p WHERE p.first_name like ?1");
 		$str=$name.'%';
@@ -58,6 +59,16 @@ class UserDAO
 			echo $result['first_name']." ".$result['last_name'];
 			echo "<br>";
 		}*/
+	}
+
+	public function timUserLogin($data){
+		$data['password']= Md5($data['password']);
+		$query = $this->em->createQuery("SELECT count(p.email) FROM Entity\User p WHERE p.email=?1 and p.password= ?2");
+		$query->setParameter(1, $data['email']);
+		$query->setParameter(2, $data['password']);
+		$results=$query->getResult();
+		print_r($results);
+
 	}
 }
 ?>
