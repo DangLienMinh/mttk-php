@@ -8,6 +8,7 @@ class Form extends CI_Controller {
 	}
 	public function search()
 	{
+		$this->is_logged_in();
 		$this->smarty->view('searchFriend');
 	}
 	public function seeWall($id)
@@ -27,28 +28,16 @@ class Form extends CI_Controller {
                          'is_logged_in'=>true,
                          'first_name'=>$result[0]['first_name'],
                          'last_name'=>$result[0]['last_name'],
-                         'birth_date'=>$result[0]['birth_date']
+                         'birth_date'=>$result[0]['birthday']
                       );
 
            $this->session->set_userdata($data);
-           //redirect('profile');
+           redirect('/form/search', 'refresh');
 		}
-		/*if($this->input->post('email_login')=='minh'){
-			$this->load->view('formsuccess');
-		}else{
-			$data = array('email'=>$this->input->post('email'),
-                         'is_logged_in'=>true,
-                         'first_name'=>$result[0]->first_name,
-                         'last_name'=>$result[0]->last_name,
-                         'birth_date'=>$result[0]->birth_date
-                      );
-
-           $this->session->set_userdata($data);
-           redirect('profile');
-		}*/
 	}
 	public function logout()
 	{
+		$this->is_logged_in();
         //$data['main_content'] = 'login';
         //$this->load->view('includes/template',$data);
         $em = $this->doctrine->em;
@@ -56,10 +45,11 @@ class Form extends CI_Controller {
         $email = $this->session->userdata('email');
         $user->capNhatLastLogin($email);
         $this->session->sess_destroy();
+        redirect('/form/login', 'refresh');
 	}
 	function is_logged_in()
     {
-        $email = $this->session->userdata('is_logged_in');
+        $is_logged_in = $this->session->userdata('is_logged_in');
         if(!isset($is_logged_in) || $is_logged_in!=true)
         {
             echo "<h3>You don't have permission to access this page.</h3>";
@@ -89,33 +79,7 @@ class Form extends CI_Controller {
 		  $em = $this->doctrine->em;
 		  $user = new Entity\UserDAO($em);
 		  $user->themUser($data);
-		  //$user->xoaUser('a@gmail.com');
-
-		  
-
-			//$user = $this->em->getReference('Entity\User', $data['username']);
-			//$user->setPassword( $data['password']);
-			//$this->em->remove($user);
-			//$this->em->merge($user);
-		  //$this->em->persist($user);
-		  //$this->em->flush();
-			//$this->smarty->assign('data', $data); 
-			//$this->smarty->view('index');
 		}
 	}
-
-	/*public function username_check($str)
-	{
-		if ($str == 'test')
-		{
-			$this->form_validation->set_message('username_check', 'The %s field can not be the word "test"');
-			return FALSE;
-		}
-		else
-		{
-			return TRUE;
-		}
-	}*/
-
 }
 ?>

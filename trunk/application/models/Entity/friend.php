@@ -13,6 +13,7 @@ class Friend
      /**
      * @Id
      * @ManyToOne(targetEntity="user")
+     * @JoinColumn(name="friend_name", referencedColumnName="email")
      */
     protected $friend_name;
 
@@ -34,6 +35,7 @@ class Friend
     /**
      * @Id
      * @ManyToOne(targetEntity="user")
+     * @JoinColumn(name="email", referencedColumnName="email")
      */
     protected $email;
 
@@ -82,7 +84,7 @@ class Friend
         return $this->accept;
     }
     
-    public function setEmail($accept)
+    public function setAccept($accept)
     {
         $this->accept = $accept;
         return $this;

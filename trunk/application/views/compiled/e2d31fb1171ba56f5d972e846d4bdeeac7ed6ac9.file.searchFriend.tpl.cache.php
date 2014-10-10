@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-10 05:06:10
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-10 16:43:14
          compiled from "application\views\templates\searchFriend.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:1538654374d2255a429-72889957%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:275685437f082dda672-80892796%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'e2d31fb1171ba56f5d972e846d4bdeeac7ed6ac9' => 
     array (
       0 => 'application\\views\\templates\\searchFriend.tpl',
-      1 => 1412910329,
+      1 => 1412949451,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1538654374d2255a429-72889957',
+  'nocache_hash' => '275685437f082dda672-80892796',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_54374d2264af26_53862331',
+  'unifunc' => 'content_5437f082ec7a77_38609216',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_54374d2264af26_53862331')) {function content_54374d2264af26_53862331($_smarty_tpl) {?><html>
+<?php if ($_valid && !is_callable('content_5437f082ec7a77_38609216')) {function content_5437f082ec7a77_38609216($_smarty_tpl) {?><html>
 <head>
 
 <style>
@@ -117,6 +117,11 @@ ul li {
 	<p>Note:- Please start typing surname as "Chavan", "Patil"</p>
 		<input type="text" name="search" id="search" />
 		<ul id="finalResult"></ul>
+		<?php echo form_open('form/logout');?>
+
+			<input type="submit" name="submit" value="logout"/>
+		<?php echo form_close();?>
+
 </div>
 </body>
 </html><?php }} ?>
