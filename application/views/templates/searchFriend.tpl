@@ -94,6 +94,9 @@ ul li {
 	<p>Note:- Please start typing surname as "Chavan", "Patil"</p>
 		<input type="text" name="search" id="search" />
 		<ul id="finalResult"></ul>
+		{form_open('form/logout')}
+			<input type="submit" name="submit" value="logout"/>
+		{form_close()}
 </div>
 </body>
 </html>

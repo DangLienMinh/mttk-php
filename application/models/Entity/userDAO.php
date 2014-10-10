@@ -33,16 +33,16 @@ class UserDAO
 		$this->em->flush();
 	}
 
-	public function suaUser($data)
+	public function suaUser($email)
 	{
-	    $user = $em->getReference('Entity\User', $email);
+	    $user = $this->em->getReference('Entity\User', $email);
 		$this->em->merge($user);
 		$this->em->flush();
 	}
 
 	public function xoaUser($email)
 	{
-	    $user = $em->getReference('Entity\User', $email);
+	    $user = $this->em->getReference('Entity\User', $email);
 	    $this->em->remove($user);
 	    $this->em->flush();
 	}
