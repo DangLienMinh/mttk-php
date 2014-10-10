@@ -1,6 +1,6 @@
 <html>
 <head>
-	{literal}
+{literal}
 <style>
 #search {
 	background-color: lightyellow;
@@ -30,8 +30,9 @@ ul li {
 	border-radius: 3px;
 }
 </style>
-
-<script type="text/javascript" language="javascript" src="http://www.technicalkeeda.com/js/javascripts/plugin/jquery.js"></script>
+{/literal}
+{literal}
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="http://www.technicalkeeda.com/js/javascripts/plugin/json2.js"></script>
 <script>
 	$(document).ready(function(){
@@ -40,7 +41,9 @@ ul li {
 		{
 		$.ajax({
 			type: "post",
-			url: "http://localhost:81/mttk-php/index.php/addFriend/",
+{/literal}
+			url:"{base_url('addFriend/')}", 
+{literal}
 			cache: false,
 			data:'search='+$("#search").val(),
 			success: function(response){
@@ -50,8 +53,7 @@ ul li {
 					try{
 						var items=[];
 						$.each(obj, function(i,val){
-						    //items.push($("<li />").text(val.first_name + " " + val.last_name));
-						    items.push('<li><a href="seeWall/' + val.email + '">' + val.first_name+" "+val.last_name + '</a></li>');
+						    items.push('<li><a href="seeWall/' + val.email + '">' + val.first_name+" "+val.last_name + '</a>'+'<button type="button" class="addFriend" value="' + val.email + '">'+'Add friend</button></li>');
 						});
 						$('#finalResult').append.apply($('#finalResult'), items);
 					}catch(e) {
@@ -68,15 +70,30 @@ ul li {
 		});
 		}
 	  });
+	  $('#finalResult').on('click', 'li button', function() {
+	   	$.ajax({
+         type: "POST",
+{/literal}
+         url:"{base_url('addFriend/themBan')}", 
+{literal}
+         data: {friendEmail: $(this).val()},
+         dataType: "text",  
+         cache:false,
+         success: 
+              function(data){
+                alert(data);  //as a debugging message.
+              }
+          });// you have missed this bracket
+      });
 	});
 </script>
 {/literal}
 </head>
 <body>
 <div id="container">
-<p>Note:- Please start typing surname as "Chavan", "Patil"</p>
-<input type="text" name="search" id="search" />
-<ul id="finalResult"></ul>
+	<p>Note:- Please start typing surname as "Chavan", "Patil"</p>
+		<input type="text" name="search" id="search" />
+		<ul id="finalResult"></ul>
 </div>
 </body>
 </html>

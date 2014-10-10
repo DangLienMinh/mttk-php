@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('Doctrine','smarty');
+$autoload['libraries'] = array('session','Doctrine','smarty','form_validation');
 
 
 /*
@@ -64,7 +64,7 @@ $autoload['libraries'] = array('Doctrine','smarty');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url','utility');
+$autoload['helper'] = array('url','utility','form');
 
 
 /*

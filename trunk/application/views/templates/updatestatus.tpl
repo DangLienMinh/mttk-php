@@ -54,7 +54,7 @@
       $("#music_name").keyup(function(){
         $.ajax({
           type: "post",
-          url: "http://localhost:81/mttk-php/index.php/upload/chooseMusic",
+          url: "http://localhost:81/mttk-php/upload/chooseMusic",
           cache: false,
           data:'music_name='+$("#music_name").val(),
           success: function(response){

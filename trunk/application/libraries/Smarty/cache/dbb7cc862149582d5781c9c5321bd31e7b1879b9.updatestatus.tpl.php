@@ -1,21 +1,21 @@
-<?php /*%%SmartyHeaderCode:142155435ef7360d378-54395803%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:602054374b513b6a01-63492905%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'dbb7cc862149582d5781c9c5321bd31e7b1879b9' => 
     array (
       0 => 'application\\views\\templates\\updatestatus.tpl',
-      1 => 1412602673,
+      1 => 1412908240,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '142155435ef7360d378-54395803',
+  'nocache_hash' => '602054374b513b6a01-63492905',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5435ef73904397_12179089',
+  'unifunc' => 'content_54374b514e59e5_05385126',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5435ef73904397_12179089')) {function content_5435ef73904397_12179089($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_54374b514e59e5_05385126')) {function content_54374b514e59e5_05385126($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -71,7 +71,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       $("#music_name").keyup(function(){
         $.ajax({
           type: "post",
-          url: "http://localhost:81/mttk-php/index.php/upload/chooseMusic",
+          url: "http://localhost:81/mttk-php/upload/chooseMusic",
           cache: false,
           data:'music_name='+$("#music_name").val(),
           success: function(response){
