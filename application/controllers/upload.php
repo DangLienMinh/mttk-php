@@ -5,7 +5,6 @@ class Upload extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->helper(array('form', 'url'));
 	}
 
 	function index()
@@ -17,12 +16,12 @@ class Upload extends CI_Controller {
 		$this->smarty->view('updatestatus');
 	}
 
-	function chooseMusic(){
+	public function chooseMusic(){
 		$musicLink="";
 		if(@$_POST['music_name']) {
 			$music=$_POST["music_name"];
 			$music = str_replace(' ', '+', $music);
-			$urlMusic="http://j.ginggong.com/jOut.ashx?k=".$music."&h=mp3.zing.vn&code=eaf53a54-3147-483c-97ba-f7e3e2d0145b";
+			$urlMusic="http://j.ginggong.com/jOut.ashx?k=".$music."&h=nhacso.net&code=eaf53a54-3147-483c-97ba-f7e3e2d0145b";
 			$json = file_get_contents($urlMusic);
 			echo $json;
 			/*$obj = json_decode($json);

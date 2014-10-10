@@ -4,8 +4,6 @@ class AddressProfile extends CI_Controller {
 
 	public function address()
 	{
-		$this->load->helper(array('form', 'url'));
-		$this->load->library('form_validation');
 		$this->form_validation->set_rules('address', 'Address', 'trim|required');
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -23,10 +21,6 @@ class AddressProfile extends CI_Controller {
 		  $profile->setPrivacy_type_id($privacy);
 		  $profile->setAddress($data['address']);
 
-			//$user = $this->em->getReference('Entity\User', $data['username']);
-			//$user->setPassword( $data['password']);
-			//$this->em->remove($user);
-			//$this->em->merge($user);
 		  $this->em->persist($profile);
 		  $this->em->flush();
 			//$this->smarty->assign('data', $data); 

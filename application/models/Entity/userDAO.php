@@ -23,7 +23,6 @@ class UserDAO
 
 	public function themUser($data)
 	{
-		
 	    $user = new User;
 		$user->setEmail($data['email']);
 		$user->setPassword($data['password']);
@@ -63,12 +62,16 @@ class UserDAO
 
 	public function timUserLogin($data){
 		$data['password']= Md5($data['password']);
-		$query = $this->em->createQuery("SELECT count(p.email) FROM Entity\User p WHERE p.email=?1 and p.password= ?2");
+		$query = $this->em->createQuery("SELECT p.first_name,p.last_name,p.birthday FROM Entity\User p WHERE p.email=?1 and p.password= ?2");
 		$query->setParameter(1, $data['email']);
 		$query->setParameter(2, $data['password']);
-		$results=$query->getResult();
-		print_r($results);
+		$result=$query->getResult();
+		return $result;
+	}
 
+	public function capNhatLastLogin($email){
+		$query = $this->em->createQuery("UPDATE Entity\User p SET p.last_login=now() WHERE p.email=?1");
+		$query->setParameter(1, $email);
 	}
 }
 ?>

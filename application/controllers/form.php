@@ -4,8 +4,6 @@ class Form extends CI_Controller {
 
 	public function login()
 	{
-		$this->load->helper(array('form', 'url'));
-		$this->load->library('form_validation');
 		$this->smarty->view('myform');
 	}
 	public function search()
@@ -16,14 +14,25 @@ class Form extends CI_Controller {
 	{
 		echo $id;
 	}
-	public function login1(){
-		$this->load->helper('url');
+	public function login1()
+	{
 		$em = $this->doctrine->em;
 		$user = new Entity\UserDAO($em);
 		$data['email']=$this->input->post('email_login');
 		$data['password']=$this->input->post('pass_login');
-		$user->timUserLogin($data);
+		$result=$user->timUserLogin($data);
+		if(count($result)>0)
+		{
+			$data = array('email'=>$data['email'],
+                         'is_logged_in'=>true,
+                         'first_name'=>$result[0]['first_name'],
+                         'last_name'=>$result[0]['last_name'],
+                         'birth_date'=>$result[0]['birth_date']
+                      );
 
+           $this->session->set_userdata($data);
+           //redirect('profile');
+		}
 		/*if($this->input->post('email_login')=='minh'){
 			$this->load->view('formsuccess');
 		}else{
@@ -31,7 +40,6 @@ class Form extends CI_Controller {
                          'is_logged_in'=>true,
                          'first_name'=>$result[0]->first_name,
                          'last_name'=>$result[0]->last_name,
-                         'gender'=>$result[0]->gender,
                          'birth_date'=>$result[0]->birth_date
                       );
 
@@ -41,24 +49,25 @@ class Form extends CI_Controller {
 	}
 	public function logout()
 	{
-		/*$this->session->sess_destroy();
-        $data['main_content'] = 'login';
-        $this->load->view('includes/template',$data);
-		*/
+        //$data['main_content'] = 'login';
+        //$this->load->view('includes/template',$data);
+        $em = $this->doctrine->em;
+		$user = new Entity\UserDAO($em);
+        $email = $this->session->userdata('email');
+        $user->capNhatLastLogin($email);
+        $this->session->sess_destroy();
 	}
 	function is_logged_in()
     {
-        $is_logged_in = $this->session->userdata('is_logged_in');
-        if(!isset($is_logged_in) || $is_logged_in!=true){
+        $email = $this->session->userdata('is_logged_in');
+        if(!isset($is_logged_in) || $is_logged_in!=true)
+        {
             echo "<h3>You don't have permission to access this page.</h3>";
             die;
         }
     }
 	public function register()
 	{
-		$this->load->helper(array('form', 'url'));
-		$this->load->library('form_validation');
-
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 		//$this->form_validation->set_rules('re_email','Confirm Email','trim|required|matches[email]');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|md5');

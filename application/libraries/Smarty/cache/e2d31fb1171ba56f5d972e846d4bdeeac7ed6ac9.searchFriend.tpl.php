@@ -1,23 +1,23 @@
-<?php /*%%SmartyHeaderCode:303885435ef785f2566-04437856%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1538654374d2255a429-72889957%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'e2d31fb1171ba56f5d972e846d4bdeeac7ed6ac9' => 
     array (
       0 => 'application\\views\\templates\\searchFriend.tpl',
-      1 => 1412301512,
+      1 => 1412910329,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '303885435ef785f2566-04437856',
+  'nocache_hash' => '1538654374d2255a429-72889957',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5435ef78876bd2_72171307',
+  'unifunc' => 'content_54374d22688982_25193188',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5435ef78876bd2_72171307')) {function content_5435ef78876bd2_72171307($_smarty_tpl) {?><html>
+<?php if ($_valid && !is_callable('content_54374d22688982_25193188')) {function content_54374d22688982_25193188($_smarty_tpl) {?><html>
 <head>
-	
+
 <style>
 #search {
 	background-color: lightyellow;
@@ -48,7 +48,8 @@ ul li {
 }
 </style>
 
-<script type="text/javascript" language="javascript" src="http://www.technicalkeeda.com/js/javascripts/plugin/jquery.js"></script>
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="http://www.technicalkeeda.com/js/javascripts/plugin/json2.js"></script>
 <script>
 	$(document).ready(function(){
@@ -57,7 +58,9 @@ ul li {
 		{
 		$.ajax({
 			type: "post",
-			url: "http://localhost:81/mttk-php/index.php/addFriend/",
+
+			url:"http://localhost:81/mttk-php/addFriend", 
+
 			cache: false,
 			data:'search='+$("#search").val(),
 			success: function(response){
@@ -67,8 +70,7 @@ ul li {
 					try{
 						var items=[];
 						$.each(obj, function(i,val){
-						    //items.push($("<li />").text(val.first_name + " " + val.last_name));
-						    items.push('<li><a href="seeWall/' + val.email + '">' + val.first_name+" "+val.last_name + '</a></li>');
+						    items.push('<li><a href="seeWall/' + val.email + '">' + val.first_name+" "+val.last_name + '</a>'+'<button type="button" class="addFriend" value="' + val.email + '">'+'Add friend</button></li>');
 						});
 						$('#finalResult').append.apply($('#finalResult'), items);
 					}catch(e) {
@@ -85,15 +87,30 @@ ul li {
 		});
 		}
 	  });
+	  $('#finalResult').on('click', 'li button', function() {
+	   	$.ajax({
+         type: "POST",
+
+         url:"http://localhost:81/mttk-php/addFriend/themBan", 
+
+         data: {friendEmail: $(this).val()},
+         dataType: "text",  
+         cache:false,
+         success: 
+              function(data){
+                alert(data);  //as a debugging message.
+              }
+          });// you have missed this bracket
+      });
 	});
 </script>
 
 </head>
 <body>
 <div id="container">
-<p>Note:- Please start typing surname as "Chavan", "Patil"</p>
-<input type="text" name="search" id="search" />
-<ul id="finalResult"></ul>
+	<p>Note:- Please start typing surname as "Chavan", "Patil"</p>
+		<input type="text" name="search" id="search" />
+		<ul id="finalResult"></ul>
 </div>
 </body>
 </html><?php }} ?>
