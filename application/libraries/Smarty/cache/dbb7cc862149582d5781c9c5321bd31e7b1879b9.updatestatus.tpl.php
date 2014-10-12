@@ -1,21 +1,21 @@
-<?php /*%%SmartyHeaderCode:166755437d63ccc5e31-07185267%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:12494543a9c02ba2a25-96888806%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'dbb7cc862149582d5781c9c5321bd31e7b1879b9' => 
     array (
       0 => 'application\\views\\templates\\updatestatus.tpl',
-      1 => 1412908240,
+      1 => 1413033518,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '166755437d63ccc5e31-07185267',
+  'nocache_hash' => '12494543a9c02ba2a25-96888806',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5437d63ce0e399_79126078',
+  'unifunc' => 'content_543a9c02cdd275_03263062',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5437d63ce0e399_79126078')) {function content_5437d63ce0e399_79126078($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_543a9c02cdd275_03263062')) {function content_543a9c02cdd275_03263062($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -71,7 +71,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       $("#music_name").keyup(function(){
         $.ajax({
           type: "post",
-          url: "http://localhost:81/mttk-php/upload/chooseMusic",
+
+          url:"http://localhost:81/mttk-php/statusController/chooseMusic", 
+
           cache: false,
           data:'music_name='+$("#music_name").val(),
           success: function(response){
@@ -121,7 +123,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   
 </head>
 <body>
-<form action="http://localhost:81/mttk-php/upload/updateStatus" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+<form action="http://localhost:81/mttk-php/statusController/updateStatus" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 <div id="tabs">
   <ul>
     <li><a href="#tabs-1">Update status</a></li>
@@ -177,8 +179,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     </div>
   </div>
   <div id="tabs-2">
+    <textarea name="status2" id="target" rows="4" placeholder="Enter textarea"></textarea>
     <input type="file" name="musicFile" value="Upload" size="20"/>
+
   </div>
+  <select name="privacy">
+    <option selected value="1">Public</option>
+    <option value="2">Friend</option>
+    <option value="3">Custom</option>
+    <option value="4">Private</option>
+  </select>
    <input type="submit" value="submit"/>
 </div>
  </form>

@@ -1,19 +1,9 @@
 <?php
 
-class Form extends CI_Controller {
-
-	public function login()
+class Login extends CI_Controller {
+	public function index()
 	{
 		$this->smarty->view('myform');
-	}
-	public function search()
-	{
-		$this->is_logged_in();
-		$this->smarty->view('searchFriend');
-	}
-	public function seeWall($id)
-	{
-		echo $id;
 	}
 	public function login1()
 	{
@@ -32,12 +22,14 @@ class Form extends CI_Controller {
                       );
 
            $this->session->set_userdata($data);
-           redirect('/form/search', 'refresh');
+           if($result[0]['picture']!='')
+           		redirect('/main/search', 'refresh');
+           else
+				redirect('/main/firstTime', 'refresh');
 		}
 	}
 	public function logout()
 	{
-		$this->is_logged_in();
         //$data['main_content'] = 'login';
         //$this->load->view('includes/template',$data);
         $em = $this->doctrine->em;
@@ -45,17 +37,8 @@ class Form extends CI_Controller {
         $email = $this->session->userdata('email');
         $user->capNhatLastLogin($email);
         $this->session->sess_destroy();
-        redirect('/form/login', 'refresh');
+        redirect('/login/index', 'refresh');
 	}
-	function is_logged_in()
-    {
-        $is_logged_in = $this->session->userdata('is_logged_in');
-        if(!isset($is_logged_in) || $is_logged_in!=true)
-        {
-            echo "<h3>You don't have permission to access this page.</h3>";
-            die;
-        }
-    }
 	public function register()
 	{
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
@@ -79,6 +62,7 @@ class Form extends CI_Controller {
 		  $em = $this->doctrine->em;
 		  $user = new Entity\UserDAO($em);
 		  $user->themUser($data);
+		  redirect('/main/firstTime', 'refresh');
 		}
 	}
 }

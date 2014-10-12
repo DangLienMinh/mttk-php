@@ -5,7 +5,7 @@
 </head>
 <body>
 {validation_errors()}
-{form_open('form/register')}
+{form_open('login/register')}
 
 <h1>Register account</h1>
 <h5 class="test">Email</h5>
@@ -28,7 +28,7 @@
 
 {form_close()}
 
-{form_open('form/login1')}
+{form_open('login/login1')}
 <h5>email name</h5>
 <input type="text" name="email_login"/>
 

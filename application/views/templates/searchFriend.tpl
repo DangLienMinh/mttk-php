@@ -81,7 +81,6 @@ ul li {
          cache:false,
          success: 
               function(data){
-                alert(data);  //as a debugging message.
               }
           });// you have missed this bracket
       });
@@ -94,7 +93,7 @@ ul li {
 	<p>Note:- Please start typing surname as "Chavan", "Patil"</p>
 		<input type="text" name="search" id="search" />
 		<ul id="finalResult"></ul>
-		{form_open('form/logout')}
+		{form_open('login/logout')}
 			<input type="submit" name="submit" value="logout"/>
 		{form_close()}
 </div>
