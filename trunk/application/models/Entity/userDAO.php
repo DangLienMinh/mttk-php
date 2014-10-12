@@ -62,7 +62,7 @@ class UserDAO
 
 	public function timUserLogin($data){
 		$data['password']= Md5($data['password']);
-		$query = $this->em->createQuery("SELECT p.first_name,p.last_name,p.birthday FROM Entity\User p WHERE p.email=?1 and p.password= ?2");
+		$query = $this->em->createQuery("SELECT p.first_name,p.last_name,p.birthday,p.picture FROM Entity\User p WHERE p.email=?1 and p.password= ?2");
 		$query->setParameter(1, $data['email']);
 		$query->setParameter(2, $data['password']);
 		$result=$query->getResult();

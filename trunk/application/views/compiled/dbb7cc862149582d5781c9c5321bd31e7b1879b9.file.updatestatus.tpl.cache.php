@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-10 14:51:08
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-12 17:19:30
          compiled from "application\views\templates\updatestatus.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:166755437d63ccc5e31-07185267%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:12494543a9c02ba2a25-96888806%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'dbb7cc862149582d5781c9c5321bd31e7b1879b9' => 
     array (
       0 => 'application\\views\\templates\\updatestatus.tpl',
-      1 => 1412908240,
+      1 => 1413033518,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '166755437d63ccc5e31-07185267',
+  'nocache_hash' => '12494543a9c02ba2a25-96888806',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5437d63cdbe0f4_49357881',
+  'unifunc' => 'content_543a9c02c97c86_13076690',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5437d63cdbe0f4_49357881')) {function content_5437d63cdbe0f4_49357881($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_543a9c02c97c86_13076690')) {function content_543a9c02c97c86_13076690($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -78,7 +78,10 @@ js/jquery.jplayer.min.js"></script>
       $("#music_name").keyup(function(){
         $.ajax({
           type: "post",
-          url: "http://localhost:81/mttk-php/upload/chooseMusic",
+
+          url:"<?php echo base_url('statusController/chooseMusic');?>
+", 
+
           cache: false,
           data:'music_name='+$("#music_name").val(),
           success: function(response){
@@ -128,7 +131,7 @@ js/jquery.jplayer.min.js"></script>
   
 </head>
 <body>
-<?php echo form_open_multipart('upload/updateStatus');?>
+<?php echo form_open_multipart('statusController/updateStatus');?>
 
 <div id="tabs">
   <ul>
@@ -185,8 +188,16 @@ js/jquery.jplayer.min.js"></script>
     </div>
   </div>
   <div id="tabs-2">
+    <textarea name="status2" id="target" rows="4" placeholder="Enter textarea"></textarea>
     <input type="file" name="musicFile" value="Upload" size="20"/>
+
   </div>
+  <select name="privacy">
+    <option selected value="1">Public</option>
+    <option value="2">Friend</option>
+    <option value="3">Custom</option>
+    <option value="4">Private</option>
+  </select>
    <input type="submit" value="submit"/>
 </div>
  <?php echo form_close();?>

@@ -1,7 +1,14 @@
 <?php
 
 class AddressProfile extends CI_Controller {
-
+	function __construct() {
+        parent::__construct();
+        $is_logged_in = $this->session->userdata('is_logged_in');
+        if(!isset($is_logged_in) || $is_logged_in!=true)
+        {
+            redirect('/login/index', 'refresh');
+        }
+    }
 	public function address()
 	{
 		$this->form_validation->set_rules('address', 'Address', 'trim|required');
@@ -23,8 +30,6 @@ class AddressProfile extends CI_Controller {
 
 		  $this->em->persist($profile);
 		  $this->em->flush();
-			//$this->smarty->assign('data', $data); 
-			//$this->smarty->view('index');
 		}
 	}
 }

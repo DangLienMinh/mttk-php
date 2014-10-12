@@ -1,28 +1,28 @@
-<?php /*%%SmartyHeaderCode:134765437f079157655-21794115%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:15343543a9c47d6e196-82671056%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '49144c6ed7cc2be2618deb805eb8d5ae798f5ede' => 
     array (
       0 => 'application\\views\\templates\\myform.tpl',
-      1 => 1411915230,
+      1 => 1413018793,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '134765437f079157655-21794115',
+  'nocache_hash' => '15343543a9c47d6e196-82671056',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5437f0792b3fa1_87697223',
+  'unifunc' => 'content_543a9c47f1ab03_78985694',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5437f0792b3fa1_87697223')) {function content_5437f0792b3fa1_87697223($_smarty_tpl) {?><html>
+<?php if ($_valid && !is_callable('content_543a9c47f1ab03_78985694')) {function content_543a9c47f1ab03_78985694($_smarty_tpl) {?><html>
 <head>
 <title>My Form</title>
 <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/main.css">
 </head>
 <body>
 
-<form action="http://localhost:81/mttk-php/form/register" method="post" accept-charset="utf-8">
+<form action="http://localhost:81/mttk-php/login/register" method="post" accept-charset="utf-8">
 
 <h1>Register account</h1>
 <h5 class="test">Email</h5>
@@ -45,7 +45,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 </form>
 
-<form action="http://localhost:81/mttk-php/form/login1" method="post" accept-charset="utf-8">
+<form action="http://localhost:81/mttk-php/login/login1" method="post" accept-charset="utf-8">
 <h5>email name</h5>
 <input type="text" name="email_login"/>
 

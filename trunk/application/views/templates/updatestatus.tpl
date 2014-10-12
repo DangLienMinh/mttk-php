@@ -54,7 +54,9 @@
       $("#music_name").keyup(function(){
         $.ajax({
           type: "post",
-          url: "http://localhost:81/mttk-php/upload/chooseMusic",
+{/literal}
+          url:"{base_url('statusController/chooseMusic')}", 
+{literal}
           cache: false,
           data:'music_name='+$("#music_name").val(),
           success: function(response){
@@ -104,7 +106,7 @@
   {/literal}
 </head>
 <body>
-{form_open_multipart('upload/updateStatus')}
+{form_open_multipart('statusController/updateStatus')}
 <div id="tabs">
   <ul>
     <li><a href="#tabs-1">Update status</a></li>
@@ -160,8 +162,16 @@
     </div>
   </div>
   <div id="tabs-2">
+    <textarea name="status2" id="target" rows="4" placeholder="Enter textarea"></textarea>
     <input type="file" name="musicFile" value="Upload" size="20"/>
+
   </div>
+  <select name="privacy">
+    <option selected value="1">Public</option>
+    <option value="2">Friend</option>
+    <option value="3">Custom</option>
+    <option value="4">Private</option>
+  </select>
    <input type="submit" value="submit"/>
 </div>
  {form_close()}

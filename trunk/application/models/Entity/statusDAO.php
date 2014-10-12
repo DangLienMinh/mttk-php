@@ -11,17 +11,28 @@ class StatusDAO
 
 	public function layDSStatus($email)
 	{
-		// prepare statement
-		$sth = $this->em->prepare("CALL GetStatus($email)");
-
+		// prepare statemen
+		$cnn=$this->em->getConnection();
+		$sth = $cnn->prepare("CALL GetStatus(?)");
+		$sth->bindValue(1, $email);
 		// execute and fetch
 		$sth->execute();
 		$result = $sth->fetch();
+		print_r($result);
+	}
 
-		// DEBUG
-		if ($input->getOption('verbose')) {
-		    $output->writeln(var_dump($result));
-		}
+	public function themStatus($data)
+	{
+		$status = new Status;
+	    $email = $this->em->getReference('Entity\User', $data['email']);
+	    $privacy = $this->em->getReference('Entity\Privacy_type', (int)$data['privacy']);
+	    $status->setPrivacy_type_id($privacy);
+		$status->setEmail($email);
+		$status->setThumbs_up(0);
+		$status->setMessage( $data['status']);
+		$status->setMusic( $data['music']);
+		$this->em->persist($status);
+		$this->em->flush();
 	}
 }
 ?>
