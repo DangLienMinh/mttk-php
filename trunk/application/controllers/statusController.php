@@ -16,7 +16,8 @@ class StatusController extends CI_Controller {
 	{
         $em = $this->doctrine->em;
         $status = new Entity\statusDAO($em);
-        $status->layDSStatus($this->session->userdata('email'));
+        $result=$status->layDSStatus($this->session->userdata('email'));
+        echo json_encode($result);
 	}
 
 	public function chooseMusic(){
@@ -73,7 +74,7 @@ class StatusController extends CI_Controller {
                 {
                     $uploaded = array('upload_data' => $this->upload->data());
                     $data['status']=$_POST["status2"];
-                    $data['music']=$uploaded['upload_data']['full_path'];
+                    $data['music']=$this->config->base_url().'uploads/'.$uploaded['upload_data']['file_name'];;
                 }
             }
         }

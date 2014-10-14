@@ -40,6 +40,11 @@ class Notification
     protected $created_at;
 
     /**
+     * @Column(type="integer")
+     */
+    protected $is_read;
+
+    /**
      * @ManyToOne(targetEntity="user")
      * @JoinColumn(name="email", referencedColumnName="email")
      **/
@@ -105,7 +110,15 @@ class Notification
         $this->email = $email;
         return $this;
     }
-   
-	
+    public function getIs_read()
+    {
+        return $this->is_read;
+    }
+    
+    public function setIs_read($is_read)
+    {
+        $this->is_read = $is_read;
+        return $this;
+    }
 }
 ?>

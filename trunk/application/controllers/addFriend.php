@@ -8,7 +8,7 @@
             redirect('/login/index', 'refresh');
         }
     }
-    
+
 	public function index(){
 		$em = $this->doctrine->em;
 		$user = new Entity\UserDAO($em);

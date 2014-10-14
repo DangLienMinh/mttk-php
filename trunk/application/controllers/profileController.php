@@ -31,7 +31,7 @@ class ProfileController extends CI_Controller {
           $em = $this->doctrine->em;
           $profile = new Entity\ProfileDAO($em);
           $profile->themProfile($data);
-          //redirect('/main/player');
+          redirect('/main/player');
         }
     }
 

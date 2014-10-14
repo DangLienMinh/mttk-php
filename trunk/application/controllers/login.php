@@ -23,7 +23,7 @@ class Login extends CI_Controller {
 
            $this->session->set_userdata($data);
            if($result[0]['picture']!='')
-           		redirect('/main/search', 'refresh');
+           		redirect('/notiController/getNewNotify', 'refresh');
            else
 				redirect('/main/firstTime', 'refresh');
 		}

@@ -24,6 +24,14 @@ class Main extends CI_Controller {
 	{
 		$this->smarty->view('searchFriend');
 	}
+	public function timeLine()
+	{
+		$this->smarty->view('timeline');
+	}
+	public function testPlayer()
+	{
+		$this->smarty->view('testPlayerLink');
+	}
 	public function seeWall($id)
 	{
 		echo $id;
