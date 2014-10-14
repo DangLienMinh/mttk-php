@@ -1,21 +1,21 @@
-<?php /*%%SmartyHeaderCode:22102543c87e8aadab2-84335629%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:22226543d1a588a8684-39460455%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1413250839,
+      1 => 1413290408,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '22102543c87e8aadab2-84335629',
+  'nocache_hash' => '22226543d1a588a8684-39460455',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_543c87e8cae065_98228420',
+  'unifunc' => 'content_543d1a58a10494_85460712',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_543c87e8cae065_98228420')) {function content_543c87e8cae065_98228420($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_543d1a58a10494_85460712')) {function content_543d1a58a10494_85460712($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -69,10 +69,46 @@ $_valid = $_smarty_tpl->decodeProperties(array (
             var items=[];
             $.each(obj, function(i,val){
                 i=i+1;
-                $('#tabs').append('<div><b>'+val.email+'</b><p>'+val.message+'</p><div id="jquery_jplayer_'+i+'" class="jp-jplayer"></div><div id="jp_container_'+i+'" class="jp-audio"><div class="jp-type-single" id="jp_interface_'+i+'">'+element+'</div></div></div>');
+                 $('#update').append('<li><b>'+val.email+'</b><p>'+val.message+'</p><div id="jquery_jplayer_'+i+'" class="jp-jplayer"></div><div id="jp_container_'+i+'" class="jp-audio"><div class="jp-type-single" id="jp_interface_'+i+'">'+element+'</div></div><a href="#" class="comment_button" id="'+val.status_id+'">Comment</a></li><div  id="loadplace'+val.status_id+'"></div><div id="flash'+val.status_id+'" class="flash_load"></div><div class="panel" id="slidepanel'+val.status_id+'"><textarea style="width:390px;height:23px" id="textboxcontent'+val.status_id+'"></textarea><br/><button value="Comment" class="comment_submit" id="'+val.status_id+'">Comment</button></div>');
                 setSong('#jquery_jplayer_'+i,'#jp_interface_'+i,val.music);
             });
+            $(document).on('click', '.comment_button', function() { 
+              var element = $(this);
+              var I = element.attr("id");
+              $("#slidepanel"+I).slideToggle(300);
+              $(this).toggleClass("active"); 
+              return false;
+             });
+            $(document).on('click', '.comment_submit', function() { 
+              var element = $(this);
+              var Id = element.attr("id");
+              var test = $("#textboxcontent"+Id).val();
+              var dataString = 'textcontent='+ test + '&com_msgid=' + Id;
+              if(test=='')
+              {
+                alert("Please Enter Some Text");
+              }
+              else
+              {
+              $("#flash"+Id).show();
 
+              $("#flash"+Id).fadeIn(400).html('<img src="http://localhost:81/mttk-php/assets/img/ajax-loader.gif" align="absmiddle"> loading.....');
+      
+              $.ajax({
+                type: "post",
+
+                url:"http://localhost:81/mttk-php/commentController/themComment",
+
+                data: dataString,
+                cache: false,
+                success: function(html){
+                    $("#loadplace"+Id).append(html);
+                    $("#flash"+Id).hide();
+                }
+                });
+              }
+              return false;
+             });
             //$('#tabs').append.apply($('#tabs'), items);
             
           }catch(e) {
@@ -124,18 +160,63 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         toggleDuration: true
       });
       };
+
   </script>
   <script>
   $(document).ready(function() {
-      getStatus();
-     
+      getStatus(); 
   });
-  
+  $('ol').on('click', '.comment_button', function() {
+        
+      });
+ 
   </script>
+<style type="text/css">
+  body{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:12px;
+  }
+  .comment_box{
+    background-color:#D3E7F5; border-bottom:#ffffff solid 1px; padding-top:3px
+  }
+  h1{
+    color:#555555
+  }
+  a{
+    text-decoration:none;
+    color:#d02b55;
+  }
+  a:hover{
+    text-decoration:underline;
+    color:#d02b55;
+  }
+  *{margin:0;padding:0;}
+  ol.timeline{list-style:none;font-size:1.2em;}
+  ol.timeline li{ position:relative;margin:20px 0; border-bottom:#dedede dashed 1px}
+  ol.timeline li:first-child{border-top:1px dashed #dedede;}
+  .comment_button{
+    margin-right:30px; background-color:#95CD3C; color:#000; border:#333333 solid 1px; padding:3px;font-weight:bold; font-size:11px; font-family:Arial, Helvetica, sans-serif
+  }
+  .comment_submit{
+    background-color:#3b59a4; color:#FFFFFF; border:none; font-size:11px; padding:3px; margin-top:3px;
+  }
+  .panel{
+    margin-left:50px; margin-right:50px; margin-bottom:5px; background-color:#D3E7F5; height:45px; padding:6px; width:400px;
+    display:none;
+  }
+  .load_comment{
+    margin-left:50px; margin-right:50px; margin-bottom:5px; background-color:#D3E7F5; height:25px; padding:6px; width:400px; font-size:14px;
+  }
+  .flash_load{
+    margin-left:50px; margin-right:50px; margin-bottom:5px;height:20px; padding:6px; width:400px; 
+    display:none; 
+  }
+</style>
+ 
 </head>
 <body>
 <div id="tabs">
-    
+    <ol id="update" class="timeline"></ol>
 </div>
 </body>
 </html><?php }} ?>
