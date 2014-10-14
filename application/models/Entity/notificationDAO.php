@@ -10,10 +10,22 @@ class NotificationDAO
        $this->em=$em;
     }
 
-	public function layDSNotify($email)
+	public function getNewNotify($email)
 	{
 		// prepare statement
-		$sth = $this->em->prepare("CALL GetNotify($email)");
+		$cnn=$this->em->getConnection();
+		$sth = $cnn->prepare("CALL GetNewNotify(?)");
+		$sth->bindValue(1, $email);
+		// execute and fetch
+		$sth->execute();
+		$result = $sth->fetchAll();
+		return $result;
+	}
+
+	public function getOldNotify($email)
+	{
+		// prepare statement
+		$sth = $this->em->prepare("CALL GetOldNotify($email)");
 
 		// execute and fetch
 		$sth->execute();

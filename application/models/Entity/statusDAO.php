@@ -17,8 +17,8 @@ class StatusDAO
 		$sth->bindValue(1, $email);
 		// execute and fetch
 		$sth->execute();
-		$result = $sth->fetch();
-		print_r($result);
+		$result = $sth->fetchAll();
+		return $result;
 	}
 
 	public function themStatus($data)

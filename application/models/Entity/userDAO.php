@@ -54,10 +54,6 @@ class UserDAO
 		$query->setParameter(1, $str);
 		$results=$query->getResult();
 		return json_encode($results);
-		/*foreach ($results AS $result) {
-			echo $result['first_name']." ".$result['last_name'];
-			echo "<br>";
-		}*/
 	}
 
 	public function timUserLogin($data){

@@ -1,6 +1,6 @@
 <?php
 
-class StatusController extends CI_Controller {
+class NotiController extends CI_Controller {
 
 	function __construct() {
         parent::__construct();
@@ -15,6 +15,11 @@ class StatusController extends CI_Controller {
 	{
 	}
 
-	
+    function getNewNotify(){
+        $em = $this->doctrine->em;
+        $noti = new Entity\NotificationDAO($em);
+        $result=$noti->getNewNotify($this->session->userdata('email'));
+        echo json_encode($result);
+    }
 }
 ?>
