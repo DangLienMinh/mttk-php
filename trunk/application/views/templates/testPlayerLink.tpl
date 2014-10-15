@@ -54,6 +54,7 @@
                 i=i+1;
                  $('#update').append('<li><b>'+val.email+'</b><p>'+val.message+'</p><div id="jquery_jplayer_'+i+'" class="jp-jplayer"></div><div id="jp_container_'+i+'" class="jp-audio"><div class="jp-type-single" id="jp_interface_'+i+'">'+element+'</div></div><a href="#" class="comment_button" id="'+val.status_id+'">Comment</a></li><div  id="loadplace'+val.status_id+'"></div><div id="flash'+val.status_id+'" class="flash_load"></div><div class="panel" id="slidepanel'+val.status_id+'"><textarea style="width:390px;height:23px" id="textboxcontent'+val.status_id+'"></textarea><br/><button value="Comment" class="comment_submit" id="'+val.status_id+'">Comment</button></div>');
                  getComment(val.status_id);
+                 getLike(val.status_id);
                  setSong('#jquery_jplayer_'+i,'#jp_interface_'+i,val.music);
             });
             $(document).on('click', '.comment_button', function() { 
@@ -191,6 +192,33 @@
                 $.each(obj, function(i,val){
                 $("#loadplace"+val.status_id).append("<div class='load_comment'>"+val.message+'<a href="#" id="'+val.comment_id+'" class="delete_button">X</a></div>');
               });
+              }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+ 
+            }
+        });
+    };
+
+    function getLike(status){
+        var dataString = 'status_id='+ status;
+        $.ajax({
+            type: "post",
+{/literal}
+      url:"{base_url('thumb_up_downController/layLikeUser')}",
+{literal}
+            data: dataString,
+            async: true, /* If set to non-async, browser shows page as "Loading.."*/
+            cache: false,
+
+            success: function(data){ /* called when request to barge.php completes */
+              var obj = JSON.parse(data);
+              if(obj.length>0){
+                $.each(obj, function(i,val){
+              });
+              }else{
+                   $("#loadplace"+status).append('<a href="#" class="like" id="like'+status+'" title="Like" rel="Like">Like</a>');
+               
               }
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){

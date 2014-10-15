@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-15 16:25:52
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-15 17:36:31
          compiled from "application\views\templates\testPlayerLink.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:26224543e83f04bae30-24839683%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:29806543e947fa7eff7-69268008%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1413382087,
+      1 => 1413387388,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '26224543e83f04bae30-24839683',
+  'nocache_hash' => '29806543e947fa7eff7-69268008',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_543e83f05e1d82_60653225',
+  'unifunc' => 'content_543e947fba8313_89079794',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_543e83f05e1d82_60653225')) {function content_543e83f05e1d82_60653225($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_543e947fba8313_89079794')) {function content_543e947fba8313_89079794($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -78,6 +78,7 @@ js/jquery.jplayer.min.js"></script>
                 i=i+1;
                  $('#update').append('<li><b>'+val.email+'</b><p>'+val.message+'</p><div id="jquery_jplayer_'+i+'" class="jp-jplayer"></div><div id="jp_container_'+i+'" class="jp-audio"><div class="jp-type-single" id="jp_interface_'+i+'">'+element+'</div></div><a href="#" class="comment_button" id="'+val.status_id+'">Comment</a></li><div  id="loadplace'+val.status_id+'"></div><div id="flash'+val.status_id+'" class="flash_load"></div><div class="panel" id="slidepanel'+val.status_id+'"><textarea style="width:390px;height:23px" id="textboxcontent'+val.status_id+'"></textarea><br/><button value="Comment" class="comment_submit" id="'+val.status_id+'">Comment</button></div>');
                  getComment(val.status_id);
+                 getLike(val.status_id);
                  setSong('#jquery_jplayer_'+i,'#jp_interface_'+i,val.music);
             });
             $(document).on('click', '.comment_button', function() { 
@@ -220,6 +221,34 @@ img/ajax-loader.gif" align="absmiddle"> loading.....');
                 $.each(obj, function(i,val){
                 $("#loadplace"+val.status_id).append("<div class='load_comment'>"+val.message+'<a href="#" id="'+val.comment_id+'" class="delete_button">X</a></div>');
               });
+              }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+ 
+            }
+        });
+    };
+
+    function getLike(status){
+        var dataString = 'status_id='+ status;
+        $.ajax({
+            type: "post",
+
+      url:"<?php echo base_url('thumb_up_downController/layLikeUser');?>
+",
+
+            data: dataString,
+            async: true, /* If set to non-async, browser shows page as "Loading.."*/
+            cache: false,
+
+            success: function(data){ /* called when request to barge.php completes */
+              var obj = JSON.parse(data);
+              if(obj.length>0){
+                $.each(obj, function(i,val){
+              });
+              }else{
+                   $("#loadplace"+status).append('<a href="#" class="like" id="like'+status+'" title="Like" rel="Like">Like</a>');
+               
               }
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){
