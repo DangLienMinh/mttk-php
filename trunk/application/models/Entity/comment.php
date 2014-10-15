@@ -35,7 +35,7 @@ class Comment
 
     /**
      * @ManyToOne(targetEntity="user")
-     * @JoinColumn(name="email", referencedColumnName="email")
+     * @JoinColumn(name="friend_name", referencedColumnName="email")
      **/
     protected $friend_name;
 

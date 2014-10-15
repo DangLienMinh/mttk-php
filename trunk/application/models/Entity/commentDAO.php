@@ -19,6 +19,26 @@ class CommentDAO
         $comment->setFriend_name($email);
         $this->em->persist($comment);
         $this->em->flush();
+        return $comment->getComment_id();
+    }
+
+    public function xoaComment($id)
+    {
+        $comment = $this->em->getReference('Entity\Comment', $id);
+        $this->em->remove($comment);
+        $this->em->flush();
+    }
+
+    public function layComment($status_id)
+    {
+        // prepare statemen
+        $cnn=$this->em->getConnection();
+        $sth = $cnn->prepare("CALL GetComment(?)");
+        $sth->bindValue(1, $status_id);
+        // execute and fetch
+        $sth->execute();
+        $result = $sth->fetchAll();
+        return $result;
     }
 }
 ?>
