@@ -1,21 +1,21 @@
-<?php /*%%SmartyHeaderCode:22226543d1a588a8684-39460455%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:26224543e83f04bae30-24839683%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1413290408,
+      1 => 1413382087,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '22226543d1a588a8684-39460455',
+  'nocache_hash' => '26224543e83f04bae30-24839683',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_543d1a58a10494_85460712',
+  'unifunc' => 'content_543e83f0643527_97482689',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_543d1a58a10494_85460712')) {function content_543d1a58a10494_85460712($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_543e83f0643527_97482689')) {function content_543e83f0643527_97482689($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -70,7 +70,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
             $.each(obj, function(i,val){
                 i=i+1;
                  $('#update').append('<li><b>'+val.email+'</b><p>'+val.message+'</p><div id="jquery_jplayer_'+i+'" class="jp-jplayer"></div><div id="jp_container_'+i+'" class="jp-audio"><div class="jp-type-single" id="jp_interface_'+i+'">'+element+'</div></div><a href="#" class="comment_button" id="'+val.status_id+'">Comment</a></li><div  id="loadplace'+val.status_id+'"></div><div id="flash'+val.status_id+'" class="flash_load"></div><div class="panel" id="slidepanel'+val.status_id+'"><textarea style="width:390px;height:23px" id="textboxcontent'+val.status_id+'"></textarea><br/><button value="Comment" class="comment_submit" id="'+val.status_id+'">Comment</button></div>');
-                setSong('#jquery_jplayer_'+i,'#jp_interface_'+i,val.music);
+                 getComment(val.status_id);
+                 setSong('#jquery_jplayer_'+i,'#jp_interface_'+i,val.music);
             });
             $(document).on('click', '.comment_button', function() { 
               var element = $(this);
@@ -84,6 +85,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
               var Id = element.attr("id");
               var test = $("#textboxcontent"+Id).val();
               var dataString = 'textcontent='+ test + '&com_msgid=' + Id;
+      
               if(test=='')
               {
                 alert("Please Enter Some Text");
@@ -115,6 +117,34 @@ $_valid = $_smarty_tpl->decodeProperties(array (
             alert(e);
           }
     }
+    
+    $(document).on('click', '.delete_button', function() { 
+        var id = $(this).attr("id");
+        var dataString = 'id='+ id ;
+        var parent = $(this).parent();
+        $.ajax({
+           type: "POST",
+
+                url:"http://localhost:81/mttk-php/commentController/xoaComment",
+
+           data: dataString,
+           cache: false,
+
+           success: function(){
+            if(id % 2)
+           {
+            parent.fadeOut('slow', function() {$(this).remove();});
+           }
+          else
+           {
+          parent.slideUp('slow', function() {$(this).remove();});
+           }
+          }
+         });
+
+        return false;
+    });
+
     function getStatus(){
         /* This requests the url "msgsrv.php"
         When it complete (or errors)*/
@@ -159,22 +189,50 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         remainingDuration: true,
         toggleDuration: true
       });
-      };
+    };
+
+    function getComment(status){
+        var dataString = 'status_id='+ status;
+        $.ajax({
+            type: "post",
+
+      url:"http://localhost:81/mttk-php/commentController/layComment",
+
+            data: dataString,
+            async: true, /* If set to non-async, browser shows page as "Loading.."*/
+            cache: false,
+
+            success: function(data){ /* called when request to barge.php completes */
+              var obj = JSON.parse(data);
+              if(obj.length>0){
+                $.each(obj, function(i,val){
+                $("#loadplace"+val.status_id).append("<div class='load_comment'>"+val.message+'<a href="#" id="'+val.comment_id+'" class="delete_button">X</a></div>');
+              });
+              }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+ 
+            }
+        });
+    };
 
   </script>
   <script>
   $(document).ready(function() {
       getStatus(); 
   });
-  $('ol').on('click', '.comment_button', function() {
-        
-      });
  
   </script>
 <style type="text/css">
   body{
     font-family:Arial, Helvetica, sans-serif;
     font-size:12px;
+  }
+  .delete_button
+  {
+  margin-left:10px;
+  font-weight:bold;
+  float:right;
   }
   .comment_box{
     background-color:#D3E7F5; border-bottom:#ffffff solid 1px; padding-top:3px
@@ -205,7 +263,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     display:none;
   }
   .load_comment{
-    margin-left:50px; margin-right:50px; margin-bottom:5px; background-color:#D3E7F5; height:25px; padding:6px; width:400px; font-size:14px;
+    margin-left:50px; margin-right:50px; margin-bottom:5px; background-color:#D3E7F5; height:10px; padding:5px; width:300px; font-size:14px;
   }
   .flash_load{
     margin-left:50px; margin-right:50px; margin-bottom:5px;height:20px; padding:6px; width:400px; 

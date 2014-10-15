@@ -16,9 +16,24 @@ class CommentController extends CI_Controller {
             $data['email'] = $this->session->userdata('email');
             $em = $this->doctrine->em;
             $comment = new Entity\CommentDAO($em);
-            //$comment->themComment($data);
-            echo "<div class='load_comment'>".$_POST["textcontent"]."</div>";
+            $comment_id=$comment->themComment($data);
+            echo "<div class='load_comment'>".$_POST["textcontent"].'<a href="#" id="'.$comment_id.'" class="delete_button">X</a></div>';
         }
+    }
+    public function layComment(){
+        $status_id=$_POST["status_id"];
+        $em = $this->doctrine->em;
+        $comment = new Entity\CommentDAO($em);
+        $result=$comment->layComment($status_id);
+        echo json_encode($result);
+        //print_r($comment->layComment($status_id));
+        
+    }
+    public function xoaComment(){
+        $comment_id=$_POST["id"];
+        $em = $this->doctrine->em;
+        $comment = new Entity\CommentDAO($em);
+        $result=$comment->xoaComment($comment_id);
     }
 }
 ?>
