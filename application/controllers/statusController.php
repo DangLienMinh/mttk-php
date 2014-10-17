@@ -54,6 +54,7 @@ class StatusController extends CI_Controller {
         {
             $data['status']=$_POST["status"];
             $data['music']=$_POST["music_url"];
+            $data['title']=$_POST["title"];
         }
         else
         {
@@ -74,7 +75,8 @@ class StatusController extends CI_Controller {
                 {
                     $uploaded = array('upload_data' => $this->upload->data());
                     $data['status']=$_POST["status2"];
-                    $data['music']=$this->config->base_url().'uploads/'.$uploaded['upload_data']['file_name'];;
+                    $data['title']=$uploaded['upload_data']['raw_name'];
+                    $data['music']=$this->config->base_url().'uploads/'.$uploaded['upload_data']['file_name'];
                 }
             }
         }

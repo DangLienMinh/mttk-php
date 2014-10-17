@@ -11,6 +11,9 @@
   <script type="text/javascript" src="{asset_url()}js/jquery.jplayer.min.js"></script>
   {literal}
   <script type="text/javascript">
+{/literal}
+   window.profilePic="{uploads_url()}img/profilePic.jpg";
+{literal}
     var element='<div class="jp-gui jp-interface"> \
           <ul class="jp-controls"> \
             <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li> \
@@ -51,11 +54,14 @@
           try{
             var items=[];
             $.each(obj, function(i,val){
-                i=i+1;
-                 $('#update').append('<li><b>'+val.email+'</b><p>'+val.message+'</p><div id="jquery_jplayer_'+i+'" class="jp-jplayer"></div><div id="jp_container_'+i+'" class="jp-audio"><div class="jp-type-single" id="jp_interface_'+i+'">'+element+'</div></div><a href="#" class="comment_button" id="'+val.status_id+'">Comment</a></li><div  id="loadplace'+val.status_id+'"></div><div id="flash'+val.status_id+'" class="flash_load"></div><div class="panel" id="slidepanel'+val.status_id+'"><textarea style="width:390px;height:23px" id="textboxcontent'+val.status_id+'"></textarea><br/><button value="Comment" class="comment_submit" id="'+val.status_id+'">Comment</button></div>');
-                 getComment(val.status_id);
-                 getLike(val.status_id);
-                 setSong('#jquery_jplayer_'+i,'#jp_interface_'+i,val.music);
+               i=i+1;
+               if(!val.picture){
+                val.picture=window.profilePic;
+               }
+               $('#update').append('<li><div class="stimg"><img src="'+val.picture+'"style="width:50px;height:50px"/></div><div class="sttext"><b>'+val.email+'</b><p>'+val.message+'</p><div id="jquery_jplayer_'+i+'" class="jp-jplayer"></div><div id="jp_container_'+i+'" class="jp-audio"><div class="jp-type-single" id="jp_interface_'+i+'">'+element+'</div></div><div class="sttime">'+val.created_at+'</div></div><a href="#" class="comment_button" id="'+val.status_id+'">Comment</a></li><div  id="loadplace'+val.status_id+'"></div><div id="flash'+val.status_id+'" class="flash_load"></div><div class="panel" id="slidepanel'+val.status_id+'"><textarea style="width:390px;height:23px" id="textboxcontent'+val.status_id+'"></textarea><br/><button value="Comment" class="comment_submit" id="'+val.status_id+'">Comment</button></div>'); 
+                getComment(val.status_id);
+                getLike(val.status_id);
+                setSong('#jquery_jplayer_'+i,'#jp_interface_'+i,val.music,val.title);
             });
             $(document).on('click', '.comment_button', function() { 
               var element = $(this);
@@ -102,7 +108,7 @@
           }
     }
     
-    $(document).on('click', '.delete_button', function() { 
+    $(document).on('click', '.delete_button', function() {
         var id = $(this).attr("id");
         var dataString = 'id='+ id ;
         var parent = $(this).parent();
@@ -123,6 +129,39 @@
            {
           parent.slideUp('slow', function() {$(this).remove();});
            }
+          }
+         });
+
+        return false;
+    });
+
+    $(document).on('click', '.like', function() {
+        var ID = $(this).attr("id");
+        var sid=ID.split("like"); 
+        var New_ID=sid[1];
+        var REL = $(this).attr("rel");
+        var dataString = 'status_id=' + New_ID +'&rel='+ REL;
+        $.ajax({
+           type: "POST",
+{/literal}
+                url:"{base_url('thumb_up_downController/themXoaLike')}",
+{literal}
+           data: dataString,
+           cache: false,
+
+           success: function(data){
+            if(REL=='Like')
+            {
+            $("#youlike"+New_ID).slideDown('slow').prepend("<span id='you"+New_ID+"'><a href='#'>You</a> like this.</span>.");
+            $("#likes"+New_ID).prepend("<span id='you"+New_ID+"'><a href='#'>You</a>, </span>");
+            $('#'+ID).html('Unlike').attr('rel', 'Unlike').attr('title', 'Unlike');
+            }
+            else
+            {
+            $("#youlike"+New_ID).slideUp('slow');
+            $("#you"+New_ID).remove();
+            $('#'+ID).attr('rel', 'Like').attr('title', 'Like').html('Like');
+            }
           }
          });
 
@@ -156,11 +195,11 @@
             }
         });
     };
-    function setSong(name,inter,songUrl){
+    function setSong(name,inter,songUrl,title){
         $(name).jPlayer({
         ready: function (event) {
           $(this).jPlayer("setMedia", {
-            title: "",
+            title: title,
             mp3: songUrl
           });
         },
@@ -201,7 +240,8 @@
     };
 
     function getLike(status){
-        var dataString = 'status_id='+ status;
+      var dataString = 'status_id='+ status;
+      var isLike=0;
         $.ajax({
             type: "post",
 {/literal}
@@ -214,17 +254,50 @@
             success: function(data){ /* called when request to barge.php completes */
               var obj = JSON.parse(data);
               if(obj.length>0){
-                $.each(obj, function(i,val){
-              });
+                isLike=1;
+                 $("#loadplace"+status).prev('li').append('<a href="#" class="like" id="like'+status+'" title="UnLike" rel="UnLike">UnLike</a>').append('<div class="likeUsers" id="youlike'+status+'"></div>');
               }else{
-                   $("#loadplace"+status).append('<a href="#" class="like" id="like'+status+'" title="Like" rel="Like">Like</a>');
-               
+                $("#loadplace"+status).prev('li').append('<a href="#" class="like" id="like'+status+'" title="Like" rel="Like">Like</a>').append('<div class="likeUsers" id="youlike'+status+'"></div>');
               }
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){
- 
+            }
+        }).done(function(){
+       //wait for done and the run the second
+       $.ajax({
+            type: "post",
+{/literal}
+      url:"{base_url('thumb_up_downController/layLike')}",
+{literal}
+            data: dataString,
+            async: true, /* If set to non-async, browser shows page as "Loading.."*/
+            cache: false,
+
+            success: function(data){ 
+              var obj = JSON.parse(data);
+              var new_like_count=obj.length-3;
+              if(obj.length>0){
+                $.each(obj, function(i,val){
+                  if(isLike==1){
+                    $("#youlike"+status).append('<span id="you'+status+'"><a href="'+val.email+'">You</a></span>');
+                  }else{
+                     $("#youlike"+status).append('<a href="'+val.email+'">'+val.name+'</a>');
+                  }
+                  if(new_like_count>0){
+                    $("#youlike"+status).append(' and '+new_like_count+' other friends like this');
+                  }else{
+                    $("#youlike"+status).append(' like this');
+                  }
+                });
+              }else{
+                //$("#loadplace"+status).prev('li').append('<div class="likeUsers" id="likes'+status+'"></div>');
+              }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+
             }
         });
+      });
     };
 
   </script>
@@ -261,7 +334,7 @@
   }
   *{margin:0;padding:0;}
   ol.timeline{list-style:none;font-size:1.2em;}
-  ol.timeline li{ position:relative;margin:20px 0; border-bottom:#dedede dashed 1px}
+  ol.timeline li{ position:relative; margin-top:30px; border-top:#dedede dashed 1px;}
   ol.timeline li:first-child{border-top:1px dashed #dedede;}
   .comment_button{
     margin-right:30px; background-color:#95CD3C; color:#000; border:#333333 solid 1px; padding:3px;font-weight:bold; font-size:11px; font-family:Arial, Helvetica, sans-serif
@@ -279,6 +352,35 @@
   .flash_load{
     margin-left:50px; margin-right:50px; margin-bottom:5px;height:20px; padding:6px; width:400px; 
     display:none; 
+  }
+  .stbody{
+  min-height:70px;
+  margin-bottom:10px;
+  border-bottom:dashed 1px #cc0000;
+  }
+  .stimg{
+    float:left;
+    height:50px;
+    width:50px;
+    border:solid 1px #dedede;
+  }
+  .sttext{
+    margin-left:70px;
+    min-height:50px;
+    word-wrap:break-word;
+    overflow:hidden;
+    padding:5px;
+    display:block;
+
+  }
+  .sttime{
+    font-size:11px;
+    color:#999;
+    margin-top:5px;
+  }
+  .likeUsers{
+    margin:10px 0px 10px 0px;
+
   }
 </style>
  {/literal}

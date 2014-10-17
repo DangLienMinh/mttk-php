@@ -28,6 +28,7 @@ class StatusDAO
 	    $privacy = $this->em->getReference('Entity\Privacy_type', (int)$data['privacy']);
 	    $status->setPrivacy_type_id($privacy);
 		$status->setEmail($email);
+		$status->setTitle($data['title']);
 		$status->setThumbs_up(0);
 		$status->setMessage( $data['status']);
 		$status->setMusic( $data['music']);
