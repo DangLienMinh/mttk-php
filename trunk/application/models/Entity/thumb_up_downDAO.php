@@ -11,7 +11,7 @@ class Thumb_up_downDAO
 
     public function themLike($data)
     {
-        $like = new Like;
+        $like = new Thumb_up_down;
         $email = $this->em->getReference('Entity\User', $data['email']);
         $status = $this->em->getReference('Entity\Status', $data['status']);
         $like->setStatus_id($status);
@@ -20,11 +20,15 @@ class Thumb_up_downDAO
         $this->em->flush();
     }
 
-    public function xoaLike()
+    public function xoaLike($data)
     {
-        $like = $this->em->getReference('Entity\Like', $id);
-        $this->em->remove($comment);
-        $this->em->flush();
+        // prepare statemen
+        $cnn=$this->em->getConnection();
+        $sth = $cnn->prepare("CALL dislikeStatus(?,?)");
+        $sth->bindValue(1, $data['email']);
+        $sth->bindValue(2, $data['status']);
+        // execute and fetch
+        $sth->execute();
     }
 
     public function layLike($status_id)

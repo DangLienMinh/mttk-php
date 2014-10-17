@@ -28,6 +28,11 @@ class Status
     protected $music;
 
     /**
+     * @Column(type="string")
+     */
+    protected $title;
+
+    /**
      * @Column(type="datetime")
      */
     protected $created_at;
@@ -118,6 +123,16 @@ class Status
     public function setEmail($email)
     {
         $this->email = $email;
+        return $this;
+    }
+    public function getTitle()
+    {
+        return $this->title;
+    }
+    
+    public function setTitle($title)
+    {
+        $this->title = $title;
         return $this;
     }
 	

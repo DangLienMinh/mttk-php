@@ -54,7 +54,7 @@ class ProfileController extends CI_Controller {
             else
             {
                 $uploaded = array('upload_data' => $this->upload->data());
-                return $uploaded['upload_data']['full_path'];
+                return $this->config->base_url().'uploads/img/'.$uploaded['upload_data']['file_name'];
             }
     }
 }

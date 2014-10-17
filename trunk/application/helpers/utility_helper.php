@@ -3,4 +3,7 @@
 function asset_url(){
    return base_url().'assets/';
 }
+function uploads_url(){
+   return base_url().'uploads/';
+}
 ?>

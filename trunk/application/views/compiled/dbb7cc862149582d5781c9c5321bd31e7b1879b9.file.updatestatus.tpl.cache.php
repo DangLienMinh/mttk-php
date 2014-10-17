@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-14 04:15:01
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-17 04:17:00
          compiled from "application\views\templates\updatestatus.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:9723543c8725b07a77-31048869%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1312654407c1c29e356-07689336%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'dbb7cc862149582d5781c9c5321bd31e7b1879b9' => 
     array (
       0 => 'application\\views\\templates\\updatestatus.tpl',
-      1 => 1413212085,
+      1 => 1413511723,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '9723543c8725b07a77-31048869',
+  'nocache_hash' => '1312654407c1c29e356-07689336',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_543c8725ccebf9_24302173',
+  'unifunc' => 'content_54407c1c4031e6_52564850',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_543c8725ccebf9_24302173')) {function content_543c8725ccebf9_24302173($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_54407c1c4031e6_52564850')) {function content_54407c1c4031e6_52564850($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -36,8 +36,10 @@ js/jquery.jplayer.min.js"></script>
   
   <script type="text/javascript">
     window.chosenMusic = "";
+    window.title="";
     function testXem(guid,title){
       window.chosenMusic=guid;
+      window.title=title;
       $("#jquery_jplayer_1").jPlayer( "destroy" );
           var player = $("#jquery_jplayer_1");
           player.jPlayer({
@@ -110,6 +112,7 @@ js/jquery.jplayer.min.js"></script>
 
       $('#finalResult').on('click', 'li a', function() {
           $("#music_url").val(window.chosenMusic);
+          $("#title").val(window.title);
       });
     });
   $(function() {
@@ -143,6 +146,7 @@ js/jquery.jplayer.min.js"></script>
     <textarea name="status" id="target" rows="4" placeholder="Enter textarea"></textarea>
     <input type="text" name="music_name" id="music_name" />
     <input type="hidden" name="music_url" id="music_url" />
+    <input type="hidden" name="title" id="title" />
     <ul id="finalResult"></ul>
 
     <div id="jquery_jplayer_1" class="jp-jplayer"></div>

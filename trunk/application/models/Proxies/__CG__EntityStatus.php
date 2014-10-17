@@ -129,10 +129,22 @@ class Status extends \Entity\Status implements \Doctrine\ORM\Proxy\Proxy
         return parent::setEmail($email);
     }
 
+    public function getTitle()
+    {
+        $this->__load();
+        return parent::getTitle();
+    }
+
+    public function setTitle($title)
+    {
+        $this->__load();
+        return parent::setTitle($title);
+    }
+
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'status_id', 'message', 'music', 'created_at', 'thumbs_up', 'privacy_type_id', 'email');
+        return array('__isInitialized__', 'status_id', 'message', 'music', 'title', 'created_at', 'thumbs_up', 'privacy_type_id', 'email');
     }
 
     public function __clone()

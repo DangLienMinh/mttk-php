@@ -9,17 +9,21 @@ class Thumb_up_downController extends CI_Controller {
         }
     }
 
-	public function themLike(){
-        if(@$_POST['textcontent']) {
-            $data['message']=$_POST["textcontent"];
-            $data['status']=$_POST["com_msgid"];
+	public function themXoaLike(){
+        if(@$_POST['status_id']) {
+            $action=$_POST["rel"];
+            $data['status']=$_POST["status_id"];
             $data['email'] = $this->session->userdata('email');
             $em = $this->doctrine->em;
-            $comment = new Entity\CommentDAO($em);
-            $comment_id=$comment->themComment($data);
-            echo "<div class='load_comment'>".$_POST["textcontent"].'<a href="#" id="'.$comment_id.'" class="delete_button">X</a></div>';
+            $like = new Entity\Thumb_up_downDAO($em);
+            if(strcmp($action,"Like")==0){
+                $like->themLike($data);
+            }else{
+                $like->xoaLike($data);
+            }
         }
     }
+
     public function layLikeUser(){
         $status_id=$_POST["status_id"];
         $user=$this->session->userdata('email');
@@ -27,14 +31,14 @@ class Thumb_up_downController extends CI_Controller {
         $like = new Entity\Thumb_up_downDAO($em);
         $result=$like->layLikeUser($status_id,$user);
         echo json_encode($result);
-        //print_r($comment->layComment($status_id));
-        
     }
-    public function xoaLike(){
-        $comment_id=$_POST["id"];
+
+    public function layLike(){
+        $status_id=$_POST["status_id"];
         $em = $this->doctrine->em;
-        $comment = new Entity\Thumb_up_downDAO($em);
-        $result=$comment->xoaComment($comment_id);
+        $like = new Entity\Thumb_up_downDAO($em);
+        $result=$like->layLike($status_id);
+        echo json_encode($result);
     }
 }
 ?>

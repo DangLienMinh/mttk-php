@@ -12,8 +12,10 @@
   {literal}
   <script type="text/javascript">
     window.chosenMusic = "";
+    window.title="";
     function testXem(guid,title){
       window.chosenMusic=guid;
+      window.title=title;
       $("#jquery_jplayer_1").jPlayer( "destroy" );
           var player = $("#jquery_jplayer_1");
           player.jPlayer({
@@ -85,6 +87,7 @@
 
       $('#finalResult').on('click', 'li a', function() {
           $("#music_url").val(window.chosenMusic);
+          $("#title").val(window.title);
       });
     });
   $(function() {
@@ -117,6 +120,7 @@
     <textarea name="status" id="target" rows="4" placeholder="Enter textarea"></textarea>
     <input type="text" name="music_name" id="music_name" />
     <input type="hidden" name="music_url" id="music_url" />
+    <input type="hidden" name="title" id="title" />
     <ul id="finalResult"></ul>
 
     <div id="jquery_jplayer_1" class="jp-jplayer"></div>
