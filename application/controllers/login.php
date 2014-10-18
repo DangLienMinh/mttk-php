@@ -17,6 +17,7 @@ class Login extends CI_Controller {
 			$data = array('email'=>$data['email'],
                          'is_logged_in'=>true,
                          'first_name'=>$result[0]['first_name'],
+                         'pic'=>$result[0]['picture'],
                          'last_name'=>$result[0]['last_name'],
                          'birth_date'=>$result[0]['birthday']
                       );
