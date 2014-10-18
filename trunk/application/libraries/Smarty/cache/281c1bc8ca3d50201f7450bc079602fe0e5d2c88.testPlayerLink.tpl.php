@@ -1,21 +1,21 @@
-<?php /*%%SmartyHeaderCode:1352054426e6a444051-22429602%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:6111544279f8e228e8-51828331%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1413639615,
+      1 => 1413642742,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1352054426e6a444051-22429602',
+  'nocache_hash' => '6111544279f8e228e8-51828331',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_54426e6a60ab94_98551133',
+  'unifunc' => 'content_544279f929fa32_16755200',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_54426e6a60ab94_98551133')) {function content_54426e6a60ab94_98551133($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_544279f929fa32_16755200')) {function content_544279f929fa32_16755200($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -253,7 +253,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
               var obj = JSON.parse(data);
               if(obj.length>0){
                 $.each(obj, function(i,val){
-                $("#loadplace"+val.status_id).append("<div class='load_comment'>"+val.message+'<a href="#" id="'+val.comment_id+'" class="delete_button">X</a></div>');
+                $("#loadplace"+val.status_id).append('<div class="load_comment"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'+val.picture+'"/><span>'+val.message+'</span><a href="#" id="'+val.comment_id+'" class="delete_button">X</a><div class="sttime">'+val.created_at+'</div></div>');
               });
               }
             },

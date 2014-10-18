@@ -14,10 +14,11 @@ class CommentController extends CI_Controller {
             $data['message']=$_POST["textcontent"];
             $data['status']=$_POST["com_msgid"];
             $data['email'] = $this->session->userdata('email');
+            $img=$this->session->userdata('pic');
             $em = $this->doctrine->em;
             $comment = new Entity\CommentDAO($em);
             $comment_id=$comment->themComment($data);
-            echo "<div class='load_comment'>".$_POST["textcontent"].'<a href="#" id="'.$comment_id.'" class="delete_button">X</a></div>';
+            echo '<div class="load_comment"><img style="width:25px;height:25px;vertical-align:middle;margin-right:7px" src="'.$img.'"/><span>'.$_POST["textcontent"].'</span><a href="#" id="'.$comment_id.'" class="delete_button">X</a></div>';
         }
     }
     public function layComment(){

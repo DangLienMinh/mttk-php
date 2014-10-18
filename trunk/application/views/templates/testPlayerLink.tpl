@@ -236,7 +236,7 @@
               var obj = JSON.parse(data);
               if(obj.length>0){
                 $.each(obj, function(i,val){
-                $("#loadplace"+val.status_id).append("<div class='load_comment'>"+val.message+'<a href="#" id="'+val.comment_id+'" class="delete_button">X</a></div>');
+                $("#loadplace"+val.status_id).append('<div class="load_comment"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'+val.picture+'"/><span>'+val.message+'</span><a href="#" id="'+val.comment_id+'" class="delete_button">X</a><div class="sttime">'+val.created_at+'</div></div>');
               });
               }
             },
