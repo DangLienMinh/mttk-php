@@ -25,13 +25,17 @@ body{
   }
   *{margin:0;padding:0;}
   .comment_button{
-    margin-right:30px; background-color:#95CD3C; color:#000; border:#333333 solid 1px; padding:3px;font-weight:bold; font-size:11px; font-family:Arial, Helvetica, sans-serif
+    margin-right:10px; 
+    color: #006699;
+    text-decoration: none;
   }
   .like_button{
-    margin-right:30px; background-color:#95CD3C; color:#000; border:#333333 solid 1px; padding:3px;font-weight:bold; font-size:11px; font-family:Arial, Helvetica, sans-serif
-  }
+    margin-right:10px; 
+    color: #006699;
+    text-decoration: none;  }
   .share_button{
-    margin-right:30px; background-color:#95CD3C; color:#000; border:#333333 solid 1px; padding:3px;font-weight:bold; font-size:11px; font-family:Arial, Helvetica, sans-serif
+    color: #006699;
+    text-decoration: none;
   }
   .comment_submit{
     background-color:#3b59a4; color:#FFFFFF; border:none; font-size:11px; padding:3px; margin-top:3px;
@@ -72,6 +76,10 @@ body{
   min-height:70px;
   margin-bottom:10px;
   border-bottom:dashed 1px #cc0000;
+  }
+  .staction{
+  border-top:1px dashed #dedede;
+  padding-top: 8px;
   }
   .stimg{
     float:left;

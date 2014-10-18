@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-18 16:32:24
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-18 17:17:03
          compiled from "application\views\templates\testPlayerLink.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:6111544279f8e228e8-51828331%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:288225442846f245a09-91175512%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1413642742,
+      1 => 1413645420,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '6111544279f8e228e8-51828331',
+  'nocache_hash' => '288225442846f245a09-91175512',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544279f916de62_72350240',
+  'unifunc' => 'content_5442846f44fc78_56010422',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544279f916de62_72350240')) {function content_544279f916de62_72350240($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_5442846f44fc78_56010422')) {function content_5442846f44fc78_56010422($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -35,6 +35,10 @@ css/wall.css">
 js/jquery.autogrowtextarea.min.js"></script>
   <script type="text/javascript" src="<?php echo asset_url();?>
 js/masonry.pkgd.min.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery.timeago.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery.livequery.js"></script>
   <script type="text/javascript" src="<?php echo asset_url();?>
 js/jquery.jplayer.min.js"></script>
   
@@ -87,7 +91,7 @@ img/profilePic.jpg";
                if(!val.picture){
                 val.picture=window.profilePic;
                }
-               $('#container').append('<div class="item"><a href="#" class="deletebox">X</a><div class="stimg"><img src="'+val.picture+'"style="width:50px;height:50px"/></div><div class="sttext"><b>'+val.name+'</b><div class="sttime">'+val.created_at+'</div><div class="strmsg">'+val.message+'</div><div id="jquery_jplayer_'+i+'" class="jp-jplayer"></div><div id="jp_container_'+i+'" class="jp-audio"><div class="jp-type-single" id="jp_interface_'+i+'">'+element+'</div></div></div><div class="staction"><a href="#" class="like like_button" id="like'+val.status_id+'"></a><a href="#" class="comment_button" id="'+val.status_id+'">Comment</a><a href="#" class="share_button" id=share"'+val.status_id+'">Share</a></div><div  id="loadplace'+val.status_id+'"></div><div id="flash'+val.status_id+'" class="flash_load"></div><div class="panel" id="slidepanel'+val.status_id+'"><div class="cmtpic"><img src="'+val.picture+'" style="width:25px;height:25px;" /></div><textarea style="width:305px;height:23px" id="textboxcontent'+val.status_id+'"></textarea><br/><button value="Comment" class="comment_submit" id="'+val.status_id+'">Comment</button></div></div>'); 
+               $('#container').append('<div class="item"><a href="#" class="deletebox">X</a><div class="stimg"><img src="'+val.picture+'"style="width:50px;height:50px"/></div><div class="sttext"><b>'+val.name+'</b><div class="sttime"><abbr class="timeago" title="'+val.created_at+'"></abbr></div><div class="strmsg">'+val.message+'</div><div id="jquery_jplayer_'+i+'" class="jp-jplayer"></div><div id="jp_container_'+i+'" class="jp-audio"><div class="jp-type-single" id="jp_interface_'+i+'">'+element+'</div></div></div><div class="staction"><a href="#" class="like like_button" id="like'+val.status_id+'"></a><a href="#" class="comment_button" id="'+val.status_id+'">Comment</a><a href="#" class="share_button" id=share"'+val.status_id+'">Share</a></div><div  id="loadplace'+val.status_id+'"></div><div id="flash'+val.status_id+'" class="flash_load"></div><div class="panel" id="slidepanel'+val.status_id+'"><div class="cmtpic"><img src="'+val.picture+'" style="width:25px;height:25px;" /></div><textarea style="width:305px;height:23px" id="textboxcontent'+val.status_id+'"></textarea><br/><button value="Comment" class="comment_submit" id="'+val.status_id+'">Comment</button></div></div>'); 
                 getComment(val.status_id);
                 getLike(val.status_id);
                 setSong('#jquery_jplayer_'+i,'#jp_interface_'+i,val.music,val.title);
@@ -269,7 +273,7 @@ img/ajax-loader.gif" align="absmiddle"> loading.....');
               var obj = JSON.parse(data);
               if(obj.length>0){
                 $.each(obj, function(i,val){
-                $("#loadplace"+val.status_id).append('<div class="load_comment"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'+val.picture+'"/><span>'+val.message+'</span><a href="#" id="'+val.comment_id+'" class="delete_button">X</a><div class="sttime">'+val.created_at+'</div></div>');
+                $("#loadplace"+val.status_id).append('<div class="load_comment"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'+val.picture+'"/><span>'+val.message+'</span><a href="#" id="'+val.comment_id+'" class="delete_button">X</a><div class="sttime"><abbr class="timeago" title="'+val.created_at+'"></abbr></div></div>');
               });
               }
             },
@@ -343,6 +347,10 @@ img/ajax-loader.gif" align="absmiddle"> loading.....');
         }).done(function(){
             $('#container').masonry({itemSelector : '.item',});
             Arrow_Points();
+            $(".timeago").livequery(function() // LiveQuery 
+            {
+              $(this).timeago(); // Calling Timeago Funtion 
+            });
         });
       });
     }
