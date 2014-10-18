@@ -10,6 +10,8 @@
   <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery.autogrowtextarea.min.js"></script>
   <script type="text/javascript" src="{asset_url()}js/masonry.pkgd.min.js"></script>
+  <script type="text/javascript" src="{asset_url()}js/jquery.timeago.js"></script>
+  <script type="text/javascript" src="{asset_url()}js/jquery.livequery.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery.jplayer.min.js"></script>
   {literal}
   <script type="text/javascript">
@@ -60,7 +62,7 @@
                if(!val.picture){
                 val.picture=window.profilePic;
                }
-               $('#container').append('<div class="item"><a href="#" class="deletebox">X</a><div class="stimg"><img src="'+val.picture+'"style="width:50px;height:50px"/></div><div class="sttext"><b>'+val.name+'</b><div class="sttime">'+val.created_at+'</div><div class="strmsg">'+val.message+'</div><div id="jquery_jplayer_'+i+'" class="jp-jplayer"></div><div id="jp_container_'+i+'" class="jp-audio"><div class="jp-type-single" id="jp_interface_'+i+'">'+element+'</div></div></div><div class="staction"><a href="#" class="like like_button" id="like'+val.status_id+'"></a><a href="#" class="comment_button" id="'+val.status_id+'">Comment</a><a href="#" class="share_button" id=share"'+val.status_id+'">Share</a></div><div  id="loadplace'+val.status_id+'"></div><div id="flash'+val.status_id+'" class="flash_load"></div><div class="panel" id="slidepanel'+val.status_id+'"><div class="cmtpic"><img src="'+val.picture+'" style="width:25px;height:25px;" /></div><textarea style="width:305px;height:23px" id="textboxcontent'+val.status_id+'"></textarea><br/><button value="Comment" class="comment_submit" id="'+val.status_id+'">Comment</button></div></div>'); 
+               $('#container').append('<div class="item"><a href="#" class="deletebox">X</a><div class="stimg"><img src="'+val.picture+'"style="width:50px;height:50px"/></div><div class="sttext"><b>'+val.name+'</b><div class="sttime"><abbr class="timeago" title="'+val.created_at+'"></abbr></div><div class="strmsg">'+val.message+'</div><div id="jquery_jplayer_'+i+'" class="jp-jplayer"></div><div id="jp_container_'+i+'" class="jp-audio"><div class="jp-type-single" id="jp_interface_'+i+'">'+element+'</div></div></div><div class="staction"><a href="#" class="like like_button" id="like'+val.status_id+'"></a><a href="#" class="comment_button" id="'+val.status_id+'">Comment</a><a href="#" class="share_button" id=share"'+val.status_id+'">Share</a></div><div  id="loadplace'+val.status_id+'"></div><div id="flash'+val.status_id+'" class="flash_load"></div><div class="panel" id="slidepanel'+val.status_id+'"><div class="cmtpic"><img src="'+val.picture+'" style="width:25px;height:25px;" /></div><textarea style="width:305px;height:23px" id="textboxcontent'+val.status_id+'"></textarea><br/><button value="Comment" class="comment_submit" id="'+val.status_id+'">Comment</button></div></div>'); 
                 getComment(val.status_id);
                 getLike(val.status_id);
                 setSong('#jquery_jplayer_'+i,'#jp_interface_'+i,val.music,val.title);
@@ -236,7 +238,7 @@
               var obj = JSON.parse(data);
               if(obj.length>0){
                 $.each(obj, function(i,val){
-                $("#loadplace"+val.status_id).append('<div class="load_comment"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'+val.picture+'"/><span>'+val.message+'</span><a href="#" id="'+val.comment_id+'" class="delete_button">X</a><div class="sttime">'+val.created_at+'</div></div>');
+                $("#loadplace"+val.status_id).append('<div class="load_comment"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'+val.picture+'"/><span>'+val.message+'</span><a href="#" id="'+val.comment_id+'" class="delete_button">X</a><div class="sttime"><abbr class="timeago" title="'+val.created_at+'"></abbr></div></div>');
               });
               }
             },
@@ -308,6 +310,10 @@
         }).done(function(){
             $('#container').masonry({itemSelector : '.item',});
             Arrow_Points();
+            $(".timeago").livequery(function() // LiveQuery 
+            {
+              $(this).timeago(); // Calling Timeago Funtion 
+            });
         });
       });
     }
