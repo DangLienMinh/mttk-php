@@ -1,21 +1,21 @@
-<?php /*%%SmartyHeaderCode:288225442846f245a09-91175512%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:771654428850014a73-92626866%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1413645420,
+      1 => 1413646414,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '288225442846f245a09-91175512',
+  'nocache_hash' => '771654428850014a73-92626866',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5442846f4cca58_86083073',
+  'unifunc' => 'content_544288503436e1_30681925',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5442846f4cca58_86083073')) {function content_5442846f4cca58_86083073($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_544288503436e1_30681925')) {function content_544288503436e1_30681925($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -79,7 +79,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                if(!val.picture){
                 val.picture=window.profilePic;
                }
-               $('#container').append('<div class="item"><a href="#" class="deletebox">X</a><div class="stimg"><img src="'+val.picture+'"style="width:50px;height:50px"/></div><div class="sttext"><b>'+val.name+'</b><div class="sttime"><abbr class="timeago" title="'+val.created_at+'"></abbr></div><div class="strmsg">'+val.message+'</div><div id="jquery_jplayer_'+i+'" class="jp-jplayer"></div><div id="jp_container_'+i+'" class="jp-audio"><div class="jp-type-single" id="jp_interface_'+i+'">'+element+'</div></div></div><div class="staction"><a href="#" class="like like_button" id="like'+val.status_id+'"></a><a href="#" class="comment_button" id="'+val.status_id+'">Comment</a><a href="#" class="share_button" id=share"'+val.status_id+'">Share</a></div><div  id="loadplace'+val.status_id+'"></div><div id="flash'+val.status_id+'" class="flash_load"></div><div class="panel" id="slidepanel'+val.status_id+'"><div class="cmtpic"><img src="'+val.picture+'" style="width:25px;height:25px;" /></div><textarea style="width:305px;height:23px" id="textboxcontent'+val.status_id+'"></textarea><br/><button value="Comment" class="comment_submit" id="'+val.status_id+'">Comment</button></div></div>'); 
+               $('#container').append('<div class="item"><a href="#" class="deletebox">X</a><div class="stimg"><img src="'+val.picture+'"style="width:50px;height:50px"/></div><div class="sttext"><b>'+val.name+'</b><div class="sttime"><abbr class="timeago" title="'+val.created_at+'"></abbr></div><div class="strmsg">'+val.message+'</div><div id="jquery_jplayer_'+i+'" class="jp-jplayer"></div><div id="jp_container_'+i+'" class="jp-audio"><div class="jp-type-single" id="jp_interface_'+i+'">'+element+'</div></div></div><div class="staction"><a href="#" class="like like_button" id="like'+val.status_id+'"></a><a href="#" class="comment_button" id="'+val.status_id+'">Comment</a><a href="#" class="share_button" id=share"'+val.status_id+'">Share</a></div><ul id="loadplace'+val.status_id+'"></ul><div id="flash'+val.status_id+'" class="flash_load"></div><div class="panel" id="slidepanel'+val.status_id+'"><div class="cmtpic"><img src="'+val.picture+'" style="width:25px;height:25px;" /></div><textarea style="width:305px;height:23px" placeholder=" Write your comment..." id="textboxcontent'+val.status_id+'"></textarea><br/><button value="Comment" class="comment_submit" id="'+val.status_id+'">Comment</button></div></div>'); 
                 getComment(val.status_id);
                 getLike(val.status_id);
                 setSong('#jquery_jplayer_'+i,'#jp_interface_'+i,val.music,val.title);
@@ -96,9 +96,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
               
               var element = $(this);
               var I = element.attr("id");
-              $("#slidepanel"+I).slideToggle(300,function(){
-                $('#container').masonry({itemSelector : '.item',});
-              });
+              $("#textboxcontent"+I).focus();
+              
               return false;
       });
             $(document).on('click', '.comment_submit', function() { 
@@ -255,7 +254,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
               var obj = JSON.parse(data);
               if(obj.length>0){
                 $.each(obj, function(i,val){
-                $("#loadplace"+val.status_id).append('<div class="load_comment"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'+val.picture+'"/><span>'+val.message+'</span><a href="#" id="'+val.comment_id+'" class="delete_button">X</a><div class="sttime"><abbr class="timeago" title="'+val.created_at+'"></abbr></div></div>');
+                $("#loadplace"+val.status_id).append('<li class="load_comment"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'+val.picture+'"/><span>'+val.message+'</span><a href="#" id="'+val.comment_id+'" class="delete_button">X</a><div class="sttime"><abbr class="timeago" title="'+val.created_at+'"></abbr></div></li>');
               });
               }
             },
