@@ -5,9 +5,11 @@
   <title>jQuery UI Tabs - Default functionality</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/jplayer.blue.monday.css">
+  <link rel="stylesheet" type="text/css" href="{asset_url()}css/wall.css">
   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery.autogrowtextarea.min.js"></script>
+  <script type="text/javascript" src="{asset_url()}js/masonry.pkgd.min.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery.jplayer.min.js"></script>
   {literal}
   <script type="text/javascript">
@@ -58,18 +60,28 @@
                if(!val.picture){
                 val.picture=window.profilePic;
                }
-               $('#update').append('<li><div class="stimg"><img src="'+val.picture+'"style="width:50px;height:50px"/></div><div class="sttext"><b>'+val.email+'</b><p>'+val.message+'</p><div id="jquery_jplayer_'+i+'" class="jp-jplayer"></div><div id="jp_container_'+i+'" class="jp-audio"><div class="jp-type-single" id="jp_interface_'+i+'">'+element+'</div></div><div class="sttime">'+val.created_at+'</div></div><a href="#" class="comment_button" id="'+val.status_id+'">Comment</a></li><div  id="loadplace'+val.status_id+'"></div><div id="flash'+val.status_id+'" class="flash_load"></div><div class="panel" id="slidepanel'+val.status_id+'"><textarea style="width:390px;height:23px" id="textboxcontent'+val.status_id+'"></textarea><br/><button value="Comment" class="comment_submit" id="'+val.status_id+'">Comment</button></div>'); 
+               $('#container').append('<div class="item"><a href="#" class="deletebox">X</a><div class="stimg"><img src="'+val.picture+'"style="width:50px;height:50px"/></div><div class="sttext"><b>'+val.name+'</b><div class="sttime">'+val.created_at+'</div><div class="strmsg">'+val.message+'</div><div id="jquery_jplayer_'+i+'" class="jp-jplayer"></div><div id="jp_container_'+i+'" class="jp-audio"><div class="jp-type-single" id="jp_interface_'+i+'">'+element+'</div></div></div><div class="staction"><a href="#" class="like like_button" id="like'+val.status_id+'"></a><a href="#" class="comment_button" id="'+val.status_id+'">Comment</a><a href="#" class="share_button" id=share"'+val.status_id+'">Share</a></div><div  id="loadplace'+val.status_id+'"></div><div id="flash'+val.status_id+'" class="flash_load"></div><div class="panel" id="slidepanel'+val.status_id+'"><div class="cmtpic"><img src="'+val.picture+'" style="width:25px;height:25px;" /></div><textarea style="width:305px;height:23px" id="textboxcontent'+val.status_id+'"></textarea><br/><button value="Comment" class="comment_submit" id="'+val.status_id+'">Comment</button></div></div>'); 
                 getComment(val.status_id);
                 getLike(val.status_id);
                 setSong('#jquery_jplayer_'+i,'#jp_interface_'+i,val.music,val.title);
             });
-            $(document).on('click', '.comment_button', function() { 
+            
+            //$('#tabs').append.apply($('#tabs'), items);
+            
+          }catch(e) {
+            alert(e);
+          }
+    }
+    
+    $(document).on('click', '.comment_button', function() { 
+              
               var element = $(this);
               var I = element.attr("id");
-              $("#slidepanel"+I).slideToggle(300);
-              $(this).toggleClass("active"); 
+              $("#slidepanel"+I).slideToggle(300,function(){
+                $('#container').masonry({itemSelector : '.item',});
+              });
               return false;
-             });
+      });
             $(document).on('click', '.comment_submit', function() { 
               var element = $(this);
               var Id = element.attr("id");
@@ -101,13 +113,7 @@
               }
               return false;
              });
-            //$('#tabs').append.apply($('#tabs'), items);
-            
-          }catch(e) {
-            alert(e);
-          }
-    }
-    
+
     $(document).on('click', '.delete_button', function() {
         var id = $(this).attr("id");
         var dataString = 'id='+ id ;
@@ -194,7 +200,8 @@
                     15000); /* milliseconds (15seconds) */
             }
         });
-    };
+    }
+
     function setSong(name,inter,songUrl,title){
         $(name).jPlayer({
         ready: function (event) {
@@ -212,7 +219,7 @@
         remainingDuration: true,
         toggleDuration: true
       });
-    };
+    }
 
     function getComment(status){
         var dataString = 'status_id='+ status;
@@ -237,7 +244,7 @@
  
             }
         });
-    };
+    }
 
     function getLike(status){
       var dataString = 'status_id='+ status;
@@ -255,9 +262,11 @@
               var obj = JSON.parse(data);
               if(obj.length>0){
                 isLike=1;
-                 $("#loadplace"+status).prev('li').append('<a href="#" class="like" id="like'+status+'" title="UnLike" rel="UnLike">UnLike</a>').append('<div class="likeUsers" id="youlike'+status+'"></div>');
+                $("#like"+status).replaceWith('<a href="#" class="like like_button" id="like'+status+'" title="UnLike" rel="UnLike">UnLike</a>');
+                $("#loadplace"+status).prev('div').append('<div class="likeUsers" id="youlike'+status+'"></div>');
               }else{
-                $("#loadplace"+status).prev('li').append('<a href="#" class="like" id="like'+status+'" title="Like" rel="Like">Like</a>').append('<div class="likeUsers" id="youlike'+status+'"></div>');
+                $("#like"+status).replaceWith('<a href="#" class="like like_button" id="like'+status+'" title="Like" rel="Like">Like</a>');
+                $("#loadplace"+status).prev('div').append('<div class="likeUsers" id="youlike'+status+'"></div>');
               }
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){
@@ -296,98 +305,70 @@
             error: function(XMLHttpRequest, textStatus, errorThrown){
 
             }
+        }).done(function(){
+            $('#container').masonry({itemSelector : '.item',});
+            Arrow_Points();
         });
       });
-    };
+    }
 
+    $('.timeline_container').mousemove(function(e)
+    {
+      var topdiv=$("#containertop").height();
+      var pag= e.pageY - topdiv-26;
+      $('.plus').css({"top":pag +"px", "background":"url('images/plus.png')","margin-left":"1px"});
+    }).mouseout(function(){
+      $('.plus').css({"background":"url('')"});
+    });
+
+     function Arrow_Points() {
+        var s = $('#container').find('.item');
+        $.each(s, function (i, obj) {
+            var posLeft = $(obj).css("left");
+            $(obj).addClass('borderclass');
+            if (posLeft == "0px") {
+                html = "<span class='rightCorner'></span>";
+                $(obj).prepend(html);
+            } else {
+                html = "<span class='leftCorner'></span>";
+                $(obj).prepend(html);
+            }
+        });
+      }
+
+      $(document).on('click', '.deletebox', function() {
+        if(confirm("Are your sure?")){
+          $(this).parent().fadeOut('slow'); 
+          //Remove item block
+          $('#container').masonry( 'remove', $(this).parent() );
+          //Reload masonry plugin
+          $('#container').masonry({itemSelector : '.item',});
+          //$('#container').masonry( 'reload' );
+          //Hiding existing Arrows
+          //$('.rightCorner').hide();
+          //$('.leftCorner').hide();
+          //Injecting fresh arrows
+          Arrow_Points();
+        }
+        return false;
+      });
   </script>
+
   <script>
   $(document).ready(function() {
-      getStatus(); 
+      getStatus();
   });
  
   </script>
-<style type="text/css">
-  body{
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:12px;
-  }
-  .delete_button
-  {
-  margin-left:10px;
-  font-weight:bold;
-  float:right;
-  }
-  .comment_box{
-    background-color:#D3E7F5; border-bottom:#ffffff solid 1px; padding-top:3px
-  }
-  h1{
-    color:#555555
-  }
-  a{
-    text-decoration:none;
-    color:#d02b55;
-  }
-  a:hover{
-    text-decoration:underline;
-    color:#d02b55;
-  }
-  *{margin:0;padding:0;}
-  ol.timeline{list-style:none;font-size:1.2em;}
-  ol.timeline li{ position:relative; margin-top:30px; border-top:#dedede dashed 1px;}
-  ol.timeline li:first-child{border-top:1px dashed #dedede;}
-  .comment_button{
-    margin-right:30px; background-color:#95CD3C; color:#000; border:#333333 solid 1px; padding:3px;font-weight:bold; font-size:11px; font-family:Arial, Helvetica, sans-serif
-  }
-  .comment_submit{
-    background-color:#3b59a4; color:#FFFFFF; border:none; font-size:11px; padding:3px; margin-top:3px;
-  }
-  .panel{
-    margin-left:50px; margin-right:50px; margin-bottom:5px; background-color:#D3E7F5; height:45px; padding:6px; width:400px;
-    display:none;
-  }
-  .load_comment{
-    margin-left:50px; margin-right:50px; margin-bottom:5px; background-color:#D3E7F5; height:10px; padding:5px; width:300px; font-size:14px;
-  }
-  .flash_load{
-    margin-left:50px; margin-right:50px; margin-bottom:5px;height:20px; padding:6px; width:400px; 
-    display:none; 
-  }
-  .stbody{
-  min-height:70px;
-  margin-bottom:10px;
-  border-bottom:dashed 1px #cc0000;
-  }
-  .stimg{
-    float:left;
-    height:50px;
-    width:50px;
-    border:solid 1px #dedede;
-  }
-  .sttext{
-    margin-left:70px;
-    min-height:50px;
-    word-wrap:break-word;
-    overflow:hidden;
-    padding:5px;
-    display:block;
-
-  }
-  .sttime{
-    font-size:11px;
-    color:#999;
-    margin-top:5px;
-  }
-  .likeUsers{
-    margin:10px 0px 10px 0px;
-
-  }
-</style>
  {/literal}
 </head>
 <body>
-<div id="tabs">
-    <ol id="update" class="timeline"></ol>
-</div>
+    <div id="container">
+      <div class="timeline_container">
+        <div class="timeline">
+          <div class="plus"></div>
+        </div>
+      </div>
+    </div>
 </body>
 </html>
