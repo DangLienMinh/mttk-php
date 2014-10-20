@@ -27,6 +27,7 @@ class StatusController extends CI_Controller {
         $result=$status->layDSWallStatus($email);
         $result= json_encode($result);
         $this->smarty->assign('items',$result);
+        $this->smarty->assign('userPicCmt',$this->session->userdata('pic'));
         $this->smarty->view('userWall');
     }
 

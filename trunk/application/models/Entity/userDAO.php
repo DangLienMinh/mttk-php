@@ -66,8 +66,11 @@ class UserDAO
 	}
 
 	public function capNhatLastLogin($email){
-		$query = $this->em->createQuery("UPDATE Entity\User p SET p.last_login=now() WHERE p.email=?1");
-		$query->setParameter(1, $email);
+		$cnn=$this->em->getConnection();
+		$sth = $cnn->prepare("CALL LastLogin(?)");
+		$sth->bindValue(1, $email);
+		// execute and fetch
+		$sth->execute();
 	}
 }
 ?>

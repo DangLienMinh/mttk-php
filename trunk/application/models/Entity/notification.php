@@ -50,6 +50,19 @@ class Notification
      **/
     protected $email;
 
+    /**
+     * @ManyToOne(targetEntity="status")
+     * @JoinColumn(name="status_id", referencedColumnName="status_id")
+     **/
+    protected $status_id;
+
+    /**
+     * @ManyToOne(targetEntity="user")
+     * @JoinColumn(name="user_make_noti", referencedColumnName="email")
+     **/
+    protected $user_make_noti;
+
+
     public function getNotification_id()
     {
         return $this->notification_id;
@@ -118,6 +131,27 @@ class Notification
     public function setIs_read($is_read)
     {
         $this->is_read = $is_read;
+        return $this;
+    }
+
+    public function getStatus_id()
+    {
+        return $this->status_id;
+    }
+    
+    public function setStatus_id($status_id)
+    {
+        $this->status_id = $status_id;
+        return $this;
+    }
+    public function getUser_make_noti()
+    {
+        return $this->user_make_noti;
+    }
+
+    public function setUser_make_noti($user_make_noti)
+    {
+        $this->user_make_noti = $user_make_noti;
         return $this;
     }
 }
