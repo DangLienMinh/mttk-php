@@ -18,7 +18,7 @@ class CommentController extends CI_Controller {
             $em = $this->doctrine->em;
             $comment = new Entity\CommentDAO($em);
             $comment_id=$comment->themComment($data);
-            echo '<div class="load_comment"><img style="width:25px;height:25px;vertical-align:middle;margin-right:7px" src="'.$img.'"/><span>'.$_POST["textcontent"].'</span><a href="#" id="'.$comment_id.'" class="delete_button">X</a></div>';
+            echo '<div class="load_comment"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px" src="'.$img.'"/><span>'.$_POST["textcontent"].'</span><a href="#" id="'.$comment_id.'" class="delete_button"></a></div>';
         }
     }
     public function layComment(){

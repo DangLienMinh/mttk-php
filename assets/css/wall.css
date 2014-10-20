@@ -1,15 +1,20 @@
 body{
     font-family:Arial, Helvetica, sans-serif;
     font-size:12px;
+    background-color: #e8eaed;
   }
   .delete_button
   {
-  margin-left:10px;
+  background-image: url("../img/delete.png");
   font-weight:bold;
   float:right;
+  cursor:pointer;
+  height: 14px;
+  width: 14px;
+  display:none;
   }
   .comment_box{
-    background-color:#D3E7F5; border-bottom:#ffffff solid 1px; padding-top:3px
+    background-color:#fff; border-bottom:#ffffff solid 1px; padding-top:3px
   }
 
   h1{
@@ -32,7 +37,19 @@ body{
   .like_button{
     margin-right:10px; 
     color: #006699;
-    text-decoration: none;  }
+    text-decoration: none;  
+
+  }
+  .like {
+    background: url('../img/like.png') no-repeat;
+      height:14px;
+  padding-left:18px;
+  margin-right:20px;
+  font-weight:bold;
+}
+  .comment{
+background: url('../img/comment.png') no-repeat;
+}
   .share_button{
     color: #006699;
     text-decoration: none;
@@ -41,10 +58,10 @@ body{
     background-color:#3b59a4; color:#FFFFFF; border:none; font-size:11px; padding:3px; margin-top:3px;
   }
   .panel{
-    margin-left:50px; 
+    margin-left:32px; 
     margin-right:50px; 
     margin-bottom:5px; 
-    background-color:#f2f2f2; 
+    background-color:#fff; 
     height:45px; 
     padding:6px; 
     width:363px;
@@ -52,22 +69,34 @@ body{
   }
   .cmtpic{
     float: left;
-    height: 25px;
-    width: 25px;
+    height: 33px;
+    width: 33px;
     border: solid 1px #dedede;
     padding: 1px;
     margin-right: 5px;
   }
   .load_comment{
-    margin-left:50px; 
-    margin-right:50px; 
-    background-color:#f2f2f2; 
-    min-height:10px; 
-    padding:5px; 
-    width:365px; 
-    font-size:14px;
-    list-style: none;
+    margin-left: 40px;
+    word-wrap: break-word;
+    overflow: hidden;
+    display: block;
   }
+  .noti{
+    margin-left: 40px;
+    word-wrap: break-word;
+    overflow: hidden;
+    display: block;
+    padding:4px 0;
+    width:250px;
+  }
+  .noti img {
+    width: 33px;
+    height: 33px;
+    vertical-align: middle;
+    margin-right: 7px;
+    float: left;
+  }
+
   .flash_load{
     margin-left:50px; margin-right:50px; margin-bottom:5px;height:20px; padding:6px; width:400px; 
     display:none; 
@@ -88,31 +117,57 @@ body{
     border:solid 1px #dedede;
   }
   .sttext{
-    margin-left:70px;
-    min-height:50px;
-    word-wrap:break-word;
-    overflow:hidden;
-    padding:5px;
-    display:block;
-
+  line-height: 20px;
+  margin-left: 70px;
+  min-height: 50px;
+  word-wrap: break-word;
+  overflow: hidden;
+  display: block;
+  font-size: 13px;
+  background-color: #ffffff;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
   }
   .sttext b{
     color: #006699;
   }
-  .sttime{
-    font-size:11px;
-    color:#999;
-    margin-top:5px;
+  .sttime
+  {
+  margin:-5px 0px 10px 0px;
+  }
+  .timeago
+{
+  color:#999999;
+  text-decoration:none; 
+}
+  .timeago{
+    height:14px;
+  padding-right:18px;
+  margin-right:20px;
+  text-transform:uppercase;
+  font-size:9px;
+  background:url('../img/timelite.png') right no-repeat;
+  }
+  .noti_like{
+  height:14px;
+  padding-left:18px;
+  font-size:11px;
+  background:url('../img/like.png') left no-repeat !important;
   }
   .likeUsers{
-    margin:10px 0px 10px 0px;
-  }
+border-top: 1px solid #e1e1e1;
+border-bottom: 1px solid #e1e1e1;
+margin-top: 10px;
+padding: 10px 10px 0px 0px;
+color: #7c7c8e !important;
+}
   #container{width:80%; margin: 0 auto; }
     .item {
     width: 42%;
     margin: 20px 10px 10px 10px;
     float: left;
-    background-color:#ffffff;
+    background-color:#fff;
     border:solid 1px #B4BBCD;
     min-height:50px;
     text-align:justify;
@@ -197,3 +252,94 @@ body{
       margin: -10px 0px 8px -10px;
       padding: 5px 10px;
   }
+
+  .sttext_content2
+{
+padding:12px 12px 2px 12px;
+background-color:#fafcfb;
+line-height: 19px;
+}
+
+.sttext_content
+{
+margin:12px 12px 0px 12px;
+}
+.sttext_content a
+{
+color:#3b5998;
+text-decoration:none;
+}
+.sttext_content a:hover
+{
+color:#000000;
+text-decoration:none;
+}
+
+.stdelete 
+{
+  background-image: url("../img/delete.png");
+font-weight:bold;
+float:right;
+cursor:pointer;
+height: 14px;
+width: 14px;
+margin-top: 5px;
+margin-right: 5px;
+display:none;
+}
+
+.icontext
+{
+  height:14px;
+  padding-left:18px;
+  margin-right:20px;
+  
+  font-weight:bold;
+  
+}
+
+.loadplace{
+ 
+  padding: 5px 0px 5px 0px;
+}
+
+#noti_Container {
+    position:relative;     /* This is crucial for the absolutely positioned element */
+    border:1px solid blue; /* This is just to show you where the container ends */
+    width:16px;
+    height:16px;
+    margin-top: 5px;
+    margin-left:70%;
+}
+#noti_content {
+    margin-left:70%;
+    display:none;
+}
+.noti_bubble {
+    position:absolute;    /* This breaks the div from the normal HTML document. */
+    top: -6px;
+    right:-6px;
+    padding:1px 2px 1px 2px;
+    background-color:red; /* you could use a background image if you'd like as well */
+    color:white;
+    font-weight:bold;
+    font-size:0.55em;
+
+    /* The following is CSS3, but isn't crucial for this technique to work. */
+    /* Keep in mind that if a browser doesn't support CSS3, it's fine! They just won't have rounded borders and won't have a box shadow effect. */
+    /* You can always use a background image to produce the same effect if you want to, and you can use both together so browsers without CSS3 still have the rounded/shadow look. */
+    border-radius:30px;
+    box-shadow:1px 1px 1px gray;
+}
+
+
+
+  #noti_content ul {list-style: none;padding: 0px;margin: 0px; z-index: 9999; z-index:1000; position: relative}
+  #noti_content ul li {display: block;position: relative;float: left;border:1px solid #000}
+  #noti_content li ul {display: none;}
+  #noti_content ul li a {display: block;background: #000;padding: 5px 10px 5px 10px;text-decoration: none;
+           white-space: nowrap;color: #fff;}
+  #noti_content ul li a:hover {background: #f00;}
+  #noti_content li:hover li {float: none;}
+  #noti_content li:hover a {background: #f00;}
+  #noti_content li:hover li a:hover {background: #000;}

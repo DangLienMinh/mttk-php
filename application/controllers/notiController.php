@@ -16,6 +16,7 @@ class NotiController extends CI_Controller {
 	}
 
     function getNewNotify(){
+        //group the same notify????
         $em = $this->doctrine->em;
         $noti = new Entity\NotificationDAO($em);
         $result=$noti->getNewNotify($this->session->userdata('email'));

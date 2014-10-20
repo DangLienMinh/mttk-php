@@ -1,29 +1,30 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-20 03:47:56
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-20 10:30:16
          compiled from "application\views\templates\userWall.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:21828544469cce96733-39985057%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:125645444c8188a9f77-77164529%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '0f921ff09c337117641cd650c5ceaa3930b1bdcf' => 
     array (
       0 => 'application\\views\\templates\\userWall.tpl',
-      1 => 1413769541,
+      1 => 1413793804,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '21828544469cce96733-39985057',
+  'nocache_hash' => '125645444c8188a9f77-77164529',
   'function' => 
   array (
   ),
   'variables' => 
   array (
+    'userPicCmt' => 0,
     'items' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544469cd160e81_89882172',
+  'unifunc' => 'content_5444c818a63fd9_54287868',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544469cd160e81_89882172')) {function content_544469cd160e81_89882172($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_5444c818a63fd9_54287868')) {function content_5444c818a63fd9_54287868($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -51,6 +52,9 @@ img/profilePic.jpg";
    window.userPic="<?php echo uploads_url();?>
 img/";
    window.userWall="<?php echo site_url('statusController/layDSWallStatus/');?>
+";
+   window.userPicCmt="<?php echo uploads_url();?>
+img/<?php echo $_smarty_tpl->tpl_vars['userPicCmt']->value;?>
 ";
 
     var element='<div class="jp-gui jp-interface"> \
@@ -88,10 +92,7 @@ img/";
           <span>Update Required</span> \
           To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>. \
         </div>';
-
     function addStatus(obj){
-        //var obj = JSON.parse(msg);
-        //alert(obj);
           try{
             var items=[];
             $.each(obj, function(i,val){
@@ -99,10 +100,10 @@ img/";
                if(!val.picture){
                 val.picture=window.profilePic;
                }
-               $('#container').append('<div class="item"><a href="#" class="deletebox">X</a><div class="stimg"><img src="'+window.userPic+val.picture+'"style="width:50px;height:50px"/></div><div class="sttext"><b><a href="'+window.userWall+"/"+val.email+'">'+val.name+'</a></b><div class="sttime"><abbr class="timeago" title="'+val.created_at+'"></abbr></div><div class="strmsg">'+val.message+'</div><div id="jquery_jplayer_'+i+'" class="jp-jplayer"></div><div id="jp_container_'+i+'" class="jp-audio"><div class="jp-type-single" id="jp_interface_'+i+'">'+element+'</div></div></div><div class="staction"><a href="#" class="like like_button" id="like'+val.status_id+'"></a><a href="#" class="comment_button" id="'+val.status_id+'">Comment</a><a href="#" class="share_button" id=share"'+val.status_id+'">Share</a></div><ul id="loadplace'+val.status_id+'"></ul><div id="flash'+val.status_id+'" class="flash_load"></div><div class="panel" id="slidepanel'+val.status_id+'"><div class="cmtpic"><img src="'+window.userPic+val.picture+'" style="width:25px;height:25px;" /></div><textarea style="width:305px;height:23px" placeholder=" Write your comment..." id="textboxcontent'+val.status_id+'"></textarea><br/><button value="Comment" class="comment_submit" id="'+val.status_id+'">Comment</button></div></div>'); 
-                getComment(val.status_id);
-                getLike(val.status_id);
-                setSong('#jquery_jplayer_'+i,'#jp_interface_'+i,val.music,val.title);
+              $('#container').append('<div class="item"><a href="#" class="stdelete"></a><div class="stimg"><img src="'+window.userPic+val.picture+'" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><b><a href="'+window.userWall+"/"+val.email+'">'+val.name+'</a></b><div class="sttime"><abbr class="timeago" title="'+val.created_at+'"></abbr></div><div class="strmsg">'+val.message+'</div><div id="jquery_jplayer_'+i+'" class="jp-jplayer"></div><div id="jp_container_'+i+'" class="jp-audio"><div class="jp-type-single" id="jp_interface_'+i+'">'+element+'</div></div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like'+val.status_id+'"></a><a href="#" class="comment_button icontext comment" id="'+val.status_id+'">Comment</a><a href="#" class="share_button" id=share"'+val.status_id+'">Share</a></div><ul class="loadplace" id="loadplace'+val.status_id+'"></ul><div id="flash'+val.status_id+'" class="flash_load"></div><div class="panel" id="slidepanel'+val.status_id+'"><div class="cmtpic"><img src="'+window.userPicCmt+'" style="width:33px;height:33px;" /></div><textarea style="width:305px;height:23px" placeholder=" Write your comment..." id="textboxcontent'+val.status_id+'"></textarea><br/><button value="Comment" class="comment_submit" id="'+val.status_id+'">Comment</button></div></div></div>'); 
+              getComment(val.status_id);
+              getLike(val.status_id);
+              setSong('#jquery_jplayer_'+i,'#jp_interface_'+i,val.music,val.title);
             });
             
             //$('#tabs').append.apply($('#tabs'), items);
@@ -111,18 +112,7 @@ img/";
             alert(e);
           }
     }
-
-    function getStatus(){
-      var data;
-        /* This requests the url "msgsrv.php"
-        When it complete (or errors)*/
-
-      data=<?php echo $_smarty_tpl->tpl_vars['items']->value;?>
-
-
-    addStatus(data);
-    }
-
+    
     $(document).on('click', '.comment_button', function() { 
               var element = $(this);
               var I = element.attr("id");
@@ -221,8 +211,20 @@ img/ajax-loader.gif" align="absmiddle"> loading.....');
             }
           }
          });
+
         return false;
     });
+
+    function getStatus(){
+      var data;
+        /* This requests the url "msgsrv.php"
+        When it complete (or errors)*/
+
+      data=<?php echo $_smarty_tpl->tpl_vars['items']->value;?>
+
+
+    addStatus(data);
+    }
 
     function setSong(name,inter,songUrl,title){
         $(name).jPlayer({
@@ -259,7 +261,7 @@ img/ajax-loader.gif" align="absmiddle"> loading.....');
               var obj = JSON.parse(data);
               if(obj.length>0){
                 $.each(obj, function(i,val){
-                $("#loadplace"+val.status_id).append('<li class="load_comment"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'+window.userPic+val.picture+'"/><span>'+val.message+'</span><a href="#" id="'+val.comment_id+'" class="delete_button">X</a><div class="sttime"><abbr class="timeago" title="'+val.created_at+'"></abbr></div></li>');
+                $("#loadplace"+val.status_id).append('<li class="load_comment"><span id="'+val.name+'"></span><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'+window.userPic+val.picture+'"/><span>'+val.message+'</span><a href="#" id="'+val.comment_id+'" class="delete_button"></a><br/><abbr class="timeago" title="'+val.created_at+'"></abbr></li>');
               });
               }
             },
@@ -365,21 +367,104 @@ img/ajax-loader.gif" align="absmiddle"> loading.....');
         });
       }
 
-      $(document).on('click', '.deletebox', function() {
+      function Arrow_Points1() {
+        var s = $('#container').find('.item');
+        $.each(s, function (i, obj) {
+            var posLeft = $(obj).css("left");
+            $(obj).addClass('borderclass');
+            if (posLeft == "0px") {
+               html = "<span class='leftCorner'></span>";
+                $(obj).prepend(html);
+            } else {
+                
+                 html = "<span class='rightCorner'></span>";
+                $(obj).prepend(html);
+            }
+        });
+      }
+
+      $(document).on('click', '.stdelete', function() {
         if(confirm("Are your sure?")){
           $(this).parent().fadeOut('slow'); 
-          //Remove item block
           $('#container').masonry( 'remove', $(this).parent() );
-          //Reload masonry plugin
           $('#container').masonry({itemSelector : '.item',});
-          //$('#container').masonry( 'reload' );
-          //Hiding existing Arrows
-          //$('.rightCorner').hide();
-          //$('.leftCorner').hide();
-          //Injecting fresh arrows
-          Arrow_Points();
+          $('.rightCorner').hide();
+          $('.leftCorner').hide();
+          Arrow_Points1();
         }
         return false;
+      });
+
+      function setPop(name,img){
+        $("#pop img").replaceWith('<img src="'+img+'"style="width:106px;height:106px"/>');
+        $("#pop h2").replaceWith('<h2>'+name+'</h2>');
+      }
+      $(document).on('mouseover', '.item', function() {
+          var item1 = $(".stdelete");
+          var element=$(this).find(item1);
+          element.show();
+      });
+      $(document).on('mouseout', '.item', function() {
+          var item1 = $(".stdelete");
+          var element=$(this).find(item1);
+          element.hide();
+      });
+
+      $(document).on('mouseover', '.load_comment', function() {
+          var element=$(this).find('a');
+          element.show();
+      });
+      $(document).on('mouseout', '.load_comment', function() {
+          var element=$(this).find('a');
+          element.hide();
+      });
+
+      $(document).on('mouseover', '.stimg,.load_comment', function() {
+        if($(this).hasClass("stimg")){
+          var element = $(this).find( "img" );
+          var img = element.attr("src");
+          element=$(this).next("div").find("b");
+          var name = element.text();
+          
+        }else{
+          var element = $(this).find( "img" );
+          var img = element.attr("src");
+          element=$(this).find( "span" );
+          var name = element.attr('id');
+        }
+        setPop(name,img);
+        $("#pop").show();
+         
+      });
+
+      $(document).on('mouseout', '.stimg,.load_comment', function() {
+          $("#pop").hide();
+      });
+      $(document).on('mousemove', '.stimg,.load_comment', function(e) {
+        var moveLeft = 0;
+        var moveDown = 0;
+          var target = '#pop';
+          leftD = e.pageX + parseInt(moveLeft);
+          maxRight = leftD + $(target).outerWidth();
+          windowLeft = $(window).width() - 40;
+          windowRight = 0;
+          maxLeft = e.pageX - (parseInt(moveLeft) + $(target).outerWidth() + 20);
+          if(maxRight > windowLeft && maxLeft > windowRight)
+          {
+              leftD = maxLeft;
+          }
+          topD = e.pageY - parseInt(moveDown);
+          maxBottom = parseInt(e.pageY + parseInt(moveDown) + 20);
+          windowBottom = parseInt(parseInt($(document).scrollTop()) + parseInt($(window).height()));
+          maxTop = topD;
+          windowTop = parseInt($(document).scrollTop());
+          if(maxBottom > windowBottom)
+          {
+              topD = windowBottom - $(target).outerHeight() - 20;
+          } else if(maxTop < windowTop){
+              topD = windowTop + 20;
+          }
+          $(target).css('top', topD).css('left', leftD);
       });
   </script>
 
@@ -398,6 +483,10 @@ img/ajax-loader.gif" align="absmiddle"> loading.....');
           <div class="plus"></div>
         </div>
       </div>
+    </div>
+    <div id="pop" class="popbox">
+      <img/>
+      <h2></h2>
     </div>
 </body>
 </html><?php }} ?>

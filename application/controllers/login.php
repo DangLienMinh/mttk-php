@@ -1,5 +1,5 @@
 <?php
-
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 class Login extends CI_Controller {
 	public function index()
 	{
@@ -39,6 +39,7 @@ class Login extends CI_Controller {
         $user->capNhatLastLogin($email);
         $this->session->sess_destroy();
         redirect('/login/index', 'refresh');
+
 	}
 	public function register()
 	{
