@@ -5,9 +5,11 @@
   <meta charset="utf-8">
   <title>jQuery UI Tabs - Default functionality</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="{asset_url()}css/imgcropstyle.css">
   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
   <script type="text/javascript" src="http://www.technicalkeeda.com/js/javascripts/plugin/json2.js"></script>
+  <script type="text/javascript" src="{asset_url()}js/cropbox.js"></script>
   <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
   {literal}
@@ -22,6 +24,16 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box; 
     }
+        .action
+        {
+            width: 400px;
+            height: 30px;
+            margin: 10px 0;
+        }
+        .cropped>img
+        {
+            margin-right: 10px;
+        }
   </style>
  <script>
   $(document).ready(function(){
@@ -107,12 +119,52 @@ function geolocate() {
 }
 // [END region_geolocation]
 
-    </script>
+</script>
+<script type="text/javascript">
+    $(window).load(function() {
+        var options =
+        {
+            thumbBox: '.thumbBox',
+            spinner: '.spinner',
+            imgSrc: 'avatar.png'
+        }
+        var cropper = $('.imageBox').cropbox(options);
+        $('#file').on('change', function(){
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                options.imgSrc = e.target.result;
+                cropper = $('.imageBox').cropbox(options);
+            }
+            reader.readAsDataURL(this.files[0]);
+            this.files = [];
+        })
+
+        $('#btnCrop').on('click', function(){
+            var img = cropper.getDataURL();
+            $('.cropped').append('<img src="'+img+'">');
+            var address1=$("#autocomplete").val();
+            $.ajax({  
+            type: "POST",  
+{/literal}
+                url:"{base_url('profileController/firstTime')}",
+{literal}
+            data: {address:$("#autocomplete").val(),image: img},
+            success: function(data) {
+              window.location=data;
+            }
+        });
+        });
+        $('#btnZoomIn').on('click', function(){
+            cropper.zoomIn();
+        })
+        $('#btnZoomOut').on('click', function(){
+            cropper.zoomOut();
+        })
+    });
+</script>
 {/literal}
 </head>
 <body onload="initialize()">
-{validation_errors()}
-{form_open_multipart('profileController/firstTime')}
 <div id="tabs">
   <ul>
     <li><a href="#tabs-1">Find Your Friends</a></li>
@@ -137,11 +189,21 @@ function geolocate() {
     </div>
   </div>
   <div id="tabs-3">
-    <p>set your profile picture</p>
-    <input  name="pic" type="file"></input>
-    <input type="submit" value="Upload" ></input>
+    <div class="container">
+    <div class="imageBox">
+        <div class="thumbBox"></div>
+        <div class="spinner" style="display: none">Loading...</div>
+    </div>
+    <div class="action">
+        <input type="file" id="file" style="float:left; width: 250px"/>
+        <input type="button" id="btnZoomIn" value="+" style="float: right"/>
+        <input type="button" id="btnZoomOut" value="-" style="float: right"/>
+    </div>
+    <div class="cropped">
+    </div>
+    </div>
+    <input type="button" id="btnCrop" value="OK"/>
   </div>
 </div>
-{form_close()}
 </body>
 </html>

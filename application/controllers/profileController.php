@@ -17,25 +17,21 @@ class ProfileController extends CI_Controller {
 
     function firstTime()
     {
-        $this->form_validation->set_rules('address', 'Address', 'trim|required');
-        if ($this->form_validation->run() == FALSE)
-        {
-            $this->smarty->view('signUpInfo');
-        }
-        else
-        {
           $data['address']=$this->input->post('address');
-          $data['pic']=$this->upload_pic('pic');
+          $img=$this->input->post('image');
+          $parts = explode(',',$img);
+          $pic = base64_decode($parts[1]);
+          $data['pic']=uniqid() . '.png';
+          $file=FCPATH.'uploads\\img\\'.$data['pic'];
+          $success = file_put_contents($file,$pic);
           $data['email'] = $this->session->userdata('email');
-
           $em = $this->doctrine->em;
           $profile = new Entity\ProfileDAO($em);
           $profile->themProfile($data);
-          redirect('/main/player');
-        }
+          $this->session->set_userdata('pic', $data['pic']);
+          echo base_url('/main/player');
     }
-
-    private function upload_pic($img)
+    /*private function upload_pic($img)
     {
         $config['upload_path'] = './uploads/img';
         $config['allowed_types'] = 'gif|jpg|png';
@@ -56,6 +52,6 @@ class ProfileController extends CI_Controller {
                 $uploaded = array('upload_data' => $this->upload->data());
                 return $this->config->base_url().'uploads/img/'.$uploaded['upload_data']['file_name'];
             }
-    }
+    }*/
 }
 ?>

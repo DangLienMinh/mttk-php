@@ -1,21 +1,25 @@
-<?php /*%%SmartyHeaderCode:771654428850014a73-92626866%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1910954446d51802646-77391259%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1413646414,
+      1 => 1413770575,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '771654428850014a73-92626866',
+  'nocache_hash' => '1910954446d51802646-77391259',
+  'variables' => 
+  array (
+    'userPicCmt' => 0,
+  ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544288503436e1_30681925',
+  'unifunc' => 'content_54446d51a29d94_27281521',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544288503436e1_30681925')) {function content_544288503436e1_30681925($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_54446d51a29d94_27281521')) {function content_54446d51a29d94_27281521($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -30,10 +34,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.timeago.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.livequery.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.jplayer.min.js"></script>
-  
   <script type="text/javascript">
-
    window.profilePic="http://localhost:81/mttk-php/uploads/img/profilePic.jpg";
+   window.userPic="http://localhost:81/mttk-php/uploads/img/";
+   window.userWall="http://localhost:81/mttk-php/statusController/layDSWallStatus";
+   window.userPicCmt="http://localhost:81/mttk-php/uploads/img/shot0006.jpg";
 
     var element='<div class="jp-gui jp-interface"> \
           <ul class="jp-controls"> \
@@ -79,10 +84,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                if(!val.picture){
                 val.picture=window.profilePic;
                }
-               $('#container').append('<div class="item"><a href="#" class="deletebox">X</a><div class="stimg"><img src="'+val.picture+'"style="width:50px;height:50px"/></div><div class="sttext"><b>'+val.name+'</b><div class="sttime"><abbr class="timeago" title="'+val.created_at+'"></abbr></div><div class="strmsg">'+val.message+'</div><div id="jquery_jplayer_'+i+'" class="jp-jplayer"></div><div id="jp_container_'+i+'" class="jp-audio"><div class="jp-type-single" id="jp_interface_'+i+'">'+element+'</div></div></div><div class="staction"><a href="#" class="like like_button" id="like'+val.status_id+'"></a><a href="#" class="comment_button" id="'+val.status_id+'">Comment</a><a href="#" class="share_button" id=share"'+val.status_id+'">Share</a></div><ul id="loadplace'+val.status_id+'"></ul><div id="flash'+val.status_id+'" class="flash_load"></div><div class="panel" id="slidepanel'+val.status_id+'"><div class="cmtpic"><img src="'+val.picture+'" style="width:25px;height:25px;" /></div><textarea style="width:305px;height:23px" placeholder=" Write your comment..." id="textboxcontent'+val.status_id+'"></textarea><br/><button value="Comment" class="comment_submit" id="'+val.status_id+'">Comment</button></div></div>'); 
-                getComment(val.status_id);
-                getLike(val.status_id);
-                setSong('#jquery_jplayer_'+i,'#jp_interface_'+i,val.music,val.title);
+              $('#container').append('<div class="item"><a href="#" class="deletebox">X</a><div class="stimg"><img src="'+window.userPic+val.picture+'" style="width:50px;height:50px"/></div><div class="sttext"><b><a href="'+window.userWall+"/"+val.email+'">'+val.name+'</a></b><div class="sttime"><abbr class="timeago" title="'+val.created_at+'"></abbr></div><div class="strmsg">'+val.message+'</div><div id="jquery_jplayer_'+i+'" class="jp-jplayer"></div><div id="jp_container_'+i+'" class="jp-audio"><div class="jp-type-single" id="jp_interface_'+i+'">'+element+'</div></div></div><div class="staction"><a href="#" class="like like_button" id="like'+val.status_id+'"></a><a href="#" class="comment_button" id="'+val.status_id+'">Comment</a><a href="#" class="share_button" id=share"'+val.status_id+'">Share</a></div><ul id="loadplace'+val.status_id+'"></ul><div id="flash'+val.status_id+'" class="flash_load"></div><div class="panel" id="slidepanel'+val.status_id+'"><div class="cmtpic"><img src="'+window.userPicCmt+'" style="width:25px;height:25px;" /></div><textarea style="width:305px;height:23px" placeholder=" Write your comment..." id="textboxcontent'+val.status_id+'"></textarea><br/><button value="Comment" class="comment_submit" id="'+val.status_id+'">Comment</button></div></div>'); 
+              getComment(val.status_id);
+              getLike(val.status_id);
+              setSong('#jquery_jplayer_'+i,'#jp_interface_'+i,val.music,val.title);
             });
             
             //$('#tabs').append.apply($('#tabs'), items);
@@ -93,11 +98,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     }
     
     $(document).on('click', '.comment_button', function() { 
-              
               var element = $(this);
               var I = element.attr("id");
               $("#textboxcontent"+I).focus();
-              
               return false;
       });
             $(document).on('click', '.comment_submit', function() { 
@@ -254,7 +257,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
               var obj = JSON.parse(data);
               if(obj.length>0){
                 $.each(obj, function(i,val){
-                $("#loadplace"+val.status_id).append('<li class="load_comment"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'+val.picture+'"/><span>'+val.message+'</span><a href="#" id="'+val.comment_id+'" class="delete_button">X</a><div class="sttime"><abbr class="timeago" title="'+val.created_at+'"></abbr></div></li>');
+                $("#loadplace"+val.status_id).append('<li class="load_comment"><span id="'+val.email+'"></span><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'+window.userPic+val.picture+'"/><span>'+val.message+'</span><a href="#" id="'+val.comment_id+'" class="delete_button">X</a><div class="sttime"><abbr class="timeago" title="'+val.created_at+'"></abbr></div></li>');
               });
               }
             },
@@ -361,18 +364,54 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       $(document).on('click', '.deletebox', function() {
         if(confirm("Are your sure?")){
           $(this).parent().fadeOut('slow'); 
-          //Remove item block
           $('#container').masonry( 'remove', $(this).parent() );
-          //Reload masonry plugin
           $('#container').masonry({itemSelector : '.item',});
-          //$('#container').masonry( 'reload' );
-          //Hiding existing Arrows
-          //$('.rightCorner').hide();
-          //$('.leftCorner').hide();
-          //Injecting fresh arrows
           Arrow_Points();
         }
         return false;
+      });
+
+      function setPop(name,img){
+        $("#pop img").replaceWith('<img src="'+img+'"style="width:106px;height:106px"/>');
+        $("#pop h2").replaceWith('<h2>'+name+'</h2>');
+      }
+
+      $(document).on('mouseover', '.stimg', function() {
+          var element = $(this).find( "img" );
+          var img = element.attr("src");
+          element=$(this).next("div").find("b");
+          var name = element.text();
+          setPop(name,img);
+          $("#pop").show();
+      });
+      $(document).on('mouseout', '.stimg', function() {
+          $("#pop").hide();
+      });
+      $(document).on('mousemove', '.stimg', function(e) {
+        var moveLeft = 0;
+        var moveDown = 0;
+          var target = '#pop';
+          leftD = e.pageX + parseInt(moveLeft);
+          maxRight = leftD + $(target).outerWidth();
+          windowLeft = $(window).width() - 40;
+          windowRight = 0;
+          maxLeft = e.pageX - (parseInt(moveLeft) + $(target).outerWidth() + 20);
+          if(maxRight > windowLeft && maxLeft > windowRight)
+          {
+              leftD = maxLeft;
+          }
+          topD = e.pageY - parseInt(moveDown);
+          maxBottom = parseInt(e.pageY + parseInt(moveDown) + 20);
+          windowBottom = parseInt(parseInt($(document).scrollTop()) + parseInt($(window).height()));
+          maxTop = topD;
+          windowTop = parseInt($(document).scrollTop());
+          if(maxBottom > windowBottom)
+          {
+              topD = windowBottom - $(target).outerHeight() - 20;
+          } else if(maxTop < windowTop){
+              topD = windowTop + 20;
+          }
+          $(target).css('top', topD).css('left', leftD);
       });
   </script>
 
@@ -391,6 +430,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
           <div class="plus"></div>
         </div>
       </div>
+    </div>
+    <div id="pop" class="popbox">
+      <img/>
+      <h2></h2>
     </div>
 </body>
 </html><?php }} ?>

@@ -30,6 +30,7 @@ class Main extends CI_Controller {
 	}
 	public function testPlayer()
 	{
+		$this->smarty->assign('userPicCmt',$this->session->userdata('pic'));
 		$this->smarty->view('testPlayerLink');
 	}
 	public function seeWall($id)

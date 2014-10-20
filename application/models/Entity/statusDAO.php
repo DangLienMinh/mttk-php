@@ -21,6 +21,18 @@ class StatusDAO
 		return $result;
 	}
 
+	public function layDSWallStatus($email)
+	{
+		// prepare statemen
+		$cnn=$this->em->getConnection();
+		$sth = $cnn->prepare("CALL GetUserWall(?)");
+		$sth->bindValue(1, $email);
+		// execute and fetch
+		$sth->execute();
+		$result = $sth->fetchAll();
+		return $result;
+	}
+
 	public function themStatus($data)
 	{
 		$status = new Status;
