@@ -35,7 +35,7 @@ class User
      * @Column(type="string")
      */
     protected $picture;
-    
+
     /**
      * @Column(type="integer")
      */

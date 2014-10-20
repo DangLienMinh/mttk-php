@@ -63,6 +63,14 @@ class Login extends CI_Controller {
 		  $em = $this->doctrine->em;
 		  $user = new Entity\UserDAO($em);
 		  $user->themUser($data);
+		  $data = array('email'=>$data['email'],
+                         'is_logged_in'=>true,
+                         'first_name'=>$data['first_name'],
+                         'last_name'=>$data['last_name'],
+                         'birth_date'=>$data['birthday']
+                      );
+
+           $this->session->set_userdata($data);
 		  redirect('/main/firstTime', 'refresh');
 		}
 	}

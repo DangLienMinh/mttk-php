@@ -66,6 +66,7 @@ body{
     padding:5px; 
     width:365px; 
     font-size:14px;
+    list-style: none;
   }
   .flash_load{
     margin-left:50px; margin-right:50px; margin-bottom:5px;height:20px; padding:6px; width:400px; 
@@ -170,3 +171,29 @@ body{
 
 .timeline:hover{cursor: pointer;margin: 0 auto;}
 .timeline div.plus{width: 14px;height: 14px;position: relative;left: -6px;}
+
+
+.popbox {
+      display: none;
+      position: absolute;
+      z-index: 99999;
+      width: 300px;
+      padding: 10px;
+      background: #EEEFEB;
+      color: #000000;
+      border: 1px solid #4D4F53;
+  }
+  .popbox>img{
+      float:left;
+      margin-right: 20px;
+  }
+  .popbox h2
+  {
+      background-color: #4D4F53;
+      color:  #E3E5DD;
+      font-size: 14px;
+      display: block;
+      width: 100%;
+      margin: -10px 0px 8px -10px;
+      padding: 5px 10px;
+  }

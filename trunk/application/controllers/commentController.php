@@ -14,7 +14,7 @@ class CommentController extends CI_Controller {
             $data['message']=$_POST["textcontent"];
             $data['status']=$_POST["com_msgid"];
             $data['email'] = $this->session->userdata('email');
-            $img=$this->session->userdata('pic');
+            $img=uploads_url().'img/'.$this->session->userdata('pic');
             $em = $this->doctrine->em;
             $comment = new Entity\CommentDAO($em);
             $comment_id=$comment->themComment($data);

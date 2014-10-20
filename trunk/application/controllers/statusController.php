@@ -20,6 +20,16 @@ class StatusController extends CI_Controller {
         echo json_encode($result);
 	}
 
+    function layDSWallStatus($email)
+    {
+        $em = $this->doctrine->em;
+        $status = new Entity\statusDAO($em);
+        $result=$status->layDSWallStatus($email);
+        $result= json_encode($result);
+        $this->smarty->assign('items',$result);
+        $this->smarty->view('userWall');
+    }
+
 	public function chooseMusic(){
         $musicLink="";
         if(@$_POST['music_name']) {
