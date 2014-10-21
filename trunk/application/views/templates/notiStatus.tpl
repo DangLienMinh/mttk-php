@@ -56,8 +56,7 @@
           <span>Update Required</span> \
           To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>. \
         </div>';
-    function addStatus(msg){
-        var obj = JSON.parse(msg);
+    function addStatus(obj){
           try{
             var items=[];
             $.each(obj, function(i,val){
@@ -75,72 +74,53 @@
           }
     }
 
+    
      function waitForMsg(){
         $.ajax({
             type: "post",
 {/literal}
-      url:"{base_url('notiController/getOldNotify')}", 
+      url:"{base_url('notiController/getNewNotify')}", 
 {literal}
             async: true, /* If set to non-async, browser shows page as "Loading.."*/
             cache: false,
             timeout:50000, /* Timeout in ms */
 
             success: function(data){ /* called when request to barge.php completes */
-                $.ajax({
-                type: "post",
-{/literal}
-                url:"{base_url('notiController/getNewNotifyNumber')}",
-{literal}
-                cache: false,
-                success: function(times){
-                    addmsg(data,times); 
-                 }
-                });
-              }
+                addmsg(data); /* Add response to a .msg div (with the "new" class)*/
+                setTimeout(
+                    waitForMsg, /* Request next message */
+                    1000000 /* ..after 1 seconds */
+                );
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+                addmsg("error", textStatus + " (" + errorThrown + ")");
+                setTimeout(
+                    waitForMsg, /* Try again after.. */
+                    15000); /* milliseconds (15seconds) */
+            }
         });
     }
 
-    function addmsg(msg,times){
+    function addmsg(msg){
         var obj = JSON.parse(msg);
-        if(times>0){
-          $(".noti_bubble").replaceWith('<div class="noti_bubble">'+times+'</div>');
-        }else{
-          $(".noti_bubble").hide();
-        }
-        
+        $(".noti_bubble").replaceWith('<div class="noti_bubble">'+obj.length+'</div>');
         if(obj.length>window.compare){
           window.compare=obj.length;
           try{
             var items=[];
-            var count=0;
             $.each(obj, function(i,val){
-              if(count<=6){
-                var noti_icon="";
-                if(val.type=="1"){
-                  notiIcon="noti_like";
-                }else{
-                  notiIcon="noti_comment";
-                }
-                if(times>0){
-                  $('#noti_content>ul').append('<li style="background:#f4f6f9"  class="noti"><a href="'+window.notifyStatus+"/"+val.status_id+"/"+val.notification_id+'"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'+window.userPic+val.picture+'"/><span>'+val.msg+'</span><br/><abbr class="timeago '+notiIcon+'" title="'+val.created_at+'"></abbr></a></li>');
-                  times=times-1;
-                }else{
-                  $('#noti_content>ul').append('<li class="noti"><a href="'+window.notifyStatus+"/"+val.status_id+'"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'+window.userPic+val.picture+'"/><span>'+val.msg+'</span><br/><abbr class="timeago '+notiIcon+'" title="'+val.created_at+'"></abbr></a></li>');
-                }
-                count=count+1;
+              var noti_icon="";
+              if(val.type=="1"){
+                notiIcon="noti_like";
               }else{
-                $('#noti_content>ul').append('<li class="noti"><a href="'+window.notifyStatus+"/"+val.status_id+'">See all</a></li>');
-                return false;
+                notiIcon="noti_comment";
               }
-              if(count==obj.length){
-                $('#noti_content>ul').append('<li class="noti"><a href="'+window.notifyStatus+"/"+val.status_id+'">See all</a></li>');
-                return false;
-              }
-
+                $('#noti_content>ul').append('<li class="noti"><a href="'+window.notifyStatus+"/"+val.status_id+'"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'+window.userPic+val.picture+'"/><span>'+val.msg+'</span><br/><abbr class="timeago '+notiIcon+'" title="'+val.created_at+'"></abbr></a></li>');
             });
           }catch(e) {
-            alert('Exception while request..'+e);
+            alert('Exception while request..');
           }
+        }else{
         }
     }
 
@@ -156,10 +136,12 @@
               var test = $("#textboxcontent"+Id).val();
               var dataString = 'textcontent='+ test + '&com_msgid=' + Id;
       
-              if(test==''){
+              if(test=='')
+              {
                 alert("Please Enter Some Text");
               }
-              else{
+              else
+              {
               $("#flash"+Id).show();
 {/literal}
               $("#flash"+Id).fadeIn(400).html('<img src="{asset_url()}img/ajax-loader.gif" align="absmiddle"> loading.....');
@@ -193,14 +175,17 @@
            cache: false,
 
            success: function(){
-            if(id % 2){
-              parent.fadeOut('slow', function() {$(this).remove();});
+            if(id % 2)
+           {
+            parent.fadeOut('slow', function() {$(this).remove();});
            }
-            else{
-              parent.slideUp('slow', function() {$(this).remove();});
+          else
+           {
+          parent.slideUp('slow', function() {$(this).remove();});
            }
           }
          });
+
         return false;
     });
 
@@ -210,7 +195,6 @@
         var New_ID=sid[1];
         var REL = $(this).attr("rel");
         var dataString = 'status_id=' + New_ID +'&rel='+ REL;
-        alert(dataString);
         $.ajax({
            type: "POST",
 {/literal}
@@ -239,32 +223,13 @@
     });
 
     function getStatus(){
-        /* This requests the url "msgsrv.php"
-        When it complete (or errors)*/
-        $.ajax({
-            type: "post",
-{/literal}
-      url:"{base_url('statusController/index')}",
-{literal}
-            async: true, /* If set to non-async, browser shows page as "Loading.."*/
-            cache: false,
-            timeout:50000, /* Timeout in ms */
-
-            success: function(data){ /* called when request to barge.php completes */
-                addStatus(data); /* Add response to a .msg div (with the "new" class)*/
-                setTimeout(
-                    getStatus, /* Request next message */
-                    1800000 /* ..after 1 seconds */
-                );
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown){
-                addStatus("error", textStatus + " (" + errorThrown + ")");
-                setTimeout(
-                    getStatus, /* Try again after.. */
-                    15000); /* milliseconds (15seconds) */
-            }
-        });
+          var data;
+    {/literal}
+          data={$items}
+    {literal}
+        addStatus(data);
     }
+
 
     function setSong(name,inter,songUrl,title){
         $(name).jPlayer({
@@ -303,6 +268,9 @@
                 $("#loadplace"+val.status_id).append('<li class="load_comment"><span id="'+val.name+'"></span><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'+window.userPic+val.picture+'"/><span>'+val.message+'</span><a href="#" id="'+val.comment_id+'" class="delete_button"></a><br/><abbr class="timeago" title="'+val.created_at+'"></abbr></li>');
               });
               }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+ 
             }
         });
     }
@@ -329,6 +297,8 @@
                 $("#like"+status).replaceWith('<a href="#" class="like like_button" id="like'+status+'" title="Like" rel="Like">Like</a>');
                 $("#loadplace"+status).prev('div').append('<div class="likeUsers" id="youlike'+status+'"></div>');
               }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
             }
         }).done(function(){
        //wait for done and the run the second
@@ -347,21 +317,22 @@
               if(obj.length>0){
                 $.each(obj, function(i,val){
                   if(isLike==1){
-                    if(obj.length>1){
-                    $("#youlike"+status).append('<span id="you'+status+'"><a href="'+val.email+'">You,&nbsp;</a></span>');
-                    }else{
-                      $("#youlike"+status).append('<span id="you'+status+'"><a href="'+val.email+'">You</a></span>');
-                    }
-                    isLike=0;
+                    $("#youlike"+status).append('<span id="you'+status+'"><a href="'+val.email+'">You</a></span>');
                   }else{
                      $("#youlike"+status).append('<a href="'+val.email+'">'+val.name+'</a>');
                   }
                   if(new_like_count>0){
                     $("#youlike"+status).append(' and '+new_like_count+' other friends like this');
+                  }else{
+                    $("#youlike"+status).append(' like this');
                   }
                 });
-                 $("#youlike"+status).append(' like this');
+              }else{
+                //$("#loadplace"+status).prev('li').append('<div class="likeUsers" id="likes'+status+'"></div>');
               }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+
             }
         }).done(function(){
             $('#container').masonry({itemSelector : '.item',});
@@ -505,7 +476,8 @@
       waitForMsg();
       getStatus();
       $('#noti_Container').click(function(){
-        if($('#noti_content').css('display') == 'none'){
+        if($('#noti_content').css('display') == 'none')
+        {
           $('#noti_content').css('display','block');
         }else{
           $('#noti_content').css('display','none');

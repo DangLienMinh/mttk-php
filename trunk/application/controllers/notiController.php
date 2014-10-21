@@ -15,12 +15,33 @@ class NotiController extends CI_Controller {
 	{
 	}
 
-    function getNewNotify(){
+    function getNewNotifyNumber(){
         //group the same notify????
         $em = $this->doctrine->em;
         $noti = new Entity\NotificationDAO($em);
         $result=$noti->getNewNotify($this->session->userdata('email'));
+        echo count($result);
+    }
+
+    function setNotifyOff(){
+        $em = $this->doctrine->em;
+        $noti = new Entity\NotificationDAO($em);
+        $noti->setOffNotify($this->session->userdata('email'));
+    }
+
+    function getOldNotify(){
+        $em = $this->doctrine->em;
+        $noti = new Entity\NotificationDAO($em);
+        $result=$noti->getOldNotify($this->session->userdata('email'));
         echo json_encode($result);
+    }
+
+    function getNotifyList(){
+        $em = $this->doctrine->em;
+        $noti = new Entity\NotificationDAO($em);
+        $result=$noti->getOldNotify($this->session->userdata('email'));
+        $this->smarty->assign('items',$result);
+        $this->smarty->view('notiList');
     }
 }
 ?>
