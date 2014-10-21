@@ -33,6 +33,18 @@ class StatusDAO
 		return $result;
 	}
 
+	public function laySingleStatus($status)
+	{
+		// prepare statemen
+		$cnn=$this->em->getConnection();
+		$sth = $cnn->prepare("CALL GetSingleStatus(?)");
+		$sth->bindValue(1, $status);
+		// execute and fetch
+		$sth->execute();
+		$result = $sth->fetchAll();
+		return $result;
+	}
+
 	public function themStatus($data)
 	{
 		$status = new Status;

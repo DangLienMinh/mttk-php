@@ -97,5 +97,19 @@ class StatusController extends CI_Controller {
         $status = new Entity\statusDAO($em);
         $status->themStatus($data);
     }
+
+    public function hienThiNotiStatus($statusParam,$noti_id=-1){
+        $em = $this->doctrine->em;
+        if($noti_id!=-1){
+           $noti = new Entity\NotificationDAO($em);
+            $noti->setNotifyIsRead($noti_id);
+        }
+        $status = new Entity\statusDAO($em);
+        $result=$status->laySingleStatus($statusParam);
+        $result= json_encode($result);
+        $this->smarty->assign('userPicCmt',$this->session->userdata('pic'));
+        $this->smarty->assign('items',$result);
+        $this->smarty->view('notiStatus');
+    }
 }
 ?>

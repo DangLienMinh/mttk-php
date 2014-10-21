@@ -1,26 +1,48 @@
-<!doctype html>
+<?php /*%%SmartyHeaderCode:19498544670306f5bc7-89995755%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '7aef88f2254b428ca8164bfc0bf4456c5220e591' => 
+    array (
+      0 => 'application\\views\\templates\\notiStatus.tpl',
+      1 => 1413857955,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '19498544670306f5bc7-89995755',
+  'variables' => 
+  array (
+    'userPicCmt' => 0,
+    'items' => 0,
+  ),
+  'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_5446703097fce6_27184494',
+  'cache_lifetime' => 120,
+),true); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_5446703097fce6_27184494')) {function content_5446703097fce6_27184494($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <title>jQuery UI Tabs - Default functionality</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
-  <link rel="stylesheet" type="text/css" href="{asset_url()}css/jplayer.blue.monday.css">
-  <link rel="stylesheet" type="text/css" href="{asset_url()}css/wall.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jplayer.blue.monday.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/wall.css">
   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.autogrowtextarea.min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/masonry.pkgd.min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.timeago.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.livequery.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.jplayer.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.autogrowtextarea.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/masonry.pkgd.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.timeago.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.livequery.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.jplayer.min.js"></script>
   <script type="text/javascript">
-   window.notifyStatus="{site_url('statusController/hienThiNotiStatus/')}";
-   window.profilePic="{uploads_url()}img/profilePic.jpg";
-   window.userPic="{uploads_url()}img/";
-   window.userWall="{site_url('statusController/layDSWallStatus/')}";
-   window.userPicCmt="{uploads_url()}img/{$userPicCmt}";
+   window.notifyStatus="http://localhost:81/mttk-php/statusController/hienThiNotiStatus";
+   window.profilePic="http://localhost:81/mttk-php/uploads/img/profilePic.jpg";
+   window.userPic="http://localhost:81/mttk-php/uploads/img/";
+   window.userWall="http://localhost:81/mttk-php/statusController/layDSWallStatus";
+   window.userPicCmt="http://localhost:81/mttk-php/uploads/img/a6551.jpg";
    window.compare=0;
-{literal}
+
     var element='<div class="jp-gui jp-interface"> \
           <ul class="jp-controls"> \
             <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li> \
@@ -56,8 +78,7 @@
           <span>Update Required</span> \
           To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>. \
         </div>';
-    function addStatus(msg){
-        var obj = JSON.parse(msg);
+    function addStatus(obj){
           try{
             var items=[];
             $.each(obj, function(i,val){
@@ -75,72 +96,53 @@
           }
     }
 
+    
      function waitForMsg(){
         $.ajax({
             type: "post",
-{/literal}
-      url:"{base_url('notiController/getOldNotify')}", 
-{literal}
+
+      url:"http://localhost:81/mttk-php/notiController/getNewNotify", 
+
             async: true, /* If set to non-async, browser shows page as "Loading.."*/
             cache: false,
             timeout:50000, /* Timeout in ms */
 
             success: function(data){ /* called when request to barge.php completes */
-                $.ajax({
-                type: "post",
-{/literal}
-                url:"{base_url('notiController/getNewNotifyNumber')}",
-{literal}
-                cache: false,
-                success: function(times){
-                    addmsg(data,times); 
-                 }
-                });
-              }
+                addmsg(data); /* Add response to a .msg div (with the "new" class)*/
+                setTimeout(
+                    waitForMsg, /* Request next message */
+                    1000000 /* ..after 1 seconds */
+                );
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+                addmsg("error", textStatus + " (" + errorThrown + ")");
+                setTimeout(
+                    waitForMsg, /* Try again after.. */
+                    15000); /* milliseconds (15seconds) */
+            }
         });
     }
 
-    function addmsg(msg,times){
+    function addmsg(msg){
         var obj = JSON.parse(msg);
-        if(times>0){
-          $(".noti_bubble").replaceWith('<div class="noti_bubble">'+times+'</div>');
-        }else{
-          $(".noti_bubble").hide();
-        }
-        
+        $(".noti_bubble").replaceWith('<div class="noti_bubble">'+obj.length+'</div>');
         if(obj.length>window.compare){
           window.compare=obj.length;
           try{
             var items=[];
-            var count=0;
             $.each(obj, function(i,val){
-              if(count<=6){
-                var noti_icon="";
-                if(val.type=="1"){
-                  notiIcon="noti_like";
-                }else{
-                  notiIcon="noti_comment";
-                }
-                if(times>0){
-                  $('#noti_content>ul').append('<li style="background:#f4f6f9"  class="noti"><a href="'+window.notifyStatus+"/"+val.status_id+"/"+val.notification_id+'"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'+window.userPic+val.picture+'"/><span>'+val.msg+'</span><br/><abbr class="timeago '+notiIcon+'" title="'+val.created_at+'"></abbr></a></li>');
-                  times=times-1;
-                }else{
-                  $('#noti_content>ul').append('<li class="noti"><a href="'+window.notifyStatus+"/"+val.status_id+'"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'+window.userPic+val.picture+'"/><span>'+val.msg+'</span><br/><abbr class="timeago '+notiIcon+'" title="'+val.created_at+'"></abbr></a></li>');
-                }
-                count=count+1;
+              var noti_icon="";
+              if(val.type=="1"){
+                notiIcon="noti_like";
               }else{
-                $('#noti_content>ul').append('<li class="noti"><a href="'+window.notifyStatus+"/"+val.status_id+'">See all</a></li>');
-                return false;
+                notiIcon="noti_comment";
               }
-              if(count==obj.length){
-                $('#noti_content>ul').append('<li class="noti"><a href="'+window.notifyStatus+"/"+val.status_id+'">See all</a></li>');
-                return false;
-              }
-
+                $('#noti_content>ul').append('<li class="noti"><a href="'+window.notifyStatus+"/"+val.status_id+'"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'+window.userPic+val.picture+'"/><span>'+val.msg+'</span><br/><abbr class="timeago '+notiIcon+'" title="'+val.created_at+'"></abbr></a></li>');
             });
           }catch(e) {
-            alert('Exception while request..'+e);
+            alert('Exception while request..');
           }
+        }else{
         }
     }
 
@@ -156,19 +158,21 @@
               var test = $("#textboxcontent"+Id).val();
               var dataString = 'textcontent='+ test + '&com_msgid=' + Id;
       
-              if(test==''){
+              if(test=='')
+              {
                 alert("Please Enter Some Text");
               }
-              else{
+              else
+              {
               $("#flash"+Id).show();
-{/literal}
-              $("#flash"+Id).fadeIn(400).html('<img src="{asset_url()}img/ajax-loader.gif" align="absmiddle"> loading.....');
-{literal}      
+
+              $("#flash"+Id).fadeIn(400).html('<img src="http://localhost:81/mttk-php/assets/img/ajax-loader.gif" align="absmiddle"> loading.....');
+      
               $.ajax({
                 type: "post",
-{/literal}
-                url:"{base_url('commentController/themComment')}",
-{literal}
+
+                url:"http://localhost:81/mttk-php/commentController/themComment",
+
                 data: dataString,
                 cache: false,
                 success: function(html){
@@ -186,21 +190,24 @@
         var parent = $(this).parent();
         $.ajax({
            type: "POST",
-{/literal}
-                url:"{base_url('commentController/xoaComment')}",
-{literal}
+
+                url:"http://localhost:81/mttk-php/commentController/xoaComment",
+
            data: dataString,
            cache: false,
 
            success: function(){
-            if(id % 2){
-              parent.fadeOut('slow', function() {$(this).remove();});
+            if(id % 2)
+           {
+            parent.fadeOut('slow', function() {$(this).remove();});
            }
-            else{
-              parent.slideUp('slow', function() {$(this).remove();});
+          else
+           {
+          parent.slideUp('slow', function() {$(this).remove();});
            }
           }
          });
+
         return false;
     });
 
@@ -210,12 +217,11 @@
         var New_ID=sid[1];
         var REL = $(this).attr("rel");
         var dataString = 'status_id=' + New_ID +'&rel='+ REL;
-        alert(dataString);
         $.ajax({
            type: "POST",
-{/literal}
-                url:"{base_url('thumb_up_downController/themXoaLike')}",
-{literal}
+
+                url:"http://localhost:81/mttk-php/thumb_up_downController/themXoaLike",
+
            data: dataString,
            cache: false,
 
@@ -239,32 +245,13 @@
     });
 
     function getStatus(){
-        /* This requests the url "msgsrv.php"
-        When it complete (or errors)*/
-        $.ajax({
-            type: "post",
-{/literal}
-      url:"{base_url('statusController/index')}",
-{literal}
-            async: true, /* If set to non-async, browser shows page as "Loading.."*/
-            cache: false,
-            timeout:50000, /* Timeout in ms */
-
-            success: function(data){ /* called when request to barge.php completes */
-                addStatus(data); /* Add response to a .msg div (with the "new" class)*/
-                setTimeout(
-                    getStatus, /* Request next message */
-                    1800000 /* ..after 1 seconds */
-                );
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown){
-                addStatus("error", textStatus + " (" + errorThrown + ")");
-                setTimeout(
-                    getStatus, /* Try again after.. */
-                    15000); /* milliseconds (15seconds) */
-            }
-        });
+          var data;
+    
+          data=[{"status_id":"2","music":"http:\/\/localhost:81\/mttk-php\/uploads\/15.Forever_Friends_3.mp3","title":"Forever friend","message":"I'm feeling lucky hehe","created_at":"2014-10-16 21:44:18","thumbs_up":"0","privacy_type_id":"1","email":"duongphuocloc@gmail.com","picture":"a6551.jpg","name":"phuoc loc"}]
+    
+        addStatus(data);
     }
+
 
     function setSong(name,inter,songUrl,title){
         $(name).jPlayer({
@@ -289,9 +276,9 @@
         var dataString = 'status_id='+ status;
         $.ajax({
             type: "post",
-{/literal}
-      url:"{base_url('commentController/layComment')}",
-{literal}
+
+      url:"http://localhost:81/mttk-php/commentController/layComment",
+
             data: dataString,
             async: true, /* If set to non-async, browser shows page as "Loading.."*/
             cache: false,
@@ -303,6 +290,9 @@
                 $("#loadplace"+val.status_id).append('<li class="load_comment"><span id="'+val.name+'"></span><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'+window.userPic+val.picture+'"/><span>'+val.message+'</span><a href="#" id="'+val.comment_id+'" class="delete_button"></a><br/><abbr class="timeago" title="'+val.created_at+'"></abbr></li>');
               });
               }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+ 
             }
         });
     }
@@ -312,9 +302,9 @@
       var isLike=0;
         $.ajax({
             type: "post",
-{/literal}
-      url:"{base_url('thumb_up_downController/layLikeUser')}",
-{literal}
+
+      url:"http://localhost:81/mttk-php/thumb_up_downController/layLikeUser",
+
             data: dataString,
             async: true, /* If set to non-async, browser shows page as "Loading.."*/
             cache: false,
@@ -329,14 +319,16 @@
                 $("#like"+status).replaceWith('<a href="#" class="like like_button" id="like'+status+'" title="Like" rel="Like">Like</a>');
                 $("#loadplace"+status).prev('div').append('<div class="likeUsers" id="youlike'+status+'"></div>');
               }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
             }
         }).done(function(){
        //wait for done and the run the second
        $.ajax({
             type: "post",
-{/literal}
-      url:"{base_url('thumb_up_downController/layLike')}",
-{literal}
+
+      url:"http://localhost:81/mttk-php/thumb_up_downController/layLike",
+
             data: dataString,
             async: true, /* If set to non-async, browser shows page as "Loading.."*/
             cache: false,
@@ -347,21 +339,22 @@
               if(obj.length>0){
                 $.each(obj, function(i,val){
                   if(isLike==1){
-                    if(obj.length>1){
-                    $("#youlike"+status).append('<span id="you'+status+'"><a href="'+val.email+'">You,&nbsp;</a></span>');
-                    }else{
-                      $("#youlike"+status).append('<span id="you'+status+'"><a href="'+val.email+'">You</a></span>');
-                    }
-                    isLike=0;
+                    $("#youlike"+status).append('<span id="you'+status+'"><a href="'+val.email+'">You</a></span>');
                   }else{
                      $("#youlike"+status).append('<a href="'+val.email+'">'+val.name+'</a>');
                   }
                   if(new_like_count>0){
                     $("#youlike"+status).append(' and '+new_like_count+' other friends like this');
+                  }else{
+                    $("#youlike"+status).append(' like this');
                   }
                 });
-                 $("#youlike"+status).append(' like this');
+              }else{
+                //$("#loadplace"+status).prev('li').append('<div class="likeUsers" id="likes'+status+'"></div>');
               }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+
             }
         }).done(function(){
             $('#container').masonry({itemSelector : '.item',});
@@ -505,7 +498,8 @@
       waitForMsg();
       getStatus();
       $('#noti_Container').click(function(){
-        if($('#noti_content').css('display') == 'none'){
+        if($('#noti_content').css('display') == 'none')
+        {
           $('#noti_content').css('display','block');
         }else{
           $('#noti_content').css('display','none');
@@ -514,7 +508,7 @@
   });
  
   </script>
- {/literal}
+ 
 </head>
 <body>
   <div id="noti_Container">
@@ -537,4 +531,4 @@
       <h2></h2>
     </div>
 </body>
-</html>
+</html><?php }} ?>

@@ -25,12 +25,33 @@ class NotificationDAO
 	public function getOldNotify($email)
 	{
 		// prepare statement
-		$sth = $this->em->prepare("CALL GetOldNotify($email)");
-
+		$cnn=$this->em->getConnection();
+		$sth = $cnn->prepare("CALL GetOldNotify(?)");
+		$sth->bindValue(1, $email);
 		// execute and fetch
 		$sth->execute();
-		$result = $sth->fetch();
-		$output->writeln(var_dump($result));
+		$result = $sth->fetchAll();
+		return $result;
+	}
+
+	public function setNotifyIsRead($notification_id)
+	{
+		// prepare statement
+		$cnn=$this->em->getConnection();
+		$sth = $cnn->prepare("CALL setNotifyIsRead(?)");
+		$sth->bindValue(1, $notification_id);
+		// execute and fetch
+		$sth->execute();
+	}
+
+	public function setOffNotify($email)
+	{
+		// prepare statement
+		$cnn=$this->em->getConnection();
+		$sth = $cnn->prepare("CALL setOffNotify(?)");
+		$sth->bindValue(1, $email);
+		// execute and fetch
+		$sth->execute();
 	}
 }
 ?>

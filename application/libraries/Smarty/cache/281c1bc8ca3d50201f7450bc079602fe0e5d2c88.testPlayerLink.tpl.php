@@ -1,25 +1,25 @@
-<?php /*%%SmartyHeaderCode:709654452f92ec2fc5-60573851%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:98085446732425db72-52166229%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1413820184,
+      1 => 1413902487,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '709654452f92ec2fc5-60573851',
+  'nocache_hash' => '98085446732425db72-52166229',
   'variables' => 
   array (
     'userPicCmt' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_54452f9320ee33_31539890',
+  'unifunc' => 'content_5446732449edf5_13692222',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_54452f9320ee33_31539890')) {function content_54452f9320ee33_31539890($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_5446732449edf5_13692222')) {function content_5446732449edf5_13692222($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -35,6 +35,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.livequery.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.jplayer.min.js"></script>
   <script type="text/javascript">
+   window.notifyStatus="http://localhost:81/mttk-php/statusController/hienThiNotiStatus";
    window.profilePic="http://localhost:81/mttk-php/uploads/img/profilePic.jpg";
    window.userPic="http://localhost:81/mttk-php/uploads/img/";
    window.userWall="http://localhost:81/mttk-php/statusController/layDSWallStatus";
@@ -99,48 +100,68 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         $.ajax({
             type: "post",
 
-      url:"http://localhost:81/mttk-php/notiController/getNewNotify", 
+      url:"http://localhost:81/mttk-php/notiController/getOldNotify", 
 
             async: true, /* If set to non-async, browser shows page as "Loading.."*/
             cache: false,
             timeout:50000, /* Timeout in ms */
 
             success: function(data){ /* called when request to barge.php completes */
-                addmsg(data); /* Add response to a .msg div (with the "new" class)*/
-                setTimeout(
-                    waitForMsg, /* Request next message */
-                    1000000 /* ..after 1 seconds */
-                );
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown){
-                addmsg("error", textStatus + " (" + errorThrown + ")");
-                setTimeout(
-                    waitForMsg, /* Try again after.. */
-                    15000); /* milliseconds (15seconds) */
-            }
+                $.ajax({
+                type: "post",
+
+                url:"http://localhost:81/mttk-php/notiController/getNewNotifyNumber",
+
+                cache: false,
+                success: function(times){
+                    addmsg(data,times); 
+                 }
+                });
+              }
         });
     }
 
-    function addmsg(msg){
+    function addmsg(msg,times){
         var obj = JSON.parse(msg);
-        $(".noti_bubble").replaceWith('<div class="noti_bubble">'+obj.length+'</div>');
+        if(times>0){
+          $(".noti_bubble").replaceWith('<div class="noti_bubble">'+times+'</div>');
+        }else{
+          $(".noti_bubble").hide();
+        }
+        
         if(obj.length>window.compare){
           window.compare=obj.length;
           try{
             var items=[];
+            var count=0;
             $.each(obj, function(i,val){
-              var noti_icon="";
-              if(val.type=="1"){
-                notiIcon="noti_like";
+              if(count<=6){
+                var noti_icon="";
+                if(val.type=="1"){
+                  notiIcon="noti_like";
+                }else{
+                  notiIcon="noti_comment";
+                }
+                if(times>0){
+                  $('#noti_content>ul').append('<li style="background:#f4f6f9"  class="noti"><a href="'+window.notifyStatus+"/"+val.status_id+"/"+val.notification_id+'"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'+window.userPic+val.picture+'"/><span>'+val.msg+'</span><br/><abbr class="timeago '+notiIcon+'" title="'+val.created_at+'"></abbr></a></li>');
+                  times=times-1;
+                }else{
+                  $('#noti_content>ul').append('<li class="noti"><a href="'+window.notifyStatus+"/"+val.status_id+'"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'+window.userPic+val.picture+'"/><span>'+val.msg+'</span><br/><abbr class="timeago '+notiIcon+'" title="'+val.created_at+'"></abbr></a></li>');
+                }
+                count=count+1;
               }else{
-                notiIcon="noti_comment";
+                $('#noti_content>ul').append('<li class="noti"><a href="'+window.notifyStatus+"/"+val.status_id+'">See all</a></li>');
+                return false;
               }
-                $('#noti_content>ul').append('<li class="noti"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'+window.userPic+val.picture+'"/><span>'+val.msg+'</span><br/><abbr class="timeago '+notiIcon+'" title="'+val.created_at+'"></abbr></li>');
+              if(count==obj.length){
+                $('#noti_content>ul').append('<li class="noti"><a href="'+window.notifyStatus+"/"+val.status_id+'">See all</a></li>');
+                return false;
+              }
+
             });
           }catch(e) {
-            alert('Exception while request..');
+            alert('Exception while request..'+e);
           }
-        }else{
         }
     }
 
@@ -156,12 +177,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
               var test = $("#textboxcontent"+Id).val();
               var dataString = 'textcontent='+ test + '&com_msgid=' + Id;
       
-              if(test=='')
-              {
+              if(test==''){
                 alert("Please Enter Some Text");
               }
-              else
-              {
+              else{
               $("#flash"+Id).show();
 
               $("#flash"+Id).fadeIn(400).html('<img src="http://localhost:81/mttk-php/assets/img/ajax-loader.gif" align="absmiddle"> loading.....');
@@ -195,17 +214,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
            cache: false,
 
            success: function(){
-            if(id % 2)
-           {
-            parent.fadeOut('slow', function() {$(this).remove();});
+            if(id % 2){
+              parent.fadeOut('slow', function() {$(this).remove();});
            }
-          else
-           {
-          parent.slideUp('slow', function() {$(this).remove();});
+            else{
+              parent.slideUp('slow', function() {$(this).remove();});
            }
           }
          });
-
         return false;
     });
 
@@ -215,6 +231,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         var New_ID=sid[1];
         var REL = $(this).attr("rel");
         var dataString = 'status_id=' + New_ID +'&rel='+ REL;
+        alert(dataString);
         $.ajax({
            type: "POST",
 
@@ -307,9 +324,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 $("#loadplace"+val.status_id).append('<li class="load_comment"><span id="'+val.name+'"></span><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'+window.userPic+val.picture+'"/><span>'+val.message+'</span><a href="#" id="'+val.comment_id+'" class="delete_button"></a><br/><abbr class="timeago" title="'+val.created_at+'"></abbr></li>');
               });
               }
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown){
- 
             }
         });
     }
@@ -336,8 +350,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 $("#like"+status).replaceWith('<a href="#" class="like like_button" id="like'+status+'" title="Like" rel="Like">Like</a>');
                 $("#loadplace"+status).prev('div').append('<div class="likeUsers" id="youlike'+status+'"></div>');
               }
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown){
             }
         }).done(function(){
        //wait for done and the run the second
@@ -356,22 +368,21 @@ $_valid = $_smarty_tpl->decodeProperties(array (
               if(obj.length>0){
                 $.each(obj, function(i,val){
                   if(isLike==1){
-                    $("#youlike"+status).append('<span id="you'+status+'"><a href="'+val.email+'">You</a></span>');
+                    if(obj.length>1){
+                    $("#youlike"+status).append('<span id="you'+status+'"><a href="'+val.email+'">You,&nbsp;</a></span>');
+                    }else{
+                      $("#youlike"+status).append('<span id="you'+status+'"><a href="'+val.email+'">You</a></span>');
+                    }
+                    isLike=0;
                   }else{
                      $("#youlike"+status).append('<a href="'+val.email+'">'+val.name+'</a>');
                   }
                   if(new_like_count>0){
                     $("#youlike"+status).append(' and '+new_like_count+' other friends like this');
-                  }else{
-                    $("#youlike"+status).append(' like this');
                   }
                 });
-              }else{
-                //$("#loadplace"+status).prev('li').append('<div class="likeUsers" id="likes'+status+'"></div>');
+                 $("#youlike"+status).append(' like this');
               }
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown){
-
             }
         }).done(function(){
             $('#container').masonry({itemSelector : '.item',});
@@ -515,8 +526,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       waitForMsg();
       getStatus();
       $('#noti_Container').click(function(){
-        if($('#noti_content').css('display') == 'none')
-        {
+        if($('#noti_content').css('display') == 'none'){
           $('#noti_content').css('display','block');
         }else{
           $('#noti_content').css('display','none');
