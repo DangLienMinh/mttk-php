@@ -1,4 +1,4 @@
-<?php /*%%SmartyHeaderCode:19498544670306f5bc7-89995755%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1143454467ae7f3ee51-83582245%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -9,7 +9,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '19498544670306f5bc7-89995755',
+  'nocache_hash' => '1143454467ae7f3ee51-83582245',
   'variables' => 
   array (
     'userPicCmt' => 0,
@@ -17,10 +17,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5446703097fce6_27184494',
+  'unifunc' => 'content_54467ae82709f0_27650385',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5446703097fce6_27184494')) {function content_5446703097fce6_27184494($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_54467ae82709f0_27650385')) {function content_54467ae82709f0_27650385($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -247,7 +247,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     function getStatus(){
           var data;
     
-          data=[{"status_id":"2","music":"http:\/\/localhost:81\/mttk-php\/uploads\/15.Forever_Friends_3.mp3","title":"Forever friend","message":"I'm feeling lucky hehe","created_at":"2014-10-16 21:44:18","thumbs_up":"0","privacy_type_id":"1","email":"duongphuocloc@gmail.com","picture":"a6551.jpg","name":"phuoc loc"}]
+          data=[{"status_id":"6","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZWZABB9W&h=mp3.zing.vn","title":"Jar Of Hearts + Christina Perri","message":"how a nice day","created_at":"2014-10-18 21:19:25","thumbs_up":"0","privacy_type_id":"1","email":"duongphuocloc@gmail.com","picture":"a6551.jpg","name":"phuoc loc"}]
     
         addStatus(data);
     }
