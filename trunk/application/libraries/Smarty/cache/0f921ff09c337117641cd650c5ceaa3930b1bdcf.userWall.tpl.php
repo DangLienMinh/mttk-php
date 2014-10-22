@@ -1,26 +1,31 @@
-<?php /*%%SmartyHeaderCode:278635447c99dbf3125-36021538%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:177335447cee3e7a5a6-55141972%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '0f921ff09c337117641cd650c5ceaa3930b1bdcf' => 
     array (
       0 => 'application\\views\\templates\\userWall.tpl',
-      1 => 1413983943,
+      1 => 1413992134,
+      2 => 'file',
+    ),
+    'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
+    array (
+      0 => 'application\\views\\templates\\common\\header.tpl',
+      1 => 1413991922,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '278635447c99dbf3125-36021538',
+  'nocache_hash' => '177335447cee3e7a5a6-55141972',
   'variables' => 
   array (
-    'userPicCmt' => 0,
     'items' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5447c99e05b622_07286412',
+  'unifunc' => 'content_5447cee422da84_15057565',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5447c99e05b622_07286412')) {function content_5447c99e05b622_07286412($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_5447cee422da84_15057565')) {function content_5447cee422da84_15057565($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -41,9 +46,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   window.profilePic="http://localhost:81/mttk-php/uploads/img/profilePic.jpg";
   window.userPic="http://localhost:81/mttk-php/uploads/img/";
   window.userWall="http://localhost:81/mttk-php/statusController/layDSWallStatus";
+  window.friendController="http://localhost:81/mttk-php/friendController";
   window.userPicCmt="http://localhost:81/mttk-php/uploads/img/shot0006.jpg";
   window.compare=0;
   window.compareStatus=0;
+
 
 function waitForMsg() {
   $.ajax({
@@ -159,10 +166,10 @@ $(document).on('click', '.like', function() {
       if (REL == 'Like') {
         if ($('#youlike' + New_ID).children().length > 0) {
           $("#youlike" + New_ID).slideDown('fast').prepend("<span id='you" + New_ID + "'><a href='#'>You</a></span>,&nbsp;");
-          $("#likes" + New_ID).prepend("<span id='you" + New_ID + "'><a href='#'>You </a></span>");
+          $("#likes" + New_ID).html("<span id='you" + New_ID + "'><a href='#'>You </a></span>");
           $('#' + ID).html('Unlike').attr('rel', 'Unlike').attr('title', 'Unlike');
         } else {
-          $("#youlike" + New_ID).slideDown('fast').prepend("<span id='you" + New_ID + "'><a href='#'>You </a></span>&nbsp;like this");
+          $("#youlike" + New_ID).slideDown('fast').html("<span id='you" + New_ID + "'><a href='#'>You </a></span>&nbsp;like this");
           $('#' + ID).html('Unlike').attr('rel', 'Unlike').attr('title', 'Unlike');
         }
         
@@ -182,15 +189,7 @@ $(document).on('click', '.like', function() {
   return false;
 });
 
-function getStatus(){
-      var data;
-        /* This requests the url "msgsrv.php"
-        When it complete (or errors)*/
 
-      data=[{"status_id":"6","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZWZABB9W&h=mp3.zing.vn","title":"Jar Of Hearts + Christina Perri","message":"how a nice day","created_at":"2014-10-18 21:19:25","thumbs_up":"4","privacy_type_id":"1","email":"duongphuocloc@gmail.com","picture":"a6551.jpg","name":"phuoc loc"},{"status_id":"2","music":"http:\/\/localhost:81\/mttk-php\/uploads\/15.Forever_Friends_3.mp3","title":"Forever friend","message":"I'm feeling lucky hehe","created_at":"2014-10-16 21:44:18","thumbs_up":"2","privacy_type_id":"1","email":"duongphuocloc@gmail.com","picture":"a6551.jpg","name":"phuoc loc"}]
-
-    addStatusUserWall(data);
-    }
 
 function getComment(status) {
   var dataString = 'status_id=' + status;
@@ -281,16 +280,35 @@ function getLike(status) {
     });
   });
 }
+
+
+function getStatus(){
+      var data;
+        /* This requests the url "msgsrv.php"
+        When it complete (or errors)*/
+
+      data=[{"status_id":"6","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZWZABB9W&h=mp3.zing.vn","title":"Jar Of Hearts + Christina Perri","message":"how a nice day","created_at":"2014-10-18 21:19:25","thumbs_up":"4","privacy_type_id":"1","email":"duongphuocloc@gmail.com","picture":"a6551.jpg","name":"phuoc loc"},{"status_id":"2","music":"http:\/\/localhost:81\/mttk-php\/uploads\/15.Forever_Friends_3.mp3","title":"Forever friend","message":"I'm feeling lucky hehe","created_at":"2014-10-16 21:44:18","thumbs_up":"2","privacy_type_id":"1","email":"duongphuocloc@gmail.com","picture":"a6551.jpg","name":"phuoc loc"}]
+
+    addStatusUserWall(data);
+    }
   </script>
   <script>
   $(document).ready(function() {
     waitForMsg();
+    friendRequest();
     getStatus();
     $('#noti_Container #noti').click(function() {
       if ($('#noti_content').css('display') == 'none') {
         $('#noti_content').css('display', 'block');
       } else {
         $('#noti_content').css('display', 'none');
+      }
+    });
+    $('#noti_Container #friend').click(function() {
+      if ($('#friend_content').css('display') == 'none') {
+        $('#friend_content').css('display', 'block');
+      } else {
+        $('#friend_content').css('display', 'none');
       }
     });
   });

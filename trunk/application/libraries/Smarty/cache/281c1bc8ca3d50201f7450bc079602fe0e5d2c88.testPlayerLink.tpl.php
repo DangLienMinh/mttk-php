@@ -1,25 +1,27 @@
-<?php /*%%SmartyHeaderCode:301645447c997c3bde2-95031418%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:54295447cedf32be59-39916073%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1413990376,
+      1 => 1413991953,
+      2 => 'file',
+    ),
+    'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
+    array (
+      0 => 'application\\views\\templates\\common\\header.tpl',
+      1 => 1413991922,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '301645447c997c3bde2-95031418',
-  'variables' => 
-  array (
-    'userPicCmt' => 0,
-  ),
+  'nocache_hash' => '54295447cedf32be59-39916073',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5447c997e3af46_54256408',
+  'unifunc' => 'content_5447cedf674aa7_39805659',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5447c997e3af46_54256408')) {function content_5447c997e3af46_54256408($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_5447cedf674aa7_39805659')) {function content_5447cedf674aa7_39805659($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -183,34 +185,7 @@ $(document).on('click', '.like', function() {
   return false;
 });
 
-function getStatus() {
-  /* This requests the url "msgsrv.php"
-        When it complete (or errors)*/
-  $.ajax({
-    type: "post",
 
-    url: "http://localhost:81/mttk-php/statusController/index",
-
-    async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
-    cache: false,
-    timeout: 50000,
-    /* Timeout in ms */
-    success: function(data) { /* called when request to barge.php completes */
-      addStatus(data); /* Add response to a .msg div (with the "new" class)*/
-      setTimeout(
-        getStatus, /* Request next message */
-        3000 /* ..after 1 seconds */
-      );
-    },
-    error: function(XMLHttpRequest, textStatus, errorThrown) {
-      addStatus("error", textStatus + " (" + errorThrown + ")");
-      setTimeout(
-        getStatus, /* Try again after.. */
-        15000); /* milliseconds (15seconds) */
-    }
-  });
-}
 
 function getComment(status) {
   var dataString = 'status_id=' + status;
@@ -299,6 +274,36 @@ function getLike(status) {
           $(this).timeago(); // Calling Timeago Funtion 
         });
     });
+  });
+}
+
+
+function getStatus() {
+  /* This requests the url "msgsrv.php"
+        When it complete (or errors)*/
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/statusController/index",
+
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    timeout: 50000,
+    /* Timeout in ms */
+    success: function(data) { /* called when request to barge.php completes */
+      addStatus(data); /* Add response to a .msg div (with the "new" class)*/
+      setTimeout(
+        getStatus, /* Request next message */
+        3000 /* ..after 1 seconds */
+      );
+    },
+    error: function(XMLHttpRequest, textStatus, errorThrown) {
+      addStatus("error", textStatus + " (" + errorThrown + ")");
+      setTimeout(
+        getStatus, /* Try again after.. */
+        15000); /* milliseconds (15seconds) */
+    }
   });
 }
   </script>
