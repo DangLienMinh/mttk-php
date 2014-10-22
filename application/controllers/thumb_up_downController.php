@@ -35,9 +35,10 @@ class Thumb_up_downController extends CI_Controller {
 
     public function layLike(){
         $status_id=$_POST["status_id"];
+        $user=$this->session->userdata('email');
         $em = $this->doctrine->em;
         $like = new Entity\Thumb_up_downDAO($em);
-        $result=$like->layLike($status_id);
+        $result=$like->layLike($status_id,$user);
         echo json_encode($result);
     }
 }

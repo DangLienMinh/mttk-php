@@ -42,7 +42,7 @@ ul li {
 		$.ajax({
 			type: "post",
 {/literal}
-			url:"{base_url('addFriend/')}", 
+			url:"{base_url('friendController/')}", 
 {literal}
 			cache: false,
 			data:'search='+$("#search").val(),
@@ -74,7 +74,7 @@ ul li {
 	   	$.ajax({
          type: "POST",
 {/literal}
-         url:"{base_url('addFriend/themBan')}", 
+         url:"{base_url('friendController/themBan')}", 
 {literal}
          data: {friendEmail: $(this).val()},
          dataType: "text",  

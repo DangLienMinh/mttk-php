@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <title>jQuery UI Tabs - Default functionality</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" type="text/css" href="{asset_url()}css/jquery-ui.css">
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/jplayer.blue.monday.css">
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/wall.css">
-  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+  <script type="text/javascript" src="{asset_url()}js/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="{asset_url()}js/jquery-ui.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery.autogrowtextarea.min.js"></script>
   <script type="text/javascript" src="{asset_url()}js/masonry.pkgd.min.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery.timeago.js"></script>
@@ -19,6 +19,7 @@
   window.profilePic="{uploads_url()}img/profilePic.jpg";
   window.userPic="{uploads_url()}img/";
   window.userWall="{site_url('statusController/layDSWallStatus/')}";
+  window.friendController="{site_url('friendController/')}";
   window.userPicCmt="{uploads_url()}img/{$userPicCmt}";
   window.compare=0;
   window.compareStatus=0;
@@ -46,6 +47,23 @@ function waitForMsg() {
           addmsg(data, times);
         }
       });
+    }
+  });
+}
+
+function friendRequest() {
+  $.ajax({
+    type: "post",
+{/literal}
+    url: "{base_url('friendController/getFriendRequest')}",
+{literal}
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    timeout: 50000,
+    /* Timeout in ms */
+    success: function(data) { /* called when request to barge.php completes */
+      addFriendRequest(data);
     }
   });
 }
@@ -110,7 +128,6 @@ $(document).on('click', '.like', function() {
   var New_ID = sid[1];
   var REL = $(this).attr("rel");
   var dataString = 'status_id=' + New_ID + '&rel=' + REL;
-  alert(dataString);
   $.ajax({
     type: "POST",
 {/literal}
@@ -120,13 +137,25 @@ $(document).on('click', '.like', function() {
     cache: false,
     success: function(data) {
       if (REL == 'Like') {
-        $("#youlike" + New_ID).slideDown('fast').prepend("<span id='you" + New_ID + "'><a href='#'>You</a></span>.");
-        $("#likes" + New_ID).prepend("<span id='you" + New_ID + "'><a href='#'>You</a></span>");
-        $('#' + ID).html('Unlike').attr('rel', 'Unlike').attr('title', 'Unlike');
+        if ($('#youlike' + New_ID).children().length > 0) {
+          $("#youlike" + New_ID).slideDown('fast').prepend("<span id='you" + New_ID + "'><a href='#'>You</a></span>,&nbsp;");
+          $("#likes" + New_ID).html("<span id='you" + New_ID + "'><a href='#'>You </a></span>");
+          $('#' + ID).html('Unlike').attr('rel', 'Unlike').attr('title', 'Unlike');
+        } else {
+          $("#youlike" + New_ID).slideDown('fast').html("<span id='you" + New_ID + "'><a href='#'>You </a></span>&nbsp;like this");
+          $('#' + ID).html('Unlike').attr('rel', 'Unlike').attr('title', 'Unlike');
+        }
+        
       } else {
-        $("#youlike" + New_ID).slideUp('fast');
-        $("#you" + New_ID).remove();
-        $('#' + ID).attr('rel', 'Like').attr('title', 'Like').html('Like');
+        if ($('#youlike' + New_ID).children().length > 1) {
+          $("#you" + New_ID).slideUp('fast');
+          $("#you" + New_ID).remove();
+          $('#' + ID).attr('rel', 'Like').attr('title', 'Like').html('Like');
+        } else {
+          $("#youlike" + New_ID).slideUp('fast');
+          $("#you" + New_ID).remove();
+          $('#' + ID).attr('rel', 'Like').attr('title', 'Like').html('Like');
+        }
       }
     }
   });
@@ -255,12 +284,20 @@ function getLike(status) {
   <script>
   $(document).ready(function() {
     waitForMsg();
+    friendRequest();
     getStatus();
-    $('#noti_Container').click(function() {
+    $('#noti_Container #noti').click(function() {
       if ($('#noti_content').css('display') == 'none') {
         $('#noti_content').css('display', 'block');
       } else {
         $('#noti_content').css('display', 'none');
+      }
+    });
+    $('#noti_Container #friend').click(function() {
+      if ($('#friend_content').css('display') == 'none') {
+        $('#friend_content').css('display', 'block');
+      } else {
+        $('#friend_content').css('display', 'none');
       }
     });
   });
@@ -269,10 +306,16 @@ function getLike(status) {
 </head>
 <body>
   <div id="noti_Container">
-    <img src="http://l-stat.livejournal.com/img/facebook-profile.gif" alt="profile" />
+    <img id="friend"  src="http://l-stat.livejournal.com/img/facebook-profile.gif" alt="profile" />
+    <img id="noti" src="http://l-stat.livejournal.com/img/facebook-profile.gif" alt="profile" />
     <div class="noti_bubble"></div>
+    <div class="friend_bubble"></div>
+    
   </div>
   <div id="noti_content">
+    <ul></ul>
+  </div>
+  <div id="friend_content">
     <ul></ul>
   </div>
     <div id="container">

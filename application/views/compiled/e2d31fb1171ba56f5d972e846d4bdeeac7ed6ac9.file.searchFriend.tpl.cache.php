@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-13 05:31:57
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-22 16:15:16
          compiled from "application\views\templates\searchFriend.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:4931543b47ad4a7588-14845041%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:216065447bbf490a9e9-30176947%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'e2d31fb1171ba56f5d972e846d4bdeeac7ed6ac9' => 
     array (
       0 => 'application\\views\\templates\\searchFriend.tpl',
-      1 => 1413171044,
+      1 => 1413987303,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '4931543b47ad4a7588-14845041',
+  'nocache_hash' => '216065447bbf490a9e9-30176947',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_543b47ad586ec0_61934787',
+  'unifunc' => 'content_5447bbf4a025a3_62300902',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_543b47ad586ec0_61934787')) {function content_543b47ad586ec0_61934787($_smarty_tpl) {?><html>
+<?php if ($_valid && !is_callable('content_5447bbf4a025a3_62300902')) {function content_5447bbf4a025a3_62300902($_smarty_tpl) {?><html>
 <head>
 
 <style>
@@ -63,7 +63,7 @@ ul li {
 		$.ajax({
 			type: "post",
 
-			url:"<?php echo base_url('addFriend/');?>
+			url:"<?php echo base_url('friendController/');?>
 ", 
 
 			cache: false,
@@ -96,7 +96,7 @@ ul li {
 	   	$.ajax({
          type: "POST",
 
-         url:"<?php echo base_url('addFriend/themBan');?>
+         url:"<?php echo base_url('friendController/themBan');?>
 ", 
 
          data: {friendEmail: $(this).val()},

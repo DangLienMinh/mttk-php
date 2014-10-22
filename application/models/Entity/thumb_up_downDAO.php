@@ -31,12 +31,13 @@ class Thumb_up_downDAO
         $sth->execute();
     }
 
-    public function layLike($status_id)
+    public function layLike($status_id,$user)
     {
         // prepare statemen
         $cnn=$this->em->getConnection();
-        $sth = $cnn->prepare("CALL GetLike(?)");
+        $sth = $cnn->prepare("CALL GetLike(?,?)");
         $sth->bindValue(1, $status_id);
+        $sth->bindValue(2, $user);
         // execute and fetch
         $sth->execute();
         $result = $sth->fetchAll();

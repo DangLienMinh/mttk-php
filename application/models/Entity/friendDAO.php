@@ -22,7 +22,39 @@ class FriendDAO
 		$this->em->flush();
 	}
 
+	public function getFriendRequest($email)
+	{
+		// prepare statement
+		$cnn=$this->em->getConnection();
+		$sth = $cnn->prepare("CALL GetFriendRequest(?)");
+		$sth->bindValue(1, $email);
+		// execute and fetch
+		$sth->execute();
+		$result = $sth->fetchAll();
+		return $result;
+	}
 
-	
+	public function acceptFriend($email,$friend)
+	{
+
+		// prepare statement
+		$cnn=$this->em->getConnection();
+		$sth = $cnn->prepare("CALL acceptFriendRequest(?,?)");
+		$sth->bindValue(1, $email);
+		$sth->bindValue(2, $friend);
+		// execute and fetch
+		$sth->execute();
+	}
+
+	public function declineFriend($email,$friend)
+	{
+		// prepare statement
+		$cnn=$this->em->getConnection();
+		$sth = $cnn->prepare("CALL removeFriendRequest(?,?)");
+		$sth->bindValue(1, $email);
+		$sth->bindValue(2, $friend);
+		// execute and fetch
+		$sth->execute();
+	}
 }
 ?>

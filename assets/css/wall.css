@@ -305,39 +305,57 @@ text-decoration:none;
 
 #noti_Container {
     position:relative;     /* This is crucial for the absolutely positioned element */
-    border:1px solid blue; /* This is just to show you where the container ends */
-    width:16px;
+    width:100px;
     height:16px;
     margin-top: 5px;
-    margin-left:70%;
+    margin-left:77.5%;
 }
 #noti_content {
-    margin-left:67%;
+    margin-left:61%;
     display:none;
-
 }
+
 .noti_bubble {
     position:absolute;    /* This breaks the div from the normal HTML document. */
     top: -6px;
-    right:-6px;
+    right:10px;
     padding:1px 2px 1px 2px;
     background-color:red; /* you could use a background image if you'd like as well */
     color:white;
     font-weight:bold;
     font-size:0.55em;
-
-    /* The following is CSS3, but isn't crucial for this technique to work. */
-    /* Keep in mind that if a browser doesn't support CSS3, it's fine! They just won't have rounded borders and won't have a box shadow effect. */
-    /* You can always use a background image to produce the same effect if you want to, and you can use both together so browsers without CSS3 still have the rounded/shadow look. */
     border-radius:30px;
     box-shadow:1px 1px 1px gray;
 }
 
+.friend_bubble {
+    position: absolute;
+    top: -5px;
+    right: 80px;
+    padding: 1px 2px;
+    background-color: #F00;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 0.55em;
+    border-radius: 30px;
+    box-shadow: 1px 1px 1px #808080;
+    width: 4px;
+    height: 9px;
+}
 
-
-  #noti_content ul { line-height:17px; list-style: none;padding: 0px;margin: 0px; z-index:1000; position: relative;}
-  #noti_content ul li {padding:10px; display: block;position: relative;float: left;border:1px solid #000; background-color: #fff;}
-  #noti_content li ul {display: none;}
-  #noti_content ul li a {display: block; text-decoration: none;
+  #noti_content ul,#friend_content ul { line-height:17px; list-style: none;padding: 0px;margin: 0px; z-index:1000; position: relative;}
+  #noti_content ul li,#friend_content ul li {padding:10px; display: block;position: relative;float: left;border:1px solid #000; background-color: #fff;}
+  #noti_content li ul,#friend_content li ul {display: none;}
+  #noti_content ul li a,#friend_content ul li a {display: block; text-decoration: none;
            white-space: nowrap;}
-  #noti_content ul li:hover {background: #eceff5!important; cursor:pointer;}
+  #noti_content ul li:hover,#friend_content ul li:hover {background: #eceff5!important; cursor:pointer;}
+
+
+#friend_content {
+    margin-left:61%;
+    display:none;
+}
+
+#friend{
+  margin-right: 50px;
+}
