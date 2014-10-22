@@ -1,36 +1,80 @@
-<!doctype html>
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-22 17:36:04
+         compiled from "application\views\templates\common\header.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:134665447cee40966a5-14875841%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
+    array (
+      0 => 'application\\views\\templates\\common\\header.tpl',
+      1 => 1413991922,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '134665447cee40966a5-14875841',
+  'function' => 
+  array (
+  ),
+  'variables' => 
+  array (
+    'userPicCmt' => 0,
+  ),
+  'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_5447cee41e1190_88965244',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_5447cee41e1190_88965244')) {function content_5447cee41e1190_88965244($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <title>jQuery UI Tabs - Default functionality</title>
-  <link rel="stylesheet" type="text/css" href="{asset_url()}css/jquery-ui.css">
-  <link rel="stylesheet" type="text/css" href="{asset_url()}css/jplayer.blue.monday.css">
-  <link rel="stylesheet" type="text/css" href="{asset_url()}css/wall.css">
-  <script type="text/javascript" src="{asset_url()}js/jquery-1.11.1.min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery-ui.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.autogrowtextarea.min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/masonry.pkgd.min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.timeago.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.livequery.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.jplayer.min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/wall.js"></script>
+  <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>
+css/jquery-ui.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>
+css/jplayer.blue.monday.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>
+css/wall.css">
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery-ui.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery.autogrowtextarea.min.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/masonry.pkgd.min.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery.timeago.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery.livequery.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery.jplayer.min.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/wall.js"></script>
   <script type="text/javascript">
-  window.notifyStatus="{site_url('statusController/hienThiNotiStatus/')}";
-  window.profilePic="{uploads_url()}img/profilePic.jpg";
-  window.userPic="{uploads_url()}img/";
-  window.userWall="{site_url('statusController/layDSWallStatus/')}";
-  window.friendController="{site_url('friendController/')}";
-  window.userPicCmt="{uploads_url()}img/{$userPicCmt}";
+  window.notifyStatus="<?php echo site_url('statusController/hienThiNotiStatus/');?>
+";
+  window.profilePic="<?php echo uploads_url();?>
+img/profilePic.jpg";
+  window.userPic="<?php echo uploads_url();?>
+img/";
+  window.userWall="<?php echo site_url('statusController/layDSWallStatus/');?>
+";
+  window.friendController="<?php echo site_url('friendController/');?>
+";
+  window.userPicCmt="<?php echo uploads_url();?>
+img/<?php echo $_smarty_tpl->tpl_vars['userPicCmt']->value;?>
+";
   window.compare=0;
   window.compareStatus=0;
 
-{literal}
+
 function waitForMsg() {
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('notiController/getOldNotify')}",
-{literal}
+
+    url: "<?php echo base_url('notiController/getOldNotify');?>
+",
+
     async: true,
     /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
@@ -39,9 +83,10 @@ function waitForMsg() {
     success: function(data) { /* called when request to barge.php completes */
       $.ajax({
         type: "post",
-{/literal}
-        url: "{base_url('notiController/getNewNotifyNumber')}",
-{literal}
+
+        url: "<?php echo base_url('notiController/getNewNotifyNumber');?>
+",
+
         cache: false,
         success: function(times) {
           addmsg(data, times);
@@ -54,9 +99,10 @@ function waitForMsg() {
 function friendRequest() {
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('friendController/getFriendRequest')}",
-{literal}
+
+    url: "<?php echo base_url('friendController/getFriendRequest');?>
+",
+
     async: true,
     /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
@@ -77,14 +123,16 @@ $(document).on('click', '.comment_submit', function() {
     alert("Please Enter Some Text");
   } else {
     $("#flash" + Id).show();
-{/literal}
-    $("#flash" + Id).fadeIn(400).html('<img src="{asset_url()}img/ajax-loader.gif" align="absmiddle"> loading.....');
-{literal}    
+
+    $("#flash" + Id).fadeIn(400).html('<img src="<?php echo asset_url();?>
+img/ajax-loader.gif" align="absmiddle"> loading.....');
+    
     $.ajax({
       type: "post",
-{/literal}
-      url: "{base_url('commentController/themComment')}",
-{literal}
+
+      url: "<?php echo base_url('commentController/themComment');?>
+",
+
       data: dataString,
       cache: false,
       success: function(html) {
@@ -102,9 +150,10 @@ $(document).on('click', '.delete_button', function() {
   var parent = $(this).parent();
   $.ajax({
     type: "POST",
-{/literal}
-    url: "{base_url('commentController/xoaComment')}",
-{literal}
+
+    url: "<?php echo base_url('commentController/xoaComment');?>
+",
+
     data: dataString,
     cache: false,
     success: function() {
@@ -130,9 +179,10 @@ $(document).on('click', '.like', function() {
   var dataString = 'status_id=' + New_ID + '&rel=' + REL;
   $.ajax({
     type: "POST",
-{/literal}
-    url: "{base_url('thumb_up_downController/themXoaLike')}",
-{literal}
+
+    url: "<?php echo base_url('thumb_up_downController/themXoaLike');?>
+",
+
     data: dataString,
     cache: false,
     success: function(data) {
@@ -168,9 +218,10 @@ function getComment(status) {
   var dataString = 'status_id=' + status;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('commentController/layComment')}",
-{literal}
+
+    url: "<?php echo base_url('commentController/layComment');?>
+",
+
     data: dataString,
     async: true,
     /* If set to non-async, browser shows page as "Loading.."*/
@@ -191,9 +242,10 @@ function getLike(status) {
   var isLike = 0;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('thumb_up_downController/layLikeUser')}",
-{literal}
+
+    url: "<?php echo base_url('thumb_up_downController/layLikeUser');?>
+",
+
     data: dataString,
     async: true,
     /* If set to non-async, browser shows page as "Loading.."*/
@@ -212,9 +264,10 @@ function getLike(status) {
   }).done(function() {
     $.ajax({
       type: "post",
-{/literal}
-      url: "{base_url('thumb_up_downController/layLike')}",
-{literal}
+
+      url: "<?php echo base_url('thumb_up_downController/layLike');?>
+",
+
       data: dataString,
       async: true,
       /* If set to non-async, browser shows page as "Loading.."*/
@@ -253,4 +306,4 @@ function getLike(status) {
     });
   });
 }
-{/literal}
+<?php }} ?>
