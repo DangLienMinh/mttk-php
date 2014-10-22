@@ -5,8 +5,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class NotificationDAO
 {
 	private $em;
-	function __construct($em)
-	{
+	function __construct($em){
        $this->em=$em;
     }
 

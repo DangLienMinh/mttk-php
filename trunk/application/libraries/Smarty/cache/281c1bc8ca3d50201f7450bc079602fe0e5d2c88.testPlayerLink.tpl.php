@@ -1,34 +1,34 @@
-<?php /*%%SmartyHeaderCode:15554468333032518-46981044%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:301645447c997c3bde2-95031418%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1413907248,
+      1 => 1413990376,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '15554468333032518-46981044',
+  'nocache_hash' => '301645447c997c3bde2-95031418',
   'variables' => 
   array (
     'userPicCmt' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5446833323b9c2_27560599',
+  'unifunc' => 'content_5447c997e3af46_54256408',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5446833323b9c2_27560599')) {function content_5446833323b9c2_27560599($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_5447c997e3af46_54256408')) {function content_5447c997e3af46_54256408($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <title>jQuery UI Tabs - Default functionality</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jquery-ui.css">
   <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jplayer.blue.monday.css">
   <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/wall.css">
-  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery-ui.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.autogrowtextarea.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/masonry.pkgd.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.timeago.js"></script>
@@ -40,6 +40,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   window.profilePic="http://localhost:81/mttk-php/uploads/img/profilePic.jpg";
   window.userPic="http://localhost:81/mttk-php/uploads/img/";
   window.userWall="http://localhost:81/mttk-php/statusController/layDSWallStatus";
+  window.friendController="http://localhost:81/mttk-php/friendController";
   window.userPicCmt="http://localhost:81/mttk-php/uploads/img/a6551.jpg";
   window.compare=0;
   window.compareStatus=0;
@@ -67,6 +68,23 @@ function waitForMsg() {
           addmsg(data, times);
         }
       });
+    }
+  });
+}
+
+function friendRequest() {
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/friendController/getFriendRequest",
+
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    timeout: 50000,
+    /* Timeout in ms */
+    success: function(data) { /* called when request to barge.php completes */
+      addFriendRequest(data);
     }
   });
 }
@@ -131,7 +149,6 @@ $(document).on('click', '.like', function() {
   var New_ID = sid[1];
   var REL = $(this).attr("rel");
   var dataString = 'status_id=' + New_ID + '&rel=' + REL;
-  alert(dataString);
   $.ajax({
     type: "POST",
 
@@ -141,13 +158,25 @@ $(document).on('click', '.like', function() {
     cache: false,
     success: function(data) {
       if (REL == 'Like') {
-        $("#youlike" + New_ID).slideDown('fast').prepend("<span id='you" + New_ID + "'><a href='#'>You</a></span>.");
-        $("#likes" + New_ID).prepend("<span id='you" + New_ID + "'><a href='#'>You</a></span>");
-        $('#' + ID).html('Unlike').attr('rel', 'Unlike').attr('title', 'Unlike');
+        if ($('#youlike' + New_ID).children().length > 0) {
+          $("#youlike" + New_ID).slideDown('fast').prepend("<span id='you" + New_ID + "'><a href='#'>You</a></span>,&nbsp;");
+          $("#likes" + New_ID).html("<span id='you" + New_ID + "'><a href='#'>You </a></span>");
+          $('#' + ID).html('Unlike').attr('rel', 'Unlike').attr('title', 'Unlike');
+        } else {
+          $("#youlike" + New_ID).slideDown('fast').html("<span id='you" + New_ID + "'><a href='#'>You </a></span>&nbsp;like this");
+          $('#' + ID).html('Unlike').attr('rel', 'Unlike').attr('title', 'Unlike');
+        }
+        
       } else {
-        $("#youlike" + New_ID).slideUp('fast');
-        $("#you" + New_ID).remove();
-        $('#' + ID).attr('rel', 'Like').attr('title', 'Like').html('Like');
+        if ($('#youlike' + New_ID).children().length > 1) {
+          $("#you" + New_ID).slideUp('fast');
+          $("#you" + New_ID).remove();
+          $('#' + ID).attr('rel', 'Like').attr('title', 'Like').html('Like');
+        } else {
+          $("#youlike" + New_ID).slideUp('fast');
+          $("#you" + New_ID).remove();
+          $('#' + ID).attr('rel', 'Like').attr('title', 'Like').html('Like');
+        }
       }
     }
   });
@@ -276,12 +305,20 @@ function getLike(status) {
   <script>
   $(document).ready(function() {
     waitForMsg();
+    friendRequest();
     getStatus();
-    $('#noti_Container').click(function() {
+    $('#noti_Container #noti').click(function() {
       if ($('#noti_content').css('display') == 'none') {
         $('#noti_content').css('display', 'block');
       } else {
         $('#noti_content').css('display', 'none');
+      }
+    });
+    $('#noti_Container #friend').click(function() {
+      if ($('#friend_content').css('display') == 'none') {
+        $('#friend_content').css('display', 'block');
+      } else {
+        $('#friend_content').css('display', 'none');
       }
     });
   });
@@ -290,10 +327,16 @@ function getLike(status) {
 </head>
 <body>
   <div id="noti_Container">
-    <img src="http://l-stat.livejournal.com/img/facebook-profile.gif" alt="profile" />
+    <img id="friend"  src="http://l-stat.livejournal.com/img/facebook-profile.gif" alt="profile" />
+    <img id="noti" src="http://l-stat.livejournal.com/img/facebook-profile.gif" alt="profile" />
     <div class="noti_bubble"></div>
+    <div class="friend_bubble"></div>
+    
   </div>
   <div id="noti_content">
+    <ul></ul>
+  </div>
+  <div id="friend_content">
     <ul></ul>
   </div>
     <div id="container">
