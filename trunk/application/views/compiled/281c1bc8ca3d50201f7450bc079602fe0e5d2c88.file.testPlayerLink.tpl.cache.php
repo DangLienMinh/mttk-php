@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-22 17:35:59
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-23 05:07:34
          compiled from "application\views\templates\testPlayerLink.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:54295447cedf32be59-39916073%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:31758544870f6623044-54489833%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1413991953,
+      1 => 1414030753,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '54295447cedf32be59-39916073',
+  'nocache_hash' => '31758544870f6623044-54489833',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5447cedf48eab8_69949743',
+  'unifunc' => 'content_544870f6744c92_49479953',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5447cedf48eab8_69949743')) {function content_5447cedf48eab8_69949743($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_544870f6744c92_49479953')) {function content_544870f6744c92_49479953($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
 function getStatus() {
@@ -96,7 +96,7 @@ function getStatus() {
         </div>
       </div>
     </div>
-    <div id="pop" class="popbox">
+    <div id="pop">
       <img/>
       <h2></h2>
     </div>

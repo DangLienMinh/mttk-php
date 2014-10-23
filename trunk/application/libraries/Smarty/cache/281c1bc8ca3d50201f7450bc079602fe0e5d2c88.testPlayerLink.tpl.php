@@ -1,27 +1,27 @@
-<?php /*%%SmartyHeaderCode:54295447cedf32be59-39916073%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:31758544870f6623044-54489833%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1413991953,
+      1 => 1414030753,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1413991922,
+      1 => 1414028839,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '54295447cedf32be59-39916073',
+  'nocache_hash' => '31758544870f6623044-54489833',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5447cedf674aa7_39805659',
+  'unifunc' => 'content_544870f68ba874_73609338',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5447cedf674aa7_39805659')) {function content_5447cedf674aa7_39805659($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_544870f68ba874_73609338')) {function content_544870f68ba874_73609338($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -29,12 +29,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jquery-ui.css">
   <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jplayer.blue.monday.css">
   <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/wall.css">
-  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery-1.11.1.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jquery.qtip.css">
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery-ui.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.autogrowtextarea.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/masonry.pkgd.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.timeago.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.livequery.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.qtip.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/imagesloaded.pkgd.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.jplayer.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/wall.js"></script>
   <script type="text/javascript">
@@ -202,7 +205,7 @@ function getComment(status) {
       var obj = JSON.parse(data);
       if (obj.length > 0) {
         $.each(obj, function(i, val) {
-          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="delete_button"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
+          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="'+val.email+'" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="delete_button"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
         });
       }
     }
@@ -255,7 +258,7 @@ function getLike(status) {
               }
               isLike = 0;
             } else {
-              $("#youlike" + status).append('<a href="' + val.email + '">' + val.name + '</a>');
+              $("#youlike" + status).append('<a href="' + window.userWall + "/" + val.email  + '">' + val.name + '</a>');
             }
             if (new_like_count > 0) {
               $("#youlike" + status).append(' and ' + new_like_count + ' other friends like this');
@@ -351,7 +354,7 @@ function getStatus() {
         </div>
       </div>
     </div>
-    <div id="pop" class="popbox">
+    <div id="pop">
       <img/>
       <h2></h2>
     </div>
