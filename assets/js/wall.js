@@ -46,7 +46,7 @@ function addStatus(msg) {
 				if (!val.picture) {
 					val.picture = window.profilePic;
 				}
-				$('#container').append('<div class="item"><a href="#" class="stdelete"></a><div class="stimg"><img src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea style="width:305px;height:23px" placeholder=" Write your comment..." id="textboxcontent' + val.status_id + '"></textarea><br/><button value="Comment" class="comment_submit" id="' + val.status_id + '">Comment</button></div></div></div>');
+				$('#container').append('<div class="item"><a href="#" class="stdelete"></a><div class="stimg"><img id="'+val.email+'" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea style="width:305px;height:23px" placeholder=" Write your comment..." id="textboxcontent' + val.status_id + '"></textarea><br/><button value="Comment" class="comment_submit" id="' + val.status_id + '">Comment</button></div></div></div>');
 				getComment(val.status_id);
 				getLike(val.status_id);
 				setSong('#jquery_jplayer_' + i, '#jp_interface_' + i, val.music, val.title);
@@ -243,9 +243,9 @@ $(document).on('click', '.stdelete', function() {
 	return false;
 });
 
-function setPop(name, img) {
+function setPop(email,name, img) {
 	$("#pop img").replaceWith('<img src="' + img + '"style="width:106px;height:106px"/>');
-	$("#pop h2").replaceWith('<h2>' + name + '</h2>');
+	$("#pop h2").replaceWith('<h2><a href="'+ window.userWall+"/"+email+'">' + name + '</a></h2>');
 }
 
 $(document).on('mouseover', '.item', function() {
@@ -270,49 +270,35 @@ $(document).on('mouseout', '.load_comment', function() {
 	element.hide();
 });
 
-$(document).on('mouseover', '.stimg,.load_comment>img', function() {
+$(document).on('mouseover', '.stimg,.load_comment>img', function(event) {
 	if ($(this).hasClass("stimg")) {
 		var element = $(this).find("img");
 		var img = element.attr("src");
+		var email=element.attr("id");
 		element = $(this).next("div").find("b");
 		var name = element.text();
 
 	} else {
 		var element = $(this);
 		var img = element.attr("src");
+		var email=element.attr("id");
 		element = $(this).parent().find("span");
 		var name = element.attr('id');
 	}
-	setPop(name, img);
-	$("#pop").show();
+	setPop(email,name, img);
 
-});
-
-$(document).on('mouseout', '.stimg,.load_comment>img', function() {
-	$("#pop").hide();
-});
-
-$(document).on('mousemove', '.stimg,.load_comment>img', function(e) {
-	var moveLeft = 0;
-	var moveDown = 0;
-	var target = '#pop';
-	leftD = e.pageX + parseInt(moveLeft);
-	maxRight = leftD + $(target).outerWidth();
-	windowLeft = $(window).width() - 40;
-	windowRight = 0;
-	maxLeft = e.pageX - (parseInt(moveLeft) + $(target).outerWidth() + 20);
-	if (maxRight > windowLeft && maxLeft > windowRight) {
-		leftD = maxLeft;
-	}
-	topD = e.pageY - parseInt(moveDown);
-	maxBottom = parseInt(e.pageY + parseInt(moveDown) + 20);
-	windowBottom = parseInt(parseInt($(document).scrollTop()) + parseInt($(window).height()));
-	maxTop = topD;
-	windowTop = parseInt($(document).scrollTop());
-	if (maxBottom > windowBottom) {
-		topD = windowBottom - $(target).outerHeight() - 20;
-	} else if (maxTop < windowTop) {
-		topD = windowTop + 20;
-	}
-	$(target).css('top', topD).css('left', leftD);
+	$(this).qtip({
+		overwrite: false,
+        content: $('#pop'),
+        style: {
+        	classes: 'qtip-jtools qtip-rounded qtip-shadow popup',
+   		},
+        show: {
+            event: event.type, // Use the same show event as the one that triggered the event handler
+            ready: true // Show the tooltip as soon as it's bound, vital so it shows up the first time you hover!
+        },hide: {
+	        delay: 200,
+	        fixed: true
+	    }
+    }, event); // Pass through our original event to qTip
 });

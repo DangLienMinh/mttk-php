@@ -1,31 +1,31 @@
-<?php /*%%SmartyHeaderCode:177335447cee3e7a5a6-55141972%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:5661544871855649c2-99529039%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '0f921ff09c337117641cd650c5ceaa3930b1bdcf' => 
     array (
       0 => 'application\\views\\templates\\userWall.tpl',
-      1 => 1413992134,
+      1 => 1414033160,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1413991922,
+      1 => 1414028839,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '177335447cee3e7a5a6-55141972',
+  'nocache_hash' => '5661544871855649c2-99529039',
   'variables' => 
   array (
     'items' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5447cee422da84_15057565',
+  'unifunc' => 'content_544871857fa688_66182803',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5447cee422da84_15057565')) {function content_5447cee422da84_15057565($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_544871857fa688_66182803')) {function content_544871857fa688_66182803($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -33,12 +33,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jquery-ui.css">
   <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jplayer.blue.monday.css">
   <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/wall.css">
-  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery-1.11.1.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jquery.qtip.css">
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery-ui.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.autogrowtextarea.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/masonry.pkgd.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.timeago.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.livequery.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.qtip.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/imagesloaded.pkgd.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.jplayer.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/wall.js"></script>
   <script type="text/javascript">
@@ -47,7 +50,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   window.userPic="http://localhost:81/mttk-php/uploads/img/";
   window.userWall="http://localhost:81/mttk-php/statusController/layDSWallStatus";
   window.friendController="http://localhost:81/mttk-php/friendController";
-  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/shot0006.jpg";
+  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/a6551.jpg";
   window.compare=0;
   window.compareStatus=0;
 
@@ -206,7 +209,7 @@ function getComment(status) {
       var obj = JSON.parse(data);
       if (obj.length > 0) {
         $.each(obj, function(i, val) {
-          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="delete_button"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
+          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="'+val.email+'" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="delete_button"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
         });
       }
     }
@@ -259,7 +262,7 @@ function getLike(status) {
               }
               isLike = 0;
             } else {
-              $("#youlike" + status).append('<a href="' + val.email + '">' + val.name + '</a>');
+              $("#youlike" + status).append('<a href="' + window.userWall + "/" + val.email  + '">' + val.name + '</a>');
             }
             if (new_like_count > 0) {
               $("#youlike" + status).append(' and ' + new_like_count + ' other friends like this');
@@ -287,7 +290,7 @@ function getStatus(){
         /* This requests the url "msgsrv.php"
         When it complete (or errors)*/
 
-      data=[{"status_id":"6","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZWZABB9W&h=mp3.zing.vn","title":"Jar Of Hearts + Christina Perri","message":"how a nice day","created_at":"2014-10-18 21:19:25","thumbs_up":"4","privacy_type_id":"1","email":"duongphuocloc@gmail.com","picture":"a6551.jpg","name":"phuoc loc"},{"status_id":"2","music":"http:\/\/localhost:81\/mttk-php\/uploads\/15.Forever_Friends_3.mp3","title":"Forever friend","message":"I'm feeling lucky hehe","created_at":"2014-10-16 21:44:18","thumbs_up":"2","privacy_type_id":"1","email":"duongphuocloc@gmail.com","picture":"a6551.jpg","name":"phuoc loc"}]
+      data=[{"status_id":"7","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZWZDB788&h=mp3.zing.vn","title":"What Makes You Beautiful","message":"beatiful","created_at":"2014-10-18 21:42:18","thumbs_up":"1","privacy_type_id":"1","email":"anhtiminh@yahoo.com","picture":"shot0006.jpg","name":"minh dang"},{"status_id":"5","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZWZ9FICF&h=mp3.zing.vn","title":"Luka + Olivia Ong","message":"minh th\u00edch N","created_at":"2014-10-18 09:39:30","thumbs_up":"1","privacy_type_id":"1","email":"anhtiminh@yahoo.com","picture":"shot0006.jpg","name":"minh dang"},{"status_id":"4","music":"http:\/\/localhost:81\/mttk-php\/uploads\/kisstherain.mp3","title":"kisstherain","message":"How about chinese song","created_at":"2014-10-17 09:17:39","thumbs_up":"0","privacy_type_id":"1","email":"anhtiminh@yahoo.com","picture":"shot0006.jpg","name":"minh dang"},{"status_id":"3","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZWZC6O6Z&h=mp3.zing.vn","title":"Love You Like A Love Song + Selena Gomez & The Scene","message":"today i'm listening music songs","created_at":"2014-10-17 09:16:25","thumbs_up":"0","privacy_type_id":"1","email":"anhtiminh@yahoo.com","picture":"shot0006.jpg","name":"minh dang"},{"status_id":"1","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=WlpTVEFa&h=nhacso.net","title":"Anh Y\u00eau Em","message":"today i'm feeling licky","created_at":"2014-10-16 21:37:08","thumbs_up":"1","privacy_type_id":"1","email":"anhtiminh@yahoo.com","picture":"shot0006.jpg","name":"minh dang"}]
 
     addStatusUserWall(data);
     }
@@ -336,7 +339,7 @@ function getStatus(){
         </div>
       </div>
     </div>
-    <div id="pop" class="popbox">
+    <div id="pop">
       <img/>
       <h2></h2>
     </div>

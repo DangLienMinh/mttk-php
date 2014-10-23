@@ -73,7 +73,7 @@ function getStatus() {
         </div>
       </div>
     </div>
-    <div id="pop" class="popbox">
+    <div id="pop">
       <img/>
       <h2></h2>
     </div>

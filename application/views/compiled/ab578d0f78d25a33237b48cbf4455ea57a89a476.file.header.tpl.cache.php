@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-22 17:36:04
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-23 05:09:57
          compiled from "application\views\templates\common\header.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:134665447cee40966a5-14875841%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:28818544871856d2703-24060804%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1413991922,
+      1 => 1414028839,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '134665447cee40966a5-14875841',
+  'nocache_hash' => '28818544871856d2703-24060804',
   'function' => 
   array (
   ),
@@ -21,9 +21,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5447cee41e1190_88965244',
+  'unifunc' => 'content_544871857bd4e4_95625247',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5447cee41e1190_88965244')) {function content_5447cee41e1190_88965244($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_544871857bd4e4_95625247')) {function content_544871857bd4e4_95625247($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -34,8 +34,10 @@ css/jquery-ui.css">
 css/jplayer.blue.monday.css">
   <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>
 css/wall.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>
+css/jquery.qtip.css">
   <script type="text/javascript" src="<?php echo asset_url();?>
-js/jquery-1.11.1.min.js"></script>
+js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="<?php echo asset_url();?>
 js/jquery-ui.js"></script>
   <script type="text/javascript" src="<?php echo asset_url();?>
@@ -46,6 +48,10 @@ js/masonry.pkgd.min.js"></script>
 js/jquery.timeago.js"></script>
   <script type="text/javascript" src="<?php echo asset_url();?>
 js/jquery.livequery.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery.qtip.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/imagesloaded.pkgd.min.js"></script>
   <script type="text/javascript" src="<?php echo asset_url();?>
 js/jquery.jplayer.min.js"></script>
   <script type="text/javascript" src="<?php echo asset_url();?>
@@ -230,7 +236,7 @@ function getComment(status) {
       var obj = JSON.parse(data);
       if (obj.length > 0) {
         $.each(obj, function(i, val) {
-          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="delete_button"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
+          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="'+val.email+'" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="delete_button"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
         });
       }
     }
@@ -285,7 +291,7 @@ function getLike(status) {
               }
               isLike = 0;
             } else {
-              $("#youlike" + status).append('<a href="' + val.email + '">' + val.name + '</a>');
+              $("#youlike" + status).append('<a href="' + window.userWall + "/" + val.email  + '">' + val.name + '</a>');
             }
             if (new_like_count > 0) {
               $("#youlike" + status).append(' and ' + new_like_count + ' other friends like this');

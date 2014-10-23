@@ -227,30 +227,25 @@ color: #7c7c8e !important;
 .timeline:hover{cursor: pointer;margin: 0 auto;}
 .timeline div.plus{width: 14px;height: 14px;position: relative;left: -6px;}
 
-
-.popbox {
-      display: none;
-      position: absolute;
-      z-index: 99999;
+  .popup {
       width: 300px;
-      padding: 10px;
-      background: #EEEFEB;
-      color: #000000;
-      border: 1px solid #4D4F53;
+      display:none;
   }
-  .popbox>img{
+
+  .popup>img{
       float:left;
       margin-right: 20px;
   }
-  .popbox h2
+  .popup h2 
   {
-      background-color: #4D4F53;
+    float:right;
+    margin-right: 60px;
       color:  #E3E5DD;
       font-size: 14px;
-      display: block;
-      width: 100%;
-      margin: -10px 0px 8px -10px;
-      padding: 5px 10px;
+  }
+  .popup h2 a
+  {
+      color:  #E3E5DD!important;
   }
 
   .sttext_content2

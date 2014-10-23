@@ -6,12 +6,15 @@
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/jquery-ui.css">
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/jplayer.blue.monday.css">
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/wall.css">
-  <script type="text/javascript" src="{asset_url()}js/jquery-1.11.1.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="{asset_url()}css/jquery.qtip.css">
+  <script type="text/javascript" src="{asset_url()}js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery-ui.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery.autogrowtextarea.min.js"></script>
   <script type="text/javascript" src="{asset_url()}js/masonry.pkgd.min.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery.timeago.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery.livequery.js"></script>
+  <script type="text/javascript" src="{asset_url()}js/jquery.qtip.js"></script>
+  <script type="text/javascript" src="{asset_url()}js/imagesloaded.pkgd.min.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery.jplayer.min.js"></script>
   <script type="text/javascript" src="{asset_url()}js/wall.js"></script>
   <script type="text/javascript">
@@ -179,7 +182,7 @@ function getComment(status) {
       var obj = JSON.parse(data);
       if (obj.length > 0) {
         $.each(obj, function(i, val) {
-          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="delete_button"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
+          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="'+val.email+'" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="delete_button"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
         });
       }
     }
@@ -232,7 +235,7 @@ function getLike(status) {
               }
               isLike = 0;
             } else {
-              $("#youlike" + status).append('<a href="' + val.email + '">' + val.name + '</a>');
+              $("#youlike" + status).append('<a href="' + window.userWall + "/" + val.email  + '">' + val.name + '</a>');
             }
             if (new_like_count > 0) {
               $("#youlike" + status).append(' and ' + new_like_count + ' other friends like this');
