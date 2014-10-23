@@ -1,27 +1,27 @@
-<?php /*%%SmartyHeaderCode:31758544870f6623044-54489833%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:689154491f0e863219-00573718%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1414030753,
+      1 => 1414077173,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1414028839,
+      1 => 1414075555,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '31758544870f6623044-54489833',
+  'nocache_hash' => '689154491f0e863219-00573718',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544870f68ba874_73609338',
+  'unifunc' => 'content_54491f0eb5e058_07681648',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544870f68ba874_73609338')) {function content_544870f68ba874_73609338($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_54491f0eb5e058_07681648')) {function content_54491f0eb5e058_07681648($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -45,8 +45,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   window.profilePic="http://localhost:81/mttk-php/uploads/img/profilePic.jpg";
   window.userPic="http://localhost:81/mttk-php/uploads/img/";
   window.userWall="http://localhost:81/mttk-php/statusController/layDSWallStatus";
+  window.userLogin="duongphuocloc@gmail.com";
   window.friendController="http://localhost:81/mttk-php/friendController";
   window.userPicCmt="http://localhost:81/mttk-php/uploads/img/a6551.jpg";
+
   window.compare=0;
   window.compareStatus=0;
 
@@ -73,6 +75,23 @@ function waitForMsg() {
           addmsg(data, times);
         }
       });
+    }
+  });
+}
+
+function getPlaylist() {
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/playlistController/getDSPlaylist",
+
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    timeout: 50000,
+    /* Timeout in ms */
+    success: function(data) { /* called when request to barge.php completes */
+      addPlaylist(data);
     }
   });
 }
@@ -205,7 +224,11 @@ function getComment(status) {
       var obj = JSON.parse(data);
       if (obj.length > 0) {
         $.each(obj, function(i, val) {
-          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="'+val.email+'" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="delete_button"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
+          var is_delete="";
+          if(val.email==window.userLogin){
+            is_delete="delete_button";
+          }
+          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="'+val.email+'" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="'+is_delete+'"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
         });
       }
     }
@@ -315,6 +338,7 @@ function getStatus() {
     waitForMsg();
     friendRequest();
     getStatus();
+    getPlaylist();
     $('#noti_Container #noti').click(function() {
       if ($('#noti_content').css('display') == 'none') {
         $('#noti_content').css('display', 'block');
@@ -358,5 +382,13 @@ function getStatus() {
       <img/>
       <h2></h2>
     </div>
+    <div style="display: none; border: 1px solid black; height: 150px; width: 250px; 
+       padding: 5px; position: absolute; left: 100px; top: 100px; 
+       background-color: silver;" id="playlistBox">
+    <select></select>
+    <input type="hidden" id="titleMusic"/>
+    <input type="hidden" id="urlMusic"/>
+    <button id="savePlaylist">Save</button>
+  </div>
 </body>
 </html><?php }} ?>

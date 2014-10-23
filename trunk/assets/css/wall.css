@@ -29,6 +29,7 @@ body{
     color:#d02b55;
   }
   *{margin:0;padding:0;}
+
   .comment_button{
     margin-right:10px; 
     color: #006699;
@@ -38,14 +39,24 @@ body{
     margin-right:10px; 
     color: #006699;
     text-decoration: none;  
-
   }
+  .playlist_button{
+    margin-right:10px; 
+    color: #006699;
+    text-decoration: none;
+  }
+  .share_button{
+    margin-right:10px; 
+    color: #006699;
+    text-decoration: none;
+  }
+
   .like {
     background: url('../img/like.png') no-repeat;
-      height:14px;
-  padding-left:18px;
-  margin-right:20px;
-  font-weight:bold;
+    height:14px;
+    padding-left:18px;
+    margin-right:20px;
+    font-weight:bold;
 }
   .comment{
 background: url('../img/comment.png') no-repeat;
@@ -171,7 +182,8 @@ color: #7c7c8e !important;
     border:solid 1px #B4BBCD;
     min-height:50px;
     text-align:justify;
-    word-wrap:break-word; 
+    word-wrap:break-word;
+    position:relative; 
   }
     .timeline_container{
       width: 16px;

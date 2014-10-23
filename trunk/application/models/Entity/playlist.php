@@ -23,7 +23,7 @@ class Playlist
     protected $Playlist_name;
 
     /**
-     * @Column(type="string")
+     * @Column(type="datetime")
      */
     protected $Playlist_created_date;
 
@@ -32,11 +32,6 @@ class Playlist
      * @JoinColumn(name="email", referencedColumnName="email")
      **/
     protected $email;
-
-    /**
-     * @Column(type="string")
-     */
-    protected $Music_list;
 
     /**
      * @ManyToOne(targetEntity="privacy_type")
@@ -84,16 +79,6 @@ class Playlist
         $this->email = $email;
         return $this;
     }
-    public function getMusic_list()
-    {
-        return $this->Music_list;
-    }
-    
-    public function setMusic_list($Music_list)
-    {
-        $this->Music_list = $Music_list;
-        return $this;
-    }
     public function getPrivacy_type_id()
     {
         return $this->privacy_type_id;
@@ -104,7 +89,5 @@ class Playlist
         $this->privacy_type_id = $privacy_type_id;
         return $this;
     }
-
-	
 }
 ?>

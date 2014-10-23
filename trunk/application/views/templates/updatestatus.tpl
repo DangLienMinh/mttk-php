@@ -96,7 +96,7 @@
   </script>
   <style type="text/css">
     #tabs{
-      width:40%;
+      width:55%;
       margin: 0px auto;
     }
     #target{
@@ -112,8 +112,9 @@
 {form_open_multipart('statusController/updateStatus')}
 <div id="tabs">
   <ul>
-    <li><a href="#tabs-1">Update status</a></li>
-    <li><a href="#tabs-2">Add music</a></li>
+    <li><a href="#tabs-1">Update music status</a></li>
+    <li><a href="#tabs-2">Upload music status</a></li>
+    <li><a href="#tabs-3">Create playlist status</a></li>
   </ul>
 
   <div id="tabs-1">
@@ -168,6 +169,10 @@
   <div id="tabs-2">
     <textarea name="status2" id="target" rows="4" placeholder="Enter textarea"></textarea>
     <input type="file" name="musicFile" value="Upload" size="20"/>
+  </div>
+  <div id="tabs-3">
+    <textarea name="status3" id="target" rows="4" placeholder="Enter textarea"></textarea>
+    <!--cai playlist de day dung ajax load vao combo-->
 
   </div>
   <select name="privacy">
