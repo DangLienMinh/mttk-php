@@ -1,29 +1,30 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-23 05:09:57
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-23 17:30:22
          compiled from "application\views\templates\common\header.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:28818544871856d2703-24060804%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1645654491f0e9e3712-41764940%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1414028839,
+      1 => 1414075555,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '28818544871856d2703-24060804',
+  'nocache_hash' => '1645654491f0e9e3712-41764940',
   'function' => 
   array (
   ),
   'variables' => 
   array (
+    'userLogin' => 0,
     'userPicCmt' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544871857bd4e4_95625247',
+  'unifunc' => 'content_54491f0eb06639_67341031',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544871857bd4e4_95625247')) {function content_544871857bd4e4_95625247($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_54491f0eb06639_67341031')) {function content_54491f0eb06639_67341031($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -65,11 +66,14 @@ img/profilePic.jpg";
 img/";
   window.userWall="<?php echo site_url('statusController/layDSWallStatus/');?>
 ";
+  window.userLogin="<?php echo $_smarty_tpl->tpl_vars['userLogin']->value;?>
+";
   window.friendController="<?php echo site_url('friendController/');?>
 ";
   window.userPicCmt="<?php echo uploads_url();?>
 img/<?php echo $_smarty_tpl->tpl_vars['userPicCmt']->value;?>
 ";
+
   window.compare=0;
   window.compareStatus=0;
 
@@ -98,6 +102,24 @@ function waitForMsg() {
           addmsg(data, times);
         }
       });
+    }
+  });
+}
+
+function getPlaylist() {
+  $.ajax({
+    type: "post",
+
+    url: "<?php echo base_url('playlistController/getDSPlaylist');?>
+",
+
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    timeout: 50000,
+    /* Timeout in ms */
+    success: function(data) { /* called when request to barge.php completes */
+      addPlaylist(data);
     }
   });
 }
@@ -236,7 +258,11 @@ function getComment(status) {
       var obj = JSON.parse(data);
       if (obj.length > 0) {
         $.each(obj, function(i, val) {
-          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="'+val.email+'" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="delete_button"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
+          var is_delete="";
+          if(val.email==window.userLogin){
+            is_delete="delete_button";
+          }
+          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="'+val.email+'" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="'+is_delete+'"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
         });
       }
     }

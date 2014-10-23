@@ -34,6 +34,7 @@ function getStatus() {
     waitForMsg();
     friendRequest();
     getStatus();
+    getPlaylist();
     $('#noti_Container #noti').click(function() {
       if ($('#noti_content').css('display') == 'none') {
         $('#noti_content').css('display', 'block');
@@ -77,5 +78,13 @@ function getStatus() {
       <img/>
       <h2></h2>
     </div>
+    <div style="display: none; border: 1px solid black; height: 150px; width: 250px; 
+       padding: 5px; position: absolute; left: 100px; top: 100px; 
+       background-color: silver;" id="playlistBox">
+    <select></select>
+    <input type="hidden" id="titleMusic"/>
+    <input type="hidden" id="urlMusic"/>
+    <button id="savePlaylist">Save</button>
+  </div>
 </body>
 </html>

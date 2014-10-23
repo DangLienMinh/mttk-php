@@ -22,8 +22,10 @@
   window.profilePic="{uploads_url()}img/profilePic.jpg";
   window.userPic="{uploads_url()}img/";
   window.userWall="{site_url('statusController/layDSWallStatus/')}";
+  window.userLogin="{$userLogin}";
   window.friendController="{site_url('friendController/')}";
   window.userPicCmt="{uploads_url()}img/{$userPicCmt}";
+
   window.compare=0;
   window.compareStatus=0;
 
@@ -50,6 +52,23 @@ function waitForMsg() {
           addmsg(data, times);
         }
       });
+    }
+  });
+}
+
+function getPlaylist() {
+  $.ajax({
+    type: "post",
+{/literal}
+    url: "{base_url('playlistController/getDSPlaylist')}",
+{literal}
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    timeout: 50000,
+    /* Timeout in ms */
+    success: function(data) { /* called when request to barge.php completes */
+      addPlaylist(data);
     }
   });
 }
@@ -182,7 +201,11 @@ function getComment(status) {
       var obj = JSON.parse(data);
       if (obj.length > 0) {
         $.each(obj, function(i, val) {
-          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="'+val.email+'" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="delete_button"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
+          var is_delete="";
+          if(val.email==window.userLogin){
+            is_delete="delete_button";
+          }
+          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="'+val.email+'" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="'+is_delete+'"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
         });
       }
     }

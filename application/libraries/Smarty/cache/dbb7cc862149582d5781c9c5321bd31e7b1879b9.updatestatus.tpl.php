@@ -1,21 +1,21 @@
-<?php /*%%SmartyHeaderCode:120195445a7fde74c39-55885300%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:76105448fac65596c8-42751335%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'dbb7cc862149582d5781c9c5321bd31e7b1879b9' => 
     array (
       0 => 'application\\views\\templates\\updatestatus.tpl',
-      1 => 1413511723,
+      1 => 1414068933,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '120195445a7fde74c39-55885300',
+  'nocache_hash' => '76105448fac65596c8-42751335',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5445a7fe17a371_98807690',
+  'unifunc' => 'content_5448fac66f2200_94967192',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5445a7fe17a371_98807690')) {function content_5445a7fe17a371_98807690($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_5448fac66f2200_94967192')) {function content_5448fac66f2200_94967192($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -113,7 +113,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   </script>
   <style type="text/css">
     #tabs{
-      width:40%;
+      width:55%;
       margin: 0px auto;
     }
     #target{
@@ -129,8 +129,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <form action="http://localhost:81/mttk-php/statusController/updateStatus" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 <div id="tabs">
   <ul>
-    <li><a href="#tabs-1">Update status</a></li>
-    <li><a href="#tabs-2">Add music</a></li>
+    <li><a href="#tabs-1">Update music status</a></li>
+    <li><a href="#tabs-2">Upload music status</a></li>
+    <li><a href="#tabs-3">Create playlist status</a></li>
   </ul>
 
   <div id="tabs-1">
@@ -185,6 +186,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <div id="tabs-2">
     <textarea name="status2" id="target" rows="4" placeholder="Enter textarea"></textarea>
     <input type="file" name="musicFile" value="Upload" size="20"/>
+  </div>
+  <div id="tabs-3">
+    <textarea name="status3" id="target" rows="4" placeholder="Enter textarea"></textarea>
+    <!--cai playlist de day dung ajax load vao combo-->
 
   </div>
   <select name="privacy">

@@ -1,4 +1,4 @@
-<?php /*%%SmartyHeaderCode:5661544871855649c2-99529039%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:150625448776db1d954-73868859%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,21 +11,21 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1414028839,
+      1 => 1414035260,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '5661544871855649c2-99529039',
+  'nocache_hash' => '150625448776db1d954-73868859',
   'variables' => 
   array (
     'items' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544871857fa688_66182803',
+  'unifunc' => 'content_5448776df27be3_98587121',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544871857fa688_66182803')) {function content_544871857fa688_66182803($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_5448776df27be3_98587121')) {function content_5448776df27be3_98587121($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -49,8 +49,28 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   window.profilePic="http://localhost:81/mttk-php/uploads/img/profilePic.jpg";
   window.userPic="http://localhost:81/mttk-php/uploads/img/";
   window.userWall="http://localhost:81/mttk-php/statusController/layDSWallStatus";
+  window.userLogin="<div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">
+
+<h4>A PHP Error was encountered</h4>
+
+<p>Severity: Notice</p>
+<p>Message:  Undefined index: userLogin</p>
+<p>Filename: sysplugins/smarty_internal_templatebase.php(151) : eval()'d code</p>
+<p>Line Number: 69</p>
+
+</div><div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">
+
+<h4>A PHP Error was encountered</h4>
+
+<p>Severity: Notice</p>
+<p>Message:  Trying to get property of non-object</p>
+<p>Filename: sysplugins/smarty_internal_templatebase.php(151) : eval()'d code</p>
+<p>Line Number: 69</p>
+
+</div>";
   window.friendController="http://localhost:81/mttk-php/friendController";
   window.userPicCmt="http://localhost:81/mttk-php/uploads/img/a6551.jpg";
+
   window.compare=0;
   window.compareStatus=0;
 
@@ -207,9 +227,13 @@ function getComment(status) {
     cache: false,
     success: function(data) { /* called when request to barge.php completes */
       var obj = JSON.parse(data);
+      var is_delete="";
       if (obj.length > 0) {
         $.each(obj, function(i, val) {
-          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="'+val.email+'" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="delete_button"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
+          if(val.email==window.userLogin){
+            is_delete="delete_button";
+          }
+          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="'+val.email+'" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="'+is_delete+'"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
         });
       }
     }
@@ -290,7 +314,7 @@ function getStatus(){
         /* This requests the url "msgsrv.php"
         When it complete (or errors)*/
 
-      data=[{"status_id":"7","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZWZDB788&h=mp3.zing.vn","title":"What Makes You Beautiful","message":"beatiful","created_at":"2014-10-18 21:42:18","thumbs_up":"1","privacy_type_id":"1","email":"anhtiminh@yahoo.com","picture":"shot0006.jpg","name":"minh dang"},{"status_id":"5","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZWZ9FICF&h=mp3.zing.vn","title":"Luka + Olivia Ong","message":"minh th\u00edch N","created_at":"2014-10-18 09:39:30","thumbs_up":"1","privacy_type_id":"1","email":"anhtiminh@yahoo.com","picture":"shot0006.jpg","name":"minh dang"},{"status_id":"4","music":"http:\/\/localhost:81\/mttk-php\/uploads\/kisstherain.mp3","title":"kisstherain","message":"How about chinese song","created_at":"2014-10-17 09:17:39","thumbs_up":"0","privacy_type_id":"1","email":"anhtiminh@yahoo.com","picture":"shot0006.jpg","name":"minh dang"},{"status_id":"3","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZWZC6O6Z&h=mp3.zing.vn","title":"Love You Like A Love Song + Selena Gomez & The Scene","message":"today i'm listening music songs","created_at":"2014-10-17 09:16:25","thumbs_up":"0","privacy_type_id":"1","email":"anhtiminh@yahoo.com","picture":"shot0006.jpg","name":"minh dang"},{"status_id":"1","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=WlpTVEFa&h=nhacso.net","title":"Anh Y\u00eau Em","message":"today i'm feeling licky","created_at":"2014-10-16 21:37:08","thumbs_up":"1","privacy_type_id":"1","email":"anhtiminh@yahoo.com","picture":"shot0006.jpg","name":"minh dang"}]
+      data=[{"status_id":"6","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZWZABB9W&h=mp3.zing.vn","title":"Jar Of Hearts + Christina Perri","message":"how a nice day","created_at":"2014-10-18 21:19:25","thumbs_up":"4","privacy_type_id":"1","email":"duongphuocloc@gmail.com","picture":"a6551.jpg","name":"phuoc loc"},{"status_id":"2","music":"http:\/\/localhost:81\/mttk-php\/uploads\/15.Forever_Friends_3.mp3","title":"Forever friend","message":"I'm feeling lucky hehe","created_at":"2014-10-16 21:44:18","thumbs_up":"1","privacy_type_id":"1","email":"duongphuocloc@gmail.com","picture":"a6551.jpg","name":"phuoc loc"}]
 
     addStatusUserWall(data);
     }

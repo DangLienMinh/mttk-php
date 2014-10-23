@@ -1,6 +1,6 @@
 <?php
-class StatusController extends CI_Controller {
-    private $musicURL;
+
+class PlaylistController extends CI_Controller {
 
 	function __construct() {
         parent::__construct();
@@ -9,15 +9,14 @@ class StatusController extends CI_Controller {
         {
             redirect('/login/index', 'refresh');
         }
-        $musicURL="";
     }
 
-	function index()
-	{
+    function getDSPlaylist(){
         $em = $this->doctrine->em;
-        $status = new Entity\statusDAO($em);
-        $status->layDSStatus($this->session->userdata('email'));
-	}
+        $playlist = new Entity\PlaylistDAO($em);
+        $result=$playlist->layDSPlaylist($this->session->userdata('email'));
+        echo json_encode($result);
+    }
 
 }
 ?>
