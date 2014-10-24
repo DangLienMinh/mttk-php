@@ -17,6 +17,31 @@ class PlaylistDAO
 		return $results;
 	}
 
+	public function addMusic($data)
+	{
+		$playlistDetail = new Playlist_detail;
+		$playlist_id = $this->em->getReference('Entity\Playlist',$data['id']);
+
+		$playlistDetail->setPlaylist_id($playlist_id);
+		$playlistDetail->setTitle($data['title']);
+		$playlistDetail->setMusic($data['music']);
+		$this->em->persist($playlistDetail);
+		$this->em->flush();
+	}
+
+
+	public function createPlaylist($data)
+	{
+		$playlist = new Playlist;
+		$privacy = $this->em->getReference('Entity\Privacy_type',$data['privacy']);
+		$user = $this->em->getReference('Entity\User',$data['email']);
+		$playlist->setPlaylist_name($data['playlistName']);
+		$playlist->setEmail($user);
+		$playlist->setPrivacy_type_id($privacy);
+		$this->em->persist($playlist);
+		$this->em->flush();
+	}
+
 	
 }
 ?>

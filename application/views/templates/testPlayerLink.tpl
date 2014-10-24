@@ -49,6 +49,12 @@ function getStatus() {
         $('#friend_content').css('display', 'none');
       }
     });
+    $('#savePlaylist').click(function(){
+      var id=$(this).parent().find('select').find(":selected").val();
+      var title=$(this).parent().find('#titleMusic').val();
+      var music=$(this).parent().find('#urlMusic').val();
+      savePlaylist(id,title,music);
+    });
   });
   </script>
  {/literal}
@@ -78,7 +84,7 @@ function getStatus() {
       <img/>
       <h2></h2>
     </div>
-    <div style="display: none; border: 1px solid black; height: 150px; width: 250px; 
+    <div style="display: none; border: 1px solid black; height: 50px; width: 180px; 
        padding: 5px; position: absolute; left: 100px; top: 100px; 
        background-color: silver;" id="playlistBox">
     <select></select>

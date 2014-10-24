@@ -72,11 +72,12 @@ function addPlaylist(msg) {
 		$.each(obj, function(i, val) {
 			$('#playlistBox select').append('<option value="'+val.Playlist_id+'">'+val.Playlist_name+'</option>');
 		});
+		$('#playlistBox').append('<br/><a class="iframe" href="'+window.cretePlaylist+'">Create Playlist</a>');
+		$(".iframe").colorbox({iframe:true, width:"50%", height:"50%"});
 	} catch (e) {
 		alert(e);
 	}
 }
-
 
 function addStatusUserWall(obj) {
 	var numberToInsert = obj.length - window.compareStatus;

@@ -19,9 +19,9 @@ class Playlist_detail
 
     /**
      * @ManyToOne(targetEntity="playlist")
-     * @JoinColumn(name="playlist_id", referencedColumnName="Playlist_id")
+     * @JoinColumn(name="Playlist_id", referencedColumnName="Playlist_id")
      **/
-    protected $playlist_id;
+    protected $Playlist_id;
 
     /**
      * @Column(type="string")

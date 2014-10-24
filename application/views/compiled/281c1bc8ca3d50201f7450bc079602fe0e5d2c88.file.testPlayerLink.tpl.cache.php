@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-23 17:30:22
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-24 17:41:22
          compiled from "application\views\templates\testPlayerLink.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:689154491f0e863219-00573718%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:30090544a73222b7e73-72132015%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1414077173,
+      1 => 1414164294,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '689154491f0e863219-00573718',
+  'nocache_hash' => '30090544a73222b7e73-72132015',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_54491f0e97b0c7_78005191',
+  'unifunc' => 'content_544a73223c53b4_09168772',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_54491f0e97b0c7_78005191')) {function content_54491f0e97b0c7_78005191($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_544a73223c53b4_09168772')) {function content_544a73223c53b4_09168772($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
 function getStatus() {
@@ -72,6 +72,12 @@ function getStatus() {
         $('#friend_content').css('display', 'none');
       }
     });
+    $('#savePlaylist').click(function(){
+      var id=$(this).parent().find('select').find(":selected").val();
+      var title=$(this).parent().find('#titleMusic').val();
+      var music=$(this).parent().find('#urlMusic').val();
+      savePlaylist(id,title,music);
+    });
   });
   </script>
  
@@ -101,7 +107,7 @@ function getStatus() {
       <img/>
       <h2></h2>
     </div>
-    <div style="display: none; border: 1px solid black; height: 150px; width: 250px; 
+    <div style="display: none; border: 1px solid black; height: 50px; width: 180px; 
        padding: 5px; position: absolute; left: 100px; top: 100px; 
        background-color: silver;" id="playlistBox">
     <select></select>

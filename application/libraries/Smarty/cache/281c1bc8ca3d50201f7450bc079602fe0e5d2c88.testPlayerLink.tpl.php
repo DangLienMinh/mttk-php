@@ -1,27 +1,27 @@
-<?php /*%%SmartyHeaderCode:689154491f0e863219-00573718%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:30090544a73222b7e73-72132015%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1414077173,
+      1 => 1414164294,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1414075555,
+      1 => 1414164679,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '689154491f0e863219-00573718',
+  'nocache_hash' => '30090544a73222b7e73-72132015',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_54491f0eb5e058_07681648',
+  'unifunc' => 'content_544a73225a7498_27012436',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_54491f0eb5e058_07681648')) {function content_54491f0eb5e058_07681648($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_544a73225a7498_27012436')) {function content_544a73225a7498_27012436($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -30,10 +30,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jplayer.blue.monday.css">
   <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/wall.css">
   <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jquery.qtip.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/colorbox.css">
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery-ui.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.autogrowtextarea.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/masonry.pkgd.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.colorbox-min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.timeago.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.livequery.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.qtip.js"></script>
@@ -42,13 +44,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/wall.js"></script>
   <script type="text/javascript">
   window.notifyStatus="http://localhost:81/mttk-php/statusController/hienThiNotiStatus";
+  window.cretePlaylist="http://localhost:81/mttk-php/playlistController/viewPlaylist";
   window.profilePic="http://localhost:81/mttk-php/uploads/img/profilePic.jpg";
   window.userPic="http://localhost:81/mttk-php/uploads/img/";
   window.userWall="http://localhost:81/mttk-php/statusController/layDSWallStatus";
   window.userLogin="duongphuocloc@gmail.com";
   window.friendController="http://localhost:81/mttk-php/friendController";
   window.userPicCmt="http://localhost:81/mttk-php/uploads/img/a6551.jpg";
-
   window.compare=0;
   window.compareStatus=0;
 
@@ -207,7 +209,20 @@ $(document).on('click', '.like', function() {
   return false;
 });
 
+function savePlaylist(id,title,url) {
+  var dataString = 'playlist_id=' + id+'&title='+title+'&music='+url;
+  $.ajax({
+    type: "post",
 
+    url: "http://localhost:81/mttk-php/playlistController/addMusic",
+
+    data: dataString,
+    cache: false,
+    success: function() {
+      alert("ok");
+      }
+    });
+}
 
 function getComment(status) {
   var dataString = 'status_id=' + status;
@@ -353,6 +368,12 @@ function getStatus() {
         $('#friend_content').css('display', 'none');
       }
     });
+    $('#savePlaylist').click(function(){
+      var id=$(this).parent().find('select').find(":selected").val();
+      var title=$(this).parent().find('#titleMusic').val();
+      var music=$(this).parent().find('#urlMusic').val();
+      savePlaylist(id,title,music);
+    });
   });
   </script>
  
@@ -382,7 +403,7 @@ function getStatus() {
       <img/>
       <h2></h2>
     </div>
-    <div style="display: none; border: 1px solid black; height: 150px; width: 250px; 
+    <div style="display: none; border: 1px solid black; height: 50px; width: 180px; 
        padding: 5px; position: absolute; left: 100px; top: 100px; 
        background-color: silver;" id="playlistBox">
     <select></select>
