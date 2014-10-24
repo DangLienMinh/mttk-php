@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-23 17:30:22
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-24 17:41:22
          compiled from "application\views\templates\common\header.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:1645654491f0e9e3712-41764940%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:18427544a7322439e18-51094720%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1414075555,
+      1 => 1414164679,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1645654491f0e9e3712-41764940',
+  'nocache_hash' => '18427544a7322439e18-51094720',
   'function' => 
   array (
   ),
@@ -22,9 +22,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_54491f0eb06639_67341031',
+  'unifunc' => 'content_544a7322568d91_71470546',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_54491f0eb06639_67341031')) {function content_54491f0eb06639_67341031($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_544a7322568d91_71470546')) {function content_544a7322568d91_71470546($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -37,6 +37,8 @@ css/jplayer.blue.monday.css">
 css/wall.css">
   <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>
 css/jquery.qtip.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>
+css/colorbox.css">
   <script type="text/javascript" src="<?php echo asset_url();?>
 js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="<?php echo asset_url();?>
@@ -45,6 +47,8 @@ js/jquery-ui.js"></script>
 js/jquery.autogrowtextarea.min.js"></script>
   <script type="text/javascript" src="<?php echo asset_url();?>
 js/masonry.pkgd.min.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery.colorbox-min.js"></script>
   <script type="text/javascript" src="<?php echo asset_url();?>
 js/jquery.timeago.js"></script>
   <script type="text/javascript" src="<?php echo asset_url();?>
@@ -60,6 +64,8 @@ js/wall.js"></script>
   <script type="text/javascript">
   window.notifyStatus="<?php echo site_url('statusController/hienThiNotiStatus/');?>
 ";
+  window.cretePlaylist="<?php echo site_url('playlistController/viewPlaylist/');?>
+";
   window.profilePic="<?php echo uploads_url();?>
 img/profilePic.jpg";
   window.userPic="<?php echo uploads_url();?>
@@ -73,7 +79,6 @@ img/";
   window.userPicCmt="<?php echo uploads_url();?>
 img/<?php echo $_smarty_tpl->tpl_vars['userPicCmt']->value;?>
 ";
-
   window.compare=0;
   window.compareStatus=0;
 
@@ -240,7 +245,21 @@ $(document).on('click', '.like', function() {
   return false;
 });
 
+function savePlaylist(id,title,url) {
+  var dataString = 'playlist_id=' + id+'&title='+title+'&music='+url;
+  $.ajax({
+    type: "post",
 
+    url: "<?php echo base_url('playlistController/addMusic');?>
+",
+
+    data: dataString,
+    cache: false,
+    success: function() {
+      alert("ok");
+      }
+    });
+}
 
 function getComment(status) {
   var dataString = 'status_id=' + status;

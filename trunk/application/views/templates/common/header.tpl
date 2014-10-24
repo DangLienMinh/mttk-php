@@ -7,10 +7,12 @@
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/jplayer.blue.monday.css">
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/wall.css">
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/jquery.qtip.css">
+  <link rel="stylesheet" type="text/css" href="{asset_url()}css/colorbox.css">
   <script type="text/javascript" src="{asset_url()}js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery-ui.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery.autogrowtextarea.min.js"></script>
   <script type="text/javascript" src="{asset_url()}js/masonry.pkgd.min.js"></script>
+  <script type="text/javascript" src="{asset_url()}js/jquery.colorbox-min.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery.timeago.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery.livequery.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery.qtip.js"></script>
@@ -19,13 +21,13 @@
   <script type="text/javascript" src="{asset_url()}js/wall.js"></script>
   <script type="text/javascript">
   window.notifyStatus="{site_url('statusController/hienThiNotiStatus/')}";
+  window.cretePlaylist="{site_url('playlistController/viewPlaylist/')}";
   window.profilePic="{uploads_url()}img/profilePic.jpg";
   window.userPic="{uploads_url()}img/";
   window.userWall="{site_url('statusController/layDSWallStatus/')}";
   window.userLogin="{$userLogin}";
   window.friendController="{site_url('friendController/')}";
   window.userPicCmt="{uploads_url()}img/{$userPicCmt}";
-
   window.compare=0;
   window.compareStatus=0;
 
@@ -184,7 +186,20 @@ $(document).on('click', '.like', function() {
   return false;
 });
 
-
+function savePlaylist(id,title,url) {
+  var dataString = 'playlist_id=' + id+'&title='+title+'&music='+url;
+  $.ajax({
+    type: "post",
+{/literal}
+    url: "{base_url('playlistController/addMusic')}",
+{literal}
+    data: dataString,
+    cache: false,
+    success: function() {
+      alert("ok");
+      }
+    });
+}
 
 function getComment(status) {
   var dataString = 'status_id=' + status;

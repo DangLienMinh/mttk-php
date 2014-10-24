@@ -18,5 +18,27 @@ class PlaylistController extends CI_Controller {
         echo json_encode($result);
     }
 
+    function createPlaylist(){
+        $em = $this->doctrine->em;
+        $playlist = new Entity\PlaylistDAO($em);
+        $data['playlistName']=$this->input->post('playlistName');
+        $data['email']=$this->session->userdata('email');
+        $data['privacy']=1;
+        $playlist->createPlaylist($data);
+    }
+
+    function addMusic(){
+        $em = $this->doctrine->em;
+        $playlist_detail = new Entity\Playlist_detailDAO($em);
+        $data['id']=$this->input->post('playlist_id');
+        $data['title']=$this->input->post('title');
+        $data['music']=$this->input->post('music');
+        $playlist_detail->addMusic($data);
+    }
+
+    function viewPlaylist(){
+        $this->smarty->view('createPlaylist');
+    }
+
 }
 ?>
