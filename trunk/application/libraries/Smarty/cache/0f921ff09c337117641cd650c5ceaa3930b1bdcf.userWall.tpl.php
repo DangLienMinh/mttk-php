@@ -1,4 +1,4 @@
-<?php /*%%SmartyHeaderCode:150625448776db1d954-73868859%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:24766544bb1e54a05b7-57029992%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,41 +11,45 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1414035260,
+      1 => 1414239361,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '150625448776db1d954-73868859',
+  'nocache_hash' => '24766544bb1e54a05b7-57029992',
   'variables' => 
   array (
     'items' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5448776df27be3_98587121',
+  'unifunc' => 'content_544bb1e57f2b91_27877505',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5448776df27be3_98587121')) {function content_5448776df27be3_98587121($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_544bb1e57f2b91_27877505')) {function content_544bb1e57f2b91_27877505($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>jQuery UI Tabs - Default functionality</title>
+  <title>Music</title>
   <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jquery-ui.css">
-  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jplayer.blue.monday.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jplayer.blue.monday.playlist.css">
   <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/wall.css">
   <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jquery.qtip.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/colorbox.css">
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery-ui.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.autogrowtextarea.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/masonry.pkgd.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.colorbox-min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.timeago.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.livequery.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.qtip.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/imagesloaded.pkgd.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.jplayer.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jplayer.playlist.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/wall.js"></script>
   <script type="text/javascript">
   window.notifyStatus="http://localhost:81/mttk-php/statusController/hienThiNotiStatus";
+  window.cretePlaylist="http://localhost:81/mttk-php/playlistController/viewPlaylist";
   window.profilePic="http://localhost:81/mttk-php/uploads/img/profilePic.jpg";
   window.userPic="http://localhost:81/mttk-php/uploads/img/";
   window.userWall="http://localhost:81/mttk-php/statusController/layDSWallStatus";
@@ -56,7 +60,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <p>Severity: Notice</p>
 <p>Message:  Undefined index: userLogin</p>
 <p>Filename: sysplugins/smarty_internal_templatebase.php(151) : eval()'d code</p>
-<p>Line Number: 69</p>
+<p>Line Number: 77</p>
 
 </div><div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">
 
@@ -65,12 +69,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <p>Severity: Notice</p>
 <p>Message:  Trying to get property of non-object</p>
 <p>Filename: sysplugins/smarty_internal_templatebase.php(151) : eval()'d code</p>
-<p>Line Number: 69</p>
+<p>Line Number: 77</p>
 
 </div>";
   window.friendController="http://localhost:81/mttk-php/friendController";
   window.userPicCmt="http://localhost:81/mttk-php/uploads/img/a6551.jpg";
-
   window.compare=0;
   window.compareStatus=0;
 
@@ -97,6 +100,23 @@ function waitForMsg() {
           addmsg(data, times);
         }
       });
+    }
+  });
+}
+
+function getPlaylist() {
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/playlistController/getDSPlaylist",
+
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    timeout: 50000,
+    /* Timeout in ms */
+    success: function(data) { /* called when request to barge.php completes */
+      addPlaylist(data);
     }
   });
 }
@@ -212,7 +232,20 @@ $(document).on('click', '.like', function() {
   return false;
 });
 
+function savePlaylist(id,title,url) {
+  var dataString = 'playlist_id=' + id+'&title='+title+'&music='+url;
+  $.ajax({
+    type: "post",
 
+    url: "http://localhost:81/mttk-php/playlistController/addMusic",
+
+    data: dataString,
+    cache: false,
+    success: function() {
+      alert("ok");
+      }
+    });
+}
 
 function getComment(status) {
   var dataString = 'status_id=' + status;
@@ -227,9 +260,9 @@ function getComment(status) {
     cache: false,
     success: function(data) { /* called when request to barge.php completes */
       var obj = JSON.parse(data);
-      var is_delete="";
       if (obj.length > 0) {
         $.each(obj, function(i, val) {
+          var is_delete="";
           if(val.email==window.userLogin){
             is_delete="delete_button";
           }
@@ -308,13 +341,32 @@ function getLike(status) {
   });
 }
 
+function getSong(name, inter, songUrl) {
+  var dataString="playlist_id="+songUrl;
+  $.ajax({
+    type: "post",
+    data:dataString,
+
+    url: "http://localhost:81/mttk-php/playlistController/getDSSongs",
+
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    timeout: 50000,
+    /* Timeout in ms */
+    success: function(data) { /* called when request to barge.php completes */
+      displaySong(name, inter,data);
+    }
+  });
+}
+
 
 function getStatus(){
       var data;
         /* This requests the url "msgsrv.php"
         When it complete (or errors)*/
 
-      data=[{"status_id":"6","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZWZABB9W&h=mp3.zing.vn","title":"Jar Of Hearts + Christina Perri","message":"how a nice day","created_at":"2014-10-18 21:19:25","thumbs_up":"4","privacy_type_id":"1","email":"duongphuocloc@gmail.com","picture":"a6551.jpg","name":"phuoc loc"},{"status_id":"2","music":"http:\/\/localhost:81\/mttk-php\/uploads\/15.Forever_Friends_3.mp3","title":"Forever friend","message":"I'm feeling lucky hehe","created_at":"2014-10-16 21:44:18","thumbs_up":"1","privacy_type_id":"1","email":"duongphuocloc@gmail.com","picture":"a6551.jpg","name":"phuoc loc"}]
+      data=[{"status_id":"26","music":"1","title":"","message":"dasdas","created_at":"2014-10-25 15:08:18","thumbs_up":"2","privacy_type_id":"1","email":"duongphuocloc@gmail.com","picture":"a6551.jpg","name":"phuoc loc"},{"status_id":"6","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZWZABB9W&h=mp3.zing.vn","title":"Jar Of Hearts + Christina Perri","message":"how a nice day","created_at":"2014-10-18 21:19:25","thumbs_up":"4","privacy_type_id":"1","email":"duongphuocloc@gmail.com","picture":"a6551.jpg","name":"phuoc loc"},{"status_id":"2","music":"http:\/\/localhost:81\/mttk-php\/uploads\/15.Forever_Friends_3.mp3","title":"Forever friend","message":"I'm feeling lucky hehe","created_at":"2014-10-16 21:44:18","thumbs_up":"1","privacy_type_id":"1","email":"duongphuocloc@gmail.com","picture":"a6551.jpg","name":"phuoc loc"}]
 
     addStatusUserWall(data);
     }

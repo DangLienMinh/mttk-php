@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-25 11:01:59
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-25 16:23:35
          compiled from "application\views\templates\common\header.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:18110544b6707641364-75390892%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:5685544bb2670d9212-61942886%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1414227667,
+      1 => 1414239361,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '18110544b6707641364-75390892',
+  'nocache_hash' => '5685544bb2670d9212-61942886',
   'function' => 
   array (
   ),
@@ -22,13 +22,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544b670779f5d4_06339053',
+  'unifunc' => 'content_544bb26725d0d8_47253348',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544b670779f5d4_06339053')) {function content_544b670779f5d4_06339053($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_544bb26725d0d8_47253348')) {function content_544bb26725d0d8_47253348($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>jQuery UI Tabs - Default functionality</title>
+  <title>Music</title>
   <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>
 css/jquery-ui.css">
   <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>jQuery UI Tabs - Default functionality</title>
+  <title>Music</title>
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/jquery-ui.css">
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/jplayer.blue.monday.playlist.css">
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/wall.css">
