@@ -24,6 +24,10 @@ class Main extends CI_Controller {
 	{
 		$this->smarty->view('searchFriend');
 	}
+	public function playlist()
+	{
+		$this->smarty->view('playPlaylist');
+	}
 	public function timeLine()
 	{
 		$this->smarty->view('timeline');

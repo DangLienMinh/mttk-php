@@ -18,6 +18,14 @@ class PlaylistController extends CI_Controller {
         echo json_encode($result);
     }
 
+    function getDSSongs(){
+        $id=$this->input->post('playlist_id');
+        $em = $this->doctrine->em;
+        $playlist = new Entity\Playlist_detailDAO($em);
+        $result=$playlist->layPlaylistSongs($id);
+        echo json_encode($result);
+    }
+
     function createPlaylist(){
         $em = $this->doctrine->em;
         $playlist = new Entity\PlaylistDAO($em);
@@ -30,9 +38,16 @@ class PlaylistController extends CI_Controller {
     function addMusic(){
         $em = $this->doctrine->em;
         $playlist_detail = new Entity\Playlist_detailDAO($em);
-        $data['id']=$this->input->post('playlist_id');
-        $data['title']=$this->input->post('title');
-        $data['music']=$this->input->post('music');
+        if(!empty($this->input->post('h'))){
+            $data['id']=$this->input->post('playlist_id');
+            $data['title']=$this->input->post('title');
+            $data['music']=$this->input->post('music').'&h='.$this->input->post('h');
+        }else{
+            $data['id']=$this->input->post('playlist_id');
+            $data['title']=$this->input->post('title');
+            $data['music']=$this->input->post('music');
+        }
+        
         $playlist_detail->addMusic($data);
     }
 

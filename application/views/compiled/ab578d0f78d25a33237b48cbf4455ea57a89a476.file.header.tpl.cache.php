@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-24 17:41:22
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-25 11:01:59
          compiled from "application\views\templates\common\header.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:18427544a7322439e18-51094720%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:18110544b6707641364-75390892%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1414164679,
+      1 => 1414227667,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '18427544a7322439e18-51094720',
+  'nocache_hash' => '18110544b6707641364-75390892',
   'function' => 
   array (
   ),
@@ -22,9 +22,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544a7322568d91_71470546',
+  'unifunc' => 'content_544b670779f5d4_06339053',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544a7322568d91_71470546')) {function content_544a7322568d91_71470546($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_544b670779f5d4_06339053')) {function content_544b670779f5d4_06339053($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -32,7 +32,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>
 css/jquery-ui.css">
   <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>
-css/jplayer.blue.monday.css">
+css/jplayer.blue.monday.playlist.css">
   <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>
 css/wall.css">
   <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>
@@ -59,6 +59,8 @@ js/jquery.qtip.js"></script>
 js/imagesloaded.pkgd.min.js"></script>
   <script type="text/javascript" src="<?php echo asset_url();?>
 js/jquery.jplayer.min.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jplayer.playlist.min.js"></script>
   <script type="text/javascript" src="<?php echo asset_url();?>
 js/wall.js"></script>
   <script type="text/javascript">
@@ -355,6 +357,26 @@ function getLike(status) {
           $(this).timeago(); // Calling Timeago Funtion 
         });
     });
+  });
+}
+
+function getSong(name, inter, songUrl) {
+  var dataString="playlist_id="+songUrl;
+  $.ajax({
+    type: "post",
+    data:dataString,
+
+    url: "<?php echo base_url('playlistController/getDSSongs');?>
+",
+
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    timeout: 50000,
+    /* Timeout in ms */
+    success: function(data) { /* called when request to barge.php completes */
+      displaySong(name, inter,data);
+    }
   });
 }
 <?php }} ?>
