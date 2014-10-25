@@ -34,14 +34,9 @@ class Message
 
     /**
      * @ManyToOne(targetEntity="user")
-     * @JoinColumn(name="email", referencedColumnName="email")
+     * @JoinColumn(name="to", referencedColumnName="email")
      **/
     protected $to;
-
-    /**
-     * @Column(type="string")
-     */
-    protected $isreply;
 
     /**
      * @ManyToOne(targetEntity="user")
@@ -99,16 +94,6 @@ class Message
         $this->to = $to;
         return $this;
     }
-    public function getIsreply()
-    {
-        return $this->isreply;
-    }
-    
-    public function setIsreply($isreply)
-    {
-        $this->isreply = $isreply;
-        return $this;
-    }
     public function getEmail()
     {
         return $this->email;
@@ -119,8 +104,5 @@ class Message
         $this->email = $email;
         return $this;
     }
-
-   
-	
 }
 ?>

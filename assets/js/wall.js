@@ -92,7 +92,7 @@ function addStatus(msg) {
 		        }
 				var checkPlaylist=parseInt(val.music);
 				if($.isNumeric(checkPlaylist)){
-					$('#container').append('<div class="item"><a href="#" class="'+is_delete+'"></a><div class="stimg"><img id="'+val.email+'" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio">' + playlistElement + '</div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a><a href="#" class="playlist_button" id=playlist"' + val.status_id + '">Playlist</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea style="width:305px;height:23px" placeholder=" Write your comment..." id="textboxcontent' + val.status_id + '"></textarea><br/><button value="Comment" class="comment_submit" id="' + val.status_id + '">Comment</button></div></div></div>');
+					$('#container').append('<div class="item"><a href="#" class="'+is_delete+'"></a><div class="stimg"><img id="'+val.email+'" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio">' + playlistElement + '</div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea style="width:305px;height:23px" placeholder=" Write your comment..." id="textboxcontent' + val.status_id + '"></textarea><br/><button value="Comment" class="comment_submit" id="' + val.status_id + '">Comment</button></div></div></div>');
 					getComment(val.status_id);
 					getLike(val.status_id);
 					getSong('#jquery_jplayer_' + i, '#jp_container_' + i, checkPlaylist);
@@ -159,46 +159,39 @@ function addStatusUserWall(obj) {
 function addFriendRequest(msg) {
 	var obj = JSON.parse(msg);
 	if (obj.length > 0) {
-		$(".friend_bubble").replaceWith('<div class="friend_bubble">' + obj.length + '</div>');
+		$("#friend_count").replaceWith('<span id="friend_count">'+obj.length+'</span>');
 		try {
 			var items = [];
 			var count = 0;
 			$.each(obj, function(i, val) {
 				if (count <= 6) {
-					$('#friend_content>ul').append('<li style="background:#f4f6f9"  class="noti"><a href="' + window.userWall + "/" + val.email + '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.name + '</span></a><div class="friendAction"><button id="friendAccept" onClick="window.location.href='+"'"+window.friendController+ "/acceptFriendRequest/" + val.email +"'"+'">Accept</button><button id="friendDecline" onClick="window.location.href='+"'"+window.friendController+ "/removeFriendRequest/" + val.email +"'"+'">Decline</button></div></li>');
+					$('#friendBody>ul').append('<li style="background:#f4f6f9"  class="noti"><a href="' + window.userWall + "/" + val.email + '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.name + '</span></a><div class="friendAction"><button id="friendAccept" onClick="window.location.href='+"'"+window.friendController+ "/acceptFriendRequest/" + val.email +"'"+'">Accept</button><button id="friendDecline" onClick="window.location.href='+"'"+window.friendController+ "/removeFriendRequest/" + val.email +"'"+'">Decline</button></div></li>');
 					count = count + 1;
-				} else {
-					$('#friend_content>ul').append('<li class="noti"><a href="' + window.notifyStatus + "/" + val.status_id + '">See all</a></li>');
-					return false;
-				}
-				if (count == obj.length) {
-					$('#friend_content>ul').append('<li class="noti"><a href="' + window.notifyStatus + "/" + val.status_id + '">See all</a></li>');
-					return false;
 				}
 			});
 		} catch (e) {
 			alert('Exception while request..' + e);
 		}
 	}else {
-		$(".friend_bubble").hide();
+		$("#friend_count").hide();
 	}
 }
 
 function addmsg(msg, times) {
 	var obj = JSON.parse(msg);
 	if (times > 0) {
-		$(".noti_bubble").replaceWith('<div class="noti_bubble">' + times + '</div>');
+		$("#notification_count").replaceWith('<span id="notification_count">'+times+'</span>');
 	} else {
-		$(".noti_bubble").hide();
+		$("#notification_count").hide();
 	}
 
 	if (obj.length > window.compare) {
 		window.compare = obj.length;
 		try {
 			var items = [];
-			var count = 0;
+
 			$.each(obj, function(i, val) {
-				if (count <= 6) {
+
 					var noti_icon = "";
 					if (val.type == "1") {
 						notiIcon = "noti_like";
@@ -206,21 +199,11 @@ function addmsg(msg, times) {
 						notiIcon = "noti_comment";
 					}
 					if (times > 0) {
-						$('#noti_content>ul').append('<li style="background:#f4f6f9"  class="noti"><a href="' + window.notifyStatus + "/" + val.status_id + "/" + val.notification_id + '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.msg + '</span><br/><abbr class="timeago ' + notiIcon + '" title="' + val.created_at + '"></abbr></a></li>');
+						$('#notificationsBody>ul').append('<li style="background:#f4f6f9"  class="noti"><a href="' + window.notifyStatus + "/" + val.status_id + "/" + val.notification_id + '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.msg + '</span><br/><abbr class="timeago ' + notiIcon + '" title="' + val.created_at + '"></abbr></a></li>');
 						times = times - 1;
 					} else {
-						$('#noti_content>ul').append('<li class="noti"><a href="' + window.notifyStatus + "/" + val.status_id + '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.msg + '</span><br/><abbr class="timeago ' + notiIcon + '" title="' + val.created_at + '"></abbr></a></li>');
+						$('#notificationsBody>ul').append('<li class="noti"><a href="' + window.notifyStatus + "/" + val.status_id + '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.msg + '</span><br/><abbr class="timeago ' + notiIcon + '" title="' + val.created_at + '"></abbr></a></li>');
 					}
-					count = count + 1;
-				} else {
-					$('#noti_content>ul').append('<li class="noti"><a href="' + window.notifyStatus + "/" + val.status_id + '">See all</a></li>');
-					return false;
-				}
-				if (count == obj.length) {
-					$('#noti_content>ul').append('<li class="noti"><a href="' + window.notifyStatus + "/" + val.status_id + '">See all</a></li>');
-					return false;
-				}
-
 			});
 		} catch (e) {
 			alert('Exception while request..' + e);

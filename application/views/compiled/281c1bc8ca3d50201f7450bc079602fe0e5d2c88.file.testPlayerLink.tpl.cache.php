@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-25 11:01:59
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-25 16:23:34
          compiled from "application\views\templates\testPlayerLink.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:31097544b67074a22e4-82469788%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:4204544bb266e66f38-05996549%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1414221847,
+      1 => 1414246794,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '31097544b67074a22e4-82469788',
+  'nocache_hash' => '4204544bb266e66f38-05996549',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544b67075dd345_40806007',
+  'unifunc' => 'content_544bb2670839e2_57845411',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544b67075dd345_40806007')) {function content_544b67075dd345_40806007($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_544bb2670839e2_57845411')) {function content_544bb2670839e2_57845411($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
 function getStatus() {
@@ -58,20 +58,35 @@ function getStatus() {
     friendRequest();
     getStatus();
     getPlaylist();
-    $('#noti_Container #noti').click(function() {
-      if ($('#noti_content').css('display') == 'none') {
-        $('#noti_content').css('display', 'block');
-      } else {
-        $('#noti_content').css('display', 'none');
-      }
+
+    $("#notificationLink").click(function()
+    {
+      $("#friendContainer").hide();
+      $("#notificationContainer").fadeToggle(300);
+      $("#notification_count").fadeOut("slow");
+      return false;
     });
-    $('#noti_Container #friend').click(function() {
-      if ($('#friend_content').css('display') == 'none') {
-        $('#friend_content').css('display', 'block');
-      } else {
-        $('#friend_content').css('display', 'none');
-      }
+
+    $("#friendLink").click(function()
+    {
+      $("#notificationContainer").hide();
+      $("#friendContainer").fadeToggle(300);
+      $("#friend_count").fadeOut("slow");
+      return false;
     });
+
+    $(document).click(function()
+    {
+      $("#notificationContainer").hide();
+      $("#friendContainer").hide();
+    });
+
+    //Popup Click
+    $("#notificationContainer").click(function()
+    {
+      return false
+    });
+
     $('#savePlaylist').click(function(){
       var id=$(this).parent().find('select').find(":selected").val();
       var title=$(this).parent().find('#titleMusic').val();
@@ -84,17 +99,30 @@ function getStatus() {
 </head>
 <body>
   <div id="noti_Container">
-    <img id="friend"  src="http://l-stat.livejournal.com/img/facebook-profile.gif" alt="profile" />
-    <img id="noti" src="http://l-stat.livejournal.com/img/facebook-profile.gif" alt="profile" />
-    <div class="noti_bubble"></div>
-    <div class="friend_bubble"></div>
-    
-  </div>
-  <div id="noti_content">
-    <ul></ul>
-  </div>
-  <div id="friend_content">
-    <ul></ul>
+    <ul id="nav">
+    <li id="friend_li">
+      <span id="friend_count"></span>
+      <a href="#" id="friendLink">Friends</a>
+      <div id="friendContainer">
+        <div id="friendTitle">Notifications</div>
+        <div id="friendBody" class="friend">
+          <ul></ul>
+        </div>
+        <div id="friendFooter"><a href="#">See All</a></div>
+      </div>
+    </li>
+    <li id="notification_li">
+      <span id="notification_count"></span>
+      <a href="#" id="notificationLink">Notifications</a>
+      <div id="notificationContainer">
+        <div id="notificationTitle">Notifications</div>
+        <div id="notificationsBody" class="notifications">
+          <ul></ul>
+        </div>
+        <div id="notificationFooter"><a href="#">See All</a></div>
+      </div>
+    </li>
+  </ul>
   </div>
     <div id="container">
       <div class="timeline_container">

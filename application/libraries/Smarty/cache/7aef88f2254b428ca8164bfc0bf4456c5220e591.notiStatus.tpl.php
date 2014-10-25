@@ -1,4 +1,4 @@
-<?php /*%%SmartyHeaderCode:178585448704235a356-59683460%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:5584544bb163a676e3-94475820%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,46 +11,69 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1414028839,
+      1 => 1414239361,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '178585448704235a356-59683460',
+  'nocache_hash' => '5584544bb163a676e3-94475820',
   'variables' => 
   array (
     'items' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_54487042606562_70472561',
+  'unifunc' => 'content_544bb163dad120_78823288',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_54487042606562_70472561')) {function content_54487042606562_70472561($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_544bb163dad120_78823288')) {function content_544bb163dad120_78823288($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>jQuery UI Tabs - Default functionality</title>
+  <title>Music</title>
   <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jquery-ui.css">
-  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jplayer.blue.monday.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jplayer.blue.monday.playlist.css">
   <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/wall.css">
   <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jquery.qtip.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/colorbox.css">
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery-ui.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.autogrowtextarea.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/masonry.pkgd.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.colorbox-min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.timeago.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.livequery.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.qtip.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/imagesloaded.pkgd.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.jplayer.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jplayer.playlist.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/wall.js"></script>
   <script type="text/javascript">
   window.notifyStatus="http://localhost:81/mttk-php/statusController/hienThiNotiStatus";
+  window.cretePlaylist="http://localhost:81/mttk-php/playlistController/viewPlaylist";
   window.profilePic="http://localhost:81/mttk-php/uploads/img/profilePic.jpg";
   window.userPic="http://localhost:81/mttk-php/uploads/img/";
   window.userWall="http://localhost:81/mttk-php/statusController/layDSWallStatus";
+  window.userLogin="<div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">
+
+<h4>A PHP Error was encountered</h4>
+
+<p>Severity: Notice</p>
+<p>Message:  Undefined index: userLogin</p>
+<p>Filename: sysplugins/smarty_internal_templatebase.php(151) : eval()'d code</p>
+<p>Line Number: 77</p>
+
+</div><div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">
+
+<h4>A PHP Error was encountered</h4>
+
+<p>Severity: Notice</p>
+<p>Message:  Trying to get property of non-object</p>
+<p>Filename: sysplugins/smarty_internal_templatebase.php(151) : eval()'d code</p>
+<p>Line Number: 77</p>
+
+</div>";
   window.friendController="http://localhost:81/mttk-php/friendController";
-  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/a6551.jpg";
+  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/shot0006.jpg";
   window.compare=0;
   window.compareStatus=0;
 
@@ -77,6 +100,23 @@ function waitForMsg() {
           addmsg(data, times);
         }
       });
+    }
+  });
+}
+
+function getPlaylist() {
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/playlistController/getDSPlaylist",
+
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    timeout: 50000,
+    /* Timeout in ms */
+    success: function(data) { /* called when request to barge.php completes */
+      addPlaylist(data);
     }
   });
 }
@@ -192,7 +232,20 @@ $(document).on('click', '.like', function() {
   return false;
 });
 
+function savePlaylist(id,title,url) {
+  var dataString = 'playlist_id=' + id+'&title='+title+'&music='+url;
+  $.ajax({
+    type: "post",
 
+    url: "http://localhost:81/mttk-php/playlistController/addMusic",
+
+    data: dataString,
+    cache: false,
+    success: function() {
+      alert("ok");
+      }
+    });
+}
 
 function getComment(status) {
   var dataString = 'status_id=' + status;
@@ -209,7 +262,11 @@ function getComment(status) {
       var obj = JSON.parse(data);
       if (obj.length > 0) {
         $.each(obj, function(i, val) {
-          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="'+val.email+'" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="delete_button"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
+          var is_delete="";
+          if(val.email==window.userLogin){
+            is_delete="delete_button";
+          }
+          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="'+val.email+'" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="'+is_delete+'"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
         });
       }
     }
@@ -281,6 +338,25 @@ function getLike(status) {
           $(this).timeago(); // Calling Timeago Funtion 
         });
     });
+  });
+}
+
+function getSong(name, inter, songUrl) {
+  var dataString="playlist_id="+songUrl;
+  $.ajax({
+    type: "post",
+    data:dataString,
+
+    url: "http://localhost:81/mttk-php/playlistController/getDSSongs",
+
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    timeout: 50000,
+    /* Timeout in ms */
+    success: function(data) { /* called when request to barge.php completes */
+      displaySong(name, inter,data);
+    }
   });
 }
 
