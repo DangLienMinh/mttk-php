@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>jQuery UI Tabs - Default functionality</title>
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/jquery-ui.css">
-  <link rel="stylesheet" type="text/css" href="{asset_url()}css/jplayer.blue.monday.css">
+  <link rel="stylesheet" type="text/css" href="{asset_url()}css/jplayer.blue.monday.playlist.css">
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/wall.css">
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/jquery.qtip.css">
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/colorbox.css">
@@ -18,6 +18,7 @@
   <script type="text/javascript" src="{asset_url()}js/jquery.qtip.js"></script>
   <script type="text/javascript" src="{asset_url()}js/imagesloaded.pkgd.min.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery.jplayer.min.js"></script>
+  <script type="text/javascript" src="{asset_url()}js/jplayer.playlist.min.js"></script>
   <script type="text/javascript" src="{asset_url()}js/wall.js"></script>
   <script type="text/javascript">
   window.notifyStatus="{site_url('statusController/hienThiNotiStatus/')}";
@@ -292,6 +293,25 @@ function getLike(status) {
           $(this).timeago(); // Calling Timeago Funtion 
         });
     });
+  });
+}
+
+function getSong(name, inter, songUrl) {
+  var dataString="playlist_id="+songUrl;
+  $.ajax({
+    type: "post",
+    data:dataString,
+{/literal}
+    url: "{base_url('playlistController/getDSSongs')}",
+{literal}
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    timeout: 50000,
+    /* Timeout in ms */
+    success: function(data) { /* called when request to barge.php completes */
+      displaySong(name, inter,data);
+    }
   });
 }
 {/literal}

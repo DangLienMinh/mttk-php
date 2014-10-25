@@ -31,7 +31,7 @@ class Playlist_detail
     /**
      * @Column(type="string")
      */
-    protected $music;
+    protected $mp3;
 
     public function getPlaylist_id()
     {
@@ -64,14 +64,14 @@ class Playlist_detail
         $this->title = $title;
         return $this;
     }
-    public function getMusic()
+    public function getMp3()
     {
-        return $this->music;
+        return $this->mp3;
     }
     
-    public function setMusic($music)
+    public function setMp3($mp3)
     {
-        $this->music = $music;
+        $this->mp3 = $mp3;
         return $this;
     }
     

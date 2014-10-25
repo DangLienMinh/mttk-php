@@ -66,6 +66,10 @@ class StatusController extends CI_Controller {
             $data['status']=$_POST["status"];
             $data['music']=$_POST["music_url"];
             $data['title']=$_POST["title"];
+        }else if(trim($_POST['status3'])!=''){
+            $data['status']=$_POST["status3"];
+            $data['music']=$_POST["playlist_id"];
+            $data['title']="";
         }
         else
         {

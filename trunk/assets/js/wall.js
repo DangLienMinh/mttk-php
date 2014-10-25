@@ -34,6 +34,46 @@ var element = '<div class="jp-gui jp-interface"> \
           To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>. \
         </div>';
 
+var playlistElement='<div class="jp-type-playlist"> \
+        <div class="jp-gui jp-interface"> \
+          <ul class="jp-controls"> \
+            <li><a href="javascript:;" class="jp-previous" tabindex="1">previous</a></li> \
+            <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li> \
+            <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li> \
+            <li><a href="javascript:;" class="jp-next" tabindex="1">next</a></li> \
+            <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li> \
+            <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li> \
+            <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li> \
+            <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li> \
+          </ul> \
+          <div class="jp-progress"> \
+            <div class="jp-seek-bar"> \
+              <div class="jp-play-bar"></div> \
+            </div> \
+          </div> \
+          <div class="jp-volume-bar"> \
+            <div class="jp-volume-bar-value"></div> \
+          </div> \
+          <div class="jp-current-time"></div> \
+          <div class="jp-duration"></div> \
+          <ul class="jp-toggles"> \
+            <li><a href="javascript:;" class="jp-shuffle" tabindex="1" title="shuffle">shuffle</a></li> \
+            <li><a href="javascript:;" class="jp-shuffle-off" tabindex="1" title="shuffle off">shuffle off</a></li> \
+            <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li> \
+            <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li> \
+          </ul> \
+        </div> \
+        <div class="jp-playlist"> \
+          <ul> \
+            <li></li> \
+          </ul> \
+        </div> \
+        <div class="jp-no-solution"> \
+          <span>Update Required</span> \
+          To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>. \
+        </div> \
+      </div> '
+
 function addStatus(msg) {
 	var obj = JSON.parse(msg);
 	var numberToInsert = obj.length - window.compareStatus;
@@ -46,18 +86,29 @@ function addStatus(msg) {
 				if (!val.picture) {
 					val.picture = window.profilePic;
 				}
-
 				var is_delete="";
-		          if(val.email==window.userLogin){
-		            is_delete="stdelete";
-		          }
-				$('#container').append('<div class="item"><a href="#" class="'+is_delete+'"></a><div class="stimg"><img id="'+val.email+'" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a><a href="#" class="playlist_button" id=playlist"' + val.status_id + '">Playlist</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea style="width:305px;height:23px" placeholder=" Write your comment..." id="textboxcontent' + val.status_id + '"></textarea><br/><button value="Comment" class="comment_submit" id="' + val.status_id + '">Comment</button></div></div></div>');
-				getComment(val.status_id);
-				getLike(val.status_id);
-				setSong('#jquery_jplayer_' + i, '#jp_interface_' + i, val.music, val.title);
-				numberToInsert = numberToInsert - 1;
-				if (numberToInsert == 0) {
-					return false;
+		        if(val.email==window.userLogin){
+		          is_delete="stdelete";
+		        }
+				var checkPlaylist=parseInt(val.music);
+				if($.isNumeric(checkPlaylist)){
+					$('#container').append('<div class="item"><a href="#" class="'+is_delete+'"></a><div class="stimg"><img id="'+val.email+'" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio">' + playlistElement + '</div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a><a href="#" class="playlist_button" id=playlist"' + val.status_id + '">Playlist</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea style="width:305px;height:23px" placeholder=" Write your comment..." id="textboxcontent' + val.status_id + '"></textarea><br/><button value="Comment" class="comment_submit" id="' + val.status_id + '">Comment</button></div></div></div>');
+					getComment(val.status_id);
+					getLike(val.status_id);
+					getSong('#jquery_jplayer_' + i, '#jp_container_' + i, checkPlaylist);
+					numberToInsert = numberToInsert - 1;
+					if (numberToInsert == 0) {
+						return false;
+					}
+				} else{
+					$('#container').append('<div class="item"><a href="#" class="'+is_delete+'"></a><div class="stimg"><img id="'+val.email+'" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a><a href="#" class="playlist_button" id=playlist"' + val.status_id + '">Playlist</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea style="width:305px;height:23px" placeholder=" Write your comment..." id="textboxcontent' + val.status_id + '"></textarea><br/><button value="Comment" class="comment_submit" id="' + val.status_id + '">Comment</button></div></div></div>');
+					getComment(val.status_id);
+					getLike(val.status_id);
+					setSong('#jquery_jplayer_' + i, '#jp_interface_' + i, val.music, val.title);
+					numberToInsert = numberToInsert - 1;
+					if (numberToInsert == 0) {
+						return false;
+					}
 				}
 			});
 		} catch (e) {
@@ -214,6 +265,28 @@ function setSong(name, inter, songUrl, title) {
 		toggleDuration: true
 	});
 }
+
+function displaySong(name, inter,data) {
+      var obj = JSON.parse(data);
+      var cssSelector = {
+        jPlayer: name,
+        cssSelectorAncestor: inter
+      };
+      /*An Empty Playlist*/
+      var playlist = [];
+      var options = {
+        swfPath: "js",
+        supplied: "mp3"
+      };
+      var myPlaylist = new jPlayerPlaylist(cssSelector, playlist, options);
+      /*Loop through the JSon array and add it to the playlist*/
+      $.each(obj, function(i, val) {
+        myPlaylist.add({
+          title: val.title,
+          mp3: val.mp3
+        });
+      });
+    }
 
 $('.timeline_container').mousemove(function(e) {
 	var topdiv = $("#containertop").height();
