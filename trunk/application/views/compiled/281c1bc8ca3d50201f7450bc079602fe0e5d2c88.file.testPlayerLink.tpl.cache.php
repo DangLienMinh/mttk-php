@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-25 16:23:34
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-26 15:09:40
          compiled from "application\views\templates\testPlayerLink.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:4204544bb266e66f38-05996549%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:22062544d00a49ea0f1-62815225%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1414246794,
+      1 => 1414289885,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '4204544bb266e66f38-05996549',
+  'nocache_hash' => '22062544d00a49ea0f1-62815225',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544bb2670839e2_57845411',
+  'unifunc' => 'content_544d00a4b31ee9_63248159',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544bb2670839e2_57845411')) {function content_544bb2670839e2_57845411($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_544d00a4b31ee9_63248159')) {function content_544d00a4b31ee9_63248159($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
 function getStatus() {
@@ -81,11 +81,7 @@ function getStatus() {
       $("#friendContainer").hide();
     });
 
-    //Popup Click
-    $("#notificationContainer").click(function()
-    {
-      return false
-    });
+   
 
     $('#savePlaylist').click(function(){
       var id=$(this).parent().find('select').find(":selected").val();

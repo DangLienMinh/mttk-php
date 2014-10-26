@@ -130,6 +130,46 @@ function addPlaylist(msg) {
 	}
 }
 
+function addFriendList(msg) {
+	var obj = JSON.parse(msg);
+	try {
+		$.each(obj, function(i, val) {
+			$('#friendListContainer>ul').append('<li><a class="inline" href="#inline_content"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span class="'+val.email+'">' + val.name + '</span></a></li>');
+		});
+		$(".inline").colorbox({inline:true, width:"60%",height:"60%"});
+	} catch (e) {
+		alert(e);
+	}
+}
+
+$(document).on('click', '.inline', function(e) {
+	e.preventDefault();
+	//alert($(this).find('span').text());
+	var userEmail=$(this).find('span').attr('class');
+	getConversation(userEmail);
+	$('#toUser').val(userEmail);
+});
+
+
+function addConversation(msg) {
+	var obj = JSON.parse(msg);
+	$("#inline_content ol").empty();
+	//var b=$("#inline_content ol li:last").attr("id");
+	try {
+		$.each(obj, function(i, val) {
+			if(i==0){
+				//currentChatPosition=val.message_id;
+			}
+			//if(b != val.message_id){	
+				var div_data='<li  id="'+val.message_id+'"><img style="width:30px;height:30px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><b>'+val.name+"</b>: "+val.message+"</li>";
+				$(div_data).appendTo('#inline_content ol');	
+			//}
+		});
+	} catch (e) {
+		alert(e);
+	}
+}
+
 function addStatusUserWall(obj) {
 	var numberToInsert = obj.length - window.compareStatus;
 	if (obj.length > window.compareStatus) {

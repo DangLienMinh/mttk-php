@@ -27,6 +27,15 @@
 		}
 	}
 
+	public function getAllFriends()
+	{
+        $em = $this->doctrine->em;
+        $email = $this->session->userdata('email');
+		$friend = new Entity\FriendDAO($em);
+		$result=$friend->getAllFriends($email);
+        echo json_encode($result);
+	}
+
 	public function getFriendRequest()
 	{
         $em = $this->doctrine->em;

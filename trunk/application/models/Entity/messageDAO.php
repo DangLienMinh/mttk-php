@@ -42,10 +42,12 @@ class MessageDAO
 		$toUser = $this->em->getReference('Entity\User',$data['to']);
 		$fromUser = $this->em->getReference('Entity\User',$data['from']);
 		$message->setMessage($data['message']);
-		$message->setTo($toUser);
+		$message->setToUser($toUser);
 		$message->setEmail($fromUser);
+		$message->setIs_read(0);
 		$this->em->persist($message);
 		$this->em->flush();
+		return $message->getMessage_id();
 	}
 
 	

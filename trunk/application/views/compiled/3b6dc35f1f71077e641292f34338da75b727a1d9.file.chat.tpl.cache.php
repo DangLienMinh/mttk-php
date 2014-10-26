@@ -1,5 +1,27 @@
-{include file='common/header.tpl'}
-{literal}
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-26 16:24:07
+         compiled from "application\views\templates\chat.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:2552544d121763a3e3-70273293%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '3b6dc35f1f71077e641292f34338da75b727a1d9' => 
+    array (
+      0 => 'application\\views\\templates\\chat.tpl',
+      1 => 1414332732,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '2552544d121763a3e3-70273293',
+  'function' => 
+  array (
+  ),
+  'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_544d121778a562_28072008',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_544d121778a562_28072008')) {function content_544d121778a562_28072008($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+
+
   </script>
   <script>
   $(document).ready(function() {
@@ -45,9 +67,10 @@
              $("#flash").fadeIn(400).html('<img src="http://labs.9lessons.info/ajax-loader.gif" align="absmiddle">&nbsp;<span class="loading">Loading Update...</span>');
              $.ajax({
                  type: "POST",
-{/literal}
-                 url: "{base_url('messageController/addMessage')}",
-{literal}
+
+                 url: "<?php echo base_url('messageController/addMessage');?>
+",
+
                  data: dataString,
                  cache: false,
                  success: function(html) {
@@ -67,7 +90,7 @@
 
   });
   </script>
- {/literal}
+ 
 </head>
 <body>
   <div id="noti_Container">
@@ -122,4 +145,4 @@
         </div>
       </div>
 </body>
-</html>
+</html><?php }} ?>

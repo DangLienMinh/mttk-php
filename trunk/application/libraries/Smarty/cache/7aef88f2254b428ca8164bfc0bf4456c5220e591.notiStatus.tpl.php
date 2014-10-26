@@ -1,4 +1,4 @@
-<?php /*%%SmartyHeaderCode:5584544bb163a676e3-94475820%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:16226544c59ee288520-16884992%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,21 +11,21 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1414239361,
+      1 => 1414288125,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '5584544bb163a676e3-94475820',
+  'nocache_hash' => '16226544c59ee288520-16884992',
   'variables' => 
   array (
     'items' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544bb163dad120_78823288',
+  'unifunc' => 'content_544c59ee7a0619_98914490',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544bb163dad120_78823288')) {function content_544bb163dad120_78823288($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_544c59ee7a0619_98914490')) {function content_544c59ee7a0619_98914490($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -100,6 +100,23 @@ function waitForMsg() {
           addmsg(data, times);
         }
       });
+    }
+  });
+}
+
+function getFriendList() {
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/friendController/getAllFriends",
+
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    timeout: 50000,
+    /* Timeout in ms */
+    success: function(data) { /* called when request to barge.php completes */
+     addFriendList(data);
     }
   });
 }
@@ -366,7 +383,7 @@ function getStatus(){
         /* This requests the url "msgsrv.php"
         When it complete (or errors)*/
 
-      data=[{"status_id":"7","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZWZDB788&h=mp3.zing.vn","title":"What Makes You Beautiful","message":"beatiful","created_at":"2014-10-18 21:42:18","thumbs_up":"1","privacy_type_id":"1","email":"anhtiminh@yahoo.com","picture":"shot0006.jpg","name":"minh dang"}]
+      data=[{"status_id":"4","music":"http:\/\/localhost:81\/mttk-php\/uploads\/kisstherain.mp3","title":"kisstherain","message":"How about chinese song","created_at":"2014-10-17 09:17:39","thumbs_up":"1","privacy_type_id":"1","email":"anhtiminh@yahoo.com","picture":"shot0006.jpg","name":"minh dang"}]
 
     addStatusUserWall(data);
     }

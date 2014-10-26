@@ -1,27 +1,27 @@
-<?php /*%%SmartyHeaderCode:4204544bb266e66f38-05996549%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:22062544d00a49ea0f1-62815225%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1414246794,
+      1 => 1414289885,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1414239361,
+      1 => 1414332461,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '4204544bb266e66f38-05996549',
+  'nocache_hash' => '22062544d00a49ea0f1-62815225',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544bb2672afae7_15964500',
+  'unifunc' => 'content_544d00a4d6fb44_34722577',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544bb2672afae7_15964500')) {function content_544bb2672afae7_15964500($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_544d00a4d6fb44_34722577')) {function content_544d00a4d6fb44_34722577($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -78,6 +78,45 @@ function waitForMsg() {
           addmsg(data, times);
         }
       });
+    }
+  });
+}
+
+function getFriendList() {
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/friendController/getAllFriends",
+
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    timeout: 50000,
+    /* Timeout in ms */
+    success: function(data) { /* called when request to barge.php completes */
+     addFriendList(data);
+    }
+  });
+}
+
+function getConversation(userEmail) {
+  var dataString = 'email=' + userEmail;
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/messageController/getFirstMessages",
+
+    data: dataString,
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    timeout: 50000,
+    success: function(data) { /* called when request to barge.php completes */
+      addConversation(data); /* Add response to a .msg div (with the "new" class)*/
+      setTimeout(
+        getConversation, /* Request next message */
+        2000 /* ..after 1 seconds */
+      );
     }
   });
 }
@@ -397,11 +436,7 @@ function getStatus() {
       $("#friendContainer").hide();
     });
 
-    //Popup Click
-    $("#notificationContainer").click(function()
-    {
-      return false
-    });
+   
 
     $('#savePlaylist').click(function(){
       var id=$(this).parent().find('select').find(":selected").val();

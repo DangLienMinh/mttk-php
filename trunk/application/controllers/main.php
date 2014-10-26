@@ -32,6 +32,12 @@ class Main extends CI_Controller {
 	{
 		$this->smarty->view('timeline');
 	}
+	public function chat()
+	{
+		$this->smarty->assign('userPicCmt',$this->session->userdata('pic'));
+		$this->smarty->assign('userLogin',$this->session->userdata('email'));
+		$this->smarty->view('chat');
+	}
 	public function testPlayer()
 	{
 		$this->smarty->assign('userPicCmt',$this->session->userdata('pic'));

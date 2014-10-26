@@ -34,6 +34,18 @@ class FriendDAO
 		return $result;
 	}
 
+	public function getAllFriends($email)
+	{
+		// prepare statement
+		$cnn=$this->em->getConnection();
+		$sth = $cnn->prepare("CALL getAllFriends(?)");
+		$sth->bindValue(1, $email);
+		// execute and fetch
+		$sth->execute();
+		$result = $sth->fetchAll();
+		return $result;
+	}
+
 	public function acceptFriend($email,$friend)
 	{
 
