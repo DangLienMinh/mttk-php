@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-25 16:23:35
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-26 16:24:07
          compiled from "application\views\templates\common\header.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:5685544bb2670d9212-61942886%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:32465544d12177d3b82-10800627%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1414239361,
+      1 => 1414336972,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '5685544bb2670d9212-61942886',
+  'nocache_hash' => '32465544d12177d3b82-10800627',
   'function' => 
   array (
   ),
@@ -22,9 +22,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544bb26725d0d8_47253348',
+  'unifunc' => 'content_544d121790db92_35254282',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544bb26725d0d8_47253348')) {function content_544bb26725d0d8_47253348($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_544d121790db92_35254282')) {function content_544d121790db92_35254282($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -83,6 +83,8 @@ img/<?php echo $_smarty_tpl->tpl_vars['userPicCmt']->value;?>
 ";
   window.compare=0;
   window.compareStatus=0;
+  window.currentChatPosition=0;
+  window.userChat="";
 
 
 function waitForMsg() {
@@ -109,6 +111,51 @@ function waitForMsg() {
           addmsg(data, times);
         }
       });
+    }
+  });
+}
+
+function getFriendList() {
+  $.ajax({
+    type: "post",
+
+    url: "<?php echo base_url('friendController/getAllFriends');?>
+",
+
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    timeout: 50000,
+    /* Timeout in ms */
+    success: function(data) { /* called when request to barge.php completes */
+     addFriendList(data);
+    }
+  });
+}
+
+function getConversation(userEmail) {
+  if(typeof userEmail !== 'undefined'){
+    window.userChat=userEmail;
+  }
+  var dataString = 'email=' + window.userChat;
+  $.ajax({
+    type: "post",
+
+    url: "<?php echo base_url('messageController/getFirstMessages');?>
+",
+
+    data: dataString,
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    timeout: 50000,
+    success: function(data) { /* called when request to barge.php completes */
+
+      addConversation(data); /* Add response to a .msg div (with the "new" class)*/
+      setTimeout(
+        getConversation, /* Request next message */
+        2000 /* ..after 1 seconds */
+      );
     }
   });
 }

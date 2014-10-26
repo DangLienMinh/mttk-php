@@ -58,11 +58,7 @@ function getStatus() {
       $("#friendContainer").hide();
     });
 
-    //Popup Click
-    $("#notificationContainer").click(function()
-    {
-      return false
-    });
+   
 
     $('#savePlaylist').click(function(){
       var id=$(this).parent().find('select').find(":selected").val();

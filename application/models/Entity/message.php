@@ -34,9 +34,9 @@ class Message
 
     /**
      * @ManyToOne(targetEntity="user")
-     * @JoinColumn(name="to", referencedColumnName="email")
+     * @JoinColumn(name="toUser", referencedColumnName="email")
      **/
-    protected $to;
+    protected $toUser;
 
     /**
      * @ManyToOne(targetEntity="user")
@@ -84,14 +84,14 @@ class Message
         $this->is_read = $is_read;
         return $this;
     }
-    public function getTo()
+    public function getToUser()
     {
-        return $this->to;
+        return $this->toUser;
     }
     
-    public function setTo($to)
+    public function setToUser($toUser)
     {
-        $this->to = $to;
+        $this->toUser = $toUser;
         return $this;
     }
     public function getEmail()

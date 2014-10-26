@@ -1,4 +1,4 @@
-<?php /*%%SmartyHeaderCode:24766544bb1e54a05b7-57029992%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:8478544c64b55445a1-18304262%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,21 +11,21 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1414239361,
+      1 => 1414291043,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '24766544bb1e54a05b7-57029992',
+  'nocache_hash' => '8478544c64b55445a1-18304262',
   'variables' => 
   array (
     'items' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544bb1e57f2b91_27877505',
+  'unifunc' => 'content_544c64b59a9864_61256483',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544bb1e57f2b91_27877505')) {function content_544bb1e57f2b91_27877505($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_544c64b59a9864_61256483')) {function content_544c64b59a9864_61256483($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -73,7 +73,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 </div>";
   window.friendController="http://localhost:81/mttk-php/friendController";
-  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/a6551.jpg";
+  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/shot0006.jpg";
   window.compare=0;
   window.compareStatus=0;
 
@@ -100,6 +100,23 @@ function waitForMsg() {
           addmsg(data, times);
         }
       });
+    }
+  });
+}
+
+function getFriendList() {
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/friendController/getAllFriends",
+
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    timeout: 50000,
+    /* Timeout in ms */
+    success: function(data) { /* called when request to barge.php completes */
+     addFriendList(data);
     }
   });
 }

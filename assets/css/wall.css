@@ -398,6 +398,41 @@ a:hover {
     width: 80%;
 }
 
+#friendListContainer {
+    margin: 30px 370px;
+    width: 900px;
+}
+
+#friendListContainer>ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#friendListContainer>ul>li {
+    border: 1px solid #e9eaed;
+    display: inline-block;
+    margin: 0 0 13px 13px;
+    padding: 0 10px 0 0;
+    position: relative;
+    vertical-align: top;
+    width: 320px;
+}
+
+#friendListContainer>ul>li span {
+    top: 32px;
+    left: 120px;
+    width: 190px;
+    position: absolute;
+}
+
+#friendListContainer>ul>li a {
+    color: #3b5998;
+    font-size: 18px;
+    font-weight: bold;
+    position:relative;
+}
+
 .item {
     background-color: #fff;
     border: solid 1px #B4BBCD;
@@ -539,4 +574,8 @@ a:hover {
 
 .loadplace {
     padding: 5px 0px 5px 0px;
+}
+
+#update li{
+    padding-bottom: 50px;
 }
