@@ -27,7 +27,6 @@ class CommentController extends CI_Controller {
         $comment = new Entity\CommentDAO($em);
         $result=$comment->layComment($status_id);
         echo json_encode($result);
-        //print_r($comment->layComment($status_id));
         
     }
     public function xoaComment(){
