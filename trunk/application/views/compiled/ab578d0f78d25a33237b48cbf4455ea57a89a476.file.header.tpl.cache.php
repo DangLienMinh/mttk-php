@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-27 08:30:10
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-27 13:04:26
          compiled from "application\views\templates\common\header.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:23838544df482bf9266-78287047%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:15761544e34cadce505-66018740%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1414378587,
+      1 => 1414400665,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '23838544df482bf9266-78287047',
+  'nocache_hash' => '15761544e34cadce505-66018740',
   'function' => 
   array (
   ),
@@ -22,9 +22,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544df482d65f73_91618572',
+  'unifunc' => 'content_544e34cb14e128_69308043',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544df482d65f73_91618572')) {function content_544df482d65f73_91618572($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_544e34cb14e128_69308043')) {function content_544e34cb14e128_69308043($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -63,6 +63,12 @@ js/jquery.jplayer.min.js"></script>
 js/jplayer.playlist.min.js"></script>
   <script type="text/javascript" src="<?php echo asset_url();?>
 js/wall.js"></script>
+  <script type="text/javascript">
+  window.emotionsFolder="<?php echo asset_url();?>
+img/emotions-fb/";
+  </script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery.emotions.js"></script>
   <script type="text/javascript">
   window.notifyStatus="<?php echo site_url('statusController/hienThiNotiStatus/');?>
 ";
@@ -153,7 +159,6 @@ function getConversation(userEmail) {
     cache: false,
     timeout: 50000,
     success: function(data) { /* called when request to barge.php completes */
-
       addConversation(data); /* Add response to a .msg div (with the "new" class)*/
       setTimeout(
         getConversation, /* Request next message */

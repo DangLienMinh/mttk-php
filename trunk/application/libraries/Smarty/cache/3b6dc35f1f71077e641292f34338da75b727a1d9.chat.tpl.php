@@ -1,27 +1,27 @@
-<?php /*%%SmartyHeaderCode:27993544df482a41205-16346471%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:3000544e34cab89840-97307153%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '3b6dc35f1f71077e641292f34338da75b727a1d9' => 
     array (
       0 => 'application\\views\\templates\\chat.tpl',
-      1 => 1414378118,
+      1 => 1414406974,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1414378587,
+      1 => 1414400665,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '27993544df482a41205-16346471',
+  'nocache_hash' => '3000544e34cab89840-97307153',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544df482db1710_69439572',
+  'unifunc' => 'content_544e34cb1b4c04_84302070',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544df482db1710_69439572')) {function content_544df482db1710_69439572($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_544e34cb1b4c04_84302070')) {function content_544e34cb1b4c04_84302070($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -43,6 +43,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.jplayer.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jplayer.playlist.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/wall.js"></script>
+  <script type="text/javascript">
+  window.emotionsFolder="http://localhost:81/mttk-php/assets/img/emotions-fb/";
+  </script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.emotions.js"></script>
   <script type="text/javascript">
   window.notifyStatus="http://localhost:81/mttk-php/statusController/hienThiNotiStatus";
   window.cretePlaylist="http://localhost:81/mttk-php/playlistController/viewPlaylist";
@@ -120,7 +124,6 @@ function getConversation(userEmail) {
     cache: false,
     timeout: 50000,
     success: function(data) { /* called when request to barge.php completes */
-
       addConversation(data); /* Add response to a .msg div (with the "new" class)*/
       setTimeout(
         getConversation, /* Request next message */
@@ -412,6 +415,8 @@ function getSong(name, inter, songUrl) {
     friendRequest();
     getFriendList();
 
+ 
+
     $("#notificationLink").click(function()
     {
       $("#friendContainer").hide();
@@ -456,7 +461,7 @@ function getSong(name, inter, songUrl) {
                  data: dataString,
                  cache: false,
                  success: function(html) {
-                     $("#inline_content ol").append(html);
+                     $(html).appendTo('#inline_content ol').emotions();
                      $('#content').val('');
                      $('#content').focus();
                      $("#flash").hide();
@@ -469,7 +474,7 @@ function getSong(name, inter, songUrl) {
      return false;
     });
 
-
+     $('#inline_content ol').emotions();
   });
   </script>
  
@@ -509,12 +514,13 @@ function getSong(name, inter, songUrl) {
           <ol id="update" style="list-style:none;">
           </ol>
           <div id="flash"></div>
+          <audio id="chatAudio"><source src="http://localhost:81/mttk-php/assets/sound/notify.ogg" type="audio/ogg"><source src="http://localhost:81/mttk-php/assets/sound/notify.mp3" type="audio/mpeg"><source src="http://localhost:81/mttk-php/assets/sound/notify.wav" type="audio/wav"></audio>
           <div>
               <div align="left">
               <table>
               <tr>
                 <td>
-                  <input type='text' class="textbox" name="content" id="content" maxlength="145" />
+                  <input type='text' class="textbox" name="content" id="content" maxlength="200" placeholder="Message"/>
                 </td>
                 <input type='hidden' name="toUser" id="toUser" />
                 <td valign="top">

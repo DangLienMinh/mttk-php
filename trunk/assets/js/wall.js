@@ -157,31 +157,32 @@ $(document).on('click', '.more', function(e) {
 	getMoreConversation(userEmail,last_id);
 });
 
-
 function addConversation(msg) {
 	var obj = JSON.parse(msg);
 	//$("#inline_content ol").empty();
-	var b=$("#inline_content ol li:last").attr("id");
-	if(typeof b === 'undefined'){
-    	b=0;
-  	}
-  	b=parseInt(b);
+	var b = $("#inline_content ol li:last").attr("id");
+	if (typeof b === 'undefined') {
+		b = 0;
+	}
+	b = parseInt(b);
 	try {
 		$.each(obj, function(i, val) {
-			if(val.message_id > b){	
-				if(val.email!= window.userChat){
-					var div_data='<li class="chatRight" id="'+val.message_id+'"><p>'+val.message+"</p></li>";
-				}else{
-					var div_data='<li class="chatLeft" id="'+val.message_id+'"><img style="width:30px;height:30px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>'+val.message+"</span></li>";
+			if (val.message_id > b) {
+				if (val.email != window.userChat) {
+					var div_data = '<li class="chatRight" id="' + val.message_id + '"><p>' + val.message + "</p></li>";
+					$(div_data).appendTo('#inline_content ol').emotions();
+				} else {
+					$('#chatAudio')[0].play();
+					var div_data = '<li class="chatLeft" id="' + val.message_id + '"><span>' + val.message + "</span></li>";
+					$(div_data).appendTo('#inline_content ol').emotions();
+					$('#'+val.message_id).prepend('<img style="width:30px;height:30px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/>');
 				}
-				$(div_data).appendTo('#inline_content ol');	
 			}
 		});
 		$('#content').focus();
-		window.currentChatPosition=$("#inline_content ol li:first").attr("id");
-		if($('#inline_content ol>div>a').length){
-		}else
-			$('#inline_content ol').prepend('<div class="morebox"><a href="#" class="more" id="'+window.currentChatPosition+'">more</a></div>');
+		window.currentChatPosition = $("#inline_content ol li:first").attr("id");
+		if ($('#inline_content ol>div>a').length) {} else
+			$('#inline_content ol').prepend('<div class="morebox"><a href="#" class="more" id="' + window.currentChatPosition + '">more</a></div>');
 	} catch (e) {
 		alert(e);
 	}
@@ -196,7 +197,7 @@ function addMoreConversation(msg) {
 			} else {
 				var div_data = '<li class="chatLeft" id="' + val.message_id + '"><img style="width:30px;height:30px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + "</span></li>";
 			}
-			$('#inline_content ol').prepend(div_data);
+			$('#inline_content ol').prepend(div_data).emotions();
 		});
 		window.currentChatPosition = $("#inline_content ol li:first").attr("id");
 		if ($('#inline_content ol>div>a').length) {} else
