@@ -576,6 +576,61 @@ a:hover {
     padding: 5px 0px 5px 0px;
 }
 
-#update li{
-    padding-bottom: 50px;
+#update .chatLeft{
+    margin-bottom: 12px;
+    font-size: 14px;
+    position: relative;
+    width:85%;
+}
+
+#update .chatRight{
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+.morebox
+    {
+    font-weight:bold;
+    color:#333333;
+    text-align:center;
+    border:solid 1px #333333;
+    padding:8px;
+    margin-top:8px;
+    margin-bottom:8px;
+    -moz-border-radius: 6px;-webkit-border-radius: 6px;
+    }
+    .morebox a{ color:#333333; text-decoration:none}
+    .morebox a:hover{ color:#333333; text-decoration:none}
+
+.chatRight{
+    clear: both;
+    float:right;
+    text-align: right;
+}
+.chatLeft{
+    clear: both;
+    float:left;
+    
+}
+.chatLeft span{
+    background-color: #f7f7f7;
+    background-image: -webkit-gradient(linear, center bottom, center top, from(#f2f2f2), to(#fff));
+    background-image: -webkit-linear-gradient(bottom, #f2f2f2, #fff);
+    position:absolute;
+    padding:3px;
+}
+.chatRight p{
+    background-color: #dbedfe;
+    background-image: -webkit-gradient(linear, center bottom, center top, from(#c7defe), to(#e7f1fe));
+    background-image: -webkit-linear-gradient(bottom, #c7defe, #e7f1fe);
+    padding:3px;
+}
+
+
+#inline_content{
+    background-color: #E8EAED!important;
+} 
+
+#inline_content div{
+    clear:both;
 }

@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-26 16:24:07
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-27 08:30:10
          compiled from "application\views\templates\common\header.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:32465544d12177d3b82-10800627%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:23838544df482bf9266-78287047%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1414336972,
+      1 => 1414378587,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '32465544d12177d3b82-10800627',
+  'nocache_hash' => '23838544df482bf9266-78287047',
   'function' => 
   array (
   ),
@@ -22,9 +22,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544d121790db92_35254282',
+  'unifunc' => 'content_544df482d65f73_91618572',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544d121790db92_35254282')) {function content_544d121790db92_35254282($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_544df482d65f73_91618572')) {function content_544df482d65f73_91618572($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -83,7 +83,7 @@ img/<?php echo $_smarty_tpl->tpl_vars['userPicCmt']->value;?>
 ";
   window.compare=0;
   window.compareStatus=0;
-  window.currentChatPosition=0;
+  window.currentChatPosition=-1;
   window.userChat="";
 
 
@@ -135,7 +135,10 @@ function getFriendList() {
 
 function getConversation(userEmail) {
   if(typeof userEmail !== 'undefined'){
-    window.userChat=userEmail;
+    if( window.userChat!=userEmail){
+      $("#inline_content ol").empty();
+        window.userChat = userEmail;
+    }
   }
   var dataString = 'email=' + window.userChat;
   $.ajax({
@@ -156,6 +159,25 @@ function getConversation(userEmail) {
         getConversation, /* Request next message */
         2000 /* ..after 1 seconds */
       );
+    }
+  });
+}
+
+function getMoreConversation(userEmail,last_id) {
+  var dataString = 'email=' + userEmail+'&started='+last_id;
+  $.ajax({
+    type: "post",
+
+    url: "<?php echo base_url('messageController/getMoreMessages');?>
+",
+
+    data: dataString,
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    timeout: 50000,
+    success: function(data) { /* called when request to barge.php completes */
+      addMoreConversation(data); /* Add response to a .msg div (with the "new" class)*/
     }
   });
 }

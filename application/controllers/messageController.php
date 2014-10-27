@@ -20,8 +20,8 @@
 		$name=$this->session->userdata('first_name').' '.$this->session->userdata('last_name');
 		$em = $this->doctrine->em;
 		$message = new Entity\MessageDAO($em);
-		$message_id=$message->addMessage($data); 
-		echo '<li  id="'.$message_id.'"><img style="width:30px;height:30px;vertical-align:middle;margin-right:7px;float:left" src="'.$img.'"/><b>'.$name."</b>: ".$data['message']."</li>";
+		$message_id=$message->addMessage($data);
+		echo '<li class="chatRight" id="'.$message_id.'"><p>'.$data['message']."</p></li>";
 
 	}
 
@@ -42,7 +42,7 @@
       	$data['from'] = $this->session->userdata('email');
       	$data['started']=$this->input->post('started');
 		$message = new Entity\MessageDAO($em);
-		$result=$message->getFirstMessages($data);
+		$result=$message->getMoreMessages($data);
         echo json_encode($result);
 	}
 }
