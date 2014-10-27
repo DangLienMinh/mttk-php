@@ -634,3 +634,7 @@ a:hover {
 #inline_content div{
     clear:both;
 }
+
+
+#content { padding:5px; border-radius:5px; border:1px solid #999;width:300px }
+#post { padding: 4px;border: solid 1px #333;background-color: #133783;color:#fff;font-weight:bold }

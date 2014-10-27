@@ -7,6 +7,8 @@
     friendRequest();
     getFriendList();
 
+ 
+
     $("#notificationLink").click(function()
     {
       $("#friendContainer").hide();
@@ -51,7 +53,7 @@
                  data: dataString,
                  cache: false,
                  success: function(html) {
-                     $("#inline_content ol").append(html);
+                     $(html).appendTo('#inline_content ol').emotions();
                      $('#content').val('');
                      $('#content').focus();
                      $("#flash").hide();
@@ -64,7 +66,7 @@
      return false;
     });
 
-
+     $('#inline_content ol').emotions();
   });
   </script>
  {/literal}
@@ -104,12 +106,13 @@
           <ol id="update" style="list-style:none;">
           </ol>
           <div id="flash"></div>
+          <audio id="chatAudio"><source src="{asset_url()}sound/notify.ogg" type="audio/ogg"><source src="{asset_url()}sound/notify.mp3" type="audio/mpeg"><source src="{asset_url()}sound/notify.wav" type="audio/wav"></audio>
           <div>
               <div align="left">
               <table>
               <tr>
                 <td>
-                  <input type='text' class="textbox" name="content" id="content" maxlength="145" />
+                  <input type='text' class="textbox" name="content" id="content" maxlength="200" placeholder="Message"/>
                 </td>
                 <input type='hidden' name="toUser" id="toUser" />
                 <td valign="top">

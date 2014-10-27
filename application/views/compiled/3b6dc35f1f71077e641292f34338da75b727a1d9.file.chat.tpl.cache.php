@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-27 08:30:10
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-27 13:04:26
          compiled from "application\views\templates\chat.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:27993544df482a41205-16346471%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:3000544e34cab89840-97307153%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '3b6dc35f1f71077e641292f34338da75b727a1d9' => 
     array (
       0 => 'application\\views\\templates\\chat.tpl',
-      1 => 1414378118,
+      1 => 1414406974,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '27993544df482a41205-16346471',
+  'nocache_hash' => '3000544e34cab89840-97307153',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544df482b9d519_72791446',
+  'unifunc' => 'content_544e34cad2dba1_39163796',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544df482b9d519_72791446')) {function content_544df482b9d519_72791446($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_544e34cad2dba1_39163796')) {function content_544e34cad2dba1_39163796($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
   </script>
@@ -28,6 +28,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     waitForMsg();
     friendRequest();
     getFriendList();
+
+ 
 
     $("#notificationLink").click(function()
     {
@@ -74,7 +76,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                  data: dataString,
                  cache: false,
                  success: function(html) {
-                     $("#inline_content ol").append(html);
+                     $(html).appendTo('#inline_content ol').emotions();
                      $('#content').val('');
                      $('#content').focus();
                      $("#flash").hide();
@@ -87,7 +89,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
      return false;
     });
 
-
+     $('#inline_content ol').emotions();
   });
   </script>
  
@@ -127,12 +129,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
           <ol id="update" style="list-style:none;">
           </ol>
           <div id="flash"></div>
+          <audio id="chatAudio"><source src="<?php echo asset_url();?>
+sound/notify.ogg" type="audio/ogg"><source src="<?php echo asset_url();?>
+sound/notify.mp3" type="audio/mpeg"><source src="<?php echo asset_url();?>
+sound/notify.wav" type="audio/wav"></audio>
           <div>
               <div align="left">
               <table>
               <tr>
                 <td>
-                  <input type='text' class="textbox" name="content" id="content" maxlength="145" />
+                  <input type='text' class="textbox" name="content" id="content" maxlength="200" placeholder="Message"/>
                 </td>
                 <input type='hidden' name="toUser" id="toUser" />
                 <td valign="top">

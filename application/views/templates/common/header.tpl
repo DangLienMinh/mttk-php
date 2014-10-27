@@ -21,6 +21,10 @@
   <script type="text/javascript" src="{asset_url()}js/jplayer.playlist.min.js"></script>
   <script type="text/javascript" src="{asset_url()}js/wall.js"></script>
   <script type="text/javascript">
+  window.emotionsFolder="{asset_url()}img/emotions-fb/";
+  </script>
+  <script type="text/javascript" src="{asset_url()}js/jquery.emotions.js"></script>
+  <script type="text/javascript">
   window.notifyStatus="{site_url('statusController/hienThiNotiStatus/')}";
   window.cretePlaylist="{site_url('playlistController/viewPlaylist/')}";
   window.profilePic="{uploads_url()}img/profilePic.jpg";
@@ -97,7 +101,6 @@ function getConversation(userEmail) {
     cache: false,
     timeout: 50000,
     success: function(data) { /* called when request to barge.php completes */
-
       addConversation(data); /* Add response to a .msg div (with the "new" class)*/
       setTimeout(
         getConversation, /* Request next message */
