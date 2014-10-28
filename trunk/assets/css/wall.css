@@ -286,24 +286,20 @@ a:hover {
     background-color: #fff;
     height: 45px;
     margin-bottom: 5px;
-    margin-left: 32px;
     margin-right: 50px;
     padding: 6px;
     width: 363px;
 }
 
 .cmtpic {
-    border: solid 1px #dedede;
     float: left;
     height: 33px;
     margin-right: 5px;
-    padding: 1px;
     width: 33px;
 }
 
 .load_comment {
     display: block;
-    margin-left: 40px;
     overflow: hidden;
     word-wrap: break-word;
 }
@@ -638,3 +634,10 @@ a:hover {
 
 #content { padding:5px; border-radius:5px; border:1px solid #999;width:300px }
 #post { padding: 4px;border: solid 1px #333;background-color: #133783;color:#fff;font-weight:bold }
+
+.comment_ui
+{
+margin-bottom:5px;
+padding:6px 4px 3px 0px;
+width:350px; 
+}

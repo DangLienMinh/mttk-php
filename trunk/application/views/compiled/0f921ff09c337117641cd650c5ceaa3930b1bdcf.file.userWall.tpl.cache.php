@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-26 04:04:21
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-28 02:39:30
          compiled from "application\views\templates\userWall.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:8478544c64b55445a1-18304262%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:26279544ef3d2504f21-21243342%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '0f921ff09c337117641cd650c5ceaa3930b1bdcf' => 
     array (
       0 => 'application\\views\\templates\\userWall.tpl',
-      1 => 1414033160,
+      1 => 1414460300,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '8478544c64b55445a1-18304262',
+  'nocache_hash' => '26279544ef3d2504f21-21243342',
   'function' => 
   array (
   ),
@@ -21,9 +21,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544c64b56fa268_34865499',
+  'unifunc' => 'content_544ef3d2630094_85607325',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544c64b56fa268_34865499')) {function content_544c64b56fa268_34865499($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_544ef3d2630094_85607325')) {function content_544ef3d2630094_85607325($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
 function getStatus(){
@@ -42,19 +42,35 @@ function getStatus(){
     waitForMsg();
     friendRequest();
     getStatus();
-    $('#noti_Container #noti').click(function() {
-      if ($('#noti_content').css('display') == 'none') {
-        $('#noti_content').css('display', 'block');
-      } else {
-        $('#noti_content').css('display', 'none');
-      }
+    getPlaylist();
+
+    $("#notificationLink").click(function()
+    {
+      $("#friendContainer").hide();
+      $("#notificationContainer").fadeToggle(300);
+      $("#notification_count").fadeOut("slow");
+      return false;
     });
-    $('#noti_Container #friend').click(function() {
-      if ($('#friend_content').css('display') == 'none') {
-        $('#friend_content').css('display', 'block');
-      } else {
-        $('#friend_content').css('display', 'none');
-      }
+
+    $("#friendLink").click(function()
+    {
+      $("#notificationContainer").hide();
+      $("#friendContainer").fadeToggle(300);
+      $("#friend_count").fadeOut("slow");
+      return false;
+    });
+
+    $(document).click(function()
+    {
+      $("#notificationContainer").hide();
+      $("#friendContainer").hide();
+    });
+
+    $('#savePlaylist').click(function(){
+      var id=$(this).parent().find('select').find(":selected").val();
+      var title=$(this).parent().find('#titleMusic').val();
+      var music=$(this).parent().find('#urlMusic').val();
+      savePlaylist(id,title,music);
     });
   });
   </script>
@@ -62,17 +78,30 @@ function getStatus(){
 </head>
 <body>
   <div id="noti_Container">
-    <img id="friend"  src="http://l-stat.livejournal.com/img/facebook-profile.gif" alt="profile" />
-    <img id="noti" src="http://l-stat.livejournal.com/img/facebook-profile.gif" alt="profile" />
-    <div class="noti_bubble"></div>
-    <div class="friend_bubble"></div>
-    
-  </div>
-  <div id="noti_content">
-    <ul></ul>
-  </div>
-  <div id="friend_content">
-    <ul></ul>
+    <ul id="nav">
+    <li id="friend_li">
+      <span id="friend_count"></span>
+      <a href="#" id="friendLink">Friends</a>
+      <div id="friendContainer">
+        <div id="friendTitle">Notifications</div>
+        <div id="friendBody" class="friend">
+          <ul></ul>
+        </div>
+        <div id="friendFooter"><a href="#">See All</a></div>
+      </div>
+    </li>
+    <li id="notification_li">
+      <span id="notification_count"></span>
+      <a href="#" id="notificationLink">Notifications</a>
+      <div id="notificationContainer">
+        <div id="notificationTitle">Notifications</div>
+        <div id="notificationsBody" class="notifications">
+          <ul></ul>
+        </div>
+        <div id="notificationFooter"><a href="#">See All</a></div>
+      </div>
+    </li>
+  </ul>
   </div>
     <div id="container">
       <div class="timeline_container">

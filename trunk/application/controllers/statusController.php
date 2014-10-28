@@ -1,15 +1,13 @@
 <?php
 class StatusController extends CI_Controller {
-    private $musicURL;
 
 	function __construct() {
         parent::__construct();
         $is_logged_in = $this->session->userdata('is_logged_in');
         if(!isset($is_logged_in) || $is_logged_in!=true)
         {
-            redirect('/login/index', 'refresh');
+            redirect('/userController/index', 'refresh');
         }
-        $musicURL="";
     }
 
 	function index()
@@ -28,11 +26,11 @@ class StatusController extends CI_Controller {
         $result= json_encode($result);
         $this->smarty->assign('items',$result);
         $this->smarty->assign('userPicCmt',$this->session->userdata('pic'));
+        $this->smarty->assign('userLogin',$this->session->userdata('email'));
         $this->smarty->view('userWall');
     }
 
 	public function chooseMusic(){
-        $musicLink="";
         if(@$_POST['music_name']) {
             $music=$_POST["music_name"];
             $music = str_replace(' ', '+', $music);
@@ -41,20 +39,6 @@ class StatusController extends CI_Controller {
             echo $json;
         }
     }
-
-    /*public function chooseMusic(){
-        $musicLink="";
-        if(@$_POST['music_name']) {
-            $music=$_POST["music_name"];
-            $music = str_replace(' ', '+', $music);
-            $urlMusic="http://j.ginggong.com/jOut.ashx?k=em"."&h=nhacso.net&code=eaf53a54-3147-483c-97ba-f7e3e2d0145b";
-            $json = file_get_contents($urlMusic);
-            $json = json_decode($content, true);
-            foreach($json as $i){
-                echo $i['UrlJunDownload'];
-            }
-        }
-    }*/
 
     public function updateStatus()
     {
@@ -112,6 +96,7 @@ class StatusController extends CI_Controller {
         $result=$status->laySingleStatus($statusParam);
         $result= json_encode($result);
         $this->smarty->assign('userPicCmt',$this->session->userdata('pic'));
+        $this->smarty->assign('userLogin',$this->session->userdata('email'));
         $this->smarty->assign('items',$result);
         $this->smarty->view('notiStatus');
     }

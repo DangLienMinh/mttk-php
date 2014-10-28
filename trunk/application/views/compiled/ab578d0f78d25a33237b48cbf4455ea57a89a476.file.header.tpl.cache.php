@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-27 13:04:26
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-28 04:04:45
          compiled from "application\views\templates\common\header.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:15761544e34cadce505-66018740%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:29820544f07cd4954e4-18840888%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1414400665,
+      1 => 1414465482,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '15761544e34cadce505-66018740',
+  'nocache_hash' => '29820544f07cd4954e4-18840888',
   'function' => 
   array (
   ),
@@ -22,9 +22,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544e34cb14e128_69308043',
+  'unifunc' => 'content_544f07cd69fba0_77987351',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544e34cb14e128_69308043')) {function content_544e34cb14e128_69308043($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_544f07cd69fba0_77987351')) {function content_544f07cd69fba0_77987351($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -321,6 +321,42 @@ $(document).on('click', '.like', function() {
   return false;
 });
 
+$(document).on('click', '.view_comments', function() {
+  var status=$(this).attr("id");
+  var dataString = 'status_id=' + status;
+  $.ajax({
+    type: "post",
+
+    url: "<?php echo base_url('commentController/layComment');?>
+",
+
+    data: dataString,
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    success: function(data) { /* called when request to barge.php completes */
+      var obj = JSON.parse(data);
+      $("#loadplace" + status).empty();
+      if (obj.length > 0) {
+        $.each(obj, function(i, val) {
+          var is_delete = "";
+          if (val.email == window.userLogin) {
+            is_delete = "delete_button";
+          }
+          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="' + val.email + '" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="' + is_delete + '"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
+        });
+      }
+    }
+  }).done(function(){
+    $('#container').masonry({
+      itemSelector: '.item',
+    });
+    $('.rightCorner').hide();
+    $('.leftCorner').hide();
+    Arrow_Points1();
+  });
+});
+
 function savePlaylist(id,title,url) {
   var dataString = 'playlist_id=' + id+'&title='+title+'&music='+url;
   $.ajax({
@@ -352,12 +388,46 @@ function getComment(status) {
     success: function(data) { /* called when request to barge.php completes */
       var obj = JSON.parse(data);
       if (obj.length > 0) {
-        $.each(obj, function(i, val) {
-          var is_delete="";
-          if(val.email==window.userLogin){
-            is_delete="delete_button";
+        if(obj.length<=3){
+            $.each(obj, function(i, val) {
+            var is_delete="";
+            if(val.email==window.userLogin){
+              is_delete="delete_button";
+            }
+            $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="'+val.email+'" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="'+is_delete+'"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
+          });
+          }else{
+            var second_count=obj.length-3;
+            $("#loadplace" + status).append('<div class="comment_ui"><a class="view_comments" id="'+status+'">View '+second_count+' more comments</a></div>');
+            getLastComment(status,second_count);
           }
-          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="'+val.email+'" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="'+is_delete+'"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
+        
+      }
+    }
+  });
+}
+
+function getLastComment(status,count) {
+  var dataString = 'status_id=' + status+'&count='+count;
+  $.ajax({
+    type: "post",
+
+    url: "<?php echo base_url('commentController/layLastComment');?>
+",
+
+    data: dataString,
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    success: function(data) { /* called when request to barge.php completes */
+      var obj = JSON.parse(data);
+      if (obj.length > 0) {
+        $.each(obj, function(i, val) {
+          var is_delete = "";
+          if (val.email == window.userLogin) {
+            is_delete = "delete_button";
+          }
+          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="' + val.email + '" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="' + is_delete + '"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
         });
       }
     }

@@ -1,31 +1,31 @@
-<?php /*%%SmartyHeaderCode:8478544c64b55445a1-18304262%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:26279544ef3d2504f21-21243342%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '0f921ff09c337117641cd650c5ceaa3930b1bdcf' => 
     array (
       0 => 'application\\views\\templates\\userWall.tpl',
-      1 => 1414033160,
+      1 => 1414460300,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1414291043,
+      1 => 1414400665,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '8478544c64b55445a1-18304262',
+  'nocache_hash' => '26279544ef3d2504f21-21243342',
   'variables' => 
   array (
     'items' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544c64b59a9864_61256483',
+  'unifunc' => 'content_544ef3d285feb6_06665253',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544c64b59a9864_61256483')) {function content_544c64b59a9864_61256483($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_544ef3d285feb6_06665253')) {function content_544ef3d285feb6_06665253($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -48,34 +48,22 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jplayer.playlist.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/wall.js"></script>
   <script type="text/javascript">
+  window.emotionsFolder="http://localhost:81/mttk-php/assets/img/emotions-fb/";
+  </script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.emotions.js"></script>
+  <script type="text/javascript">
   window.notifyStatus="http://localhost:81/mttk-php/statusController/hienThiNotiStatus";
   window.cretePlaylist="http://localhost:81/mttk-php/playlistController/viewPlaylist";
   window.profilePic="http://localhost:81/mttk-php/uploads/img/profilePic.jpg";
   window.userPic="http://localhost:81/mttk-php/uploads/img/";
   window.userWall="http://localhost:81/mttk-php/statusController/layDSWallStatus";
-  window.userLogin="<div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">
-
-<h4>A PHP Error was encountered</h4>
-
-<p>Severity: Notice</p>
-<p>Message:  Undefined index: userLogin</p>
-<p>Filename: sysplugins/smarty_internal_templatebase.php(151) : eval()'d code</p>
-<p>Line Number: 77</p>
-
-</div><div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">
-
-<h4>A PHP Error was encountered</h4>
-
-<p>Severity: Notice</p>
-<p>Message:  Trying to get property of non-object</p>
-<p>Filename: sysplugins/smarty_internal_templatebase.php(151) : eval()'d code</p>
-<p>Line Number: 77</p>
-
-</div>";
+  window.userLogin="duongphuocloc@gmail.com";
   window.friendController="http://localhost:81/mttk-php/friendController";
-  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/shot0006.jpg";
+  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/a6551.jpg";
   window.compare=0;
   window.compareStatus=0;
+  window.currentChatPosition=-1;
+  window.userChat="";
 
 
 function waitForMsg() {
@@ -117,6 +105,52 @@ function getFriendList() {
     /* Timeout in ms */
     success: function(data) { /* called when request to barge.php completes */
      addFriendList(data);
+    }
+  });
+}
+
+function getConversation(userEmail) {
+  if(typeof userEmail !== 'undefined'){
+    if( window.userChat!=userEmail){
+      $("#inline_content ol").empty();
+        window.userChat = userEmail;
+    }
+  }
+  var dataString = 'email=' + window.userChat;
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/messageController/getFirstMessages",
+
+    data: dataString,
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    timeout: 50000,
+    success: function(data) { /* called when request to barge.php completes */
+      addConversation(data); /* Add response to a .msg div (with the "new" class)*/
+      setTimeout(
+        getConversation, /* Request next message */
+        2000 /* ..after 1 seconds */
+      );
+    }
+  });
+}
+
+function getMoreConversation(userEmail,last_id) {
+  var dataString = 'email=' + userEmail+'&started='+last_id;
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/messageController/getMoreMessages",
+
+    data: dataString,
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    timeout: 50000,
+    success: function(data) { /* called when request to barge.php completes */
+      addMoreConversation(data); /* Add response to a .msg div (with the "new" class)*/
     }
   });
 }
@@ -393,19 +427,35 @@ function getStatus(){
     waitForMsg();
     friendRequest();
     getStatus();
-    $('#noti_Container #noti').click(function() {
-      if ($('#noti_content').css('display') == 'none') {
-        $('#noti_content').css('display', 'block');
-      } else {
-        $('#noti_content').css('display', 'none');
-      }
+    getPlaylist();
+
+    $("#notificationLink").click(function()
+    {
+      $("#friendContainer").hide();
+      $("#notificationContainer").fadeToggle(300);
+      $("#notification_count").fadeOut("slow");
+      return false;
     });
-    $('#noti_Container #friend').click(function() {
-      if ($('#friend_content').css('display') == 'none') {
-        $('#friend_content').css('display', 'block');
-      } else {
-        $('#friend_content').css('display', 'none');
-      }
+
+    $("#friendLink").click(function()
+    {
+      $("#notificationContainer").hide();
+      $("#friendContainer").fadeToggle(300);
+      $("#friend_count").fadeOut("slow");
+      return false;
+    });
+
+    $(document).click(function()
+    {
+      $("#notificationContainer").hide();
+      $("#friendContainer").hide();
+    });
+
+    $('#savePlaylist').click(function(){
+      var id=$(this).parent().find('select').find(":selected").val();
+      var title=$(this).parent().find('#titleMusic').val();
+      var music=$(this).parent().find('#urlMusic').val();
+      savePlaylist(id,title,music);
     });
   });
   </script>
@@ -413,17 +463,30 @@ function getStatus(){
 </head>
 <body>
   <div id="noti_Container">
-    <img id="friend"  src="http://l-stat.livejournal.com/img/facebook-profile.gif" alt="profile" />
-    <img id="noti" src="http://l-stat.livejournal.com/img/facebook-profile.gif" alt="profile" />
-    <div class="noti_bubble"></div>
-    <div class="friend_bubble"></div>
-    
-  </div>
-  <div id="noti_content">
-    <ul></ul>
-  </div>
-  <div id="friend_content">
-    <ul></ul>
+    <ul id="nav">
+    <li id="friend_li">
+      <span id="friend_count"></span>
+      <a href="#" id="friendLink">Friends</a>
+      <div id="friendContainer">
+        <div id="friendTitle">Notifications</div>
+        <div id="friendBody" class="friend">
+          <ul></ul>
+        </div>
+        <div id="friendFooter"><a href="#">See All</a></div>
+      </div>
+    </li>
+    <li id="notification_li">
+      <span id="notification_count"></span>
+      <a href="#" id="notificationLink">Notifications</a>
+      <div id="notificationContainer">
+        <div id="notificationTitle">Notifications</div>
+        <div id="notificationsBody" class="notifications">
+          <ul></ul>
+        </div>
+        <div id="notificationFooter"><a href="#">See All</a></div>
+      </div>
+    </li>
+  </ul>
   </div>
     <div id="container">
       <div class="timeline_container">

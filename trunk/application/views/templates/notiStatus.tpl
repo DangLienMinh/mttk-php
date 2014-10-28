@@ -2,8 +2,6 @@
 {literal}
 function getStatus(){
       var data;
-        /* This requests the url "msgsrv.php"
-        When it complete (or errors)*/
 {/literal}
       data={$items}
 {literal}
@@ -15,19 +13,35 @@ function getStatus(){
     waitForMsg();
     friendRequest();
     getStatus();
-    $('#noti_Container #noti').click(function() {
-      if ($('#noti_content').css('display') == 'none') {
-        $('#noti_content').css('display', 'block');
-      } else {
-        $('#noti_content').css('display', 'none');
-      }
+    getPlaylist();
+
+    $("#notificationLink").click(function()
+    {
+      $("#friendContainer").hide();
+      $("#notificationContainer").fadeToggle(300);
+      $("#notification_count").fadeOut("slow");
+      return false;
     });
-    $('#noti_Container #friend').click(function() {
-      if ($('#friend_content').css('display') == 'none') {
-        $('#friend_content').css('display', 'block');
-      } else {
-        $('#friend_content').css('display', 'none');
-      }
+
+    $("#friendLink").click(function()
+    {
+      $("#notificationContainer").hide();
+      $("#friendContainer").fadeToggle(300);
+      $("#friend_count").fadeOut("slow");
+      return false;
+    });
+
+    $(document).click(function()
+    {
+      $("#notificationContainer").hide();
+      $("#friendContainer").hide();
+    });
+
+    $('#savePlaylist').click(function(){
+      var id=$(this).parent().find('select').find(":selected").val();
+      var title=$(this).parent().find('#titleMusic').val();
+      var music=$(this).parent().find('#urlMusic').val();
+      savePlaylist(id,title,music);
     });
   });
   </script>
@@ -35,17 +49,30 @@ function getStatus(){
 </head>
 <body>
   <div id="noti_Container">
-    <img id="friend"  src="http://l-stat.livejournal.com/img/facebook-profile.gif" alt="profile" />
-    <img id="noti" src="http://l-stat.livejournal.com/img/facebook-profile.gif" alt="profile" />
-    <div class="noti_bubble"></div>
-    <div class="friend_bubble"></div>
-    
-  </div>
-  <div id="noti_content">
-    <ul></ul>
-  </div>
-  <div id="friend_content">
-    <ul></ul>
+    <ul id="nav">
+    <li id="friend_li">
+      <span id="friend_count"></span>
+      <a href="#" id="friendLink">Friends</a>
+      <div id="friendContainer">
+        <div id="friendTitle">Notifications</div>
+        <div id="friendBody" class="friend">
+          <ul></ul>
+        </div>
+        <div id="friendFooter"><a href="#">See All</a></div>
+      </div>
+    </li>
+    <li id="notification_li">
+      <span id="notification_count"></span>
+      <a href="#" id="notificationLink">Notifications</a>
+      <div id="notificationContainer">
+        <div id="notificationTitle">Notifications</div>
+        <div id="notificationsBody" class="notifications">
+          <ul></ul>
+        </div>
+        <div id="notificationFooter"><a href="#">See All</a></div>
+      </div>
+    </li>
+  </ul>
   </div>
     <div id="container">
       <div class="timeline_container">
