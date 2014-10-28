@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-27 14:25:30
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-28 08:27:07
          compiled from "application\views\templates\myform.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:9074544df36ab7bae2-94524425%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:6476544ef0eb255439-97214801%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '49144c6ed7cc2be2618deb805eb8d5ae798f5ede' => 
     array (
       0 => 'application\\views\\templates\\myform.tpl',
-      1 => 1413018793,
+      1 => 1414459575,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '9074544df36ab7bae2-94524425',
+  'nocache_hash' => '6476544ef0eb255439-97214801',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544df36ac99222_41803255',
+  'unifunc' => 'content_544ef0eb48e467_29355079',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544df36ac99222_41803255')) {function content_544df36ac99222_41803255($_smarty_tpl) {?><html>
+<?php if ($_valid && !is_callable('content_544ef0eb48e467_29355079')) {function content_544ef0eb48e467_29355079($_smarty_tpl) {?><html>
 <head>
 <title>My Form</title>
 <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>
@@ -28,7 +28,7 @@ css/main.css">
 <body>
 <?php echo validation_errors();?>
 
-<?php echo form_open('login/register');?>
+<?php echo form_open('userController/register');?>
 
 
 <h1>Register account</h1>
@@ -53,7 +53,7 @@ css/main.css">
 <?php echo form_close();?>
 
 
-<?php echo form_open('login/login1');?>
+<?php echo form_open('userController/login1');?>
 
 <h5>email name</h5>
 <input type="text" name="email_login"/>

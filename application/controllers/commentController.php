@@ -5,7 +5,7 @@ class CommentController extends CI_Controller {
         $is_logged_in = $this->session->userdata('is_logged_in');
         if(!isset($is_logged_in) || $is_logged_in!=true)
         {
-            redirect('/login/index', 'refresh');
+            redirect('/userController/index', 'refresh');
         }
     }
 
@@ -27,8 +27,18 @@ class CommentController extends CI_Controller {
         $comment = new Entity\CommentDAO($em);
         $result=$comment->layComment($status_id);
         echo json_encode($result);
+    }
+
+    public function layLastComment(){
+        $status_id=$_POST["status_id"];
+        $count=$_POST["count"];
+        $em = $this->doctrine->em;
+        $comment = new Entity\CommentDAO($em);
+        $result=$comment->layLastComment($status_id,$count);
+        echo json_encode($result);
         
     }
+
     public function xoaComment(){
         $comment_id=$_POST["id"];
         $em = $this->doctrine->em;

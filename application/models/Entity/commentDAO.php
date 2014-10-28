@@ -40,5 +40,18 @@ class CommentDAO
         $result = $sth->fetchAll();
         return $result;
     }
+
+    public function layLastComment($status_id,$count)
+    {
+        // prepare statemen
+        $cnn=$this->em->getConnection();
+        $sth = $cnn->prepare("CALL GetLastComment(?,?)");
+        $sth->bindValue(1, $status_id);
+        $sth->bindValue(2, $count);
+        // execute and fetch
+        $sth->execute();
+        $result = $sth->fetchAll();
+        return $result;
+    }
 }
 ?>

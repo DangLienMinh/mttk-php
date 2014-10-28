@@ -5,12 +5,9 @@
         $is_logged_in = $this->session->userdata('is_logged_in');
         if(!isset($is_logged_in) || $is_logged_in!=true)
         {
-            redirect('/login/index', 'refresh');
+            redirect('/userController/index', 'refresh');
         }
     }
-
-	public function index(){
-	}
 
 	public function addMessage(){
 		$data['to']=$this->input->post('email');

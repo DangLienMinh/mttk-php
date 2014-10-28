@@ -256,6 +256,41 @@ $(document).on('click', '.like', function() {
   return false;
 });
 
+$(document).on('click', '.view_comments', function() {
+  var status=$(this).attr("id");
+  var dataString = 'status_id=' + status;
+  $.ajax({
+    type: "post",
+{/literal}
+    url: "{base_url('commentController/layComment')}",
+{literal}
+    data: dataString,
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    success: function(data) { /* called when request to barge.php completes */
+      var obj = JSON.parse(data);
+      $("#loadplace" + status).empty();
+      if (obj.length > 0) {
+        $.each(obj, function(i, val) {
+          var is_delete = "";
+          if (val.email == window.userLogin) {
+            is_delete = "delete_button";
+          }
+          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="' + val.email + '" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="' + is_delete + '"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
+        });
+      }
+    }
+  }).done(function(){
+    $('#container').masonry({
+      itemSelector: '.item',
+    });
+    $('.rightCorner').hide();
+    $('.leftCorner').hide();
+    Arrow_Points1();
+  });
+});
+
 function savePlaylist(id,title,url) {
   var dataString = 'playlist_id=' + id+'&title='+title+'&music='+url;
   $.ajax({
@@ -285,12 +320,45 @@ function getComment(status) {
     success: function(data) { /* called when request to barge.php completes */
       var obj = JSON.parse(data);
       if (obj.length > 0) {
-        $.each(obj, function(i, val) {
-          var is_delete="";
-          if(val.email==window.userLogin){
-            is_delete="delete_button";
+        if(obj.length<=3){
+            $.each(obj, function(i, val) {
+            var is_delete="";
+            if(val.email==window.userLogin){
+              is_delete="delete_button";
+            }
+            $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="'+val.email+'" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="'+is_delete+'"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
+          });
+          }else{
+            var second_count=obj.length-3;
+            $("#loadplace" + status).append('<div class="comment_ui"><a class="view_comments" id="'+status+'">View '+second_count+' more comments</a></div>');
+            getLastComment(status,second_count);
           }
-          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="'+val.email+'" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="'+is_delete+'"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
+        
+      }
+    }
+  });
+}
+
+function getLastComment(status,count) {
+  var dataString = 'status_id=' + status+'&count='+count;
+  $.ajax({
+    type: "post",
+{/literal}
+    url: "{base_url('commentController/layLastComment')}",
+{literal}
+    data: dataString,
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    success: function(data) { /* called when request to barge.php completes */
+      var obj = JSON.parse(data);
+      if (obj.length > 0) {
+        $.each(obj, function(i, val) {
+          var is_delete = "";
+          if (val.email == window.userLogin) {
+            is_delete = "delete_button";
+          }
+          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="' + val.email + '" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="' + is_delete + '"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
         });
       }
     }

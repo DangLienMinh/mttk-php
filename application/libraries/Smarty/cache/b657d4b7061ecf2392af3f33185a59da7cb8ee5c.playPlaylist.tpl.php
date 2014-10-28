@@ -1,21 +1,21 @@
-<?php /*%%SmartyHeaderCode:13417544b246bdaeb98-95369914%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:2251544ee8c4a6db45-60121010%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'b657d4b7061ecf2392af3f33185a59da7cb8ee5c' => 
     array (
       0 => 'application\\views\\templates\\playPlaylist.tpl',
-      1 => 1414208415,
+      1 => 1414220571,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '13417544b246bdaeb98-95369914',
+  'nocache_hash' => '2251544ee8c4a6db45-60121010',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544b246bef4967_28963606',
+  'unifunc' => 'content_544ee8c4bba0b2_20632635',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544b246bef4967_28963606')) {function content_544b246bef4967_28963606($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_544ee8c4bba0b2_20632635')) {function content_544ee8c4bba0b2_20632635($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -30,30 +30,29 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <script type="text/javascript">
   window.cretePlaylist="http://localhost:81/mttk-php/playlistController/viewPlaylist";
   
-    function testXem(data){
-        var obj = JSON.parse(data);
-        var cssSelector = {
-       jPlayer: "#jquery_jplayer_1",
-       cssSelectorAncestor: "#jp_container_1"
-    };
-    /*An Empty Playlist*/
-    var playlist = [];
-       var options = {
-           swfPath: "js",
-           supplied: "mp3"
-    };
-    var myPlaylist = new jPlayerPlaylist(cssSelector, playlist, options);
-    /*Loop through the JSon array and add it to the playlist*/ 
-   $.each(obj, function(i, val) {
-          myPlaylist.add({
-            title: val.title,
-            mp3: val.mp3
+    
+    function displaySong(data) {
+      var obj = JSON.parse(data);
+      var cssSelector = {
+        jPlayer: "#jquery_jplayer_1",
+        cssSelectorAncestor: "#jp_container_1"
+      };
+      /*An Empty Playlist*/
+      var playlist = [];
+      var options = {
+        swfPath: "js",
+        supplied: "mp3"
+      };
+      var myPlaylist = new jPlayerPlaylist(cssSelector, playlist, options);
+      /*Loop through the JSon array and add it to the playlist*/
+      $.each(obj, function(i, val) {
+        myPlaylist.add({
+          title: val.title,
+          mp3: val.mp3
         });
-    });
+      });
 
-      }
-
-
+    }
 function getPlaylist() {
   $.ajax({
     type: "post",
@@ -85,7 +84,7 @@ function getSong(data) {
     timeout: 50000,
     /* Timeout in ms */
     success: function(data) { /* called when request to barge.php completes */
-      testXem(data);
+      displaySong(data);
     }
   });
 }
@@ -115,7 +114,6 @@ function addPlaylist(msg) {
 </head>
 <body>
     <div id="jquery_jplayer_1" class="jp-jplayer"></div>
-
     <div id="jp_container_1" class="jp-audio">
       <div class="jp-type-playlist">
         <div class="jp-gui jp-interface">
@@ -158,8 +156,6 @@ function addPlaylist(msg) {
         </div>
       </div>
     </div>
-
-
     <div style="border: 1px solid black; height: 50px; width: 180px; 
        padding: 5px; position: absolute; left: 100px; top: 100px; 
        background-color: silver;" id="playlistBox">
