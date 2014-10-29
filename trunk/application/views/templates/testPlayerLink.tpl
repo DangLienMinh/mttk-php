@@ -17,7 +17,7 @@ function getStatus() {
       addStatus(data); /* Add response to a .msg div (with the "new" class)*/
       setTimeout(
         getStatus, /* Request next message */
-        3000 /* ..after 1 seconds */
+        600000 /* ..after 1 seconds */
       );
     },
     error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -30,6 +30,7 @@ function getStatus() {
 }
   </script>
   <script>
+
   $(document).ready(function() {
     waitForMsg();
     friendRequest();
