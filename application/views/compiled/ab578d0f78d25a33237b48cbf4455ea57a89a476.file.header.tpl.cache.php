@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-28 04:04:45
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-29 16:24:18
          compiled from "application\views\templates\common\header.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:29820544f07cd4954e4-18840888%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:13248545106a225a513-43413544%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1414465482,
+      1 => 1414594740,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '29820544f07cd4954e4-18840888',
+  'nocache_hash' => '13248545106a225a513-43413544',
   'function' => 
   array (
   ),
@@ -22,9 +22,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544f07cd69fba0_77987351',
+  'unifunc' => 'content_545106a23dc970_53331473',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544f07cd69fba0_77987351')) {function content_544f07cd69fba0_77987351($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_545106a23dc970_53331473')) {function content_545106a23dc970_53331473($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -92,6 +92,14 @@ img/<?php echo $_smarty_tpl->tpl_vars['userPicCmt']->value;?>
   window.currentChatPosition=-1;
   window.userChat="";
 
+
+
+$( document ).ajaxStop(function() {
+    $('#container').masonry({
+            itemSelector: '.item'
+    });
+    Arrow_Points();
+});
 
 function waitForMsg() {
   $.ajax({
@@ -223,34 +231,37 @@ function friendRequest() {
   });
 }
 
-$(document).on('click', '.comment_submit', function() {
-  var element = $(this);
-  var Id = element.attr("id");
-  var test = $("#textboxcontent" + Id).val();
-  var dataString = 'textcontent=' + test + '&com_msgid=' + Id;
-  if (test == '') {
-    alert("Please Enter Some Text");
-  } else {
-    $("#flash" + Id).show();
+$(document).on('keypress', '.commentInput', function(e) {
+  if (e.keyCode == 13) {
+    e.preventDefault();
+    var Id=$(this).attr('id').substring(14);
+    var test = $(this).val();
+    var dataString = 'textcontent=' + test + '&com_msgid=' + Id;
+    $(this).val('');
+    if (test == '') {
+      alert("Please Enter Some Text");
+    } else {
+      $("#flash" + Id).show();
 
-    $("#flash" + Id).fadeIn(400).html('<img src="<?php echo asset_url();?>
+      $("#flash" + Id).fadeIn(400).html('<img src="<?php echo asset_url();?>
 img/ajax-loader.gif" align="absmiddle"> loading.....');
-    
-    $.ajax({
-      type: "post",
 
-      url: "<?php echo base_url('commentController/themComment');?>
+      $.ajax({
+        type: "post",
+
+        url: "<?php echo base_url('commentController/themComment');?>
 ",
 
-      data: dataString,
-      cache: false,
-      success: function(html) {
-        $("#loadplace" + Id).append(html);
-        $("#flash" + Id).hide();
-      }
-    });
+        data: dataString,
+        cache: false,
+        success: function(html) {
+          $("#loadplace" + Id).append(html);
+          $("#flash" + Id).hide();
+        }
+      });
+    }
+    return false;
   }
-  return false;
 });
 
 $(document).on('click', '.delete_button', function() {
@@ -347,13 +358,6 @@ $(document).on('click', '.view_comments', function() {
         });
       }
     }
-  }).done(function(){
-    $('#container').masonry({
-      itemSelector: '.item',
-    });
-    $('.rightCorner').hide();
-    $('.leftCorner').hide();
-    Arrow_Points1();
   });
 });
 
@@ -492,14 +496,11 @@ function getLike(status) {
         }
       }
     }).done(function() {
-      $('#container').masonry({
-        itemSelector: '.item',
-      });
-      Arrow_Points();
       $(".timeago").livequery(function() // LiveQuery 
         {
           $(this).timeago(); // Calling Timeago Funtion 
         });
+
     });
   });
 }

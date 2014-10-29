@@ -1,4 +1,4 @@
-<?php /*%%SmartyHeaderCode:3000544e34cab89840-97307153%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:20803545106a2109231-39141848%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,17 +11,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1414400665,
+      1 => 1414594740,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '3000544e34cab89840-97307153',
+  'nocache_hash' => '20803545106a2109231-39141848',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544e34cb1b4c04_84302070',
+  'unifunc' => 'content_545106a2430485_79419168',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544e34cb1b4c04_84302070')) {function content_544e34cb1b4c04_84302070($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_545106a2430485_79419168')) {function content_545106a2430485_79419168($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -61,6 +61,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   window.currentChatPosition=-1;
   window.userChat="";
 
+
+
+$( document ).ajaxStop(function() {
+    $('#container').masonry({
+            itemSelector: '.item'
+    });
+    Arrow_Points();
+});
 
 function waitForMsg() {
   $.ajax({
@@ -185,32 +193,35 @@ function friendRequest() {
   });
 }
 
-$(document).on('click', '.comment_submit', function() {
-  var element = $(this);
-  var Id = element.attr("id");
-  var test = $("#textboxcontent" + Id).val();
-  var dataString = 'textcontent=' + test + '&com_msgid=' + Id;
-  if (test == '') {
-    alert("Please Enter Some Text");
-  } else {
-    $("#flash" + Id).show();
+$(document).on('keypress', '.commentInput', function(e) {
+  if (e.keyCode == 13) {
+    e.preventDefault();
+    var Id=$(this).attr('id').substring(14);
+    var test = $(this).val();
+    var dataString = 'textcontent=' + test + '&com_msgid=' + Id;
+    $(this).val('');
+    if (test == '') {
+      alert("Please Enter Some Text");
+    } else {
+      $("#flash" + Id).show();
 
-    $("#flash" + Id).fadeIn(400).html('<img src="http://localhost:81/mttk-php/assets/img/ajax-loader.gif" align="absmiddle"> loading.....');
-    
-    $.ajax({
-      type: "post",
+      $("#flash" + Id).fadeIn(400).html('<img src="http://localhost:81/mttk-php/assets/img/ajax-loader.gif" align="absmiddle"> loading.....');
 
-      url: "http://localhost:81/mttk-php/commentController/themComment",
+      $.ajax({
+        type: "post",
 
-      data: dataString,
-      cache: false,
-      success: function(html) {
-        $("#loadplace" + Id).append(html);
-        $("#flash" + Id).hide();
-      }
-    });
+        url: "http://localhost:81/mttk-php/commentController/themComment",
+
+        data: dataString,
+        cache: false,
+        success: function(html) {
+          $("#loadplace" + Id).append(html);
+          $("#flash" + Id).hide();
+        }
+      });
+    }
+    return false;
   }
-  return false;
 });
 
 $(document).on('click', '.delete_button', function() {
@@ -279,6 +290,34 @@ $(document).on('click', '.like', function() {
   return false;
 });
 
+$(document).on('click', '.view_comments', function() {
+  var status=$(this).attr("id");
+  var dataString = 'status_id=' + status;
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/commentController/layComment",
+
+    data: dataString,
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    success: function(data) { /* called when request to barge.php completes */
+      var obj = JSON.parse(data);
+      $("#loadplace" + status).empty();
+      if (obj.length > 0) {
+        $.each(obj, function(i, val) {
+          var is_delete = "";
+          if (val.email == window.userLogin) {
+            is_delete = "delete_button";
+          }
+          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="' + val.email + '" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="' + is_delete + '"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
+        });
+      }
+    }
+  });
+});
+
 function savePlaylist(id,title,url) {
   var dataString = 'playlist_id=' + id+'&title='+title+'&music='+url;
   $.ajax({
@@ -308,12 +347,45 @@ function getComment(status) {
     success: function(data) { /* called when request to barge.php completes */
       var obj = JSON.parse(data);
       if (obj.length > 0) {
-        $.each(obj, function(i, val) {
-          var is_delete="";
-          if(val.email==window.userLogin){
-            is_delete="delete_button";
+        if(obj.length<=3){
+            $.each(obj, function(i, val) {
+            var is_delete="";
+            if(val.email==window.userLogin){
+              is_delete="delete_button";
+            }
+            $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="'+val.email+'" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="'+is_delete+'"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
+          });
+          }else{
+            var second_count=obj.length-3;
+            $("#loadplace" + status).append('<div class="comment_ui"><a class="view_comments" id="'+status+'">View '+second_count+' more comments</a></div>');
+            getLastComment(status,second_count);
           }
-          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="'+val.email+'" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="'+is_delete+'"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
+        
+      }
+    }
+  });
+}
+
+function getLastComment(status,count) {
+  var dataString = 'status_id=' + status+'&count='+count;
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/commentController/layLastComment",
+
+    data: dataString,
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    success: function(data) { /* called when request to barge.php completes */
+      var obj = JSON.parse(data);
+      if (obj.length > 0) {
+        $.each(obj, function(i, val) {
+          var is_delete = "";
+          if (val.email == window.userLogin) {
+            is_delete = "delete_button";
+          }
+          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="' + val.email + '" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="' + is_delete + '"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
         });
       }
     }
@@ -376,14 +448,11 @@ function getLike(status) {
         }
       }
     }).done(function() {
-      $('#container').masonry({
-        itemSelector: '.item',
-      });
-      Arrow_Points();
       $(".timeago").livequery(function() // LiveQuery 
         {
           $(this).timeago(); // Calling Timeago Funtion 
         });
+
     });
   });
 }

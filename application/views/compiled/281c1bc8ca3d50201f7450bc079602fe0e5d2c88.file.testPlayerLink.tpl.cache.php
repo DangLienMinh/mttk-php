@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-28 04:04:45
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-29 16:01:47
          compiled from "application\views\templates\testPlayerLink.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:28527544f07cd2b85b8-86054196%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:131235451015b112318-37567287%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1414289885,
+      1 => 1414592952,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '28527544f07cd2b85b8-86054196',
+  'nocache_hash' => '131235451015b112318-37567287',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544f07cd413bd8_34028494',
+  'unifunc' => 'content_5451015b27e1c4_27525602',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544f07cd413bd8_34028494')) {function content_544f07cd413bd8_34028494($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_5451015b27e1c4_27525602')) {function content_5451015b27e1c4_27525602($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
 function getStatus() {
@@ -40,7 +40,7 @@ function getStatus() {
       addStatus(data); /* Add response to a .msg div (with the "new" class)*/
       setTimeout(
         getStatus, /* Request next message */
-        3000 /* ..after 1 seconds */
+        600000 /* ..after 1 seconds */
       );
     },
     error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -53,6 +53,7 @@ function getStatus() {
 }
   </script>
   <script>
+
   $(document).ready(function() {
     waitForMsg();
     friendRequest();

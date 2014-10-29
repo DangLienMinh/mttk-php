@@ -39,6 +39,14 @@
   window.userChat="";
 
 {literal}
+
+$( document ).ajaxStop(function() {
+    $('#container').masonry({
+            itemSelector: '.item'
+    });
+    Arrow_Points();
+});
+
 function waitForMsg() {
   $.ajax({
     type: "post",
@@ -162,32 +170,35 @@ function friendRequest() {
   });
 }
 
-$(document).on('click', '.comment_submit', function() {
-  var element = $(this);
-  var Id = element.attr("id");
-  var test = $("#textboxcontent" + Id).val();
-  var dataString = 'textcontent=' + test + '&com_msgid=' + Id;
-  if (test == '') {
-    alert("Please Enter Some Text");
-  } else {
-    $("#flash" + Id).show();
+$(document).on('keypress', '.commentInput', function(e) {
+  if (e.keyCode == 13) {
+    e.preventDefault();
+    var Id=$(this).attr('id').substring(14);
+    var test = $(this).val();
+    var dataString = 'textcontent=' + test + '&com_msgid=' + Id;
+    $(this).val('');
+    if (test == '') {
+      alert("Please Enter Some Text");
+    } else {
+      $("#flash" + Id).show();
 {/literal}
-    $("#flash" + Id).fadeIn(400).html('<img src="{asset_url()}img/ajax-loader.gif" align="absmiddle"> loading.....');
-{literal}    
-    $.ajax({
-      type: "post",
-{/literal}
-      url: "{base_url('commentController/themComment')}",
+      $("#flash" + Id).fadeIn(400).html('<img src="{asset_url()}img/ajax-loader.gif" align="absmiddle"> loading.....');
 {literal}
-      data: dataString,
-      cache: false,
-      success: function(html) {
-        $("#loadplace" + Id).append(html);
-        $("#flash" + Id).hide();
-      }
-    });
+      $.ajax({
+        type: "post",
+{/literal}
+        url: "{base_url('commentController/themComment')}",
+{literal}
+        data: dataString,
+        cache: false,
+        success: function(html) {
+          $("#loadplace" + Id).append(html);
+          $("#flash" + Id).hide();
+        }
+      });
+    }
+    return false;
   }
-  return false;
 });
 
 $(document).on('click', '.delete_button', function() {
@@ -281,13 +292,6 @@ $(document).on('click', '.view_comments', function() {
         });
       }
     }
-  }).done(function(){
-    $('#container').masonry({
-      itemSelector: '.item',
-    });
-    $('.rightCorner').hide();
-    $('.leftCorner').hide();
-    Arrow_Points1();
   });
 });
 
@@ -421,14 +425,11 @@ function getLike(status) {
         }
       }
     }).done(function() {
-      $('#container').masonry({
-        itemSelector: '.item',
-      });
-      Arrow_Points();
       $(".timeago").livequery(function() // LiveQuery 
         {
           $(this).timeago(); // Calling Timeago Funtion 
         });
+
     });
   });
 }

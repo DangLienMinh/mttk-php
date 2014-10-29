@@ -76,8 +76,8 @@ var playlistElement='<div class="jp-type-playlist"> \
 
 function addStatus(msg) {
 	var obj = JSON.parse(msg);
-	var numberToInsert = obj.length - window.compareStatus;
 	if (obj.length > window.compareStatus) {
+		var numberToInsert = obj.length - window.compareStatus;
 		window.compareStatus = obj.length;
 		try {
 			var items = [];
@@ -92,25 +92,26 @@ function addStatus(msg) {
 		        }
 				var checkPlaylist=parseInt(val.music);
 				if($.isNumeric(checkPlaylist)){
-					$('#container').append('<div class="item"><a href="#" class="'+is_delete+'"></a><div class="stimg"><img id="'+val.email+'" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio">' + playlistElement + '</div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea style="width:305px;height:23px" placeholder=" Write your comment..." id="textboxcontent' + val.status_id + '"></textarea><br/><button value="Comment" class="comment_submit" id="' + val.status_id + '">Comment</button></div></div></div>');
+					$('#container').append('<div class="item"><span id="arrow"></span><a href="#" class="'+is_delete+'"></a><div class="stimg"><img id="'+val.email+'" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio">' + playlistElement + '</div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea style="width:305px;height:32px" placeholder=" Write your comment..." class="commentInput" id="textboxcontent' + val.status_id + '"></textarea></div></div></div>');
 					getComment(val.status_id);
 					getLike(val.status_id);
 					getSong('#jquery_jplayer_' + i, '#jp_container_' + i, checkPlaylist);
 					numberToInsert = numberToInsert - 1;
 					if (numberToInsert == 0) {
-						return false;
+						return;
 					}
 				} else{
-					$('#container').append('<div class="item"><a href="#" class="'+is_delete+'"></a><div class="stimg"><img id="'+val.email+'" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a><a href="#" class="playlist_button" id=playlist"' + val.status_id + '">Playlist</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea style="width:305px;height:23px" placeholder=" Write your comment..." id="textboxcontent' + val.status_id + '"></textarea><br/><button value="Comment" class="comment_submit" id="' + val.status_id + '">Comment</button></div></div></div>');
+					$('#container').append('<div class="item"><span id="arrow"></span><a href="#" class="'+is_delete+'"></a><div class="stimg"><img id="'+val.email+'" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a><a href="#" class="playlist_button" id=playlist"' + val.status_id + '">Playlist</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea class="commentInput" style="width:305px;height:32px" placeholder=" Write your comment..." id="textboxcontent' + val.status_id + '"></textarea></div></div></div>');
 					getComment(val.status_id);
 					getLike(val.status_id);
 					setSong('#jquery_jplayer_' + i, '#jp_interface_' + i, val.music, val.title);
 					numberToInsert = numberToInsert - 1;
 					if (numberToInsert == 0) {
-						return false;
+						return;
 					}
 				}
 			});
+
 		} catch (e) {
 			alert(e);
 		}
@@ -168,6 +169,7 @@ function addPlaylist(msg) {
 		});
 		$('#playlistBox').append('<br/><a class="iframe" href="'+window.cretePlaylist+'">Create Playlist</a>');
 		$(".iframe").colorbox({iframe:true, width:"50%", height:"50%"});
+
 	} catch (e) {
 		alert(e);
 	}
@@ -237,10 +239,13 @@ function addMoreConversation(msg) {
 		$.each(obj, function(i, val) {
 			if (val.email != window.userChat) {
 				var div_data = '<li class="chatRight" id="' + val.message_id + '"><p>' + val.message + "</p></li>";
+				$(div_data).prependTo('#inline_content ol').emotions();
 			} else {
-				var div_data = '<li class="chatLeft" id="' + val.message_id + '"><img style="width:30px;height:30px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + "</span></li>";
+				var div_data = '<li class="chatLeft" id="' + val.message_id + '"><span>' + val.message + "</span></li>";
+				$(div_data).prependTo('#inline_content ol').emotions();
+				$('#'+val.message_id).prepend('<img style="width:30px;height:30px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/>');
 			}
-			$('#inline_content ol').prepend(div_data).emotions();
+			//$('#inline_content ol').prepend(div_data).emotions();
 		});
 		window.currentChatPosition = $("#inline_content ol li:first").attr("id");
 		if ($('#inline_content ol>div>a').length) {} else
@@ -274,11 +279,11 @@ function addFriendRequest(msg) {
 function addmsg(msg, times) {
 	var obj = JSON.parse(msg);
 	if (times > 0) {
-		$("#notification_count").replaceWith('<span id="notification_count">'+times+'</span>');
+		$("#notification_count").replaceWith('<span id="notification_count">' + times + '</span>');
 	} else {
 		$("#notification_count").hide();
 	}
-
+	var countNoti=0;
 	if (obj.length > window.compare) {
 		window.compare = obj.length;
 		try {
@@ -286,25 +291,29 @@ function addmsg(msg, times) {
 
 			$.each(obj, function(i, val) {
 
-					var noti_icon = "";
-					if (val.type == "1") {
-						notiIcon = "noti_like";
-					} else {
-						notiIcon = "noti_comment";
-					}
+				var noti_icon = "";
+				if (val.type == "1") {
+					notiIcon = "noti_like";
+				} else {
+					notiIcon = "noti_comment";
+				}
+				if (countNoti < 5) {
 					if (times > 0) {
 						$('#notificationsBody>ul').append('<li style="background:#f4f6f9"  class="noti"><a href="' + window.notifyStatus + "/" + val.status_id + "/" + val.notification_id + '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.msg + '</span><br/><abbr class="timeago ' + notiIcon + '" title="' + val.created_at + '"></abbr></a></li>');
 						times = times - 1;
+						countNoti=countNoti+1;
 					} else {
 						$('#notificationsBody>ul').append('<li class="noti"><a href="' + window.notifyStatus + "/" + val.status_id + '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.msg + '</span><br/><abbr class="timeago ' + notiIcon + '" title="' + val.created_at + '"></abbr></a></li>');
+						countNoti=countNoti+1;
 					}
+				}
+
 			});
 		} catch (e) {
 			alert('Exception while request..' + e);
 		}
 	}
 }
-
 $(document).on('click', '.comment_button', function() {
 	var element = $(this);
 	var I = element.attr("id");
@@ -385,26 +394,11 @@ function Arrow_Points() {
 		var posLeft = $(obj).css("left");
 		$(obj).addClass('borderclass');
 		if (posLeft == "0px") {
-			html = "<span class='rightCorner'></span>";
-			$(obj).prepend(html);
+			html = "<span id='arrow' class='rightCorner'></span>";
+			$(obj).find('#arrow').replaceWith(html);
 		} else {
-			html = "<span class='leftCorner'></span>";
-			$(obj).prepend(html);
-		}
-	});
-}
-
-function Arrow_Points1() {
-	var s = $('#container').find('.item');
-	$.each(s, function(i, obj) {
-		var posLeft = $(obj).css("left");
-		$(obj).addClass('borderclass');
-		if (posLeft == "0px") {
-			html = "<span class='leftCorner'></span>";
-			$(obj).prepend(html);
-		} else {
-			html = "<span class='rightCorner'></span>";
-			$(obj).prepend(html);
+			html = "<span id='arrow' class='leftCorner'></span>";
+			$(obj).find('#arrow').replaceWith(html);
 		}
 	});
 }
@@ -414,13 +408,10 @@ $(document).on('click', '.stdelete', function() {
 		$(this).parent().fadeOut('slow');
 		$('#container').masonry('remove', $(this).parent());
 		$('#container').masonry({
-			itemSelector: '.item',
+			itemSelector: '.item'
 		});
-		$('.rightCorner').hide();
-		$('.leftCorner').hide();
-		Arrow_Points1();
+		Arrow_Points();
 	}
-	return false;
 });
 
 function setPop(email,name, img) {
