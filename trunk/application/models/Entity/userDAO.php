@@ -48,10 +48,12 @@ class UserDAO
 	}
 
 	public function timUser($name){
-		//$query = $this->em->createQuery("SELECT CONCAT(CONCAT(p.first_name,' '),p.last_name) FROM Entity\User p WHERE p.first_name like ?1");
-		$query = $this->em->createQuery("SELECT p.email,p.first_name,p.last_name FROM Entity\User p WHERE p.first_name like ?1");
-		$str=$name.'%';
+		//$query = $this->em->createQuery("SELECT CONCAT(CONCAT(p.first_name,' '),p.last_name) FROM Entity\User p WHERE p.first_name like ?1")
+		$query = $this->em->createQuery("SELECT p.email,p.first_name,p.last_name,p.picture FROM Entity\User p WHERE p.first_name like ?1 or p.last_name like ?2 order by p.email");
+		$str='%'.$name.'%';
 		$query->setParameter(1, $str);
+		$query->setParameter(2, $str);
+		$query->setMaxResults(5);
 		$results=$query->getResult();
 		return json_encode($results);
 	}

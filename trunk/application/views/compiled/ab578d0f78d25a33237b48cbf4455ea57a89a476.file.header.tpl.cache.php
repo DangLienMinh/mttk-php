@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-30 03:01:52
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-30 14:53:17
          compiled from "application\views\templates\common\header.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:1596854519c104644b4-59557961%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:11642545242cdd114d9-54536347%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1414594740,
+      1 => 1414636795,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1596854519c104644b4-59557961',
+  'nocache_hash' => '11642545242cdd114d9-54536347',
   'function' => 
   array (
   ),
@@ -22,9 +22,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_54519c106a5b90_33602045',
+  'unifunc' => 'content_545242cde7b2b5_99018637',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_54519c106a5b90_33602045')) {function content_54519c106a5b90_33602045($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_545242cde7b2b5_99018637')) {function content_545242cde7b2b5_99018637($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -486,7 +486,12 @@ function getLike(status) {
               }
               isLike = 0;
             } else {
-              $("#youlike" + status).append('<a href="' + window.userWall + "/" + val.email  + '">' + val.name + '</a>');
+              if(i==obj.length-1){
+                $("#youlike" + status).append('<a href="' + window.userWall + "/" + val.email  + '">' + val.name + '</a>');
+              }else{
+                $("#youlike" + status).append('<a href="' + window.userWall + "/" + val.email  + '">' + val.name +', '+ '</a>');
+              }
+              
             }
             if (new_like_count > 0) {
               $("#youlike" + status).append(' and ' + new_like_count + ' other friends like this');

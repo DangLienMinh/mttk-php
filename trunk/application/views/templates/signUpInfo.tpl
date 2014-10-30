@@ -5,13 +5,18 @@
   <meta charset="utf-8">
   <title>jQuery UI Tabs - Default functionality</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="{asset_url()}css/wall.css">
   <link rel="stylesheet" href="{asset_url()}css/imgcropstyle.css">
   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
   <script type="text/javascript" src="http://www.technicalkeeda.com/js/javascripts/plugin/json2.js"></script>
   <script type="text/javascript" src="{asset_url()}js/cropbox.js"></script>
+  <script type="text/javascript" src="{asset_url()}js/jquery.watermarkinput.js"></script>
   <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+  <script type="text/javascript">
+    window.userPic="{uploads_url()}img/";
+  </script>
   {literal}
   <style type="text/css">
     #tabs{
@@ -37,31 +42,31 @@
   </style>
  <script>
   $(document).ready(function(){
-    $("#search").keyup(function(){
-      if($("#search").val().length > 1) 
-    {
+    $(".search").keyup(function(){
+      if($(".search").val()!=''){
     $.ajax({
       type: "post",
 {/literal}
-      url:"{base_url('friendController/')}", 
+      url:"{base_url('friendController/')}",
 {literal}
       cache: false,
-      data:'search='+$("#search").val(),
+      data:'search='+$(".search").val(),
       success: function(response){
-        $('#finalResult').html("");
         var obj = JSON.parse(response);
         if(obj.length>0){
           try{
             var items=[];
             $.each(obj, function(i,val){
-                items.push('<li><a href="seeWall/' + val.email + '">' + val.first_name+" "+val.last_name + '</a>'+'<button type="button" class="addFriend" value="' + val.email + '">'+'Add friend</button></li>');
+                //items.push('<li><a href="seeWall/' + val.email + '">' + val.first_name+" "+val.last_name + '</a>'+'<button type="button" class="addFriend" value="' + val.email + '">'+'Add friend</button></li>');
+                items.push('<div class="display_box" align="left"><img src="'+window.userPic+val.picture+'" style="max-width:80%; max-height:80%; float:left; margin-right:6px" /><a href="seeWall/' + val.email + '">' + val.first_name+" "+val.last_name + '</a><button type="button" class="addFriend" value="' + val.email + '">'+'Add friend</button></div>');
             });
-            $('#finalResult').append.apply($('#finalResult'), items);
+            $('#display').html(items).show();
           }catch(e) {
             alert('Exception while request..');
           }
         }else{
-          $('#finalResult').html($('<li/>').text("No Data Found"));
+          $('#display').html("No Data Found");
+          $('#display').show();
         }
       },
       error: function(){
@@ -69,8 +74,9 @@
       }
 
     });
-    }
+}
     });
+
     $('#finalResult').on('click', 'li button', function() {
       $.ajax({
          type: "POST",
@@ -88,6 +94,7 @@
   });
   $(function() {
       $( "#tabs" ).tabs();
+      $("#searchbox").Watermark("Search");
     });
 </script>
 <script>
@@ -173,13 +180,13 @@ function geolocate() {
   </ul>
 
   <div id="tabs-1">
-    <div id="container">
-      <p>Friend to search</p>
-        <input type="text" name="search" id="search" />
-        <ul id="finalResult"></ul>
-        <button>Next</button>
-    </div>
-  </div>
+      <div style=" width:300px; margin-right:30px;" align="right">
+          <input type="text" class="search" id="searchbox" /><br />
+          <div id="display">
+          </div>
+        </div>
+</div>
+
   <div id="tabs-2">
     <p>Fill in these information</p>
     <div id="locationField">
