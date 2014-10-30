@@ -415,7 +415,12 @@ function getLike(status) {
               }
               isLike = 0;
             } else {
-              $("#youlike" + status).append('<a href="' + window.userWall + "/" + val.email  + '">' + val.name + '</a>');
+              if(i==obj.length-1){
+                $("#youlike" + status).append('<a href="' + window.userWall + "/" + val.email  + '">' + val.name + '</a>');
+              }else{
+                $("#youlike" + status).append('<a href="' + window.userWall + "/" + val.email  + '">' + val.name +', '+ '</a>');
+              }
+              
             }
             if (new_like_count > 0) {
               $("#youlike" + status).append(' and ' + new_like_count + ' other friends like this');
