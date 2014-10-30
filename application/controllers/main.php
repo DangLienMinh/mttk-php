@@ -11,6 +11,10 @@ class Main extends CI_Controller {
         }
     }
 
+    function clearCache(){
+    	$this->smarty->clearAllCache();
+    }
+
 	function firstTime()
 	{
 		$this->smarty->view('signUpInfo');

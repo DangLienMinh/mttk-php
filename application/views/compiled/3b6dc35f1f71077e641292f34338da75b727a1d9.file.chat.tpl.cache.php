@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-29 16:24:18
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-30 03:01:31
          compiled from "application\views\templates\chat.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:20803545106a2109231-39141848%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1858054519bfbe28388-62267422%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '3b6dc35f1f71077e641292f34338da75b727a1d9' => 
     array (
       0 => 'application\\views\\templates\\chat.tpl',
-      1 => 1414406974,
+      1 => 1414634480,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '20803545106a2109231-39141848',
+  'nocache_hash' => '1858054519bfbe28388-62267422',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_545106a2205095_20717339',
+  'unifunc' => 'content_54519bfbf39c14_78248339',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_545106a2205095_20717339')) {function content_545106a2205095_20717339($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_54519bfbf39c14_78248339')) {function content_54519bfbf39c14_78248339($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
   </script>
@@ -28,9 +28,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     waitForMsg();
     friendRequest();
     getFriendList();
-
- 
-
     $("#notificationLink").click(function()
     {
       $("#friendContainer").hide();
@@ -53,43 +50,41 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       $("#friendContainer").hide();
     });
 
-    //Popup Click
-    $("#notificationContainer").click(function()
-    {
-      return false
-    });
+    $('#content').keypress(function(e) {
+      if (e.keyCode == 13) {
+        e.preventDefault();
+        var boxval = $(this).val();
+        var user = $("#toUser").val();
+        var dataString = 'email=' + user + '&message=' + boxval;
+        if (boxval.length > 0) {
+          if (boxval.length < 200) {
+            $("#flash").show();
 
-    $('.post').click(function() {
-     var boxval = $("#content").val();
-     var user = $("#toUser").val();
-     var dataString = 'email=' + user + '&message=' + boxval;
-     if (boxval.length > 0) {
-         if (boxval.length < 200) {
-             $("#flash").show();
-             $("#flash").fadeIn(400).html('<img src="http://labs.9lessons.info/ajax-loader.gif" align="absmiddle">&nbsp;<span class="loading">Loading Update...</span>');
-             $.ajax({
-                 type: "POST",
+            $("#flash").fadeIn(400).html('<img src="<?php echo asset_url();?>
+img/ajax-loader.gif" align="absmiddle">&nbsp;<span class="loading">Loading Update...</span>');
 
-                 url: "<?php echo base_url('messageController/addMessage');?>
+            $.ajax({
+              type: "POST",
+
+              url: "<?php echo base_url('messageController/addMessage');?>
 ",
 
-                 data: dataString,
-                 cache: false,
-                 success: function(html) {
-                     $(html).appendTo('#inline_content ol').emotions();
-                     $('#content').val('');
-                     $('#content').focus();
-                     $("#flash").hide();
-                 }
-             });
-         } else {
-             alert("Please delete some Text max 200 charts");
-         }
-     }
-     return false;
+              data: dataString,
+              cache: false,
+              success: function(html) {
+                $(html).appendTo('#inline_content ol').emotions();
+                $('#content').val('');
+                $("#flash").hide();
+                $('#content').focus();
+              }
+            });
+          } else {
+            alert("Please delete some Text max 200 charts");
+          }
+        }
+        $('#cboxLoadedContent').animate({scrollTop: $('#cboxLoadedContent').prop("scrollHeight")}, 700);
+      }
     });
-
-     $('#inline_content ol').emotions();
   });
   </script>
  
@@ -141,9 +136,6 @@ sound/notify.wav" type="audio/wav"></audio>
                   <input type='text' class="textbox" name="content" id="content" maxlength="200" placeholder="Message"/>
                 </td>
                 <input type='hidden' name="toUser" id="toUser" />
-                <td valign="top">
-                  <input type="submit"  value="Post"  id="post" class="post" name="post"/>
-                </td>
               </tr>
               </table>
               </div>
