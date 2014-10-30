@@ -6,9 +6,6 @@
     waitForMsg();
     friendRequest();
     getFriendList();
-
- 
-
     $("#notificationLink").click(function()
     {
       $("#friendContainer").hide();
@@ -31,42 +28,39 @@
       $("#friendContainer").hide();
     });
 
-    //Popup Click
-    $("#notificationContainer").click(function()
-    {
-      return false
-    });
-
-    $('.post').click(function() {
-     var boxval = $("#content").val();
-     var user = $("#toUser").val();
-     var dataString = 'email=' + user + '&message=' + boxval;
-     if (boxval.length > 0) {
-         if (boxval.length < 200) {
-             $("#flash").show();
-             $("#flash").fadeIn(400).html('<img src="http://labs.9lessons.info/ajax-loader.gif" align="absmiddle">&nbsp;<span class="loading">Loading Update...</span>');
-             $.ajax({
-                 type: "POST",
+    $('#content').keypress(function(e) {
+      if (e.keyCode == 13) {
+        e.preventDefault();
+        var boxval = $(this).val();
+        var user = $("#toUser").val();
+        var dataString = 'email=' + user + '&message=' + boxval;
+        if (boxval.length > 0) {
+          if (boxval.length < 200) {
+            $("#flash").show();
 {/literal}
-                 url: "{base_url('messageController/addMessage')}",
+            $("#flash").fadeIn(400).html('<img src="{asset_url()}img/ajax-loader.gif" align="absmiddle">&nbsp;<span class="loading">Loading Update...</span>');
 {literal}
-                 data: dataString,
-                 cache: false,
-                 success: function(html) {
-                     $(html).appendTo('#inline_content ol').emotions();
-                     $('#content').val('');
-                     $('#content').focus();
-                     $("#flash").hide();
-                 }
-             });
-         } else {
-             alert("Please delete some Text max 200 charts");
-         }
-     }
-     return false;
+            $.ajax({
+              type: "POST",
+{/literal}
+              url: "{base_url('messageController/addMessage')}",
+{literal}
+              data: dataString,
+              cache: false,
+              success: function(html) {
+                $(html).appendTo('#inline_content ol').emotions();
+                $('#content').val('');
+                $("#flash").hide();
+                $('#content').focus();
+              }
+            });
+          } else {
+            alert("Please delete some Text max 200 charts");
+          }
+        }
+        $('#cboxLoadedContent').animate({scrollTop: $('#cboxLoadedContent').prop("scrollHeight")}, 700);
+      }
     });
-
-     $('#inline_content ol').emotions();
   });
   </script>
  {/literal}
@@ -115,9 +109,6 @@
                   <input type='text' class="textbox" name="content" id="content" maxlength="200" placeholder="Message"/>
                 </td>
                 <input type='hidden' name="toUser" id="toUser" />
-                <td valign="top">
-                  <input type="submit"  value="Post"  id="post" class="post" name="post"/>
-                </td>
               </tr>
               </table>
               </div>

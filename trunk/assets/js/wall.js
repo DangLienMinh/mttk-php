@@ -181,7 +181,7 @@ function addFriendList(msg) {
 		$.each(obj, function(i, val) {
 			$('#friendListContainer>ul').append('<li><a class="inline" href="#inline_content"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span class="'+val.email+'">' + val.name + '</span></a></li>');
 		});
-		$(".inline").colorbox({inline:true, width:"30%",height:"60%"});
+		$(".inline").colorbox({inline:true, width:"30%",height:"80%"});
 	} catch (e) {
 		alert(e);
 	}
@@ -190,16 +190,19 @@ function addFriendList(msg) {
 $(document).on('click', '.inline', function(e) {
 	e.preventDefault();
 	//alert($(this).find('span').text());
-	var userEmail=$(this).find('span').attr('class');
+	var userEmail = $(this).find('span').attr('class');
 	getConversation(userEmail);
 	$('#toUser').val(userEmail);
+	if ($('#inline_content ol>div>a').length) {} else {
+			$('#inline_content ol').prepend('<div class="morebox"><a href="#" class="more" id="' + window.currentChatPosition + '">more</a></div>');
+	}
 });
 
 $(document).on('click', '.more', function(e) {
-	var userEmail= $('#toUser').val();
-	var last_id=$(this).attr('id');
+	var userEmail = $('#toUser').val();
+	var last_id = $(this).attr('id');
 	$(this).parent().remove();
-	getMoreConversation(userEmail,last_id);
+	getMoreConversation(userEmail, last_id);
 });
 
 function addConversation(msg) {
@@ -220,14 +223,14 @@ function addConversation(msg) {
 					$('#chatAudio')[0].play();
 					var div_data = '<li class="chatLeft" id="' + val.message_id + '"><span>' + val.message + "</span></li>";
 					$(div_data).appendTo('#inline_content ol').emotions();
-					$('#'+val.message_id).prepend('<img style="width:30px;height:30px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/>');
+					$('#' + val.message_id).prepend('<img style="width:30px;height:30px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/>');
 				}
 			}
 		});
 		$('#content').focus();
+
 		window.currentChatPosition = $("#inline_content ol li:first").attr("id");
-		if ($('#inline_content ol>div>a').length) {} else
-			$('#inline_content ol').prepend('<div class="morebox"><a href="#" class="more" id="' + window.currentChatPosition + '">more</a></div>');
+
 	} catch (e) {
 		alert(e);
 	}
