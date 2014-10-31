@@ -47,7 +47,6 @@ class PlaylistController extends CI_Controller {
             $data['title']=$this->input->post('title');
             $data['music']=$this->input->post('music');
         }
-        
         $playlist_detail->addMusic($data);
     }
 

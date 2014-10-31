@@ -40,6 +40,14 @@ class StatusController extends CI_Controller {
         }
     }
 
+    public function xoaStatus(){
+        $id=$this->input->post('status_id');
+        $em = $this->doctrine->em;
+        $status = new Entity\statusDAO($em);
+        $linkUrl=FCPATH.'uploads/';
+        $status->xoaStatus($id,$linkUrl);
+    }
+
     public function updateStatus()
     {
         $data['status']="";
@@ -58,10 +66,11 @@ class StatusController extends CI_Controller {
         else
         {
             if ($_FILES['musicFile']['error'] != 4) {
+                $data['title']=$_FILES['musicFile']['name'];
                 $config['upload_path'] = './uploads/';
                 $config['allowed_types'] = 'mp3';
                 $config['max_size'] = '10240';
-
+                $config['file_name']  = uniqid().'.mp3'; 
                 $this->load->library('upload', $config);
 
                 if ( ! $this->upload->do_upload("musicFile"))
@@ -74,8 +83,12 @@ class StatusController extends CI_Controller {
                 {
                     $uploaded = array('upload_data' => $this->upload->data());
                     $data['status']=$_POST["status2"];
-                    $data['title']=$uploaded['upload_data']['raw_name'];
-                    $data['music']=$this->config->base_url().'uploads/'.$uploaded['upload_data']['file_name'];
+
+                    //$newfilename = uniqid().$uploaded['upload_data']['file_ext'];
+                    //$newFileUrl=$uploaded['upload_data']['file_path'].$newfilename;
+                    //move_uploaded_file($uploaded['upload_data']["full_path"], $newFileUrl);
+                    $data['music']= $config['file_name'];
+                    //$data['music']=$this->config->base_url().'uploads/'.$uploaded['upload_data']['file_name'];
                 }
             }
         }

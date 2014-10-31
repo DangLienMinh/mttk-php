@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-30 16:38:56
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-31 03:47:35
          compiled from "application\views\templates\signUpInfo.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:1954354525b901674d3-95711000%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:121375452f847e14dc1-26830695%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'd50936dd633041274a1879e0624a62a9eed6202e' => 
     array (
       0 => 'application\\views\\templates\\signUpInfo.tpl',
-      1 => 1414683534,
+      1 => 1414723613,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1954354525b901674d3-95711000',
+  'nocache_hash' => '121375452f847e14dc1-26830695',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_54525b90274ab0_54875427',
+  'unifunc' => 'content_5452f84804c340_00347130',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_54525b90274ab0_54875427')) {function content_54525b90274ab0_54875427($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_5452f84804c340_00347130')) {function content_5452f84804c340_00347130($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -30,7 +30,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 css/wall.css">
   <link rel="stylesheet" href="<?php echo asset_url();?>
 css/imgcropstyle.css">
-  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery-2.1.1.min.js"></script>
   <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
   <script type="text/javascript" src="http://www.technicalkeeda.com/js/javascripts/plugin/json2.js"></script>
   <script type="text/javascript" src="<?php echo asset_url();?>
@@ -41,6 +42,8 @@ js/jquery.watermarkinput.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
   <script type="text/javascript">
     window.userPic="<?php echo uploads_url();?>
+img/";
+    window.emotionsFolder="<?php echo asset_url();?>
 img/";
   </script>
   
@@ -68,6 +71,7 @@ img/";
   </style>
  <script>
   $(document).ready(function(){
+    getSuggest();
     $(".search").keyup(function(){
       if($(".search").val()!=''){
     $.ajax({
@@ -101,8 +105,34 @@ img/";
       }
 
     });
-}
+  }
     });
+
+    $('#facebook').on('click', '.delete', function() {
+      var element = $(this);
+      var I = element.attr("id");
+      $('#list'+I).fadeOut('slow', function() {$(this).remove();});   
+      return false;
+    });
+
+    $('#facebook').on('click', 'li button', function() {
+      var li=$(this).parent();
+      $.ajax({
+         type: "POST",
+
+         url:"<?php echo base_url('friendController/themBan');?>
+", 
+
+         data: {friendEmail: $(this).val()},
+         dataType: "text",  
+         cache:false,
+         success: 
+              function(data){
+                  //alert(li.attr('id'));
+                  li.fadeOut('slow', function() {});
+              }
+          });
+      });
 
     $('#finalResult').on('click', 'li button', function() {
       $.ajax({
@@ -120,6 +150,36 @@ img/";
           });// you have missed this bracket
       });
   });
+
+  function getSuggest(){
+    $.ajax({
+    type: "post",
+
+    url: "<?php echo base_url('friendController/getSuggestedFriend');?>
+",
+
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    timeout: 50000,
+    /* Timeout in ms */
+    success: function(response){
+        var obj = JSON.parse(response);
+        if(obj.length>0){
+          try{
+            var items=[];
+            $.each(obj, function(i,val){
+                items.push('<li id="list'+i+'"><img style="width:30px;height:30px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span class="del"><a href="#" class="delete" id="'+i+'">X</a></span><a href="" class="user-title">'+val.name+'</a><button type="button" class="addFriend" value="' + val.email + '">'+'Add friend</button></li>');
+            });
+            $('#facebook').append(items);
+          }catch(e) {
+            alert('Exception while request..');
+          }
+        }
+      }
+  });
+  }
+
   $(function() {
       $( "#tabs" ).tabs();
       $("#searchbox").Watermark("Search");
@@ -161,7 +221,7 @@ function geolocate() {
         {
             thumbBox: '.thumbBox',
             spinner: '.spinner',
-            imgSrc: 'avatar.png'
+            imgSrc: window.emotionsFolder+'avatar.png'
         }
         var cropper = $('.imageBox').cropbox(options);
         $('#file').on('change', function(){
@@ -209,11 +269,12 @@ function geolocate() {
   </ul>
 
   <div id="tabs-1">
-      <div style=" width:300px; margin-right:30px;" align="right">
+    <ul id="facebook"></ul>
+      <!--<div style=" width:300px; margin-right:30px;" align="right">
           <input type="text" class="search" id="searchbox" /><br />
           <div id="display">
           </div>
-        </div>
+        </div>-->
 </div>
 
   <div id="tabs-2">

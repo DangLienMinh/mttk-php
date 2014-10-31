@@ -1,3 +1,5 @@
+/*------------------------------------common styles------------------------------------*/
+
 body {
     background-color: #e8eaed;
     font-family: Arial, Helvetica, sans-serif;
@@ -23,7 +25,7 @@ a:hover {
     padding: 0;
 }
 
-/*noti part*/
+/*------------------------------------noti part------------------------------------*/
 
 #noti_Container {
     margin-left: 73.5%;
@@ -215,7 +217,8 @@ a:hover {
     width: 33px;
 }
 
-/*timeline part*/
+/*------------------------------------timeline part------------------------------------*/
+
 .delete_button {
     background-image: url("../img/delete.png");
     cursor: pointer;
@@ -426,7 +429,7 @@ a:hover {
     color: #3b5998;
     font-size: 18px;
     font-weight: bold;
-    position:relative;
+    position: relative;
 }
 
 .item {
@@ -508,27 +511,6 @@ a:hover {
     width: 14px;
 }
 
-.popup {
-    display: none;
-    width: 300px;
-}
-
-.popup>img {
-    float: left;
-    margin-right: 20px;
-}
-
-.popup h2 {
-    color: #E3E5DD;
-    float: right;
-    font-size: 14px;
-    margin-right: 60px;
-}
-
-.popup h2 a {
-    color: #E3E5DD!important;
-}
-
 .sttext_content2 {
     background-color: #fafcfb;
     line-height: 19px;
@@ -572,119 +554,221 @@ a:hover {
     padding: 5px 0px 5px 0px;
 }
 
-#update .chatLeft{
+/*------------------------------------popup user info------------------------------------*/
+
+.popup {
+    display: none;
+    width: 300px;
+}
+
+.popup>img {
+    float: left;
+    margin-right: 20px;
+}
+
+.popup h2 {
+    color: #E3E5DD;
+    float: right;
+    font-size: 14px;
+    margin-right: 60px;
+}
+
+.popup h2 a {
+    color: #E3E5DD!important;
+}
+
+/*------------------------------------user chat------------------------------------*/
+
+#update .chatLeft {
     margin-bottom: 12px;
     font-size: 14px;
     position: relative;
-    width:85%;
+    width: 85%;
 }
 
-#update .chatRight{
+#update .chatRight {
     margin-bottom: 12px;
     font-size: 14px;
 }
 
-.morebox
-    {
-    font-weight:bold;
-    color:#333333;
-    text-align:center;
-    border:solid 1px #333333;
-    padding:8px;
-    margin-top:8px;
-    margin-bottom:8px;
-    -moz-border-radius: 6px;-webkit-border-radius: 6px;
-    }
-    .morebox a{ color:#333333; text-decoration:none}
-    .morebox a:hover{ color:#333333; text-decoration:none}
+.morebox {
+    font-weight: bold;
+    color: #333333;
+    text-align: center;
+    border: solid 1px #333333;
+    padding: 8px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+}
 
-.chatRight{
+.morebox a {
+    color: #333333;
+    text-decoration: none;
+}
+
+.morebox a:hover {
+    color: #333333;
+    text-decoration: none;
+}
+
+.chatRight {
     clear: both;
-    float:right;
+    float: right;
     text-align: right;
 }
-.chatLeft{
+
+.chatLeft {
     clear: both;
-    float:left;
-    
+    float: left;
 }
-.chatLeft span{
+
+.chatLeft span {
     background-color: #f7f7f7;
     background-image: -webkit-gradient(linear, center bottom, center top, from(#f2f2f2), to(#fff));
     background-image: -webkit-linear-gradient(bottom, #f2f2f2, #fff);
-    position:absolute;
-    padding:3px;
+    position: absolute;
+    padding: 3px;
 }
-.chatRight p{
+
+.chatRight p {
     background-color: #dbedfe;
     background-image: -webkit-gradient(linear, center bottom, center top, from(#c7defe), to(#e7f1fe));
     background-image: -webkit-linear-gradient(bottom, #c7defe, #e7f1fe);
-    padding:3px;
+    padding: 3px;
 }
 
-
-#inline_content{
+#inline_content {
     background-color: #E8EAED!important;
-} 
-
-#inline_content div{
-    clear:both;
 }
 
-
-#content { padding:5px; border-radius:5px; border:1px solid #999;width:300px }
-#post { padding: 4px;border: solid 1px #333;background-color: #133783;color:#fff;font-weight:bold }
-
-.comment_ui
-{
-margin-bottom:5px;
-padding:6px 4px 3px 0px;
-width:350px; 
+#inline_content div {
+    clear: both;
 }
 
+#content {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #999;
+    width: 300px;
+}
+/*------------------------------------user first time------------------------------------*/
 
-#searchbox
-{
-width:250px;
-border:solid 1px #000;
-padding:3px;
-}
-#display
-{
-width:250px;
-display:none;
-float:right; margin-right:30px;
-border-left:solid 1px #dedede;
-border-right:solid 1px #dedede;
-border-bottom:solid 1px #dedede;
-overflow:hidden;
-}
-.display_box
-{
-padding:4px; border-top:solid 1px #dedede; font-size:12px; height:30px;
-position:relative;
+#post {
+    padding: 4px;
+    border: solid 1px #333;
+    background-color: #133783;
+    color: #fff;
+    font-weight: bold;
 }
 
-.display_box:hover,
-{
-background:#3b5998;
-color:#FFF!important;
-text-decoration: none;
+.comment_ui {
+    margin-bottom: 5px;
+    padding: 6px 4px 3px 0px;
+    width: 350px;
+}
+
+#searchbox {
+    width: 250px;
+    border: solid 1px #000;
+    padding: 3px;
+}
+
+#display {
+    width: 250px;
+    display: none;
+    float: right;
+    margin-right: 30px;
+    border-left: solid 1px #dedede;
+    border-right: solid 1px #dedede;
+    border-bottom: solid 1px #dedede;
+    overflow: hidden;
+}
+
+.display_box {
+    padding: 4px;
+    border-top: solid 1px #dedede;
+    font-size: 12px;
+    height: 30px;
+    position: relative;
+}
+
+.display_box:hover, {
+    background: #3b5998;
+    color: #FFF!important;
+    text-decoration: none;
 }
 
 .display_box a {
-    color:black;
+    color: black;
     font-size: 14px;
     font-weight: bold;
-text-decoration: none;
+    text-decoration: none;
 }
 
 .display_box button {
     right: 10px;
-    position:absolute;
+    position: absolute;
 }
-#shade
-{
-background-color:#00CCFF;
 
+#shade {
+    background-color: #00CCFF;
+}
+
+#facebook {
+    height: 60px;
+    width: 250px;
+    overflow: hidden;
+    padding: 6px 10px 14px 10px;
+    ;
+}
+
+#facebook li {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#facebook li {
+    height: 60px;
+    padding: 5px;
+    list-style: none;
+}
+
+#facebook a {
+    color: #000000;
+    text-decoration: none;
+}
+
+#facebook .user-title {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 4px;
+    font-size: 11px;
+    color: #36538D;
+}
+
+#facebook img {
+    float: left;
+    margin-right: 14px;
+    padding: 4px;
+}
+
+#facebook .del {
+    float: right;
+    font-weight: bold;
+    color: #666666;
+}
+
+#facebook .del a {
+    color: #000000;
+}
+
+#facebook .del a:hover {
+    background-color: #36538D;
+    padding-left: 1px;
+    padding-right: 1px;
+    color: #ffffff;
 }

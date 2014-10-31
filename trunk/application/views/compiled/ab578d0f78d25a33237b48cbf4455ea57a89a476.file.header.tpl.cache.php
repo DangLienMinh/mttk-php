@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-30 14:53:17
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-31 16:24:01
          compiled from "application\views\templates\common\header.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:11642545242cdd114d9-54536347%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:191705453a9919d8ff9-09702103%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1414636795,
+      1 => 1414746417,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '11642545242cdd114d9-54536347',
+  'nocache_hash' => '191705453a9919d8ff9-09702103',
   'function' => 
   array (
   ),
@@ -22,9 +22,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_545242cde7b2b5_99018637',
+  'unifunc' => 'content_5453a991c05f44_01902152',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_545242cde7b2b5_99018637')) {function content_545242cde7b2b5_99018637($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_5453a991c05f44_01902152')) {function content_5453a991c05f44_01902152($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -87,6 +87,8 @@ img/";
   window.userPicCmt="<?php echo uploads_url();?>
 img/<?php echo $_smarty_tpl->tpl_vars['userPicCmt']->value;?>
 ";
+  window.userMusic="<?php echo base_url('uploads/');?>
+";
   window.compare=0;
   window.compareStatus=0;
   window.currentChatPosition=-1;
@@ -112,7 +114,6 @@ function waitForMsg() {
     /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
     timeout: 50000,
-    /* Timeout in ms */
     success: function(data) { /* called when request to barge.php completes */
       $.ajax({
         type: "post",
@@ -140,8 +141,7 @@ function getFriendList() {
     /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
     timeout: 50000,
-    /* Timeout in ms */
-    success: function(data) { /* called when request to barge.php completes */
+    success: function(data) {
      addFriendList(data);
     }
   });
@@ -166,8 +166,8 @@ function getConversation(userEmail) {
     /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
     timeout: 50000,
-    success: function(data) { /* called when request to barge.php completes */
-      addConversation(data); /* Add response to a .msg div (with the "new" class)*/
+    success: function(data) {
+      addConversation(data); 
       setTimeout(
         getConversation, /* Request next message */
         2000 /* ..after 1 seconds */
@@ -186,11 +186,27 @@ function getMoreConversation(userEmail,last_id) {
 
     data: dataString,
     async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
     timeout: 50000,
-    success: function(data) { /* called when request to barge.php completes */
-      addMoreConversation(data); /* Add response to a .msg div (with the "new" class)*/
+    success: function(data) { 
+      addMoreConversation(data); 
+    }
+  });
+}
+
+function deleteStatus(status) {
+  var dataString = 'status_id=' + status;
+  $.ajax({
+    type: "post",
+
+    url: "<?php echo base_url('statusController/xoaStatus');?>
+",
+
+    data: dataString,
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function() {
     }
   });
 }
@@ -203,11 +219,9 @@ function getPlaylist() {
 ",
 
     async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
     timeout: 50000,
-    /* Timeout in ms */
-    success: function(data) { /* called when request to barge.php completes */
+    success: function(data) {
       addPlaylist(data);
     }
   });
@@ -221,12 +235,172 @@ function friendRequest() {
 ",
 
     async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
     timeout: 50000,
-    /* Timeout in ms */
-    success: function(data) { /* called when request to barge.php completes */
+    success: function(data) { 
       addFriendRequest(data);
+    }
+  });
+}
+
+function savePlaylist(id,title,url) {
+  var dataString = 'playlist_id=' + id+'&title='+title+'&music='+url;
+  $.ajax({
+    type: "post",
+
+    url: "<?php echo base_url('playlistController/addMusic');?>
+",
+
+    data: dataString,
+    cache: false,
+    success: function() {
+      alert("ok");
+      }
+    });
+}
+
+function getComment(status) {
+  var dataString = 'status_id=' + status;
+  $.ajax({
+    type: "post",
+
+    url: "<?php echo base_url('commentController/layComment');?>
+",
+
+    data: dataString,
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    success: function(data) { /* called when request to barge.php completes */
+      var obj = JSON.parse(data);
+      if (obj.length > 0) {
+        if(obj.length<=3){
+            $.each(obj, function(i, val) {
+            var is_delete="";
+            if(val.email==window.userLogin){
+              is_delete="delete_button";
+            }
+            $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="'+val.email+'" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="'+is_delete+'"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
+          });
+          }else{
+            var second_count=obj.length-3;
+            $("#loadplace" + status).append('<div class="comment_ui"><a class="view_comments" id="'+status+'">View '+second_count+' more comments</a></div>');
+            getLastComment(status,second_count);
+          }
+      }
+    }
+  });
+}
+
+function getLastComment(status,count) {
+  var dataString = 'status_id=' + status+'&count='+count;
+  $.ajax({
+    type: "post",
+
+    url: "<?php echo base_url('commentController/layLastComment');?>
+",
+
+    data: dataString,
+    async: true,
+    cache: false,
+    success: function(data) { 
+      var obj = JSON.parse(data);
+      if (obj.length > 0) {
+        $.each(obj, function(i, val) {
+          var is_delete = "";
+          if (val.email == window.userLogin) {
+            is_delete = "delete_button";
+          }
+          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="' + val.email + '" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="' + is_delete + '"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
+        });
+      }
+    }
+  });
+}
+
+function getLike(status) {
+  var dataString = 'status_id=' + status;
+  var isLike = 0;
+  $.ajax({
+    type: "post",
+
+    url: "<?php echo base_url('thumb_up_downController/layLikeUser');?>
+",
+
+    data: dataString,
+    async: true,
+    cache: false,
+    success: function(data) { 
+      var obj = JSON.parse(data);
+      if (obj.length > 0) {
+        isLike = 1;
+        $("#like" + status).replaceWith('<a href="#" class="like like_button" id="like' + status + '" title="UnLike" rel="UnLike">UnLike</a>');
+        $("#loadplace" + status).prev('div').append('<div class="likeUsers" id="youlike' + status + '"></div>');
+      } else {
+        $("#like" + status).replaceWith('<a href="#" class="like like_button" id="like' + status + '" title="Like" rel="Like">Like</a>');
+        $("#loadplace" + status).prev('div').append('<div class="likeUsers" id="youlike' + status + '"></div>');
+      }
+    }
+  }).done(function() {
+    $.ajax({
+      type: "post",
+
+      url: "<?php echo base_url('thumb_up_downController/layLike');?>
+",
+
+      data: dataString,
+      async: true,
+      cache: false,
+      success: function(data) {
+        var obj = JSON.parse(data);
+        var new_like_count = obj.length - 3;
+        if (obj.length > 0) {
+          $.each(obj, function(i, val) {
+            if (isLike == 1) {
+              if (obj.length > 1) {
+                $("#youlike" + status).append('<span id="you' + status + '"><a href="' + val.email + '">You,&nbsp;</a></span>');
+              } else {
+                $("#youlike" + status).append('<span id="you' + status + '"><a href="' + val.email + '">You</a></span>');
+              }
+              isLike = 0;
+            } else {
+              if(i==obj.length-1){
+                $("#youlike" + status).append('<a href="' + window.userWall + "/" + val.email  + '">' + val.name + '</a>');
+              }else{
+                $("#youlike" + status).append('<a href="' + window.userWall + "/" + val.email  + '">' + val.name +', '+ '</a>');
+              }
+            }
+            if (new_like_count > 0) {
+              $("#youlike" + status).append(' and ' + new_like_count + ' other friends like this');
+            }
+          });
+          $("#youlike" + status).append(' like this');
+        }
+      }
+    }).done(function() {
+      $(".timeago").livequery(function() // LiveQuery 
+        {
+          $(this).timeago(); // Calling Timeago Funtion 
+        });
+
+    });
+  });
+}
+
+function getSong(name, inter, songUrl) {
+  var dataString="playlist_id="+songUrl;
+  $.ajax({
+    type: "post",
+    data:dataString,
+
+    url: "<?php echo base_url('playlistController/getDSSongs');?>
+",
+
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) { 
+      displaySong(name, inter,data);
     }
   });
 }
@@ -315,7 +489,6 @@ $(document).on('click', '.like', function() {
           $("#youlike" + New_ID).slideDown('fast').html("<span id='you" + New_ID + "'><a href='#'>You </a></span>&nbsp;like this");
           $('#' + ID).html('Unlike').attr('rel', 'Unlike').attr('title', 'Unlike');
         }
-        
       } else {
         if ($('#youlike' + New_ID).children().length > 1) {
           $("#you" + New_ID).slideUp('fast');
@@ -345,7 +518,7 @@ $(document).on('click', '.view_comments', function() {
     async: true,
     /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
-    success: function(data) { /* called when request to barge.php completes */
+    success: function(data) { 
       var obj = JSON.parse(data);
       $("#loadplace" + status).empty();
       if (obj.length > 0) {
@@ -360,173 +533,4 @@ $(document).on('click', '.view_comments', function() {
     }
   });
 });
-
-function savePlaylist(id,title,url) {
-  var dataString = 'playlist_id=' + id+'&title='+title+'&music='+url;
-  $.ajax({
-    type: "post",
-
-    url: "<?php echo base_url('playlistController/addMusic');?>
-",
-
-    data: dataString,
-    cache: false,
-    success: function() {
-      alert("ok");
-      }
-    });
-}
-
-function getComment(status) {
-  var dataString = 'status_id=' + status;
-  $.ajax({
-    type: "post",
-
-    url: "<?php echo base_url('commentController/layComment');?>
-",
-
-    data: dataString,
-    async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
-    cache: false,
-    success: function(data) { /* called when request to barge.php completes */
-      var obj = JSON.parse(data);
-      if (obj.length > 0) {
-        if(obj.length<=3){
-            $.each(obj, function(i, val) {
-            var is_delete="";
-            if(val.email==window.userLogin){
-              is_delete="delete_button";
-            }
-            $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="'+val.email+'" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="'+is_delete+'"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
-          });
-          }else{
-            var second_count=obj.length-3;
-            $("#loadplace" + status).append('<div class="comment_ui"><a class="view_comments" id="'+status+'">View '+second_count+' more comments</a></div>');
-            getLastComment(status,second_count);
-          }
-        
-      }
-    }
-  });
-}
-
-function getLastComment(status,count) {
-  var dataString = 'status_id=' + status+'&count='+count;
-  $.ajax({
-    type: "post",
-
-    url: "<?php echo base_url('commentController/layLastComment');?>
-",
-
-    data: dataString,
-    async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
-    cache: false,
-    success: function(data) { /* called when request to barge.php completes */
-      var obj = JSON.parse(data);
-      if (obj.length > 0) {
-        $.each(obj, function(i, val) {
-          var is_delete = "";
-          if (val.email == window.userLogin) {
-            is_delete = "delete_button";
-          }
-          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="' + val.email + '" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="' + is_delete + '"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
-        });
-      }
-    }
-  });
-}
-
-function getLike(status) {
-  var dataString = 'status_id=' + status;
-  var isLike = 0;
-  $.ajax({
-    type: "post",
-
-    url: "<?php echo base_url('thumb_up_downController/layLikeUser');?>
-",
-
-    data: dataString,
-    async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
-    cache: false,
-    success: function(data) { /* called when request to barge.php completes */
-      var obj = JSON.parse(data);
-      if (obj.length > 0) {
-        isLike = 1;
-        $("#like" + status).replaceWith('<a href="#" class="like like_button" id="like' + status + '" title="UnLike" rel="UnLike">UnLike</a>');
-        $("#loadplace" + status).prev('div').append('<div class="likeUsers" id="youlike' + status + '"></div>');
-      } else {
-        $("#like" + status).replaceWith('<a href="#" class="like like_button" id="like' + status + '" title="Like" rel="Like">Like</a>');
-        $("#loadplace" + status).prev('div').append('<div class="likeUsers" id="youlike' + status + '"></div>');
-      }
-    }
-  }).done(function() {
-    $.ajax({
-      type: "post",
-
-      url: "<?php echo base_url('thumb_up_downController/layLike');?>
-",
-
-      data: dataString,
-      async: true,
-      /* If set to non-async, browser shows page as "Loading.."*/
-      cache: false,
-      success: function(data) {
-        var obj = JSON.parse(data);
-        var new_like_count = obj.length - 3;
-        if (obj.length > 0) {
-          $.each(obj, function(i, val) {
-            if (isLike == 1) {
-              if (obj.length > 1) {
-                $("#youlike" + status).append('<span id="you' + status + '"><a href="' + val.email + '">You,&nbsp;</a></span>');
-              } else {
-                $("#youlike" + status).append('<span id="you' + status + '"><a href="' + val.email + '">You</a></span>');
-              }
-              isLike = 0;
-            } else {
-              if(i==obj.length-1){
-                $("#youlike" + status).append('<a href="' + window.userWall + "/" + val.email  + '">' + val.name + '</a>');
-              }else{
-                $("#youlike" + status).append('<a href="' + window.userWall + "/" + val.email  + '">' + val.name +', '+ '</a>');
-              }
-              
-            }
-            if (new_like_count > 0) {
-              $("#youlike" + status).append(' and ' + new_like_count + ' other friends like this');
-            }
-          });
-          $("#youlike" + status).append(' like this');
-        }
-      }
-    }).done(function() {
-      $(".timeago").livequery(function() // LiveQuery 
-        {
-          $(this).timeago(); // Calling Timeago Funtion 
-        });
-
-    });
-  });
-}
-
-function getSong(name, inter, songUrl) {
-  var dataString="playlist_id="+songUrl;
-  $.ajax({
-    type: "post",
-    data:dataString,
-
-    url: "<?php echo base_url('playlistController/getDSSongs');?>
-",
-
-    async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
-    cache: false,
-    timeout: 50000,
-    /* Timeout in ms */
-    success: function(data) { /* called when request to barge.php completes */
-      displaySong(name, inter,data);
-    }
-  });
-}
 <?php }} ?>

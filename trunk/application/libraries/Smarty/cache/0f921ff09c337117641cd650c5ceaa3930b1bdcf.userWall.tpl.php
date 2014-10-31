@@ -1,45 +1,72 @@
-<!doctype html>
+<?php /*%%SmartyHeaderCode:69075453575eb72953-58761667%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '0f921ff09c337117641cd650c5ceaa3930b1bdcf' => 
+    array (
+      0 => 'application\\views\\templates\\userWall.tpl',
+      1 => 1414460300,
+      2 => 'file',
+    ),
+    'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
+    array (
+      0 => 'application\\views\\templates\\common\\header.tpl',
+      1 => 1414746417,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '69075453575eb72953-58761667',
+  'variables' => 
+  array (
+    'items' => 0,
+  ),
+  'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_5453575f5b8809_19271671',
+  'cache_lifetime' => 120,
+),true); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_5453575f5b8809_19271671')) {function content_5453575f5b8809_19271671($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Music</title>
-  <link rel="stylesheet" type="text/css" href="{asset_url()}css/jquery-ui.css">
-  <link rel="stylesheet" type="text/css" href="{asset_url()}css/jplayer.blue.monday.playlist.css">
-  <link rel="stylesheet" type="text/css" href="{asset_url()}css/wall.css">
-  <link rel="stylesheet" type="text/css" href="{asset_url()}css/jquery.qtip.css">
-  <link rel="stylesheet" type="text/css" href="{asset_url()}css/colorbox.css">
-  <script type="text/javascript" src="{asset_url()}js/jquery-2.1.1.min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery-ui.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.autogrowtextarea.min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/masonry.pkgd.min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.colorbox-min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.timeago.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.livequery.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.qtip.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/imagesloaded.pkgd.min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.jplayer.min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jplayer.playlist.min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/wall.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jquery-ui.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jplayer.blue.monday.playlist.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/wall.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jquery.qtip.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/colorbox.css">
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery-ui.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.autogrowtextarea.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/masonry.pkgd.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.colorbox-min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.timeago.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.livequery.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.qtip.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/imagesloaded.pkgd.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.jplayer.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jplayer.playlist.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/wall.js"></script>
   <script type="text/javascript">
-  window.emotionsFolder="{asset_url()}img/emotions-fb/";
+  window.emotionsFolder="http://localhost:81/mttk-php/assets/img/emotions-fb/";
   </script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.emotions.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.emotions.js"></script>
   <script type="text/javascript">
-  window.notifyStatus="{site_url('statusController/hienThiNotiStatus/')}";
-  window.cretePlaylist="{site_url('playlistController/viewPlaylist/')}";
-  window.profilePic="{uploads_url()}img/profilePic.jpg";
-  window.userPic="{uploads_url()}img/";
-  window.userWall="{site_url('statusController/layDSWallStatus/')}";
-  window.userLogin="{$userLogin}";
-  window.friendController="{site_url('friendController/')}";
-  window.userPicCmt="{uploads_url()}img/{$userPicCmt}";
-  window.userMusic="{base_url('uploads/')}";
+  window.notifyStatus="http://localhost:81/mttk-php/statusController/hienThiNotiStatus";
+  window.cretePlaylist="http://localhost:81/mttk-php/playlistController/viewPlaylist";
+  window.profilePic="http://localhost:81/mttk-php/uploads/img/profilePic.jpg";
+  window.userPic="http://localhost:81/mttk-php/uploads/img/";
+  window.userWall="http://localhost:81/mttk-php/statusController/layDSWallStatus";
+  window.userLogin="duongphuocloc@gmail.com";
+  window.friendController="http://localhost:81/mttk-php/friendController";
+  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/a6551.jpg";
+  window.userMusic="http://localhost:81/mttk-php/uploads";
   window.compare=0;
   window.compareStatus=0;
   window.currentChatPosition=-1;
   window.userChat="";
 
-{literal}
+
 
 $( document ).ajaxStop(function() {
     $('#container').masonry({
@@ -51,9 +78,9 @@ $( document ).ajaxStop(function() {
 function waitForMsg() {
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('notiController/getOldNotify')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/notiController/getOldNotify",
+
     async: true,
     /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
@@ -61,9 +88,9 @@ function waitForMsg() {
     success: function(data) { /* called when request to barge.php completes */
       $.ajax({
         type: "post",
-{/literal}
-        url: "{base_url('notiController/getNewNotifyNumber')}",
-{literal}
+
+        url: "http://localhost:81/mttk-php/notiController/getNewNotifyNumber",
+
         cache: false,
         success: function(times) {
           addmsg(data, times);
@@ -76,9 +103,9 @@ function waitForMsg() {
 function getFriendList() {
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('friendController/getAllFriends')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/friendController/getAllFriends",
+
     async: true,
     /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
@@ -99,9 +126,9 @@ function getConversation(userEmail) {
   var dataString = 'email=' + window.userChat;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('messageController/getFirstMessages')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/messageController/getFirstMessages",
+
     data: dataString,
     async: true,
     /* If set to non-async, browser shows page as "Loading.."*/
@@ -121,9 +148,9 @@ function getMoreConversation(userEmail,last_id) {
   var dataString = 'email=' + userEmail+'&started='+last_id;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('messageController/getMoreMessages')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/messageController/getMoreMessages",
+
     data: dataString,
     async: true,
     cache: false,
@@ -138,9 +165,9 @@ function deleteStatus(status) {
   var dataString = 'status_id=' + status;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('statusController/xoaStatus')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/statusController/xoaStatus",
+
     data: dataString,
     async: true,
     cache: false,
@@ -153,9 +180,9 @@ function deleteStatus(status) {
 function getPlaylist() {
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('playlistController/getDSPlaylist')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/playlistController/getDSPlaylist",
+
     async: true,
     cache: false,
     timeout: 50000,
@@ -168,9 +195,9 @@ function getPlaylist() {
 function friendRequest() {
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('friendController/getFriendRequest')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/friendController/getFriendRequest",
+
     async: true,
     cache: false,
     timeout: 50000,
@@ -184,9 +211,9 @@ function savePlaylist(id,title,url) {
   var dataString = 'playlist_id=' + id+'&title='+title+'&music='+url;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('playlistController/addMusic')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/playlistController/addMusic",
+
     data: dataString,
     cache: false,
     success: function() {
@@ -199,9 +226,9 @@ function getComment(status) {
   var dataString = 'status_id=' + status;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('commentController/layComment')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/commentController/layComment",
+
     data: dataString,
     async: true,
     /* If set to non-async, browser shows page as "Loading.."*/
@@ -231,9 +258,9 @@ function getLastComment(status,count) {
   var dataString = 'status_id=' + status+'&count='+count;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('commentController/layLastComment')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/commentController/layLastComment",
+
     data: dataString,
     async: true,
     cache: false,
@@ -257,9 +284,9 @@ function getLike(status) {
   var isLike = 0;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('thumb_up_downController/layLikeUser')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/thumb_up_downController/layLikeUser",
+
     data: dataString,
     async: true,
     cache: false,
@@ -277,9 +304,9 @@ function getLike(status) {
   }).done(function() {
     $.ajax({
       type: "post",
-{/literal}
-      url: "{base_url('thumb_up_downController/layLike')}",
-{literal}
+
+      url: "http://localhost:81/mttk-php/thumb_up_downController/layLike",
+
       data: dataString,
       async: true,
       cache: false,
@@ -324,9 +351,9 @@ function getSong(name, inter, songUrl) {
   $.ajax({
     type: "post",
     data:dataString,
-{/literal}
-    url: "{base_url('playlistController/getDSSongs')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/playlistController/getDSSongs",
+
     async: true,
     cache: false,
     timeout: 50000,
@@ -347,14 +374,14 @@ $(document).on('keypress', '.commentInput', function(e) {
       alert("Please Enter Some Text");
     } else {
       $("#flash" + Id).show();
-{/literal}
-      $("#flash" + Id).fadeIn(400).html('<img src="{asset_url()}img/ajax-loader.gif" align="absmiddle"> loading.....');
-{literal}
+
+      $("#flash" + Id).fadeIn(400).html('<img src="http://localhost:81/mttk-php/assets/img/ajax-loader.gif" align="absmiddle"> loading.....');
+
       $.ajax({
         type: "post",
-{/literal}
-        url: "{base_url('commentController/themComment')}",
-{literal}
+
+        url: "http://localhost:81/mttk-php/commentController/themComment",
+
         data: dataString,
         cache: false,
         success: function(html) {
@@ -373,9 +400,9 @@ $(document).on('click', '.delete_button', function() {
   var parent = $(this).parent();
   $.ajax({
     type: "POST",
-{/literal}
-    url: "{base_url('commentController/xoaComment')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/commentController/xoaComment",
+
     data: dataString,
     cache: false,
     success: function() {
@@ -401,9 +428,9 @@ $(document).on('click', '.like', function() {
   var dataString = 'status_id=' + New_ID + '&rel=' + REL;
   $.ajax({
     type: "POST",
-{/literal}
-    url: "{base_url('thumb_up_downController/themXoaLike')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/thumb_up_downController/themXoaLike",
+
     data: dataString,
     cache: false,
     success: function(data) {
@@ -437,9 +464,9 @@ $(document).on('click', '.view_comments', function() {
   var dataString = 'status_id=' + status;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('commentController/layComment')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/commentController/layComment",
+
     data: dataString,
     async: true,
     /* If set to non-async, browser shows page as "Loading.."*/
@@ -459,4 +486,94 @@ $(document).on('click', '.view_comments', function() {
     }
   });
 });
-{/literal}
+
+
+function getStatus(){
+      var data;
+        /* This requests the url "msgsrv.php"
+        When it complete (or errors)*/
+
+      data=[]
+
+    addStatusUserWall(data);
+    }
+  </script>
+  <script>
+  $(document).ready(function() {
+    waitForMsg();
+    friendRequest();
+    getStatus();
+    getPlaylist();
+
+    $("#notificationLink").click(function()
+    {
+      $("#friendContainer").hide();
+      $("#notificationContainer").fadeToggle(300);
+      $("#notification_count").fadeOut("slow");
+      return false;
+    });
+
+    $("#friendLink").click(function()
+    {
+      $("#notificationContainer").hide();
+      $("#friendContainer").fadeToggle(300);
+      $("#friend_count").fadeOut("slow");
+      return false;
+    });
+
+    $(document).click(function()
+    {
+      $("#notificationContainer").hide();
+      $("#friendContainer").hide();
+    });
+
+    $('#savePlaylist').click(function(){
+      var id=$(this).parent().find('select').find(":selected").val();
+      var title=$(this).parent().find('#titleMusic').val();
+      var music=$(this).parent().find('#urlMusic').val();
+      savePlaylist(id,title,music);
+    });
+  });
+  </script>
+ 
+</head>
+<body>
+  <div id="noti_Container">
+    <ul id="nav">
+    <li id="friend_li">
+      <span id="friend_count"></span>
+      <a href="#" id="friendLink">Friends</a>
+      <div id="friendContainer">
+        <div id="friendTitle">Notifications</div>
+        <div id="friendBody" class="friend">
+          <ul></ul>
+        </div>
+        <div id="friendFooter"><a href="#">See All</a></div>
+      </div>
+    </li>
+    <li id="notification_li">
+      <span id="notification_count"></span>
+      <a href="#" id="notificationLink">Notifications</a>
+      <div id="notificationContainer">
+        <div id="notificationTitle">Notifications</div>
+        <div id="notificationsBody" class="notifications">
+          <ul></ul>
+        </div>
+        <div id="notificationFooter"><a href="#">See All</a></div>
+      </div>
+    </li>
+  </ul>
+  </div>
+    <div id="container">
+      <div class="timeline_container">
+        <div class="timeline">
+          <div class="plus"></div>
+        </div>
+      </div>
+    </div>
+    <div id="pop">
+      <img/>
+      <h2></h2>
+    </div>
+</body>
+</html><?php }} ?>

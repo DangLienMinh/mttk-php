@@ -1,5 +1,3 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-31 13:08:11
-         compiled from "application\views\templates\updatestatus.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:175254537bab1a0110-98389585%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -12,32 +10,25 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     ),
   ),
   'nocache_hash' => '175254537bab1a0110-98389585',
-  'function' => 
-  array (
-  ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_54537bab3df5f6_42235201',
-),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_54537bab3df5f6_42235201')) {function content_54537bab3df5f6_42235201($_smarty_tpl) {?><!doctype html>
+  'unifunc' => 'content_54537bab45f7a7_22888958',
+  'cache_lifetime' => 120,
+),true); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_54537bab45f7a7_22888958')) {function content_54537bab45f7a7_22888958($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <title>jQuery UI Tabs - Default functionality</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
-  <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>
-css/jplayer.blue.monday.playlist.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jplayer.blue.monday.playlist.css">
   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-  <script type="text/javascript" src="<?php echo asset_url();?>
-js/jquery.autogrowtextarea.min.js"></script>
-  <script type="text/javascript" src="<?php echo asset_url();?>
-js/jquery.jplayer.min.js"></script>
-  <script type="text/javascript" src="<?php echo asset_url();?>
-js/jplayer.playlist.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.autogrowtextarea.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.jplayer.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jplayer.playlist.min.js"></script>
   <script type="text/javascript">
-  window.cretePlaylist="<?php echo site_url('playlistController/viewPlaylist/');?>
-";
+  window.cretePlaylist="http://localhost:81/mttk-php/playlistController/viewPlaylist";
   
     window.chosenMusic = "";
     window.title="";
@@ -88,8 +79,7 @@ function getPlaylist() {
   $.ajax({
     type: "post",
 
-    url: "<?php echo base_url('playlistController/getDSPlaylist');?>
-",
+    url: "http://localhost:81/mttk-php/playlistController/getDSPlaylist",
 
     async: true,
     /* If set to non-async, browser shows page as "Loading.."*/
@@ -109,8 +99,7 @@ function getSong(data) {
     type: "post",
     data:dataString,
 
-    url: "<?php echo base_url('playlistController/getDSSongs');?>
-",
+    url: "http://localhost:81/mttk-php/playlistController/getDSSongs",
 
     async: true,
     /* If set to non-async, browser shows page as "Loading.."*/
@@ -164,8 +153,7 @@ function addPlaylist(msg) {
         $.ajax({
           type: "post",
 
-          url:"<?php echo base_url('statusController/chooseMusic');?>
-", 
+          url:"http://localhost:81/mttk-php/statusController/chooseMusic", 
 
           cache: false,
           data:'music_name='+$("#music_name").val(),
@@ -218,8 +206,7 @@ function addPlaylist(msg) {
   
 </head>
 <body>
-<?php echo form_open_multipart('statusController/updateStatus');?>
-
+<form action="http://localhost:81/mttk-php/statusController/updateStatus" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 <div id="tabs">
   <ul>
     <li><a href="#tabs-1">Choose music</a></li>
@@ -341,7 +328,6 @@ function addPlaylist(msg) {
   </select>
    <input type="submit" value="submit"/>
 </div>
- <?php echo form_close();?>
-
+ </form>
 </body>
 </html><?php }} ?>
