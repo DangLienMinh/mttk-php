@@ -39,7 +39,7 @@
 */
 
 $route['default_controller'] = "welcome";
-$route['404_override'] = '';
+$route['404_override'] = 'not_found';
 
 //For pages those have a static name
 $route['{default_controller}/{default_method}/about.html'] = "{original_controller}/{original_method}";

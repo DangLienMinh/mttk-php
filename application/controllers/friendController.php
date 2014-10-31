@@ -36,6 +36,16 @@
         echo json_encode($result);
 	}
 
+	public function getSuggestedFriend()
+	{
+        $em = $this->doctrine->em;
+        $email = $this->session->userdata('email');
+		$friend = new Entity\FriendDAO($em);
+		$result=$friend->getSuggestedFriend($email);
+        echo json_encode($result);
+	}
+
+
 	public function getFriendRequest()
 	{
         $em = $this->doctrine->em;

@@ -1,5 +1,3 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-31 22:23:53
-         compiled from "application\views\templates\myform.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:225695453a9898a1be0-55631491%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -12,24 +10,19 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     ),
   ),
   'nocache_hash' => '225695453a9898a1be0-55631491',
-  'function' => 
-  array (
-  ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5453a9899f4e90_99512497',
-),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5453a9899f4e90_99512497')) {function content_5453a9899f4e90_99512497($_smarty_tpl) {?><html>
+  'unifunc' => 'content_5453a989ae5827_87160543',
+  'cache_lifetime' => 120,
+),true); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_5453a989ae5827_87160543')) {function content_5453a989ae5827_87160543($_smarty_tpl) {?><html>
 <head>
 <title>My Form</title>
-<link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>
-css/main.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/main.css">
 </head>
 <body>
-<?php echo validation_errors();?>
 
-<?php echo form_open('userController/register');?>
-
+<form action="http://localhost:81/mttk-php/userController/register" method="post" accept-charset="utf-8">
 
 <h1>Register account</h1>
 <h5 class="test">Email</h5>
@@ -50,19 +43,16 @@ css/main.css">
 
 <div><input type="submit" value="Submit" /></div>
 
-<?php echo form_close();?>
+</form>
 
-
-<?php echo form_open('userController/login1');?>
-
+<form action="http://localhost:81/mttk-php/userController/login1" method="post" accept-charset="utf-8">
 <h5>email name</h5>
 <input type="text" name="email_login"/>
 
 <h5>ps</h5>
 <input type="text" name="pass_login"/>
 <div><input type="submit" value="Login" /></div>
-<?php echo form_close();?>
-
+</form>
 </body>
 </html>
 <?php }} ?>

@@ -59,5 +59,13 @@ class StatusDAO
 		$this->em->persist($status);
 		$this->em->flush();
 	}
+
+	public function xoaStatus($status,$linkUrl)
+	{
+	    $status = $this->em->getReference('Entity\Status', $status);
+	    unlink($linkUrl.$status->getMusic());
+	    $this->em->remove($status);
+	    $this->em->flush();
+	}
 }
 ?>
