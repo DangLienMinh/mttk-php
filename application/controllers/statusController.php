@@ -72,6 +72,14 @@ class StatusController extends CI_Controller {
         $status->xoaStatus($id,$linkUrl);
     }
 
+    public function suaStatus(){
+        $id=$this->input->post('status_id');
+        $msg=$this->input->post('msg');
+        $em = $this->doctrine->em;
+        $status = new Entity\statusDAO($em);
+        $status->suaStatus($id,$msg);
+    }
+
     public function updateStatus()
     {
         $data['status']="";
