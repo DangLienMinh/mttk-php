@@ -6,6 +6,7 @@
     waitForMsg();
     friendRequest();
     getFriendList();
+    
     $("#notificationLink").click(function()
     {
       $("#friendContainer").hide();

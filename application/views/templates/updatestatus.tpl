@@ -11,7 +11,6 @@
   <script type="text/javascript" src="{asset_url()}js/jquery.jplayer.min.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jplayer.playlist.min.js"></script>
   <script type="text/javascript">
-  window.cretePlaylist="{site_url('playlistController/viewPlaylist/')}";
   {literal}
     window.chosenMusic = "";
     window.title="";
@@ -70,7 +69,10 @@ function getPlaylist() {
     timeout: 50000,
     /* Timeout in ms */
     success: function(data) { /* called when request to barge.php completes */
-      addPlaylist(data);
+      $('#playlistBox select').append(data);
+      var id=$('#playlistBox select').find(":selected").val();
+      getSong(id);
+      
     }
   });
 }
@@ -95,18 +97,6 @@ function getSong(data) {
   });
 }
 
-function addPlaylist(msg) {
-  var obj = JSON.parse(msg);
-  try {
-    $.each(obj, function(i, val) {
-      $('#playlistBox select').append('<option value="'+val.Playlist_id+'">'+val.Playlist_name+'</option>');
-    });
-    var id=$('#playlistBox select').find(":selected").val();
-    getSong(id);
-  } catch (e) {
-    alert(e);
-  }
-}
   </script>
   <script>
   $(document).ready(function() {
@@ -142,25 +132,8 @@ function addPlaylist(msg) {
           data:'music_name='+$("#music_name").val(),
           success: function(response){
             $('#finalResult').html("");
-            var obj = JSON.parse(response);
-            if(obj.length>0){
-              try{
-                var items=[];
-                $.each(obj, function(i,val){
-                    items.push('<li class="result"><a href="#" onclick="testXem('  +"'"+ val.UrlJunDownload +"','"+val.Title+"'"+ ')">' + val.Title+ '</a></li>');
-                });
-                $('#finalResult').append.apply($('#finalResult'), items);
-              }catch(e) {
-                alert('Exception while request..');
-              }
-            }else{
-              $('#finalResult').html($('<li/>').text("No Data Found"));
-            }
-          },
-          error: function(){
-            alert('Error while request..');
+            $('#finalResult').append(response);
           }
-
         });
       });
 

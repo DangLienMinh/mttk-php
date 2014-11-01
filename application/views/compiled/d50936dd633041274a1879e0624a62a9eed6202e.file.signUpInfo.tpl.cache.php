@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-31 03:47:35
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-01 08:46:16
          compiled from "application\views\templates\signUpInfo.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:121375452f847e14dc1-26830695%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1841154548fc81c6080-71736500%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'd50936dd633041274a1879e0624a62a9eed6202e' => 
     array (
       0 => 'application\\views\\templates\\signUpInfo.tpl',
-      1 => 1414723613,
+      1 => 1414827577,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '121375452f847e14dc1-26830695',
+  'nocache_hash' => '1841154548fc81c6080-71736500',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5452f84804c340_00347130',
+  'unifunc' => 'content_54548fc8454ad4_10467538',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5452f84804c340_00347130')) {function content_5452f84804c340_00347130($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_54548fc8454ad4_10467538')) {function content_54548fc8454ad4_10467538($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -83,27 +83,8 @@ img/";
       cache: false,
       data:'search='+$(".search").val(),
       success: function(response){
-        var obj = JSON.parse(response);
-        if(obj.length>0){
-          try{
-            var items=[];
-            $.each(obj, function(i,val){
-                //items.push('<li><a href="seeWall/' + val.email + '">' + val.first_name+" "+val.last_name + '</a>'+'<button type="button" class="addFriend" value="' + val.email + '">'+'Add friend</button></li>');
-                items.push('<div class="display_box" align="left"><img src="'+window.userPic+val.picture+'" style="max-width:80%; max-height:80%; float:left; margin-right:6px" /><a href="seeWall/' + val.email + '">' + val.first_name+" "+val.last_name + '</a><button type="button" class="addFriend" value="' + val.email + '">'+'Add friend</button></div>');
-            });
-            $('#display').html(items).show();
-          }catch(e) {
-            alert('Exception while request..');
-          }
-        }else{
-          $('#display').html("No Data Found");
-          $('#display').show();
-        }
-      },
-      error: function(){
-        alert('Error while request..');
+        $('#display').html(response).show();
       }
-
     });
   }
     });
@@ -111,7 +92,7 @@ img/";
     $('#facebook').on('click', '.delete', function() {
       var element = $(this);
       var I = element.attr("id");
-      $('#list'+I).fadeOut('slow', function() {$(this).remove();});   
+      $('#list'+I).fadeOut('slow', function() {$(this).remove();});
       return false;
     });
 
@@ -128,7 +109,6 @@ img/";
          cache:false,
          success: 
               function(data){
-                  //alert(li.attr('id'));
                   li.fadeOut('slow', function() {});
               }
           });
@@ -147,7 +127,7 @@ img/";
          success: 
               function(data){
               }
-          });// you have missed this bracket
+          });
       });
   });
 
@@ -159,23 +139,10 @@ img/";
 ",
 
     async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
     timeout: 50000,
-    /* Timeout in ms */
     success: function(response){
-        var obj = JSON.parse(response);
-        if(obj.length>0){
-          try{
-            var items=[];
-            $.each(obj, function(i,val){
-                items.push('<li id="list'+i+'"><img style="width:30px;height:30px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span class="del"><a href="#" class="delete" id="'+i+'">X</a></span><a href="" class="user-title">'+val.name+'</a><button type="button" class="addFriend" value="' + val.email + '">'+'Add friend</button></li>');
-            });
-            $('#facebook').append(items);
-          }catch(e) {
-            alert('Exception while request..');
-          }
-        }
+         $('#facebook').append(response);
       }
   });
   }
@@ -186,9 +153,6 @@ img/";
     });
 </script>
 <script>
-// This example displays an address form, using the autocomplete feature
-// of the Google Places API to help users fill in the information.
-
 var placeSearch, autocomplete;
 
 function initialize() {

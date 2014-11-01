@@ -384,6 +384,13 @@ a:hover {
     padding-left: 18px;
 }
 
+.noti_comment {
+    background: url('../img/comment.png') left no-repeat !important;
+    font-size: 11px;
+    height: 14px;
+    padding-left: 18px;
+}
+
 .likeUsers {
     border-bottom: 1px solid #e1e1e1;
     border-top: 1px solid #e1e1e1;

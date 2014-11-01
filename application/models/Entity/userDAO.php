@@ -55,7 +55,7 @@ class UserDAO
 		$query->setParameter(2, $str);
 		$query->setMaxResults(5);
 		$results=$query->getResult();
-		return json_encode($results);
+		return $results;
 	}
 
 	public function timUserLogin($data){
