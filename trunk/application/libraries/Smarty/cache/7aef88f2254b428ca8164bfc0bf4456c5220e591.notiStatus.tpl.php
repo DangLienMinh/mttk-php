@@ -1,31 +1,31 @@
-<?php /*%%SmartyHeaderCode:49905454943ea5f317-35127371%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:77245454d82a1e8b44-24325043%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '7aef88f2254b428ca8164bfc0bf4456c5220e591' => 
     array (
       0 => 'application\\views\\templates\\notiStatus.tpl',
-      1 => 1414458661,
+      1 => 1414834665,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1414829010,
+      1 => 1414846460,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '49905454943ea5f317-35127371',
+  'nocache_hash' => '77245454d82a1e8b44-24325043',
   'variables' => 
   array (
     'items' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5454943ee69fb5_78962522',
+  'unifunc' => 'content_5454d82a5cf468_52052792',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5454943ee69fb5_78962522')) {function content_5454943ee69fb5_78962522($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_5454d82a5cf468_52052792')) {function content_5454d82a5cf468_52052792($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -104,6 +104,22 @@ function waitForMsg() {
           $('#notificationsBody>ul').append(data);
         }
       });
+    }
+  });
+}
+
+function suaStatus(status,msg) {
+  var dataString = 'status_id=' + status+'&msg='+msg;
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/statusController/suaStatus",
+
+    data: dataString,
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function() {
     }
   });
 }
@@ -473,7 +489,7 @@ $(document).on('click', '.view_comments', function() {
 function getStatus(){
       var data;
 
-      data=[{"status_id":"26","music":"1","title":"","message":"dasdas","created_at":"2014-10-25 15:08:18","thumbs_up":"3","privacy_type_id":"1","email":"duongphuocloc@gmail.com","picture":"a6551.jpg","name":"phuoc loc"}]
+      data=[{"status_id":"2","music":"15.Forever_Friends_3.mp3","title":"Forever friend","message":"I'm feeling lucky hehe 1","created_at":"2014-10-16 21:44:18","thumbs_up":"1","privacy_type_id":"1","email":"duongphuocloc@gmail.com","picture":"a6551.jpg","name":"phuoc loc"}]
 
     addStatusUserWall(data);
     }

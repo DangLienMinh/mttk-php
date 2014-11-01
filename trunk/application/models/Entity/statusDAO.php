@@ -60,6 +60,14 @@ class StatusDAO
 		$this->em->flush();
 	}
 
+	public function suaStatus($id,$msg)
+	{
+	    $status = $this->em->getReference('Entity\Status', $id);
+	    $status->setMessage($msg);
+		$this->em->merge($status);
+		$this->em->flush();
+	}
+
 	public function xoaStatus($status,$linkUrl)
 	{
 	    $status = $this->em->getReference('Entity\Status', $status);

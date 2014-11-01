@@ -11,13 +11,14 @@ h1 {
 }
 
 a {
-    color: #d02b55;
+    color: #3B5998;
     text-decoration: none;
 }
 
 a:hover {
-    color: #d02b55;
+    color: #3B5998;
     text-decoration: underline;
+    cursor: pointer;
 }
 
 * {
@@ -285,6 +286,26 @@ a:hover {
     padding: 3px;
 }
 
+.editStatus {
+    background-color: #4e69a2;
+    border: none;
+    color: #FFFFFF;
+    font-size: 11px;
+    margin-top: 3px;
+    padding: 3px;
+    margin-left: 52%;
+}
+
+.cancelEdit {
+    background-color: #4e69a2;
+    border: none;
+    color: #FFFFFF;
+    font-size: 11px;
+    margin-top: 3px;
+    padding: 3px;
+    margin-left: 5%;
+}
+
 .panel {
     background-color: #fff;
     height: 45px;
@@ -538,18 +559,6 @@ a:hover {
     text-decoration: none;
 }
 
-.stdelete {
-    background-image: url("../img/delete.png");
-    cursor: pointer;
-    display: none;
-    float: right;
-    font-weight: bold;
-    height: 14px;
-    margin-right: 5px;
-    margin-top: 5px;
-    width: 14px;
-}
-
 .icontext {
     font-weight: bold;
     height: 14px;
@@ -778,4 +787,81 @@ a:hover {
     padding-left: 1px;
     padding-right: 1px;
     color: #ffffff;
+}
+
+
+div.dropdown {
+color: #555;
+margin: 3px -65px 0 0;
+width: 143px;
+position: relative;
+height: 17px;
+text-align:left;
+float:right;
+display:none;
+}
+div.submenu
+{
+background: #fff;
+position: absolute;
+top: -12px;
+left: -20px;
+z-index: 100;
+width: 87px;
+display: none;
+margin-left: 10px;
+padding: 40px 0 5px;
+border-radius: 6px;
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+}
+
+/*.stdelete {
+    background-image: url("../img/delete.png");
+    cursor: pointer;
+    display: none;
+    float: right;
+    font-weight: bold;
+    height: 14px;
+    margin-right: 5px;
+    margin-top: 5px;
+    width: 14px;
+}*/
+
+.dropdown  li a {
+   
+    color: #555555;
+    display: block;
+    font-family: arial;
+    font-weight: bold;
+    padding: 6px 15px;
+  cursor: pointer;
+text-decoration:none;
+}
+
+.dropdown li a:hover{
+    background:#155FB0;
+    color: #FFFFFF;
+    text-decoration: none;
+    
+}
+a.account {
+
+color: #555;
+position: absolute;
+z-index: 110;
+display: block;
+padding: 11px 0 0 20px;
+height: 15px;
+width: 15px;
+margin: 5px 0 0 50px;
+cursor:pointer;
+background: url("../img/delete.png") no-repeat;
+}
+.root
+{
+list-style:none;
+margin:0px;
+font-size: 11px;
+padding: 1px 0 0 0px;
+border-top:1px solid #dedede;
 }

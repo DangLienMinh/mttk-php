@@ -81,6 +81,22 @@ function waitForMsg() {
   });
 }
 
+function suaStatus(status,msg) {
+  var dataString = 'status_id=' + status+'&msg='+msg;
+  $.ajax({
+    type: "post",
+{/literal}
+    url: "{base_url('statusController/suaStatus')}",
+{literal}
+    data: dataString,
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function() {
+    }
+  });
+}
+
 function getFriendList() {
   $.ajax({
     type: "post",

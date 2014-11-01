@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-27 01:24:32
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-01 13:04:54
          compiled from "application\views\templates\testPlayerLink.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:23731544d90c00ea0a7-84587619%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:34975454cc6665be59-62505893%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1414289885,
+      1 => 1414834674,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '23731544d90c00ea0a7-84587619',
+  'nocache_hash' => '34975454cc6665be59-62505893',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544d90c0249c06_63806175',
+  'unifunc' => 'content_5454cc66ad62d9_47832665',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544d90c0249c06_63806175')) {function content_544d90c0249c06_63806175($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_5454cc66ad62d9_47832665')) {function content_5454cc66ad62d9_47832665($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
 function getStatus() {
@@ -40,7 +40,7 @@ function getStatus() {
       addStatus(data); /* Add response to a .msg div (with the "new" class)*/
       setTimeout(
         getStatus, /* Request next message */
-        3000 /* ..after 1 seconds */
+        600000 /* ..after 1 seconds */
       );
     },
     error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -53,6 +53,7 @@ function getStatus() {
 }
   </script>
   <script>
+
   $(document).ready(function() {
     waitForMsg();
     friendRequest();
@@ -80,9 +81,7 @@ function getStatus() {
       $("#notificationContainer").hide();
       $("#friendContainer").hide();
     });
-
    
-
     $('#savePlaylist').click(function(){
       var id=$(this).parent().find('select').find(":selected").val();
       var title=$(this).parent().find('#titleMusic').val();
