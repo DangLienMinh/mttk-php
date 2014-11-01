@@ -15,6 +15,20 @@ class StatusController extends CI_Controller {
         $em = $this->doctrine->em;
         $status = new Entity\statusDAO($em);
         $result=$status->layDSStatus($this->session->userdata('email'));
+        /*$friends="";
+        foreach($result as $k)
+        {
+            if (!$k['picture']) {
+                $k['picture'] = base_url().'uploads/img/profilePic.jpg';
+            }
+            if ($k['email'] == $this->session->userdata('email')) {
+                $is_delete = "stdelete";
+            }
+            $checkPlaylist=(int)$k['music'];
+            $friends.='<li><a class="inline" href="#inline_content"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' .base_url().'uploads/img/'.$k['picture']. '"/><span class="'.$k['email'].'">' . $k['name'] . '</span></a></li>';
+        }
+        echo $friends;
+*/
         echo json_encode($result);
 	}
 
@@ -36,7 +50,17 @@ class StatusController extends CI_Controller {
             $music = str_replace(' ', '+', $music);
             $urlMusic="http://j.ginggong.com/jOut.ashx?k=".$music."&h=mp3.zing.vn&code=eaf53a54-3147-483c-97ba-f7e3e2d0145b";
             $json = file_get_contents($urlMusic);
-            echo $json;
+            $result=json_decode($json, true);
+            $statuses="";
+            if(count($result)>0){
+                foreach($result as $k)
+                {
+                    $statuses.='<li class="result"><a href="#" onclick="testXem('  ."'". $k['UrlJunDownload'] ."','".$k['Title']."'". ')">' .$k['Title']. '</a></li>';
+                }
+            }else{
+                $statuses.="<b>No Data Found</b>";
+            }
+            echo $statuses;
         }
     }
 

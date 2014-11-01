@@ -15,7 +15,13 @@ class PlaylistController extends CI_Controller {
         $em = $this->doctrine->em;
         $playlist = new Entity\PlaylistDAO($em);
         $result=$playlist->layDSPlaylist($this->session->userdata('email'));
-        echo json_encode($result);
+        $playlists="";
+        foreach($result as $k)
+        {
+            $playlists.='<option value="'.$k['Playlist_id'].'">'.$k['Playlist_name'].'</option>';
+        }
+        echo $playlists;
+        //echo json_encode($result);
     }
 
     function getDSSongs(){

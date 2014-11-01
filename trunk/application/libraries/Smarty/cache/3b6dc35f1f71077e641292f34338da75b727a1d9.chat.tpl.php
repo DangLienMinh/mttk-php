@@ -1,27 +1,27 @@
-<?php /*%%SmartyHeaderCode:21170545301d61be521-12264280%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:23506545464b25df107-54112461%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '3b6dc35f1f71077e641292f34338da75b727a1d9' => 
     array (
       0 => 'application\\views\\templates\\chat.tpl',
-      1 => 1414634480,
+      1 => 1414816594,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1414725511,
+      1 => 1414816902,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '21170545301d61be521-12264280',
+  'nocache_hash' => '23506545464b25df107-54112461',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_545301d672db66_78059565',
+  'unifunc' => 'content_545464b296ac14_44684609',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_545301d672db66_78059565')) {function content_545301d672db66_78059565($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_545464b296ac14_44684609')) {function content_545464b296ac14_44684609($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -56,6 +56,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   window.userLogin="anhtiminh@yahoo.com";
   window.friendController="http://localhost:81/mttk-php/friendController";
   window.userPicCmt="http://localhost:81/mttk-php/uploads/img/shot0006.jpg";
+  window.userMusic="http://localhost:81/mttk-php/uploads";
   window.compare=0;
   window.compareStatus=0;
   window.currentChatPosition=-1;
@@ -68,6 +69,10 @@ $( document ).ajaxStop(function() {
             itemSelector: '.item'
     });
     Arrow_Points();
+    $(".timeago").livequery(function() // LiveQuery 
+    {
+      $(this).timeago(); // Calling Timeago Funtion 
+    });
 });
 
 function waitForMsg() {
@@ -88,7 +93,12 @@ function waitForMsg() {
 
         cache: false,
         success: function(times) {
-          addmsg(data, times);
+          if (times > 0) {
+            $("#notification_count").replaceWith('<span id="notification_count">' + times + '</span>');
+          } else {
+            $("#notification_count").hide();
+          }
+          $('#notificationsBody>ul').append(data);
         }
       });
     }
@@ -106,7 +116,9 @@ function getFriendList() {
     cache: false,
     timeout: 50000,
     success: function(data) {
-     addFriendList(data);
+     //addFriendList(data);
+     $('#friendListContainer>ul').append(data);
+     $(".inline").colorbox({inline:true, width:"30%",height:"80%"});
     }
   });
 }
@@ -130,7 +142,7 @@ function getConversation(userEmail) {
     cache: false,
     timeout: 50000,
     success: function(data) {
-      addConversation(data); 
+      addConversation(data);
       setTimeout(
         getConversation, /* Request next message */
         2000 /* ..after 1 seconds */
@@ -156,6 +168,22 @@ function getMoreConversation(userEmail,last_id) {
   });
 }
 
+function deleteStatus(status) {
+  var dataString = 'status_id=' + status;
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/statusController/xoaStatus",
+
+    data: dataString,
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function() {
+    }
+  });
+}
+
 function getPlaylist() {
   $.ajax({
     type: "post",
@@ -166,7 +194,10 @@ function getPlaylist() {
     cache: false,
     timeout: 50000,
     success: function(data) {
-      addPlaylist(data);
+      //addPlaylist(data);
+      $('#playlistBox select').append(data);
+      $('#playlistBox').append('<br/><a class="iframe" href="'+window.cretePlaylist+'">Create Playlist</a>');
+      $(".iframe").colorbox({iframe:true, width:"50%", height:"50%"});
     }
   });
 }
@@ -180,8 +211,16 @@ function friendRequest() {
     async: true,
     cache: false,
     timeout: 50000,
-    success: function(data) { 
-      addFriendRequest(data);
+    success: function(data) {
+      data=$.trim(data);
+      var checkNumber=data.charAt(0);
+      if($.isNumeric(checkNumber)){
+        $("#friend_count").replaceWith('<span id="friend_count">'+checkNumber+'</span>');
+        $('#friendBody>ul').append(data.substring(1));
+      }else{
+        $("#friend_count").hide();
+      }
+      //addFriendRequest(data);
     }
   });
 }
@@ -213,7 +252,14 @@ function getComment(status) {
     /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
     success: function(data) { /* called when request to barge.php completes */
-      var obj = JSON.parse(data);
+      var checkComment=data.charAt(0);
+      if($.isNumeric(checkComment)){
+        $("#loadplace"+status).append(data.substring(1));
+        getLastComment(status,checkComment);
+      }else{
+        $("#loadplace"+status).append(data);
+      }
+      /*var obj = JSON.parse(data);
       if (obj.length > 0) {
         if(obj.length<=3){
             $.each(obj, function(i, val) {
@@ -228,7 +274,7 @@ function getComment(status) {
             $("#loadplace" + status).append('<div class="comment_ui"><a class="view_comments" id="'+status+'">View '+second_count+' more comments</a></div>');
             getLastComment(status,second_count);
           }
-      }
+      }*/
     }
   });
 }
@@ -244,7 +290,7 @@ function getLastComment(status,count) {
     async: true,
     cache: false,
     success: function(data) { 
-      var obj = JSON.parse(data);
+      /*var obj = JSON.parse(data);
       if (obj.length > 0) {
         $.each(obj, function(i, val) {
           var is_delete = "";
@@ -252,9 +298,9 @@ function getLastComment(status,count) {
             is_delete = "delete_button";
           }
           $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="' + val.email + '" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="' + is_delete + '"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
-        });
+        });*/
+        $("#loadplace"+status).append(data);
       }
-    }
   });
 }
 
@@ -316,11 +362,10 @@ function getLike(status) {
         }
       }
     }).done(function() {
-      $(".timeago").livequery(function() // LiveQuery 
+/*      $(".timeago").livequery(function() // LiveQuery 
         {
           $(this).timeago(); // Calling Timeago Funtion 
-        });
-
+        });*/
     });
   });
 }
@@ -444,16 +489,17 @@ $(document).on('click', '.view_comments', function() {
   $.ajax({
     type: "post",
 
-    url: "http://localhost:81/mttk-php/commentController/layComment",
+    url: "http://localhost:81/mttk-php/commentController/layAllComment",
 
     data: dataString,
     async: true,
     /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
-    success: function(data) { 
-      var obj = JSON.parse(data);
+    success: function(data) {
+      //var obj = JSON.parse(data);
       $("#loadplace" + status).empty();
-      if (obj.length > 0) {
+      $("#loadplace" + status).append(data);
+      /*if (obj.length > 0) {
         $.each(obj, function(i, val) {
           var is_delete = "";
           if (val.email == window.userLogin) {
@@ -461,7 +507,7 @@ $(document).on('click', '.view_comments', function() {
           }
           $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="' + val.email + '" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="' + is_delete + '"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
         });
-      }
+      }*/
     }
   });
 });
@@ -473,6 +519,7 @@ $(document).on('click', '.view_comments', function() {
     waitForMsg();
     friendRequest();
     getFriendList();
+    
     $("#notificationLink").click(function()
     {
       $("#friendContainer").hide();

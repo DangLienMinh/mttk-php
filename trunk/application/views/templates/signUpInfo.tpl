@@ -54,27 +54,8 @@
       cache: false,
       data:'search='+$(".search").val(),
       success: function(response){
-        var obj = JSON.parse(response);
-        if(obj.length>0){
-          try{
-            var items=[];
-            $.each(obj, function(i,val){
-                //items.push('<li><a href="seeWall/' + val.email + '">' + val.first_name+" "+val.last_name + '</a>'+'<button type="button" class="addFriend" value="' + val.email + '">'+'Add friend</button></li>');
-                items.push('<div class="display_box" align="left"><img src="'+window.userPic+val.picture+'" style="max-width:80%; max-height:80%; float:left; margin-right:6px" /><a href="seeWall/' + val.email + '">' + val.first_name+" "+val.last_name + '</a><button type="button" class="addFriend" value="' + val.email + '">'+'Add friend</button></div>');
-            });
-            $('#display').html(items).show();
-          }catch(e) {
-            alert('Exception while request..');
-          }
-        }else{
-          $('#display').html("No Data Found");
-          $('#display').show();
-        }
-      },
-      error: function(){
-        alert('Error while request..');
+        $('#display').html(response).show();
       }
-
     });
   }
     });
@@ -82,7 +63,7 @@
     $('#facebook').on('click', '.delete', function() {
       var element = $(this);
       var I = element.attr("id");
-      $('#list'+I).fadeOut('slow', function() {$(this).remove();});   
+      $('#list'+I).fadeOut('slow', function() {$(this).remove();});
       return false;
     });
 
@@ -115,7 +96,7 @@
          success: 
               function(data){
               }
-          });// you have missed this bracket
+          });
       });
   });
 
@@ -126,23 +107,10 @@
     url: "{base_url('friendController/getSuggestedFriend')}",
 {literal}
     async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
     timeout: 50000,
-    /* Timeout in ms */
     success: function(response){
-        var obj = JSON.parse(response);
-        if(obj.length>0){
-          try{
-            var items=[];
-            $.each(obj, function(i,val){
-                items.push('<li id="list'+i+'"><img style="width:30px;height:30px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span class="del"><a href="#" class="delete" id="'+i+'">X</a></span><a href="" class="user-title">'+val.name+'</a><button type="button" class="addFriend" value="' + val.email + '">'+'Add friend</button></li>');
-            });
-            $('#facebook').append(items);
-          }catch(e) {
-            alert('Exception while request..');
-          }
-        }
+         $('#facebook').append(response);
       }
   });
   }
@@ -153,9 +121,6 @@
     });
 </script>
 <script>
-// This example displays an address form, using the autocomplete feature
-// of the Google Places API to help users fill in the information.
-
 var placeSearch, autocomplete;
 
 function initialize() {

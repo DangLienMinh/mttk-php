@@ -171,33 +171,6 @@ function addStatusUserWall(obj) {
 	}
 }
 
-
-function addPlaylist(msg) {
-	var obj = JSON.parse(msg);
-	try {
-		$.each(obj, function(i, val) {
-			$('#playlistBox select').append('<option value="'+val.Playlist_id+'">'+val.Playlist_name+'</option>');
-		});
-		$('#playlistBox').append('<br/><a class="iframe" href="'+window.cretePlaylist+'">Create Playlist</a>');
-		$(".iframe").colorbox({iframe:true, width:"50%", height:"50%"});
-
-	} catch (e) {
-		alert(e);
-	}
-}
-
-function addFriendList(msg) {
-	var obj = JSON.parse(msg);
-	try {
-		$.each(obj, function(i, val) {
-			$('#friendListContainer>ul').append('<li><a class="inline" href="#inline_content"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span class="'+val.email+'">' + val.name + '</span></a></li>');
-		});
-		$(".inline").colorbox({inline:true, width:"30%",height:"80%"});
-	} catch (e) {
-		alert(e);
-	}
-}
-
 function addConversation(msg) {
 	var obj = JSON.parse(msg);
 	//$("#inline_content ol").empty();
@@ -221,9 +194,7 @@ function addConversation(msg) {
 			}
 		});
 		$('#content').focus();
-
 		window.currentChatPosition = $("#inline_content ol li:first").attr("id");
-
 	} catch (e) {
 		alert(e);
 	}
@@ -248,66 +219,6 @@ function addMoreConversation(msg) {
 			$('#inline_content ol').prepend('<div class="morebox"><a href="#" class="more" id="' + window.currentChatPosition + '">more</a></div>');
 	} catch (e) {
 		alert(e);
-	}
-}
-
-function addFriendRequest(msg) {
-	var obj = JSON.parse(msg);
-	if (obj.length > 0) {
-		$("#friend_count").replaceWith('<span id="friend_count">'+obj.length+'</span>');
-		try {
-			var items = [];
-			var count = 0;
-			$.each(obj, function(i, val) {
-				if (count <= 6) {
-					$('#friendBody>ul').append('<li style="background:#f4f6f9"  class="noti"><a href="' + window.userWall + "/" + val.email + '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.name + '</span></a><div class="friendAction"><button id="friendAccept" onClick="window.location.href='+"'"+window.friendController+ "/acceptFriendRequest/" + val.email +"'"+'">Accept</button><button id="friendDecline" onClick="window.location.href='+"'"+window.friendController+ "/removeFriendRequest/" + val.email +"'"+'">Decline</button></div></li>');
-					count = count + 1;
-				}
-			});
-		} catch (e) {
-			alert('Exception while request..' + e);
-		}
-	}else {
-		$("#friend_count").hide();
-	}
-}
-
-function addmsg(msg, times) {
-	var obj = JSON.parse(msg);
-	if (times > 0) {
-		$("#notification_count").replaceWith('<span id="notification_count">' + times + '</span>');
-	} else {
-		$("#notification_count").hide();
-	}
-	var countNoti=0;
-	if (obj.length > window.compare) {
-		window.compare = obj.length;
-		try {
-			var items = [];
-
-			$.each(obj, function(i, val) {
-
-				var noti_icon = "";
-				if (val.type == "1") {
-					notiIcon = "noti_like";
-				} else {
-					notiIcon = "noti_comment";
-				}
-				if (countNoti < 5) {
-					if (times > 0) {
-						$('#notificationsBody>ul').append('<li style="background:#f4f6f9"  class="noti"><a href="' + window.notifyStatus + "/" + val.status_id + "/" + val.notification_id + '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.msg + '</span><br/><abbr class="timeago ' + notiIcon + '" title="' + val.created_at + '"></abbr></a></li>');
-						times = times - 1;
-						countNoti=countNoti+1;
-					} else {
-						$('#notificationsBody>ul').append('<li class="noti"><a href="' + window.notifyStatus + "/" + val.status_id + '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.msg + '</span><br/><abbr class="timeago ' + notiIcon + '" title="' + val.created_at + '"></abbr></a></li>');
-						countNoti=countNoti+1;
-					}
-				}
-
-			});
-		} catch (e) {
-			alert('Exception while request..' + e);
-		}
 	}
 }
 

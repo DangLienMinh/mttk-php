@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-31 04:28:22
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-01 05:42:26
          compiled from "application\views\templates\chat.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:21170545301d61be521-12264280%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:23506545464b25df107-54112461%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '3b6dc35f1f71077e641292f34338da75b727a1d9' => 
     array (
       0 => 'application\\views\\templates\\chat.tpl',
-      1 => 1414634480,
+      1 => 1414816594,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '21170545301d61be521-12264280',
+  'nocache_hash' => '23506545464b25df107-54112461',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_545301d6373950_00586090',
+  'unifunc' => 'content_545464b2714872_64346068',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_545301d6373950_00586090')) {function content_545301d6373950_00586090($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_545464b2714872_64346068')) {function content_545464b2714872_64346068($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
   </script>
@@ -28,6 +28,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     waitForMsg();
     friendRequest();
     getFriendList();
+    
     $("#notificationLink").click(function()
     {
       $("#friendContainer").hide();

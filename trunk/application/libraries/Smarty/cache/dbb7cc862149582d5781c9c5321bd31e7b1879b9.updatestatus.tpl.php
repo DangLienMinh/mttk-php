@@ -1,21 +1,21 @@
-<?php /*%%SmartyHeaderCode:175254537bab1a0110-98389585%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:28519545493da3e41a0-61623072%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'dbb7cc862149582d5781c9c5321bd31e7b1879b9' => 
     array (
       0 => 'application\\views\\templates\\updatestatus.tpl',
-      1 => 1414225411,
+      1 => 1414828797,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '175254537bab1a0110-98389585',
+  'nocache_hash' => '28519545493da3e41a0-61623072',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_54537bab45f7a7_22888958',
+  'unifunc' => 'content_545493da5d6f35_52726289',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_54537bab45f7a7_22888958')) {function content_54537bab45f7a7_22888958($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_545493da5d6f35_52726289')) {function content_545493da5d6f35_52726289($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -28,7 +28,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.jplayer.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jplayer.playlist.min.js"></script>
   <script type="text/javascript">
-  window.cretePlaylist="http://localhost:81/mttk-php/playlistController/viewPlaylist";
   
     window.chosenMusic = "";
     window.title="";
@@ -87,7 +86,10 @@ function getPlaylist() {
     timeout: 50000,
     /* Timeout in ms */
     success: function(data) { /* called when request to barge.php completes */
-      addPlaylist(data);
+      $('#playlistBox select').append(data);
+      var id=$('#playlistBox select').find(":selected").val();
+      getSong(id);
+      
     }
   });
 }
@@ -112,18 +114,6 @@ function getSong(data) {
   });
 }
 
-function addPlaylist(msg) {
-  var obj = JSON.parse(msg);
-  try {
-    $.each(obj, function(i, val) {
-      $('#playlistBox select').append('<option value="'+val.Playlist_id+'">'+val.Playlist_name+'</option>');
-    });
-    var id=$('#playlistBox select').find(":selected").val();
-    getSong(id);
-  } catch (e) {
-    alert(e);
-  }
-}
   </script>
   <script>
   $(document).ready(function() {
@@ -159,25 +149,8 @@ function addPlaylist(msg) {
           data:'music_name='+$("#music_name").val(),
           success: function(response){
             $('#finalResult').html("");
-            var obj = JSON.parse(response);
-            if(obj.length>0){
-              try{
-                var items=[];
-                $.each(obj, function(i,val){
-                    items.push('<li class="result"><a href="#" onclick="testXem('  +"'"+ val.UrlJunDownload +"','"+val.Title+"'"+ ')">' + val.Title+ '</a></li>');
-                });
-                $('#finalResult').append.apply($('#finalResult'), items);
-              }catch(e) {
-                alert('Exception while request..');
-              }
-            }else{
-              $('#finalResult').html($('<li/>').text("No Data Found"));
-            }
-          },
-          error: function(){
-            alert('Error while request..');
+            $('#finalResult').append(response);
           }
-
         });
       });
 

@@ -1,41 +1,59 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-01 09:05:18
-         compiled from "application\views\templates\notiStatus.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:49905454943ea5f317-35127371%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-01 02:51:31
+         compiled from "application\views\templates\testPlayerLink.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:1307654543ca327e4c6-08950325%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '7aef88f2254b428ca8164bfc0bf4456c5220e591' => 
+    '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
-      0 => 'application\\views\\templates\\notiStatus.tpl',
-      1 => 1414458661,
+      0 => 'application\\views\\templates\\testPlayerLink.tpl',
+      1 => 1414744234,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '49905454943ea5f317-35127371',
+  'nocache_hash' => '1307654543ca327e4c6-08950325',
   'function' => 
   array (
   ),
-  'variables' => 
-  array (
-    'items' => 0,
-  ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5454943eb93128_41650414',
+  'unifunc' => 'content_54543ca35daf15_65574623',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5454943eb93128_41650414')) {function content_5454943eb93128_41650414($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_54543ca35daf15_65574623')) {function content_54543ca35daf15_65574623($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
-function getStatus(){
-      var data;
+function getStatus() {
+  /* This requests the url "msgsrv.php"
+        When it complete (or errors)*/
+  $.ajax({
+    type: "post",
 
-      data=<?php echo $_smarty_tpl->tpl_vars['items']->value;?>
+    url: "<?php echo base_url('statusController/index');?>
+",
 
-
-    addStatusUserWall(data);
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    timeout: 50000,
+    /* Timeout in ms */
+    success: function(data) { /* called when request to barge.php completes */
+      addStatus(data); /* Add response to a .msg div (with the "new" class)*/
+      setTimeout(
+        getStatus, /* Request next message */
+        600000 /* ..after 1 seconds */
+      );
+    },
+    error: function(XMLHttpRequest, textStatus, errorThrown) {
+      addStatus("error", textStatus + " (" + errorThrown + ")");
+      setTimeout(
+        getStatus, /* Try again after.. */
+        15000); /* milliseconds (15seconds) */
     }
+  });
+}
   </script>
   <script>
+
   $(document).ready(function() {
     waitForMsg();
     friendRequest();
@@ -63,7 +81,7 @@ function getStatus(){
       $("#notificationContainer").hide();
       $("#friendContainer").hide();
     });
-
+   
     $('#savePlaylist').click(function(){
       var id=$(this).parent().find('select').find(":selected").val();
       var title=$(this).parent().find('#titleMusic').val();
@@ -112,5 +130,13 @@ function getStatus(){
       <img/>
       <h2></h2>
     </div>
+    <div style="display: none; border: 1px solid black; height: 50px; width: 180px; 
+       padding: 5px; position: absolute; left: 100px; top: 100px; 
+       background-color: silver;" id="playlistBox">
+    <select></select>
+    <input type="hidden" id="titleMusic"/>
+    <input type="hidden" id="urlMusic"/>
+    <button id="savePlaylist">Save</button>
+  </div>
 </body>
 </html><?php }} ?>

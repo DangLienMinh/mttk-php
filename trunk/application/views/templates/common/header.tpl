@@ -25,13 +25,13 @@
   </script>
   <script type="text/javascript" src="{asset_url()}js/jquery.emotions.js"></script>
   <script type="text/javascript">
-  window.notifyStatus="{site_url('statusController/hienThiNotiStatus/')}";
+  //window.notifyStatus="{site_url('statusController/hienThiNotiStatus/')}";
   window.cretePlaylist="{site_url('playlistController/viewPlaylist/')}";
   window.profilePic="{uploads_url()}img/profilePic.jpg";
   window.userPic="{uploads_url()}img/";
   window.userWall="{site_url('statusController/layDSWallStatus/')}";
   window.userLogin="{$userLogin}";
-  window.friendController="{site_url('friendController/')}";
+  //window.friendController="{site_url('friendController/')}";
   window.userPicCmt="{uploads_url()}img/{$userPicCmt}";
   window.userMusic="{base_url('uploads/')}";
   window.compare=0;
@@ -46,6 +46,10 @@ $( document ).ajaxStop(function() {
             itemSelector: '.item'
     });
     Arrow_Points();
+    $(".timeago").livequery(function() // LiveQuery 
+    {
+      $(this).timeago(); // Calling Timeago Funtion 
+    });
 });
 
 function waitForMsg() {
@@ -55,10 +59,9 @@ function waitForMsg() {
     url: "{base_url('notiController/getOldNotify')}",
 {literal}
     async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
     timeout: 50000,
-    success: function(data) { /* called when request to barge.php completes */
+    success: function(data) {
       $.ajax({
         type: "post",
 {/literal}
@@ -66,7 +69,12 @@ function waitForMsg() {
 {literal}
         cache: false,
         success: function(times) {
-          addmsg(data, times);
+          if (times > 0) {
+            $("#notification_count").replaceWith('<span id="notification_count">' + times + '</span>');
+          } else {
+            $("#notification_count").hide();
+          }
+          $('#notificationsBody>ul').append(data);
         }
       });
     }
@@ -84,7 +92,8 @@ function getFriendList() {
     cache: false,
     timeout: 50000,
     success: function(data) {
-     addFriendList(data);
+     $('#friendListContainer>ul').append(data);
+     $(".inline").colorbox({inline:true, width:"30%",height:"80%"});
     }
   });
 }
@@ -104,14 +113,13 @@ function getConversation(userEmail) {
 {literal}
     data: dataString,
     async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
     timeout: 50000,
     success: function(data) {
-      addConversation(data); 
+      addConversation(data);
       setTimeout(
         getConversation, /* Request next message */
-        2000 /* ..after 1 seconds */
+        2000 /* ..after 2 seconds */
       );
     }
   });
@@ -160,7 +168,9 @@ function getPlaylist() {
     cache: false,
     timeout: 50000,
     success: function(data) {
-      addPlaylist(data);
+      $('#playlistBox select').append(data);
+      $('#playlistBox').append('<br/><a class="iframe" href="'+window.cretePlaylist+'">Create Playlist</a>');
+      $(".iframe").colorbox({iframe:true, width:"50%", height:"50%"});
     }
   });
 }
@@ -174,8 +184,15 @@ function friendRequest() {
     async: true,
     cache: false,
     timeout: 50000,
-    success: function(data) { 
-      addFriendRequest(data);
+    success: function(data) {
+      data=$.trim(data);
+      var checkNumber=data.charAt(0);
+      if($.isNumeric(checkNumber)){
+        $("#friend_count").replaceWith('<span id="friend_count">'+checkNumber+'</span>');
+        $('#friendBody>ul').append(data.substring(1));
+      }else{
+        $("#friend_count").hide();
+      }
     }
   });
 }
@@ -204,24 +221,14 @@ function getComment(status) {
 {literal}
     data: dataString,
     async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
-    success: function(data) { /* called when request to barge.php completes */
-      var obj = JSON.parse(data);
-      if (obj.length > 0) {
-        if(obj.length<=3){
-            $.each(obj, function(i, val) {
-            var is_delete="";
-            if(val.email==window.userLogin){
-              is_delete="delete_button";
-            }
-            $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="'+val.email+'" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="'+is_delete+'"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
-          });
-          }else{
-            var second_count=obj.length-3;
-            $("#loadplace" + status).append('<div class="comment_ui"><a class="view_comments" id="'+status+'">View '+second_count+' more comments</a></div>');
-            getLastComment(status,second_count);
-          }
+    success: function(data) {
+      var checkComment=data.charAt(0);
+      if($.isNumeric(checkComment)){
+        $("#loadplace"+status).append(data.substring(1));
+        getLastComment(status,checkComment);
+      }else{
+        $("#loadplace"+status).append(data);
       }
     }
   });
@@ -238,17 +245,8 @@ function getLastComment(status,count) {
     async: true,
     cache: false,
     success: function(data) { 
-      var obj = JSON.parse(data);
-      if (obj.length > 0) {
-        $.each(obj, function(i, val) {
-          var is_delete = "";
-          if (val.email == window.userLogin) {
-            is_delete = "delete_button";
-          }
-          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="' + val.email + '" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="' + is_delete + '"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
-        });
+        $("#loadplace"+status).append(data);
       }
-    }
   });
 }
 
@@ -309,12 +307,6 @@ function getLike(status) {
           $("#youlike" + status).append(' like this');
         }
       }
-    }).done(function() {
-      $(".timeago").livequery(function() // LiveQuery 
-        {
-          $(this).timeago(); // Calling Timeago Funtion 
-        });
-
     });
   });
 }
@@ -438,24 +430,14 @@ $(document).on('click', '.view_comments', function() {
   $.ajax({
     type: "post",
 {/literal}
-    url: "{base_url('commentController/layComment')}",
+    url: "{base_url('commentController/layAllComment')}",
 {literal}
     data: dataString,
     async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
-    success: function(data) { 
-      var obj = JSON.parse(data);
+    success: function(data) {
       $("#loadplace" + status).empty();
-      if (obj.length > 0) {
-        $.each(obj, function(i, val) {
-          var is_delete = "";
-          if (val.email == window.userLogin) {
-            is_delete = "delete_button";
-          }
-          $("#loadplace" + val.status_id).append('<li class="load_comment"><span id="' + val.name + '"></span><img id="' + val.email + '" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/><span>' + val.message + '</span><a href="#" id="' + val.comment_id + '" class="' + is_delete + '"></a><br/><abbr class="timeago" title="' + val.created_at + '"></abbr></li>');
-        });
-      }
+      $("#loadplace" + status).append(data);
     }
   });
 });
