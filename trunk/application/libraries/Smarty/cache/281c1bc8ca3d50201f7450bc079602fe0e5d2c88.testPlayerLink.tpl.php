@@ -1,27 +1,27 @@
-<?php /*%%SmartyHeaderCode:66835454dc852bd8a0-85260789%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:153795458d2f345a401-92037533%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1414834674,
+      1 => 1415105663,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1414846460,
+      1 => 1415107227,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '66835454dc852bd8a0-85260789',
+  'nocache_hash' => '153795458d2f345a401-92037533',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5454dc860e9f77_80147882',
+  'unifunc' => 'content_5458d2f37e4688_60711891',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5454dc860e9f77_80147882')) {function content_5454dc860e9f77_80147882($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_5458d2f37e4688_60711891')) {function content_5458d2f37e4688_60711891($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -53,9 +53,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   window.profilePic="http://localhost:81/mttk-php/uploads/img/profilePic.jpg";
   window.userPic="http://localhost:81/mttk-php/uploads/img/";
   window.userWall="http://localhost:81/mttk-php/statusController/layDSWallStatus";
-  window.userLogin="duongphuocloc@gmail.com";
+  window.userLogin="anhtiminh@yahoo.com";
   //window.friendController="http://localhost:81/mttk-php/friendController";
-  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/a6551.jpg";
+  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/shot0006.jpg";
   window.userMusic="http://localhost:81/mttk-php/uploads";
   window.compare=0;
   window.compareStatus=0;
@@ -74,6 +74,23 @@ $( document ).ajaxStop(function() {
       $(this).timeago(); // Calling Timeago Funtion 
     });
 });
+
+function moreStatus(id,jplayer_id) {
+  var dataString = 'status_id=' + id;
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/statusController/getNextStatus",
+
+    data: dataString,
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      addMoreStatus(data,jplayer_id);
+    }
+  });
+}
 
 function waitForMsg() {
   $.ajax({
@@ -116,6 +133,23 @@ function suaStatus(status,msg) {
     cache: false,
     timeout: 50000,
     success: function() {
+    }
+  });
+}
+
+function moreNotify(id) {
+  var dataString = 'noti_id=' + id;
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/notiController/getNextOldNotify",
+
+    data: dataString,
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('#notificationsBody ul').append(data);
     }
   });
 }
@@ -547,6 +581,20 @@ function getStatus() {
       var music=$(this).parent().find('#urlMusic').val();
       savePlaylist(id,title,music);
     });
+    $('#notificationsBody ul').bind('scroll', function() {
+        if($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
+          var id=$(this).find('li:last').attr("id");
+          moreNotify(id.substring(4));
+        }
+    });
+    $(window).scroll(function(){
+      if ($(window).scrollTop() == $(document).height() - $(window).height()){
+        var element=$('#container').find('.item:last');
+        var id=element.attr('id').substring(6);
+        var jplayer_id=element.find('.jp-jplayer').attr('id').substring(15);
+        moreStatus(id,jplayer_id);
+      }
+    });
   });
   </script>
  
@@ -569,7 +617,10 @@ function getStatus() {
       <span id="notification_count"></span>
       <a href="#" id="notificationLink">Notifications</a>
       <div id="notificationContainer">
-        <div id="notificationTitle">Notifications</div>
+        <div id="notificationTitle">
+          Notifications
+          <a href="#" id="markRead">Mark all read</a>
+        </div>
         <div id="notificationsBody" class="notifications">
           <ul></ul>
         </div>

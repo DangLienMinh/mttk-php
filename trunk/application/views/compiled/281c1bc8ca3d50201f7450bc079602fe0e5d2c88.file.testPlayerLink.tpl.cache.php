@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-01 14:13:41
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-04 14:21:55
          compiled from "application\views\templates\testPlayerLink.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:66835454dc852bd8a0-85260789%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:153795458d2f345a401-92037533%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1414834674,
+      1 => 1415105663,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '66835454dc852bd8a0-85260789',
+  'nocache_hash' => '153795458d2f345a401-92037533',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5454dc855f54c6_09489010',
+  'unifunc' => 'content_5458d2f35669c5_17950176',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5454dc855f54c6_09489010')) {function content_5454dc855f54c6_09489010($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_5458d2f35669c5_17950176')) {function content_5458d2f35669c5_17950176($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
 function getStatus() {
@@ -88,6 +88,20 @@ function getStatus() {
       var music=$(this).parent().find('#urlMusic').val();
       savePlaylist(id,title,music);
     });
+    $('#notificationsBody ul').bind('scroll', function() {
+        if($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
+          var id=$(this).find('li:last').attr("id");
+          moreNotify(id.substring(4));
+        }
+    });
+    $(window).scroll(function(){
+      if ($(window).scrollTop() == $(document).height() - $(window).height()){
+        var element=$('#container').find('.item:last');
+        var id=element.attr('id').substring(6);
+        var jplayer_id=element.find('.jp-jplayer').attr('id').substring(15);
+        moreStatus(id,jplayer_id);
+      }
+    });
   });
   </script>
  
@@ -110,7 +124,10 @@ function getStatus() {
       <span id="notification_count"></span>
       <a href="#" id="notificationLink">Notifications</a>
       <div id="notificationContainer">
-        <div id="notificationTitle">Notifications</div>
+        <div id="notificationTitle">
+          Notifications
+          <a href="#" id="markRead">Mark all read</a>
+        </div>
         <div id="notificationsBody" class="notifications">
           <ul></ul>
         </div>

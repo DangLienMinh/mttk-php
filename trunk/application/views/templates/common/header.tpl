@@ -52,6 +52,23 @@ $( document ).ajaxStop(function() {
     });
 });
 
+function moreStatus(id,jplayer_id) {
+  var dataString = 'status_id=' + id;
+  $.ajax({
+    type: "post",
+{/literal}
+    url: "{base_url('statusController/getNextStatus')}",
+{literal}
+    data: dataString,
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      addMoreStatus(data,jplayer_id);
+    }
+  });
+}
+
 function waitForMsg() {
   $.ajax({
     type: "post",
@@ -93,6 +110,23 @@ function suaStatus(status,msg) {
     cache: false,
     timeout: 50000,
     success: function() {
+    }
+  });
+}
+
+function moreNotify(id) {
+  var dataString = 'noti_id=' + id;
+  $.ajax({
+    type: "post",
+{/literal}
+    url: "{base_url('notiController/getNextOldNotify')}",
+{literal}
+    data: dataString,
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('#notificationsBody ul').append(data);
     }
   });
 }

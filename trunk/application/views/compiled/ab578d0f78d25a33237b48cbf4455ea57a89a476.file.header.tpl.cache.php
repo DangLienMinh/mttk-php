@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-01 14:13:41
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-04 14:21:55
          compiled from "application\views\templates\common\header.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:19765454dc85709076-15049723%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:36645458d2f35be513-45880590%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1414846460,
+      1 => 1415107227,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '19765454dc85709076-15049723',
+  'nocache_hash' => '36645458d2f35be513-45880590',
   'function' => 
   array (
   ),
@@ -22,9 +22,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5454dc85eaa610_42755320',
+  'unifunc' => 'content_5458d2f378e796_38370563',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5454dc85eaa610_42755320')) {function content_5454dc85eaa610_42755320($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_5458d2f378e796_38370563')) {function content_5458d2f378e796_38370563($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -107,6 +107,24 @@ $( document ).ajaxStop(function() {
     });
 });
 
+function moreStatus(id,jplayer_id) {
+  var dataString = 'status_id=' + id;
+  $.ajax({
+    type: "post",
+
+    url: "<?php echo base_url('statusController/getNextStatus');?>
+",
+
+    data: dataString,
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      addMoreStatus(data,jplayer_id);
+    }
+  });
+}
+
 function waitForMsg() {
   $.ajax({
     type: "post",
@@ -151,6 +169,24 @@ function suaStatus(status,msg) {
     cache: false,
     timeout: 50000,
     success: function() {
+    }
+  });
+}
+
+function moreNotify(id) {
+  var dataString = 'noti_id=' + id;
+  $.ajax({
+    type: "post",
+
+    url: "<?php echo base_url('notiController/getNextOldNotify');?>
+",
+
+    data: dataString,
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('#notificationsBody ul').append(data);
     }
   });
 }

@@ -1,4 +1,4 @@
-<?php /*%%SmartyHeaderCode:77245454d82a1e8b44-24325043%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:203515458391ac2b957-56955036%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -15,17 +15,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '77245454d82a1e8b44-24325043',
+  'nocache_hash' => '203515458391ac2b957-56955036',
   'variables' => 
   array (
     'items' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5454d82a5cf468_52052792',
+  'unifunc' => 'content_5458391b23df30_30974218',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5454d82a5cf468_52052792')) {function content_5454d82a5cf468_52052792($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_5458391b23df30_30974218')) {function content_5458391b23df30_30974218($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -57,9 +57,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   window.profilePic="http://localhost:81/mttk-php/uploads/img/profilePic.jpg";
   window.userPic="http://localhost:81/mttk-php/uploads/img/";
   window.userWall="http://localhost:81/mttk-php/statusController/layDSWallStatus";
-  window.userLogin="duongphuocloc@gmail.com";
+  window.userLogin="anhtiminh@yahoo.com";
   //window.friendController="http://localhost:81/mttk-php/friendController";
-  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/a6551.jpg";
+  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/shot0006.jpg";
   window.userMusic="http://localhost:81/mttk-php/uploads";
   window.compare=0;
   window.compareStatus=0;
@@ -489,7 +489,7 @@ $(document).on('click', '.view_comments', function() {
 function getStatus(){
       var data;
 
-      data=[{"status_id":"2","music":"15.Forever_Friends_3.mp3","title":"Forever friend","message":"I'm feeling lucky hehe 1","created_at":"2014-10-16 21:44:18","thumbs_up":"1","privacy_type_id":"1","email":"duongphuocloc@gmail.com","picture":"a6551.jpg","name":"phuoc loc"}]
+      data=[{"status_id":"31","music":"Kho_Tam_-_Pham_Quynh_Anh.mp3","title":"Kho_Tam_-_Pham_Quynh_Anh","message":"kh\u1ed5 t\u00e2m qu\u00e1","created_at":"2014-10-29 21:18:59","thumbs_up":"2","privacy_type_id":"1","email":"anhtiminh@yahoo.com","picture":"shot0006.jpg","name":"minh dang"}]
 
     addStatusUserWall(data);
     }
