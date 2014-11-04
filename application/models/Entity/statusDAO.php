@@ -9,12 +9,25 @@ class StatusDAO
        $this->em=$em;
     }
 
-	public function layDSStatus($email)
+	public function getStatus($email)
 	{
 		// prepare statemen
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("CALL GetStatus(?)");
 		$sth->bindValue(1, $email);
+		// execute and fetch
+		$sth->execute();
+		$result = $sth->fetchAll();
+		return $result;
+	}
+
+	public function getNextStatus($email,$id)
+	{
+		// prepare statemen
+		$cnn=$this->em->getConnection();
+		$sth = $cnn->prepare("CALL GetNextStatus(?,?)");
+		$sth->bindValue(1, $email);
+		$sth->bindValue(2, $id);
 		// execute and fetch
 		$sth->execute();
 		$result = $sth->fetchAll();

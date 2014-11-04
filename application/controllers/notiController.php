@@ -29,7 +29,6 @@ class NotiController extends CI_Controller {
         $em = $this->doctrine->em;
         $noti = new Entity\NotificationDAO($em);
         $result=$noti->getOldNotify($this->session->userdata('email'));
-        $dem=0;
         $notiNumber=count($noti->getNewNotify($this->session->userdata('email')));
         $notify="";
         foreach($result as $k)
@@ -40,16 +39,32 @@ class NotiController extends CI_Controller {
             } else {
                 $notiIcon = "noti_comment";
             }
-            if ($dem < 5) {
-                if ($notiNumber > 0) {
-                    $notify.='<li style="background:#f4f6f9"  class="noti"><a href="' .site_url('statusController/hienThiNotiStatus/'). "/" . $k['status_id'] . "/" . $k['notification_id'] . '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'.base_url().'uploads/img/'.$k['picture'].'"/><span>' . $k['msg'] . '</span><br/><abbr class="timeago ' . $notiIcon . '" title="' . $k['created_at'] . '"></abbr></a></li>';
-                    $notiNumber = $notiNumber - 1;
-                    $dem=$dem+1;
-                } else {
-                    $notify.='<li class="noti"><a href="'.site_url('statusController/hienThiNotiStatus/'). "/" . $k['status_id'] . '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' .base_url().'uploads/img/'.$k['picture']. '"/><span>' . $k['msg'] . '</span><br/><abbr class="timeago ' .$notiIcon . '" title="'.$k['created_at'] . '"></abbr></a></li>';
-                    $dem=$dem+1;
-                }
+
+            if ($notiNumber > 0) {
+                $notify.='<li style="background:#f4f6f9"  class="noti" id="noti'.$k['notification_id'].'"><a href="' .site_url('statusController/hienThiNotiStatus/'). "/" . $k['status_id'] . "/" . $k['notification_id'] . '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'.base_url().'uploads/img/'.$k['picture'].'"/><span>' . $k['msg'] . '</span><br/><abbr class="timeago ' . $notiIcon . '" title="' . $k['created_at'] . '"></abbr></a></li>';
+                $notiNumber = $notiNumber - 1;
+            } else {
+                $notify.='<li class="noti" id="noti'.$k['notification_id'].'"><a href="'.site_url('statusController/hienThiNotiStatus/'). "/" . $k['status_id'] . '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' .base_url().'uploads/img/'.$k['picture']. '"/><span>' . $k['msg'] . '</span><br/><abbr class="timeago ' .$notiIcon . '" title="'.$k['created_at'] . '"></abbr></a></li>';
             }
+        }
+        echo $notify;
+    }
+
+    function getNextOldNotify(){
+        $id=$this->input->post('noti_id');
+        $em = $this->doctrine->em;
+        $noti = new Entity\NotificationDAO($em);
+        $result=$noti->getNextOldNotify($this->session->userdata('email'),$id);
+        $notify="";
+        foreach($result as $k)
+        {
+            $noti_icon = "";
+            if ($k['type'] == "1") {
+                $notiIcon = "noti_like";
+            } else {
+                $notiIcon = "noti_comment";
+            }
+            $notify.='<li class="noti" id="noti'.$k['notification_id'].'"><a href="'.site_url('statusController/hienThiNotiStatus/'). "/" . $k['status_id'] . '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' .base_url().'uploads/img/'.$k['picture']. '"/><span>' . $k['msg'] . '</span><br/><abbr class="timeago ' .$notiIcon . '" title="'.$k['created_at'] . '"></abbr></a></li>';
         }
         //echo json_encode($result);
         echo $notify;

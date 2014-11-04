@@ -2,7 +2,7 @@
 
 body {
     background-color: #e8eaed;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Helvetica, Arial, 'lucida grande',tahoma,verdana,arial,sans-serif;
     font-size: 12px;
 }
 
@@ -101,7 +101,13 @@ a:hover {
 
 #notificationsBody {
     padding: 8px 0px 0px 0px !important;
-    min-height: 400px;
+    min-height: 297px;
+}
+
+#notificationsBody ul{
+    height: 310px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 #notificationFooter {
@@ -123,6 +129,10 @@ a:hover {
     position: absolute;
     margin-top: -11px;
     font-size: 11px;
+}
+
+#markRead{
+    float:right;
 }
 
 #friend_li {
@@ -167,7 +177,13 @@ a:hover {
 
 #friendBody {
     padding: 8px 0px 0px 0px !important;
-    min-height: 300px;
+    min-height: 297px;
+}
+
+#friendBody ul{
+    height: 310px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 #friendFooter {
@@ -352,8 +368,8 @@ a:hover {
 .stimg {
     border: solid 1px #dedede;
     float: left;
-    height: 50px;
-    width: 50px;
+    height: 70px;
+    width: 70px;
 }
 
 .strmsg {
@@ -577,6 +593,10 @@ a:hover {
     width: 300px;
 }
 
+#pop{
+    display:none;
+}
+
 .popup>img {
     float: left;
     margin-right: 20px;
@@ -792,8 +812,8 @@ a:hover {
 
 div.dropdown {
 color: #555;
-margin: 3px -65px 0 0;
-width: 143px;
+margin: 3px 0px 0 0;
+
 position: relative;
 height: 17px;
 text-align:left;
@@ -805,9 +825,9 @@ div.submenu
 background: #fff;
 position: absolute;
 top: -12px;
-left: -20px;
+left: -84px;
 z-index: 100;
-width: 87px;
+width: 74px;
 display: none;
 margin-left: 10px;
 padding: 40px 0 5px;
@@ -853,7 +873,7 @@ display: block;
 padding: 11px 0 0 20px;
 height: 15px;
 width: 15px;
-margin: 5px 0 0 50px;
+margin: 5px 0 0 -22px;
 cursor:pointer;
 background: url("../img/delete.png") no-repeat;
 }

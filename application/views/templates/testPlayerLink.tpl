@@ -65,6 +65,20 @@ function getStatus() {
       var music=$(this).parent().find('#urlMusic').val();
       savePlaylist(id,title,music);
     });
+    $('#notificationsBody ul').bind('scroll', function() {
+        if($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
+          var id=$(this).find('li:last').attr("id");
+          moreNotify(id.substring(4));
+        }
+    });
+    $(window).scroll(function(){
+      if ($(window).scrollTop() == $(document).height() - $(window).height()){
+        var element=$('#container').find('.item:last');
+        var id=element.attr('id').substring(6);
+        var jplayer_id=element.find('.jp-jplayer').attr('id').substring(15);
+        moreStatus(id,jplayer_id);
+      }
+    });
   });
   </script>
  {/literal}
@@ -87,7 +101,10 @@ function getStatus() {
       <span id="notification_count"></span>
       <a href="#" id="notificationLink">Notifications</a>
       <div id="notificationContainer">
-        <div id="notificationTitle">Notifications</div>
+        <div id="notificationTitle">
+          Notifications
+          <a href="#" id="markRead">Mark all read</a>
+        </div>
         <div id="notificationsBody" class="notifications">
           <ul></ul>
         </div>

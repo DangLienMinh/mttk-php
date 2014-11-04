@@ -1,3 +1,5 @@
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-04 17:02:34
+         compiled from "application\views\templates\myform.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:213395458a43abb5e78-08830111%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -10,19 +12,24 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     ),
   ),
   'nocache_hash' => '213395458a43abb5e78-08830111',
+  'function' => 
+  array (
+  ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5458a43ad3e4e2_81027394',
-  'cache_lifetime' => 120,
-),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5458a43ad3e4e2_81027394')) {function content_5458a43ad3e4e2_81027394($_smarty_tpl) {?><html>
+  'unifunc' => 'content_5458a43ace1715_54400328',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_5458a43ace1715_54400328')) {function content_5458a43ace1715_54400328($_smarty_tpl) {?><html>
 <head>
 <title>My Form</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/main.css">
+<link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>
+css/main.css">
 </head>
 <body>
+<?php echo validation_errors();?>
 
-<form action="http://localhost:81/mttk-php/userController/register" method="post" accept-charset="utf-8">
+<?php echo form_open('userController/register');?>
+
 
 <h1>Register account</h1>
 <h5 class="test">Email</h5>
@@ -43,16 +50,19 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 <div><input type="submit" value="Submit" /></div>
 
-</form>
+<?php echo form_close();?>
 
-<form action="http://localhost:81/mttk-php/userController/login1" method="post" accept-charset="utf-8">
+
+<?php echo form_open('userController/login1');?>
+
 <h5>email name</h5>
 <input type="text" name="email_login"/>
 
 <h5>ps</h5>
 <input type="text" name="pass_login"/>
 <div><input type="submit" value="Login" /></div>
-</form>
+<?php echo form_close();?>
+
 </body>
 </html>
 <?php }} ?>

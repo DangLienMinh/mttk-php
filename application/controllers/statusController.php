@@ -14,7 +14,7 @@ class StatusController extends CI_Controller {
 	{
         $em = $this->doctrine->em;
         $status = new Entity\statusDAO($em);
-        $result=$status->layDSStatus($this->session->userdata('email'));
+        $result=$status->getStatus($this->session->userdata('email'));
         /*$friends="";
         foreach($result as $k)
         {
@@ -31,6 +31,15 @@ class StatusController extends CI_Controller {
 */
         echo json_encode($result);
 	}
+
+    function getNextStatus()
+    {
+        $id=$this->input->post('status_id');
+        $em = $this->doctrine->em;
+        $status = new Entity\statusDAO($em);
+        $result=$status->getNextStatus($this->session->userdata('email'),$id);
+        echo json_encode($result);
+    }
 
     function layDSWallStatus($email)
     {
@@ -135,7 +144,7 @@ class StatusController extends CI_Controller {
         $em = $this->doctrine->em;
         if($noti_id!=-1){
            $noti = new Entity\NotificationDAO($em);
-            $noti->setNotifyIsRead($noti_id);
+           $noti->setNotifyIsRead($noti_id);
         }
         $status = new Entity\statusDAO($em);
         $result=$status->laySingleStatus($statusParam);

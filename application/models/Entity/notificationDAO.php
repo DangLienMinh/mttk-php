@@ -33,6 +33,19 @@ class NotificationDAO
 		return $result;
 	}
 
+	public function getNextOldNotify($email,$id)
+	{
+		// prepare statement
+		$cnn=$this->em->getConnection();
+		$sth = $cnn->prepare("CALL GetNextOldNotify(?,?)");
+		$sth->bindValue(1, $email);
+		$sth->bindValue(2, $id);
+		// execute and fetch
+		$sth->execute();
+		$result = $sth->fetchAll();
+		return $result;
+	}
+
 	public function setNotifyIsRead($notification_id)
 	{
 		// prepare statement
