@@ -56,7 +56,17 @@ class NotificationDAO
 		$sth->execute();
 	}
 
-	public function setOffNotify($email)
+	public function setAllNotifyIsRead($email)
+	{
+		// prepare statement
+		$cnn=$this->em->getConnection();
+		$sth = $cnn->prepare("CALL setAllNotifyIsRead(?)");
+		$sth->bindValue(1, $email);
+		// execute and fetch
+		$sth->execute();
+	}
+
+	/*public function setOffNotify($email)
 	{
 		// prepare statement
 		$cnn=$this->em->getConnection();
@@ -64,6 +74,6 @@ class NotificationDAO
 		$sth->bindValue(1, $email);
 		// execute and fetch
 		$sth->execute();
-	}
+	}*/
 }
 ?>

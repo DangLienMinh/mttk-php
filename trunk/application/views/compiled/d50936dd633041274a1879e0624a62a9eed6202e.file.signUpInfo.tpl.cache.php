@@ -1,3 +1,5 @@
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-05 11:22:21
+         compiled from "application\views\templates\signUpInfo.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:149635459fa5ddc7ca3-17622666%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -10,30 +12,39 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     ),
   ),
   'nocache_hash' => '149635459fa5ddc7ca3-17622666',
+  'function' => 
+  array (
+  ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5459fa5e02b059_54799325',
-  'cache_lifetime' => 120,
-),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5459fa5e02b059_54799325')) {function content_5459fa5e02b059_54799325($_smarty_tpl) {?><!doctype html>
+  'unifunc' => 'content_5459fa5df1d553_10836130',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_5459fa5df1d553_10836130')) {function content_5459fa5df1d553_10836130($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
   <meta charset="utf-8">
   <title>jQuery UI Tabs - Default functionality</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
-  <link rel="stylesheet" href="http://localhost:81/mttk-php/assets/css/wall.css">
-  <link rel="stylesheet" href="http://localhost:81/mttk-php/assets/css/imgcropstyle.css">
-  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery-2.1.1.min.js"></script>
+  <link rel="stylesheet" href="<?php echo asset_url();?>
+css/wall.css">
+  <link rel="stylesheet" href="<?php echo asset_url();?>
+css/imgcropstyle.css">
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery-2.1.1.min.js"></script>
   <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
   <script type="text/javascript" src="http://www.technicalkeeda.com/js/javascripts/plugin/json2.js"></script>
-  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/cropbox.js"></script>
-  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.watermarkinput.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/cropbox.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery.watermarkinput.js"></script>
   <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
   <script type="text/javascript">
-    window.userPic="http://localhost:81/mttk-php/uploads/img/";
-    window.emotionsFolder="http://localhost:81/mttk-php/assets/img/";
+    window.userPic="<?php echo uploads_url();?>
+img/";
+    window.emotionsFolder="<?php echo asset_url();?>
+img/";
   </script>
   
   <style type="text/css">
@@ -66,7 +77,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     $.ajax({
       type: "post",
 
-      url:"http://localhost:81/mttk-php/friendController",
+      url:"<?php echo base_url('friendController/');?>
+",
 
       cache: false,
       data:'search='+$(".search").val(),
@@ -89,7 +101,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       $.ajax({
          type: "POST",
 
-         url:"http://localhost:81/mttk-php/friendController/themBan", 
+         url:"<?php echo base_url('friendController/themBan');?>
+", 
 
          data: {friendEmail: $(this).val()},
          dataType: "text",  
@@ -105,7 +118,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       $.ajax({
          type: "POST",
 
-         url:"http://localhost:81/mttk-php/friendController/themBan", 
+         url:"<?php echo base_url('friendController/themBan');?>
+", 
 
          data: {friendEmail: $(this).val()},
          dataType: "text",  
@@ -121,7 +135,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     $.ajax({
     type: "post",
 
-    url: "http://localhost:81/mttk-php/friendController/getSuggestedFriend",
+    url: "<?php echo base_url('friendController/getSuggestedFriend');?>
+",
 
     async: true,
     cache: false,
@@ -190,7 +205,8 @@ function geolocate() {
             $.ajax({  
             type: "POST",  
 
-                url:"http://localhost:81/mttk-php/profileController/firstTime",
+                url:"<?php echo base_url('profileController/firstTime');?>
+",
 
             data: {address:$("#autocomplete").val(),image: img},
             success: function(data) {
