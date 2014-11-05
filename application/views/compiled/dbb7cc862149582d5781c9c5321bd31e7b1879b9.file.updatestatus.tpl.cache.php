@@ -1,3 +1,5 @@
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-05 12:04:29
+         compiled from "application\views\templates\updatestatus.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:28261545a043de84fb5-80073422%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -10,23 +12,29 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     ),
   ),
   'nocache_hash' => '28261545a043de84fb5-80073422',
+  'function' => 
+  array (
+  ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_545a043e731c24_56851905',
-  'cache_lifetime' => 120,
-),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_545a043e731c24_56851905')) {function content_545a043e731c24_56851905($_smarty_tpl) {?><!doctype html>
+  'unifunc' => 'content_545a043e4d4302_46764207',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_545a043e4d4302_46764207')) {function content_545a043e4d4302_46764207($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <title>jQuery UI Tabs - Default functionality</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
-  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jplayer.blue.monday.playlist.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>
+css/jplayer.blue.monday.playlist.css">
   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.autogrowtextarea.min.js"></script>
-  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.jplayer.min.js"></script>
-  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jplayer.playlist.min.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery.autogrowtextarea.min.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery.jplayer.min.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jplayer.playlist.min.js"></script>
   <script type="text/javascript">
   
     window.chosenMusic = "";
@@ -78,7 +86,8 @@ function getPlaylist() {
   $.ajax({
     type: "post",
 
-    url: "http://localhost:81/mttk-php/playlistController/getDSPlaylist",
+    url: "<?php echo base_url('playlistController/getDSPlaylist');?>
+",
 
     async: true,
     /* If set to non-async, browser shows page as "Loading.."*/
@@ -101,7 +110,8 @@ function getSong(data) {
     type: "post",
     data:dataString,
 
-    url: "http://localhost:81/mttk-php/playlistController/getDSSongs",
+    url: "<?php echo base_url('playlistController/getDSSongs');?>
+",
 
     async: true,
     /* If set to non-async, browser shows page as "Loading.."*/
@@ -143,7 +153,8 @@ function getSong(data) {
         $.ajax({
           type: "post",
 
-          url:"http://localhost:81/mttk-php/statusController/chooseMusic", 
+          url:"<?php echo base_url('statusController/chooseMusic');?>
+", 
 
           cache: false,
           data:'music_name='+$("#music_name").val(),
@@ -179,7 +190,8 @@ function getSong(data) {
   
 </head>
 <body>
-<form action="http://localhost:81/mttk-php/statusController/updateStatus" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+<?php echo form_open_multipart('statusController/updateStatus');?>
+
 <div id="tabs">
   <ul>
     <li><a href="#tabs-1">Choose music</a></li>
@@ -301,6 +313,7 @@ function getSong(data) {
   </select>
    <input type="submit" value="submit"/>
 </div>
- </form>
+ <?php echo form_close();?>
+
 </body>
 </html><?php }} ?>

@@ -193,7 +193,13 @@ a:hover {
     padding: 8px;
     font-size: 12px;
     border-top: 1px solid #dddddd;
+    height:64px;
 }
+
+#friendFooter h3{
+    padding-bottom: 5px;
+}
+
 
 #friend_count {
     padding: 3px 7px 3px 7px;
@@ -756,21 +762,18 @@ a:hover {
     height: 60px;
     width: 250px;
     overflow: hidden;
-    padding: 6px 10px 14px 10px;
-    ;
+    padding: 1px 10px 14px 10px;
+    margin:0 auto;
+    border-top: 1px solid black;
 }
 
 #facebook li {
     border: 0;
     margin: 0;
-    padding: 0;
     list-style: none;
-}
-
-#facebook li {
     height: 60px;
     padding: 5px;
-    list-style: none;
+    width:147px;
 }
 
 #facebook a {
@@ -778,7 +781,12 @@ a:hover {
     text-decoration: none;
 }
 
+#facebook button {
+    float:left;
+}
+
 #facebook .user-title {
+    float:left;
     display: block;
     font-weight: bold;
     margin-bottom: 4px;

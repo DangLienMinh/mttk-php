@@ -1,30 +1,26 @@
 {include file='common/header.tpl'}
 {literal}
 function getStatus() {
-  /* This requests the url "msgsrv.php"
-        When it complete (or errors)*/
   $.ajax({
     type: "post",
 {/literal}
     url: "{base_url('statusController/index')}",
 {literal}
     async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
     timeout: 50000,
-    /* Timeout in ms */
-    success: function(data) { /* called when request to barge.php completes */
-      addStatus(data); /* Add response to a .msg div (with the "new" class)*/
+    success: function(data) {
+      addStatus(data);
       setTimeout(
-        getStatus, /* Request next message */
-        600000 /* ..after 1 seconds */
+        getStatus,
+        10000
       );
     },
     error: function(XMLHttpRequest, textStatus, errorThrown) {
       addStatus("error", textStatus + " (" + errorThrown + ")");
       setTimeout(
-        getStatus, /* Try again after.. */
-        15000); /* milliseconds (15seconds) */
+        getStatus,
+        15000);
     }
   });
 }
@@ -36,7 +32,7 @@ function getStatus() {
     friendRequest();
     getStatus();
     getPlaylist();
-
+    getSuggest();
     $("#notificationLink").click(function()
     {
       $("#friendContainer").hide();
@@ -94,7 +90,10 @@ function getStatus() {
         <div id="friendBody" class="friend">
           <ul></ul>
         </div>
-        <div id="friendFooter"><a href="#">See All</a></div>
+        <div id="friendFooter">
+          <h3>Suggest Friends</h3>
+          <ul id="facebook"></ul>
+        </div>
       </div>
     </li>
     <li id="notification_li">
@@ -132,5 +131,6 @@ function getStatus() {
     <input type="hidden" id="urlMusic"/>
     <button id="savePlaylist">Save</button>
   </div>
+
 </body>
 </html>

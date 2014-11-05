@@ -1,27 +1,27 @@
-<?php /*%%SmartyHeaderCode:153795458d2f345a401-92037533%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:32657545a24b8b543f6-65521390%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1415105663,
+      1 => 1415193760,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1415107227,
+      1 => 1415180698,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '153795458d2f345a401-92037533',
+  'nocache_hash' => '32657545a24b8b543f6-65521390',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5458d2f37e4688_60711891',
+  'unifunc' => 'content_545a24b9601c01_17441162',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5458d2f37e4688_60711891')) {function content_5458d2f37e4688_60711891($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_545a24b9601c01_17441162')) {function content_545a24b9601c01_17441162($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -129,6 +129,20 @@ function suaStatus(status,msg) {
     url: "http://localhost:81/mttk-php/statusController/suaStatus",
 
     data: dataString,
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function() {
+    }
+  });
+}
+
+function setAllNotifyIsRead() {
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/notiController/setAllNotifyIsRead",
+
     async: true,
     cache: false,
     timeout: 50000,
@@ -401,6 +415,38 @@ function getSong(name, inter, songUrl) {
   });
 }
 
+function getSuggest(){
+    $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/friendController/getSuggestedFriend",
+
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(response){
+         $('#facebook').append(response);
+      }
+  });
+}
+
+$(document).on('click', 'li button', function() {
+  var li=$(this).parent();
+  $.ajax({
+  type: "POST",
+
+  url:"http://localhost:81/mttk-php/friendController/themBan", 
+
+  data: {friendEmail: $(this).val()},
+  dataType: "text",  
+  cache:false,
+  success: 
+      function(data){
+        li.fadeOut('slow', function() {});
+      }
+  });
+});
+
 $(document).on('keypress', '.commentInput', function(e) {
   if (e.keyCode == 13) {
     e.preventDefault();
@@ -517,30 +563,26 @@ $(document).on('click', '.view_comments', function() {
 
 
 function getStatus() {
-  /* This requests the url "msgsrv.php"
-        When it complete (or errors)*/
   $.ajax({
     type: "post",
 
     url: "http://localhost:81/mttk-php/statusController/index",
 
     async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
     timeout: 50000,
-    /* Timeout in ms */
-    success: function(data) { /* called when request to barge.php completes */
-      addStatus(data); /* Add response to a .msg div (with the "new" class)*/
+    success: function(data) {
+      addStatus(data);
       setTimeout(
-        getStatus, /* Request next message */
-        600000 /* ..after 1 seconds */
+        getStatus,
+        10000
       );
     },
     error: function(XMLHttpRequest, textStatus, errorThrown) {
       addStatus("error", textStatus + " (" + errorThrown + ")");
       setTimeout(
-        getStatus, /* Try again after.. */
-        15000); /* milliseconds (15seconds) */
+        getStatus,
+        15000);
     }
   });
 }
@@ -552,7 +594,7 @@ function getStatus() {
     friendRequest();
     getStatus();
     getPlaylist();
-
+    getSuggest();
     $("#notificationLink").click(function()
     {
       $("#friendContainer").hide();
@@ -610,7 +652,10 @@ function getStatus() {
         <div id="friendBody" class="friend">
           <ul></ul>
         </div>
-        <div id="friendFooter"><a href="#">See All</a></div>
+        <div id="friendFooter">
+          <h3>Suggest Friends</h3>
+          <ul id="facebook"></ul>
+        </div>
       </div>
     </li>
     <li id="notification_li">
@@ -648,5 +693,6 @@ function getStatus() {
     <input type="hidden" id="urlMusic"/>
     <button id="savePlaylist">Save</button>
   </div>
+
 </body>
 </html><?php }} ?>

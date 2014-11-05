@@ -1,4 +1,4 @@
-<?php /*%%SmartyHeaderCode:203515458391ac2b957-56955036%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:250905459fd4a60b897-45961700%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,21 +11,21 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1414846460,
+      1 => 1415180698,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '203515458391ac2b957-56955036',
+  'nocache_hash' => '250905459fd4a60b897-45961700',
   'variables' => 
   array (
     'items' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5458391b23df30_30974218',
+  'unifunc' => 'content_5459fd4a9f27b1_08186790',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5458391b23df30_30974218')) {function content_5458391b23df30_30974218($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_5459fd4a9f27b1_08186790')) {function content_5459fd4a9f27b1_08186790($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -57,9 +57,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   window.profilePic="http://localhost:81/mttk-php/uploads/img/profilePic.jpg";
   window.userPic="http://localhost:81/mttk-php/uploads/img/";
   window.userWall="http://localhost:81/mttk-php/statusController/layDSWallStatus";
-  window.userLogin="anhtiminh@yahoo.com";
+  window.userLogin="duongphuocloc@gmail.com";
   //window.friendController="http://localhost:81/mttk-php/friendController";
-  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/shot0006.jpg";
+  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/a6551.jpg";
   window.userMusic="http://localhost:81/mttk-php/uploads";
   window.compare=0;
   window.compareStatus=0;
@@ -78,6 +78,23 @@ $( document ).ajaxStop(function() {
       $(this).timeago(); // Calling Timeago Funtion 
     });
 });
+
+function moreStatus(id,jplayer_id) {
+  var dataString = 'status_id=' + id;
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/statusController/getNextStatus",
+
+    data: dataString,
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      addMoreStatus(data,jplayer_id);
+    }
+  });
+}
 
 function waitForMsg() {
   $.ajax({
@@ -120,6 +137,37 @@ function suaStatus(status,msg) {
     cache: false,
     timeout: 50000,
     success: function() {
+    }
+  });
+}
+
+function setAllNotifyIsRead() {
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/notiController/setAllNotifyIsRead",
+
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function() {
+    }
+  });
+}
+
+function moreNotify(id) {
+  var dataString = 'noti_id=' + id;
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/notiController/getNextOldNotify",
+
+    data: dataString,
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('#notificationsBody ul').append(data);
     }
   });
 }
@@ -371,6 +419,38 @@ function getSong(name, inter, songUrl) {
   });
 }
 
+function getSuggest(){
+    $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/friendController/getSuggestedFriend",
+
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(response){
+         $('#facebook').append(response);
+      }
+  });
+}
+
+$(document).on('click', 'li button', function() {
+  var li=$(this).parent();
+  $.ajax({
+  type: "POST",
+
+  url:"http://localhost:81/mttk-php/friendController/themBan", 
+
+  data: {friendEmail: $(this).val()},
+  dataType: "text",  
+  cache:false,
+  success: 
+      function(data){
+        li.fadeOut('slow', function() {});
+      }
+  });
+});
+
 $(document).on('keypress', '.commentInput', function(e) {
   if (e.keyCode == 13) {
     e.preventDefault();
@@ -489,7 +569,7 @@ $(document).on('click', '.view_comments', function() {
 function getStatus(){
       var data;
 
-      data=[{"status_id":"31","music":"Kho_Tam_-_Pham_Quynh_Anh.mp3","title":"Kho_Tam_-_Pham_Quynh_Anh","message":"kh\u1ed5 t\u00e2m qu\u00e1","created_at":"2014-10-29 21:18:59","thumbs_up":"2","privacy_type_id":"1","email":"anhtiminh@yahoo.com","picture":"shot0006.jpg","name":"minh dang"}]
+      data=[{"status_id":"2","music":"15.Forever_Friends_3.mp3","title":"Forever friend","message":"I'm feeling lucky heh","created_at":"2014-10-16 21:44:18","thumbs_up":"1","privacy_type_id":"1","email":"duongphuocloc@gmail.com","picture":"a6551.jpg","name":"phuoc loc"}]
 
     addStatusUserWall(data);
     }

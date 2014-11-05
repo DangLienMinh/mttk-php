@@ -1,4 +1,4 @@
-<?php /*%%SmartyHeaderCode:213395458a43abb5e78-08830111%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:181465459fa4b99cbf0-11009670%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -9,18 +9,19 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '213395458a43abb5e78-08830111',
+  'nocache_hash' => '181465459fa4b99cbf0-11009670',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5458a43ad3e4e2_81027394',
+  'unifunc' => 'content_5459fa4bad5d64_87174623',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5458a43ad3e4e2_81027394')) {function content_5458a43ad3e4e2_81027394($_smarty_tpl) {?><html>
+<?php if ($_valid && !is_callable('content_5459fa4bad5d64_87174623')) {function content_5459fa4bad5d64_87174623($_smarty_tpl) {?><html>
 <head>
 <title>My Form</title>
 <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/main.css">
 </head>
 <body>
+<p>The Email field must contain a valid email address.</p>
 
 <form action="http://localhost:81/mttk-php/userController/register" method="post" accept-charset="utf-8">
 

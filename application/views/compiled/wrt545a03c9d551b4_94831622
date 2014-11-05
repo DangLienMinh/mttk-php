@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-05 14:23:04
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-05 12:02:33
          compiled from "application\views\templates\testPlayerLink.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:32657545a24b8b543f6-65521390%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:26406545a03c99d0aa0-61813511%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1415193760,
+      1 => 1415184358,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '32657545a24b8b543f6-65521390',
+  'nocache_hash' => '26406545a03c99d0aa0-61813511',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_545a24b8e21d71_45275918',
+  'unifunc' => 'content_545a03c9cc3d71_18463338',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_545a24b8e21d71_45275918')) {function content_545a24b8e21d71_45275918($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_545a03c9cc3d71_18463338')) {function content_545a03c9cc3d71_18463338($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
 function getStatus() {
@@ -36,7 +36,7 @@ function getStatus() {
       addStatus(data);
       setTimeout(
         getStatus,
-        10000
+        1000
       );
     },
     error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -98,6 +98,13 @@ function getStatus() {
         moreStatus(id,jplayer_id);
       }
     });
+
+    /*$("#friendContainer").click(function()
+    {
+      alert("shit");
+      return false;
+    });*/
+
   });
   </script>
  

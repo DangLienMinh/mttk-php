@@ -19,10 +19,16 @@ class NotiController extends CI_Controller {
         echo count($result);
     }
 
-    function setNotifyOff(){
+/*    function setNotifyOff(){
         $em = $this->doctrine->em;
         $noti = new Entity\NotificationDAO($em);
         $noti->setOffNotify($this->session->userdata('email'));
+    }*/
+
+    function setAllNotifyIsRead(){
+        $em = $this->doctrine->em;
+        $noti = new Entity\NotificationDAO($em);
+        $noti->setAllNotifyIsRead($this->session->userdata('email'));
     }
 
     function getOldNotify(){
@@ -41,7 +47,7 @@ class NotiController extends CI_Controller {
             }
 
             if ($notiNumber > 0) {
-                $notify.='<li style="background:#f4f6f9"  class="noti" id="noti'.$k['notification_id'].'"><a href="' .site_url('statusController/hienThiNotiStatus/'). "/" . $k['status_id'] . "/" . $k['notification_id'] . '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'.base_url().'uploads/img/'.$k['picture'].'"/><span>' . $k['msg'] . '</span><br/><abbr class="timeago ' . $notiIcon . '" title="' . $k['created_at'] . '"></abbr></a></li>';
+                $notify.='<li style="background-color:#f4f6f9"  class="noti" id="noti'.$k['notification_id'].'"><a href="' .site_url('statusController/hienThiNotiStatus/'). "/" . $k['status_id'] . "/" . $k['notification_id'] . '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'.base_url().'uploads/img/'.$k['picture'].'"/><span>' . $k['msg'] . '</span><br/><abbr class="timeago ' . $notiIcon . '" title="' . $k['created_at'] . '"></abbr></a></li>';
                 $notiNumber = $notiNumber - 1;
             } else {
                 $notify.='<li class="noti" id="noti'.$k['notification_id'].'"><a href="'.site_url('statusController/hienThiNotiStatus/'). "/" . $k['status_id'] . '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' .base_url().'uploads/img/'.$k['picture']. '"/><span>' . $k['msg'] . '</span><br/><abbr class="timeago ' .$notiIcon . '" title="'.$k['created_at'] . '"></abbr></a></li>';

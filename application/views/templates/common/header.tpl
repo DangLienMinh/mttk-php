@@ -114,6 +114,20 @@ function suaStatus(status,msg) {
   });
 }
 
+function setAllNotifyIsRead() {
+  $.ajax({
+    type: "post",
+{/literal}
+    url: "{base_url('notiController/setAllNotifyIsRead')}",
+{literal}
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function() {
+    }
+  });
+}
+
 function moreNotify(id) {
   var dataString = 'noti_id=' + id;
   $.ajax({
@@ -377,6 +391,38 @@ function getSong(name, inter, songUrl) {
     }
   });
 }
+
+function getSuggest(){
+    $.ajax({
+    type: "post",
+{/literal}
+    url: "{base_url('friendController/getSuggestedFriend')}",
+{literal}
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(response){
+         $('#facebook').append(response);
+      }
+  });
+}
+
+$(document).on('click', 'li button', function() {
+  var li=$(this).parent();
+  $.ajax({
+  type: "POST",
+{/literal}
+  url:"{base_url('friendController/themBan')}", 
+{literal}
+  data: {friendEmail: $(this).val()},
+  dataType: "text",  
+  cache:false,
+  success: 
+      function(data){
+        li.fadeOut('slow', function() {});
+      }
+  });
+});
 
 $(document).on('keypress', '.commentInput', function(e) {
   if (e.keyCode == 13) {
