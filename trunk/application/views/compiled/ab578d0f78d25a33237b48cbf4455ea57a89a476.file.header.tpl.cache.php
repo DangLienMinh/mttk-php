@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-05 14:23:04
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-07 11:17:05
          compiled from "application\views\templates\common\header.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:12022545a24b8f1cd89-29597929%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:8878545c9c21dfcbd2-22992950%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1415180698,
+      1 => 1415353369,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '12022545a24b8f1cd89-29597929',
+  'nocache_hash' => '8878545c9c21dfcbd2-22992950',
   'function' => 
   array (
   ),
@@ -22,9 +22,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_545a24b9540e50_78893795',
+  'unifunc' => 'content_545c9c2233f008_51725792',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_545a24b9540e50_78893795')) {function content_545a24b9540e50_78893795($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_545c9c2233f008_51725792')) {function content_545c9c2233f008_51725792($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -93,13 +93,20 @@ img/<?php echo $_smarty_tpl->tpl_vars['userPicCmt']->value;?>
   window.compareStatus=0;
   window.currentChatPosition=-1;
   window.userChat="";
+  window.chosenMusic = "";
+  window.title="";
 
 
 
-$( document ).ajaxStop(function() {
+$( document).ajaxStop(function() {
     $('#container').masonry({
-            itemSelector: '.item'
+        itemSelector: '.item'
     });
+
+    /*$('#container').masonry({
+      itemSelector: '.item'
+    });*/
+
     Arrow_Points();
     $(".timeago").livequery(function() // LiveQuery 
     {
@@ -481,6 +488,43 @@ function getSuggest(){
   });
 }
 
+function getPlaylistUpdateStatus() {
+  $.ajax({
+    type: "post",
+
+    url: "<?php echo base_url('playlistController/getDSPlaylist');?>
+",
+
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('#playlistBoxUpdateStatus select').append(data);
+      var id=$('#playlistBoxUpdateStatus select').find(":selected").val();
+      getSongUpdateStatus(id);
+    }
+  });
+}
+
+function getSongUpdateStatus(data) {
+  $("#playlist_id").val(data);
+  var dataString="playlist_id="+data;
+  $.ajax({
+    type: "post",
+    data:dataString,
+
+    url: "<?php echo base_url('playlistController/getDSSongs');?>
+",
+
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      displaySongUpdateStatus(data);
+    }
+  });
+}
+
 $(document).on('click', 'li button', function() {
   var li=$(this).parent();
   $.ajax({
@@ -614,6 +658,23 @@ $(document).on('click', '.view_comments', function() {
     success: function(data) {
       $("#loadplace" + status).empty();
       $("#loadplace" + status).append(data);
+    }
+  });
+});
+
+$(document).on('keyup', '#music_name', function() {
+  $("#musicContainer").show();
+  $.ajax({
+    type: "post",
+
+    url: "<?php echo base_url('statusController/chooseMusic');?>
+",
+
+    cache: false,
+    data: 'music_name=' + $("#music_name").val(),
+    success: function(response) {
+      $('#finalResult').html("");
+      $('#finalResult').append(response);
     }
   });
 });

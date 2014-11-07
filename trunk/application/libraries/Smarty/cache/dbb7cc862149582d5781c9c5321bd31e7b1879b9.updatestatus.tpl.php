@@ -1,27 +1,28 @@
-<?php /*%%SmartyHeaderCode:28261545a043de84fb5-80073422%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:27088545b994c78dac4-90128904%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'dbb7cc862149582d5781c9c5321bd31e7b1879b9' => 
     array (
       0 => 'application\\views\\templates\\updatestatus.tpl',
-      1 => 1414828797,
+      1 => 1415284803,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '28261545a043de84fb5-80073422',
+  'nocache_hash' => '27088545b994c78dac4-90128904',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_545a043e731c24_56851905',
+  'unifunc' => 'content_545b994c970c69_43031818',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_545a043e731c24_56851905')) {function content_545a043e731c24_56851905($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_545b994c970c69_43031818')) {function content_545b994c970c69_43031818($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <title>jQuery UI Tabs - Default functionality</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
   <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jplayer.blue.monday.playlist.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/wall.css">
   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.autogrowtextarea.min.js"></script>
@@ -31,7 +32,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   
     window.chosenMusic = "";
     window.title="";
-    function testXem(guid,title){
+    function playSelectedSong(guid,title){
       window.chosenMusic=guid;
       window.title=title;
       $("#jquery_jplayer_1").jPlayer( "destroy" );
@@ -53,7 +54,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
           });
       }
 
-    function displaySong(data) {
+    function displaySongUpdateStatus(data) {
       var obj = JSON.parse(data);
       var cssSelector = {
         jPlayer: "#jquery_jplayer_2",
@@ -74,7 +75,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         });
       });
     }
-function getPlaylist() {
+    
+function getPlaylistUpdateStatus() {
   $.ajax({
     type: "post",
 
@@ -88,13 +90,12 @@ function getPlaylist() {
     success: function(data) { /* called when request to barge.php completes */
       $('#playlistBox select').append(data);
       var id=$('#playlistBox select').find(":selected").val();
-      getSong(id);
-      
+      getSongUpdateStatus(id);
     }
   });
 }
 
-function getSong(data) {
+function getSongUpdateStatus(data) {
   $("#playlist_id").val(data);
   var dataString="playlist_id="+data;
   $.ajax({
@@ -109,7 +110,7 @@ function getSong(data) {
     timeout: 50000,
     /* Timeout in ms */
     success: function(data) { /* called when request to barge.php completes */
-      displaySong(data);
+      displaySongUpdateStatus(data);
     }
   });
 }
@@ -118,6 +119,7 @@ function getSong(data) {
   <script>
   $(document).ready(function() {
       $("#target").autoGrow();
+
       $("#jquery_jplayer_1").jPlayer({
         ready: function (event) {
           $(this).jPlayer("setMedia", {
@@ -133,13 +135,16 @@ function getSong(data) {
         remainingDuration: true,
         toggleDuration: true
       });
-      getPlaylist();
+
+      getPlaylistUpdateStatus();
+
       $('#playlistBox select').on('change',function(){
          var id=$(this).parent().find('select').find(":selected").val();
-          getSong(id);
+          getSongUpdateStatus(id);
       });
 
       $("#music_name").keyup(function(){
+        $("#musicContainer").show();
         $.ajax({
           type: "post",
 
@@ -157,8 +162,14 @@ function getSong(data) {
       $('#finalResult').on('click', 'li a', function() {
           $("#music_url").val(window.chosenMusic);
           $("#title").val(window.title);
-
+          $('#music_name').val('');
       });
+
+      $(document).click(function()
+      {
+        $("#musicContainer").hide();
+      });
+
     });
   $(function() {
     $( "#tabs" ).tabs();
@@ -188,14 +199,18 @@ function getSong(data) {
   </ul>
 
   <div id="tabs-1">
-    <textarea name="status" id="target" rows="4" placeholder="Enter textarea"></textarea>
-    <input type="text" name="music_name" id="music_name" />
+    <textarea name="status" id="target" rows="4" placeholder="What's on your mind?"></textarea>
+    <input type="text" name="music_name" id="music_name" placeholder="Song name?"/>
     <input type="hidden" name="music_url" id="music_url" />
     <input type="hidden" name="title" id="title" />
-    <ul id="finalResult"></ul>
+    <div id="musicContainer">
+        <div id="musicBody" class="musics">
+          <ul id="finalResult"></ul>
+        </div>
+    </div>
 
     <div id="jquery_jplayer_1" class="jp-jplayer"></div>
-    <div id="jp_container_1" class="jp-audio">
+    <div id="jp_container_1" class="jp-audio centerAlign">
       <div class="jp-type-single">
         <div class="jp-gui jp-interface">
           <ul class="jp-controls">
@@ -237,18 +252,17 @@ function getSong(data) {
     </div>
   </div>
   <div id="tabs-2">
-    <textarea name="status2" id="target" rows="4" placeholder="Enter textarea"></textarea>
-    <input type="file" name="musicFile" value="Upload" size="20"/>
+    <textarea name="status2" id="target" rows="4" placeholder="What's on your mind?"></textarea>
+    <input type="file" name="musicFile" size="20"/>
   </div>
   <div id="tabs-3">
-    <div style="border: 1px solid black; height: 50px; width: 180px; 
-       padding: 5px; background-color: silver;" id="playlistBox">
+    <div id="playlistBox">
     <select></select>
     <input type="hidden" name="playlist_id" id="playlist_id" />
   </div>
-    <textarea name="status3" id="target" rows="4" placeholder="Enter textarea"></textarea>
+    <textarea name="status3" id="target" rows="4" placeholder="What's on your mind?"></textarea>
     <div id="jquery_jplayer_2" class="jp-jplayer"></div>
-    <div id="jp_container_2" class="jp-audio">
+    <div id="jp_container_2" class="jp-audio centerAlign">
       <div class="jp-type-playlist">
         <div class="jp-gui jp-interface">
           <ul class="jp-controls">
@@ -264,7 +278,6 @@ function getSong(data) {
           <div class="jp-progress">
             <div class="jp-seek-bar">
               <div class="jp-play-bar"></div>
-
             </div>
           </div>
           <div class="jp-volume-bar">
@@ -293,13 +306,16 @@ function getSong(data) {
     <!--cai playlist de day dung ajax load vao combo-->
 
   </div>
-  <select name="privacy">
-    <option selected value="1">Public</option>
-    <option value="2">Friend</option>
-    <option value="3">Custom</option>
-    <option value="4">Private</option>
-  </select>
-   <input type="submit" value="submit"/>
+  <div id="privacyRight">
+    <select name="privacy" id="privacy">
+      <option selected value="1">Public</option>
+      <option value="2">Friend</option>
+      <option value="3">Custom</option>
+      <option value="4">Private</option>
+    </select>
+    <input type="submit" value="Post" id="postStatus"/>
+  </div>
+  
 </div>
  </form>
 </body>
