@@ -36,16 +36,13 @@ function getStatus() {
     getPlaylistUpdateStatus();
 
     $("#target").autoGrow();
-    $( "#tabs" ).tabs();
     $('#tabs').tabs({
       activate: function(event, ui) {
         $('#container').masonry({
           itemSelector: '.item'
         });
         var msnry = $('#container').data('masonry');
-
         msnry.on( 'layoutComplete', masonry_refresh );
-
         function masonry_refresh(){
           Arrow_Points();
         }
@@ -81,6 +78,11 @@ function getStatus() {
 <body>
   <div id="noti_Container">
     <ul id="nav">
+    <li id="personalPage">
+    </li>
+    <li>
+      <a href="#" id="homePage">Home</a>
+    </li>
     <li id="friend_li">
       <span id="friend_count"></span>
       <a href="#" id="friendLink">Friends</a>

@@ -1,27 +1,27 @@
-<?php /*%%SmartyHeaderCode:3881545c9c21953d40-44992009%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:12400545ce8b59da876-22717031%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1415353507,
+      1 => 1415373618,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1415353369,
+      1 => 1415374607,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '3881545c9c21953d40-44992009',
+  'nocache_hash' => '12400545ce8b59da876-22717031',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_545c9c223ff442_44850292',
+  'unifunc' => 'content_545ce8b5f29ff3_36179688',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_545c9c223ff442_44850292')) {function content_545c9c223ff442_44850292($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_545ce8b5f29ff3_36179688')) {function content_545ce8b5f29ff3_36179688($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -53,10 +53,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   window.profilePic="http://localhost:81/mttk-php/uploads/img/profilePic.jpg";
   window.userPic="http://localhost:81/mttk-php/uploads/img/";
   window.userWall="http://localhost:81/mttk-php/statusController/layDSWallStatus";
-  window.userLogin="duongphuocloc@gmail.com";
+  window.userLogin="anhtiminh@yahoo.com";
   //window.friendController="http://localhost:81/mttk-php/friendController";
-  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/a6551.jpg";
+  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/shot0006.jpg";
+  window.userName="minh dang";
   window.userMusic="http://localhost:81/mttk-php/uploads";
+  window.homePage="http://localhost:81/mttk-php/main/testPlayer";
   window.compare=0;
   window.compareStatus=0;
   window.currentChatPosition=-1;
@@ -70,11 +72,6 @@ $( document).ajaxStop(function() {
     $('#container').masonry({
         itemSelector: '.item'
     });
-
-    /*$('#container').masonry({
-      itemSelector: '.item'
-    });*/
-
     Arrow_Points();
     $(".timeago").livequery(function() // LiveQuery 
     {
@@ -287,6 +284,7 @@ function friendRequest() {
       }else{
         $("#friend_count").hide();
       }
+      $('#personalPage').append('<div class="cmtpic" align="center"><img src="' + window.userPicCmt + '" style="width:23px;height:23px;" /></div><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b>');
     }
   });
 }
@@ -656,16 +654,13 @@ function getStatus() {
     getPlaylistUpdateStatus();
 
     $("#target").autoGrow();
-    $( "#tabs" ).tabs();
     $('#tabs').tabs({
       activate: function(event, ui) {
         $('#container').masonry({
           itemSelector: '.item'
         });
         var msnry = $('#container').data('masonry');
-
         msnry.on( 'layoutComplete', masonry_refresh );
-
         function masonry_refresh(){
           Arrow_Points();
         }
@@ -701,6 +696,11 @@ function getStatus() {
 <body>
   <div id="noti_Container">
     <ul id="nav">
+    <li id="personalPage">
+    </li>
+    <li>
+      <a href="#" id="homePage">Home</a>
+    </li>
     <li id="friend_li">
       <span id="friend_count"></span>
       <a href="#" id="friendLink">Friends</a>

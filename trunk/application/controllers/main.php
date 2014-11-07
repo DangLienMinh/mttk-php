@@ -37,6 +37,7 @@ class Main extends CI_Controller {
 	public function testPlayer()
 	{
 		$this->smarty->assign('userPicCmt',$this->session->userdata('pic'));
+		$this->smarty->assign('userName',$this->session->userdata('first_name').' '.$this->session->userdata('last_name'));
 		$this->smarty->assign('userLogin',$this->session->userdata('email'));
 		$this->smarty->view('testPlayerLink');
 	}
