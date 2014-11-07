@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-07 11:17:05
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-07 16:43:49
          compiled from "application\views\templates\common\header.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:8878545c9c21dfcbd2-22992950%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:28649545ce8b5c675f0-71945511%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1415353369,
+      1 => 1415374607,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '8878545c9c21dfcbd2-22992950',
+  'nocache_hash' => '28649545ce8b5c675f0-71945511',
   'function' => 
   array (
   ),
@@ -19,12 +19,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   array (
     'userLogin' => 0,
     'userPicCmt' => 0,
+    'userName' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_545c9c2233f008_51725792',
+  'unifunc' => 'content_545ce8b5ebf0f6_55753479',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_545c9c2233f008_51725792')) {function content_545c9c2233f008_51725792($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_545ce8b5ebf0f6_55753479')) {function content_545ce8b5ebf0f6_55753479($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -87,7 +88,11 @@ img/";
   window.userPicCmt="<?php echo uploads_url();?>
 img/<?php echo $_smarty_tpl->tpl_vars['userPicCmt']->value;?>
 ";
+  window.userName="<?php echo $_smarty_tpl->tpl_vars['userName']->value;?>
+";
   window.userMusic="<?php echo base_url('uploads/');?>
+";
+  window.homePage="<?php echo base_url('main/testPlayer/');?>
 ";
   window.compare=0;
   window.compareStatus=0;
@@ -102,11 +107,6 @@ $( document).ajaxStop(function() {
     $('#container').masonry({
         itemSelector: '.item'
     });
-
-    /*$('#container').masonry({
-      itemSelector: '.item'
-    });*/
-
     Arrow_Points();
     $(".timeago").livequery(function() // LiveQuery 
     {
@@ -331,6 +331,7 @@ function friendRequest() {
       }else{
         $("#friend_count").hide();
       }
+      $('#personalPage').append('<div class="cmtpic" align="center"><img src="' + window.userPicCmt + '" style="width:23px;height:23px;" /></div><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b>');
     }
   });
 }

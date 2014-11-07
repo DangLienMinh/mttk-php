@@ -48,6 +48,7 @@ class StatusController extends CI_Controller {
         $result=$status->layDSWallStatus($email);
         $result= json_encode($result);
         $this->smarty->assign('items',$result);
+        $this->smarty->assign('userName',$this->session->userdata('first_name').' '.$this->session->userdata('last_name'));
         $this->smarty->assign('userPicCmt',$this->session->userdata('pic'));
         $this->smarty->assign('userLogin',$this->session->userdata('email'));
         $this->smarty->view('userWall');
@@ -139,6 +140,7 @@ class StatusController extends CI_Controller {
         $status = new Entity\statusDAO($em);
         $status->themStatus($data);
         $this->smarty->assign('userPicCmt',$this->session->userdata('pic'));
+        $this->smarty->assign('userName',$this->session->userdata('first_name').' '.$this->session->userdata('last_name'));
         $this->smarty->assign('userLogin',$this->session->userdata('email'));
         $this->smarty->view('testPlayerLink');
     }

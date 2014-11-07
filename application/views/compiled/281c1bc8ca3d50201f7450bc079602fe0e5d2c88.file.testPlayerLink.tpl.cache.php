@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-07 11:17:05
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-07 16:43:49
          compiled from "application\views\templates\testPlayerLink.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:3881545c9c21953d40-44992009%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:12400545ce8b59da876-22717031%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1415353507,
+      1 => 1415373618,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '3881545c9c21953d40-44992009',
+  'nocache_hash' => '12400545ce8b59da876-22717031',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_545c9c21d2b237_53478427',
+  'unifunc' => 'content_545ce8b5ba0219_97507282',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_545c9c21d2b237_53478427')) {function content_545c9c21d2b237_53478427($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_545ce8b5ba0219_97507282')) {function content_545ce8b5ba0219_97507282($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
 function getStatus() {
@@ -59,16 +59,13 @@ function getStatus() {
     getPlaylistUpdateStatus();
 
     $("#target").autoGrow();
-    $( "#tabs" ).tabs();
     $('#tabs').tabs({
       activate: function(event, ui) {
         $('#container').masonry({
           itemSelector: '.item'
         });
         var msnry = $('#container').data('masonry');
-
         msnry.on( 'layoutComplete', masonry_refresh );
-
         function masonry_refresh(){
           Arrow_Points();
         }
@@ -104,6 +101,11 @@ function getStatus() {
 <body>
   <div id="noti_Container">
     <ul id="nav">
+    <li id="personalPage">
+    </li>
+    <li>
+      <a href="#" id="homePage">Home</a>
+    </li>
     <li id="friend_li">
       <span id="friend_count"></span>
       <a href="#" id="friendLink">Friends</a>

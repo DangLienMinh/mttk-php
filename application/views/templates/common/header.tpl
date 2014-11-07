@@ -33,7 +33,9 @@
   window.userLogin="{$userLogin}";
   //window.friendController="{site_url('friendController/')}";
   window.userPicCmt="{uploads_url()}img/{$userPicCmt}";
+  window.userName="{$userName}";
   window.userMusic="{base_url('uploads/')}";
+  window.homePage="{base_url('main/testPlayer/')}";
   window.compare=0;
   window.compareStatus=0;
   window.currentChatPosition=-1;
@@ -259,6 +261,7 @@ function friendRequest() {
       }else{
         $("#friend_count").hide();
       }
+      $('#personalPage').append('<div class="cmtpic" align="center"><img src="' + window.userPicCmt + '" style="width:23px;height:23px;" /></div><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b>');
     }
   });
 }
