@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-05 11:22:21
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-06 03:16:30
          compiled from "application\views\templates\signUpInfo.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:149635459fa5ddc7ca3-17622666%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:10146545ad9feaa46c1-77351538%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'd50936dd633041274a1879e0624a62a9eed6202e' => 
     array (
       0 => 'application\\views\\templates\\signUpInfo.tpl',
-      1 => 1415154697,
+      1 => 1415240189,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '149635459fa5ddc7ca3-17622666',
+  'nocache_hash' => '10146545ad9feaa46c1-77351538',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5459fa5df1d553_10836130',
+  'unifunc' => 'content_545ad9febde899_99910922',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5459fa5df1d553_10836130')) {function content_5459fa5df1d553_10836130($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_545ad9febde899_99910922')) {function content_545ad9febde899_99910922($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -233,12 +233,13 @@ function geolocate() {
   </ul>
 
   <div id="tabs-1">
-    <ul id="facebook"></ul>
-      <!--<div style=" width:300px; margin-right:30px;" align="right">
+   <!--  <ul id="facebook"></ul> -->
+      <div style=" width:300px; margin-right:30px;" align="right">
           <input type="text" class="search" id="searchbox" /><br />
           <div id="display">
           </div>
-        </div>-->
+        </div>
+        <p>shit hi ahdkasyhdio asu doiasu diouasio duasiou dioash djkash djkhas kjd</p>
 </div>
 
   <div id="tabs-2">

@@ -64,7 +64,7 @@ class StatusController extends CI_Controller {
             if(count($result)>0){
                 foreach($result as $k)
                 {
-                    $statuses.='<li class="result"><a href="#" onclick="testXem('  ."'". $k['UrlJunDownload'] ."','".$k['Title']."'". ')">' .$k['Title']. '</a></li>';
+                    $statuses.='<li class="result"><a href="#" onclick="playSelectedSong('  ."'". $k['UrlJunDownload'] ."','".$k['Title']."'". ')">' .$k['Title']. '</a></li>';
                 }
             }else{
                 $statuses.="<b>No Data Found</b>";
@@ -138,6 +138,9 @@ class StatusController extends CI_Controller {
         $em = $this->doctrine->em;
         $status = new Entity\statusDAO($em);
         $status->themStatus($data);
+        $this->smarty->assign('userPicCmt',$this->session->userdata('pic'));
+        $this->smarty->assign('userLogin',$this->session->userdata('email'));
+        $this->smarty->view('testPlayerLink');
     }
 
     public function hienThiNotiStatus($statusParam,$noti_id=-1){

@@ -26,7 +26,11 @@ a:hover {
     padding: 0;
 }
 
+.centerAlign{
+    margin:0 auto!important;
+}
 /*------------------------------------noti part------------------------------------*/
+
 
 #noti_Container {
     margin-left: 73.5%;
@@ -892,4 +896,58 @@ margin:0px;
 font-size: 11px;
 padding: 1px 0 0 0px;
 border-top:1px solid #dedede;
+}
+
+
+#musicBody {
+    padding: 8px 0px 0px 0px !important;
+}
+
+#musicBody ul{
+    list-style: none;
+}
+
+#musicContainer {
+    background-color: #fff;
+    border: 1px solid rgba(100, 100, 100, .4);
+    -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+    overflow: visible;
+    position: absolute;
+    z-index: 99;
+    display:none;
+}
+
+#music_name{
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+#privacyRight{
+    margin-left: 300px;
+}
+
+#postStatus {
+    background-color: #3b59a4;
+    border: none;
+    color: #FFFFFF;
+    font-size: 12px;
+    margin-top: 3px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+    border-radius: 6px;
+}
+
+#privacy{
+    height:25px;
+    background:transparent;
+}
+
+#playlistBox select{
+    margin-bottom: 5px;
 }

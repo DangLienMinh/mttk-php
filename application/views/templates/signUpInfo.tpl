@@ -200,12 +200,13 @@ function geolocate() {
   </ul>
 
   <div id="tabs-1">
-    <ul id="facebook"></ul>
-      <!--<div style=" width:300px; margin-right:30px;" align="right">
+   <!--  <ul id="facebook"></ul> -->
+      <div style=" width:300px; margin-right:30px;" align="right">
           <input type="text" class="search" id="searchbox" /><br />
           <div id="display">
           </div>
-        </div>-->
+        </div>
+        <p>shit hi ahdkasyhdio asu doiasu diouasio duasiou dioash djkash djkhas kjd</p>
 </div>
 
   <div id="tabs-2">

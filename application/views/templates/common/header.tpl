@@ -38,12 +38,14 @@
   window.compareStatus=0;
   window.currentChatPosition=-1;
   window.userChat="";
+  window.chosenMusic = "";
+  window.title="";
 
 {literal}
 
-$( document ).ajaxStop(function() {
+$( document).ajaxStop(function() {
     $('#container').masonry({
-            itemSelector: '.item'
+        itemSelector: '.item'
     });
     Arrow_Points();
     $(".timeago").livequery(function() // LiveQuery 
@@ -407,6 +409,41 @@ function getSuggest(){
   });
 }
 
+function getPlaylistUpdateStatus() {
+  $.ajax({
+    type: "post",
+{/literal}
+    url: "{base_url('playlistController/getDSPlaylist')}",
+{literal}
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('#playlistBoxUpdateStatus select').append(data);
+      var id=$('#playlistBoxUpdateStatus select').find(":selected").val();
+      getSongUpdateStatus(id);
+    }
+  });
+}
+
+function getSongUpdateStatus(data) {
+  $("#playlist_id").val(data);
+  var dataString="playlist_id="+data;
+  $.ajax({
+    type: "post",
+    data:dataString,
+{/literal}
+    url: "{base_url('playlistController/getDSSongs')}",
+{literal}
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      displaySongUpdateStatus(data);
+    }
+  });
+}
+
 $(document).on('click', 'li button', function() {
   var li=$(this).parent();
   $.ajax({
@@ -534,6 +571,22 @@ $(document).on('click', '.view_comments', function() {
     success: function(data) {
       $("#loadplace" + status).empty();
       $("#loadplace" + status).append(data);
+    }
+  });
+});
+
+$(document).on('keyup', '#music_name', function() {
+  $("#musicContainer").show();
+  $.ajax({
+    type: "post",
+{/literal}
+    url: "{base_url('statusController/chooseMusic')}",
+{literal}
+    cache: false,
+    data: 'music_name=' + $("#music_name").val(),
+    success: function(response) {
+      $('#finalResult').html("");
+      $('#finalResult').append(response);
     }
   });
 });
