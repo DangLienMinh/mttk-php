@@ -98,6 +98,21 @@ function getStatus(){
     </li>
   </ul>
   </div>
+  <div id="coverContainer">
+    <div id="cover">
+
+    </div>
+    <div id="headline">
+      <div class="headlineRight">
+        <a class="" href="#">TimeLine<span class="arrowBottom"></span></a>
+        <a class="" href="#">About</a>
+        <a class="" href="#">Friends</a>
+        <a class="" href="#">Playlist</a>
+        <a class="" href="#">More</a>
+      </div>
+    </div>
+  </div>
+  
     <div id="container">
       <div class="timeline_container">
         <div class="timeline">

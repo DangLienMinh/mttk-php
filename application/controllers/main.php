@@ -22,7 +22,7 @@ class Main extends CI_Controller {
 
 	function player()
 	{
-		$this->smarty->view('updatestatus');
+		$this->smarty->view('addFanclub');
 	}
 	public function search()
 	{
