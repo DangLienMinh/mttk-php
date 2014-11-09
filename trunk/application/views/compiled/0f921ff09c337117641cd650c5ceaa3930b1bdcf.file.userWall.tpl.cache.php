@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-07 16:18:32
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-09 16:08:57
          compiled from "application\views\templates\userWall.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:31782545ce2c825aec2-85554373%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:14914545f8389555006-92536758%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '0f921ff09c337117641cd650c5ceaa3930b1bdcf' => 
     array (
       0 => 'application\\views\\templates\\userWall.tpl',
-      1 => 1415371561,
+      1 => 1415524499,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '31782545ce2c825aec2-85554373',
+  'nocache_hash' => '14914545f8389555006-92536758',
   'function' => 
   array (
   ),
@@ -21,9 +21,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_545ce2c8657f17_69001204',
+  'unifunc' => 'content_545f83897c1992_58880372',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_545ce2c8657f17_69001204')) {function content_545ce2c8657f17_69001204($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_545f83897c1992_58880372')) {function content_545f83897c1992_58880372($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
 function getStatus(){
@@ -125,6 +125,21 @@ function getStatus(){
     </li>
   </ul>
   </div>
+  <div id="coverContainer">
+    <div id="cover">
+
+    </div>
+    <div id="headline">
+      <div class="headlineRight">
+        <a class="" href="#">TimeLine<span class="arrowBottom"></span></a>
+        <a class="" href="#">About</a>
+        <a class="" href="#">Friends</a>
+        <a class="" href="#">Playlist</a>
+        <a class="" href="#">More</a>
+      </div>
+    </div>
+  </div>
+  
     <div id="container">
       <div class="timeline_container">
         <div class="timeline">

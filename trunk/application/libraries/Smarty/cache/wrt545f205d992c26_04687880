@@ -1,11 +1,11 @@
-<?php /*%%SmartyHeaderCode:4140545f1e49190c42-80143636%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:28462545f205cb945b3-63061835%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
+    '0f921ff09c337117641cd650c5ceaa3930b1bdcf' => 
     array (
-      0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1415519789,
+      0 => 'application\\views\\templates\\userWall.tpl',
+      1 => 1415371561,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
@@ -15,13 +15,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '4140545f1e49190c42-80143636',
+  'nocache_hash' => '28462545f205cb945b3-63061835',
+  'variables' => 
+  array (
+    'items' => 0,
+  ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_545f1e49798037_95894971',
+  'unifunc' => 'content_545f205d8efd87_95952353',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_545f1e49798037_95894971')) {function content_545f1e49798037_95894971($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_545f205d8efd87_95952353')) {function content_545f205d8efd87_95952353($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -618,30 +622,15 @@ $(document).on('keyup', '#music_name', function() {
 });
 
 
-function getStatus() {
-  $.ajax({
-    type: "post",
+function getStatus(){
+      var data;
+        /* This requests the url "msgsrv.php"
+        When it complete (or errors)*/
 
-    url: "http://localhost:81/mttk-php/statusController/index",
+      data=[]
 
-    async: true,
-    cache: false,
-    timeout: 50000,
-    success: function(data) {
-      addStatus(data);
-      setTimeout(
-        getStatus,
-        600000
-      );
-    },
-    error: function(XMLHttpRequest, textStatus, errorThrown) {
-      addStatus("error", textStatus + " (" + errorThrown + ")");
-      setTimeout(
-        getStatus,
-        15000);
+    addStatusUserWall(data);
     }
-  });
-}
   </script>
   <script>
 

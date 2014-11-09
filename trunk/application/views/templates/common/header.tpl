@@ -262,6 +262,7 @@ function friendRequest() {
         $("#friend_count").hide();
       }
       $('#personalPage').append('<div class="cmtpic" align="center"><img src="' + window.userPicCmt + '" style="width:23px;height:23px;" /></div><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b>');
+      $('#cover').append('<div class="coverImg"><img src="' + window.userPicCmt + '" style="width:130px;height:130px; border: 4px solid #fff;" /></div><span class="coverName"><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b></span>');
     }
   });
 }

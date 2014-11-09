@@ -1,31 +1,31 @@
-<?php /*%%SmartyHeaderCode:31782545ce2c825aec2-85554373%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:14914545f8389555006-92536758%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '0f921ff09c337117641cd650c5ceaa3930b1bdcf' => 
     array (
       0 => 'application\\views\\templates\\userWall.tpl',
-      1 => 1415371561,
+      1 => 1415524499,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1415367816,
+      1 => 1415531765,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '31782545ce2c825aec2-85554373',
+  'nocache_hash' => '14914545f8389555006-92536758',
   'variables' => 
   array (
     'items' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_545ce2c8f28c71_70813759',
+  'unifunc' => 'content_545f8389dc3345_51551523',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_545ce2c8f28c71_70813759')) {function content_545ce2c8f28c71_70813759($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_545f8389dc3345_51551523')) {function content_545f8389dc3345_51551523($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -289,6 +289,7 @@ function friendRequest() {
         $("#friend_count").hide();
       }
       $('#personalPage').append('<div class="cmtpic" align="center"><img src="' + window.userPicCmt + '" style="width:23px;height:23px;" /></div><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b>');
+      $('#cover').append('<div class="coverImg"><img src="' + window.userPicCmt + '" style="width:120px;height:120px; border: 4px solid #fff;" /></div><span class="coverName"><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b></span>');
     }
   });
 }
@@ -720,6 +721,21 @@ function getStatus(){
     </li>
   </ul>
   </div>
+  <div id="coverContainer">
+    <div id="cover">
+
+    </div>
+    <div id="headline">
+      <div class="headlineRight">
+        <a class="" href="#">TimeLine<span class="arrowBottom"></span></a>
+        <a class="" href="#">About</a>
+        <a class="" href="#">Friends</a>
+        <a class="" href="#">Playlist</a>
+        <a class="" href="#">More</a>
+      </div>
+    </div>
+  </div>
+  
     <div id="container">
       <div class="timeline_container">
         <div class="timeline">

@@ -1,52 +1,41 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-09 08:56:57
-         compiled from "application\views\templates\testPlayerLink.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:4140545f1e49190c42-80143636%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-09 09:05:38
+         compiled from "application\views\templates\userWall.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:5909545f20524b5096-12672699%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
+    '0f921ff09c337117641cd650c5ceaa3930b1bdcf' => 
     array (
-      0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1415519789,
+      0 => 'application\\views\\templates\\userWall.tpl',
+      1 => 1415371561,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '4140545f1e49190c42-80143636',
+  'nocache_hash' => '5909545f20524b5096-12672699',
   'function' => 
   array (
   ),
+  'variables' => 
+  array (
+    'items' => 0,
+  ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_545f1e4936a180_29731068',
+  'unifunc' => 'content_545f205276b261_49544956',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_545f1e4936a180_29731068')) {function content_545f1e4936a180_29731068($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_545f205276b261_49544956')) {function content_545f205276b261_49544956($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
-function getStatus() {
-  $.ajax({
-    type: "post",
+function getStatus(){
+      var data;
+        /* This requests the url "msgsrv.php"
+        When it complete (or errors)*/
 
-    url: "<?php echo base_url('statusController/index');?>
-",
+      data=<?php echo $_smarty_tpl->tpl_vars['items']->value;?>
 
-    async: true,
-    cache: false,
-    timeout: 50000,
-    success: function(data) {
-      addStatus(data);
-      setTimeout(
-        getStatus,
-        600000
-      );
-    },
-    error: function(XMLHttpRequest, textStatus, errorThrown) {
-      addStatus("error", textStatus + " (" + errorThrown + ")");
-      setTimeout(
-        getStatus,
-        15000);
+
+    addStatusUserWall(data);
     }
-  });
-}
   </script>
   <script>
 

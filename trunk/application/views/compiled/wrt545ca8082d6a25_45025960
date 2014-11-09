@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-09 16:08:57
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-07 12:07:51
          compiled from "application\views\templates\common\header.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:6739545f8389893629-33974171%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:15290545ca807ef9418-89689622%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1415531765,
+      1 => 1415355497,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '6739545f8389893629-33974171',
+  'nocache_hash' => '15290545ca807ef9418-89689622',
   'function' => 
   array (
   ),
@@ -19,13 +19,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   array (
     'userLogin' => 0,
     'userPicCmt' => 0,
-    'userName' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_545f8389cd4689_98718842',
+  'unifunc' => 'content_545ca8082d2983_84536213',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_545f8389cd4689_98718842')) {function content_545f8389cd4689_98718842($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_545ca8082d2983_84536213')) {function content_545ca8082d2983_84536213($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -88,11 +87,7 @@ img/";
   window.userPicCmt="<?php echo uploads_url();?>
 img/<?php echo $_smarty_tpl->tpl_vars['userPicCmt']->value;?>
 ";
-  window.userName="<?php echo $_smarty_tpl->tpl_vars['userName']->value;?>
-";
   window.userMusic="<?php echo base_url('uploads/');?>
-";
-  window.homePage="<?php echo base_url('main/testPlayer/');?>
 ";
   window.compare=0;
   window.compareStatus=0;
@@ -331,8 +326,6 @@ function friendRequest() {
       }else{
         $("#friend_count").hide();
       }
-      $('#personalPage').append('<div class="cmtpic" align="center"><img src="' + window.userPicCmt + '" style="width:23px;height:23px;" /></div><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b>');
-      $('#cover').append('<div class="coverImg"><img src="' + window.userPicCmt + '" style="width:120px;height:120px; border: 4px solid #fff;" /></div><span class="coverName"><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b></span>');
     }
   });
 }

@@ -33,22 +33,20 @@ a:hover {
 
 
 #noti_Container {
-    margin-left: 65%;
-    margin-top: 10px;
     position: relative;
     height: 30px;
     z-index: 1000;
-    background:#ffaadd;
-    width:365px;
-    
+    width: 100%;
 }
 
 #nav {
     list-style: none;
-    margin: 0px;
-    padding: 0px;
-    position:fixed;
-    
+    padding: 4px;
+    position: fixed;
+    background: #3b5998;
+    height: 26px;
+    width: 100%;
+    padding-left: 66%;
 
 }
 
@@ -61,7 +59,7 @@ a:hover {
 }
 
 #nav li a {
-    color: #333333;
+    color: white;
     text-decoration: none;
 }
 
@@ -249,6 +247,75 @@ a:hover {
     margin-right: 7px;
     vertical-align: middle;
     width: 33px;
+}
+/*------------------------------------cover part------------------------------------*/
+#coverContainer{
+    margin: 0 210px;
+    position: relative;
+    background-image: url("../img/musicCover.jpg");
+    height: 276px;
+}
+#cover{
+    position: absolute;
+    top: 126px;
+    z-index: 1100;
+
+}
+#cover .coverName{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    letter-spacing: 0;
+    font-size: 24px;
+    text-decoration: none;
+    float:left;
+    margin-top: 75px;
+    margin-left: 15px;
+}
+.coverImg{
+    float:left;
+    height:235px;
+}
+#cover .coverName a{
+    color: #fff!important;
+}
+
+#headline{
+    clear: both;
+    position: absolute;
+    width: 100%;
+    z-index: 4;
+    height: 43px;
+    margin-top: 233px;
+    background: #fff;
+}
+.headlineRight{
+    border-left: 1px solid #e9eaed;
+    float: right;
+
+}
+.headlineRight:after{
+    clear: both;
+    content: ".";
+    display: block;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+}
+.headlineRight>a{
+    border-right: 1px solid #e9eaed;
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    height: 43px;
+    line-height: 3.05;
+    padding: 0 17px;
+    position: relative;
+    vertical-align: middle;
+    white-space: nowrap;
+    color: #3b5998;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 /*------------------------------------timeline part------------------------------------*/

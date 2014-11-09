@@ -8,89 +8,64 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Entity
  * @Table(name="fanclub")
  */
-class FanClub
+class Fanclub
 {
      /**
      * @Id
      * @Column(type="integer", nullable=false)
      * @GeneratedValue
      */
-    protected $FanClub_id;
+    protected $fanclub_id;
 
     /**
      * @Column(type="string")
      */
-    protected $FanClubName;
-
-    /**
-     * @ManyToOne(targetEntity="privacy_type")
-     **/
-    protected $privacy_type_id;
+    protected $fanclub_name;
 
     /**
      * @Column(type="string")
      */
-    protected $Description;
-
-    /**
-     * @Column(type="string")
-     */
-    protected $Picture;
+    protected $fanclub_desc;
 
     /**
      * @ManyToOne(targetEntity="user")
+     * @JoinColumn(name="email", referencedColumnName="email")
      **/
     protected $email;
-   
-	  
-    public function getFanClub_id()
+
+    /**
+     * @Column(type="datetime")
+     */
+    protected $created_at;
+	
+    public function getFanclub_id()
     {
-        return $this->FanClubName;
+        return $this->fanclub_id;
     }
     
-    public function setFanClub_id($FanClub_id)
+    public function setFanclub_id($fanclub_id)
     {
-        $this->FanClub_id = $FanClub_id;
+        $this->fanclub_id = $fanclub_id;
         return $this;
     }
-    public function getFanClubName()
+    public function getFanclub_name()
     {
-        return $this->FanClubName;
+        return $this->fanclub_name;
     }
     
-    public function setFanClubName($FanClubName)
+    public function setFanclub_name($fanclub_name)
     {
-        $this->FanClubName = $FanClubName;
+        $this->fanclub_name = $fanclub_name;
         return $this;
     }
-    public function getPrivacy_type_id()
+    public function getFanclub_desc()
     {
-        return $this->privacy_type_id;
+        return $this->fanclub_desc;
     }
     
-    public function setPrivacy_type_id($privacy_type_id)
+    public function setFanclub_desc($fanclub_desc)
     {
-        $this->privacy_type_id = $privacy_type_id;
-        return $this;
-    }
-    public function getDescription()
-    {
-        return $this->Description;
-    }
-    
-    public function setDescription($Description)
-    {
-        $this->Description = $Description;
-        return $this;
-    }
-    public function getPicture()
-    {
-        return $this->Picture;
-    }
-    
-    public function setPicture($Picture)
-    {
-        $this->Picture = $Picture;
+        $this->fanclub_desc = $fanclub_desc;
         return $this;
     }
     public function getEmail()
@@ -103,5 +78,16 @@ class FanClub
         $this->email = $email;
         return $this;
     }
+    public function getCreated_at()
+    {
+        return $this->created_at;
+    }
+    
+    public function setCreated_at($created_at)
+    {
+        $this->created_at = $created_at;
+        return $this;
+    }
+   
 }
 ?>
