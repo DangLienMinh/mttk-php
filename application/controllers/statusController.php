@@ -41,6 +41,15 @@ class StatusController extends CI_Controller {
         echo json_encode($result);
     }
 
+    function getNextWallStatus()
+    {
+        $id=$this->input->post('status_id');
+        $em = $this->doctrine->em;
+        $status = new Entity\statusDAO($em);
+        $result=$status->layDSNextWallStatus($this->session->userdata('email'),$id);
+        echo json_encode($result);
+    }
+
     function layDSWallStatus($email)
     {
         $em = $this->doctrine->em;

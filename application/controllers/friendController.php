@@ -48,6 +48,21 @@
         $friends="";
         foreach($result as $k)
         {
+            $friends.='<li><a class="inline" href="#inline_content"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' .base_url().'uploads/img/'.$k['picture']. '"/><span class="'.$k['email'].'">' . $k['name'] . '</span></a><button rel="'.$k['email'].'">Unfriend</button></li>';
+        }
+        echo $friends;
+	}
+
+	public function getAllChatFriends()
+	{
+        $em = $this->doctrine->em;
+        $email = $this->session->userdata('email');
+		$friend = new Entity\FriendDAO($em);
+		$result=$friend->getAllFriends($email);
+        //echo json_encode($result);
+        $friends="";
+        foreach($result as $k)
+        {
             $friends.='<li><a class="inline" href="#inline_content"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' .base_url().'uploads/img/'.$k['picture']. '"/><span class="'.$k['email'].'">' . $k['name'] . '</span></a></li>';
         }
         echo $friends;

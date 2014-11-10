@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-09 16:08:57
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-10 11:42:30
          compiled from "application\views\templates\common\header.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:6739545f8389893629-33974171%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:9244546096962be395-67510327%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1415531765,
+      1 => 1415616148,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '6739545f8389893629-33974171',
+  'nocache_hash' => '9244546096962be395-67510327',
   'function' => 
   array (
   ),
@@ -23,9 +23,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_545f8389cd4689_98718842',
+  'unifunc' => 'content_5460969658dfd4_21017790',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_545f8389cd4689_98718842')) {function content_545f8389cd4689_98718842($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_5460969658dfd4_21017790')) {function content_5460969658dfd4_21017790($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -88,6 +88,8 @@ img/";
   window.userPicCmt="<?php echo uploads_url();?>
 img/<?php echo $_smarty_tpl->tpl_vars['userPicCmt']->value;?>
 ";
+  window.playlistIcon="<?php echo base_url();?>
+assets/img/playlistIcon.png";
   window.userName="<?php echo $_smarty_tpl->tpl_vars['userName']->value;?>
 ";
   window.userMusic="<?php echo base_url('uploads/');?>
@@ -120,6 +122,24 @@ function moreStatus(id,jplayer_id) {
     type: "post",
 
     url: "<?php echo base_url('statusController/getNextStatus');?>
+",
+
+    data: dataString,
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      addMoreStatus(data,jplayer_id);
+    }
+  });
+}
+
+function moreWallStatus(id,jplayer_id) {
+  var dataString = 'status_id=' + id;
+  $.ajax({
+    type: "post",
+
+    url: "<?php echo base_url('statusController/getNextWallStatus');?>
 ",
 
     data: dataString,
@@ -213,6 +233,24 @@ function moreNotify(id) {
   });
 }
 
+function getFriendChat() {
+  $.ajax({
+    type: "post",
+
+    url: "<?php echo base_url('friendController/getAllChatFriends');?>
+",
+
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+     $('#friendChatContainer>ul').append(data);
+     $(".inline").colorbox({inline:true, width:"30%",height:"80%"});
+    }
+  });
+}
+
 function getFriendList() {
   $.ajax({
     type: "post",
@@ -226,7 +264,6 @@ function getFriendList() {
     timeout: 50000,
     success: function(data) {
      $('#friendListContainer>ul').append(data);
-     $(".inline").colorbox({inline:true, width:"30%",height:"80%"});
     }
   });
 }
@@ -312,6 +349,27 @@ function getPlaylist() {
   });
 }
 
+function wallDsPlaylist() {
+    $.ajax({
+    type: "post",
+
+    url: "<?php echo base_url('playlistController/wallDsPlaylist');?>
+",
+
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+     var obj = JSON.parse(data);
+     $.each(obj, function(i, val) {
+      $('#playlistContainer>ul').append('<li><a class="inline" href="#inline_content"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' +window.playlistIcon+ '"/><span class="'+val.Playlist_id+'">' + val.Playlist_name+ '</span></a><div class="playlistSongs"><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio">' + playlistElement + '</div></div></li>');
+      getSongWall(val.Playlist_id,i);
+     });
+    }
+  });
+}
+
 function friendRequest() {
   $.ajax({
     type: "post",
@@ -332,7 +390,7 @@ function friendRequest() {
         $("#friend_count").hide();
       }
       $('#personalPage').append('<div class="cmtpic" align="center"><img src="' + window.userPicCmt + '" style="width:23px;height:23px;" /></div><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b>');
-      $('#cover').append('<div class="coverImg"><img src="' + window.userPicCmt + '" style="width:120px;height:120px; border: 4px solid #fff;" /></div><span class="coverName"><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b></span>');
+      $('#cover').append('<div class="coverImg"><img src="' + window.userPicCmt + '" style="width:130px;height:130px; border: 4px solid #fff;" /></div><span class="coverName"><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b></span>');
     }
   });
 }
@@ -526,6 +584,42 @@ function getSongUpdateStatus(data) {
     }
   });
 }
+
+function getSongWall(id,number) {
+  var dataString="playlist_id="+id;
+  var cssSelector = {
+    jPlayer: "#jquery_jplayer_"+number,
+    cssSelectorAncestor: "#jp_container_"+number
+  };
+  /*An Empty Playlist*/
+  var playlist = [];
+  var options = {
+    swfPath: "js",
+    supplied: "mp3"
+  };
+  var myPlaylist = new jPlayerPlaylist(cssSelector, playlist, options);
+  $.ajax({
+    type: "post",
+    data:dataString,
+
+    url: "<?php echo base_url('playlistController/getDSSongs');?>
+",
+
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      var obj = JSON.parse(data);
+      $.each(obj, function(i, val) {
+        myPlaylist.add({
+          title: val.title,
+          mp3: val.mp3
+        });
+      });
+    }
+  });
+}
+
 
 $(document).on('click', 'li button', function() {
   var li=$(this).parent();

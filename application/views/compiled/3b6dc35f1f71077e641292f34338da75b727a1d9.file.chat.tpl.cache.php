@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-06 02:39:59
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-10 04:22:57
          compiled from "application\views\templates\chat.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:31314545ad16f247bf6-76702794%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:2336854602f91988ac2-65565509%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '3b6dc35f1f71077e641292f34338da75b727a1d9' => 
     array (
       0 => 'application\\views\\templates\\chat.tpl',
-      1 => 1414816594,
+      1 => 1415589712,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '31314545ad16f247bf6-76702794',
+  'nocache_hash' => '2336854602f91988ac2-65565509',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_545ad16f427d76_62567707',
+  'unifunc' => 'content_54602f91abb445_80907500',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_545ad16f427d76_62567707')) {function content_545ad16f427d76_62567707($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_54602f91abb445_80907500')) {function content_54602f91abb445_80907500($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
   </script>
@@ -27,7 +27,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   $(document).ready(function() {
     waitForMsg();
     friendRequest();
-    getFriendList();
+    getFriendChat();
     
     $("#notificationLink").click(function()
     {
@@ -117,7 +117,7 @@ img/ajax-loader.gif" align="absmiddle">&nbsp;<span class="loading">Loading Updat
     </li>
   </ul>
   </div>
-    <div id="friendListContainer">
+    <div id="friendChatContainer">
       <ul></ul>
     </div>
       <div style="width:550px; float:left; margin:30px;display:none;">
