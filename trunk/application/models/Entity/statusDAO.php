@@ -46,6 +46,19 @@ class StatusDAO
 		return $result;
 	}
 
+	public function layDSNextWallStatus($email,$id)
+	{
+		// prepare statemen
+		$cnn=$this->em->getConnection();
+		$sth = $cnn->prepare("CALL GetNextUserWall(?,?)");
+		$sth->bindValue(1, $email);
+		$sth->bindValue(2, $id);
+		// execute and fetch
+		$sth->execute();
+		$result = $sth->fetchAll();
+		return $result;
+	}
+
 	public function laySingleStatus($status)
 	{
 		// prepare statemen

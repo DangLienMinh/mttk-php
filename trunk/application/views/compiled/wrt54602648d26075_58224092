@@ -1,52 +1,41 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-10 11:36:27
-         compiled from "application\views\templates\testPlayerLink.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:135525460952b4f40d9-12009977%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-10 03:43:20
+         compiled from "application\views\templates\userWall.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:1411054602648ae0c41-94180528%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
+    '0f921ff09c337117641cd650c5ceaa3930b1bdcf' => 
     array (
-      0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1415519789,
+      0 => 'application\\views\\templates\\userWall.tpl',
+      1 => 1415587386,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '135525460952b4f40d9-12009977',
+  'nocache_hash' => '1411054602648ae0c41-94180528',
   'function' => 
   array (
   ),
+  'variables' => 
+  array (
+    'items' => 0,
+  ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5460952b680bb8_88248364',
+  'unifunc' => 'content_54602648d0a307_73252287',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5460952b680bb8_88248364')) {function content_5460952b680bb8_88248364($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_54602648d0a307_73252287')) {function content_54602648d0a307_73252287($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
-function getStatus() {
-  $.ajax({
-    type: "post",
+function getStatus(){
+      var data;
+        /* This requests the url "msgsrv.php"
+        When it complete (or errors)*/
 
-    url: "<?php echo base_url('statusController/index');?>
-",
+      data=<?php echo $_smarty_tpl->tpl_vars['items']->value;?>
 
-    async: true,
-    cache: false,
-    timeout: 50000,
-    success: function(data) {
-      addStatus(data);
-      setTimeout(
-        getStatus,
-        600000
-      );
-    },
-    error: function(XMLHttpRequest, textStatus, errorThrown) {
-      addStatus("error", textStatus + " (" + errorThrown + ")");
-      setTimeout(
-        getStatus,
-        15000);
+
+    addStatusUserWall(data);
     }
-  });
-}
   </script>
   <script>
 
@@ -94,6 +83,10 @@ function getStatus() {
         remainingDuration: true,
         toggleDuration: true
       });
+
+      $('.headlineRight a').click(function(){
+        $(this).find('span').css("display", "block");
+      })
   });
   </script>
  
@@ -136,6 +129,21 @@ function getStatus() {
     </li>
   </ul>
   </div>
+  <div id="coverContainer">
+    <div id="cover">
+
+    </div>
+    <div id="headline">
+      <div class="headlineRight">
+        <a class="" href="#">TimeLine<span class="hoverHeadlineRight"></span></a>
+        <a class="" href="#">About<span class="hoverHeadlineRight"></span></a>
+        <a class="" href="#">Friends<span class="hoverHeadlineRight"></span></a>
+        <a class="" href="#">Playlist<span class="hoverHeadlineRight"></span></a>
+        <a class="" href="#">More<span class="hoverHeadlineRight"></span></a>
+      </div>
+    </div>
+  </div>
+  
     <div id="container">
       <div class="timeline_container">
         <div class="timeline">

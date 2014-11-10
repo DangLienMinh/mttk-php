@@ -5,7 +5,7 @@
   $(document).ready(function() {
     waitForMsg();
     friendRequest();
-    getFriendList();
+    getFriendChat();
     
     $("#notificationLink").click(function()
     {
@@ -93,7 +93,7 @@
     </li>
   </ul>
   </div>
-    <div id="friendListContainer">
+    <div id="friendChatContainer">
       <ul></ul>
     </div>
       <div style="width:550px; float:left; margin:30px;display:none;">

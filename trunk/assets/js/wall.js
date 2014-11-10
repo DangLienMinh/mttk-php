@@ -492,7 +492,11 @@ $(window).scroll(function() {
 		var element = $('#container').find('.item:last');
 		var id = element.attr('id').substring(6);
 		var jplayer_id = element.find('.jp-jplayer').attr('id').substring(15);
-		moreStatus(id, jplayer_id);
+		if (window.location.href.indexOf("layDSWallStatus") > -1) {
+		    moreWallStatus(id, jplayer_id);
+		}else{
+			moreStatus(id, jplayer_id);
+		}
 	}
 });
 

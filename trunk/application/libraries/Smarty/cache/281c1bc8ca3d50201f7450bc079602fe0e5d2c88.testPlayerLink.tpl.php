@@ -1,4 +1,4 @@
-<?php /*%%SmartyHeaderCode:4140545f1e49190c42-80143636%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:135525460952b4f40d9-12009977%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,17 +11,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1415519795,
+      1 => 1415615751,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '4140545f1e49190c42-80143636',
+  'nocache_hash' => '135525460952b4f40d9-12009977',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_545f1e49798037_95894971',
+  'unifunc' => 'content_5460952b98c9e1_97805438',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_545f1e49798037_95894971')) {function content_545f1e49798037_95894971($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_5460952b98c9e1_97805438')) {function content_5460952b98c9e1_97805438($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -53,10 +53,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   window.profilePic="http://localhost:81/mttk-php/uploads/img/profilePic.jpg";
   window.userPic="http://localhost:81/mttk-php/uploads/img/";
   window.userWall="http://localhost:81/mttk-php/statusController/layDSWallStatus";
-  window.userLogin="anhtiminh@yahoo.com";
+  window.userLogin="duongphuocloc@gmail.com";
   //window.friendController="http://localhost:81/mttk-php/friendController";
-  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/shot0006.jpg";
-  window.userName="minh dang";
+  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/a6551.jpg";
+  window.playlistIcon="http://localhost:81/mttk-php/assets/img/playlistIcon.png";
+  window.userName="phuoc loc";
   window.userMusic="http://localhost:81/mttk-php/uploads";
   window.homePage="http://localhost:81/mttk-php/main/testPlayer";
   window.compare=0;
@@ -85,6 +86,23 @@ function moreStatus(id,jplayer_id) {
     type: "post",
 
     url: "http://localhost:81/mttk-php/statusController/getNextStatus",
+
+    data: dataString,
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      addMoreStatus(data,jplayer_id);
+    }
+  });
+}
+
+function moreWallStatus(id,jplayer_id) {
+  var dataString = 'status_id=' + id;
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/statusController/getNextWallStatus",
 
     data: dataString,
     async: true,
@@ -172,6 +190,23 @@ function moreNotify(id) {
   });
 }
 
+function getFriendChat() {
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/friendController/getAllChatFriends",
+
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+     $('#friendChatContainer>ul').append(data);
+     $(".inline").colorbox({inline:true, width:"30%",height:"80%"});
+    }
+  });
+}
+
 function getFriendList() {
   $.ajax({
     type: "post",
@@ -184,7 +219,6 @@ function getFriendList() {
     timeout: 50000,
     success: function(data) {
      $('#friendListContainer>ul').append(data);
-     $(".inline").colorbox({inline:true, width:"30%",height:"80%"});
     }
   });
 }
@@ -266,6 +300,26 @@ function getPlaylist() {
   });
 }
 
+function wallDsPlaylist() {
+    $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/playlistController/wallDsPlaylist",
+
+    async: true,
+    /* If set to non-async, browser shows page as "Loading.."*/
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+     var obj = JSON.parse(data);
+     $.each(obj, function(i, val) {
+      $('#playlistContainer>ul').append('<li><a class="inline" href="#inline_content"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' +window.playlistIcon+ '"/><span class="'+val.Playlist_id+'">' + val.Playlist_name+ '</span></a><div class="playlistSongs"><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio">' + playlistElement + '</div></div></li>');
+      getSongWall(val.Playlist_id,i);
+     });
+    }
+  });
+}
+
 function friendRequest() {
   $.ajax({
     type: "post",
@@ -285,6 +339,7 @@ function friendRequest() {
         $("#friend_count").hide();
       }
       $('#personalPage').append('<div class="cmtpic" align="center"><img src="' + window.userPicCmt + '" style="width:23px;height:23px;" /></div><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b>');
+      $('#cover').append('<div class="coverImg"><img src="' + window.userPicCmt + '" style="width:130px;height:130px; border: 4px solid #fff;" /></div><span class="coverName"><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b></span>');
     }
   });
 }
@@ -469,6 +524,41 @@ function getSongUpdateStatus(data) {
     }
   });
 }
+
+function getSongWall(id,number) {
+  var dataString="playlist_id="+id;
+  var cssSelector = {
+    jPlayer: "#jquery_jplayer_"+number,
+    cssSelectorAncestor: "#jp_container_"+number
+  };
+  /*An Empty Playlist*/
+  var playlist = [];
+  var options = {
+    swfPath: "js",
+    supplied: "mp3"
+  };
+  var myPlaylist = new jPlayerPlaylist(cssSelector, playlist, options);
+  $.ajax({
+    type: "post",
+    data:dataString,
+
+    url: "http://localhost:81/mttk-php/playlistController/getDSSongs",
+
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      var obj = JSON.parse(data);
+      $.each(obj, function(i, val) {
+        myPlaylist.add({
+          title: val.title,
+          mp3: val.mp3
+        });
+      });
+    }
+  });
+}
+
 
 $(document).on('click', 'li button', function() {
   var li=$(this).parent();

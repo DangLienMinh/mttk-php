@@ -253,6 +253,7 @@ a:hover {
     margin: 0 210px;
     position: relative;
     background-image: url("../img/musicCover.jpg");
+    background-position:center bottom;
     height: 276px;
 }
 #cover{
@@ -293,6 +294,26 @@ a:hover {
     float: right;
 
 }
+
+.hoverHeadlineRight{
+    background-image: url("../img/49Tyz-93FIm.png");
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -114px -157px;
+    bottom: -1px;
+    display: none;
+    height: 9px;
+    left: 50%;
+    margin-left: -8px;
+    position: absolute;
+    width: 17px;
+}
+
+.headlineRight>a:hover{
+    background: #f6f7f8;
+    text-decoration: none;
+}
+
 .headlineRight:after{
     clear: both;
     content: ".";
@@ -525,18 +546,18 @@ a:hover {
     width: 80%;
 }
 
-#friendListContainer {
+#friendChatContainer {
     margin: 30px 370px;
     width: 900px;
 }
 
-#friendListContainer>ul {
+#friendChatContainer>ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-#friendListContainer>ul>li {
+#friendChatContainer>ul>li {
     border: 1px solid #e9eaed;
     display: inline-block;
     margin: 0 0 13px 13px;
@@ -546,9 +567,44 @@ a:hover {
     width: 320px;
 }
 
-#friendListContainer>ul>li span {
+#friendChatContainer>ul>li span {
     top: 42px;
     left: 120px;
+    width: 190px;
+    position: absolute;
+}
+
+#friendChatContainer>ul>li a {
+    color: #3b5998;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+}
+
+#friendListContainer {
+    margin: 30px 10px;
+    width: 86%;
+}
+
+#friendListContainer>ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background:#fff;
+}
+
+#friendListContainer>ul>li {
+    border: 1px solid #e9eaed;
+    display: inline-block;
+    margin: 0 0 13px 13px;
+    padding: 0 10px 0 0;
+    position: relative;
+    vertical-align: top;
+    width: 431px;
+}
+
+#friendListContainer>ul>li span {
+    top: 42px;
     width: 190px;
     position: absolute;
 }
@@ -558,6 +614,57 @@ a:hover {
     font-size: 18px;
     font-weight: bold;
     position: relative;
+}
+
+#friendListContainer>ul>li button {
+    position: relative;
+    left: 243px;
+    top: 41px;
+}
+
+#playlistContainer {
+    margin: 30px 10px;
+    width: 86%;
+}
+
+#playlistContainer>ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background:#fff;
+}
+
+#playlistContainer>ul>li {
+    border: 1px solid #e9eaed;
+    display: inline-block;
+    margin: 0 0 13px 13px;
+    padding: 0 10px 0 0;
+    position: relative;
+    vertical-align: top;
+    width: 431px;
+}
+
+#playlistContainer>ul>li span {
+    top: 42px;
+    width: 190px;
+    left: 135px;
+    position: absolute;
+    font-size: 24px;
+}
+
+.playlistSongs{
+    margin-top: 120px;
+    margin-left: 105px;
+}
+
+#view3{
+    margin: 0 200px;
+    width: 80%;
+}
+
+#view2{
+    margin: 0 200px;
+    width: 80%;
 }
 
 .item {

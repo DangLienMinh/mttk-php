@@ -1,27 +1,27 @@
-<?php /*%%SmartyHeaderCode:31314545ad16f247bf6-76702794%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:2336854602f91988ac2-65565509%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '3b6dc35f1f71077e641292f34338da75b727a1d9' => 
     array (
       0 => 'application\\views\\templates\\chat.tpl',
-      1 => 1414816594,
+      1 => 1415589712,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1415180698,
+      1 => 1415589725,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '31314545ad16f247bf6-76702794',
+  'nocache_hash' => '2336854602f91988ac2-65565509',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_545ad16f891b76_84903523',
+  'unifunc' => 'content_54602f91d862c0_16901248',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_545ad16f891b76_84903523')) {function content_545ad16f891b76_84903523($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_54602f91d862c0_16901248')) {function content_54602f91d862c0_16901248($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -56,17 +56,21 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   window.userLogin="anhtiminh@yahoo.com";
   //window.friendController="http://localhost:81/mttk-php/friendController";
   window.userPicCmt="http://localhost:81/mttk-php/uploads/img/shot0006.jpg";
+  window.userName="minh dang";
   window.userMusic="http://localhost:81/mttk-php/uploads";
+  window.homePage="http://localhost:81/mttk-php/main/testPlayer";
   window.compare=0;
   window.compareStatus=0;
   window.currentChatPosition=-1;
   window.userChat="";
+  window.chosenMusic = "";
+  window.title="";
 
 
 
-$( document ).ajaxStop(function() {
+$( document).ajaxStop(function() {
     $('#container').masonry({
-            itemSelector: '.item'
+        itemSelector: '.item'
     });
     Arrow_Points();
     $(".timeago").livequery(function() // LiveQuery 
@@ -168,7 +172,7 @@ function moreNotify(id) {
   });
 }
 
-function getFriendList() {
+function getFriendChat() {
   $.ajax({
     type: "post",
 
@@ -179,11 +183,12 @@ function getFriendList() {
     cache: false,
     timeout: 50000,
     success: function(data) {
-     $('#friendListContainer>ul').append(data);
+     $('#friendChatContainer>ul').append(data);
      $(".inline").colorbox({inline:true, width:"30%",height:"80%"});
     }
   });
 }
+
 
 function getConversation(userEmail) {
   if(typeof userEmail !== 'undefined'){
@@ -280,6 +285,8 @@ function friendRequest() {
       }else{
         $("#friend_count").hide();
       }
+      $('#personalPage').append('<div class="cmtpic" align="center"><img src="' + window.userPicCmt + '" style="width:23px;height:23px;" /></div><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b>');
+      $('#cover').append('<div class="coverImg"><img src="' + window.userPicCmt + '" style="width:130px;height:130px; border: 4px solid #fff;" /></div><span class="coverName"><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b></span>');
     }
   });
 }
@@ -430,6 +437,41 @@ function getSuggest(){
   });
 }
 
+function getPlaylistUpdateStatus() {
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/playlistController/getDSPlaylist",
+
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('#playlistBoxUpdateStatus select').append(data);
+      var id=$('#playlistBoxUpdateStatus select').find(":selected").val();
+      getSongUpdateStatus(id);
+    }
+  });
+}
+
+function getSongUpdateStatus(data) {
+  $("#playlist_id").val(data);
+  var dataString="playlist_id="+data;
+  $.ajax({
+    type: "post",
+    data:dataString,
+
+    url: "http://localhost:81/mttk-php/playlistController/getDSSongs",
+
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      displaySongUpdateStatus(data);
+    }
+  });
+}
+
 $(document).on('click', 'li button', function() {
   var li=$(this).parent();
   $.ajax({
@@ -561,13 +603,29 @@ $(document).on('click', '.view_comments', function() {
   });
 });
 
+$(document).on('keyup', '#music_name', function() {
+  $("#musicContainer").show();
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/statusController/chooseMusic",
+
+    cache: false,
+    data: 'music_name=' + $("#music_name").val(),
+    success: function(response) {
+      $('#finalResult').html("");
+      $('#finalResult').append(response);
+    }
+  });
+});
+
 
   </script>
   <script>
   $(document).ready(function() {
     waitForMsg();
     friendRequest();
-    getFriendList();
+    getFriendChat();
     
     $("#notificationLink").click(function()
     {
@@ -655,7 +713,7 @@ $(document).on('click', '.view_comments', function() {
     </li>
   </ul>
   </div>
-    <div id="friendListContainer">
+    <div id="friendChatContainer">
       <ul></ul>
     </div>
       <div style="width:550px; float:left; margin:30px;display:none;">
