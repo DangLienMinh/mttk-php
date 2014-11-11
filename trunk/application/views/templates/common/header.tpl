@@ -30,13 +30,13 @@
   window.profilePic="{uploads_url()}img/profilePic.jpg";
   window.userPic="{uploads_url()}img/";
   window.userWall="{site_url('statusController/layDSWallStatus/')}";
-  window.userLogin="{$userLogin}";
   //window.friendController="{site_url('friendController/')}";
-  window.userPicCmt="{uploads_url()}img/{$userPicCmt}";
   window.playlistIcon="{base_url()}assets/img/playlistIcon.png";
-  window.userName="{$userName}";
   window.userMusic="{base_url('uploads/')}";
   window.homePage="{base_url('main/testPlayer/')}";
+  window.userPicCmt="{uploads_url()}img/{$userPicCmt}";
+  window.userLogin="{$userLogin}";
+  window.userName="{$userName}";
   window.compare=0;
   window.compareStatus=0;
   window.currentChatPosition=-1;
@@ -74,8 +74,8 @@ function moreStatus(id,jplayer_id) {
   });
 }
 
-function moreWallStatus(id,jplayer_id) {
-  var dataString = 'status_id=' + id;
+function moreWallStatus(id,jplayer_id,email) {
+  var dataString = 'status_id=' + id+'&email='+email;
   $.ajax({
     type: "post",
 {/literal}
@@ -316,7 +316,7 @@ function friendRequest() {
         $("#friend_count").hide();
       }
       $('#personalPage').append('<div class="cmtpic" align="center"><img src="' + window.userPicCmt + '" style="width:23px;height:23px;" /></div><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b>');
-      $('#cover').append('<div class="coverImg"><img src="' + window.userPicCmt + '" style="width:130px;height:130px; border: 4px solid #fff;" /></div><span class="coverName"><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b></span>');
+      $('#cover').append('<div class="coverImg"><img src="' + window.userPicCmtWall + '" style="width:130px;height:130px; border: 4px solid #fff;" /></div><span class="coverName"><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userNameWall + '</a></b></span>');
     }
   });
 }
@@ -537,21 +537,41 @@ function getSongWall(id,number) {
 }
 
 
-$(document).on('click', 'li button', function() {
+$(document).on('click', '#facebook li button', function() {
   var li=$(this).parent();
   $.ajax({
   type: "POST",
 {/literal}
-  url:"{base_url('friendController/themBan')}", 
+  url:"{base_url('friendController/themBan')}",
 {literal}
   data: {friendEmail: $(this).val()},
-  dataType: "text",  
+  dataType: "text",
   cache:false,
-  success: 
+  success:
       function(data){
         li.fadeOut('slow', function() {});
       }
   });
+  return false;
+});
+
+$(document).on('click', '#friendListContainer ul li button', function() {
+  var li=$(this).parent();
+  $.ajax({
+  type: "POST",
+{/literal}
+  url:"{base_url('friendController/xoaBan')}",
+{literal}
+  data: {friend: $(this).attr('rel')},
+  dataType: "text",
+  cache:false,
+  success:
+      function(data){
+        alert(data);
+        //li.fadeOut('slow', function() {});
+      }
+  });
+  return false;
 });
 
 $(document).on('keypress', '.commentInput', function(e) {

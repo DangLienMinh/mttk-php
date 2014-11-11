@@ -67,6 +67,13 @@ class UserDAO
 		return $result;
 	}
 
+	public function getUser($email){
+		$query = $this->em->createQuery("SELECT p.first_name,p.last_name,p.birthday,p.picture FROM Entity\User p WHERE p.email=?1");
+		$query->setParameter(1, $email);
+		$result=$query->getResult();
+		return $result;
+	}
+
 	public function capNhatLastLogin($email){
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("CALL LastLogin(?)");

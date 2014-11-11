@@ -1,4 +1,4 @@
-<?php /*%%SmartyHeaderCode:4853546224d1a5ae81-95827400%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:16623546222143a9d18-57600000%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,11 +11,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1415717905,
+      1 => 1415717366,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '4853546224d1a5ae81-95827400',
+  'nocache_hash' => '16623546222143a9d18-57600000',
   'variables' => 
   array (
     'items' => 0,
@@ -24,10 +24,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546224d237a718_01980773',
+  'unifunc' => 'content_54622215356968_65204749',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546224d237a718_01980773')) {function content_546224d237a718_01980773($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_54622215356968_65204749')) {function content_54622215356968_65204749($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -596,8 +596,7 @@ $(document).on('click', '#friendListContainer ul li button', function() {
   cache:false,
   success:
       function(data){
-        alert(data);
-        //li.fadeOut('slow', function() {});
+        li.fadeOut('slow', function() {});
       }
   });
   return false;

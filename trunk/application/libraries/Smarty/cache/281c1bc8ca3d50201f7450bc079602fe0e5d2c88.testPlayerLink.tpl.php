@@ -1,27 +1,27 @@
-<?php /*%%SmartyHeaderCode:135525460952b4f40d9-12009977%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:743254621c9a809c13-36488396%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1415519789,
+      1 => 1415713109,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1415615751,
+      1 => 1415713121,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '135525460952b4f40d9-12009977',
+  'nocache_hash' => '743254621c9a809c13-36488396',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5460952b98c9e1_97805438',
+  'unifunc' => 'content_54621c9b005761_19874147',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5460952b98c9e1_97805438')) {function content_5460952b98c9e1_97805438($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_54621c9b005761_19874147')) {function content_54621c9b005761_19874147($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -53,13 +53,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   window.profilePic="http://localhost:81/mttk-php/uploads/img/profilePic.jpg";
   window.userPic="http://localhost:81/mttk-php/uploads/img/";
   window.userWall="http://localhost:81/mttk-php/statusController/layDSWallStatus";
-  window.userLogin="duongphuocloc@gmail.com";
   //window.friendController="http://localhost:81/mttk-php/friendController";
-  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/a6551.jpg";
   window.playlistIcon="http://localhost:81/mttk-php/assets/img/playlistIcon.png";
-  window.userName="phuoc loc";
   window.userMusic="http://localhost:81/mttk-php/uploads";
   window.homePage="http://localhost:81/mttk-php/main/testPlayer";
+  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/shot0006.jpg";
+  window.userLogin="anhtiminh@yahoo.com";
+  window.userName="minh dang";
   window.compare=0;
   window.compareStatus=0;
   window.currentChatPosition=-1;
@@ -97,8 +97,8 @@ function moreStatus(id,jplayer_id) {
   });
 }
 
-function moreWallStatus(id,jplayer_id) {
-  var dataString = 'status_id=' + id;
+function moreWallStatus(id,jplayer_id,email) {
+  var dataString = 'status_id=' + id+'&email='+email;
   $.ajax({
     type: "post",
 
@@ -339,7 +339,7 @@ function friendRequest() {
         $("#friend_count").hide();
       }
       $('#personalPage').append('<div class="cmtpic" align="center"><img src="' + window.userPicCmt + '" style="width:23px;height:23px;" /></div><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b>');
-      $('#cover').append('<div class="coverImg"><img src="' + window.userPicCmt + '" style="width:130px;height:130px; border: 4px solid #fff;" /></div><span class="coverName"><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b></span>');
+      $('#cover').append('<div class="coverImg"><img src="' + window.userPicCmtWall + '" style="width:130px;height:130px; border: 4px solid #fff;" /></div><span class="coverName"><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userNameWall + '</a></b></span>');
     }
   });
 }
@@ -734,7 +734,6 @@ function getStatus() {
 }
   </script>
   <script>
-
   $(document).ready(function() {
     waitForMsg();
     friendRequest();

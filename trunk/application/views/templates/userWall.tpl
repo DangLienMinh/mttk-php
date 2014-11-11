@@ -11,7 +11,10 @@ function getStatus(){
     }
   </script>
   <script>
-
+{/literal}
+  window.userNameWall="{$userNameWall}";
+  window.userPicCmtWall="{uploads_url()}img/{$userPicCmtWall}";
+{literal}
   $(document).ready(function() {
     waitForMsg();
     friendRequest();
