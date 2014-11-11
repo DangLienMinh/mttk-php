@@ -44,9 +44,10 @@ class StatusController extends CI_Controller {
     function getNextWallStatus()
     {
         $id=$this->input->post('status_id');
+        $email=$this->input->post('email');
         $em = $this->doctrine->em;
         $status = new Entity\statusDAO($em);
-        $result=$status->layDSNextWallStatus($this->session->userdata('email'),$id);
+        $result=$status->layDSNextWallStatus($email,$id);
         echo json_encode($result);
     }
 
@@ -56,9 +57,16 @@ class StatusController extends CI_Controller {
         $status = new Entity\statusDAO($em);
         $result=$status->layDSWallStatus($email);
         $result= json_encode($result);
+
+        $user = new Entity\UserDAO($em);;
+        $userInfo=$user->getUser($email);
+
+
         $this->smarty->assign('items',$result);
-        $this->smarty->assign('userName',$this->session->userdata('first_name').' '.$this->session->userdata('last_name'));
+        $this->smarty->assign('userNameWall',$userInfo[0]['first_name'].' '.$userInfo[0]['last_name']);
+        $this->smarty->assign('userPicCmtWall',$userInfo[0]['picture']);
         $this->smarty->assign('userPicCmt',$this->session->userdata('pic'));
+        $this->smarty->assign('userName',$this->session->userdata('first_name').' '.$this->session->userdata('last_name'));
         $this->smarty->assign('userLogin',$this->session->userdata('email'));
         $this->smarty->view('userWall');
     }

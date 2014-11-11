@@ -26,7 +26,6 @@ function getStatus() {
 }
   </script>
   <script>
-
   $(document).ready(function() {
     waitForMsg();
     friendRequest();

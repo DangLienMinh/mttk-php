@@ -38,6 +38,14 @@
 		}
 	}
 
+	public function xoaBan(){
+		$friend=$_POST["friend"];
+        $email = $this->session->userdata('email');
+        $em = $this->doctrine->em;
+		$friend = new Entity\FriendDAO($em);
+		$friend->UnFriend($email,$friend);
+	}
+
 	public function getAllFriends()
 	{
         $em = $this->doctrine->em;

@@ -80,5 +80,16 @@ class FriendDAO
 		// execute and fetch
 		$sth->execute();
 	}
+
+	public function UnFriend($email,$friend)
+	{
+		// prepare statement
+		$cnn=$this->em->getConnection();
+		$sth = $cnn->prepare("CALL unFriend(?,?)");
+		$sth->bindValue(1, $email);
+		$sth->bindValue(2, $friend);
+		// execute and fetch
+		$sth->execute();
+	}
 }
 ?>

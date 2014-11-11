@@ -63,11 +63,11 @@ a:hover {
     text-decoration: none;
 }
 
-#nav li a:hover {
+/*#nav li a:hover {
     color: #006699;
     text-decoration: none;
 }
-
+*/
 #notification_li {
     position: relative;
 }
@@ -117,6 +117,10 @@ a:hover {
     height: 310px;
     overflow-y: scroll;
     overflow-x: hidden;
+}
+
+.noti span{
+    color:black!important;
 }
 
 #notificationFooter {
@@ -921,7 +925,7 @@ a:hover {
     position: relative;
 }
 
-.display_box:hover, {
+.display_box:hover {
     background: #3b5998;
     color: #FFF!important;
     text-decoration: none;
@@ -1055,7 +1059,6 @@ text-decoration:none;
     background:#155FB0;
     color: #FFFFFF;
     text-decoration: none;
-    
 }
 a.account {
 
