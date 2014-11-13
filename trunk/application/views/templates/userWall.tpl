@@ -13,6 +13,7 @@ function getStatus(){
   <script>
 {/literal}
   window.userNameWall="{$userNameWall}";
+  window.userLoginWall="{$userLoginWall}";
   window.userPicCmtWall="{uploads_url()}img/{$userPicCmtWall}";
 {literal}
   $(document).ready(function() {
@@ -22,8 +23,8 @@ function getStatus(){
     getPlaylist();
     getSuggest();
     getPlaylistUpdateStatus();
-    getFriendList();
-    wallDsPlaylist();
+    getFriendList(window.userLoginWall);
+    wallDsPlaylist(window.userLoginWall);
     $("#target").autoGrow();
     $('#tabs').tabs({
       activate: function(event, ui) {
@@ -81,6 +82,10 @@ function getStatus(){
         $('#wallContainer').find('#view3').show();
         $('#wallContainer').find('#view3').siblings('div').hide();
       });
+      $('#headlineAbout').click(function(){
+        $('#wallContainer').find('#view4').show();
+        $('#wallContainer').find('#view4').siblings('div').hide();
+      });
   });
   </script>
  {/literal}
@@ -129,9 +134,9 @@ function getStatus(){
     <div id="headline">
       <div class="headlineRight">
         <a id="headlineTimeline" href="#">TimeLine<span class="hoverHeadlineRight"></span></a>
-        <a class="" href="#">About<span class="hoverHeadlineRight"></span></a>
+        <a id="headlineAbout" href="#">About<span class="hoverHeadlineRight"></span></a>
         <a id="headlineFriendList" href="#">Friends<span class="hoverHeadlineRight"></span></a>
-        <a id="headlinePlaylist" class="" href="#">Playlist<span class="hoverHeadlineRight"></span></a>
+        <a id="headlinePlaylist" href="#">Playlist<span class="hoverHeadlineRight"></span></a>
         <a class="" href="#">More<span class="hoverHeadlineRight"></span></a>
       </div>
     </div>
@@ -288,6 +293,24 @@ function getStatus(){
         <input type="hidden" id="urlMusic"/>
         <button id="savePlaylist">Save</button>
         </div>
+        </div>
+      </div>
+      <div id="view4" style="display:none;">
+        <div id="aboutContainer">
+          <div id="aboutLeft">
+            <ul>
+              <li><a href="#"><span>Overview</span></a></li>
+              <li><a href="#"><span>Work and Education</span></a></li>
+              <li><a href="#"><span>Contact and Basic Info</span></a></li>
+              <li><a href="#"><span>Details</span></a></li>
+              <li><a href="#"><span>Favorites</span></a></li>
+            </ul>
+          </div>
+          <div id="aboutRight">
+            <div class="aboutContent">
+
+            </div>
+          </div>
         </div>
       </div>
       <div id="view2" style="display:none;">

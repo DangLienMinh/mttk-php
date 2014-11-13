@@ -184,14 +184,15 @@ function getFriendChat() {
   });
 }
 
-function getFriendList() {
+function getFriendList(email) {
+  var dataString = 'email=' + email;
   $.ajax({
     type: "post",
 {/literal}
     url: "{base_url('friendController/getAllFriends')}",
 {literal}
     async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
+    data:dataString,
     cache: false,
     timeout: 50000,
     success: function(data) {
@@ -220,8 +221,8 @@ function getConversation(userEmail) {
     success: function(data) {
       addConversation(data);
       setTimeout(
-        getConversation, /* Request next message */
-        2000 /* ..after 2 seconds */
+        getConversation,
+        2000
       );
     }
   });
@@ -277,14 +278,15 @@ function getPlaylist() {
   });
 }
 
-function wallDsPlaylist() {
+function wallDsPlaylist(email) {
+    var dataString = 'email=' + email;
     $.ajax({
     type: "post",
 {/literal}
     url: "{base_url('playlistController/wallDsPlaylist')}",
 {literal}
+    data: dataString,
     async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
     timeout: 50000,
     success: function(data) {
@@ -537,7 +539,7 @@ function getSongWall(id,number) {
 }
 
 
-$(document).on('click', '#facebook li button', function() {
+$(document).on('click', '.addFriend', function() {
   var li=$(this).parent();
   $.ajax({
   type: "POST",
@@ -555,20 +557,19 @@ $(document).on('click', '#facebook li button', function() {
   return false;
 });
 
-$(document).on('click', '#friendListContainer ul li button', function() {
+$(document).on('click', '.unFriend', function() {
   var li=$(this).parent();
   $.ajax({
   type: "POST",
 {/literal}
   url:"{base_url('friendController/xoaBan')}",
 {literal}
-  data: {friend: $(this).attr('rel')},
+  data: {friend: $(this).val()},
   dataType: "text",
   cache:false,
   success:
       function(data){
-        alert(data);
-        //li.fadeOut('slow', function() {});
+        li.fadeOut('slow', function() {});
       }
   });
   return false;

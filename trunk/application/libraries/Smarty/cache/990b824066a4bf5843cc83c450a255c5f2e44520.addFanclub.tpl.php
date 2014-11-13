@@ -1,21 +1,21 @@
-<?php /*%%SmartyHeaderCode:17443545f1926644b20-74097043%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:3134654648b206ba327-43751551%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '990b824066a4bf5843cc83c450a255c5f2e44520' => 
     array (
       0 => 'application\\views\\templates\\addFanclub.tpl',
-      1 => 1415518454,
+      1 => 1415518838,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '17443545f1926644b20-74097043',
+  'nocache_hash' => '3134654648b206ba327-43751551',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_545f19267eda21_30146087',
+  'unifunc' => 'content_54648b208b4c29_68665528',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_545f19267eda21_30146087')) {function content_545f19267eda21_30146087($_smarty_tpl) {?><html>
+<?php if ($_valid && !is_callable('content_54648b208b4c29_68665528')) {function content_54648b208b4c29_68665528($_smarty_tpl) {?><html>
 <head>
   <meta charset="utf-8">
   <title>jQuery UI Tabs - Default functionality</title>
@@ -63,7 +63,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		    cache: false,
 		    timeout: 50000,
 		    success: function(data) {
-		      //addMoreStatus(data,jplayer_id);
 		      alert("complete");
 		    }
 		  });
