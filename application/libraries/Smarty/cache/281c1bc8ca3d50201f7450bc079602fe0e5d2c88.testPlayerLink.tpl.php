@@ -1,4 +1,4 @@
-<?php /*%%SmartyHeaderCode:743254621c9a809c13-36488396%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:4395464c1ebc15782-23802398%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,17 +11,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1415713121,
+      1 => 1415889353,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '743254621c9a809c13-36488396',
+  'nocache_hash' => '4395464c1ebc15782-23802398',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_54621c9b005761_19874147',
+  'unifunc' => 'content_5464c1ec460030_48463044',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_54621c9b005761_19874147')) {function content_54621c9b005761_19874147($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_5464c1ec460030_48463044')) {function content_5464c1ec460030_48463044($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -57,9 +57,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   window.playlistIcon="http://localhost:81/mttk-php/assets/img/playlistIcon.png";
   window.userMusic="http://localhost:81/mttk-php/uploads";
   window.homePage="http://localhost:81/mttk-php/main/testPlayer";
-  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/shot0006.jpg";
-  window.userLogin="anhtiminh@yahoo.com";
-  window.userName="minh dang";
+  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/a6551.jpg";
+  window.userLogin="duongphuocloc@gmail.com";
+  window.userName="phuoc loc";
   window.compare=0;
   window.compareStatus=0;
   window.currentChatPosition=-1;
@@ -207,14 +207,15 @@ function getFriendChat() {
   });
 }
 
-function getFriendList() {
+function getFriendList(email) {
+  var dataString = 'email=' + email;
   $.ajax({
     type: "post",
 
     url: "http://localhost:81/mttk-php/friendController/getAllFriends",
 
     async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
+    data:dataString,
     cache: false,
     timeout: 50000,
     success: function(data) {
@@ -243,8 +244,8 @@ function getConversation(userEmail) {
     success: function(data) {
       addConversation(data);
       setTimeout(
-        getConversation, /* Request next message */
-        2000 /* ..after 2 seconds */
+        getConversation,
+        2000
       );
     }
   });
@@ -300,14 +301,15 @@ function getPlaylist() {
   });
 }
 
-function wallDsPlaylist() {
+function wallDsPlaylist(email) {
+    var dataString = 'email=' + email;
     $.ajax({
     type: "post",
 
     url: "http://localhost:81/mttk-php/playlistController/wallDsPlaylist",
 
+    data: dataString,
     async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
     timeout: 50000,
     success: function(data) {
@@ -560,21 +562,40 @@ function getSongWall(id,number) {
 }
 
 
-$(document).on('click', 'li button', function() {
+$(document).on('click', '.addFriend', function() {
   var li=$(this).parent();
   $.ajax({
   type: "POST",
 
-  url:"http://localhost:81/mttk-php/friendController/themBan", 
+  url:"http://localhost:81/mttk-php/friendController/themBan",
 
   data: {friendEmail: $(this).val()},
-  dataType: "text",  
+  dataType: "text",
   cache:false,
-  success: 
+  success:
       function(data){
         li.fadeOut('slow', function() {});
       }
   });
+  return false;
+});
+
+$(document).on('click', '.unFriend', function() {
+  var li=$(this).parent();
+  $.ajax({
+  type: "POST",
+
+  url:"http://localhost:81/mttk-php/friendController/xoaBan",
+
+  data: {friend: $(this).val()},
+  dataType: "text",
+  cache:false,
+  success:
+      function(data){
+        li.fadeOut('slow', function() {});
+      }
+  });
+  return false;
 });
 
 $(document).on('keypress', '.commentInput', function(e) {

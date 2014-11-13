@@ -1,33 +1,34 @@
-<?php /*%%SmartyHeaderCode:4853546224d1a5ae81-95827400%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:233705464cfa1841e95-11144240%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '0f921ff09c337117641cd650c5ceaa3930b1bdcf' => 
     array (
       0 => 'application\\views\\templates\\userWall.tpl',
-      1 => 1415713188,
+      1 => 1415892865,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1415717905,
+      1 => 1415889353,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '4853546224d1a5ae81-95827400',
+  'nocache_hash' => '233705464cfa1841e95-11144240',
   'variables' => 
   array (
     'items' => 0,
     'userNameWall' => 0,
+    'userLoginWall' => 0,
     'userPicCmtWall' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546224d237a718_01980773',
+  'unifunc' => 'content_5464cfa1d28ad7_43790243',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546224d237a718_01980773')) {function content_546224d237a718_01980773($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_5464cfa1d28ad7_43790243')) {function content_5464cfa1d28ad7_43790243($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -63,9 +64,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   window.playlistIcon="http://localhost:81/mttk-php/assets/img/playlistIcon.png";
   window.userMusic="http://localhost:81/mttk-php/uploads";
   window.homePage="http://localhost:81/mttk-php/main/testPlayer";
-  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/shot0006.jpg";
-  window.userLogin="anhtiminh@yahoo.com";
-  window.userName="minh dang";
+  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/a6551.jpg";
+  window.userLogin="duongphuocloc@gmail.com";
+  window.userName="phuoc loc";
   window.compare=0;
   window.compareStatus=0;
   window.currentChatPosition=-1;
@@ -213,14 +214,15 @@ function getFriendChat() {
   });
 }
 
-function getFriendList() {
+function getFriendList(email) {
+  var dataString = 'email=' + email;
   $.ajax({
     type: "post",
 
     url: "http://localhost:81/mttk-php/friendController/getAllFriends",
 
     async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
+    data:dataString,
     cache: false,
     timeout: 50000,
     success: function(data) {
@@ -249,8 +251,8 @@ function getConversation(userEmail) {
     success: function(data) {
       addConversation(data);
       setTimeout(
-        getConversation, /* Request next message */
-        2000 /* ..after 2 seconds */
+        getConversation,
+        2000
       );
     }
   });
@@ -306,14 +308,15 @@ function getPlaylist() {
   });
 }
 
-function wallDsPlaylist() {
+function wallDsPlaylist(email) {
+    var dataString = 'email=' + email;
     $.ajax({
     type: "post",
 
     url: "http://localhost:81/mttk-php/playlistController/wallDsPlaylist",
 
+    data: dataString,
     async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
     timeout: 50000,
     success: function(data) {
@@ -566,7 +569,7 @@ function getSongWall(id,number) {
 }
 
 
-$(document).on('click', '#facebook li button', function() {
+$(document).on('click', '.addFriend', function() {
   var li=$(this).parent();
   $.ajax({
   type: "POST",
@@ -584,20 +587,19 @@ $(document).on('click', '#facebook li button', function() {
   return false;
 });
 
-$(document).on('click', '#friendListContainer ul li button', function() {
+$(document).on('click', '.unFriend', function() {
   var li=$(this).parent();
   $.ajax({
   type: "POST",
 
   url:"http://localhost:81/mttk-php/friendController/xoaBan",
 
-  data: {friend: $(this).attr('rel')},
+  data: {friend: $(this).val()},
   dataType: "text",
   cache:false,
   success:
       function(data){
-        alert(data);
-        //li.fadeOut('slow', function() {});
+        li.fadeOut('slow', function() {});
       }
   });
   return false;
@@ -739,15 +741,16 @@ function getStatus(){
         /* This requests the url "msgsrv.php"
         When it complete (or errors)*/
 
-      data=[]
+      data=[{"status_id":"34","music":"1","title":"","message":"shit","created_at":"2014-11-06 22:36:14","thumbs_up":"0","privacy_type_id":"1","email":"duongphuocloc@gmail.com","picture":"a6551.jpg","name":"phuoc loc"},{"status_id":"2","music":"15.Forever_Friends_3.mp3","title":"Forever friend","message":"I'm feeling lucky heh","created_at":"2014-10-16 21:44:18","thumbs_up":"1","privacy_type_id":"1","email":"duongphuocloc@gmail.com","picture":"a6551.jpg","name":"phuoc loc"}]
 
     addStatusUserWall(data);
     }
   </script>
   <script>
 
-  window.userNameWall=" ";
-  window.userPicCmtWall="http://localhost:81/mttk-php/uploads/img/";
+  window.userNameWall="phuoc loc";
+  window.userLoginWall="duongphuocloc@gmail.com";
+  window.userPicCmtWall="http://localhost:81/mttk-php/uploads/img/a6551.jpg";
 
   $(document).ready(function() {
     waitForMsg();
@@ -756,8 +759,8 @@ function getStatus(){
     getPlaylist();
     getSuggest();
     getPlaylistUpdateStatus();
-    getFriendList();
-    wallDsPlaylist();
+    getFriendList(window.userLoginWall);
+    wallDsPlaylist(window.userLoginWall);
     $("#target").autoGrow();
     $('#tabs').tabs({
       activate: function(event, ui) {
@@ -815,6 +818,10 @@ function getStatus(){
         $('#wallContainer').find('#view3').show();
         $('#wallContainer').find('#view3').siblings('div').hide();
       });
+      $('#headlineAbout').click(function(){
+        $('#wallContainer').find('#view4').show();
+        $('#wallContainer').find('#view4').siblings('div').hide();
+      });
   });
   </script>
  
@@ -863,9 +870,9 @@ function getStatus(){
     <div id="headline">
       <div class="headlineRight">
         <a id="headlineTimeline" href="#">TimeLine<span class="hoverHeadlineRight"></span></a>
-        <a class="" href="#">About<span class="hoverHeadlineRight"></span></a>
+        <a id="headlineAbout" href="#">About<span class="hoverHeadlineRight"></span></a>
         <a id="headlineFriendList" href="#">Friends<span class="hoverHeadlineRight"></span></a>
-        <a id="headlinePlaylist" class="" href="#">Playlist<span class="hoverHeadlineRight"></span></a>
+        <a id="headlinePlaylist" href="#">Playlist<span class="hoverHeadlineRight"></span></a>
         <a class="" href="#">More<span class="hoverHeadlineRight"></span></a>
       </div>
     </div>
@@ -1022,6 +1029,24 @@ function getStatus(){
         <input type="hidden" id="urlMusic"/>
         <button id="savePlaylist">Save</button>
         </div>
+        </div>
+      </div>
+      <div id="view4" style="display:none;">
+        <div id="aboutContainer">
+          <div id="aboutLeft">
+            <ul>
+              <li><a href="#"><span>Overview</span></a></li>
+              <li><a href="#"><span>Work and Education</span></a></li>
+              <li><a href="#"><span>Contact and Basic Info</span></a></li>
+              <li><a href="#"><span>Details</span></a></li>
+              <li><a href="#"><span>Favorites</span></a></li>
+            </ul>
+          </div>
+          <div id="aboutRight">
+            <div class="aboutContent">
+
+            </div>
+          </div>
         </div>
       </div>
       <div id="view2" style="display:none;">

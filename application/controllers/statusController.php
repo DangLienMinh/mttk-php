@@ -63,6 +63,7 @@ class StatusController extends CI_Controller {
 
 
         $this->smarty->assign('items',$result);
+        $this->smarty->assign('userLoginWall',$email);
         $this->smarty->assign('userNameWall',$userInfo[0]['first_name'].' '.$userInfo[0]['last_name']);
         $this->smarty->assign('userPicCmtWall',$userInfo[0]['picture']);
         $this->smarty->assign('userPicCmt',$this->session->userdata('pic'));

@@ -26,13 +26,7 @@ class PlaylistController extends CI_Controller {
     function wallDsPlaylist(){
         $em = $this->doctrine->em;
         $playlist = new Entity\PlaylistDAO($em);
-        $result=$playlist->layDSPlaylist($this->session->userdata('email'));
-        /*$playlists="";
-        foreach($result as $k)
-        {
-            $playlists.='<li><a class="inline" href="#inline_content"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' .base_url().'assets/img/playlistIcon.png'. '"/><span class="'.$k['Playlist_id'].'">' . $k['Playlist_name'] . '</span></a></li>';
-        }
-        echo $playlists;*/
+        $result=$playlist->layDSPlaylist($this->input->post('email'));
         echo json_encode($result);
     }
 

@@ -39,24 +39,39 @@
 	}
 
 	public function xoaBan(){
-		$friend=$_POST["friend"];
+		$unfriend=$_POST["friend"];
         $email = $this->session->userdata('email');
         $em = $this->doctrine->em;
 		$friend = new Entity\FriendDAO($em);
-		$friend->UnFriend($email,$friend);
+		$friend->UnFriend($email,$unfriend);
 	}
 
 	public function getAllFriends()
 	{
         $em = $this->doctrine->em;
-        $email = $this->session->userdata('email');
+        $email = $this->input->post('email');
 		$friend = new Entity\FriendDAO($em);
 		$result=$friend->getAllFriends($email);
         //echo json_encode($result);
         $friends="";
-        foreach($result as $k)
-        {
-            $friends.='<li><a class="inline" href="#inline_content"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' .base_url().'uploads/img/'.$k['picture']. '"/><span class="'.$k['email'].'">' . $k['name'] . '</span></a><button rel="'.$k['email'].'">Unfriend</button></li>';
+        if(strcmp($email,$this->session->userdata('email'))==0){
+        	foreach($result as $k)
+	        {
+	            $friends.='<li><a class="inline" href="#inline_content"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' .base_url().'uploads/img/'.$k['picture']. '"/><span class="'.$k['email'].'">' . $k['name'] . '</span></a><button class="unFriend" value="'.$k['email'].'">Unfriend</button></li>';
+	        }
+        }else{
+        	foreach($result as $k)
+	        {
+	        	if(strcmp($this->session->userdata('email'), $k['email'])==0){
+	        		$friends.='<li><a class="inline" href="#inline_content"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' .base_url().'uploads/img/'.$k['picture']. '"/><span class="'.$k['email'].'">' . $k['name'] . '</span></a><button value="'.$k['email'].'">Following</button></li>';
+	        	}else{
+	        		if($friend->checkFriend($this->session->userdata('email'),$k['email'])>0){
+	        		$friends.='<li><a class="inline" href="#inline_content"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' .base_url().'uploads/img/'.$k['picture']. '"/><span class="'.$k['email'].'">' . $k['name'] . '</span></a><button class="unFriend" value="'.$k['email'].'">Unfriend</button></li>';
+		        	}else{
+		        		$friends.='<li><a class="inline" href="#inline_content"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' .base_url().'uploads/img/'.$k['picture']. '"/><span class="'.$k['email'].'">' . $k['name'] . '</span></a><button class="addFriend" value="'.$k['email'].'">Add Friend</button></li>';
+		        	}
+	        	}
+	        }
         }
         echo $friends;
 	}

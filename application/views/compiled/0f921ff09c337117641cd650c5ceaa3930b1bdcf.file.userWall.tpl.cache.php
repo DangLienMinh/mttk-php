@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-11 16:01:37
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-13 16:34:57
          compiled from "application\views\templates\userWall.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:4853546224d1a5ae81-95827400%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:233705464cfa1841e95-11144240%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '0f921ff09c337117641cd650c5ceaa3930b1bdcf' => 
     array (
       0 => 'application\\views\\templates\\userWall.tpl',
-      1 => 1415713188,
+      1 => 1415892865,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '4853546224d1a5ae81-95827400',
+  'nocache_hash' => '233705464cfa1841e95-11144240',
   'function' => 
   array (
   ),
@@ -19,13 +19,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   array (
     'items' => 0,
     'userNameWall' => 0,
+    'userLoginWall' => 0,
     'userPicCmtWall' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546224d1cd3271_59845548',
+  'unifunc' => 'content_5464cfa19aded5_10876937',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546224d1cd3271_59845548')) {function content_546224d1cd3271_59845548($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_5464cfa19aded5_10876937')) {function content_5464cfa19aded5_10876937($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
 function getStatus(){
@@ -43,6 +44,8 @@ function getStatus(){
 
   window.userNameWall="<?php echo $_smarty_tpl->tpl_vars['userNameWall']->value;?>
 ";
+  window.userLoginWall="<?php echo $_smarty_tpl->tpl_vars['userLoginWall']->value;?>
+";
   window.userPicCmtWall="<?php echo uploads_url();?>
 img/<?php echo $_smarty_tpl->tpl_vars['userPicCmtWall']->value;?>
 ";
@@ -54,8 +57,8 @@ img/<?php echo $_smarty_tpl->tpl_vars['userPicCmtWall']->value;?>
     getPlaylist();
     getSuggest();
     getPlaylistUpdateStatus();
-    getFriendList();
-    wallDsPlaylist();
+    getFriendList(window.userLoginWall);
+    wallDsPlaylist(window.userLoginWall);
     $("#target").autoGrow();
     $('#tabs').tabs({
       activate: function(event, ui) {
@@ -113,6 +116,10 @@ img/<?php echo $_smarty_tpl->tpl_vars['userPicCmtWall']->value;?>
         $('#wallContainer').find('#view3').show();
         $('#wallContainer').find('#view3').siblings('div').hide();
       });
+      $('#headlineAbout').click(function(){
+        $('#wallContainer').find('#view4').show();
+        $('#wallContainer').find('#view4').siblings('div').hide();
+      });
   });
   </script>
  
@@ -161,9 +168,9 @@ img/<?php echo $_smarty_tpl->tpl_vars['userPicCmtWall']->value;?>
     <div id="headline">
       <div class="headlineRight">
         <a id="headlineTimeline" href="#">TimeLine<span class="hoverHeadlineRight"></span></a>
-        <a class="" href="#">About<span class="hoverHeadlineRight"></span></a>
+        <a id="headlineAbout" href="#">About<span class="hoverHeadlineRight"></span></a>
         <a id="headlineFriendList" href="#">Friends<span class="hoverHeadlineRight"></span></a>
-        <a id="headlinePlaylist" class="" href="#">Playlist<span class="hoverHeadlineRight"></span></a>
+        <a id="headlinePlaylist" href="#">Playlist<span class="hoverHeadlineRight"></span></a>
         <a class="" href="#">More<span class="hoverHeadlineRight"></span></a>
       </div>
     </div>
@@ -322,6 +329,24 @@ img/<?php echo $_smarty_tpl->tpl_vars['userPicCmtWall']->value;?>
         <input type="hidden" id="urlMusic"/>
         <button id="savePlaylist">Save</button>
         </div>
+        </div>
+      </div>
+      <div id="view4" style="display:none;">
+        <div id="aboutContainer">
+          <div id="aboutLeft">
+            <ul>
+              <li><a href="#"><span>Overview</span></a></li>
+              <li><a href="#"><span>Work and Education</span></a></li>
+              <li><a href="#"><span>Contact and Basic Info</span></a></li>
+              <li><a href="#"><span>Details</span></a></li>
+              <li><a href="#"><span>Favorites</span></a></li>
+            </ul>
+          </div>
+          <div id="aboutRight">
+            <div class="aboutContent">
+
+            </div>
+          </div>
         </div>
       </div>
       <div id="view2" style="display:none;">

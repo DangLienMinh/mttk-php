@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-11 16:01:37
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-13 16:34:57
          compiled from "application\views\templates\common\header.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:26762546224d1d51779-79225183%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:68435464cfa1a09bc3-95594468%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1415717905,
+      1 => 1415889353,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '26762546224d1d51779-79225183',
+  'nocache_hash' => '68435464cfa1a09bc3-95594468',
   'function' => 
   array (
   ),
@@ -23,9 +23,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546224d22df970_32792500',
+  'unifunc' => 'content_5464cfa1c9fd13_88774479',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546224d22df970_32792500')) {function content_546224d22df970_32792500($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_5464cfa1c9fd13_88774479')) {function content_5464cfa1c9fd13_88774479($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -251,7 +251,8 @@ function getFriendChat() {
   });
 }
 
-function getFriendList() {
+function getFriendList(email) {
+  var dataString = 'email=' + email;
   $.ajax({
     type: "post",
 
@@ -259,7 +260,7 @@ function getFriendList() {
 ",
 
     async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
+    data:dataString,
     cache: false,
     timeout: 50000,
     success: function(data) {
@@ -289,8 +290,8 @@ function getConversation(userEmail) {
     success: function(data) {
       addConversation(data);
       setTimeout(
-        getConversation, /* Request next message */
-        2000 /* ..after 2 seconds */
+        getConversation,
+        2000
       );
     }
   });
@@ -349,15 +350,16 @@ function getPlaylist() {
   });
 }
 
-function wallDsPlaylist() {
+function wallDsPlaylist(email) {
+    var dataString = 'email=' + email;
     $.ajax({
     type: "post",
 
     url: "<?php echo base_url('playlistController/wallDsPlaylist');?>
 ",
 
+    data: dataString,
     async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
     timeout: 50000,
     success: function(data) {
@@ -621,7 +623,7 @@ function getSongWall(id,number) {
 }
 
 
-$(document).on('click', '#facebook li button', function() {
+$(document).on('click', '.addFriend', function() {
   var li=$(this).parent();
   $.ajax({
   type: "POST",
@@ -640,7 +642,7 @@ $(document).on('click', '#facebook li button', function() {
   return false;
 });
 
-$(document).on('click', '#friendListContainer ul li button', function() {
+$(document).on('click', '.unFriend', function() {
   var li=$(this).parent();
   $.ajax({
   type: "POST",
@@ -648,13 +650,12 @@ $(document).on('click', '#friendListContainer ul li button', function() {
   url:"<?php echo base_url('friendController/xoaBan');?>
 ",
 
-  data: {friend: $(this).attr('rel')},
+  data: {friend: $(this).val()},
   dataType: "text",
   cache:false,
   success:
       function(data){
-        alert(data);
-        //li.fadeOut('slow', function() {});
+        li.fadeOut('slow', function() {});
       }
   });
   return false;
