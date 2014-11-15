@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-13 16:34:57
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-15 15:30:04
          compiled from "application\views\templates\userWall.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:233705464cfa1841e95-11144240%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:210685467636c32e688-22565595%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '0f921ff09c337117641cd650c5ceaa3930b1bdcf' => 
     array (
       0 => 'application\\views\\templates\\userWall.tpl',
-      1 => 1415892865,
+      1 => 1416061695,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '233705464cfa1841e95-11144240',
+  'nocache_hash' => '210685467636c32e688-22565595',
   'function' => 
   array (
   ),
@@ -24,9 +24,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5464cfa19aded5_10876937',
+  'unifunc' => 'content_5467636c490201_96697247',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5464cfa19aded5_10876937')) {function content_5464cfa19aded5_10876937($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_5467636c490201_96697247')) {function content_5467636c490201_96697247($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
 function getStatus(){
@@ -57,6 +57,10 @@ img/<?php echo $_smarty_tpl->tpl_vars['userPicCmtWall']->value;?>
     getPlaylist();
     getSuggest();
     getPlaylistUpdateStatus();
+    getEducation();
+    getBasicInfo();
+    getUserDetail();
+    getFavorite();
     getFriendList(window.userLoginWall);
     wallDsPlaylist(window.userLoginWall);
     $("#target").autoGrow();
@@ -120,6 +124,34 @@ img/<?php echo $_smarty_tpl->tpl_vars['userPicCmtWall']->value;?>
         $('#wallContainer').find('#view4').show();
         $('#wallContainer').find('#view4').siblings('div').hide();
       });
+      $('#aboutLeft1').click(function(){
+        $('#aboutRight').find('#about1').show();
+        $('#aboutRight').find('#about1').siblings('div').hide();
+        $(this).addClass("aboutLeftSelected");
+        $(this).parent().siblings('li').find('a').removeClass("aboutLeftSelected");
+        return false;
+      });
+      $('#aboutLeft2').click(function(){
+        $('#aboutRight').find('#about2').show();
+        $('#aboutRight').find('#about2').siblings('div').hide();
+        $(this).addClass("aboutLeftSelected");
+        $(this).parent().siblings('li').find('a').removeClass("aboutLeftSelected");
+        return false;
+      });
+      $('#aboutLeft3').click(function(){
+        $('#aboutRight').find('#about3').show();
+        $('#aboutRight').find('#about3').siblings('div').hide();
+        $(this).addClass("aboutLeftSelected");
+        $(this).parent().siblings('li').find('a').removeClass("aboutLeftSelected");
+        return false;
+      });
+      $('#aboutLeft4').click(function(){
+        $('#aboutRight').find('#about4').show();
+        $('#aboutRight').find('#about4').siblings('div').hide();
+        $(this).addClass("aboutLeftSelected");
+        $(this).parent().siblings('li').find('a').removeClass("aboutLeftSelected");
+        return false;
+      });
   });
   </script>
  
@@ -175,7 +207,6 @@ img/<?php echo $_smarty_tpl->tpl_vars['userPicCmtWall']->value;?>
       </div>
     </div>
   </div>
-  
     <div id="wallContainer">
       <div id="view1">
         <div id="container">
@@ -335,16 +366,19 @@ img/<?php echo $_smarty_tpl->tpl_vars['userPicCmtWall']->value;?>
         <div id="aboutContainer">
           <div id="aboutLeft">
             <ul>
-              <li><a href="#"><span>Overview</span></a></li>
-              <li><a href="#"><span>Work and Education</span></a></li>
-              <li><a href="#"><span>Contact and Basic Info</span></a></li>
-              <li><a href="#"><span>Details</span></a></li>
-              <li><a href="#"><span>Favorites</span></a></li>
+              <li><a id="aboutLeft1" href="#"><span>Education  and Religion</span></a></li>
+              <li><a id="aboutLeft2" href="#"><span>Contact and Basic Info</span></a></li>
+              <li><a id="aboutLeft3" href="#"><span>Details about you</span></a></li>
+              <li><a id="aboutLeft4" href="#"><span>Favorites</span></a></li>
             </ul>
           </div>
           <div id="aboutRight">
             <div class="aboutContent">
-
+              <div id="about1"></div>
+              <div id="about2" style="display:none;"></div>
+              <div id="about3" style="display:none;"></div>
+              <div id="about4" style="display:none;"></div>
+              <div id="about5" style="display:none;"></div>
             </div>
           </div>
         </div>

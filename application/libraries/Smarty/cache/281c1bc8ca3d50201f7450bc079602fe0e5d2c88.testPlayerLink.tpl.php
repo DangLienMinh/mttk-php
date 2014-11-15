@@ -1,4 +1,4 @@
-<?php /*%%SmartyHeaderCode:4395464c1ebc15782-23802398%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:201435467317e0df5b7-77265824%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,17 +11,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1415889353,
+      1 => 1415986705,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '4395464c1ebc15782-23802398',
+  'nocache_hash' => '201435467317e0df5b7-77265824',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5464c1ec460030_48463044',
+  'unifunc' => 'content_5467317eba18c5_72811233',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5464c1ec460030_48463044')) {function content_5464c1ec460030_48463044($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_5467317eba18c5_72811233')) {function content_5467317eba18c5_72811233($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -57,9 +57,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   window.playlistIcon="http://localhost:81/mttk-php/assets/img/playlistIcon.png";
   window.userMusic="http://localhost:81/mttk-php/uploads";
   window.homePage="http://localhost:81/mttk-php/main/testPlayer";
-  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/a6551.jpg";
-  window.userLogin="duongphuocloc@gmail.com";
-  window.userName="phuoc loc";
+  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/shot0006.jpg";
+  window.userLogin="anhtiminh@yahoo.com";
+  window.userName="minh dang";
   window.compare=0;
   window.compareStatus=0;
   window.currentChatPosition=-1;
@@ -727,6 +727,95 @@ $(document).on('keyup', '#music_name', function() {
     }
   });
 });
+
+$(document).on('change', '.editbox', function(e) {
+  $(this).parent().hide();
+  var element=$(this);
+  var boxval = $(this).val();
+  var name=$(this).attr('name');
+  var dataString = 'data=' + boxval+'&name='+name;
+  $.ajax({
+    type: "POST",
+
+    url: "http://localhost:81/mttk-php/profileController/updateInfo",
+
+    data: dataString,
+    cache: false,
+    success: function() {
+      element.parent().prev('.text_wrapper').html(boxval).show();
+    }
+  });
+});
+
+$(document).on('change', '.editInput', function(e) {
+  $(this).parent().hide();
+  var element=$(this);
+  var boxval = $(this).val();
+  var name=$(this).attr('name');
+  var dataString = 'data=' + boxval+'&name='+name;
+  $.ajax({
+    type: "POST",
+
+    url: "http://localhost:81/mttk-php/profileController/updateInfo",
+
+    data: dataString,
+    cache: false,
+    success: function() {
+      element.parent().prev('.text_wrapper1').html(boxval).show();
+    }
+  });
+});
+
+$(document).on('change', '.editCheckbox', function(e) {
+  $(this).parent().hide();
+  var element=$(this);
+  var boxval = $(this).val();
+  var name=$(this).attr('name');
+  var dataString = 'data=' + boxval+'&name='+name;
+  $.ajax({
+    type: "POST",
+
+    url: "http://localhost:81/mttk-php/profileController/updateInfo",
+
+    data: dataString,
+    cache: false,
+    success: function() {
+      element.parent().prev('.text_wrapper1').html(boxval).show();
+    }
+  });
+});
+
+
+function getEducation() {
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/profileController/getEducationAndReligion",
+
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('#about1').append(data);
+    }
+  });
+}
+
+function getBasicInfo() {
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/profileController/getBasicInfo",
+
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('#about2').append(data);
+    }
+  });
+}
+
 
 
 function getStatus() {

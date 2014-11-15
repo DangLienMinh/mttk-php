@@ -23,6 +23,10 @@ function getStatus(){
     getPlaylist();
     getSuggest();
     getPlaylistUpdateStatus();
+    getEducation();
+    getBasicInfo();
+    getUserDetail();
+    getFavorite();
     getFriendList(window.userLoginWall);
     wallDsPlaylist(window.userLoginWall);
     $("#target").autoGrow();
@@ -86,6 +90,34 @@ function getStatus(){
         $('#wallContainer').find('#view4').show();
         $('#wallContainer').find('#view4').siblings('div').hide();
       });
+      $('#aboutLeft1').click(function(){
+        $('#aboutRight').find('#about1').show();
+        $('#aboutRight').find('#about1').siblings('div').hide();
+        $(this).addClass("aboutLeftSelected");
+        $(this).parent().siblings('li').find('a').removeClass("aboutLeftSelected");
+        return false;
+      });
+      $('#aboutLeft2').click(function(){
+        $('#aboutRight').find('#about2').show();
+        $('#aboutRight').find('#about2').siblings('div').hide();
+        $(this).addClass("aboutLeftSelected");
+        $(this).parent().siblings('li').find('a').removeClass("aboutLeftSelected");
+        return false;
+      });
+      $('#aboutLeft3').click(function(){
+        $('#aboutRight').find('#about3').show();
+        $('#aboutRight').find('#about3').siblings('div').hide();
+        $(this).addClass("aboutLeftSelected");
+        $(this).parent().siblings('li').find('a').removeClass("aboutLeftSelected");
+        return false;
+      });
+      $('#aboutLeft4').click(function(){
+        $('#aboutRight').find('#about4').show();
+        $('#aboutRight').find('#about4').siblings('div').hide();
+        $(this).addClass("aboutLeftSelected");
+        $(this).parent().siblings('li').find('a').removeClass("aboutLeftSelected");
+        return false;
+      });
   });
   </script>
  {/literal}
@@ -141,7 +173,6 @@ function getStatus(){
       </div>
     </div>
   </div>
-  
     <div id="wallContainer">
       <div id="view1">
         <div id="container">
@@ -299,16 +330,19 @@ function getStatus(){
         <div id="aboutContainer">
           <div id="aboutLeft">
             <ul>
-              <li><a href="#"><span>Overview</span></a></li>
-              <li><a href="#"><span>Work and Education</span></a></li>
-              <li><a href="#"><span>Contact and Basic Info</span></a></li>
-              <li><a href="#"><span>Details</span></a></li>
-              <li><a href="#"><span>Favorites</span></a></li>
+              <li><a id="aboutLeft1" href="#"><span>Education  and Religion</span></a></li>
+              <li><a id="aboutLeft2" href="#"><span>Contact and Basic Info</span></a></li>
+              <li><a id="aboutLeft3" href="#"><span>Details about you</span></a></li>
+              <li><a id="aboutLeft4" href="#"><span>Favorites</span></a></li>
             </ul>
           </div>
           <div id="aboutRight">
             <div class="aboutContent">
-
+              <div id="about1"></div>
+              <div id="about2" style="display:none;"></div>
+              <div id="about3" style="display:none;"></div>
+              <div id="about4" style="display:none;"></div>
+              <div id="about5" style="display:none;"></div>
             </div>
           </div>
         </div>

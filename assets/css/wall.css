@@ -278,7 +278,7 @@ a:hover {
 }
 .coverImg{
     float:left;
-    height:235px;
+/*    height:235px;*/
 }
 #cover .coverName a{
     color: #fff!important;
@@ -789,6 +789,7 @@ a:hover {
     padding: 0;
     width: 69%;
     margin: 26px 210px;
+    overflow: hidden;
 }
 #aboutLeft{
     float: left;
@@ -810,8 +811,8 @@ a:hover {
     text-align: -webkit-match-parent;
     list-style-type: none;
     word-wrap: break-word;
-    font-family: Helvetica, Arial, 'lucida grande',tahoma,verdana,arial,sans-serif;
 }
+
 #aboutLeft ul li a{
     text-decoration: none;
     display: block;
@@ -819,12 +820,14 @@ padding: 12px 4px 12px 16px;
 color: #3b5998;
 cursor: pointer;
 }
+
 #aboutLeft ul li a span{
     color: #9197a3;
     font-size: 14px;
 line-height: 18px;
 cursor: pointer;
 }
+
 #aboutRight{
     float: right;
     min-height: 1px;
@@ -834,12 +837,85 @@ cursor: pointer;
     width: 75%;
 }
 .aboutContent{
-    border-left: 1px solid #ccc;
+border-left: 1px solid #ccc;
 min-height: 280px;
-padding: 30px 24px 0;
+padding: 2px 24px 0;
 position: relative;
 width: 558px;
 display: block;
+margin-bottom: 5px;
+}
+
+.aboutTitle{
+    border-bottom: 1px solid #dcdee3;
+    line-height: 26px;
+    color: #9197a3;
+    font-weight: bold;
+    margin-top: 40px;
+    clear:both;
+    overflow:hidden;
+}
+.aboutValue{
+    font-size: 16px;
+line-height: 20px;
+font-weight: bold;
+list-style: none;
+overflow: hidden;
+
+}
+.mainbox
+{
+margin:5px;
+clear:both;
+}
+
+.text_wrapper
+{
+width:187px;
+}
+.text_wrapper1
+{
+    float:left;
+width:187px;
+}
+
+.text_title{
+    margin-right: 18px;
+width: 180px;
+float: left;
+min-height: 1px;
+color: #9197a3;
+font-weight: normal;
+font-size: 14px;
+line-height: 18px;
+}
+.edit_link
+{
+float:right
+}
+.editbox
+{
+overflow: hidden; 
+height: 61px;
+border:solid 1px #0099CC; 
+width:190px; 
+font-size:12px;
+padding:5px
+}
+.editInput
+{
+border:solid 1px #0099CC; 
+font-size:12px;
+}
+/*.edit{
+    float:left;
+}*/
+#aboutLeft ul li a:hover{
+    opacity: 0.6;
+}
+.aboutLeftSelected{
+    font-weight: bold;
+    color:#000!important;
 }
 
 /*------------------------------------popup user info------------------------------------*/
