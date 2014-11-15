@@ -704,4 +704,124 @@ $(document).on('keyup', '#music_name', function() {
     }
   });
 });
+
+$(document).on('change', '.editbox', function(e) {
+  $(this).parent().hide();
+  var element=$(this);
+  var boxval = $(this).val();
+  var name=$(this).attr('name');
+  var dataString = 'data=' + boxval+'&name='+name;
+  $.ajax({
+    type: "POST",
+{/literal}
+    url: "{base_url('profileController/updateInfo')}",
+{literal}
+    data: dataString,
+    cache: false,
+    success: function() {
+      element.parent().prev('.text_wrapper').html(boxval).show();
+      element.parent().prev('.text_wrapper1').html(boxval).show();
+    }
+  });
+});
+
+$(document).on('change', '.editInput', function(e) {
+  $(this).parent().hide();
+  var element=$(this);
+  var boxval = $(this).val();
+  var name=$(this).attr('name');
+  var dataString = 'data=' + boxval+'&name='+name;
+  $.ajax({
+    type: "POST",
+{/literal}
+    url: "{base_url('profileController/updateInfo')}",
+{literal}
+    data: dataString,
+    cache: false,
+    success: function() {
+      element.parent().prev('.text_wrapper1').html(boxval).show();
+    }
+  });
+});
+
+$(document).on('change', '.editCheckbox', function(e) {
+  $(this).parent().hide();
+  var element=$(this);
+  var boxval = $(this).val();
+  var name=$(this).attr('name');
+  var dataString = 'data=' + boxval+'&name='+name;
+  $.ajax({
+    type: "POST",
+{/literal}
+    url: "{base_url('profileController/updateInfo')}",
+{literal}
+    data: dataString,
+    cache: false,
+    success: function() {
+      element.parent().prev('.text_wrapper1').html(boxval).show();
+    }
+  });
+});
+
+
+function getEducation() {
+  $.ajax({
+    type: "post",
+{/literal}
+    url: "{base_url('profileController/getEducationAndReligion')}",
+{literal}
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('#about1').append(data);
+    }
+  });
+}
+
+function getBasicInfo() {
+  $.ajax({
+    type: "post",
+{/literal}
+    url: "{base_url('profileController/getBasicInfo')}",
+{literal}
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('#about2').append(data);
+    }
+  });
+}
+
+function getUserDetail() {
+  $.ajax({
+    type: "post",
+{/literal}
+    url: "{base_url('profileController/getUserDetail')}",
+{literal}
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('#about3').append(data);
+    }
+  });
+}
+
+function getFavorite() {
+  $.ajax({
+    type: "post",
+{/literal}
+    url: "{base_url('profileController/getFavorite')}",
+{literal}
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('#about4').append(data);
+    }
+  });
+}
+
 {/literal}

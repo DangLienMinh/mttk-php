@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-13 16:34:57
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-15 15:30:04
          compiled from "application\views\templates\common\header.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:68435464cfa1a09bc3-95594468%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:252375467636c4f6a66-95095839%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1415889353,
+      1 => 1416059441,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '68435464cfa1a09bc3-95594468',
+  'nocache_hash' => '252375467636c4f6a66-95095839',
   'function' => 
   array (
   ),
@@ -23,9 +23,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5464cfa1c9fd13_88774479',
+  'unifunc' => 'content_5467636c79d202_14696743',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5464cfa1c9fd13_88774479')) {function content_5464cfa1c9fd13_88774479($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_5467636c79d202_14696743')) {function content_5467636c79d202_14696743($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -796,4 +796,131 @@ $(document).on('keyup', '#music_name', function() {
     }
   });
 });
+
+$(document).on('change', '.editbox', function(e) {
+  $(this).parent().hide();
+  var element=$(this);
+  var boxval = $(this).val();
+  var name=$(this).attr('name');
+  var dataString = 'data=' + boxval+'&name='+name;
+  $.ajax({
+    type: "POST",
+
+    url: "<?php echo base_url('profileController/updateInfo');?>
+",
+
+    data: dataString,
+    cache: false,
+    success: function() {
+      element.parent().prev('.text_wrapper').html(boxval).show();
+      element.parent().prev('.text_wrapper1').html(boxval).show();
+    }
+  });
+});
+
+$(document).on('change', '.editInput', function(e) {
+  $(this).parent().hide();
+  var element=$(this);
+  var boxval = $(this).val();
+  var name=$(this).attr('name');
+  var dataString = 'data=' + boxval+'&name='+name;
+  $.ajax({
+    type: "POST",
+
+    url: "<?php echo base_url('profileController/updateInfo');?>
+",
+
+    data: dataString,
+    cache: false,
+    success: function() {
+      element.parent().prev('.text_wrapper1').html(boxval).show();
+    }
+  });
+});
+
+$(document).on('change', '.editCheckbox', function(e) {
+  $(this).parent().hide();
+  var element=$(this);
+  var boxval = $(this).val();
+  var name=$(this).attr('name');
+  var dataString = 'data=' + boxval+'&name='+name;
+  $.ajax({
+    type: "POST",
+
+    url: "<?php echo base_url('profileController/updateInfo');?>
+",
+
+    data: dataString,
+    cache: false,
+    success: function() {
+      element.parent().prev('.text_wrapper1').html(boxval).show();
+    }
+  });
+});
+
+
+function getEducation() {
+  $.ajax({
+    type: "post",
+
+    url: "<?php echo base_url('profileController/getEducationAndReligion');?>
+",
+
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('#about1').append(data);
+    }
+  });
+}
+
+function getBasicInfo() {
+  $.ajax({
+    type: "post",
+
+    url: "<?php echo base_url('profileController/getBasicInfo');?>
+",
+
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('#about2').append(data);
+    }
+  });
+}
+
+function getUserDetail() {
+  $.ajax({
+    type: "post",
+
+    url: "<?php echo base_url('profileController/getUserDetail');?>
+",
+
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('#about3').append(data);
+    }
+  });
+}
+
+function getFavorite() {
+  $.ajax({
+    type: "post",
+
+    url: "<?php echo base_url('profileController/getFavorite');?>
+",
+
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('#about4').append(data);
+    }
+  });
+}
+
 <?php }} ?>

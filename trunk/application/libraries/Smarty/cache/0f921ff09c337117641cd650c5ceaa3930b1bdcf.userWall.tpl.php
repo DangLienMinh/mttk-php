@@ -1,21 +1,21 @@
-<?php /*%%SmartyHeaderCode:233705464cfa1841e95-11144240%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:210685467636c32e688-22565595%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '0f921ff09c337117641cd650c5ceaa3930b1bdcf' => 
     array (
       0 => 'application\\views\\templates\\userWall.tpl',
-      1 => 1415892865,
+      1 => 1416061695,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1415889353,
+      1 => 1416059441,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '233705464cfa1841e95-11144240',
+  'nocache_hash' => '210685467636c32e688-22565595',
   'variables' => 
   array (
     'items' => 0,
@@ -25,10 +25,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5464cfa1d28ad7_43790243',
+  'unifunc' => 'content_5467636c82e9f6_15610777',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5464cfa1d28ad7_43790243')) {function content_5464cfa1d28ad7_43790243($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_5467636c82e9f6_15610777')) {function content_5467636c82e9f6_15610777($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -64,9 +64,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   window.playlistIcon="http://localhost:81/mttk-php/assets/img/playlistIcon.png";
   window.userMusic="http://localhost:81/mttk-php/uploads";
   window.homePage="http://localhost:81/mttk-php/main/testPlayer";
-  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/a6551.jpg";
-  window.userLogin="duongphuocloc@gmail.com";
-  window.userName="phuoc loc";
+  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/shot0006.jpg";
+  window.userLogin="anhtiminh@yahoo.com";
+  window.userName="minh dang";
   window.compare=0;
   window.compareStatus=0;
   window.currentChatPosition=-1;
@@ -735,6 +735,126 @@ $(document).on('keyup', '#music_name', function() {
   });
 });
 
+$(document).on('change', '.editbox', function(e) {
+  $(this).parent().hide();
+  var element=$(this);
+  var boxval = $(this).val();
+  var name=$(this).attr('name');
+  var dataString = 'data=' + boxval+'&name='+name;
+  $.ajax({
+    type: "POST",
+
+    url: "http://localhost:81/mttk-php/profileController/updateInfo",
+
+    data: dataString,
+    cache: false,
+    success: function() {
+      element.parent().prev('.text_wrapper').html(boxval).show();
+      element.parent().prev('.text_wrapper1').html(boxval).show();
+    }
+  });
+});
+
+$(document).on('change', '.editInput', function(e) {
+  $(this).parent().hide();
+  var element=$(this);
+  var boxval = $(this).val();
+  var name=$(this).attr('name');
+  var dataString = 'data=' + boxval+'&name='+name;
+  $.ajax({
+    type: "POST",
+
+    url: "http://localhost:81/mttk-php/profileController/updateInfo",
+
+    data: dataString,
+    cache: false,
+    success: function() {
+      element.parent().prev('.text_wrapper1').html(boxval).show();
+    }
+  });
+});
+
+$(document).on('change', '.editCheckbox', function(e) {
+  $(this).parent().hide();
+  var element=$(this);
+  var boxval = $(this).val();
+  var name=$(this).attr('name');
+  var dataString = 'data=' + boxval+'&name='+name;
+  $.ajax({
+    type: "POST",
+
+    url: "http://localhost:81/mttk-php/profileController/updateInfo",
+
+    data: dataString,
+    cache: false,
+    success: function() {
+      element.parent().prev('.text_wrapper1').html(boxval).show();
+    }
+  });
+});
+
+
+function getEducation() {
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/profileController/getEducationAndReligion",
+
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('#about1').append(data);
+    }
+  });
+}
+
+function getBasicInfo() {
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/profileController/getBasicInfo",
+
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('#about2').append(data);
+    }
+  });
+}
+
+function getUserDetail() {
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/profileController/getUserDetail",
+
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('#about3').append(data);
+    }
+  });
+}
+
+function getFavorite() {
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/profileController/getFavorite",
+
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('#about4').append(data);
+    }
+  });
+}
+
+
 
 function getStatus(){
       var data;
@@ -759,6 +879,10 @@ function getStatus(){
     getPlaylist();
     getSuggest();
     getPlaylistUpdateStatus();
+    getEducation();
+    getBasicInfo();
+    getUserDetail();
+    getFavorite();
     getFriendList(window.userLoginWall);
     wallDsPlaylist(window.userLoginWall);
     $("#target").autoGrow();
@@ -822,6 +946,34 @@ function getStatus(){
         $('#wallContainer').find('#view4').show();
         $('#wallContainer').find('#view4').siblings('div').hide();
       });
+      $('#aboutLeft1').click(function(){
+        $('#aboutRight').find('#about1').show();
+        $('#aboutRight').find('#about1').siblings('div').hide();
+        $(this).addClass("aboutLeftSelected");
+        $(this).parent().siblings('li').find('a').removeClass("aboutLeftSelected");
+        return false;
+      });
+      $('#aboutLeft2').click(function(){
+        $('#aboutRight').find('#about2').show();
+        $('#aboutRight').find('#about2').siblings('div').hide();
+        $(this).addClass("aboutLeftSelected");
+        $(this).parent().siblings('li').find('a').removeClass("aboutLeftSelected");
+        return false;
+      });
+      $('#aboutLeft3').click(function(){
+        $('#aboutRight').find('#about3').show();
+        $('#aboutRight').find('#about3').siblings('div').hide();
+        $(this).addClass("aboutLeftSelected");
+        $(this).parent().siblings('li').find('a').removeClass("aboutLeftSelected");
+        return false;
+      });
+      $('#aboutLeft4').click(function(){
+        $('#aboutRight').find('#about4').show();
+        $('#aboutRight').find('#about4').siblings('div').hide();
+        $(this).addClass("aboutLeftSelected");
+        $(this).parent().siblings('li').find('a').removeClass("aboutLeftSelected");
+        return false;
+      });
   });
   </script>
  
@@ -877,7 +1029,6 @@ function getStatus(){
       </div>
     </div>
   </div>
-  
     <div id="wallContainer">
       <div id="view1">
         <div id="container">
@@ -1035,16 +1186,19 @@ function getStatus(){
         <div id="aboutContainer">
           <div id="aboutLeft">
             <ul>
-              <li><a href="#"><span>Overview</span></a></li>
-              <li><a href="#"><span>Work and Education</span></a></li>
-              <li><a href="#"><span>Contact and Basic Info</span></a></li>
-              <li><a href="#"><span>Details</span></a></li>
-              <li><a href="#"><span>Favorites</span></a></li>
+              <li><a id="aboutLeft1" href="#"><span>Education  and Religion</span></a></li>
+              <li><a id="aboutLeft2" href="#"><span>Contact and Basic Info</span></a></li>
+              <li><a id="aboutLeft3" href="#"><span>Details about you</span></a></li>
+              <li><a id="aboutLeft4" href="#"><span>Favorites</span></a></li>
             </ul>
           </div>
           <div id="aboutRight">
             <div class="aboutContent">
-
+              <div id="about1"></div>
+              <div id="about2" style="display:none;"></div>
+              <div id="about3" style="display:none;"></div>
+              <div id="about4" style="display:none;"></div>
+              <div id="about5" style="display:none;"></div>
             </div>
           </div>
         </div>

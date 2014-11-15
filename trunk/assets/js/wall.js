@@ -374,7 +374,7 @@ function Arrow_Points() {
 	});
 }
 $(document).on('click', '#homePage', function() {
-	window.location=window.homePage;
+	window.location = window.homePage;
 });
 
 $(document).on('click', '.account', function() {
@@ -493,10 +493,10 @@ $(window).scroll(function() {
 		var id = element.attr('id').substring(6);
 		var jplayer_id = element.find('.jp-jplayer').attr('id').substring(15);
 		if (window.location.href.indexOf("layDSWallStatus") > -1) {
-			var st="layDSWallStatus/";
-			var userEmail=window.location.href.substring(window.location.href.indexOf(st)+st.length);
-		    moreWallStatus(id, jplayer_id,userEmail);
-		}else{
+			var st = "layDSWallStatus/";
+			var userEmail = window.location.href.substring(window.location.href.indexOf(st) + st.length);
+			moreWallStatus(id, jplayer_id, userEmail);
+		} else {
 			moreStatus(id, jplayer_id);
 		}
 	}
@@ -528,10 +528,10 @@ $(document).on('click', '.stdelete', function() {
 			itemSelector: '.item'
 		});
 		var msnry = $('#container').data('masonry');
-        msnry.on( 'layoutComplete', function(){
-        	Arrow_Points();
-        } );
-        return false;
+		msnry.on('layoutComplete', function() {
+			Arrow_Points();
+		});
+		return false;
 	}
 });
 
@@ -554,6 +554,50 @@ $(document).on('click', '.editStatus', function() {
 $(document).on('click', '.cancelEdit', function() {
 	$(this).parent().html($(this).parent().find('textarea').val());
 
+});
+
+$(document).on('click', '.edit_link', function() {
+	var parent = $(this).parent();
+	var checkType=parent.find('.text_wrapper');
+	if(checkType.length>0){
+		parent.find('.text_wrapper').hide();
+		var data = parent.find('.text_wrapper').html();
+		parent.find('.edit').show();
+		parent.find('.editbox').html(data);
+		parent.find('.editbox').focus();
+	}else{
+		parent.find('.text_wrapper1').hide();
+		var data = parent.find('.text_wrapper1').html();
+		parent.find('.edit').show();
+		parent.find('.editInput').val(data);
+		parent.find('.editInput').focus();
+		parent.find('.editbox').val(data);
+		parent.find('.editbox').focus();
+	}
+	return false;
+});
+
+$(document).on('click', '.insertAbout', function() {
+
+	var parent = $(this).parent();
+	$(this).hide();
+	parent.find('.edit_link').css("display","block");
+	parent.find('.edit').show();
+	return false;
+});
+
+$(document).on('mouseup', '.editbox', function() {
+	return false;
+});
+$(document).on('mouseup', '.editInput', function() {
+	return false;
+});
+
+
+$(document).mouseup(function() {
+	$('.edit').hide();
+	$('.text_wrapper').show();
+	$('.text_wrapper1').show();
 });
 
 $(document).on('mouseover', '.item', function() {

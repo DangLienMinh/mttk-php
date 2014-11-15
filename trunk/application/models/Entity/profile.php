@@ -47,6 +47,21 @@ class Profile
     /**
      * @Column(type="string")
      */
+    protected $language;
+
+    /**
+     * @Column(type="string")
+     */
+    protected $gender;
+
+    /**
+     * @Column(type="string")
+     */
+    protected $nickname;
+
+    /**
+     * @Column(type="string")
+     */
     protected $phone;
 
     /**
@@ -268,6 +283,36 @@ class Profile
     public function setAddress($address)
     {
         $this->address = $address;
+        return $this;
+    }
+    public function getGender()
+    {
+        return $this->gender;
+    }
+    
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+        return $this;
+    }
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+    
+    public function setLanguage($language)
+    {
+        $this->language = $language;
+        return $this;
+    }
+    public function getNickname()
+    {
+        return $this->nickname;
+    }
+    
+    public function setNickname($nickname)
+    {
+        $this->nickname = $nickname;
         return $this;
     }
 }
