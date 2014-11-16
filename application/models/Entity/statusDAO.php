@@ -46,6 +46,18 @@ class StatusDAO
 		return $result;
 	}
 
+	public function layDSFanclubStatus($fanclub)
+	{
+		// prepare statemen
+		$cnn=$this->em->getConnection();
+		$sth = $cnn->prepare("CALL GetFanclubStatus(?)");
+		$sth->bindValue(1, $fanclub);
+		// execute and fetch
+		$sth->execute();
+		$result = $sth->fetchAll();
+		return $result;
+	}
+
 	public function layDSNextWallStatus($email,$id)
 	{
 		// prepare statemen
@@ -84,6 +96,7 @@ class StatusDAO
 		$status->setMusic( $data['music']);
 		$this->em->persist($status);
 		$this->em->flush();
+		return $status->getStatus_id();
 	}
 
 	public function suaStatus($id,$msg)

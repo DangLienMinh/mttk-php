@@ -1,31 +1,21 @@
 {include file='common/header.tpl'}
 {literal}
-function getStatus() {
-  $.ajax({
-    type: "post",
+function getStatus(){
+      var data;
+        /* This requests the url "msgsrv.php"
+        When it complete (or errors)*/
 {/literal}
-    url: "{base_url('statusController/index')}",
+      data={$items}
 {literal}
-    async: true,
-    cache: false,
-    timeout: 50000,
-    success: function(data) {
-      addStatus(data);
-      setTimeout(
-        getStatus,
-        600000
-      );
-    },
-    error: function(XMLHttpRequest, textStatus, errorThrown) {
-      addStatus("error", textStatus + " (" + errorThrown + ")");
-      setTimeout(
-        getStatus,
-        15000);
-    }
-  });
-}
+    addStatusUserWall(data);
+  }
   </script>
   <script>
+{/literal}
+  window.fanclub="{$fanclub}";
+  window.fanclubName="{$fanclubName}";
+  window.fanclubDesc="{$fanclubDesc}";
+{literal}
   $(document).ready(function() {
     waitForMsg();
     friendRequest();
@@ -34,7 +24,7 @@ function getStatus() {
     getSuggest();
     getPlaylistUpdateStatus();
     getFanclub();
-
+    $("input[name='fanclub_id']").val(window.fanclub);
     $("#target").autoGrow();
     $('#tabs').tabs({
       activate: function(event, ui) {
@@ -56,6 +46,8 @@ function getStatus() {
         }
     });
 
+    $('#fanclubCover').append('<div class="fanclubCoverName"><b><a href="#">' + window.fanclubName + '</a></b></div><div class="fanclubCoverDesc"><b><a href="#">' + window.fanclubDesc + '</a></b></div>');
+    $('#aboutFanclubDesc').append('<p>'+window.fanclubDesc+'</p>');
       $("#jquery_jplayer_1").jPlayer({
         ready: function (event) {
           $(this).jPlayer("setMedia", {
@@ -118,10 +110,19 @@ function getStatus() {
     </li>
   </ul>
     </div>
-    <div class="fanclubContainer">
-      <div class="fanclubTitle"><h3>FANCLUB</h3></div>
-      <div class="fanclubInfo"></div>
+    <div id="coverContainer">
+    <div id="fanclubCover">
     </div>
+    <div id="headline">
+      <div class="headlineRight">
+        <a id="headlineTimeline" href="#">TimeLine</a>
+        <a id="headlineAbout" href="#">About</a>
+        <a id="headlineFriendList" href="#">Friends</a>
+        <a id="headlinePlaylist" href="#">Playlist</a>
+        <a class="" href="#">More</a>
+      </div>
+    </div>
+  </div>
     <div id="container">
       <div class="timeline_container">
         <div class="timeline">
@@ -129,7 +130,19 @@ function getStatus() {
         </div>
       </div>
       <div class="item">
-        {form_open_multipart('statusController/updateStatus')}
+        <div id="aboutFanclub">
+          <div id="aboutFanclubHeader">
+            <h6>About</h6>
+          </div>
+          <div id="aboutFanclubDesc"></div>
+          <div id="aboutFanclubAdd">
+            <input type="text" class="searchUser" id="searchbox" placeholder="Add people to this group"/>
+            <div id="displayUserFanclubBox" style="display: none;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        {form_open_multipart('statusController/themFanclubStatus')}
         <div id="tabs">
           <ul>
             <li><a href="#tabs-1">Choose music</a></li>
@@ -141,6 +154,7 @@ function getStatus() {
             <textarea name="status" id="target" rows="4" placeholder="What's on your mind?"></textarea>
             <br/>
             <input type="text" name="music_name" id="music_name" placeholder="Song name?"/>
+            <input type="hidden" name="fanclub_id"/>
             <input type="hidden" name="music_url" id="music_url" />
             <input type="hidden" name="title" id="title" />
             <div id="musicContainer">

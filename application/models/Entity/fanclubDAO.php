@@ -52,6 +52,13 @@ class FanclubDAO
         return $result;
     }
 
+    public function getFanclubByID($id){
+        $query = $this->em->createQuery("SELECT p.fanclub_name,p.fanclub_desc FROM Entity\Fanclub p WHERE p.fanclub_id = ?1");
+        $query->setParameter(1, $id);
+        $results=$query->getResult();
+        return $results;
+    }
+
     public function getFanclub($email){
         $query = $this->em->createQuery("SELECT p.fanclub_id,p.fanclub_name,p.fanclub_desc FROM Entity\Fanclub p WHERE p.email = ?1");
         $query->setParameter(1, $email);

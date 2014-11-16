@@ -252,7 +252,8 @@ a:hover {
 }
 /*------------------------------------cover part------------------------------------*/
 #coverContainer{
-    margin: 0 210px;
+    margin-left: 260px;
+margin-right: 160px;
     position: relative;
     background-image: url("../img/musicCover.jpg");
     background-position:center bottom;
@@ -317,6 +318,42 @@ margin-left: -173px;
     }
 
 #cover .coverName a{
+    color: #fff!important;
+    text-decoration: none;
+}
+
+#fanclubCover{
+   position: relative;
+top: 60px;
+margin: 0 210px;
+
+}
+#fanclubCover .fanclubCoverName{
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-weight: bold;
+letter-spacing: 0;
+font-size: 30px;
+text-decoration: none;
+float: left;
+text-align: center;
+width: 100%;
+}
+#fanclubCover .fanclubCoverName a{
+    color: #fff!important;
+    text-decoration: none;
+}
+.fanclubCoverDesc{
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-weight: bold;
+letter-spacing: 0;
+font-size: 15px;
+text-decoration: none;
+float: left;
+margin-top: 14px;
+width: 100%;
+text-align: center;
+}
+#fanclubCover .fanclubCoverDesc a{
     color: #fff!important;
     text-decoration: none;
 }
@@ -567,7 +604,7 @@ text-decoration: none;
 }
 
 #container {
-    margin: 0 200px;
+    margin: 0 250px;
     width: 80%;
 }
 
@@ -1126,6 +1163,17 @@ font-size:12px;
     overflow: hidden;
 }
 
+#displayUserFanclubBox {
+    width: 255px;
+    display: none;
+    border-left: solid 1px #dedede;
+    border-right: solid 1px #dedede;
+    border-bottom: solid 1px #dedede;
+    overflow: hidden;
+    position:absolute;
+    z-index: 1200;
+}
+
 .searchUserTtile{
     background:#f2f2f2;
 }
@@ -1347,4 +1395,56 @@ border-top:1px solid #dedede;
 
 #playlistBox select{
     margin-bottom: 5px;
+}
+
+.fanclubContainer{
+    position:absolute;
+    top:50px;
+    left:20px;
+    width:220px;
+}
+
+.fanclubUserBox {
+    border-top: solid 1px #dedede;
+font-size: 12px;
+height: 20px;
+position: relative;
+padding: 1px;
+}
+
+.fanclubUserBox:hover {
+    background: #dddee0;
+    text-decoration: none;
+}
+
+.fanclubUserBox>a {
+    color: black;
+font-size: 12px;
+font-weight: bold;
+text-decoration: none;
+position: absolute;
+top: 2px;
+}
+
+.fanclubTitle{
+    color:#b2b3b5;
+}
+
+.leaveClub {
+color: #555;
+position: absolute;
+display: none;
+height: 15px;
+width: 15px;
+left: -15px;
+cursor: pointer;
+background: url("../img/delete.png") no-repeat;
+}
+
+#aboutFanclubHeader h6{
+    color: #9197a3;
+font-size: 11px;
+line-height: 12px;
+font-weight: bold;
+text-transform: uppercase;
 }

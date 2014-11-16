@@ -1,31 +1,54 @@
-{include file='common/header.tpl'}
-{literal}
-function getStatus() {
-  $.ajax({
-    type: "post",
-{/literal}
-    url: "{base_url('statusController/index')}",
-{literal}
-    async: true,
-    cache: false,
-    timeout: 50000,
-    success: function(data) {
-      addStatus(data);
-      setTimeout(
-        getStatus,
-        600000
-      );
-    },
-    error: function(XMLHttpRequest, textStatus, errorThrown) {
-      addStatus("error", textStatus + " (" + errorThrown + ")");
-      setTimeout(
-        getStatus,
-        15000);
-    }
-  });
-}
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-16 16:36:26
+         compiled from "application\views\templates\fanclub.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:222845468c47a0c0bc1-40383172%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '097b971e45f0ace5089d3906e771110d9aaf25a6' => 
+    array (
+      0 => 'application\\views\\templates\\fanclub.tpl',
+      1 => 1416151791,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '222845468c47a0c0bc1-40383172',
+  'function' => 
+  array (
+  ),
+  'variables' => 
+  array (
+    'items' => 0,
+    'fanclub' => 0,
+    'fanclubName' => 0,
+    'fanclubDesc' => 0,
+  ),
+  'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_5468c47a206a48_29861591',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_5468c47a206a48_29861591')) {function content_5468c47a206a48_29861591($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+
+
+function getStatus(){
+      var data;
+        /* This requests the url "msgsrv.php"
+        When it complete (or errors)*/
+
+      data=<?php echo $_smarty_tpl->tpl_vars['items']->value;?>
+
+
+    addStatusUserWall(data);
+  }
   </script>
   <script>
+
+  window.fanclub="<?php echo $_smarty_tpl->tpl_vars['fanclub']->value;?>
+";
+  window.fanclubName="<?php echo $_smarty_tpl->tpl_vars['fanclubName']->value;?>
+";
+  window.fanclubDesc="<?php echo $_smarty_tpl->tpl_vars['fanclubDesc']->value;?>
+";
+
   $(document).ready(function() {
     waitForMsg();
     friendRequest();
@@ -34,7 +57,7 @@ function getStatus() {
     getSuggest();
     getPlaylistUpdateStatus();
     getFanclub();
-
+    $("input[name='fanclub_id']").val(window.fanclub);
     $("#target").autoGrow();
     $('#tabs').tabs({
       activate: function(event, ui) {
@@ -56,6 +79,8 @@ function getStatus() {
         }
     });
 
+    $('#fanclubCover').append('<div class="fanclubCoverName"><b><a href="#">' + window.fanclubName + '</a></b></div><div class="fanclubCoverDesc"><b><a href="#">' + window.fanclubDesc + '</a></b></div>');
+    $('#aboutFanclubDesc').append('<p>'+window.fanclubDesc+'</p>');
       $("#jquery_jplayer_1").jPlayer({
         ready: function (event) {
           $(this).jPlayer("setMedia", {
@@ -73,7 +98,7 @@ function getStatus() {
       });
   });
   </script>
- {/literal}
+ 
 </head>
 <body>
   <div id="noti_Container">
@@ -118,10 +143,19 @@ function getStatus() {
     </li>
   </ul>
     </div>
-    <div class="fanclubContainer">
-      <div class="fanclubTitle"><h3>FANCLUB</h3></div>
-      <div class="fanclubInfo"></div>
+    <div id="coverContainer">
+    <div id="fanclubCover">
     </div>
+    <div id="headline">
+      <div class="headlineRight">
+        <a id="headlineTimeline" href="#">TimeLine</a>
+        <a id="headlineAbout" href="#">About</a>
+        <a id="headlineFriendList" href="#">Friends</a>
+        <a id="headlinePlaylist" href="#">Playlist</a>
+        <a class="" href="#">More</a>
+      </div>
+    </div>
+  </div>
     <div id="container">
       <div class="timeline_container">
         <div class="timeline">
@@ -129,7 +163,20 @@ function getStatus() {
         </div>
       </div>
       <div class="item">
-        {form_open_multipart('statusController/updateStatus')}
+        <div id="aboutFanclub">
+          <div id="aboutFanclubHeader">
+            <h6>About</h6>
+          </div>
+          <div id="aboutFanclubDesc"></div>
+          <div id="aboutFanclubAdd">
+            <input type="text" class="searchUser" id="searchbox" placeholder="Add people to this group"/>
+            <div id="displayUserFanclubBox" style="display: none;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <?php echo form_open_multipart('statusController/themFanclubStatus');?>
+
         <div id="tabs">
           <ul>
             <li><a href="#tabs-1">Choose music</a></li>
@@ -141,6 +188,7 @@ function getStatus() {
             <textarea name="status" id="target" rows="4" placeholder="What's on your mind?"></textarea>
             <br/>
             <input type="text" name="music_name" id="music_name" placeholder="Song name?"/>
+            <input type="hidden" name="fanclub_id"/>
             <input type="hidden" name="music_url" id="music_url" />
             <input type="hidden" name="title" id="title" />
             <div id="musicContainer">
@@ -258,7 +306,8 @@ function getStatus() {
             <input type="submit" value="Post" id="postStatus"/>
           </div>
 </div>
- {form_close()}
+ <?php echo form_close();?>
+
       </div>
     </div>
     <div id="pop">
@@ -275,4 +324,4 @@ function getStatus() {
   </div>
 
 </body>
-</html>
+</html><?php }} ?>

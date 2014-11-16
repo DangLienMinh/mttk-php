@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-16 07:39:05
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-16 14:41:54
          compiled from "application\views\templates\testPlayerLink.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:710754684689ba3245-95642860%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:100635468a9a2ad9c61-32546093%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1415713109,
+      1 => 1416145166,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '710754684689ba3245-95642860',
+  'nocache_hash' => '100635468a9a2ad9c61-32546093',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_54684689d6fa29_15812658',
+  'unifunc' => 'content_5468a9a2cf5679_16952050',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_54684689d6fa29_15812658')) {function content_54684689d6fa29_15812658($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_5468a9a2cf5679_16952050')) {function content_5468a9a2cf5679_16952050($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
 function getStatus() {
@@ -56,6 +56,7 @@ function getStatus() {
     getPlaylist();
     getSuggest();
     getPlaylistUpdateStatus();
+    getFanclub();
 
     $("#target").autoGrow();
     $('#tabs').tabs({
@@ -100,6 +101,11 @@ function getStatus() {
 <body>
   <div id="noti_Container">
     <ul id="nav">
+    <div style=" width:300px; margin-right:23%;margin-left:15.5%;float:left;" align="right">
+      <input type="text" class="search" id="searchbox" placeholder="Search for people, fanclub"/><br />
+      <div id="displayUserBox">
+      </div>
+    </div>
     <li id="personalPage">
     </li>
     <li>
@@ -134,7 +140,11 @@ function getStatus() {
       </div>
     </li>
   </ul>
-  </div>
+    </div>
+    <div class="fanclubContainer">
+      <div class="fanclubTitle"><h3>FANCLUB</h3></div>
+      <div class="fanclubInfo"></div>
+    </div>
     <div id="container">
       <div class="timeline_container">
         <div class="timeline">

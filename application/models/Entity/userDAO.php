@@ -58,6 +58,18 @@ class UserDAO
 		return $results;
 	}
 
+	public function timUserFriend($name,$email){
+		$cnn=$this->em->getConnection();
+		$sth = $cnn->prepare("CALL timUserFriend(?,?)");
+		$sth->bindValue(1, $name);
+		$sth->bindValue(2, $email);
+		// execute and fetch
+		$sth->execute();
+		$result = $sth->fetchAll();
+		return $result;
+	}
+
+
 	public function timUserLogin($data){
 		$data['password']= Md5($data['password']);
 		$query = $this->em->createQuery("SELECT p.first_name,p.last_name,p.birthday,p.picture FROM Entity\User p WHERE p.email=?1 and p.password= ?2");

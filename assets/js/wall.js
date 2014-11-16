@@ -389,11 +389,7 @@ $(document).on('click', '.account', function() {
 	}
 });
 
-//Textarea without editing.
-$(document).mouseup(function() {
-	$(".submenu").hide();
-	$(".account").attr('id', '');
-});
+
 
 
 $(document).on('click', '.inline', function(e) {
@@ -496,7 +492,10 @@ $(window).scroll(function() {
 			var st = "layDSWallStatus/";
 			var userEmail = window.location.href.substring(window.location.href.indexOf(st) + st.length);
 			moreWallStatus(id, jplayer_id, userEmail);
-		} else {
+		} else if (window.location.href.indexOf("layDSFanclubStatus") > -1) {
+			
+		}
+		else {
 			moreStatus(id, jplayer_id);
 		}
 	}
@@ -595,10 +594,13 @@ $(document).on('mouseup', '.editInput', function() {
 
 
 $(document).mouseup(function() {
+	$(".submenu").hide();
+	$(".account").attr('id', '');
 	$('.edit').hide();
 	$('.text_wrapper').show();
 	$('.text_wrapper1').show();
 	$('#displayUserBox').hide();
+	$('#displayUserFanclubBox').hide();
 });
 
 $(document).on('mouseover', '.item', function() {
@@ -665,4 +667,16 @@ $(document).on('mouseover', '.stimg,.load_comment>img', function(event) {
 			fixed: true
 		}
 	}, event); // Pass through our original event to qTip
+});
+
+$(document).on('mouseover', '.fanclubUserBox', function() {
+	var item1 = $(".leaveClub");
+	var element = $(this).find(item1);
+	element.show();
+});
+
+$(document).on('mouseout', '.fanclubUserBox', function() {
+	var item1 = $(".leaveClub");
+	var element = $(this).find(item1);
+	element.hide();
 });

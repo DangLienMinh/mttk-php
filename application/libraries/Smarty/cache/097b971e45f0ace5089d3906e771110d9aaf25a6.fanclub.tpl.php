@@ -1,27 +1,34 @@
-<?php /*%%SmartyHeaderCode:100635468a9a2ad9c61-32546093%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:222845468c47a0c0bc1-40383172%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
+    '097b971e45f0ace5089d3906e771110d9aaf25a6' => 
     array (
-      0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1416145166,
+      0 => 'application\\views\\templates\\fanclub.tpl',
+      1 => 1416151791,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1416144995,
+      1 => 1416151825,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '100635468a9a2ad9c61-32546093',
+  'nocache_hash' => '222845468c47a0c0bc1-40383172',
+  'variables' => 
+  array (
+    'items' => 0,
+    'fanclub' => 0,
+    'fanclubName' => 0,
+    'fanclubDesc' => 0,
+  ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5468a9a34f37b5_62835937',
+  'unifunc' => 'content_5468c47a5f3fe3_25853244',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5468a9a34f37b5_62835937')) {function content_5468a9a34f37b5_62835937($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_5468c47a5f3fe3_25853244')) {function content_5468c47a5f3fe3_25853244($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -886,34 +893,40 @@ $(document).on('keyup', '.search', function() {
     }
 });
 
-
-
-function getStatus() {
-  $.ajax({
-    type: "post",
-
-    url: "http://localhost:81/mttk-php/statusController/index",
-
-    async: true,
-    cache: false,
-    timeout: 50000,
-    success: function(data) {
-      addStatus(data);
-      setTimeout(
-        getStatus,
-        600000
-      );
-    },
-    error: function(XMLHttpRequest, textStatus, errorThrown) {
-      addStatus("error", textStatus + " (" + errorThrown + ")");
-      setTimeout(
-        getStatus,
-        15000);
+$(document).on('keyup', '.searchUser', function() {
+      if($(".searchUser").val()!=''){
+        $.ajax({
+        type: "post",
+  
+        url:"http://localhost:81/mttk-php/fanclubController/searchFanclub",
+  
+        cache: false,
+        data:'search='+$(".searchUser").val(),
+        success: function(response){
+          $('#displayUserFanclubBox').html(response).show();
+        }
+      });
     }
-  });
-}
+});
+
+
+
+function getStatus(){
+      var data;
+        /* This requests the url "msgsrv.php"
+        When it complete (or errors)*/
+
+      data=[{"status_id":"43","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZWZE0FOA&h=mp3.zing.vn","title":"A Thousand Years + Christina Perri","message":"1 l\u1ea7n cu\u1ed1i","created_at":"2014-11-16 20:15:45","thumbs_up":"0","privacy_type_id":"1","email":"anhtiminh@yahoo.com","picture":"shot0006.jpg","name":"minh dang"},{"status_id":"42","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZWZ9ZCA7&h=mp3.zing.vn","title":"The One That Got Away + Katy Perry","message":"l\u1ea1i n\u00e0o","created_at":"2014-11-16 20:11:59","thumbs_up":"0","privacy_type_id":"1","email":"anhtiminh@yahoo.com","picture":"shot0006.jpg","name":"minh dang"},{"status_id":"41","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZW6D99WF&h=mp3.zing.vn","title":"\u8d8a\u96e3\u8d8a\u611b \/ C\u00e0ng Kh\u00f3 C\u00e0ng Y\u00eau (S\u1ee9 \u0110\u1ed3 H\u00e0nh Gi\u1ea3 OST) + Ng\u00f4 Nh\u01b0\u1ee3c Hy","message":"what's now","created_at":"2014-11-16 20:06:08","thumbs_up":"0","privacy_type_id":"1","email":"anhtiminh@yahoo.com","picture":"shot0006.jpg","name":"minh dang"}]
+
+    addStatusUserWall(data);
+  }
   </script>
   <script>
+
+  window.fanclub="1";
+  window.fanclubName="minh";
+  window.fanclubDesc="Group nay huong dan cac ban dat diem cao trong mon toeic he he...";
+
   $(document).ready(function() {
     waitForMsg();
     friendRequest();
@@ -922,7 +935,7 @@ function getStatus() {
     getSuggest();
     getPlaylistUpdateStatus();
     getFanclub();
-
+    $("input[name='fanclub_id']").val(window.fanclub);
     $("#target").autoGrow();
     $('#tabs').tabs({
       activate: function(event, ui) {
@@ -944,6 +957,8 @@ function getStatus() {
         }
     });
 
+    $('#fanclubCover').append('<div class="fanclubCoverName"><b><a href="#">' + window.fanclubName + '</a></b></div><div class="fanclubCoverDesc"><b><a href="#">' + window.fanclubDesc + '</a></b></div>');
+    $('#aboutFanclubDesc').append('<p>'+window.fanclubDesc+'</p>');
       $("#jquery_jplayer_1").jPlayer({
         ready: function (event) {
           $(this).jPlayer("setMedia", {
@@ -1006,10 +1021,19 @@ function getStatus() {
     </li>
   </ul>
     </div>
-    <div class="fanclubContainer">
-      <div class="fanclubTitle"><h3>FANCLUB</h3></div>
-      <div class="fanclubInfo"></div>
+    <div id="coverContainer">
+    <div id="fanclubCover">
     </div>
+    <div id="headline">
+      <div class="headlineRight">
+        <a id="headlineTimeline" href="#">TimeLine</a>
+        <a id="headlineAbout" href="#">About</a>
+        <a id="headlineFriendList" href="#">Friends</a>
+        <a id="headlinePlaylist" href="#">Playlist</a>
+        <a class="" href="#">More</a>
+      </div>
+    </div>
+  </div>
     <div id="container">
       <div class="timeline_container">
         <div class="timeline">
@@ -1017,7 +1041,19 @@ function getStatus() {
         </div>
       </div>
       <div class="item">
-        <form action="http://localhost:81/mttk-php/statusController/updateStatus" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+        <div id="aboutFanclub">
+          <div id="aboutFanclubHeader">
+            <h6>About</h6>
+          </div>
+          <div id="aboutFanclubDesc"></div>
+          <div id="aboutFanclubAdd">
+            <input type="text" class="searchUser" id="searchbox" placeholder="Add people to this group"/>
+            <div id="displayUserFanclubBox" style="display: none;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <form action="http://localhost:81/mttk-php/statusController/themFanclubStatus" method="post" accept-charset="utf-8" enctype="multipart/form-data">
         <div id="tabs">
           <ul>
             <li><a href="#tabs-1">Choose music</a></li>
@@ -1029,6 +1065,7 @@ function getStatus() {
             <textarea name="status" id="target" rows="4" placeholder="What's on your mind?"></textarea>
             <br/>
             <input type="text" name="music_name" id="music_name" placeholder="Song name?"/>
+            <input type="hidden" name="fanclub_id"/>
             <input type="hidden" name="music_url" id="music_url" />
             <input type="hidden" name="title" id="title" />
             <div id="musicContainer">
