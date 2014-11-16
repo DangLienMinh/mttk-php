@@ -1,21 +1,55 @@
-{include file='common/header.tpl'}
-{literal}
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-16 08:35:59
+         compiled from "application\views\templates\userWall.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:20008546853dfa14af3-83568940%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '0f921ff09c337117641cd650c5ceaa3930b1bdcf' => 
+    array (
+      0 => 'application\\views\\templates\\userWall.tpl',
+      1 => 1416123341,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '20008546853dfa14af3-83568940',
+  'function' => 
+  array (
+  ),
+  'variables' => 
+  array (
+    'items' => 0,
+    'userNameWall' => 0,
+    'userLoginWall' => 0,
+    'userPicCmtWall' => 0,
+  ),
+  'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_546853e003b093_77671376',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_546853e003b093_77671376')) {function content_546853e003b093_77671376($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+
+
 function getStatus(){
       var data;
         /* This requests the url "msgsrv.php"
         When it complete (or errors)*/
-{/literal}
-      data={$items}
-{literal}
+
+      data=<?php echo $_smarty_tpl->tpl_vars['items']->value;?>
+
+
     addStatusUserWall(data);
     }
   </script>
   <script>
-{/literal}
-  window.userNameWall="{$userNameWall}";
-  window.userLoginWall="{$userLoginWall}";
-  window.userPicCmtWall="{uploads_url()}img/{$userPicCmtWall}";
-{literal}
+
+  window.userNameWall="<?php echo $_smarty_tpl->tpl_vars['userNameWall']->value;?>
+";
+  window.userLoginWall="<?php echo $_smarty_tpl->tpl_vars['userLoginWall']->value;?>
+";
+  window.userPicCmtWall="<?php echo uploads_url();?>
+img/<?php echo $_smarty_tpl->tpl_vars['userPicCmtWall']->value;?>
+";
+
   $(document).ready(function() {
     waitForMsg();
     friendRequest();
@@ -70,9 +104,10 @@ function getStatus(){
       if($(".search").val()!=''){
         $.ajax({
         type: "post",
-  {/literal}
-        url:"{base_url('friendController/searchMenu')}",
-  {literal}
+  
+        url:"<?php echo base_url('friendController/searchMenu');?>
+",
+  
         cache: false,
         data:'search='+$(".search").val(),
         success: function(response){
@@ -137,7 +172,7 @@ function getStatus(){
       });
   });
   </script>
- {/literal}
+ 
 </head>
 <body>
   <div id="noti_Container">
@@ -210,7 +245,8 @@ function getStatus(){
           </div>
         </div>
         <div class="item">
-          {form_open_multipart('statusController/updateStatus')}
+          <?php echo form_open_multipart('statusController/updateStatus');?>
+
           <div id="tabs">
             <ul>
               <li><a href="#tabs-1">Choose music</a></li>
@@ -338,7 +374,8 @@ function getStatus(){
               <input type="submit" value="Post" id="postStatus"/>
             </div>
         </div>
-   {form_close()}
+   <?php echo form_close();?>
+
         </div>
         <div id="pop">
         <img/>
@@ -385,4 +422,4 @@ function getStatus(){
       </div>
     </div>
 </body>
-</html>
+</html><?php }} ?>

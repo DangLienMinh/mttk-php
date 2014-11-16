@@ -12,14 +12,47 @@
 	public function index(){
 		$em = $this->doctrine->em;
 		$user = new Entity\UserDAO($em);
+		//$fanclub = new Entity\FanclubDAO($em);
 		$search=  $this->input->post('search');
 		$result=$user->timUser($search);
-        //echo json_encode($result);
         $friends="";
         if(count($result)>0){
         	foreach($result as $k)
 	        {
 	            $friends.='<div class="display_box" align="left"><img src="'.base_url().'uploads/img/'.$k['picture'].'" style="max-width:80%; max-height:80%; float:left; margin-right:6px" /><a href="seeWall/'. $k['email'] . '">' . $k['first_name']." ".$k['last_name'] . '</a><button type="button" class="addFriend" value="' . $k['email'] . '">'.'Add friend</button></div>';
+	        }
+	        //$result=$fanclub->timFanclub($search);
+	        /*$friends.='<h2>Group</h2>';
+	        foreach($result as $k)
+	        {
+	            $friends.='<div class="display_box" align="left"><img src="'.base_url().'uploads/img/'.$k['picture'].'" style="max-width:80%; max-height:80%; float:left; margin-right:6px" /><a href="seeWall/'. $k['email'] . '">' . $k['first_name']." ".$k['last_name'] . '</a><button type="button" class="addFriend" value="' . $k['email'] . '">'.'Add friend</button></div>';
+	        }*/
+        }else{
+        	$friends.="<b>No Data Found</b>";
+        }
+        echo $friends;
+	}
+
+	public function searchMenu(){
+		$em = $this->doctrine->em;
+		$user = new Entity\UserDAO($em);
+		$fanclub = new Entity\FanclubDAO($em);
+		$search=  $this->input->post('search');
+		$result=$user->timUser($search);
+        $friends="";
+        if(count($result)>0){
+        	$friends.='<div class="searchUserTtile"><h3>People</h3></div>';
+        	foreach($result as $k)
+	        {
+	            $friends.='<div class="searchUserBox" align="left"><img src="'.base_url().'uploads/img/'.$k['picture'].'" style="width:40px; height:40px; float:left; margin-right:6px" /><a href="seeWall/'. $k['email'] . '">' . $k['first_name']." ".$k['last_name'] . '</a></div>';
+	        }
+	        $result1=$fanclub->timFanclub($search);
+	        if(count($result1)>0){
+	        	$friends.='<div class="searchUserTtile"><h3>Fanclubs</h3></div>';
+	        	foreach($result1 as $k)
+		        {
+		          $friends.='<div class="searchUserBox" align="left"><img src="'.base_url().'assets/img/groupIcon.png" style="width:40px; height:40px; float:left; margin-right:6px" /><a href="seeWall/">' . $k['fanclub_name']. '</a></div>';
+		        }
 	        }
         }else{
         	$friends.="<b>No Data Found</b>";

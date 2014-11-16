@@ -46,8 +46,6 @@ a:hover {
     background: #3b5998;
     height: 26px;
     width: 100%;
-    padding-left: 66%;
-
 }
 
 #nav li {
@@ -262,60 +260,84 @@ a:hover {
 }
 #cover{
     position: absolute;
-    top: 126px;
-    z-index: 1100;
+top: 60px;
+left: 41%;
 
 }
 #cover .coverName{
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: bold;
-    letter-spacing: 0;
-    font-size: 24px;
-    text-decoration: none;
-    float:left;
-    margin-top: 75px;
-    margin-left: 15px;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-weight: bold;
+letter-spacing: 0;
+font-size: 30px;
+text-decoration: none;
+float: left;
+margin-top: 101px;
+margin-left: -173px;
 }
 .coverImg{
     float:left;
 /*    height:235px;*/
 }
+
+.hexagon {
+    overflow: hidden;
+    visibility: hidden;
+    -webkit-transform: rotate(120deg);
+       -moz-transform: rotate(120deg);
+        -ms-transform: rotate(120deg);
+         -o-transform: rotate(120deg);
+            transform: rotate(120deg);
+    cursor: pointer;
+    }
+.hexagon-in1 {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    -webkit-transform: rotate(-60deg);
+       -moz-transform: rotate(-60deg);
+        -ms-transform: rotate(-60deg);
+         -o-transform: rotate(-60deg);
+            transform: rotate(-60deg);
+    }
+.hexagon-in2 {
+    width: 100%;
+    height: 100%;
+    visibility: visible;
+    -webkit-transform: rotate(-60deg);
+       -moz-transform: rotate(-60deg);
+        -ms-transform: rotate(-60deg);
+         -o-transform: rotate(-60deg);
+            transform: rotate(-60deg);
+    }
+
+.hexagon1 {
+    width: 200px;
+    height: 100px;
+    }
+
 #cover .coverName a{
     color: #fff!important;
+    text-decoration: none;
 }
 
 #headline{
     clear: both;
-    position: absolute;
-    width: 100%;
-    z-index: 4;
-    height: 43px;
-    margin-top: 233px;
-    background: #fff;
+position: absolute;
+width: 100%;
+z-index: 4;
+height: 43px;
+margin-top: 233px;
 }
 .headlineRight{
-    border-left: 1px solid #e9eaed;
     float: right;
 
 }
 
-.hoverHeadlineRight{
-    background-image: url("../img/49Tyz-93FIm.png");
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-position: -114px -157px;
-    bottom: -1px;
-    display: none;
-    height: 9px;
-    left: 50%;
-    margin-left: -8px;
-    position: absolute;
-    width: 17px;
-}
 
 .headlineRight>a:hover{
-    background: #f6f7f8;
     text-decoration: none;
+    color: #EF2;
 }
 
 .headlineRight:after{
@@ -328,19 +350,18 @@ a:hover {
     visibility: hidden;
 }
 .headlineRight>a{
-    border-right: 1px solid #e9eaed;
     float: left;
-    font-size: 14px;
-    font-weight: bold;
-    height: 43px;
-    line-height: 3.05;
-    padding: 0 17px;
-    position: relative;
-    vertical-align: middle;
-    white-space: nowrap;
-    color: #3b5998;
-    cursor: pointer;
-    text-decoration: none;
+font-size: 14px;
+font-weight: bold;
+height: 43px;
+line-height: 3.05;
+padding: 0 17px;
+position: relative;
+vertical-align: middle;
+white-space: nowrap;
+color: #b0bdad;
+cursor: pointer;
+text-decoration: none;
 }
 
 /*------------------------------------timeline part------------------------------------*/
@@ -741,6 +762,7 @@ a:hover {
 .timeline:hover {
     cursor: pointer;
     margin: 0 auto;
+    text-decoration: none;
 }
 
 .timeline div.plus {
@@ -912,6 +934,7 @@ font-size:12px;
 }*/
 #aboutLeft ul li a:hover{
     opacity: 0.6;
+    text-decoration: none;
 }
 .aboutLeftSelected{
     font-weight: bold;
@@ -993,22 +1016,25 @@ font-size:12px;
 }
 
 .chatLeft span {
-    background-color: #f7f7f7;
-    background-image: -webkit-gradient(linear, center bottom, center top, from(#f2f2f2), to(#fff));
-    background-image: -webkit-linear-gradient(bottom, #f2f2f2, #fff);
+    background-color: #4f6a73;
+    /*background-image: -webkit-gradient(linear, center bottom, center top, from(#4f6a73), to(#fff));
+    background-image: -webkit-linear-gradient(bottom, #4f6a73, #fff);*/
     position: absolute;
-    padding: 3px;
+    color:#fff;
+    padding: 8px 4px;
 }
 
 .chatRight p {
-    background-color: #dbedfe;
-    background-image: -webkit-gradient(linear, center bottom, center top, from(#c7defe), to(#e7f1fe));
-    background-image: -webkit-linear-gradient(bottom, #c7defe, #e7f1fe);
-    padding: 3px;
+    background-color: #d4d7d7;
+    /*background-image: -webkit-gradient(linear, center bottom, center top, from(#c7defe), to(#e7f1fe));
+    background-image: -webkit-linear-gradient(bottom, #c7defe, #e7f1fe);*/
+    color:#000;
+    padding: 8px 4px;
 }
 
 #inline_content {
-    background-color: #E8EAED!important;
+    background-color: #a9b3b3!important;
+
 }
 
 #inline_content div {
@@ -1042,6 +1068,14 @@ font-size:12px;
     border: solid 1px #000;
     padding: 3px;
 }
+.search input{
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    height: 18px;
+    line-height: 18.6px;
+    padding-top: 0;
+    color: #4e5665;
+}
 
 #display {
     width: 250px;
@@ -1052,7 +1086,9 @@ font-size:12px;
     border-right: solid 1px #dedede;
     border-bottom: solid 1px #dedede;
     overflow: hidden;
+    position:absolute;
 }
+
 
 .display_box {
     padding: 4px;
@@ -1060,6 +1096,7 @@ font-size:12px;
     font-size: 12px;
     height: 30px;
     position: relative;
+    background:#fff;
 }
 
 .display_box:hover {
@@ -1078,6 +1115,45 @@ font-size:12px;
 .display_box button {
     right: 10px;
     position: absolute;
+}
+
+#displayUserBox {
+    width: 255px;
+    display: none;
+    border-left: solid 1px #dedede;
+    border-right: solid 1px #dedede;
+    border-bottom: solid 1px #dedede;
+    overflow: hidden;
+}
+
+.searchUserTtile{
+    background:#f2f2f2;
+}
+
+.searchUserTtile h3{
+    text-align: left;
+}
+.searchUserBox {
+    border-top: solid 1px #dedede;
+    font-size: 12px;
+    height: 40px;
+    position: relative;
+    background:#fff;
+}
+
+.searchUserBox:hover {
+    background: #3b5998;
+    color: #FFF!important;
+    text-decoration: none;
+}
+
+.searchUserBox a {
+    color: black;
+font-size: 17px;
+font-weight: bold;
+text-decoration: none;
+position: absolute;
+top: 12px;
 }
 
 #shade {

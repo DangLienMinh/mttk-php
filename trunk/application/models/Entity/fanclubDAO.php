@@ -2,7 +2,7 @@
 namespace Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 
-class fanclubDAO
+class FanclubDAO
 {
     private $em;
     function __construct($em) {
@@ -50,6 +50,13 @@ class fanclubDAO
         $sth->execute();
         $result = $sth->fetchAll();
         return $result;
+    }
+
+    public function getFanclub($email){
+        $query = $this->em->createQuery("SELECT p.fanclub_id,p.fanclub_name,p.fanclub_desc FROM Entity\Fanclub p WHERE p.email = ?1");
+        $query->setParameter(1, $email);
+        $results=$query->getResult();
+        return $results;
     }
 }
 ?>

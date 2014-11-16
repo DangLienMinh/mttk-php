@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-15 15:30:04
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-16 09:08:10
          compiled from "application\views\templates\userWall.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:210685467636c32e688-22565595%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1527854685b6a4e80b7-69908968%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '0f921ff09c337117641cd650c5ceaa3930b1bdcf' => 
     array (
       0 => 'application\\views\\templates\\userWall.tpl',
-      1 => 1416061695,
+      1 => 1416123341,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '210685467636c32e688-22565595',
+  'nocache_hash' => '1527854685b6a4e80b7-69908968',
   'function' => 
   array (
   ),
@@ -24,9 +24,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5467636c490201_96697247',
+  'unifunc' => 'content_54685b6a81f192_08197970',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5467636c490201_96697247')) {function content_5467636c490201_96697247($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_54685b6a81f192_08197970')) {function content_54685b6a81f192_08197970($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
 function getStatus(){
@@ -57,10 +57,10 @@ img/<?php echo $_smarty_tpl->tpl_vars['userPicCmtWall']->value;?>
     getPlaylist();
     getSuggest();
     getPlaylistUpdateStatus();
-    getEducation();
-    getBasicInfo();
-    getUserDetail();
-    getFavorite();
+    getEducation(window.userLoginWall);
+    getBasicInfo(window.userLoginWall);
+    getUserDetail(window.userLoginWall);
+    getFavorite(window.userLoginWall);
     getFriendList(window.userLoginWall);
     wallDsPlaylist(window.userLoginWall);
     $("#target").autoGrow();
@@ -99,6 +99,24 @@ img/<?php echo $_smarty_tpl->tpl_vars['userPicCmtWall']->value;?>
         remainingDuration: true,
         toggleDuration: true
       });
+
+       $(".search").keyup(function(){
+      if($(".search").val()!=''){
+        $.ajax({
+        type: "post",
+  
+        url:"<?php echo base_url('friendController/searchMenu');?>
+",
+  
+        cache: false,
+        data:'search='+$(".search").val(),
+        success: function(response){
+          $('#displayUserBox').html(response).show();
+        }
+      });
+    }
+  });
+
       $('#headlineTimeline').find('span').css("display", "block");
       $('.headlineRight a').click(function(){
         $(this).find('span').css("display", "block");
@@ -159,6 +177,11 @@ img/<?php echo $_smarty_tpl->tpl_vars['userPicCmtWall']->value;?>
 <body>
   <div id="noti_Container">
     <ul id="nav">
+    <div style=" width:300px; margin-right:23%;margin-left:12%;float:left;" align="right">
+      <input type="text" class="search" id="searchbox" placeholder="Search for people, fanclub"/><br />
+      <div id="displayUserBox">
+      </div>
+    </div>
     <li id="personalPage">
     </li>
     <li>
@@ -199,11 +222,11 @@ img/<?php echo $_smarty_tpl->tpl_vars['userPicCmtWall']->value;?>
     </div>
     <div id="headline">
       <div class="headlineRight">
-        <a id="headlineTimeline" href="#">TimeLine<span class="hoverHeadlineRight"></span></a>
-        <a id="headlineAbout" href="#">About<span class="hoverHeadlineRight"></span></a>
-        <a id="headlineFriendList" href="#">Friends<span class="hoverHeadlineRight"></span></a>
-        <a id="headlinePlaylist" href="#">Playlist<span class="hoverHeadlineRight"></span></a>
-        <a class="" href="#">More<span class="hoverHeadlineRight"></span></a>
+        <a id="headlineTimeline" href="#">TimeLine</a>
+        <a id="headlineAbout" href="#">About</a>
+        <a id="headlineFriendList" href="#">Friends</a>
+        <a id="headlinePlaylist" href="#">Playlist</a>
+        <a class="" href="#">More</a>
       </div>
     </div>
   </div>
@@ -214,6 +237,12 @@ img/<?php echo $_smarty_tpl->tpl_vars['userPicCmtWall']->value;?>
         <div class="timeline">
           <div class="plus"></div>
         </div>
+        </div>
+        <div class="item">
+          <div class="groupContainer">
+            <div class="groupTitle"><h2>Group</h2></div>
+            <div class="groupInfo"></div>
+          </div>
         </div>
         <div class="item">
           <?php echo form_open_multipart('statusController/updateStatus');?>

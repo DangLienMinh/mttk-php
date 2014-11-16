@@ -1,4 +1,4 @@
-<?php /*%%SmartyHeaderCode:201435467317e0df5b7-77265824%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:710754684689ba3245-95642860%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,17 +11,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1415986705,
+      1 => 1416109108,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '201435467317e0df5b7-77265824',
+  'nocache_hash' => '710754684689ba3245-95642860',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5467317eba18c5_72811233',
+  'unifunc' => 'content_5468468a31e501_25789011',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5467317eba18c5_72811233')) {function content_5467317eba18c5_72811233($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_5468468a31e501_25789011')) {function content_5468468a31e501_25789011($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -202,7 +202,7 @@ function getFriendChat() {
     timeout: 50000,
     success: function(data) {
      $('#friendChatContainer>ul').append(data);
-     $(".inline").colorbox({inline:true, width:"30%",height:"80%"});
+     $(".inline").colorbox({inline:true,title:"<h1 style='margin-left: 180px; color:#fff!important;'>Chat</h1>", width:"30%",height:"80%"});
     }
   });
 }
@@ -341,7 +341,7 @@ function friendRequest() {
         $("#friend_count").hide();
       }
       $('#personalPage').append('<div class="cmtpic" align="center"><img src="' + window.userPicCmt + '" style="width:23px;height:23px;" /></div><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b>');
-      $('#cover').append('<div class="coverImg"><img src="' + window.userPicCmtWall + '" style="width:130px;height:130px; border: 4px solid #fff;" /></div><span class="coverName"><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userNameWall + '</a></b></span>');
+      $('#cover').append('<div class="coverImg hexagon hexagon1"><div class="hexagon-in1"><div class="hexagon-in2" style="background: url('+"'"+window.userPicCmtWall+"') no-repeat; background-size: 103px 103px!important; background-position: 50%;"+'" ></div></div></div><span class="coverName"><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userNameWall + '</a></b></span>');
     }
   });
 }
@@ -733,7 +733,7 @@ $(document).on('change', '.editbox', function(e) {
   var element=$(this);
   var boxval = $(this).val();
   var name=$(this).attr('name');
-  var dataString = 'data=' + boxval+'&name='+name;
+  var dataString = 'data=' + boxval+'&name='+name+'&email='+window.userLoginWall;
   $.ajax({
     type: "POST",
 
@@ -743,6 +743,7 @@ $(document).on('change', '.editbox', function(e) {
     cache: false,
     success: function() {
       element.parent().prev('.text_wrapper').html(boxval).show();
+      element.parent().prev('.text_wrapper1').html(boxval).show();
     }
   });
 });
@@ -752,7 +753,7 @@ $(document).on('change', '.editInput', function(e) {
   var element=$(this);
   var boxval = $(this).val();
   var name=$(this).attr('name');
-  var dataString = 'data=' + boxval+'&name='+name;
+  var dataString = 'data=' + boxval+'&name='+name+'&email='+window.userLoginWall;;
   $.ajax({
     type: "POST",
 
@@ -771,7 +772,7 @@ $(document).on('change', '.editCheckbox', function(e) {
   var element=$(this);
   var boxval = $(this).val();
   var name=$(this).attr('name');
-  var dataString = 'data=' + boxval+'&name='+name;
+  var dataString = 'data=' + boxval+'&name='+name+'&email='+window.userLoginWall;;
   $.ajax({
     type: "POST",
 
@@ -786,12 +787,14 @@ $(document).on('change', '.editCheckbox', function(e) {
 });
 
 
-function getEducation() {
+function getEducation(email) {
+  var dataString = 'email=' + email;
   $.ajax({
     type: "post",
 
     url: "http://localhost:81/mttk-php/profileController/getEducationAndReligion",
 
+    data: dataString,
     async: true,
     cache: false,
     timeout: 50000,
@@ -801,17 +804,53 @@ function getEducation() {
   });
 }
 
-function getBasicInfo() {
+function getBasicInfo(email) {
+  var dataString = 'email=' + email;
   $.ajax({
     type: "post",
 
     url: "http://localhost:81/mttk-php/profileController/getBasicInfo",
 
+    data: dataString,
     async: true,
     cache: false,
     timeout: 50000,
     success: function(data) {
       $('#about2').append(data);
+    }
+  });
+}
+
+function getUserDetail(email) {
+  var dataString = 'email=' + email;
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/profileController/getUserDetail",
+
+    data: dataString,
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('#about3').append(data);
+    }
+  });
+}
+
+function getFavorite(email) {
+  var dataString = 'email=' + email;
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/profileController/getFavorite",
+
+    data: dataString,
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('#about4').append(data);
     }
   });
 }

@@ -598,6 +598,7 @@ $(document).mouseup(function() {
 	$('.edit').hide();
 	$('.text_wrapper').show();
 	$('.text_wrapper1').show();
+	$('#displayUserBox').hide();
 });
 
 $(document).on('mouseover', '.item', function() {

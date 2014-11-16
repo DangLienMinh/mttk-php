@@ -1,4 +1,4 @@
-<?php /*%%SmartyHeaderCode:3134654648b206ba327-43751551%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:18309546764c50c3549-15122640%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -9,13 +9,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '3134654648b206ba327-43751551',
+  'nocache_hash' => '18309546764c50c3549-15122640',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_54648b208b4c29_68665528',
+  'unifunc' => 'content_546764c522f3f3_55137475',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_54648b208b4c29_68665528')) {function content_54648b208b4c29_68665528($_smarty_tpl) {?><html>
+<?php if ($_valid && !is_callable('content_546764c522f3f3_55137475')) {function content_546764c522f3f3_55137475($_smarty_tpl) {?><html>
 <head>
   <meta charset="utf-8">
   <title>jQuery UI Tabs - Default functionality</title>

@@ -1,21 +1,55 @@
-{include file='common/header.tpl'}
-{literal}
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-15 16:00:01
+         compiled from "application\views\templates\userWall.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:2810454676a71a4b0b5-33534754%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '0f921ff09c337117641cd650c5ceaa3930b1bdcf' => 
+    array (
+      0 => 'application\\views\\templates\\userWall.tpl',
+      1 => 1416063236,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '2810454676a71a4b0b5-33534754',
+  'function' => 
+  array (
+  ),
+  'variables' => 
+  array (
+    'items' => 0,
+    'userNameWall' => 0,
+    'userLoginWall' => 0,
+    'userPicCmtWall' => 0,
+  ),
+  'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_54676a7201aaf1_03126811',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_54676a7201aaf1_03126811')) {function content_54676a7201aaf1_03126811($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+
+
 function getStatus(){
       var data;
         /* This requests the url "msgsrv.php"
         When it complete (or errors)*/
-{/literal}
-      data={$items}
-{literal}
+
+      data=<?php echo $_smarty_tpl->tpl_vars['items']->value;?>
+
+
     addStatusUserWall(data);
     }
   </script>
   <script>
-{/literal}
-  window.userNameWall="{$userNameWall}";
-  window.userLoginWall="{$userLoginWall}";
-  window.userPicCmtWall="{uploads_url()}img/{$userPicCmtWall}";
-{literal}
+
+  window.userNameWall="<?php echo $_smarty_tpl->tpl_vars['userNameWall']->value;?>
+";
+  window.userLoginWall="<?php echo $_smarty_tpl->tpl_vars['userLoginWall']->value;?>
+";
+  window.userPicCmtWall="<?php echo uploads_url();?>
+img/<?php echo $_smarty_tpl->tpl_vars['userPicCmtWall']->value;?>
+";
+
   $(document).ready(function() {
     waitForMsg();
     friendRequest();
@@ -65,23 +99,6 @@ function getStatus(){
         remainingDuration: true,
         toggleDuration: true
       });
-
-       $(".search").keyup(function(){
-      if($(".search").val()!=''){
-        $.ajax({
-        type: "post",
-  {/literal}
-        url:"{base_url('friendController/searchMenu')}",
-  {literal}
-        cache: false,
-        data:'search='+$(".search").val(),
-        success: function(response){
-          $('#displayUserBox').html(response).show();
-        }
-      });
-    }
-  });
-
       $('#headlineTimeline').find('span').css("display", "block");
       $('.headlineRight a').click(function(){
         $(this).find('span').css("display", "block");
@@ -137,16 +154,11 @@ function getStatus(){
       });
   });
   </script>
- {/literal}
+ 
 </head>
 <body>
   <div id="noti_Container">
     <ul id="nav">
-    <div style=" width:300px; margin-right:23%;margin-left:12%;float:left;" align="right">
-      <input type="text" class="search" id="searchbox" placeholder="Search for people, fanclub"/><br />
-      <div id="displayUserBox">
-      </div>
-    </div>
     <li id="personalPage">
     </li>
     <li>
@@ -187,11 +199,11 @@ function getStatus(){
     </div>
     <div id="headline">
       <div class="headlineRight">
-        <a id="headlineTimeline" href="#">TimeLine</a>
-        <a id="headlineAbout" href="#">About</a>
-        <a id="headlineFriendList" href="#">Friends</a>
-        <a id="headlinePlaylist" href="#">Playlist</a>
-        <a class="" href="#">More</a>
+        <a id="headlineTimeline" href="#">TimeLine<span class="hoverHeadlineRight"></span></a>
+        <a id="headlineAbout" href="#">About<span class="hoverHeadlineRight"></span></a>
+        <a id="headlineFriendList" href="#">Friends<span class="hoverHeadlineRight"></span></a>
+        <a id="headlinePlaylist" href="#">Playlist<span class="hoverHeadlineRight"></span></a>
+        <a class="" href="#">More<span class="hoverHeadlineRight"></span></a>
       </div>
     </div>
   </div>
@@ -204,13 +216,8 @@ function getStatus(){
         </div>
         </div>
         <div class="item">
-          <div class="groupContainer">
-            <div class="groupTitle"><h2>Group</h2></div>
-            <div class="groupInfo"></div>
-          </div>
-        </div>
-        <div class="item">
-          {form_open_multipart('statusController/updateStatus')}
+          <?php echo form_open_multipart('statusController/updateStatus');?>
+
           <div id="tabs">
             <ul>
               <li><a href="#tabs-1">Choose music</a></li>
@@ -338,7 +345,8 @@ function getStatus(){
               <input type="submit" value="Post" id="postStatus"/>
             </div>
         </div>
-   {form_close()}
+   <?php echo form_close();?>
+
         </div>
         <div id="pop">
         <img/>
@@ -385,4 +393,4 @@ function getStatus(){
       </div>
     </div>
 </body>
-</html>
+</html><?php }} ?>
