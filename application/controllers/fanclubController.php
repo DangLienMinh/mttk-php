@@ -19,6 +19,13 @@ class FanclubController extends CI_Controller {
         $fanclub->themFanclub($data);
     }
 
+    public function getFanclub(){
+        $email = $this->session->userdata('email');
+        $em = $this->doctrine->em;
+        $fanclub = new Entity\FanclubDAO($em);
+        $fanclub->getFanclub($data);
+    }
+
     
 }
 ?>

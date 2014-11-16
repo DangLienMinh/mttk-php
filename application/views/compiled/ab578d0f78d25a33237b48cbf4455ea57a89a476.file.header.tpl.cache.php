@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-15 15:30:04
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-16 09:08:10
          compiled from "application\views\templates\common\header.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:252375467636c4f6a66-95095839%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:750354685b6a9959e1-71274607%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1416059441,
+      1 => 1416109108,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '252375467636c4f6a66-95095839',
+  'nocache_hash' => '750354685b6a9959e1-71274607',
   'function' => 
   array (
   ),
@@ -23,9 +23,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5467636c79d202_14696743',
+  'unifunc' => 'content_54685b6b27cea3_68746908',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5467636c79d202_14696743')) {function content_5467636c79d202_14696743($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_54685b6b27cea3_68746908')) {function content_54685b6b27cea3_68746908($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -246,7 +246,7 @@ function getFriendChat() {
     timeout: 50000,
     success: function(data) {
      $('#friendChatContainer>ul').append(data);
-     $(".inline").colorbox({inline:true, width:"30%",height:"80%"});
+     $(".inline").colorbox({inline:true,title:"<h1 style='margin-left: 180px; color:#fff!important;'>Chat</h1>", width:"30%",height:"80%"});
     }
   });
 }
@@ -392,7 +392,7 @@ function friendRequest() {
         $("#friend_count").hide();
       }
       $('#personalPage').append('<div class="cmtpic" align="center"><img src="' + window.userPicCmt + '" style="width:23px;height:23px;" /></div><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b>');
-      $('#cover').append('<div class="coverImg"><img src="' + window.userPicCmtWall + '" style="width:130px;height:130px; border: 4px solid #fff;" /></div><span class="coverName"><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userNameWall + '</a></b></span>');
+      $('#cover').append('<div class="coverImg hexagon hexagon1"><div class="hexagon-in1"><div class="hexagon-in2" style="background: url('+"'"+window.userPicCmtWall+"') no-repeat; background-size: 103px 103px!important; background-position: 50%;"+'" ></div></div></div><span class="coverName"><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userNameWall + '</a></b></span>');
     }
   });
 }
@@ -802,7 +802,7 @@ $(document).on('change', '.editbox', function(e) {
   var element=$(this);
   var boxval = $(this).val();
   var name=$(this).attr('name');
-  var dataString = 'data=' + boxval+'&name='+name;
+  var dataString = 'data=' + boxval+'&name='+name+'&email='+window.userLoginWall;
   $.ajax({
     type: "POST",
 
@@ -823,7 +823,7 @@ $(document).on('change', '.editInput', function(e) {
   var element=$(this);
   var boxval = $(this).val();
   var name=$(this).attr('name');
-  var dataString = 'data=' + boxval+'&name='+name;
+  var dataString = 'data=' + boxval+'&name='+name+'&email='+window.userLoginWall;;
   $.ajax({
     type: "POST",
 
@@ -843,7 +843,7 @@ $(document).on('change', '.editCheckbox', function(e) {
   var element=$(this);
   var boxval = $(this).val();
   var name=$(this).attr('name');
-  var dataString = 'data=' + boxval+'&name='+name;
+  var dataString = 'data=' + boxval+'&name='+name+'&email='+window.userLoginWall;;
   $.ajax({
     type: "POST",
 
@@ -859,13 +859,15 @@ $(document).on('change', '.editCheckbox', function(e) {
 });
 
 
-function getEducation() {
+function getEducation(email) {
+  var dataString = 'email=' + email;
   $.ajax({
     type: "post",
 
     url: "<?php echo base_url('profileController/getEducationAndReligion');?>
 ",
 
+    data: dataString,
     async: true,
     cache: false,
     timeout: 50000,
@@ -875,13 +877,15 @@ function getEducation() {
   });
 }
 
-function getBasicInfo() {
+function getBasicInfo(email) {
+  var dataString = 'email=' + email;
   $.ajax({
     type: "post",
 
     url: "<?php echo base_url('profileController/getBasicInfo');?>
 ",
 
+    data: dataString,
     async: true,
     cache: false,
     timeout: 50000,
@@ -891,13 +895,15 @@ function getBasicInfo() {
   });
 }
 
-function getUserDetail() {
+function getUserDetail(email) {
+  var dataString = 'email=' + email;
   $.ajax({
     type: "post",
 
     url: "<?php echo base_url('profileController/getUserDetail');?>
 ",
 
+    data: dataString,
     async: true,
     cache: false,
     timeout: 50000,
@@ -907,13 +913,15 @@ function getUserDetail() {
   });
 }
 
-function getFavorite() {
+function getFavorite(email) {
+  var dataString = 'email=' + email;
   $.ajax({
     type: "post",
 
     url: "<?php echo base_url('profileController/getFavorite');?>
 ",
 
+    data: dataString,
     async: true,
     cache: false,
     timeout: 50000,

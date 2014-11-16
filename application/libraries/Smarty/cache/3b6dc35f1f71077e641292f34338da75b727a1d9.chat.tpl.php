@@ -1,4 +1,4 @@
-<?php /*%%SmartyHeaderCode:2336854602f91988ac2-65565509%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1260954681c373db106-65545571%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,17 +11,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1415589725,
+      1 => 1416109108,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '2336854602f91988ac2-65565509',
+  'nocache_hash' => '1260954681c373db106-65545571',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_54602f91d862c0_16901248',
+  'unifunc' => 'content_54681c37cea1a2_87124603',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_54602f91d862c0_16901248')) {function content_54602f91d862c0_16901248($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_54681c37cea1a2_87124603')) {function content_54681c37cea1a2_87124603($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -53,12 +53,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   window.profilePic="http://localhost:81/mttk-php/uploads/img/profilePic.jpg";
   window.userPic="http://localhost:81/mttk-php/uploads/img/";
   window.userWall="http://localhost:81/mttk-php/statusController/layDSWallStatus";
-  window.userLogin="anhtiminh@yahoo.com";
   //window.friendController="http://localhost:81/mttk-php/friendController";
-  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/shot0006.jpg";
-  window.userName="minh dang";
+  window.playlistIcon="http://localhost:81/mttk-php/assets/img/playlistIcon.png";
   window.userMusic="http://localhost:81/mttk-php/uploads";
   window.homePage="http://localhost:81/mttk-php/main/testPlayer";
+  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/shot0006.jpg";
+  window.userLogin="anhtiminh@yahoo.com";
+  window.userName="minh dang";
   window.compare=0;
   window.compareStatus=0;
   window.currentChatPosition=-1;
@@ -85,6 +86,23 @@ function moreStatus(id,jplayer_id) {
     type: "post",
 
     url: "http://localhost:81/mttk-php/statusController/getNextStatus",
+
+    data: dataString,
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      addMoreStatus(data,jplayer_id);
+    }
+  });
+}
+
+function moreWallStatus(id,jplayer_id,email) {
+  var dataString = 'status_id=' + id+'&email='+email;
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/statusController/getNextWallStatus",
 
     data: dataString,
     async: true,
@@ -176,7 +194,7 @@ function getFriendChat() {
   $.ajax({
     type: "post",
 
-    url: "http://localhost:81/mttk-php/friendController/getAllFriends",
+    url: "http://localhost:81/mttk-php/friendController/getAllChatFriends",
 
     async: true,
     /* If set to non-async, browser shows page as "Loading.."*/
@@ -184,11 +202,27 @@ function getFriendChat() {
     timeout: 50000,
     success: function(data) {
      $('#friendChatContainer>ul').append(data);
-     $(".inline").colorbox({inline:true, width:"30%",height:"80%"});
+     $(".inline").colorbox({inline:true,title:"<h1 style='margin-left: 180px; color:#fff!important;'>Chat</h1>", width:"30%",height:"80%"});
     }
   });
 }
 
+function getFriendList(email) {
+  var dataString = 'email=' + email;
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/friendController/getAllFriends",
+
+    async: true,
+    data:dataString,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+     $('#friendListContainer>ul').append(data);
+    }
+  });
+}
 
 function getConversation(userEmail) {
   if(typeof userEmail !== 'undefined'){
@@ -210,8 +244,8 @@ function getConversation(userEmail) {
     success: function(data) {
       addConversation(data);
       setTimeout(
-        getConversation, /* Request next message */
-        2000 /* ..after 2 seconds */
+        getConversation,
+        2000
       );
     }
   });
@@ -267,6 +301,27 @@ function getPlaylist() {
   });
 }
 
+function wallDsPlaylist(email) {
+    var dataString = 'email=' + email;
+    $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/playlistController/wallDsPlaylist",
+
+    data: dataString,
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+     var obj = JSON.parse(data);
+     $.each(obj, function(i, val) {
+      $('#playlistContainer>ul').append('<li><a class="inline" href="#inline_content"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' +window.playlistIcon+ '"/><span class="'+val.Playlist_id+'">' + val.Playlist_name+ '</span></a><div class="playlistSongs"><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio">' + playlistElement + '</div></div></li>');
+      getSongWall(val.Playlist_id,i);
+     });
+    }
+  });
+}
+
 function friendRequest() {
   $.ajax({
     type: "post",
@@ -286,7 +341,7 @@ function friendRequest() {
         $("#friend_count").hide();
       }
       $('#personalPage').append('<div class="cmtpic" align="center"><img src="' + window.userPicCmt + '" style="width:23px;height:23px;" /></div><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b>');
-      $('#cover').append('<div class="coverImg"><img src="' + window.userPicCmt + '" style="width:130px;height:130px; border: 4px solid #fff;" /></div><span class="coverName"><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b></span>');
+      $('#cover').append('<div class="coverImg hexagon hexagon1"><div class="hexagon-in1"><div class="hexagon-in2" style="background: url('+"'"+window.userPicCmtWall+"') no-repeat; background-size: 103px 103px!important; background-position: 50%;"+'" ></div></div></div><span class="coverName"><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userNameWall + '</a></b></span>');
     }
   });
 }
@@ -472,21 +527,75 @@ function getSongUpdateStatus(data) {
   });
 }
 
-$(document).on('click', 'li button', function() {
+function getSongWall(id,number) {
+  var dataString="playlist_id="+id;
+  var cssSelector = {
+    jPlayer: "#jquery_jplayer_"+number,
+    cssSelectorAncestor: "#jp_container_"+number
+  };
+  /*An Empty Playlist*/
+  var playlist = [];
+  var options = {
+    swfPath: "js",
+    supplied: "mp3"
+  };
+  var myPlaylist = new jPlayerPlaylist(cssSelector, playlist, options);
+  $.ajax({
+    type: "post",
+    data:dataString,
+
+    url: "http://localhost:81/mttk-php/playlistController/getDSSongs",
+
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      var obj = JSON.parse(data);
+      $.each(obj, function(i, val) {
+        myPlaylist.add({
+          title: val.title,
+          mp3: val.mp3
+        });
+      });
+    }
+  });
+}
+
+
+$(document).on('click', '.addFriend', function() {
   var li=$(this).parent();
   $.ajax({
   type: "POST",
 
-  url:"http://localhost:81/mttk-php/friendController/themBan", 
+  url:"http://localhost:81/mttk-php/friendController/themBan",
 
   data: {friendEmail: $(this).val()},
-  dataType: "text",  
+  dataType: "text",
   cache:false,
-  success: 
+  success:
       function(data){
         li.fadeOut('slow', function() {});
       }
   });
+  return false;
+});
+
+$(document).on('click', '.unFriend', function() {
+  var li=$(this).parent();
+  $.ajax({
+  type: "POST",
+
+  url:"http://localhost:81/mttk-php/friendController/xoaBan",
+
+  data: {friend: $(this).val()},
+  dataType: "text",
+  cache:false,
+  success:
+      function(data){
+        li.fadeOut('slow', function() {});
+      }
+  });
+  return false;
 });
 
 $(document).on('keypress', '.commentInput', function(e) {
@@ -618,6 +727,134 @@ $(document).on('keyup', '#music_name', function() {
     }
   });
 });
+
+$(document).on('change', '.editbox', function(e) {
+  $(this).parent().hide();
+  var element=$(this);
+  var boxval = $(this).val();
+  var name=$(this).attr('name');
+  var dataString = 'data=' + boxval+'&name='+name+'&email='+window.userLoginWall;
+  $.ajax({
+    type: "POST",
+
+    url: "http://localhost:81/mttk-php/profileController/updateInfo",
+
+    data: dataString,
+    cache: false,
+    success: function() {
+      element.parent().prev('.text_wrapper').html(boxval).show();
+      element.parent().prev('.text_wrapper1').html(boxval).show();
+    }
+  });
+});
+
+$(document).on('change', '.editInput', function(e) {
+  $(this).parent().hide();
+  var element=$(this);
+  var boxval = $(this).val();
+  var name=$(this).attr('name');
+  var dataString = 'data=' + boxval+'&name='+name+'&email='+window.userLoginWall;;
+  $.ajax({
+    type: "POST",
+
+    url: "http://localhost:81/mttk-php/profileController/updateInfo",
+
+    data: dataString,
+    cache: false,
+    success: function() {
+      element.parent().prev('.text_wrapper1').html(boxval).show();
+    }
+  });
+});
+
+$(document).on('change', '.editCheckbox', function(e) {
+  $(this).parent().hide();
+  var element=$(this);
+  var boxval = $(this).val();
+  var name=$(this).attr('name');
+  var dataString = 'data=' + boxval+'&name='+name+'&email='+window.userLoginWall;;
+  $.ajax({
+    type: "POST",
+
+    url: "http://localhost:81/mttk-php/profileController/updateInfo",
+
+    data: dataString,
+    cache: false,
+    success: function() {
+      element.parent().prev('.text_wrapper1').html(boxval).show();
+    }
+  });
+});
+
+
+function getEducation(email) {
+  var dataString = 'email=' + email;
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/profileController/getEducationAndReligion",
+
+    data: dataString,
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('#about1').append(data);
+    }
+  });
+}
+
+function getBasicInfo(email) {
+  var dataString = 'email=' + email;
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/profileController/getBasicInfo",
+
+    data: dataString,
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('#about2').append(data);
+    }
+  });
+}
+
+function getUserDetail(email) {
+  var dataString = 'email=' + email;
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/profileController/getUserDetail",
+
+    data: dataString,
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('#about3').append(data);
+    }
+  });
+}
+
+function getFavorite(email) {
+  var dataString = 'email=' + email;
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/profileController/getFavorite",
+
+    data: dataString,
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('#about4').append(data);
+    }
+  });
+}
+
 
 
   </script>
