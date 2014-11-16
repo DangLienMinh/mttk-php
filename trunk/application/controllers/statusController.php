@@ -58,7 +58,7 @@ class StatusController extends CI_Controller {
         $result=$status->layDSWallStatus($email);
         $result= json_encode($result);
 
-        $user = new Entity\UserDAO($em);;
+        $user = new Entity\UserDAO($em);
         $userInfo=$user->getUser($email);
 
 
@@ -70,6 +70,26 @@ class StatusController extends CI_Controller {
         $this->smarty->assign('userName',$this->session->userdata('first_name').' '.$this->session->userdata('last_name'));
         $this->smarty->assign('userLogin',$this->session->userdata('email'));
         $this->smarty->view('userWall');
+    }
+
+    function layDSFanclubStatus($fanclubid)
+    {
+        $em = $this->doctrine->em;
+        $status = new Entity\statusDAO($em);
+        $fanclub = new Entity\fanClubDAO($em);
+        $result=$status->layDSFanclubStatus($fanclubid);
+        $result= json_encode($result);
+
+        $fanclubInfo=$fanclub->getFanclubByID($fanclubid);
+        
+        $this->smarty->assign('fanclubName',$fanclubInfo[0]['fanclub_name']);
+        $this->smarty->assign('fanclubDesc',$fanclubInfo[0]['fanclub_desc']);
+        $this->smarty->assign('items',$result);
+        $this->smarty->assign('fanclub',$fanclubid);
+        $this->smarty->assign('userPicCmt',$this->session->userdata('pic'));
+        $this->smarty->assign('userName',$this->session->userdata('first_name').' '.$this->session->userdata('last_name'));
+        $this->smarty->assign('userLogin',$this->session->userdata('email'));
+        $this->smarty->view('fanclub');
     }
 
 	public function chooseMusic(){
@@ -161,6 +181,66 @@ class StatusController extends CI_Controller {
         $this->smarty->assign('userName',$this->session->userdata('first_name').' '.$this->session->userdata('last_name'));
         $this->smarty->assign('userLogin',$this->session->userdata('email'));
         $this->smarty->view('testPlayerLink');
+    }
+
+    public function themFanclubStatus()
+    {
+        $data['status']="";
+        $data['music']="";
+        $data['privacy']="";
+        if(trim($_POST['status'])!='')
+        {
+            $data['status']=$_POST["status"];
+            $data['music']=$_POST["music_url"];
+            $data['title']=$_POST["title"];
+        }else if(trim($_POST['status3'])!=''){
+            $data['status']=$_POST["status3"];
+            $data['music']=$_POST["playlist_id"];
+            $data['title']="";
+        }
+        else
+        {
+            if ($_FILES['musicFile']['error'] != 4) {
+                $data['title']=$_FILES['musicFile']['name'];
+                $config['upload_path'] = './uploads/';
+                $config['allowed_types'] = 'mp3';
+                $config['max_size'] = '10240';
+                $config['file_name']  = uniqid().'.mp3'; 
+                $this->load->library('upload', $config);
+
+                if ( ! $this->upload->do_upload("musicFile"))
+                {
+                }
+                else
+                {
+                    $uploaded = array('upload_data' => $this->upload->data());
+                    $data['status']=$_POST["status2"];
+                    $data['music']= $config['file_name'];
+                }
+            }
+        }
+        $data['fanclub_id']=$_POST["fanclub_id"];
+        $data['privacy']=$_POST["privacy"];
+        $data['email'] = $this->session->userdata('email');
+        $em = $this->doctrine->em;
+        $status = new Entity\statusDAO($em);
+        $data['status_id']=$status->themStatus($data);
+        $fanclub = new Entity\fanclubDAO($em);
+        $fanclub->themFanclubUpdate($data);
+
+        $fanclubInfo=$fanclub->getFanclubByID($data['fanclub_id']);
+
+        $result=$status->layDSFanclubStatus($data['fanclub_id']);
+        $result= json_encode($result);
+
+        $this->smarty->assign('items',$result);
+        $this->smarty->assign('fanclub',$data['fanclub_id']);
+        $this->smarty->assign('fanclubName',$fanclubInfo[0]['fanclub_name']);
+        $this->smarty->assign('fanclubDesc',$fanclubInfo[0]['fanclub_desc']);
+        $this->smarty->assign('userPicCmt',$this->session->userdata('pic'));
+        $this->smarty->assign('userName',$this->session->userdata('first_name').' '.$this->session->userdata('last_name'));
+        $this->smarty->assign('userLogin',$this->session->userdata('email'));
+        $this->smarty->view('fanclub');
     }
 
     public function hienThiNotiStatus($statusParam,$noti_id=-1){

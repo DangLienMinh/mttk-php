@@ -1,21 +1,21 @@
-<?php /*%%SmartyHeaderCode:1527854685b6a4e80b7-69908968%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:30885468a93b7b5b91-94165108%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '0f921ff09c337117641cd650c5ceaa3930b1bdcf' => 
     array (
       0 => 'application\\views\\templates\\userWall.tpl',
-      1 => 1416123341,
+      1 => 1416145178,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1416109108,
+      1 => 1416144995,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1527854685b6a4e80b7-69908968',
+  'nocache_hash' => '30885468a93b7b5b91-94165108',
   'variables' => 
   array (
     'items' => 0,
@@ -25,10 +25,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_54685b6b428fc6_75715715',
+  'unifunc' => 'content_5468a93be4c2c5_70706049',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_54685b6b428fc6_75715715')) {function content_54685b6b428fc6_75715715($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_5468a93be4c2c5_70706049')) {function content_5468a93be4c2c5_70706049($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -60,13 +60,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   window.profilePic="http://localhost:81/mttk-php/uploads/img/profilePic.jpg";
   window.userPic="http://localhost:81/mttk-php/uploads/img/";
   window.userWall="http://localhost:81/mttk-php/statusController/layDSWallStatus";
+  //window.fanclub="http://localhost:81/mttk-php/statusController/layDSFanclubStatus";
   //window.friendController="http://localhost:81/mttk-php/friendController";
   window.playlistIcon="http://localhost:81/mttk-php/assets/img/playlistIcon.png";
   window.userMusic="http://localhost:81/mttk-php/uploads";
   window.homePage="http://localhost:81/mttk-php/main/testPlayer";
-  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/shot0006.jpg";
-  window.userLogin="anhtiminh@yahoo.com";
-  window.userName="minh dang";
+  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/a6551.jpg";
+  window.userLogin="duongphuocloc@gmail.com";
+  window.userName="phuoc loc";
   window.compare=0;
   window.compareStatus=0;
   window.currentChatPosition=-1;
@@ -862,6 +863,36 @@ function getFavorite(email) {
   });
 }
 
+function getFanclub() {
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/fanclubController/getFanclub",
+
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('.fanclubInfo').append(data);
+    }
+  });
+}
+$(document).on('keyup', '.search', function() {
+      if($(".search").val()!=''){
+        $.ajax({
+        type: "post",
+  
+        url:"http://localhost:81/mttk-php/friendController/searchMenu",
+  
+        cache: false,
+        data:'search='+$(".search").val(),
+        success: function(response){
+          $('#displayUserBox').html(response).show();
+        }
+      });
+    }
+});
+
 
 
 function getStatus(){
@@ -930,22 +961,6 @@ function getStatus(){
         toggleDuration: true
       });
 
-       $(".search").keyup(function(){
-      if($(".search").val()!=''){
-        $.ajax({
-        type: "post",
-  
-        url:"http://localhost:81/mttk-php/friendController/searchMenu",
-  
-        cache: false,
-        data:'search='+$(".search").val(),
-        success: function(response){
-          $('#displayUserBox').html(response).show();
-        }
-      });
-    }
-  });
-
       $('#headlineTimeline').find('span').css("display", "block");
       $('.headlineRight a').click(function(){
         $(this).find('span').css("display", "block");
@@ -1006,7 +1021,7 @@ function getStatus(){
 <body>
   <div id="noti_Container">
     <ul id="nav">
-    <div style=" width:300px; margin-right:23%;margin-left:12%;float:left;" align="right">
+    <div style=" width:300px; margin-right:23%;margin-left:15.5%;float:left;" align="right">
       <input type="text" class="search" id="searchbox" placeholder="Search for people, fanclub"/><br />
       <div id="displayUserBox">
       </div>
@@ -1066,12 +1081,6 @@ function getStatus(){
         <div class="timeline">
           <div class="plus"></div>
         </div>
-        </div>
-        <div class="item">
-          <div class="groupContainer">
-            <div class="groupTitle"><h2>Group</h2></div>
-            <div class="groupInfo"></div>
-          </div>
         </div>
         <div class="item">
           <form action="http://localhost:81/mttk-php/statusController/updateStatus" method="post" accept-charset="utf-8" enctype="multipart/form-data">

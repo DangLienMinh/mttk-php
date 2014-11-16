@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-16 09:08:10
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-16 14:40:11
          compiled from "application\views\templates\userWall.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:1527854685b6a4e80b7-69908968%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:30885468a93b7b5b91-94165108%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '0f921ff09c337117641cd650c5ceaa3930b1bdcf' => 
     array (
       0 => 'application\\views\\templates\\userWall.tpl',
-      1 => 1416123341,
+      1 => 1416145178,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1527854685b6a4e80b7-69908968',
+  'nocache_hash' => '30885468a93b7b5b91-94165108',
   'function' => 
   array (
   ),
@@ -24,9 +24,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_54685b6a81f192_08197970',
+  'unifunc' => 'content_5468a93b9ab787_60053559',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_54685b6a81f192_08197970')) {function content_54685b6a81f192_08197970($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_5468a93b9ab787_60053559')) {function content_5468a93b9ab787_60053559($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
 function getStatus(){
@@ -100,23 +100,6 @@ img/<?php echo $_smarty_tpl->tpl_vars['userPicCmtWall']->value;?>
         toggleDuration: true
       });
 
-       $(".search").keyup(function(){
-      if($(".search").val()!=''){
-        $.ajax({
-        type: "post",
-  
-        url:"<?php echo base_url('friendController/searchMenu');?>
-",
-  
-        cache: false,
-        data:'search='+$(".search").val(),
-        success: function(response){
-          $('#displayUserBox').html(response).show();
-        }
-      });
-    }
-  });
-
       $('#headlineTimeline').find('span').css("display", "block");
       $('.headlineRight a').click(function(){
         $(this).find('span').css("display", "block");
@@ -177,7 +160,7 @@ img/<?php echo $_smarty_tpl->tpl_vars['userPicCmtWall']->value;?>
 <body>
   <div id="noti_Container">
     <ul id="nav">
-    <div style=" width:300px; margin-right:23%;margin-left:12%;float:left;" align="right">
+    <div style=" width:300px; margin-right:23%;margin-left:15.5%;float:left;" align="right">
       <input type="text" class="search" id="searchbox" placeholder="Search for people, fanclub"/><br />
       <div id="displayUserBox">
       </div>
@@ -237,12 +220,6 @@ img/<?php echo $_smarty_tpl->tpl_vars['userPicCmtWall']->value;?>
         <div class="timeline">
           <div class="plus"></div>
         </div>
-        </div>
-        <div class="item">
-          <div class="groupContainer">
-            <div class="groupTitle"><h2>Group</h2></div>
-            <div class="groupInfo"></div>
-          </div>
         </div>
         <div class="item">
           <?php echo form_open_multipart('statusController/updateStatus');?>

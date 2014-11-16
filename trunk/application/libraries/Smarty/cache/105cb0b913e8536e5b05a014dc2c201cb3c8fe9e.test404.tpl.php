@@ -1,5 +1,3 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-16 16:36:42
-         compiled from "application\views\templates\test404.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:66605468c48adee586-60982996%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -12,14 +10,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     ),
   ),
   'nocache_hash' => '66605468c48adee586-60982996',
-  'function' => 
-  array (
-  ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5468c48aeb2961_99213220',
-),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5468c48aeb2961_99213220')) {function content_5468c48aeb2961_99213220($_smarty_tpl) {?><html>
+  'unifunc' => 'content_5468c48aef1350_78749984',
+  'cache_lifetime' => 120,
+),true); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_5468c48aef1350_78749984')) {function content_5468c48aef1350_78749984($_smarty_tpl) {?><html>
 <head>
 <style type="text/css">
 .frame {
@@ -59,8 +55,7 @@ background-color: black;
 </div>
 <div class="frame holder-404">
     <div class="flexible-frame">
-        <object type="application/x-shockwave-flash" name="name" data="<?php echo asset_url();?>
-/pacman.swf" width="977" height="500" id="flash-404" style="visibility: visible;"><param name="quality" value="high"><param name="wmode" value="transparent"></object>
+        <object type="application/x-shockwave-flash" name="name" data="http://localhost:81/mttk-php/assets//pacman.swf" width="977" height="500" id="flash-404" style="visibility: visible;"><param name="quality" value="high"><param name="wmode" value="transparent"></object>
     </div>
     
 </div>

@@ -66,22 +66,6 @@ function getStatus(){
         toggleDuration: true
       });
 
-       $(".search").keyup(function(){
-      if($(".search").val()!=''){
-        $.ajax({
-        type: "post",
-  {/literal}
-        url:"{base_url('friendController/searchMenu')}",
-  {literal}
-        cache: false,
-        data:'search='+$(".search").val(),
-        success: function(response){
-          $('#displayUserBox').html(response).show();
-        }
-      });
-    }
-  });
-
       $('#headlineTimeline').find('span').css("display", "block");
       $('.headlineRight a').click(function(){
         $(this).find('span').css("display", "block");
@@ -142,7 +126,7 @@ function getStatus(){
 <body>
   <div id="noti_Container">
     <ul id="nav">
-    <div style=" width:300px; margin-right:23%;margin-left:12%;float:left;" align="right">
+    <div style=" width:300px; margin-right:23%;margin-left:15.5%;float:left;" align="right">
       <input type="text" class="search" id="searchbox" placeholder="Search for people, fanclub"/><br />
       <div id="displayUserBox">
       </div>
@@ -202,12 +186,6 @@ function getStatus(){
         <div class="timeline">
           <div class="plus"></div>
         </div>
-        </div>
-        <div class="item">
-          <div class="groupContainer">
-            <div class="groupTitle"><h2>Group</h2></div>
-            <div class="groupInfo"></div>
-          </div>
         </div>
         <div class="item">
           {form_open_multipart('statusController/updateStatus')}

@@ -30,6 +30,7 @@
   window.profilePic="{uploads_url()}img/profilePic.jpg";
   window.userPic="{uploads_url()}img/";
   window.userWall="{site_url('statusController/layDSWallStatus/')}";
+  //window.fanclub="{site_url('statusController/layDSFanclubStatus/')}";
   //window.friendController="{site_url('friendController/')}";
   window.playlistIcon="{base_url()}assets/img/playlistIcon.png";
   window.userMusic="{base_url('uploads/')}";
@@ -831,5 +832,51 @@ function getFavorite(email) {
     }
   });
 }
+
+function getFanclub() {
+  $.ajax({
+    type: "post",
+{/literal}
+    url: "{base_url('fanclubController/getFanclub')}",
+{literal}
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('.fanclubInfo').append(data);
+    }
+  });
+}
+$(document).on('keyup', '.search', function() {
+      if($(".search").val()!=''){
+        $.ajax({
+        type: "post",
+  {/literal}
+        url:"{base_url('friendController/searchMenu')}",
+  {literal}
+        cache: false,
+        data:'search='+$(".search").val(),
+        success: function(response){
+          $('#displayUserBox').html(response).show();
+        }
+      });
+    }
+});
+
+$(document).on('keyup', '.searchUser', function() {
+      if($(".searchUser").val()!=''){
+        $.ajax({
+        type: "post",
+  {/literal}
+        url:"{base_url('fanclubController/searchFanclub')}",
+  {literal}
+        cache: false,
+        data:'search='+$(".searchUser").val(),
+        success: function(response){
+          $('#displayUserFanclubBox').html(response).show();
+        }
+      });
+    }
+});
 
 {/literal}
