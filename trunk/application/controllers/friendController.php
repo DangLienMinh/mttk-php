@@ -51,7 +51,7 @@
 	        	$friends.='<div class="searchUserTtile"><h3>Fanclubs</h3></div>';
 	        	foreach($result1 as $k)
 		        {
-		          $friends.='<div class="searchUserBox" align="left"><img src="'.base_url().'assets/img/groupIcon.png" style="width:40px; height:40px; float:left; margin-right:6px" /><a href="seeWall/">' . $k['fanclub_name']. '</a></div>';
+		          $friends.='<div class="searchUserBox" align="left"><img src="'.base_url().'assets/img/groupIcon.png" style="width:40px; height:40px; float:left; margin-right:6px" /><a href="'.site_url('statusController/layDSFanclubStatus/').'/'.$k['fanclub_id'].'">' . $k['fanclub_name']. '</a><span>'.$k['soluong'].' members'.'</span></div>';
 		        }
 	        }
         }else{

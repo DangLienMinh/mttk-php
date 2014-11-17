@@ -644,8 +644,8 @@ text-decoration: none;
 }
 
 #friendListContainer {
-    margin: 30px 10px;
-    width: 86%;
+    margin: 30px 61px;
+width: 86%;
 }
 
 #friendListContainer>ul {
@@ -685,8 +685,8 @@ text-decoration: none;
 }
 
 #playlistContainer {
-    margin: 30px 10px;
-    width: 86%;
+    margin: 30px 61px;
+width: 86%;
 }
 
 #playlistContainer>ul {
@@ -843,12 +843,12 @@ text-decoration: none;
 /*-----------------------------------------wall about part------------------------------------*/
 #aboutContainer{
     background: #fff;
-    color: #141823;
-    line-height: 1.28;
-    padding: 0;
-    width: 69%;
-    margin: 26px 210px;
-    overflow: hidden;
+color: #141823;
+line-height: 1.28;
+padding: 0;
+width: 69%;
+margin: 26px 260px;
+overflow: hidden;
 }
 #aboutLeft{
     float: left;
@@ -1189,6 +1189,13 @@ font-size:12px;
     background:#fff;
 }
 
+.searchUserBox span {
+   position: absolute;
+    right: 20px;
+    top: 14px;
+    font-size: 12px;
+}
+
 .searchUserBox:hover {
     background: #3b5998;
     color: #FFF!important;
@@ -1334,6 +1341,17 @@ margin: 5px 0 0 -22px;
 cursor:pointer;
 background: url("../img/delete.png") no-repeat;
 }
+a.removeMember {
+z-index: 110;
+display: block;
+padding: 11px 0 0 20px;
+height: 15px;
+width: 15px;
+margin: -15px 0 0 417px;
+cursor: pointer;
+background: url("../img/remove.png") no-repeat;
+}
+
 .root
 {
 list-style:none;
@@ -1447,4 +1465,31 @@ font-size: 11px;
 line-height: 12px;
 font-weight: bold;
 text-transform: uppercase;
+}
+
+.joinFanclub{
+    float: right;
+}
+
+.joinFanclub a{
+    font-size: 12px;
+line-height: 26px;
+padding: 0 10px;
+background-color: #6bb933;
+border-color: #60a62e #519f18 #409701;
+color: #fff;
+text-shadow: 0 -1px 0 rgba(0, 0, 0, .2);
+border: 1px solid;
+-webkit-border-radius: 2px;
+-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+-webkit-box-sizing: content-box;
+-webkit-font-smoothing: antialiased;
+font-weight: bold;
+position: relative;
+text-align: center;
+vertical-align: middle;
+cursor: pointer;
+display: inline-block;
+text-decoration: none;
+white-space: nowrap;
 }

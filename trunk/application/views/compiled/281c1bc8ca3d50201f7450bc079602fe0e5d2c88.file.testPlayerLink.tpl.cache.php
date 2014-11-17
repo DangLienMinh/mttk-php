@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-16 14:41:54
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-17 17:44:24
          compiled from "application\views\templates\testPlayerLink.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:100635468a9a2ad9c61-32546093%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:2872546a25e8e90fd6-89016782%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1416145166,
+      1 => 1416241942,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '100635468a9a2ad9c61-32546093',
+  'nocache_hash' => '2872546a25e8e90fd6-89016782',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5468a9a2cf5679_16952050',
+  'unifunc' => 'content_546a25e9067369_31794203',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5468a9a2cf5679_16952050')) {function content_5468a9a2cf5679_16952050($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_546a25e9067369_31794203')) {function content_546a25e9067369_31794203($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
 function getStatus() {
@@ -94,6 +94,8 @@ function getStatus() {
         remainingDuration: true,
         toggleDuration: true
       });
+      $('.fanclubInfo').append('<div class="fanclubUserBox" align="left"><a href="'+window.createFanclub+'" class="iframe">Create new fanclub</a></div>');
+      $(".iframe").colorbox({iframe:true, width:"50%", height:"50%"});
   });
   </script>
  
@@ -143,7 +145,9 @@ function getStatus() {
     </div>
     <div class="fanclubContainer">
       <div class="fanclubTitle"><h3>FANCLUB</h3></div>
-      <div class="fanclubInfo"></div>
+      <div class="fanclubInfo">
+
+      </div>
     </div>
     <div id="container">
       <div class="timeline_container">

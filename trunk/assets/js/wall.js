@@ -577,7 +577,6 @@ $(document).on('click', '.edit_link', function() {
 });
 
 $(document).on('click', '.insertAbout', function() {
-
 	var parent = $(this).parent();
 	$(this).hide();
 	parent.find('.edit_link').css("display","block");
@@ -593,14 +592,20 @@ $(document).on('mouseup', '.editInput', function() {
 });
 
 
-$(document).mouseup(function() {
+$(document).mouseup(function(e) {
 	$(".submenu").hide();
 	$(".account").attr('id', '');
 	$('.edit').hide();
 	$('.text_wrapper').show();
 	$('.text_wrapper1').show();
 	$('#displayUserBox').hide();
-	$('#displayUserFanclubBox').hide();
+	var container = $("#displayUserFanclubBox");
+
+    if (!container.is(e.target) // if the target of the click isn't the container...
+        && container.has(e.target).length === 0) // ... nor a descendant of the container
+    {
+        container.hide();
+    }
 });
 
 $(document).on('mouseover', '.item', function() {

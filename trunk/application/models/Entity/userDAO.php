@@ -58,11 +58,12 @@ class UserDAO
 		return $results;
 	}
 
-	public function timUserFriend($name,$email){
+	public function timUserFriend($name,$email,$fanclub){
 		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL timUserFriend(?,?)");
+		$sth = $cnn->prepare("CALL timUserFriend(?,?,?)");
 		$sth->bindValue(1, $name);
 		$sth->bindValue(2, $email);
+		$sth->bindValue(3, $fanclub);
 		// execute and fetch
 		$sth->execute();
 		$result = $sth->fetchAll();

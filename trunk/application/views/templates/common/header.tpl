@@ -27,6 +27,7 @@
   <script type="text/javascript">
   //window.notifyStatus="{site_url('statusController/hienThiNotiStatus/')}";
   window.cretePlaylist="{site_url('playlistController/viewPlaylist/')}";
+  window.createFanclub="{site_url('fanclubController/createFanclub/')}";
   window.profilePic="{uploads_url()}img/profilePic.jpg";
   window.userPic="{uploads_url()}img/";
   window.userWall="{site_url('statusController/layDSWallStatus/')}";
@@ -201,6 +202,24 @@ function getFriendList(email) {
     }
   });
 }
+
+function getMembers(fanclub) {
+  var dataString = 'fanclub_id=' + fanclub;
+  $.ajax({
+    type: "post",
+{/literal}
+    url: "{base_url('fanclubController/getAllMembers')}",
+{literal}
+    async: true,
+    data:dataString,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+     $('#friendListContainer>ul').append(data);
+    }
+  });
+}
+
 
 function getConversation(userEmail) {
   if(typeof userEmail !== 'undefined'){
@@ -858,22 +877,6 @@ $(document).on('keyup', '.search', function() {
         data:'search='+$(".search").val(),
         success: function(response){
           $('#displayUserBox').html(response).show();
-        }
-      });
-    }
-});
-
-$(document).on('keyup', '.searchUser', function() {
-      if($(".searchUser").val()!=''){
-        $.ajax({
-        type: "post",
-  {/literal}
-        url:"{base_url('fanclubController/searchFanclub')}",
-  {literal}
-        cache: false,
-        data:'search='+$(".searchUser").val(),
-        success: function(response){
-          $('#displayUserFanclubBox').html(response).show();
         }
       });
     }

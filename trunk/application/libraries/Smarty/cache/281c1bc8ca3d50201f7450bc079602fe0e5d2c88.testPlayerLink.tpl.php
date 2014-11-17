@@ -1,27 +1,27 @@
-<?php /*%%SmartyHeaderCode:100635468a9a2ad9c61-32546093%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:2872546a25e8e90fd6-89016782%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '281c1bc8ca3d50201f7450bc079602fe0e5d2c88' => 
     array (
       0 => 'application\\views\\templates\\testPlayerLink.tpl',
-      1 => 1416145166,
+      1 => 1416241942,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1416144995,
+      1 => 1416241809,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '100635468a9a2ad9c61-32546093',
+  'nocache_hash' => '2872546a25e8e90fd6-89016782',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5468a9a34f37b5_62835937',
+  'unifunc' => 'content_546a25e94101d3_09734305',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5468a9a34f37b5_62835937')) {function content_5468a9a34f37b5_62835937($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_546a25e94101d3_09734305')) {function content_546a25e94101d3_09734305($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -50,6 +50,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <script type="text/javascript">
   //window.notifyStatus="http://localhost:81/mttk-php/statusController/hienThiNotiStatus";
   window.cretePlaylist="http://localhost:81/mttk-php/playlistController/viewPlaylist";
+  window.createFanclub="http://localhost:81/mttk-php/fanclubController/createFanclub";
   window.profilePic="http://localhost:81/mttk-php/uploads/img/profilePic.jpg";
   window.userPic="http://localhost:81/mttk-php/uploads/img/";
   window.userWall="http://localhost:81/mttk-php/statusController/layDSWallStatus";
@@ -224,6 +225,24 @@ function getFriendList(email) {
     }
   });
 }
+
+function getMembers(fanclub) {
+  var dataString = 'fanclub_id=' + fanclub;
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/fanclubController/getAllMembers",
+
+    async: true,
+    data:dataString,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+     $('#friendListContainer>ul').append(data);
+    }
+  });
+}
+
 
 function getConversation(userEmail) {
   if(typeof userEmail !== 'undefined'){
@@ -959,6 +978,8 @@ function getStatus() {
         remainingDuration: true,
         toggleDuration: true
       });
+      $('.fanclubInfo').append('<div class="fanclubUserBox" align="left"><a href="'+window.createFanclub+'" class="iframe">Create new fanclub</a></div>');
+      $(".iframe").colorbox({iframe:true, width:"50%", height:"50%"});
   });
   </script>
  
@@ -1008,7 +1029,9 @@ function getStatus() {
     </div>
     <div class="fanclubContainer">
       <div class="fanclubTitle"><h3>FANCLUB</h3></div>
-      <div class="fanclubInfo"></div>
+      <div class="fanclubInfo">
+
+      </div>
     </div>
     <div id="container">
       <div class="timeline_container">
