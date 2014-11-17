@@ -1,21 +1,21 @@
-<?php /*%%SmartyHeaderCode:222845468c47a0c0bc1-40383172%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:30380546a25fd299ac0-78263277%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '097b971e45f0ace5089d3906e771110d9aaf25a6' => 
     array (
       0 => 'application\\views\\templates\\fanclub.tpl',
-      1 => 1416151791,
+      1 => 1416241102,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1416151825,
+      1 => 1416241809,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '222845468c47a0c0bc1-40383172',
+  'nocache_hash' => '30380546a25fd299ac0-78263277',
   'variables' => 
   array (
     'items' => 0,
@@ -25,10 +25,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5468c47a5f3fe3_25853244',
+  'unifunc' => 'content_546a25fd7e9fe9_27515192',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5468c47a5f3fe3_25853244')) {function content_5468c47a5f3fe3_25853244($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_546a25fd7e9fe9_27515192')) {function content_546a25fd7e9fe9_27515192($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -57,6 +57,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <script type="text/javascript">
   //window.notifyStatus="http://localhost:81/mttk-php/statusController/hienThiNotiStatus";
   window.cretePlaylist="http://localhost:81/mttk-php/playlistController/viewPlaylist";
+  window.createFanclub="http://localhost:81/mttk-php/fanclubController/createFanclub";
   window.profilePic="http://localhost:81/mttk-php/uploads/img/profilePic.jpg";
   window.userPic="http://localhost:81/mttk-php/uploads/img/";
   window.userWall="http://localhost:81/mttk-php/statusController/layDSWallStatus";
@@ -231,6 +232,24 @@ function getFriendList(email) {
     }
   });
 }
+
+function getMembers(fanclub) {
+  var dataString = 'fanclub_id=' + fanclub;
+  $.ajax({
+    type: "post",
+
+    url: "http://localhost:81/mttk-php/fanclubController/getAllMembers",
+
+    async: true,
+    data:dataString,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+     $('#friendListContainer>ul').append(data);
+    }
+  });
+}
+
 
 function getConversation(userEmail) {
   if(typeof userEmail !== 'undefined'){
@@ -893,22 +912,6 @@ $(document).on('keyup', '.search', function() {
     }
 });
 
-$(document).on('keyup', '.searchUser', function() {
-      if($(".searchUser").val()!=''){
-        $.ajax({
-        type: "post",
-  
-        url:"http://localhost:81/mttk-php/fanclubController/searchFanclub",
-  
-        cache: false,
-        data:'search='+$(".searchUser").val(),
-        success: function(response){
-          $('#displayUserFanclubBox').html(response).show();
-        }
-      });
-    }
-});
-
 
 
 function getStatus(){
@@ -916,16 +919,16 @@ function getStatus(){
         /* This requests the url "msgsrv.php"
         When it complete (or errors)*/
 
-      data=[{"status_id":"43","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZWZE0FOA&h=mp3.zing.vn","title":"A Thousand Years + Christina Perri","message":"1 l\u1ea7n cu\u1ed1i","created_at":"2014-11-16 20:15:45","thumbs_up":"0","privacy_type_id":"1","email":"anhtiminh@yahoo.com","picture":"shot0006.jpg","name":"minh dang"},{"status_id":"42","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZWZ9ZCA7&h=mp3.zing.vn","title":"The One That Got Away + Katy Perry","message":"l\u1ea1i n\u00e0o","created_at":"2014-11-16 20:11:59","thumbs_up":"0","privacy_type_id":"1","email":"anhtiminh@yahoo.com","picture":"shot0006.jpg","name":"minh dang"},{"status_id":"41","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZW6D99WF&h=mp3.zing.vn","title":"\u8d8a\u96e3\u8d8a\u611b \/ C\u00e0ng Kh\u00f3 C\u00e0ng Y\u00eau (S\u1ee9 \u0110\u1ed3 H\u00e0nh Gi\u1ea3 OST) + Ng\u00f4 Nh\u01b0\u1ee3c Hy","message":"what's now","created_at":"2014-11-16 20:06:08","thumbs_up":"0","privacy_type_id":"1","email":"anhtiminh@yahoo.com","picture":"shot0006.jpg","name":"minh dang"}]
+      data=[]
 
     addStatusUserWall(data);
   }
   </script>
   <script>
 
-  window.fanclub="1";
+  window.fanclub="2";
   window.fanclubName="minh";
-  window.fanclubDesc="Group nay huong dan cac ban dat diem cao trong mon toeic he he...";
+  window.fanclubDesc="toeic test";
 
   $(document).ready(function() {
     waitForMsg();
@@ -935,6 +938,7 @@ function getStatus(){
     getSuggest();
     getPlaylistUpdateStatus();
     getFanclub();
+    getMembers(window.fanclub);
     $("input[name='fanclub_id']").val(window.fanclub);
     $("#target").autoGrow();
     $('#tabs').tabs({
@@ -957,8 +961,10 @@ function getStatus(){
         }
     });
 
+
     $('#fanclubCover').append('<div class="fanclubCoverName"><b><a href="#">' + window.fanclubName + '</a></b></div><div class="fanclubCoverDesc"><b><a href="#">' + window.fanclubDesc + '</a></b></div>');
     $('#aboutFanclubDesc').append('<p>'+window.fanclubDesc+'</p>');
+    $('#headlineFanclub').append('<span>'+window.fanclubName+'</span>');
       $("#jquery_jplayer_1").jPlayer({
         ready: function (event) {
           $(this).jPlayer("setMedia", {
@@ -974,7 +980,85 @@ function getStatus(){
         remainingDuration: true,
         toggleDuration: true
       });
+
+   $('#headlineFanclub').click(function(){
+        $('#fanclubContainer').find('#view1').show();
+        $('#fanclubContainer').find('#view1').siblings('div').hide();
+        $('#container').masonry({
+          itemSelector: '.item'
+        });
+        Arrow_Points();
+      });
+      $('#headlineMembers').click(function(){
+        $('#fanclubContainer').find('#view2').show();
+        $('#fanclubContainer').find('#view2').siblings('div').hide();
+      });
+
   });
+
+  $(document).on('click', '#displayUserFanclubBox .searchUserBox a', function() {
+    var user=$(this).attr('rel');
+    var parent=$(this).parent();
+    $.ajax({
+          type: "post",
+    
+          url:"http://localhost:81/mttk-php/fanclubController/themFanclubUser",
+    
+          cache: false,
+          data:'fanclub_id='+window.fanclub+'&user='+user,
+          success: function(response){
+            parent.fadeOut('slow');
+          }
+    });
+    return false;
+  });
+  $(document).on('keyup', '.searchUser', function() {
+      if($(".searchUser").val()!=''){
+        $.ajax({
+        type: "post",
+  
+        url:"http://localhost:81/mttk-php/fanclubController/searchFanclub",
+  
+        cache: false,
+        data:'search='+$(".searchUser").val()+'&fanclub='+window.fanclub,
+        success: function(response){
+          $('#displayUserFanclubBox').html(response).show();
+        }
+      });
+    }
+});
+  $(document).on('click', '.removeMember', function() {
+    var parent=$(this).parent();
+    var email=parent.find('button').val();
+        $.ajax({
+        type: "post",
+  
+        url:"http://localhost:81/mttk-php/fanclubController/removeMember",
+  
+        cache: false,
+        data:'email='+email+'&fanclub_id='+window.fanclub,
+        success: function(response){
+          parent.fadeOut('slow');
+        }
+      });
+});
+
+  $(document).on('click', '#headlineLeave', function() {
+      if (confirm("Are your sure?")) {
+        $.ajax({
+        type: "post",
+  
+        url:"http://localhost:81/mttk-php/fanclubController/tuRemoveKhoiFanlub",
+  
+        cache: false,
+        data:'fanclub_id='+window.fanclub,
+        success: function(response){
+          window.location.href = window.homePage;
+        }
+      });
+      }
+});
+  
   </script>
  
 </head>
@@ -1026,14 +1110,15 @@ function getStatus(){
     </div>
     <div id="headline">
       <div class="headlineRight">
-        <a id="headlineTimeline" href="#">TimeLine</a>
-        <a id="headlineAbout" href="#">About</a>
-        <a id="headlineFriendList" href="#">Friends</a>
-        <a id="headlinePlaylist" href="#">Playlist</a>
-        <a class="" href="#">More</a>
+        <a id="headlineFanclub" href="#"></a>
+        <a id="headlineMembers" href="#">Members</a>
+        <a id="headlineEvent" href="#">Events</a>
+        <a id="headlineLeave" href="#">Leave group</a>
       </div>
     </div>
   </div>
+  <div id="fanclubContainer">
+  <div id="view1">
     <div id="container">
       <div class="timeline_container">
         <div class="timeline">
@@ -1198,6 +1283,15 @@ function getStatus(){
     <input type="hidden" id="urlMusic"/>
     <button id="savePlaylist">Save</button>
   </div>
-
+  </div>
+  <div id="view2" style="display:none;">
+        <div id="friendListContainer"><ul></ul></div>
+  </div>
+  <div id="view3" style="display:none;">
+        <div id="playlistContainer">
+          <ul></ul>
+        </div>
+  </div>
+</div>
 </body>
 </html><?php }} ?>

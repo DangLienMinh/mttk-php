@@ -24,6 +24,7 @@ function getStatus(){
     getSuggest();
     getPlaylistUpdateStatus();
     getFanclub();
+    getMembers(window.fanclub);
     $("input[name='fanclub_id']").val(window.fanclub);
     $("#target").autoGrow();
     $('#tabs').tabs({
@@ -46,8 +47,10 @@ function getStatus(){
         }
     });
 
+
     $('#fanclubCover').append('<div class="fanclubCoverName"><b><a href="#">' + window.fanclubName + '</a></b></div><div class="fanclubCoverDesc"><b><a href="#">' + window.fanclubDesc + '</a></b></div>');
     $('#aboutFanclubDesc').append('<p>'+window.fanclubDesc+'</p>');
+    $('#headlineFanclub').append('<span>'+window.fanclubName+'</span>');
       $("#jquery_jplayer_1").jPlayer({
         ready: function (event) {
           $(this).jPlayer("setMedia", {
@@ -63,7 +66,85 @@ function getStatus(){
         remainingDuration: true,
         toggleDuration: true
       });
+
+   $('#headlineFanclub').click(function(){
+        $('#fanclubContainer').find('#view1').show();
+        $('#fanclubContainer').find('#view1').siblings('div').hide();
+        $('#container').masonry({
+          itemSelector: '.item'
+        });
+        Arrow_Points();
+      });
+      $('#headlineMembers').click(function(){
+        $('#fanclubContainer').find('#view2').show();
+        $('#fanclubContainer').find('#view2').siblings('div').hide();
+      });
+
   });
+
+  $(document).on('click', '#displayUserFanclubBox .searchUserBox a', function() {
+    var user=$(this).attr('rel');
+    var parent=$(this).parent();
+    $.ajax({
+          type: "post",
+    {/literal}
+          url:"{base_url('fanclubController/themFanclubUser')}",
+    {literal}
+          cache: false,
+          data:'fanclub_id='+window.fanclub+'&user='+user,
+          success: function(response){
+            parent.fadeOut('slow');
+          }
+    });
+    return false;
+  });
+  $(document).on('keyup', '.searchUser', function() {
+      if($(".searchUser").val()!=''){
+        $.ajax({
+        type: "post",
+  {/literal}
+        url:"{base_url('fanclubController/searchFanclub')}",
+  {literal}
+        cache: false,
+        data:'search='+$(".searchUser").val()+'&fanclub='+window.fanclub,
+        success: function(response){
+          $('#displayUserFanclubBox').html(response).show();
+        }
+      });
+    }
+});
+  $(document).on('click', '.removeMember', function() {
+    var parent=$(this).parent();
+    var email=parent.find('button').val();
+        $.ajax({
+        type: "post",
+  {/literal}
+        url:"{base_url('fanclubController/removeMember')}",
+  {literal}
+        cache: false,
+        data:'email='+email+'&fanclub_id='+window.fanclub,
+        success: function(response){
+          parent.fadeOut('slow');
+        }
+      });
+});
+
+  $(document).on('click', '#headlineLeave', function() {
+      if (confirm("Are your sure?")) {
+        $.ajax({
+        type: "post",
+  {/literal}
+        url:"{base_url('fanclubController/tuRemoveKhoiFanlub')}",
+  {literal}
+        cache: false,
+        data:'fanclub_id='+window.fanclub,
+        success: function(response){
+          window.location.href = window.homePage;
+        }
+      });
+      }
+});
+  
   </script>
  {/literal}
 </head>
@@ -115,14 +196,15 @@ function getStatus(){
     </div>
     <div id="headline">
       <div class="headlineRight">
-        <a id="headlineTimeline" href="#">TimeLine</a>
-        <a id="headlineAbout" href="#">About</a>
-        <a id="headlineFriendList" href="#">Friends</a>
-        <a id="headlinePlaylist" href="#">Playlist</a>
-        <a class="" href="#">More</a>
+        <a id="headlineFanclub" href="#"></a>
+        <a id="headlineMembers" href="#">Members</a>
+        <a id="headlineEvent" href="#">Events</a>
+        <a id="headlineLeave" href="#">Leave group</a>
       </div>
     </div>
   </div>
+  <div id="fanclubContainer">
+  <div id="view1">
     <div id="container">
       <div class="timeline_container">
         <div class="timeline">
@@ -287,6 +369,15 @@ function getStatus(){
     <input type="hidden" id="urlMusic"/>
     <button id="savePlaylist">Save</button>
   </div>
-
+  </div>
+  <div id="view2" style="display:none;">
+        <div id="friendListContainer"><ul></ul></div>
+  </div>
+  <div id="view3" style="display:none;">
+        <div id="playlistContainer">
+          <ul></ul>
+        </div>
+  </div>
+</div>
 </body>
 </html>

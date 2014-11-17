@@ -71,6 +71,8 @@ function getStatus() {
         remainingDuration: true,
         toggleDuration: true
       });
+      $('.fanclubInfo').append('<div class="fanclubUserBox" align="left"><a href="'+window.createFanclub+'" class="iframe">Create new fanclub</a></div>');
+      $(".iframe").colorbox({iframe:true, width:"50%", height:"50%"});
   });
   </script>
  {/literal}
@@ -120,7 +122,9 @@ function getStatus() {
     </div>
     <div class="fanclubContainer">
       <div class="fanclubTitle"><h3>FANCLUB</h3></div>
-      <div class="fanclubInfo"></div>
+      <div class="fanclubInfo">
+
+      </div>
     </div>
     <div id="container">
       <div class="timeline_container">

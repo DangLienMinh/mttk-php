@@ -81,15 +81,27 @@ class StatusController extends CI_Controller {
         $result= json_encode($result);
 
         $fanclubInfo=$fanclub->getFanclubByID($fanclubid);
-        
-        $this->smarty->assign('fanclubName',$fanclubInfo[0]['fanclub_name']);
-        $this->smarty->assign('fanclubDesc',$fanclubInfo[0]['fanclub_desc']);
-        $this->smarty->assign('items',$result);
-        $this->smarty->assign('fanclub',$fanclubid);
-        $this->smarty->assign('userPicCmt',$this->session->userdata('pic'));
-        $this->smarty->assign('userName',$this->session->userdata('first_name').' '.$this->session->userdata('last_name'));
-        $this->smarty->assign('userLogin',$this->session->userdata('email'));
-        $this->smarty->view('fanclub');
+        $checkCreate=$fanclub->checkUserCreateGroup($this->session->userdata('email'),$fanclubid);
+        $checkIn=$fanclub->checkUserMemberGroup($this->session->userdata('email'),$fanclubid);
+        if($checkCreate[0]['checked']==0&&$checkIn[0]['checked']==0){
+            $this->smarty->assign('fanclubName',$fanclubInfo[0]['fanclub_name']);
+            $this->smarty->assign('fanclubDesc',$fanclubInfo[0]['fanclub_desc']);
+            $this->smarty->assign('items',$result);
+            $this->smarty->assign('fanclub',$fanclubid);
+            $this->smarty->assign('userPicCmt',$this->session->userdata('pic'));
+            $this->smarty->assign('userName',$this->session->userdata('first_name').' '.$this->session->userdata('last_name'));
+            $this->smarty->assign('userLogin',$this->session->userdata('email'));
+            $this->smarty->view('unregisteredFanclub');
+        }else{
+            $this->smarty->assign('fanclubName',$fanclubInfo[0]['fanclub_name']);
+            $this->smarty->assign('fanclubDesc',$fanclubInfo[0]['fanclub_desc']);
+            $this->smarty->assign('items',$result);
+            $this->smarty->assign('fanclub',$fanclubid);
+            $this->smarty->assign('userPicCmt',$this->session->userdata('pic'));
+            $this->smarty->assign('userName',$this->session->userdata('first_name').' '.$this->session->userdata('last_name'));
+            $this->smarty->assign('userLogin',$this->session->userdata('email'));
+            $this->smarty->view('fanclub');
+        }
     }
 
 	public function chooseMusic(){

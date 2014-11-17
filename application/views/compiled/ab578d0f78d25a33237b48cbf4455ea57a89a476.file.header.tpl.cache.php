@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-16 16:36:26
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-17 17:44:45
          compiled from "application\views\templates\common\header.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:267095468c47a2688d2-00800802%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:8053546a25fd456e14-20243264%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1416151825,
+      1 => 1416241809,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '267095468c47a2688d2-00800802',
+  'nocache_hash' => '8053546a25fd456e14-20243264',
   'function' => 
   array (
   ),
@@ -23,9 +23,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5468c47a551b42_45941112',
+  'unifunc' => 'content_546a25fd74d414_85303455',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5468c47a551b42_45941112')) {function content_5468c47a551b42_45941112($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_546a25fd74d414_85303455')) {function content_546a25fd74d414_85303455($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -74,6 +74,8 @@ js/jquery.emotions.js"></script>
   //window.notifyStatus="<?php echo site_url('statusController/hienThiNotiStatus/');?>
 ";
   window.cretePlaylist="<?php echo site_url('playlistController/viewPlaylist/');?>
+";
+  window.createFanclub="<?php echo site_url('fanclubController/createFanclub/');?>
 ";
   window.profilePic="<?php echo uploads_url();?>
 img/profilePic.jpg";
@@ -270,6 +272,25 @@ function getFriendList(email) {
     }
   });
 }
+
+function getMembers(fanclub) {
+  var dataString = 'fanclub_id=' + fanclub;
+  $.ajax({
+    type: "post",
+
+    url: "<?php echo base_url('fanclubController/getAllMembers');?>
+",
+
+    async: true,
+    data:dataString,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+     $('#friendListContainer>ul').append(data);
+    }
+  });
+}
+
 
 function getConversation(userEmail) {
   if(typeof userEmail !== 'undefined'){
@@ -960,23 +981,6 @@ $(document).on('keyup', '.search', function() {
         data:'search='+$(".search").val(),
         success: function(response){
           $('#displayUserBox').html(response).show();
-        }
-      });
-    }
-});
-
-$(document).on('keyup', '.searchUser', function() {
-      if($(".searchUser").val()!=''){
-        $.ajax({
-        type: "post",
-  
-        url:"<?php echo base_url('fanclubController/searchFanclub');?>
-",
-  
-        cache: false,
-        data:'search='+$(".searchUser").val(),
-        success: function(response){
-          $('#displayUserFanclubBox').html(response).show();
         }
       });
     }

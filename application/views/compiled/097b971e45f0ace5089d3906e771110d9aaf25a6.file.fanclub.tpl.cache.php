@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-16 16:36:26
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-17 17:44:45
          compiled from "application\views\templates\fanclub.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:222845468c47a0c0bc1-40383172%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:30380546a25fd299ac0-78263277%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '097b971e45f0ace5089d3906e771110d9aaf25a6' => 
     array (
       0 => 'application\\views\\templates\\fanclub.tpl',
-      1 => 1416151791,
+      1 => 1416241102,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '222845468c47a0c0bc1-40383172',
+  'nocache_hash' => '30380546a25fd299ac0-78263277',
   'function' => 
   array (
   ),
@@ -24,9 +24,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5468c47a206a48_29861591',
+  'unifunc' => 'content_546a25fd40aeb9_47352295',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5468c47a206a48_29861591')) {function content_5468c47a206a48_29861591($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_546a25fd40aeb9_47352295')) {function content_546a25fd40aeb9_47352295($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
 function getStatus(){
@@ -57,6 +57,7 @@ function getStatus(){
     getSuggest();
     getPlaylistUpdateStatus();
     getFanclub();
+    getMembers(window.fanclub);
     $("input[name='fanclub_id']").val(window.fanclub);
     $("#target").autoGrow();
     $('#tabs').tabs({
@@ -79,8 +80,10 @@ function getStatus(){
         }
     });
 
+
     $('#fanclubCover').append('<div class="fanclubCoverName"><b><a href="#">' + window.fanclubName + '</a></b></div><div class="fanclubCoverDesc"><b><a href="#">' + window.fanclubDesc + '</a></b></div>');
     $('#aboutFanclubDesc').append('<p>'+window.fanclubDesc+'</p>');
+    $('#headlineFanclub').append('<span>'+window.fanclubName+'</span>');
       $("#jquery_jplayer_1").jPlayer({
         ready: function (event) {
           $(this).jPlayer("setMedia", {
@@ -96,7 +99,89 @@ function getStatus(){
         remainingDuration: true,
         toggleDuration: true
       });
+
+   $('#headlineFanclub').click(function(){
+        $('#fanclubContainer').find('#view1').show();
+        $('#fanclubContainer').find('#view1').siblings('div').hide();
+        $('#container').masonry({
+          itemSelector: '.item'
+        });
+        Arrow_Points();
+      });
+      $('#headlineMembers').click(function(){
+        $('#fanclubContainer').find('#view2').show();
+        $('#fanclubContainer').find('#view2').siblings('div').hide();
+      });
+
   });
+
+  $(document).on('click', '#displayUserFanclubBox .searchUserBox a', function() {
+    var user=$(this).attr('rel');
+    var parent=$(this).parent();
+    $.ajax({
+          type: "post",
+    
+          url:"<?php echo base_url('fanclubController/themFanclubUser');?>
+",
+    
+          cache: false,
+          data:'fanclub_id='+window.fanclub+'&user='+user,
+          success: function(response){
+            parent.fadeOut('slow');
+          }
+    });
+    return false;
+  });
+  $(document).on('keyup', '.searchUser', function() {
+      if($(".searchUser").val()!=''){
+        $.ajax({
+        type: "post",
+  
+        url:"<?php echo base_url('fanclubController/searchFanclub');?>
+",
+  
+        cache: false,
+        data:'search='+$(".searchUser").val()+'&fanclub='+window.fanclub,
+        success: function(response){
+          $('#displayUserFanclubBox').html(response).show();
+        }
+      });
+    }
+});
+  $(document).on('click', '.removeMember', function() {
+    var parent=$(this).parent();
+    var email=parent.find('button').val();
+        $.ajax({
+        type: "post",
+  
+        url:"<?php echo base_url('fanclubController/removeMember');?>
+",
+  
+        cache: false,
+        data:'email='+email+'&fanclub_id='+window.fanclub,
+        success: function(response){
+          parent.fadeOut('slow');
+        }
+      });
+});
+
+  $(document).on('click', '#headlineLeave', function() {
+      if (confirm("Are your sure?")) {
+        $.ajax({
+        type: "post",
+  
+        url:"<?php echo base_url('fanclubController/tuRemoveKhoiFanlub');?>
+",
+  
+        cache: false,
+        data:'fanclub_id='+window.fanclub,
+        success: function(response){
+          window.location.href = window.homePage;
+        }
+      });
+      }
+});
+  
   </script>
  
 </head>
@@ -148,14 +233,15 @@ function getStatus(){
     </div>
     <div id="headline">
       <div class="headlineRight">
-        <a id="headlineTimeline" href="#">TimeLine</a>
-        <a id="headlineAbout" href="#">About</a>
-        <a id="headlineFriendList" href="#">Friends</a>
-        <a id="headlinePlaylist" href="#">Playlist</a>
-        <a class="" href="#">More</a>
+        <a id="headlineFanclub" href="#"></a>
+        <a id="headlineMembers" href="#">Members</a>
+        <a id="headlineEvent" href="#">Events</a>
+        <a id="headlineLeave" href="#">Leave group</a>
       </div>
     </div>
   </div>
+  <div id="fanclubContainer">
+  <div id="view1">
     <div id="container">
       <div class="timeline_container">
         <div class="timeline">
@@ -322,6 +408,15 @@ function getStatus(){
     <input type="hidden" id="urlMusic"/>
     <button id="savePlaylist">Save</button>
   </div>
-
+  </div>
+  <div id="view2" style="display:none;">
+        <div id="friendListContainer"><ul></ul></div>
+  </div>
+  <div id="view3" style="display:none;">
+        <div id="playlistContainer">
+          <ul></ul>
+        </div>
+  </div>
+</div>
 </body>
 </html><?php }} ?>
