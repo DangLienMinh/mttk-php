@@ -34,8 +34,10 @@
   //window.fanclub="{site_url('statusController/layDSFanclubStatus/')}";
   //window.friendController="{site_url('friendController/')}";
   window.playlistIcon="{base_url()}assets/img/playlistIcon.png";
+  window.logoutIcon="{base_url()}assets/img/logout.png";
+  window.logout="{site_url('userController/logout/')}";
   window.userMusic="{base_url('uploads/')}";
-  window.homePage="{base_url('main/testPlayer/')}";
+  window.homePage="{base_url('main/homePage/')}";
   window.userPicCmt="{uploads_url()}img/{$userPicCmt}";
   window.userLogin="{$userLogin}";
   window.userName="{$userName}";
@@ -339,6 +341,7 @@ function friendRequest() {
       }
       $('#personalPage').append('<div class="cmtpic" align="center"><img src="' + window.userPicCmt + '" style="width:23px;height:23px;" /></div><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b>');
       $('#cover').append('<div class="coverImg hexagon hexagon1"><div class="hexagon-in1"><div class="hexagon-in2" style="background: url('+"'"+window.userPicCmtWall+"') no-repeat; background-size: 103px 103px!important; background-position: 50%;"+'" ></div></div></div><span class="coverName"><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userNameWall + '</a></b></span>');
+      $('#logoutContainer').append('<a title="logout" href="'+window.logout+'" ><img src="'+window.logoutIcon+'" style="width:19px;height:19px;"/></a>');
     }
   });
 }

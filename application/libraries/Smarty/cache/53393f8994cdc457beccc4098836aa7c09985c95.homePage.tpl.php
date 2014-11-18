@@ -1,34 +1,39 @@
-<?php /*%%SmartyHeaderCode:30380546a25fd299ac0-78263277%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:31118546b5bfe224625-75630450%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '097b971e45f0ace5089d3906e771110d9aaf25a6' => 
+    '53393f8994cdc457beccc4098836aa7c09985c95' => 
     array (
-      0 => 'application\\views\\templates\\fanclub.tpl',
-      1 => 1416241102,
+      0 => 'application\\views\\templates\\homePage.tpl',
+      1 => 1416318791,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1416241809,
+      1 => 1416321293,
+      2 => 'file',
+    ),
+    '43fa4b8fd8c47d297992bda3dda6ee24684e1de9' => 
+    array (
+      0 => 'application\\views\\templates\\common\\notificationPart.tpl',
+      1 => 1416321946,
+      2 => 'file',
+    ),
+    '1f54f66af881d5f8352e0fc1b00021e7b247dd60' => 
+    array (
+      0 => 'application\\views\\templates\\common\\mainPart.tpl',
+      1 => 1416322027,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '30380546a25fd299ac0-78263277',
-  'variables' => 
-  array (
-    'items' => 0,
-    'fanclub' => 0,
-    'fanclubName' => 0,
-    'fanclubDesc' => 0,
-  ),
+  'nocache_hash' => '31118546b5bfe224625-75630450',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546a25fd7e9fe9_27515192',
+  'unifunc' => 'content_546b5bff9742b6_72269771',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546a25fd7e9fe9_27515192')) {function content_546a25fd7e9fe9_27515192($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_546b5bff9742b6_72269771')) {function content_546b5bff9742b6_72269771($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -64,8 +69,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   //window.fanclub="http://localhost:81/mttk-php/statusController/layDSFanclubStatus";
   //window.friendController="http://localhost:81/mttk-php/friendController";
   window.playlistIcon="http://localhost:81/mttk-php/assets/img/playlistIcon.png";
+  window.logoutIcon="http://localhost:81/mttk-php/assets/img/logout.png";
+  window.logout="http://localhost:81/mttk-php/userController/logout";
   window.userMusic="http://localhost:81/mttk-php/uploads";
-  window.homePage="http://localhost:81/mttk-php/main/testPlayer";
+  window.homePage="http://localhost:81/mttk-php/main/homePage";
   window.userPicCmt="http://localhost:81/mttk-php/uploads/img/shot0006.jpg";
   window.userLogin="anhtiminh@yahoo.com";
   window.userName="minh dang";
@@ -369,6 +376,7 @@ function friendRequest() {
       }
       $('#personalPage').append('<div class="cmtpic" align="center"><img src="' + window.userPicCmt + '" style="width:23px;height:23px;" /></div><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b>');
       $('#cover').append('<div class="coverImg hexagon hexagon1"><div class="hexagon-in1"><div class="hexagon-in2" style="background: url('+"'"+window.userPicCmtWall+"') no-repeat; background-size: 103px 103px!important; background-position: 50%;"+'" ></div></div></div><span class="coverName"><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userNameWall + '</a></b></span>');
+      $('#logoutContainer').append('<a title="logout" href="'+window.logout+'" ><img src="'+window.logoutIcon+'" style="width:19px;height:19px;"/></a>');
     }
   });
 }
@@ -914,22 +922,32 @@ $(document).on('keyup', '.search', function() {
 
 
 
-function getStatus(){
-      var data;
-        /* This requests the url "msgsrv.php"
-        When it complete (or errors)*/
+function getStatus() {
+  $.ajax({
+    type: "post",
 
-      data=[]
+    url: "http://localhost:81/mttk-php/statusController/index",
 
-    addStatusUserWall(data);
-  }
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      addStatus(data);
+      setTimeout(
+        getStatus,
+        600000
+      );
+    },
+    error: function(XMLHttpRequest, textStatus, errorThrown) {
+      addStatus("error", textStatus + " (" + errorThrown + ")");
+      setTimeout(
+        getStatus,
+        15000);
+    }
+  });
+}
   </script>
   <script>
-
-  window.fanclub="2";
-  window.fanclubName="minh";
-  window.fanclubDesc="toeic test";
-
   $(document).ready(function() {
     waitForMsg();
     friendRequest();
@@ -938,8 +956,7 @@ function getStatus(){
     getSuggest();
     getPlaylistUpdateStatus();
     getFanclub();
-    getMembers(window.fanclub);
-    $("input[name='fanclub_id']").val(window.fanclub);
+
     $("#target").autoGrow();
     $('#tabs').tabs({
       activate: function(event, ui) {
@@ -961,10 +978,6 @@ function getStatus(){
         }
     });
 
-
-    $('#fanclubCover').append('<div class="fanclubCoverName"><b><a href="#">' + window.fanclubName + '</a></b></div><div class="fanclubCoverDesc"><b><a href="#">' + window.fanclubDesc + '</a></b></div>');
-    $('#aboutFanclubDesc').append('<p>'+window.fanclubDesc+'</p>');
-    $('#headlineFanclub').append('<span>'+window.fanclubName+'</span>');
       $("#jquery_jplayer_1").jPlayer({
         ready: function (event) {
           $(this).jPlayer("setMedia", {
@@ -980,91 +993,15 @@ function getStatus(){
         remainingDuration: true,
         toggleDuration: true
       });
-
-   $('#headlineFanclub').click(function(){
-        $('#fanclubContainer').find('#view1').show();
-        $('#fanclubContainer').find('#view1').siblings('div').hide();
-        $('#container').masonry({
-          itemSelector: '.item'
-        });
-        Arrow_Points();
-      });
-      $('#headlineMembers').click(function(){
-        $('#fanclubContainer').find('#view2').show();
-        $('#fanclubContainer').find('#view2').siblings('div').hide();
-      });
-
+      $('.fanclubInfo').append('<div class="fanclubUserBox" align="left"><a href="'+window.createFanclub+'" class="iframe">Create new fanclub</a></div>');
+      $(".iframe").colorbox({iframe:true, width:"50%", height:"50%"});
   });
-
-  $(document).on('click', '#displayUserFanclubBox .searchUserBox a', function() {
-    var user=$(this).attr('rel');
-    var parent=$(this).parent();
-    $.ajax({
-          type: "post",
-    
-          url:"http://localhost:81/mttk-php/fanclubController/themFanclubUser",
-    
-          cache: false,
-          data:'fanclub_id='+window.fanclub+'&user='+user,
-          success: function(response){
-            parent.fadeOut('slow');
-          }
-    });
-    return false;
-  });
-  $(document).on('keyup', '.searchUser', function() {
-      if($(".searchUser").val()!=''){
-        $.ajax({
-        type: "post",
-  
-        url:"http://localhost:81/mttk-php/fanclubController/searchFanclub",
-  
-        cache: false,
-        data:'search='+$(".searchUser").val()+'&fanclub='+window.fanclub,
-        success: function(response){
-          $('#displayUserFanclubBox').html(response).show();
-        }
-      });
-    }
-});
-  $(document).on('click', '.removeMember', function() {
-    var parent=$(this).parent();
-    var email=parent.find('button').val();
-        $.ajax({
-        type: "post",
-  
-        url:"http://localhost:81/mttk-php/fanclubController/removeMember",
-  
-        cache: false,
-        data:'email='+email+'&fanclub_id='+window.fanclub,
-        success: function(response){
-          parent.fadeOut('slow');
-        }
-      });
-});
-
-  $(document).on('click', '#headlineLeave', function() {
-      if (confirm("Are your sure?")) {
-        $.ajax({
-        type: "post",
-  
-        url:"http://localhost:81/mttk-php/fanclubController/tuRemoveKhoiFanlub",
-  
-        cache: false,
-        data:'fanclub_id='+window.fanclub,
-        success: function(response){
-          window.location.href = window.homePage;
-        }
-      });
-      }
-});
-  
   </script>
  
 </head>
 <body>
-  <div id="noti_Container">
-    <ul id="nav">
+    <div id="noti_Container">
+  <ul id="nav">
     <div style=" width:300px; margin-right:23%;margin-left:15.5%;float:left;" align="right">
       <input type="text" class="search" id="searchbox" placeholder="Search for people, fanclub"/><br />
       <div id="displayUserBox">
@@ -1103,195 +1040,161 @@ function getStatus(){
         <div id="notificationFooter"><a href="#">See All</a></div>
       </div>
     </li>
+    <li id="logoutContainer">
+    </li>
   </ul>
-    </div>
-    <div id="coverContainer">
-    <div id="fanclubCover">
-    </div>
-    <div id="headline">
-      <div class="headlineRight">
-        <a id="headlineFanclub" href="#"></a>
-        <a id="headlineMembers" href="#">Members</a>
-        <a id="headlineEvent" href="#">Events</a>
-        <a id="headlineLeave" href="#">Leave group</a>
-      </div>
-    </div>
-  </div>
-  <div id="fanclubContainer">
-  <div id="view1">
-    <div id="container">
-      <div class="timeline_container">
-        <div class="timeline">
-          <div class="plus"></div>
-        </div>
-      </div>
-      <div class="item">
-        <div id="aboutFanclub">
-          <div id="aboutFanclubHeader">
-            <h6>About</h6>
-          </div>
-          <div id="aboutFanclubDesc"></div>
-          <div id="aboutFanclubAdd">
-            <input type="text" class="searchUser" id="searchbox" placeholder="Add people to this group"/>
-            <div id="displayUserFanclubBox" style="display: none;"></div>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <form action="http://localhost:81/mttk-php/statusController/themFanclubStatus" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-        <div id="tabs">
-          <ul>
-            <li><a href="#tabs-1">Choose music</a></li>
-            <li><a href="#tabs-2">Upload music</a></li>
-            <li><a href="#tabs-3">Playlist</a></li>
-          </ul>
-
-          <div id="tabs-1">
-            <textarea name="status" id="target" rows="4" placeholder="What's on your mind?"></textarea>
-            <br/>
-            <input type="text" name="music_name" id="music_name" placeholder="Song name?"/>
-            <input type="hidden" name="fanclub_id"/>
-            <input type="hidden" name="music_url" id="music_url" />
-            <input type="hidden" name="title" id="title" />
-            <div id="musicContainer">
-                <div id="musicBody" class="musics">
-                  <ul id="finalResult"></ul>
-                </div>
-            </div>
-
-            <div id="jquery_jplayer_1" class="jp-jplayer"></div>
-            <div id="jp_container_1" class="jp-audio centerAlign">
-              <div class="jp-type-single">
-                <div class="jp-gui jp-interface">
-                  <ul class="jp-controls">
-                    <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
-                    <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
-                    <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
-                    <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
-                    <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
-                    <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
-                  </ul>
-                  <div class="jp-progress">
-                    <div class="jp-seek-bar">
-                      <div class="jp-play-bar"></div>
-                    </div>
-                  </div>
-                  <div class="jp-volume-bar">
-                    <div class="jp-volume-bar-value"></div>
-                  </div>
-                  <div class="jp-time-holder">
-                    <div class="jp-current-time"></div>
-                    <div class="jp-duration"></div>
-
-                    <ul class="jp-toggles">
-                      <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
-                      <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="jp-details">
-                  <ul>
-                    <li><span class="jp-title"></span></li>
-                  </ul>
-                </div>
-                <div class="jp-no-solution">
-                  <span>Update Required</span>
-                  To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
-                </div>
-              </div>
-            </div>
-          </div>
-          <div id="tabs-2">
-            <textarea name="status2" id="target" rows="4" placeholder="What's on your mind?"></textarea>
-            <br/>
-            <input type="file" name="musicFile" size="20"/>
-          </div>
-          <div id="tabs-3">
-            <div id="playlistBoxUpdateStatus">
-            <select></select>
-            <input type="hidden" name="playlist_id" id="playlist_id" />
-          </div>
-            <textarea name="status3" id="target" rows="4" placeholder="What's on your mind?"></textarea>
-            <br/>
-            <div id="jquery_jplayer_2" class="jp-jplayer"></div>
-            <div id="jp_container_2" class="jp-audio centerAlign">
-              <div class="jp-type-playlist">
-                <div class="jp-gui jp-interface">
-                  <ul class="jp-controls">
-                    <li><a href="javascript:;" class="jp-previous" tabindex="1">previous</a></li>
-                    <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
-                    <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
-                    <li><a href="javascript:;" class="jp-next" tabindex="1">next</a></li>
-                    <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
-                    <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
-                    <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
-                    <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
-                  </ul>
-                  <div class="jp-progress">
-                    <div class="jp-seek-bar">
-                      <div class="jp-play-bar"></div>
-                    </div>
-                  </div>
-                  <div class="jp-volume-bar">
-                    <div class="jp-volume-bar-value"></div>
-                  </div>
-                  <div class="jp-current-time"></div>
-                  <div class="jp-duration"></div>
-                  <ul class="jp-toggles">
-                    <li><a href="javascript:;" class="jp-shuffle" tabindex="1" title="shuffle">shuffle</a></li>
-                    <li><a href="javascript:;" class="jp-shuffle-off" tabindex="1" title="shuffle off">shuffle off</a></li>
-                    <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
-                    <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
-                  </ul>
-                </div>
-                <div class="jp-playlist">
-                  <ul>
-                    <li></li>
-                  </ul>
-                </div>
-                <div class="jp-no-solution">
-                  <span>Update Required</span>
-                  To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
-                </div>
-              </div>
-            </div>
-            <!--cai playlist de day dung ajax load vao combo-->
-
-          </div>
-          <div id="privacyRight">
-            <select name="privacy" id="privacy">
-              <option selected value="1">Public</option>
-              <option value="2">Friend</option>
-              <option value="3">Custom</option>
-              <option value="4">Private</option>
-            </select>
-            <input type="submit" value="Post" id="postStatus"/>
-          </div>
 </div>
- </form>
+    <div class="fanclubContainer">
+      <div class="fanclubTitle"><h3>FANCLUB</h3></div>
+      <div class="fanclubInfo">
       </div>
     </div>
-    <div id="pop">
-      <img/>
-      <h2></h2>
+    <div id="container">
+  <div class="timeline_container">
+    <div class="timeline">
+      <div class="plus"></div>
     </div>
-    <div style="display: none; border: 1px solid black; height: 50px; width: 180px; 
-       padding: 5px; position: absolute; left: 100px; top: 100px; 
-       background-color: silver;" id="playlistBox">
-    <select></select>
-    <input type="hidden" id="titleMusic"/>
-    <input type="hidden" id="urlMusic"/>
-    <button id="savePlaylist">Save</button>
   </div>
-  </div>
-  <div id="view2" style="display:none;">
-        <div id="friendListContainer"><ul></ul></div>
-  </div>
-  <div id="view3" style="display:none;">
-        <div id="playlistContainer">
-          <ul></ul>
+  <div class="item">
+    <form action="http://localhost:81/mttk-php/statusController/updateStatus" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+    <div id="tabs">
+      <ul>
+        <li><a href="#tabs-1">Choose music</a></li>
+        <li><a href="#tabs-2">Upload music</a></li>
+        <li><a href="#tabs-3">Playlist</a></li>
+      </ul>
+      <div id="tabs-1">
+        <textarea name="status" id="target" rows="4" placeholder="What's on your mind?"></textarea>
+        <br/>
+        <input type="text" name="music_name" id="music_name" placeholder="Song name?"/>
+        <input type="hidden" name="music_url" id="music_url" />
+        <input type="hidden" name="title" id="title" />
+        <div id="musicContainer">
+          <div id="musicBody" class="musics">
+            <ul id="finalResult"></ul>
+          </div>
         </div>
+        <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+        <div id="jp_container_1" class="jp-audio centerAlign">
+          <div class="jp-type-single">
+            <div class="jp-gui jp-interface">
+              <ul class="jp-controls">
+                <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+                <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+                <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+                <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+                <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+                <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+              </ul>
+              <div class="jp-progress">
+                <div class="jp-seek-bar">
+                  <div class="jp-play-bar"></div>
+                </div>
+              </div>
+              <div class="jp-volume-bar">
+                <div class="jp-volume-bar-value"></div>
+              </div>
+              <div class="jp-time-holder">
+                <div class="jp-current-time"></div>
+                <div class="jp-duration"></div>
+                <ul class="jp-toggles">
+                  <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+                  <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="jp-details">
+              <ul>
+                <li><span class="jp-title"></span></li>
+              </ul>
+            </div>
+            <div class="jp-no-solution">
+              <span>Update Required</span>
+              To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="tabs-2">
+        <textarea name="status2" id="target" rows="4" placeholder="What's on your mind?"></textarea>
+        <br/>
+        <input type="file" name="musicFile" size="20"/>
+      </div>
+      <div id="tabs-3">
+        <div id="playlistBoxUpdateStatus">
+          <select></select>
+          <input type="hidden" name="playlist_id" id="playlist_id" />
+        </div>
+        <textarea name="status3" id="target" rows="4" placeholder="What's on your mind?"></textarea>
+        <br/>
+        <div id="jquery_jplayer_2" class="jp-jplayer"></div>
+        <div id="jp_container_2" class="jp-audio centerAlign">
+          <div class="jp-type-playlist">
+            <div class="jp-gui jp-interface">
+              <ul class="jp-controls">
+                <li><a href="javascript:;" class="jp-previous" tabindex="1">previous</a></li>
+                <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+                <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+                <li><a href="javascript:;" class="jp-next" tabindex="1">next</a></li>
+                <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+                <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+                <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+                <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+              </ul>
+              <div class="jp-progress">
+                <div class="jp-seek-bar">
+                  <div class="jp-play-bar"></div>
+                </div>
+              </div>
+              <div class="jp-volume-bar">
+                <div class="jp-volume-bar-value"></div>
+              </div>
+              <div class="jp-current-time"></div>
+              <div class="jp-duration"></div>
+              <ul class="jp-toggles">
+                <li><a href="javascript:;" class="jp-shuffle" tabindex="1" title="shuffle">shuffle</a></li>
+                <li><a href="javascript:;" class="jp-shuffle-off" tabindex="1" title="shuffle off">shuffle off</a></li>
+                <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+                <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+              </ul>
+            </div>
+            <div class="jp-playlist">
+              <ul>
+                <li></li>
+              </ul>
+            </div>
+            <div class="jp-no-solution">
+              <span>Update Required</span>
+              To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+            </div>
+          </div>
+        </div>
+        <!--cai playlist de day dung ajax load vao combo-->
+      </div>
+      <div id="privacyRight">
+        <select name="privacy" id="privacy">
+          <option selected value="1">Public</option>
+          <option value="2">Friend</option>
+          <option value="3">Custom</option>
+          <option value="4">Private</option>
+        </select>
+        <input type="submit" value="Post" id="postStatus"/>
+      </div>
+    </div>
+    </form>
   </div>
+</div>
+<div id="pop">
+  <img/>
+  <h2></h2>
+</div>
+<div style="display: none; border: 1px solid black; height: 50px; width: 180px; 
+  padding: 5px; position: absolute; left: 100px; top: 100px; 
+  background-color: silver;" id="playlistBox">
+  <select></select>
+  <input type="hidden" id="titleMusic"/>
+  <input type="hidden" id="urlMusic"/>
+  <button id="savePlaylist">Save</button>
 </div>
 </body>
 </html><?php }} ?>

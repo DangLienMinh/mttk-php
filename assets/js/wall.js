@@ -72,7 +72,7 @@ var playlistElement = '<div class="jp-type-playlist"> \
           <span>Update Required</span> \
           To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>. \
         </div> \
-      </div> '
+      </div> ';
 
 
 function playSelectedSong(guid, title) {
@@ -501,10 +501,29 @@ $(window).scroll(function() {
 	}
 });
 
-$(document).click(function() {
-	$("#notificationContainer").hide();
-	$("#friendContainer").hide();
+$(document).click(function(e) {
+	var container = $("#notificationContainer");
+
+    if (!container.is(e.target) // if the target of the click isn't the container...
+        && container.has(e.target).length === 0) // ... nor a descendant of the container
+    {
+        container.hide();
+    }
+    container = $("#friendContainer");
+
+    if (!container.is(e.target) // if the target of the click isn't the container...
+        && container.has(e.target).length === 0) // ... nor a descendant of the container
+    {
+        container.hide();
+    }
 	$("#musicContainer").hide();
+	container = $("#playlistBox");
+
+    if (!container.is(e.target) // if the target of the click isn't the container...
+        && container.has(e.target).length === 0) // ... nor a descendant of the container
+    {
+        container.hide();
+    }
 });
 
 $(document).on('click', '.delete', function() {

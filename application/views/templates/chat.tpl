@@ -67,32 +67,7 @@
  {/literal}
 </head>
 <body>
-  <div id="noti_Container">
-    <ul id="nav">
-    <li id="friend_li">
-      <span id="friend_count"></span>
-      <a href="#" id="friendLink">Friends</a>
-      <div id="friendContainer">
-        <div id="friendTitle">Notifications</div>
-        <div id="friendBody" class="friend">
-          <ul></ul>
-        </div>
-        <div id="friendFooter"><a href="#">See All</a></div>
-      </div>
-    </li>
-    <li id="notification_li">
-      <span id="notification_count"></span>
-      <a href="#" id="notificationLink">Notifications</a>
-      <div id="notificationContainer">
-        <div id="notificationTitle">Notifications</div>
-        <div id="notificationsBody" class="notifications">
-          <ul></ul>
-        </div>
-        <div id="notificationFooter"><a href="#">See All</a></div>
-      </div>
-    </li>
-  </ul>
-  </div>
+  {include file='common/notificationPart.tpl'}
     <div id="friendChatContainer">
       <ul></ul>
     </div>

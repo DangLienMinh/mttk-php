@@ -25,7 +25,7 @@ class ProfileController extends CI_Controller {
           $profile = new Entity\ProfileDAO($em);
           $profile->themProfile($data);
           $this->session->set_userdata('pic', $data['pic']);
-          echo base_url('/main/player');
+          echo base_url('/main/homePage');
     }
 
     public function getEducationAndReligion()
