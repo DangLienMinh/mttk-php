@@ -35,12 +35,12 @@ class Main extends CI_Controller {
 		$this->smarty->assign('userName',$this->session->userdata('first_name').' '.$this->session->userdata('last_name'));
 		$this->smarty->view('chat');
 	}
-	public function testPlayer()
+	public function homePage()
 	{
 		$this->smarty->assign('userPicCmt',$this->session->userdata('pic'));
 		$this->smarty->assign('userName',$this->session->userdata('first_name').' '.$this->session->userdata('last_name'));
 		$this->smarty->assign('userLogin',$this->session->userdata('email'));
-		$this->smarty->view('testPlayerLink');
+		$this->smarty->view('homePage');
 	}
 	public function seeWall($id)
 	{

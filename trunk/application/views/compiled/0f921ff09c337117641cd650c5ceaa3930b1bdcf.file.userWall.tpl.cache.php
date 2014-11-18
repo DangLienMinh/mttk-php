@@ -1,21 +1,55 @@
-{include file='common/header.tpl'}
-{literal}
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-18 15:48:09
+         compiled from "application\views\templates\userWall.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:5877546b5c29ae2d80-26913107%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '0f921ff09c337117641cd650c5ceaa3930b1bdcf' => 
+    array (
+      0 => 'application\\views\\templates\\userWall.tpl',
+      1 => 1416318380,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '5877546b5c29ae2d80-26913107',
+  'function' => 
+  array (
+  ),
+  'variables' => 
+  array (
+    'items' => 0,
+    'userNameWall' => 0,
+    'userLoginWall' => 0,
+    'userPicCmtWall' => 0,
+  ),
+  'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_546b5c29d353b5_66889410',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_546b5c29d353b5_66889410')) {function content_546b5c29d353b5_66889410($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+
+
 function getStatus(){
       var data;
         /* This requests the url "msgsrv.php"
         When it complete (or errors)*/
-{/literal}
-      data={$items}
-{literal}
+
+      data=<?php echo $_smarty_tpl->tpl_vars['items']->value;?>
+
+
     addStatusUserWall(data);
     }
   </script>
   <script>
-{/literal}
-  window.userNameWall="{$userNameWall}";
-  window.userLoginWall="{$userLoginWall}";
-  window.userPicCmtWall="{uploads_url()}img/{$userPicCmtWall}";
-{literal}
+
+  window.userNameWall="<?php echo $_smarty_tpl->tpl_vars['userNameWall']->value;?>
+";
+  window.userLoginWall="<?php echo $_smarty_tpl->tpl_vars['userLoginWall']->value;?>
+";
+  window.userPicCmtWall="<?php echo uploads_url();?>
+img/<?php echo $_smarty_tpl->tpl_vars['userPicCmtWall']->value;?>
+";
+
   $(document).ready(function() {
     waitForMsg();
     friendRequest();
@@ -121,10 +155,11 @@ function getStatus(){
       });
   });
   </script>
- {/literal}
+ 
 </head>
 <body>
-  {include file='common/notificationPart.tpl'}
+  <?php echo $_smarty_tpl->getSubTemplate ('common/notificationPart.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+
   <div id="coverContainer">
     <div id="cover">
     </div>
@@ -140,7 +175,8 @@ function getStatus(){
   </div>
     <div id="wallContainer">
       <div id="view1">
-        {include file='common/mainPart.tpl'}
+        <?php echo $_smarty_tpl->getSubTemplate ('common/mainPart.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+
       </div>
       <div id="view4" style="display:none;">
         <div id="aboutContainer">
@@ -173,4 +209,4 @@ function getStatus(){
       </div>
     </div>
 </body>
-</html>
+</html><?php }} ?>

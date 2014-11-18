@@ -173,7 +173,9 @@
         $friend = new Entity\FriendDAO($em);
 		$friend->acceptFriend($email,$friendName);
 		$this->smarty->assign('userPicCmt',$this->session->userdata('pic'));
-		$this->smarty->view('testPlayerLink');
+		$this->smarty->assign('userName',$this->session->userdata('first_name').' '.$this->session->userdata('last_name'));
+		$this->smarty->assign('userLogin',$this->session->userdata('email'));
+		$this->smarty->view('homePage');
 		
 	}
 
@@ -185,7 +187,9 @@
 		$friend = new Entity\FriendDAO($em);
 		$friend->declineFriend($email,$friendName);
 		$this->smarty->assign('userPicCmt',$this->session->userdata('pic'));
-		$this->smarty->view('testPlayerLink');
+		$this->smarty->assign('userName',$this->session->userdata('first_name').' '.$this->session->userdata('last_name'));
+		$this->smarty->assign('userLogin',$this->session->userdata('email'));
+		$this->smarty->view('homePage');
 	}
 }
 

@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <title>jQuery UI Tabs - Default functionality</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
-  <link rel="stylesheet" href="{asset_url()}css/wall.css">
+  <link rel="stylesheet" href="{asset_url()}css/firstTime.css">
   <link rel="stylesheet" href="{asset_url()}css/imgcropstyle.css">
   <script type="text/javascript" src="{asset_url()}js/jquery-2.1.1.min.js"></script>
   <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
@@ -19,28 +19,6 @@
     window.emotionsFolder="{asset_url()}img/";
   </script>
   {literal}
-  <style type="text/css">
-    #tabs{
-      width:40%;
-      margin: 0px auto;
-    }
-    #target{
-      width: 100%;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box; 
-    }
-        .action
-        {
-            width: 400px;
-            height: 30px;
-            margin: 10px 0;
-        }
-        .cropped>img
-        {
-            margin-right: 10px;
-        }
-  </style>
  <script>
   $(document).ready(function(){
     getSuggest();
@@ -84,7 +62,8 @@
           });
       });
 
-    $('#finalResult').on('click', 'li button', function() {
+    $('#display').on('click', 'button', function() {
+      var parent=$(this).parent();
       $.ajax({
          type: "POST",
 {/literal}
@@ -95,9 +74,20 @@
          cache:false,
          success: 
               function(data){
+                parent.fadeOut('slow');
               }
           });
       });
+  });
+
+  $(document).mouseup(function(e) {
+    var container = $("#display");
+
+      if (!container.is(e.target)
+          && container.has(e.target).length === 0)
+      {
+          container.hide();
+      }
   });
 
   function getSuggest(){
@@ -201,12 +191,16 @@ function geolocate() {
 
   <div id="tabs-1">
    <!--  <ul id="facebook"></ul> -->
-      <div style=" width:300px; margin-right:30px;" align="right">
+      <div id="searchFriend">
+          <h3>Search Friends</h3>
           <input type="text" class="search" id="searchbox" /><br />
           <div id="display">
           </div>
-        </div>
-        <p>shit hi ahdkasyhdio asu doiasu diouasio duasiou dioash djkash djkhas kjd</p>
+      </div>
+      <div id="friendFooter">
+          <h3>Suggest Friends</h3>
+          <ul id="facebook"></ul>
+      </div>
 </div>
 
   <div id="tabs-2">
@@ -214,7 +208,6 @@ function geolocate() {
     <div id="locationField">
       <input id="autocomplete" placeholder="Enter your address" name="address"
              onFocus="geolocate()" type="text"></input>
-      <button>Next</button>
     </div>
   </div>
   <div id="tabs-3">
@@ -225,13 +218,16 @@ function geolocate() {
     </div>
     <div class="action">
         <input type="file" id="file" style="float:left; width: 250px"/>
-        <input type="button" id="btnZoomIn" value="+" style="float: right"/>
-        <input type="button" id="btnZoomOut" value="-" style="float: right"/>
+        <div id="zoom">
+          <h3>Zoom</h3>
+          <input type="button" id="btnZoomOut" value="-" style="float: right"/>
+          <input type="button" id="btnZoomIn" value="+" style="float: right"/>
+        </div>
     </div>
     <div class="cropped">
     </div>
     </div>
-    <input type="button" id="btnCrop" value="OK"/>
+    <input type="button" id="btnCrop" value="Finish"/>
   </div>
 </div>
 </body>

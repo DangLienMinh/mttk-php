@@ -3,7 +3,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 class UserController extends CI_Controller {
 	function index()
 	{
-        $this->smarty->view('myform');
+        $this->smarty->view('login');
 	}
 
     public function login1()
@@ -25,7 +25,7 @@ class UserController extends CI_Controller {
 
            $this->session->set_userdata($data);
            if($result[0]['picture']!='')
-                redirect('/main/testPlayer', 'refresh');
+                redirect('/main/homePage', 'refresh');
            else
                 redirect('/main/firstTime', 'refresh');
         }else{
@@ -47,15 +47,16 @@ class UserController extends CI_Controller {
     public function register()
     {
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-        //$this->form_validation->set_rules('re_email','Confirm Email','trim|required|matches[email]');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|md5');
+        $this->form_validation->set_rules('re_password','Confirm Password','trim|required|matches[password]');
         $this->form_validation->set_rules('first_name', 'First_name', 'trim|required');
         $this->form_validation->set_rules('last_name', 'Last_name', 'trim|required');
         $this->form_validation->set_rules('birthday', 'Birthday', 'trim|required');
 
         if ($this->form_validation->run() == FALSE)
         {
-            $this->smarty->view('myform');
+
+            $this->smarty->view('login');
         }
         else
         {
