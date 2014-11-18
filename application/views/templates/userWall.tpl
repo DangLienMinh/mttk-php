@@ -140,7 +140,7 @@ function getStatus(){
   </div>
     <div id="wallContainer">
       <div id="view1">
-        {include file='common/mainPart.tpl'}
+        {include file='common/mainPart.tpl' postStatus={form_open_multipart('statusController/updateStatus')}}
       </div>
       <div id="view4" style="display:none;">
         <div id="aboutContainer">

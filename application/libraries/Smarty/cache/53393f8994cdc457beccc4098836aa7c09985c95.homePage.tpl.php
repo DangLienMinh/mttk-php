@@ -1,11 +1,11 @@
-<?php /*%%SmartyHeaderCode:31118546b5bfe224625-75630450%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:29956546b6ab590e2e5-16324392%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '53393f8994cdc457beccc4098836aa7c09985c95' => 
     array (
       0 => 'application\\views\\templates\\homePage.tpl',
-      1 => 1416318791,
+      1 => 1416324232,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
@@ -23,17 +23,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1f54f66af881d5f8352e0fc1b00021e7b247dd60' => 
     array (
       0 => 'application\\views\\templates\\common\\mainPart.tpl',
-      1 => 1416322027,
+      1 => 1416324674,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '31118546b5bfe224625-75630450',
+  'nocache_hash' => '29956546b6ab590e2e5-16324392',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546b5bff9742b6_72269771',
+  'unifunc' => 'content_546b6ab609ff98_29995601',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546b5bff9742b6_72269771')) {function content_546b5bff9742b6_72269771($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_546b6ab609ff98_29995601')) {function content_546b6ab609ff98_29995601($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -73,9 +73,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   window.logout="http://localhost:81/mttk-php/userController/logout";
   window.userMusic="http://localhost:81/mttk-php/uploads";
   window.homePage="http://localhost:81/mttk-php/main/homePage";
-  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/shot0006.jpg";
-  window.userLogin="anhtiminh@yahoo.com";
-  window.userName="minh dang";
+  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/546b3f1113320.png";
+  window.userLogin="lethanhtrong@gmail.com";
+  window.userName="Le Thanh Trong";
   window.compare=0;
   window.compareStatus=0;
   window.currentChatPosition=-1;
@@ -1067,6 +1067,7 @@ function getStatus() {
         <textarea name="status" id="target" rows="4" placeholder="What's on your mind?"></textarea>
         <br/>
         <input type="text" name="music_name" id="music_name" placeholder="Song name?"/>
+        <input type="hidden" name="fanclub_id"/>
         <input type="hidden" name="music_url" id="music_url" />
         <input type="hidden" name="title" id="title" />
         <div id="musicContainer">

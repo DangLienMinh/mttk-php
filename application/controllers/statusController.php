@@ -15,20 +15,6 @@ class StatusController extends CI_Controller {
         $em = $this->doctrine->em;
         $status = new Entity\statusDAO($em);
         $result=$status->getStatus($this->session->userdata('email'));
-        /*$friends="";
-        foreach($result as $k)
-        {
-            if (!$k['picture']) {
-                $k['picture'] = base_url().'uploads/img/profilePic.jpg';
-            }
-            if ($k['email'] == $this->session->userdata('email')) {
-                $is_delete = "stdelete";
-            }
-            $checkPlaylist=(int)$k['music'];
-            $friends.='<li><a class="inline" href="#inline_content"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' .base_url().'uploads/img/'.$k['picture']. '"/><span class="'.$k['email'].'">' . $k['name'] . '</span></a></li>';
-        }
-        echo $friends;
-*/
         echo json_encode($result);
 	}
 
@@ -60,7 +46,6 @@ class StatusController extends CI_Controller {
 
         $user = new Entity\UserDAO($em);
         $userInfo=$user->getUser($email);
-
 
         $this->smarty->assign('items',$result);
         $this->smarty->assign('userLoginWall',$email);
@@ -175,12 +160,7 @@ class StatusController extends CI_Controller {
                 {
                     $uploaded = array('upload_data' => $this->upload->data());
                     $data['status']=$_POST["status2"];
-
-                    //$newfilename = uniqid().$uploaded['upload_data']['file_ext'];
-                    //$newFileUrl=$uploaded['upload_data']['file_path'].$newfilename;
-                    //move_uploaded_file($uploaded['upload_data']["full_path"], $newFileUrl);
                     $data['music']= $config['file_name'];
-                    //$data['music']=$this->config->base_url().'uploads/'.$uploaded['upload_data']['file_name'];
                 }
             }
         }
@@ -239,20 +219,7 @@ class StatusController extends CI_Controller {
         $data['status_id']=$status->themStatus($data);
         $fanclub = new Entity\fanclubDAO($em);
         $fanclub->themFanclubUpdate($data);
-
-        $fanclubInfo=$fanclub->getFanclubByID($data['fanclub_id']);
-
-        $result=$status->layDSFanclubStatus($data['fanclub_id']);
-        $result= json_encode($result);
-
-        $this->smarty->assign('items',$result);
-        $this->smarty->assign('fanclub',$data['fanclub_id']);
-        $this->smarty->assign('fanclubName',$fanclubInfo[0]['fanclub_name']);
-        $this->smarty->assign('fanclubDesc',$fanclubInfo[0]['fanclub_desc']);
-        $this->smarty->assign('userPicCmt',$this->session->userdata('pic'));
-        $this->smarty->assign('userName',$this->session->userdata('first_name').' '.$this->session->userdata('last_name'));
-        $this->smarty->assign('userLogin',$this->session->userdata('email'));
-        $this->smarty->view('fanclub');
+        redirect('/statusController/layDSFanclubStatus/'.$data['fanclub_id'].'/', 'refresh');
     }
 
     public function hienThiNotiStatus($statusParam,$noti_id=-1){

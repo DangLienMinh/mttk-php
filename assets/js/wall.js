@@ -539,7 +539,7 @@ $(document).on('click', '.stdelete', function() {
 	if (confirm("Are your sure?")) {
 		var topParent = $(this).parent().parent().parent().parent();
 		var status_id = topParent.find('.staction').find('.comment_button').attr('id');
-		//deleteStatus(status_id);
+		deleteStatus(status_id);
 		topParent.fadeOut('slow');
 		$('#container').masonry('remove', topParent);
 		$('#container').masonry({

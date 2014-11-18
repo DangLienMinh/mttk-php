@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-18 15:48:09
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-18 16:49:06
          compiled from "application\views\templates\userWall.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:5877546b5c29ae2d80-26913107%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:31576546b6a723fe658-49696295%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '0f921ff09c337117641cd650c5ceaa3930b1bdcf' => 
     array (
       0 => 'application\\views\\templates\\userWall.tpl',
-      1 => 1416318380,
+      1 => 1416324250,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '5877546b5c29ae2d80-26913107',
+  'nocache_hash' => '31576546b6a723fe658-49696295',
   'function' => 
   array (
   ),
@@ -24,9 +24,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546b5c29d353b5_66889410',
+  'unifunc' => 'content_546b6a725731b6_43870785',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546b5c29d353b5_66889410')) {function content_546b5c29d353b5_66889410($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_546b6a725731b6_43870785')) {function content_546b6a725731b6_43870785($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
 function getStatus(){
@@ -175,7 +175,8 @@ img/<?php echo $_smarty_tpl->tpl_vars['userPicCmtWall']->value;?>
   </div>
     <div id="wallContainer">
       <div id="view1">
-        <?php echo $_smarty_tpl->getSubTemplate ('common/mainPart.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+        <?php ob_start();?><?php echo form_open_multipart('statusController/updateStatus');?>
+<?php $_tmp1=ob_get_clean();?><?php echo $_smarty_tpl->getSubTemplate ('common/mainPart.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array('postStatus'=>$_tmp1), 0);?>
 
       </div>
       <div id="view4" style="display:none;">
