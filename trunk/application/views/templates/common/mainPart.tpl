@@ -5,7 +5,7 @@
     </div>
   </div>
   <div class="item">
-    {form_open_multipart('statusController/updateStatus')}
+    {$postStatus}
     <div id="tabs">
       <ul>
         <li><a href="#tabs-1">Choose music</a></li>
@@ -16,6 +16,7 @@
         <textarea name="status" id="target" rows="4" placeholder="What's on your mind?"></textarea>
         <br/>
         <input type="text" name="music_name" id="music_name" placeholder="Song name?"/>
+        <input type="hidden" name="fanclub_id"/>
         <input type="hidden" name="music_url" id="music_url" />
         <input type="hidden" name="title" id="title" />
         <div id="musicContainer">

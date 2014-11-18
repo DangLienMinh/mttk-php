@@ -24,6 +24,10 @@ class Main extends CI_Controller {
 	{
 		$this->smarty->view('addFanclub');
 	}
+	function test()
+	{
+		$this->smarty->view('updatestatus');
+	}
 	public function search()
 	{
 		$this->smarty->view('searchFriend');
@@ -42,9 +46,9 @@ class Main extends CI_Controller {
 		$this->smarty->assign('userLogin',$this->session->userdata('email'));
 		$this->smarty->view('homePage');
 	}
-	public function seeWall($id)
+	/*public function seeWall($id)
 	{
 		echo $id;
-	}
+	}*/
 }
 ?>

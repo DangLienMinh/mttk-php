@@ -1,11 +1,11 @@
-<?php /*%%SmartyHeaderCode:31576546b6a723fe658-49696295%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1047546b6a9c1439b4-64971461%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '0f921ff09c337117641cd650c5ceaa3930b1bdcf' => 
+    '097b971e45f0ace5089d3906e771110d9aaf25a6' => 
     array (
-      0 => 'application\\views\\templates\\userWall.tpl',
-      1 => 1416324250,
+      0 => 'application\\views\\templates\\fanclub.tpl',
+      1 => 1416324682,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
@@ -27,20 +27,20 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '31576546b6a723fe658-49696295',
+  'nocache_hash' => '1047546b6a9c1439b4-64971461',
   'variables' => 
   array (
     'items' => 0,
-    'userNameWall' => 0,
-    'userLoginWall' => 0,
-    'userPicCmtWall' => 0,
+    'fanclub' => 0,
+    'fanclubName' => 0,
+    'fanclubDesc' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546b6a729d7649_93118787',
+  'unifunc' => 'content_546b6a9c6a23f4_04969824',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546b6a729d7649_93118787')) {function content_546b6a729d7649_93118787($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_546b6a9c6a23f4_04969824')) {function content_546b6a9c6a23f4_04969824($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -934,16 +934,16 @@ function getStatus(){
         /* This requests the url "msgsrv.php"
         When it complete (or errors)*/
 
-      data=[{"status_id":"46","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZWZEU9B9&h=mp3.zing.vn","title":"Fire","message":"r\u1ed3i","created_at":"2014-11-18 22:47:19","thumbs_up":"0","privacy_type_id":"1","email":"lethanhtrong@gmail.com","picture":"546b3f1113320.png","name":"Le Thanh Trong"},{"status_id":"45","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZW6IEBWO&h=mp3.zing.vn","title":"Neon Lights + Kraftwerk","message":"t\u1ed1i em nh\u00e9","created_at":"2014-11-18 22:46:34","thumbs_up":"0","privacy_type_id":"1","email":"lethanhtrong@gmail.com","picture":"546b3f1113320.png","name":"Le Thanh Trong"}]
+      data=[{"status_id":"47","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZW6DFUEF&h=mp3.zing.vn","title":"S\u00f3c S\u01a1 Bai S\u00f3c Tr\u0103ng + Thi Mai","message":"soc trang","created_at":"2014-11-18 22:49:47","thumbs_up":"0","privacy_type_id":"1","email":"lethanhtrong@gmail.com","picture":"546b3f1113320.png","name":"Le Thanh Trong"},{"status_id":"45","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZW6IEBWO&h=mp3.zing.vn","title":"Neon Lights + Kraftwerk","message":"t\u1ed1i em nh\u00e9","created_at":"2014-11-18 22:46:34","thumbs_up":"0","privacy_type_id":"1","email":"lethanhtrong@gmail.com","picture":"546b3f1113320.png","name":"Le Thanh Trong"},{"status_id":"43","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZW67WAEC&h=mp3.zing.vn","title":"Burn + Ellie Goulding","message":"fanclub","created_at":"2014-11-18 22:31:39","thumbs_up":"0","privacy_type_id":"1","email":"anhtiminh@yahoo.com","picture":"shot0006.jpg","name":"minh dang"}]
 
     addStatusUserWall(data);
-    }
+  }
   </script>
   <script>
 
-  window.userNameWall="Le Thanh Trong";
-  window.userLoginWall="lethanhtrong@gmail.com";
-  window.userPicCmtWall="http://localhost:81/mttk-php/uploads/img/546b3f1113320.png";
+  window.fanclub="2";
+  window.fanclubName="minh";
+  window.fanclubDesc="toeic test";
 
   $(document).ready(function() {
     waitForMsg();
@@ -952,12 +952,9 @@ function getStatus(){
     getPlaylist();
     getSuggest();
     getPlaylistUpdateStatus();
-    getEducation(window.userLoginWall);
-    getBasicInfo(window.userLoginWall);
-    getUserDetail(window.userLoginWall);
-    getFavorite(window.userLoginWall);
-    getFriendList(window.userLoginWall);
-    wallDsPlaylist(window.userLoginWall);
+    getFanclub();
+    getMembers(window.fanclub);
+    $("input[name='fanclub_id']").val(window.fanclub);
     $("#target").autoGrow();
     $('#tabs').tabs({
       activate: function(event, ui) {
@@ -979,6 +976,10 @@ function getStatus(){
         }
     });
 
+
+    $('#fanclubCover').append('<div class="fanclubCoverName"><b><a href="#">' + window.fanclubName + '</a></b></div><div class="fanclubCoverDesc"><b><a href="#">' + window.fanclubDesc + '</a></b></div>');
+    $('#aboutFanclubDesc').append('<p>'+window.fanclubDesc+'</p>');
+    $('#headlineFanclub').append('<span>'+window.fanclubName+'</span>');
       $("#jquery_jplayer_1").jPlayer({
         ready: function (event) {
           $(this).jPlayer("setMedia", {
@@ -995,65 +996,89 @@ function getStatus(){
         toggleDuration: true
       });
 
-      $('#headlineTimeline').find('span').css("display", "block");
-      $('.headlineRight a').click(function(){
-        $(this).find('span').css("display", "block");
-        $(this).siblings("a").find('span').css("display", "none");
-        return false;
-      })
-      $('#headlineFriendList').click(function(){
-        $('#wallContainer').find('#view2').show();
-        $('#wallContainer').find('#view2').siblings('div').hide();
-      });
-      $('#headlineTimeline').click(function(){
-        $('#wallContainer').find('#view1').show();
-        $('#wallContainer').find('#view1').siblings('div').hide();
+   $('#headlineFanclub').click(function(){
+        $('#fanclubContainer').find('#view1').show();
+        $('#fanclubContainer').find('#view1').siblings('div').hide();
         $('#container').masonry({
           itemSelector: '.item'
         });
+        Arrow_Points();
       });
-      $('#headlinePlaylist').click(function(){
-        $('#wallContainer').find('#view3').show();
-        $('#wallContainer').find('#view3').siblings('div').hide();
+      $('#headlineMembers').click(function(){
+        $('#fanclubContainer').find('#view2').show();
+        $('#fanclubContainer').find('#view2').siblings('div').hide();
       });
-      $('#headlineAbout').click(function(){
-        $('#wallContainer').find('#view4').show();
-        $('#wallContainer').find('#view4').siblings('div').hide();
-      });
-      $('#aboutLeft1').click(function(){
-        $('#aboutRight').find('#about1').show();
-        $('#aboutRight').find('#about1').siblings('div').hide();
-        $(this).addClass("aboutLeftSelected");
-        $(this).parent().siblings('li').find('a').removeClass("aboutLeftSelected");
-        return false;
-      });
-      $('#aboutLeft2').click(function(){
-        $('#aboutRight').find('#about2').show();
-        $('#aboutRight').find('#about2').siblings('div').hide();
-        $(this).addClass("aboutLeftSelected");
-        $(this).parent().siblings('li').find('a').removeClass("aboutLeftSelected");
-        return false;
-      });
-      $('#aboutLeft3').click(function(){
-        $('#aboutRight').find('#about3').show();
-        $('#aboutRight').find('#about3').siblings('div').hide();
-        $(this).addClass("aboutLeftSelected");
-        $(this).parent().siblings('li').find('a').removeClass("aboutLeftSelected");
-        return false;
-      });
-      $('#aboutLeft4').click(function(){
-        $('#aboutRight').find('#about4').show();
-        $('#aboutRight').find('#about4').siblings('div').hide();
-        $(this).addClass("aboutLeftSelected");
-        $(this).parent().siblings('li').find('a').removeClass("aboutLeftSelected");
-        return false;
-      });
+
   });
+
+  $(document).on('click', '#displayUserFanclubBox .searchUserBox a', function() {
+    var user=$(this).attr('rel');
+    var parent=$(this).parent();
+    $.ajax({
+          type: "post",
+    
+          url:"http://localhost:81/mttk-php/fanclubController/themFanclubUser",
+    
+          cache: false,
+          data:'fanclub_id='+window.fanclub+'&user='+user,
+          success: function(response){
+            parent.fadeOut('slow');
+          }
+    });
+    return false;
+  });
+  $(document).on('keyup', '.searchUser', function() {
+      if($(".searchUser").val()!=''){
+        $.ajax({
+        type: "post",
+  
+        url:"http://localhost:81/mttk-php/fanclubController/searchFanclub",
+  
+        cache: false,
+        data:'search='+$(".searchUser").val()+'&fanclub='+window.fanclub,
+        success: function(response){
+          $('#displayUserFanclubBox').html(response).show();
+        }
+      });
+    }
+});
+  $(document).on('click', '.removeMember', function() {
+    var parent=$(this).parent();
+    var email=parent.find('button').val();
+        $.ajax({
+        type: "post",
+  
+        url:"http://localhost:81/mttk-php/fanclubController/removeMember",
+  
+        cache: false,
+        data:'email='+email+'&fanclub_id='+window.fanclub,
+        success: function(response){
+          parent.fadeOut('slow');
+        }
+      });
+});
+
+  $(document).on('click', '#headlineLeave', function() {
+      if (confirm("Are your sure?")) {
+        $.ajax({
+        type: "post",
+  
+        url:"http://localhost:81/mttk-php/fanclubController/tuRemoveKhoiFanlub",
+  
+        cache: false,
+        data:'fanclub_id='+window.fanclub,
+        success: function(response){
+          window.location.href = window.homePage;
+        }
+      });
+      }
+});
+  
   </script>
  
 </head>
 <body>
-  <div id="noti_Container">
+    <div id="noti_Container">
   <ul id="nav">
     <div style=" width:300px; margin-right:23%;margin-left:15.5%;float:left;" align="right">
       <input type="text" class="search" id="searchbox" placeholder="Search for people, fanclub"/><br />
@@ -1097,29 +1122,28 @@ function getStatus(){
     </li>
   </ul>
 </div>
-  <div id="coverContainer">
-    <div id="cover">
+    <div id="coverContainer">
+    <div id="fanclubCover">
     </div>
     <div id="headline">
       <div class="headlineRight">
-        <a id="headlineTimeline" href="#">TimeLine</a>
-        <a id="headlineAbout" href="#">About</a>
-        <a id="headlineFriendList" href="#">Friends</a>
-        <a id="headlinePlaylist" href="#">Playlist</a>
-        <a class="" href="#">More</a>
+        <a id="headlineFanclub" href="#"></a>
+        <a id="headlineMembers" href="#">Members</a>
+        <a id="headlineEvent" href="#">Events</a>
+        <a id="headlineLeave" href="#">Leave group</a>
       </div>
     </div>
   </div>
-    <div id="wallContainer">
-      <div id="view1">
-        <div id="container">
+  <div id="fanclubContainer">
+  <div id="view1">
+    <div id="container">
   <div class="timeline_container">
     <div class="timeline">
       <div class="plus"></div>
     </div>
   </div>
   <div class="item">
-    <form action="http://localhost:81/mttk-php/statusController/updateStatus" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+    <form action="http://localhost:81/mttk-php/statusController/themFanclubStatus" method="post" accept-charset="utf-8" enctype="multipart/form-data">
     <div id="tabs">
       <ul>
         <li><a href="#tabs-1">Choose music</a></li>
@@ -1260,36 +1284,15 @@ function getStatus(){
   <input type="hidden" id="urlMusic"/>
   <button id="savePlaylist">Save</button>
 </div>
-      </div>
-      <div id="view4" style="display:none;">
-        <div id="aboutContainer">
-          <div id="aboutLeft">
-            <ul>
-              <li><a id="aboutLeft1" href="#"><span>Education  and Religion</span></a></li>
-              <li><a id="aboutLeft2" href="#"><span>Contact and Basic Info</span></a></li>
-              <li><a id="aboutLeft3" href="#"><span>Details about you</span></a></li>
-              <li><a id="aboutLeft4" href="#"><span>Favorites</span></a></li>
-            </ul>
-          </div>
-          <div id="aboutRight">
-            <div class="aboutContent">
-              <div id="about1"></div>
-              <div id="about2" style="display:none;"></div>
-              <div id="about3" style="display:none;"></div>
-              <div id="about4" style="display:none;"></div>
-              <div id="about5" style="display:none;"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="view2" style="display:none;">
+  </div>
+  <div id="view2" style="display:none;">
         <div id="friendListContainer"><ul></ul></div>
-      </div>
-      <div id="view3" style="display:none;">
+  </div>
+  <div id="view3" style="display:none;">
         <div id="playlistContainer">
           <ul></ul>
         </div>
-      </div>
-    </div>
+  </div>
+</div>
 </body>
 </html><?php }} ?>

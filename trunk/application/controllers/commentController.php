@@ -19,7 +19,6 @@ class CommentController extends CI_Controller {
             $em = $this->doctrine->em;
             $comment = new Entity\CommentDAO($em);
             $comment_id=$comment->themComment($data);
-            //echo '<div class="load_comment"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px" src="'.$img.'"/><span>'.$_POST["textcontent"].'</span><a href="#" id="'.$comment_id.'" class="delete_button"></a></div>';
             echo '<li class="load_comment"><img id="' . $data['email'] . '" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'.$img.'"/><span>'.$_POST["textcontent"].'</span><a href="#" id="'.$comment_id.'" class="delete_button"></a><br/><abbr class="timeago" title="'.date('Y-m-d H:i:s').'"></abbr></li>';
         }
     }
@@ -59,12 +58,10 @@ class CommentController extends CI_Controller {
             }
         }else{
             $second_count=count($result)-3;
-            //$("#loadplace" + status).append('<div class="comment_ui"><a class="view_comments" id="'+status+'">View '+second_count+' more comments</a></div>');
             $comments=$second_count.'<div class="comment_ui"><a class="view_comments" id="'.$status_id.'">View '.$second_count.' more comments</a></div>';
           }
       }
       echo $comments;
-        //echo json_encode($result);
     }
 
     public function layLastComment(){

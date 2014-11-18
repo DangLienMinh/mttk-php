@@ -67,7 +67,6 @@ class FanclubController extends CI_Controller {
         {
             $data.='<div class="fanclubUserBox" align="left"><div class="leaveClub"><a></a></div><img src="'.base_url().'assets/img/groupIcon.png" style="width:15px; height:15px; float:left; margin-right:6px" /><a href="'.site_url('statusController/layDSFanclubStatus/').'/'.$k['fanclub_id'].'">' . $k['fanclub_name']. '</a></div>';
         }
-        //$data.='<div class="fanclubUserBox" align="left"><a href="#" class="iframe">Create new fanclub</a></div>';
         echo $data;
     }
 

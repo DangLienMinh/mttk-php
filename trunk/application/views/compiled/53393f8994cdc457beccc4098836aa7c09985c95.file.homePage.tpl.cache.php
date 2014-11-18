@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-18 15:47:26
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-18 16:50:13
          compiled from "application\views\templates\homePage.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:31118546b5bfe224625-75630450%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:29956546b6ab590e2e5-16324392%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '53393f8994cdc457beccc4098836aa7c09985c95' => 
     array (
       0 => 'application\\views\\templates\\homePage.tpl',
-      1 => 1416318791,
+      1 => 1416324232,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '31118546b5bfe224625-75630450',
+  'nocache_hash' => '29956546b6ab590e2e5-16324392',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546b5bfe4c7ce6_15641370',
+  'unifunc' => 'content_546b6ab5a69e04_43276719',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546b5bfe4c7ce6_15641370')) {function content_546b5bfe4c7ce6_15641370($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_546b6ab5a69e04_43276719')) {function content_546b6ab5a69e04_43276719($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
 function getStatus() {
@@ -108,7 +108,8 @@ function getStatus() {
       <div class="fanclubInfo">
       </div>
     </div>
-    <?php echo $_smarty_tpl->getSubTemplate ('common/mainPart.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+    <?php ob_start();?><?php echo form_open_multipart('statusController/updateStatus');?>
+<?php $_tmp1=ob_get_clean();?><?php echo $_smarty_tpl->getSubTemplate ('common/mainPart.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array('postStatus'=>$_tmp1), 0);?>
 
 </body>
 </html><?php }} ?>

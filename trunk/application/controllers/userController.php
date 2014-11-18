@@ -34,8 +34,6 @@ class UserController extends CI_Controller {
     }
     public function logout()
     {
-        //$data['main_content'] = 'login';
-        //$this->load->view('includes/template',$data);
         $em = $this->doctrine->em;
         $user = new Entity\UserDAO($em);
         $email = $this->session->userdata('email');
@@ -55,7 +53,6 @@ class UserController extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE)
         {
-
             $this->smarty->view('login');
         }
         else
@@ -74,8 +71,7 @@ class UserController extends CI_Controller {
                          'last_name'=>$data['last_name'],
                          'birth_date'=>$data['birthday']
                       );
-
-           $this->session->set_userdata($data);
+          $this->session->set_userdata($data);
           redirect('/main/firstTime', 'refresh');
         }
     }

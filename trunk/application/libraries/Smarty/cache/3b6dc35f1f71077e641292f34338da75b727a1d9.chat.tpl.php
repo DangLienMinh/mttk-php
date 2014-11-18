@@ -1,11 +1,11 @@
-<?php /*%%SmartyHeaderCode:31576546b6a723fe658-49696295%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:235546b61e7638a64-50870668%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '0f921ff09c337117641cd650c5ceaa3930b1bdcf' => 
+    '3b6dc35f1f71077e641292f34338da75b727a1d9' => 
     array (
-      0 => 'application\\views\\templates\\userWall.tpl',
-      1 => 1416324250,
+      0 => 'application\\views\\templates\\chat.tpl',
+      1 => 1416323557,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
@@ -20,27 +20,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       1 => 1416321946,
       2 => 'file',
     ),
-    '1f54f66af881d5f8352e0fc1b00021e7b247dd60' => 
-    array (
-      0 => 'application\\views\\templates\\common\\mainPart.tpl',
-      1 => 1416324674,
-      2 => 'file',
-    ),
   ),
-  'nocache_hash' => '31576546b6a723fe658-49696295',
-  'variables' => 
-  array (
-    'items' => 0,
-    'userNameWall' => 0,
-    'userLoginWall' => 0,
-    'userPicCmtWall' => 0,
-  ),
+  'nocache_hash' => '235546b61e7638a64-50870668',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546b6a729d7649_93118787',
+  'unifunc' => 'content_546b61e7b34957_82325382',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546b6a729d7649_93118787')) {function content_546b6a729d7649_93118787($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_546b61e7b34957_82325382')) {function content_546b61e7b34957_82325382($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -929,125 +916,68 @@ $(document).on('keyup', '.search', function() {
 
 
 
-function getStatus(){
-      var data;
-        /* This requests the url "msgsrv.php"
-        When it complete (or errors)*/
-
-      data=[{"status_id":"46","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZWZEU9B9&h=mp3.zing.vn","title":"Fire","message":"r\u1ed3i","created_at":"2014-11-18 22:47:19","thumbs_up":"0","privacy_type_id":"1","email":"lethanhtrong@gmail.com","picture":"546b3f1113320.png","name":"Le Thanh Trong"},{"status_id":"45","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZW6IEBWO&h=mp3.zing.vn","title":"Neon Lights + Kraftwerk","message":"t\u1ed1i em nh\u00e9","created_at":"2014-11-18 22:46:34","thumbs_up":"0","privacy_type_id":"1","email":"lethanhtrong@gmail.com","picture":"546b3f1113320.png","name":"Le Thanh Trong"}]
-
-    addStatusUserWall(data);
-    }
   </script>
   <script>
-
-  window.userNameWall="Le Thanh Trong";
-  window.userLoginWall="lethanhtrong@gmail.com";
-  window.userPicCmtWall="http://localhost:81/mttk-php/uploads/img/546b3f1113320.png";
-
   $(document).ready(function() {
     waitForMsg();
     friendRequest();
-    getStatus();
-    getPlaylist();
+    getFriendChat();
     getSuggest();
-    getPlaylistUpdateStatus();
-    getEducation(window.userLoginWall);
-    getBasicInfo(window.userLoginWall);
-    getUserDetail(window.userLoginWall);
-    getFavorite(window.userLoginWall);
-    getFriendList(window.userLoginWall);
-    wallDsPlaylist(window.userLoginWall);
-    $("#target").autoGrow();
-    $('#tabs').tabs({
-      activate: function(event, ui) {
-        $('#container').masonry({
-          itemSelector: '.item'
-        });
-        var msnry = $('#container').data('masonry');
-        msnry.on( 'layoutComplete', masonry_refresh );
-        function masonry_refresh(){
-          Arrow_Points();
+    /*$("#notificationLink").click(function()
+    {
+      $("#friendContainer").hide();
+      $("#notificationContainer").fadeToggle(300);
+      $("#notification_count").fadeOut("slow");
+      return false;
+    });
+
+    $("#friendLink").click(function()
+    {
+      $("#notificationContainer").hide();
+      $("#friendContainer").fadeToggle(300);
+      $("#friend_count").fadeOut("slow");
+      return false;
+    });
+
+    $(document).click(function()
+    {
+      $("#notificationContainer").hide();
+      $("#friendContainer").hide();
+    });
+*/
+    $('#content').keypress(function(e) {
+      if (e.keyCode == 13) {
+        e.preventDefault();
+        var boxval = $(this).val();
+        var user = $("#toUser").val();
+        var dataString = 'email=' + user + '&message=' + boxval;
+        if (boxval.length > 0) {
+          if (boxval.length < 200) {
+            $("#flash").show();
+
+            $("#flash").fadeIn(400).html('<img src="http://localhost:81/mttk-php/assets/img/ajax-loader.gif" align="absmiddle">&nbsp;<span class="loading">Loading Update...</span>');
+
+            $.ajax({
+              type: "POST",
+
+              url: "http://localhost:81/mttk-php/messageController/addMessage",
+
+              data: dataString,
+              cache: false,
+              success: function(html) {
+                $(html).appendTo('#inline_content ol').emotions();
+                $('#content').val('');
+                $("#flash").hide();
+                $('#content').focus();
+              }
+            });
+          } else {
+            alert("Please delete some Text max 200 charts");
+          }
         }
+        $('#cboxLoadedContent').animate({scrollTop: $('#cboxLoadedContent').prop("scrollHeight")}, 700);
       }
     });
-
-    $('#notificationsBody ul').bind('scroll', function() {
-        if($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
-          var id=$(this).find('li:last').attr("id");
-          moreNotify(id.substring(4));
-        }
-    });
-
-      $("#jquery_jplayer_1").jPlayer({
-        ready: function (event) {
-          $(this).jPlayer("setMedia", {
-            title: "",
-            mp3: ""
-          }).jPlayer("play");
-        },
-        swfPath: "js",
-        supplied: "mp3",
-        wmode: "window",
-        smoothPlayBar: true,
-        keyEnabled: true,
-        remainingDuration: true,
-        toggleDuration: true
-      });
-
-      $('#headlineTimeline').find('span').css("display", "block");
-      $('.headlineRight a').click(function(){
-        $(this).find('span').css("display", "block");
-        $(this).siblings("a").find('span').css("display", "none");
-        return false;
-      })
-      $('#headlineFriendList').click(function(){
-        $('#wallContainer').find('#view2').show();
-        $('#wallContainer').find('#view2').siblings('div').hide();
-      });
-      $('#headlineTimeline').click(function(){
-        $('#wallContainer').find('#view1').show();
-        $('#wallContainer').find('#view1').siblings('div').hide();
-        $('#container').masonry({
-          itemSelector: '.item'
-        });
-      });
-      $('#headlinePlaylist').click(function(){
-        $('#wallContainer').find('#view3').show();
-        $('#wallContainer').find('#view3').siblings('div').hide();
-      });
-      $('#headlineAbout').click(function(){
-        $('#wallContainer').find('#view4').show();
-        $('#wallContainer').find('#view4').siblings('div').hide();
-      });
-      $('#aboutLeft1').click(function(){
-        $('#aboutRight').find('#about1').show();
-        $('#aboutRight').find('#about1').siblings('div').hide();
-        $(this).addClass("aboutLeftSelected");
-        $(this).parent().siblings('li').find('a').removeClass("aboutLeftSelected");
-        return false;
-      });
-      $('#aboutLeft2').click(function(){
-        $('#aboutRight').find('#about2').show();
-        $('#aboutRight').find('#about2').siblings('div').hide();
-        $(this).addClass("aboutLeftSelected");
-        $(this).parent().siblings('li').find('a').removeClass("aboutLeftSelected");
-        return false;
-      });
-      $('#aboutLeft3').click(function(){
-        $('#aboutRight').find('#about3').show();
-        $('#aboutRight').find('#about3').siblings('div').hide();
-        $(this).addClass("aboutLeftSelected");
-        $(this).parent().siblings('li').find('a').removeClass("aboutLeftSelected");
-        return false;
-      });
-      $('#aboutLeft4').click(function(){
-        $('#aboutRight').find('#about4').show();
-        $('#aboutRight').find('#about4').siblings('div').hide();
-        $(this).addClass("aboutLeftSelected");
-        $(this).parent().siblings('li').find('a').removeClass("aboutLeftSelected");
-        return false;
-      });
   });
   </script>
  
@@ -1097,199 +1027,28 @@ function getStatus(){
     </li>
   </ul>
 </div>
-  <div id="coverContainer">
-    <div id="cover">
+    <div id="friendChatContainer">
+      <ul></ul>
     </div>
-    <div id="headline">
-      <div class="headlineRight">
-        <a id="headlineTimeline" href="#">TimeLine</a>
-        <a id="headlineAbout" href="#">About</a>
-        <a id="headlineFriendList" href="#">Friends</a>
-        <a id="headlinePlaylist" href="#">Playlist</a>
-        <a class="" href="#">More</a>
-      </div>
-    </div>
-  </div>
-    <div id="wallContainer">
-      <div id="view1">
-        <div id="container">
-  <div class="timeline_container">
-    <div class="timeline">
-      <div class="plus"></div>
-    </div>
-  </div>
-  <div class="item">
-    <form action="http://localhost:81/mttk-php/statusController/updateStatus" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-    <div id="tabs">
-      <ul>
-        <li><a href="#tabs-1">Choose music</a></li>
-        <li><a href="#tabs-2">Upload music</a></li>
-        <li><a href="#tabs-3">Playlist</a></li>
-      </ul>
-      <div id="tabs-1">
-        <textarea name="status" id="target" rows="4" placeholder="What's on your mind?"></textarea>
-        <br/>
-        <input type="text" name="music_name" id="music_name" placeholder="Song name?"/>
-        <input type="hidden" name="fanclub_id"/>
-        <input type="hidden" name="music_url" id="music_url" />
-        <input type="hidden" name="title" id="title" />
-        <div id="musicContainer">
-          <div id="musicBody" class="musics">
-            <ul id="finalResult"></ul>
-          </div>
-        </div>
-        <div id="jquery_jplayer_1" class="jp-jplayer"></div>
-        <div id="jp_container_1" class="jp-audio centerAlign">
-          <div class="jp-type-single">
-            <div class="jp-gui jp-interface">
-              <ul class="jp-controls">
-                <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
-                <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
-                <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
-                <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
-                <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
-                <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
-              </ul>
-              <div class="jp-progress">
-                <div class="jp-seek-bar">
-                  <div class="jp-play-bar"></div>
-                </div>
+      <div style="width:550px; float:left; margin:30px;display:none;">
+        <div id='inline_content' style='padding:10px; background:#fff;'>
+          <ol id="update" style="list-style:none;">
+          </ol>
+          <div id="flash"></div>
+          <audio id="chatAudio"><source src="http://localhost:81/mttk-php/assets/sound/notify.ogg" type="audio/ogg"><source src="http://localhost:81/mttk-php/assets/sound/notify.mp3" type="audio/mpeg"><source src="http://localhost:81/mttk-php/assets/sound/notify.wav" type="audio/wav"></audio>
+          <div>
+              <div align="left">
+              <table>
+              <tr>
+                <td>
+                  <input type='text' class="textbox" name="content" id="content" maxlength="200" placeholder="Message"/>
+                </td>
+                <input type='hidden' name="toUser" id="toUser" />
+              </tr>
+              </table>
               </div>
-              <div class="jp-volume-bar">
-                <div class="jp-volume-bar-value"></div>
-              </div>
-              <div class="jp-time-holder">
-                <div class="jp-current-time"></div>
-                <div class="jp-duration"></div>
-                <ul class="jp-toggles">
-                  <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
-                  <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="jp-details">
-              <ul>
-                <li><span class="jp-title"></span></li>
-              </ul>
-            </div>
-            <div class="jp-no-solution">
-              <span>Update Required</span>
-              To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
-            </div>
           </div>
         </div>
       </div>
-      <div id="tabs-2">
-        <textarea name="status2" id="target" rows="4" placeholder="What's on your mind?"></textarea>
-        <br/>
-        <input type="file" name="musicFile" size="20"/>
-      </div>
-      <div id="tabs-3">
-        <div id="playlistBoxUpdateStatus">
-          <select></select>
-          <input type="hidden" name="playlist_id" id="playlist_id" />
-        </div>
-        <textarea name="status3" id="target" rows="4" placeholder="What's on your mind?"></textarea>
-        <br/>
-        <div id="jquery_jplayer_2" class="jp-jplayer"></div>
-        <div id="jp_container_2" class="jp-audio centerAlign">
-          <div class="jp-type-playlist">
-            <div class="jp-gui jp-interface">
-              <ul class="jp-controls">
-                <li><a href="javascript:;" class="jp-previous" tabindex="1">previous</a></li>
-                <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
-                <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
-                <li><a href="javascript:;" class="jp-next" tabindex="1">next</a></li>
-                <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
-                <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
-                <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
-                <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
-              </ul>
-              <div class="jp-progress">
-                <div class="jp-seek-bar">
-                  <div class="jp-play-bar"></div>
-                </div>
-              </div>
-              <div class="jp-volume-bar">
-                <div class="jp-volume-bar-value"></div>
-              </div>
-              <div class="jp-current-time"></div>
-              <div class="jp-duration"></div>
-              <ul class="jp-toggles">
-                <li><a href="javascript:;" class="jp-shuffle" tabindex="1" title="shuffle">shuffle</a></li>
-                <li><a href="javascript:;" class="jp-shuffle-off" tabindex="1" title="shuffle off">shuffle off</a></li>
-                <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
-                <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
-              </ul>
-            </div>
-            <div class="jp-playlist">
-              <ul>
-                <li></li>
-              </ul>
-            </div>
-            <div class="jp-no-solution">
-              <span>Update Required</span>
-              To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
-            </div>
-          </div>
-        </div>
-        <!--cai playlist de day dung ajax load vao combo-->
-      </div>
-      <div id="privacyRight">
-        <select name="privacy" id="privacy">
-          <option selected value="1">Public</option>
-          <option value="2">Friend</option>
-          <option value="3">Custom</option>
-          <option value="4">Private</option>
-        </select>
-        <input type="submit" value="Post" id="postStatus"/>
-      </div>
-    </div>
-    </form>
-  </div>
-</div>
-<div id="pop">
-  <img/>
-  <h2></h2>
-</div>
-<div style="display: none; border: 1px solid black; height: 50px; width: 180px; 
-  padding: 5px; position: absolute; left: 100px; top: 100px; 
-  background-color: silver;" id="playlistBox">
-  <select></select>
-  <input type="hidden" id="titleMusic"/>
-  <input type="hidden" id="urlMusic"/>
-  <button id="savePlaylist">Save</button>
-</div>
-      </div>
-      <div id="view4" style="display:none;">
-        <div id="aboutContainer">
-          <div id="aboutLeft">
-            <ul>
-              <li><a id="aboutLeft1" href="#"><span>Education  and Religion</span></a></li>
-              <li><a id="aboutLeft2" href="#"><span>Contact and Basic Info</span></a></li>
-              <li><a id="aboutLeft3" href="#"><span>Details about you</span></a></li>
-              <li><a id="aboutLeft4" href="#"><span>Favorites</span></a></li>
-            </ul>
-          </div>
-          <div id="aboutRight">
-            <div class="aboutContent">
-              <div id="about1"></div>
-              <div id="about2" style="display:none;"></div>
-              <div id="about3" style="display:none;"></div>
-              <div id="about4" style="display:none;"></div>
-              <div id="about5" style="display:none;"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="view2" style="display:none;">
-        <div id="friendListContainer"><ul></ul></div>
-      </div>
-      <div id="view3" style="display:none;">
-        <div id="playlistContainer">
-          <ul></ul>
-        </div>
-      </div>
-    </div>
 </body>
 </html><?php }} ?>

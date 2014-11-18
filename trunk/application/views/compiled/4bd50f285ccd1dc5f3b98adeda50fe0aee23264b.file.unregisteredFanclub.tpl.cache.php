@@ -1,21 +1,54 @@
-{include file='common/header.tpl'}
-{literal}
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-18 16:41:49
+         compiled from "application\views\templates\unregisteredFanclub.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:28281546b68bd04a0c2-98683801%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '4bd50f285ccd1dc5f3b98adeda50fe0aee23264b' => 
+    array (
+      0 => 'application\\views\\templates\\unregisteredFanclub.tpl',
+      1 => 1416325280,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '28281546b68bd04a0c2-98683801',
+  'function' => 
+  array (
+  ),
+  'variables' => 
+  array (
+    'items' => 0,
+    'fanclub' => 0,
+    'fanclubName' => 0,
+    'fanclubDesc' => 0,
+  ),
+  'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_546b68bd195d65_05743487',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_546b68bd195d65_05743487')) {function content_546b68bd195d65_05743487($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+
+
 function getStatus(){
       var data;
         /* This requests the url "msgsrv.php"
         When it complete (or errors)*/
-{/literal}
-      data={$items}
-{literal}
+
+      data=<?php echo $_smarty_tpl->tpl_vars['items']->value;?>
+
+
     addStatusUserWall(data);
   }
   </script>
   <script>
-{/literal}
-  window.fanclub="{$fanclub}";
-  window.fanclubName="{$fanclubName}";
-  window.fanclubDesc="{$fanclubDesc}";
-{literal}
+
+  window.fanclub="<?php echo $_smarty_tpl->tpl_vars['fanclub']->value;?>
+";
+  window.fanclubName="<?php echo $_smarty_tpl->tpl_vars['fanclubName']->value;?>
+";
+  window.fanclubDesc="<?php echo $_smarty_tpl->tpl_vars['fanclubDesc']->value;?>
+";
+
   $(document).ready(function() {
     waitForMsg();
     friendRequest();
@@ -83,9 +116,10 @@ function getStatus(){
       $(document).on('click', '.joinFanclub a', function() {
         $.ajax({
         type: "post",
-  {/literal}
-        url:"{base_url('fanclubController/tuThemVaoFanclub')}",
-  {literal}
+  
+        url:"<?php echo base_url('fanclubController/tuThemVaoFanclub');?>
+",
+  
         data:'fanclub_id='+window.fanclub,
         cache: false,
         success: function(){
@@ -98,10 +132,11 @@ function getStatus(){
 
 
   </script>
- {/literal}
+ 
 </head>
 <body>
-    {include file='common/notificationPart.tpl'}
+    <?php echo $_smarty_tpl->getSubTemplate ('common/notificationPart.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+
     <div id="coverContainer">
     <div id="fanclubCover">
     </div>
@@ -152,4 +187,4 @@ function getStatus(){
   </div>
     </div>
 </body>
-</html>
+</html><?php }} ?>

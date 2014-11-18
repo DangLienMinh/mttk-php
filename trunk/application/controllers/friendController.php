@@ -12,7 +12,6 @@
 	public function index(){
 		$em = $this->doctrine->em;
 		$user = new Entity\UserDAO($em);
-		//$fanclub = new Entity\FanclubDAO($em);
 		$search=  $this->input->post('search');
 		$result=$user->timUser($search);
         $friends="";
@@ -21,12 +20,6 @@
 	        {
 	            $friends.='<div class="display_box" align="left"><img src="'.base_url().'uploads/img/'.$k['picture'].'" style="max-width:80%; max-height:80%; float:left; margin-right:6px" /><a href="seeWall/'. $k['email'] . '">' . $k['first_name']." ".$k['last_name'] . '</a><button type="button" class="addFriend" value="' . $k['email'] . '">'.'Add friend</button></div>';
 	        }
-	        //$result=$fanclub->timFanclub($search);
-	        /*$friends.='<h2>Group</h2>';
-	        foreach($result as $k)
-	        {
-	            $friends.='<div class="display_box" align="left"><img src="'.base_url().'uploads/img/'.$k['picture'].'" style="max-width:80%; max-height:80%; float:left; margin-right:6px" /><a href="seeWall/'. $k['email'] . '">' . $k['first_name']." ".$k['last_name'] . '</a><button type="button" class="addFriend" value="' . $k['email'] . '">'.'Add friend</button></div>';
-	        }*/
         }else{
         	$friends.="<b>No Data Found</b>";
         }
@@ -140,7 +133,6 @@
 	        }
         }
         echo $friends;
-        //echo json_encode($result);
 	}
 
 

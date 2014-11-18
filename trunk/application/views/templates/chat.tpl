@@ -6,28 +6,7 @@
     waitForMsg();
     friendRequest();
     getFriendChat();
-    
-    $("#notificationLink").click(function()
-    {
-      $("#friendContainer").hide();
-      $("#notificationContainer").fadeToggle(300);
-      $("#notification_count").fadeOut("slow");
-      return false;
-    });
-
-    $("#friendLink").click(function()
-    {
-      $("#notificationContainer").hide();
-      $("#friendContainer").fadeToggle(300);
-      $("#friend_count").fadeOut("slow");
-      return false;
-    });
-
-    $(document).click(function()
-    {
-      $("#notificationContainer").hide();
-      $("#friendContainer").hide();
-    });
+    getSuggest();
 
     $('#content').keypress(function(e) {
       if (e.keyCode == 13) {

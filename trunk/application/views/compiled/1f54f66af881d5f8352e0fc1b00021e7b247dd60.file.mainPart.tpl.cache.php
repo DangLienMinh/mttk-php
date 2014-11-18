@@ -1,32 +1,36 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-18 15:48:10
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-18 16:50:13
          compiled from "application\views\templates\common\mainPart.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:20248546b5c2a646630-67632896%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:21427546b6ab5f41212-47193326%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '1f54f66af881d5f8352e0fc1b00021e7b247dd60' => 
     array (
       0 => 'application\\views\\templates\\common\\mainPart.tpl',
-      1 => 1416322027,
+      1 => 1416324674,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '20248546b5c2a646630-67632896',
+  'nocache_hash' => '21427546b6ab5f41212-47193326',
   'function' => 
   array (
   ),
+  'variables' => 
+  array (
+    'postStatus' => 0,
+  ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546b5c2a677269_47171720',
+  'unifunc' => 'content_546b6ab60227e9_81635248',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546b5c2a677269_47171720')) {function content_546b5c2a677269_47171720($_smarty_tpl) {?><div id="container">
+<?php if ($_valid && !is_callable('content_546b6ab60227e9_81635248')) {function content_546b6ab60227e9_81635248($_smarty_tpl) {?><div id="container">
   <div class="timeline_container">
     <div class="timeline">
       <div class="plus"></div>
     </div>
   </div>
   <div class="item">
-    <?php echo form_open_multipart('statusController/updateStatus');?>
+    <?php echo $_smarty_tpl->tpl_vars['postStatus']->value;?>
 
     <div id="tabs">
       <ul>
@@ -38,6 +42,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <textarea name="status" id="target" rows="4" placeholder="What's on your mind?"></textarea>
         <br/>
         <input type="text" name="music_name" id="music_name" placeholder="Song name?"/>
+        <input type="hidden" name="fanclub_id"/>
         <input type="hidden" name="music_url" id="music_url" />
         <input type="hidden" name="title" id="title" />
         <div id="musicContainer">

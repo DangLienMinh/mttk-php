@@ -16,22 +16,6 @@
   <script type="text/javascript">
   {literal}
   $(document).ready(function() {
-      /*$("#music_name").keyup(function(){
-        $("#musicContainer").show();
-        $.ajax({
-          type: "post",
-{/literal}
-          url:"{base_url('statusController/chooseMusic')}", 
-{literal}
-          cache: false,
-          data:'music_name='+$("#music_name").val(),
-          success: function(response){
-            $('#finalResult').html("");
-            $('#finalResult').append(response);
-          }
-        });
-      });*/
-
       $('#fanclubCreate').click(function(){
       	var name=$('#fanclubName').val();
       	var desc=$('#fanclubDesc').val();

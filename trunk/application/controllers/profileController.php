@@ -68,7 +68,6 @@ class ProfileController extends CI_Controller {
             }
           }
         }
-        
         echo $content;
     }
 

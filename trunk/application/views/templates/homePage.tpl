@@ -84,6 +84,6 @@ function getStatus() {
       <div class="fanclubInfo">
       </div>
     </div>
-    {include file='common/mainPart.tpl'}
+    {include file='common/mainPart.tpl' postStatus={form_open_multipart('statusController/updateStatus')}}
 </body>
 </html>
