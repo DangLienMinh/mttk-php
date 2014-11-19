@@ -29,6 +29,7 @@ function getStatus(){
     getFavorite(window.userLoginWall);
     getFriendList(window.userLoginWall);
     wallDsPlaylist(window.userLoginWall);
+    $('#search').hideseek();
     $("#target").autoGrow();
     $('#tabs').tabs({
       activate: function(event, ui) {
@@ -164,7 +165,15 @@ function getStatus(){
         </div>
       </div>
       <div id="view2" style="display:none;">
-        <div id="friendListContainer"><ul></ul></div>
+        <div id="friendListContainer">
+        <div id="chatTitle">
+          <h3>Search</h3>
+          <input id="search" name="search" placeholder="Start typing here" type="text" data-list=".list">
+        </div>
+        <div id="friendList">
+          <ul class="list"></ul>
+        </div>
+      </div>
       </div>
       <div id="view3" style="display:none;">
         <div id="playlistContainer">

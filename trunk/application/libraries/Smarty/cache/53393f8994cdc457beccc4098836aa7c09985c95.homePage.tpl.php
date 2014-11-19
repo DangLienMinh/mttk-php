@@ -1,4 +1,4 @@
-<?php /*%%SmartyHeaderCode:29956546b6ab590e2e5-16324392%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:25665546cbac636e804-28086730%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,13 +11,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1416321293,
+      1 => 1416411781,
       2 => 'file',
     ),
     '43fa4b8fd8c47d297992bda3dda6ee24684e1de9' => 
     array (
       0 => 'application\\views\\templates\\common\\notificationPart.tpl',
-      1 => 1416321946,
+      1 => 1416411568,
       2 => 'file',
     ),
     '1f54f66af881d5f8352e0fc1b00021e7b247dd60' => 
@@ -27,13 +27,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '29956546b6ab590e2e5-16324392',
+  'nocache_hash' => '25665546cbac636e804-28086730',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546b6ab609ff98_29995601',
+  'unifunc' => 'content_546cbac6b3d526_41300367',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546b6ab609ff98_29995601')) {function content_546b6ab609ff98_29995601($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_546cbac6b3d526_41300367')) {function content_546cbac6b3d526_41300367($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -47,6 +47,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery-ui.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.autogrowtextarea.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/masonry.pkgd.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.hideseek.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.colorbox-min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.timeago.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.livequery.js"></script>
@@ -73,9 +74,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   window.logout="http://localhost:81/mttk-php/userController/logout";
   window.userMusic="http://localhost:81/mttk-php/uploads";
   window.homePage="http://localhost:81/mttk-php/main/homePage";
-  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/546b3f1113320.png";
-  window.userLogin="lethanhtrong@gmail.com";
-  window.userName="Le Thanh Trong";
+  window.chatPage="http://localhost:81/mttk-php/main/chat";
+  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/shot0006.jpg";
+  window.userLogin="anhtiminh@yahoo.com";
+  window.userName="minh dang";
   window.compare=0;
   window.compareStatus=0;
   window.currentChatPosition=-1;
@@ -213,11 +215,10 @@ function getFriendChat() {
     url: "http://localhost:81/mttk-php/friendController/getAllChatFriends",
 
     async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
     timeout: 50000,
     success: function(data) {
-     $('#friendChatContainer>ul').append(data);
+     $('#chatContainer>ul').append(data);
      $(".inline").colorbox({inline:true,title:"<h1 style='margin-left: 180px; color:#fff!important;'>Chat</h1>", width:"30%",height:"80%"});
     }
   });
@@ -235,7 +236,7 @@ function getFriendList(email) {
     cache: false,
     timeout: 50000,
     success: function(data) {
-     $('#friendListContainer>ul').append(data);
+     $('#friendList>ul').append(data);
     }
   });
 }
@@ -1025,6 +1026,9 @@ function getStatus() {
           <ul id="facebook"></ul>
         </div>
       </div>
+    </li>
+    <li>
+      <a href="#" id="chatPage">Chat</a>
     </li>
     <li id="notification_li">
       <span id="notification_count"></span>

@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-18 16:12:39
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-19 16:43:19
          compiled from "application\views\templates\chat.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:235546b61e7638a64-50870668%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:12059546cba97638bc3-05785046%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '3b6dc35f1f71077e641292f34338da75b727a1d9' => 
     array (
       0 => 'application\\views\\templates\\chat.tpl',
-      1 => 1416323557,
+      1 => 1416409565,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '235546b61e7638a64-50870668',
+  'nocache_hash' => '12059546cba97638bc3-05785046',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546b61e7765a38_38675183',
+  'unifunc' => 'content_546cba97759045_29878485',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546b61e7765a38_38675183')) {function content_546b61e7765a38_38675183($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_546cba97759045_29878485')) {function content_546cba97759045_29878485($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
   </script>
@@ -29,28 +29,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     friendRequest();
     getFriendChat();
     getSuggest();
-    /*$("#notificationLink").click(function()
-    {
-      $("#friendContainer").hide();
-      $("#notificationContainer").fadeToggle(300);
-      $("#notification_count").fadeOut("slow");
-      return false;
+    $('#notificationsBody ul').bind('scroll', function() {
+        if($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
+          var id=$(this).find('li:last').attr("id");
+          moreNotify(id.substring(4));
+        }
     });
-
-    $("#friendLink").click(function()
-    {
-      $("#notificationContainer").hide();
-      $("#friendContainer").fadeToggle(300);
-      $("#friend_count").fadeOut("slow");
-      return false;
-    });
-
-    $(document).click(function()
-    {
-      $("#notificationContainer").hide();
-      $("#friendContainer").hide();
-    });
-*/
+    $('#search').hideseek();
     $('#content').keypress(function(e) {
       if (e.keyCode == 13) {
         e.preventDefault();
@@ -93,8 +78,16 @@ img/ajax-loader.gif" align="absmiddle">&nbsp;<span class="loading">Loading Updat
 <body>
   <?php echo $_smarty_tpl->getSubTemplate ('common/notificationPart.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
+
     <div id="friendChatContainer">
-      <ul></ul>
+      <div id="chatTitle">
+        <h3>Search</h3>
+        <input id="search" name="search" placeholder="Start typing here" type="text" data-list=".list">
+      </div>
+      <div id="chatContainer">
+        
+        <ul class="list"></ul>
+      </div>
     </div>
       <div style="width:550px; float:left; margin:30px;display:none;">
         <div id='inline_content' style='padding:10px; background:#fff;'>

@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-18 16:50:13
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-19 16:45:22
          compiled from "application\views\templates\common\header.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:15085546b6ab5ad6cd7-57647339%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:9531546cbb120c1148-04071079%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1416321293,
+      1 => 1416411894,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '15085546b6ab5ad6cd7-57647339',
+  'nocache_hash' => '9531546cbb120c1148-04071079',
   'function' => 
   array (
   ),
@@ -23,9 +23,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546b6ab5e9df71_44298639',
+  'unifunc' => 'content_546cbb127703a9_01960566',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546b6ab5e9df71_44298639')) {function content_546b6ab5e9df71_44298639($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_546cbb127703a9_01960566')) {function content_546cbb127703a9_01960566($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -49,6 +49,8 @@ js/jquery.autogrowtextarea.min.js"></script>
   <script type="text/javascript" src="<?php echo asset_url();?>
 js/masonry.pkgd.min.js"></script>
   <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery.hideseek.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
 js/jquery.colorbox-min.js"></script>
   <script type="text/javascript" src="<?php echo asset_url();?>
 js/jquery.timeago.js"></script>
@@ -71,8 +73,6 @@ img/emotions-fb/";
   <script type="text/javascript" src="<?php echo asset_url();?>
 js/jquery.emotions.js"></script>
   <script type="text/javascript">
-  //window.notifyStatus="<?php echo site_url('statusController/hienThiNotiStatus/');?>
-";
   window.cretePlaylist="<?php echo site_url('playlistController/viewPlaylist/');?>
 ";
   window.createFanclub="<?php echo site_url('fanclubController/createFanclub/');?>
@@ -83,10 +83,6 @@ img/profilePic.jpg";
 img/";
   window.userWall="<?php echo site_url('statusController/layDSWallStatus/');?>
 ";
-  //window.fanclub="<?php echo site_url('statusController/layDSFanclubStatus/');?>
-";
-  //window.friendController="<?php echo site_url('friendController/');?>
-";
   window.playlistIcon="<?php echo base_url();?>
 assets/img/playlistIcon.png";
   window.logoutIcon="<?php echo base_url();?>
@@ -96,6 +92,8 @@ assets/img/logout.png";
   window.userMusic="<?php echo base_url('uploads/');?>
 ";
   window.homePage="<?php echo base_url('main/homePage/');?>
+";
+  window.chatPage="<?php echo base_url('main/chat/');?>
 ";
   window.userPicCmt="<?php echo uploads_url();?>
 img/<?php echo $_smarty_tpl->tpl_vars['userPicCmt']->value;?>
@@ -249,11 +247,10 @@ function getFriendChat() {
 ",
 
     async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
     timeout: 50000,
     success: function(data) {
-     $('#friendChatContainer>ul').append(data);
+     $('#chatContainer>ul').append(data);
      $(".inline").colorbox({inline:true,title:"<h1 style='margin-left: 180px; color:#fff!important;'>Chat</h1>", width:"30%",height:"80%"});
     }
   });
@@ -272,7 +269,7 @@ function getFriendList(email) {
     cache: false,
     timeout: 50000,
     success: function(data) {
-     $('#friendListContainer>ul').append(data);
+     $('#friendList>ul').append(data);
     }
   });
 }

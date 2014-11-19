@@ -77,6 +77,12 @@ class UserDAO
 		$query->setParameter(1, $data['email']);
 		$query->setParameter(2, $data['password']);
 		$result=$query->getResult();
+		if(count($result)>0){
+			$user = $this->em->getReference('Entity\User', $data['email']);
+			$user->setOnline(1);
+			$this->em->merge($user);
+			$this->em->flush();
+		}
 		return $result;
 	}
 
@@ -87,12 +93,22 @@ class UserDAO
 		return $result;
 	}
 
+	public function checkLogin( $email){
+		$user = $this->em->getReference('Entity\User', $email);
+		return $user->getOnline();
+	}
+
 	public function capNhatLastLogin($email){
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("CALL LastLogin(?)");
 		$sth->bindValue(1, $email);
 		// execute and fetch
 		$sth->execute();
+
+		$user = $this->em->getReference('Entity\User', $email);
+		$user->setOnline(0);
+		$this->em->merge($user);
+		$this->em->flush();
 	}
 }
 ?>

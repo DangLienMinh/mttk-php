@@ -24,6 +24,9 @@
         </div>
       </div>
     </li>
+    <li>
+      <a href="#" id="chatPage">Chat</a>
+    </li>
     <li id="notification_li">
       <span id="notification_count"></span>
       <a href="#" id="notificationLink">Notifications</a>

@@ -107,12 +107,17 @@
         $em = $this->doctrine->em;
         $email = $this->session->userdata('email');
 		$friend = new Entity\FriendDAO($em);
-		$result=$friend->getAllFriends($email);
-        //echo json_encode($result);
+		$result=$friend->getAllChatFriends($email);
         $friends="";
         foreach($result as $k)
         {
-            $friends.='<li><a class="inline" href="#inline_content"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' .base_url().'uploads/img/'.$k['picture']. '"/><span class="'.$k['email'].'">' . $k['name'] . '</span></a></li>';
+        	$userStatus="";
+        	if($k['online']==1){
+        		$userStatus='<span class="onlineStatus green">Online</span>';
+        	}else{
+        		$userStatus='<span class="onlineStatus red">Offline</span>';
+        	}
+            $friends.='<li>'.$userStatus.'<a class="inline" href="#inline_content"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' .base_url().'uploads/img/'.$k['picture']. '"/><span class="'.$k['email'].'">' . $k['name'] . '</span></a></li>';
         }
         echo $friends;
 	}
