@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-18 16:50:13
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-19 16:45:22
          compiled from "application\views\templates\common\notificationPart.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:32034546b6ab5ee6ef5-90740393%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1112546cbb127d4011-59026191%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '43fa4b8fd8c47d297992bda3dda6ee24684e1de9' => 
     array (
       0 => 'application\\views\\templates\\common\\notificationPart.tpl',
-      1 => 1416321946,
+      1 => 1416411568,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '32034546b6ab5ee6ef5-90740393',
+  'nocache_hash' => '1112546cbb127d4011-59026191',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546b6ab5ef8a27_27198106',
+  'unifunc' => 'content_546cbb127e9605_21631060',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546b6ab5ef8a27_27198106')) {function content_546b6ab5ef8a27_27198106($_smarty_tpl) {?><div id="noti_Container">
+<?php if ($_valid && !is_callable('content_546cbb127e9605_21631060')) {function content_546cbb127e9605_21631060($_smarty_tpl) {?><div id="noti_Container">
   <ul id="nav">
     <div style=" width:300px; margin-right:23%;margin-left:15.5%;float:left;" align="right">
       <input type="text" class="search" id="searchbox" placeholder="Search for people, fanclub"/><br />
@@ -44,6 +44,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
           <ul id="facebook"></ul>
         </div>
       </div>
+    </li>
+    <li>
+      <a href="#" id="chatPage">Chat</a>
     </li>
     <li id="notification_li">
       <span id="notification_count"></span>

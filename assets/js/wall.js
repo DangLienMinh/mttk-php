@@ -377,6 +377,11 @@ $(document).on('click', '#homePage', function() {
 	window.location = window.homePage;
 });
 
+$(document).on('click', '#chatPage', function() {
+	window.location =window.chatPage;
+});
+
+
 $(document).on('click', '.account', function() {
 	var X = $(this).attr('id');
 

@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-18 16:49:06
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-19 16:45:21
          compiled from "application\views\templates\userWall.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:31576546b6a723fe658-49696295%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:32714546cbb11cdb0b4-47679701%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '0f921ff09c337117641cd650c5ceaa3930b1bdcf' => 
     array (
       0 => 'application\\views\\templates\\userWall.tpl',
-      1 => 1416324250,
+      1 => 1416408923,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '31576546b6a723fe658-49696295',
+  'nocache_hash' => '32714546cbb11cdb0b4-47679701',
   'function' => 
   array (
   ),
@@ -24,9 +24,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546b6a725731b6_43870785',
+  'unifunc' => 'content_546cbb1203b593_28359279',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546b6a725731b6_43870785')) {function content_546b6a725731b6_43870785($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_546cbb1203b593_28359279')) {function content_546cbb1203b593_28359279($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
 function getStatus(){
@@ -63,6 +63,7 @@ img/<?php echo $_smarty_tpl->tpl_vars['userPicCmtWall']->value;?>
     getFavorite(window.userLoginWall);
     getFriendList(window.userLoginWall);
     wallDsPlaylist(window.userLoginWall);
+    $('#search').hideseek();
     $("#target").autoGrow();
     $('#tabs').tabs({
       activate: function(event, ui) {
@@ -201,7 +202,15 @@ img/<?php echo $_smarty_tpl->tpl_vars['userPicCmtWall']->value;?>
         </div>
       </div>
       <div id="view2" style="display:none;">
-        <div id="friendListContainer"><ul></ul></div>
+        <div id="friendListContainer">
+        <div id="chatTitle">
+          <h3>Search</h3>
+          <input id="search" name="search" placeholder="Start typing here" type="text" data-list=".list">
+        </div>
+        <div id="friendList">
+          <ul class="list"></ul>
+        </div>
+      </div>
       </div>
       <div id="view3" style="display:none;">
         <div id="playlistContainer">

@@ -49,7 +49,6 @@ class UserController extends CI_Controller {
         $this->form_validation->set_rules('re_password','Confirm Password','trim|required|matches[password]');
         $this->form_validation->set_rules('first_name', 'First_name', 'trim|required');
         $this->form_validation->set_rules('last_name', 'Last_name', 'trim|required');
-        $this->form_validation->set_rules('birthday', 'Birthday', 'trim|required');
 
         if ($this->form_validation->run() == FALSE)
         {

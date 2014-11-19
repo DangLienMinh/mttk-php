@@ -1,33 +1,33 @@
-<?php /*%%SmartyHeaderCode:235546b61e7638a64-50870668%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:12059546cba97638bc3-05785046%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '3b6dc35f1f71077e641292f34338da75b727a1d9' => 
     array (
       0 => 'application\\views\\templates\\chat.tpl',
-      1 => 1416323557,
+      1 => 1416409565,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1416321293,
+      1 => 1416411781,
       2 => 'file',
     ),
     '43fa4b8fd8c47d297992bda3dda6ee24684e1de9' => 
     array (
       0 => 'application\\views\\templates\\common\\notificationPart.tpl',
-      1 => 1416321946,
+      1 => 1416411568,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '235546b61e7638a64-50870668',
+  'nocache_hash' => '12059546cba97638bc3-05785046',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546b61e7b34957_82325382',
+  'unifunc' => 'content_546cba97c3ba07_34494244',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546b61e7b34957_82325382')) {function content_546b61e7b34957_82325382($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_546cba97c3ba07_34494244')) {function content_546cba97c3ba07_34494244($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -41,6 +41,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery-ui.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.autogrowtextarea.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/masonry.pkgd.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.hideseek.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.colorbox-min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.timeago.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.livequery.js"></script>
@@ -67,9 +68,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   window.logout="http://localhost:81/mttk-php/userController/logout";
   window.userMusic="http://localhost:81/mttk-php/uploads";
   window.homePage="http://localhost:81/mttk-php/main/homePage";
-  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/546b3f1113320.png";
-  window.userLogin="lethanhtrong@gmail.com";
-  window.userName="Le Thanh Trong";
+  window.chatPage="http://localhost:81/mttk-php/main/chat";
+  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/shot0006.jpg";
+  window.userLogin="anhtiminh@yahoo.com";
+  window.userName="minh dang";
   window.compare=0;
   window.compareStatus=0;
   window.currentChatPosition=-1;
@@ -207,11 +209,10 @@ function getFriendChat() {
     url: "http://localhost:81/mttk-php/friendController/getAllChatFriends",
 
     async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
     timeout: 50000,
     success: function(data) {
-     $('#friendChatContainer>ul').append(data);
+     $('#chatContainer>ul').append(data);
      $(".inline").colorbox({inline:true,title:"<h1 style='margin-left: 180px; color:#fff!important;'>Chat</h1>", width:"30%",height:"80%"});
     }
   });
@@ -229,7 +230,7 @@ function getFriendList(email) {
     cache: false,
     timeout: 50000,
     success: function(data) {
-     $('#friendListContainer>ul').append(data);
+     $('#friendList>ul').append(data);
     }
   });
 }
@@ -923,28 +924,13 @@ $(document).on('keyup', '.search', function() {
     friendRequest();
     getFriendChat();
     getSuggest();
-    /*$("#notificationLink").click(function()
-    {
-      $("#friendContainer").hide();
-      $("#notificationContainer").fadeToggle(300);
-      $("#notification_count").fadeOut("slow");
-      return false;
+    $('#notificationsBody ul').bind('scroll', function() {
+        if($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
+          var id=$(this).find('li:last').attr("id");
+          moreNotify(id.substring(4));
+        }
     });
-
-    $("#friendLink").click(function()
-    {
-      $("#notificationContainer").hide();
-      $("#friendContainer").fadeToggle(300);
-      $("#friend_count").fadeOut("slow");
-      return false;
-    });
-
-    $(document).click(function()
-    {
-      $("#notificationContainer").hide();
-      $("#friendContainer").hide();
-    });
-*/
+    $('#search').hideseek();
     $('#content').keypress(function(e) {
       if (e.keyCode == 13) {
         e.preventDefault();
@@ -1009,6 +995,9 @@ $(document).on('keyup', '.search', function() {
         </div>
       </div>
     </li>
+    <li>
+      <a href="#" id="chatPage">Chat</a>
+    </li>
     <li id="notification_li">
       <span id="notification_count"></span>
       <a href="#" id="notificationLink">Notifications</a>
@@ -1027,8 +1016,16 @@ $(document).on('keyup', '.search', function() {
     </li>
   </ul>
 </div>
+
     <div id="friendChatContainer">
-      <ul></ul>
+      <div id="chatTitle">
+        <h3>Search</h3>
+        <input id="search" name="search" placeholder="Start typing here" type="text" data-list=".list">
+      </div>
+      <div id="chatContainer">
+        
+        <ul class="list"></ul>
+      </div>
     </div>
       <div style="width:550px; float:left; margin:30px;display:none;">
         <div id='inline_content' style='padding:10px; background:#fff;'>

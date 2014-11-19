@@ -607,19 +607,27 @@ text-decoration: none;
     margin: 0 250px;
     width: 80%;
 }
+#chatTitle{
 
+    padding:10px;
+}
+#chatTitle h3{
+    float:left;
+    font-weight: bold;
+    margin-right: 15px;
+}
 #friendChatContainer {
     margin: 30px 370px;
     width: 900px;
 }
 
-#friendChatContainer>ul {
+#chatContainer>ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-#friendChatContainer>ul>li {
+#chatContainer>ul>li {
     border: 1px solid #e9eaed;
     display: inline-block;
     margin: 0 0 13px 13px;
@@ -629,33 +637,47 @@ text-decoration: none;
     width: 320px;
 }
 
-#friendChatContainer>ul>li span {
+.onlineStatus{
+    left: 120px;
+    position: absolute;
+    font-weight: bold;
+}
+
+.red{
+    color:red;
+}
+
+.green{
+    color:green;
+}
+
+#chatContainer>ul>li a>span {
     top: 42px;
     left: 120px;
     width: 190px;
     position: absolute;
 }
 
-#friendChatContainer>ul>li a {
+
+#chatContainer>ul>li a {
     color: #3b5998;
     font-size: 18px;
     font-weight: bold;
-    position: relative;
 }
 
 #friendListContainer {
     margin: 30px 61px;
-width: 86%;
+    width: 86%;
 }
 
-#friendListContainer>ul {
+#friendList>ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     background:#fff;
 }
 
-#friendListContainer>ul>li {
+#friendList>ul>li {
     border: 1px solid #e9eaed;
     display: inline-block;
     margin: 0 0 13px 13px;
@@ -665,20 +687,20 @@ width: 86%;
     width: 431px;
 }
 
-#friendListContainer>ul>li span {
+#friendList>ul>li span {
     top: 42px;
     width: 190px;
     position: absolute;
 }
 
-#friendListContainer>ul>li a {
+#friendList>ul>li a {
     color: #3b5998;
     font-size: 18px;
     font-weight: bold;
     position: relative;
 }
 
-#friendListContainer>ul>li button {
+#friendList>ul>li button {
     position: relative;
     left: 243px;
     top: 41px;

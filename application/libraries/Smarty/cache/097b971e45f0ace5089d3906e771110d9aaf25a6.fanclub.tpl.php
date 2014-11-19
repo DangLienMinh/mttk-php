@@ -1,4 +1,4 @@
-<?php /*%%SmartyHeaderCode:1047546b6a9c1439b4-64971461%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:5376546cbad787ba75-03590688%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,13 +11,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1416321293,
+      1 => 1416411781,
       2 => 'file',
     ),
     '43fa4b8fd8c47d297992bda3dda6ee24684e1de9' => 
     array (
       0 => 'application\\views\\templates\\common\\notificationPart.tpl',
-      1 => 1416321946,
+      1 => 1416411568,
       2 => 'file',
     ),
     '1f54f66af881d5f8352e0fc1b00021e7b247dd60' => 
@@ -27,7 +27,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1047546b6a9c1439b4-64971461',
+  'nocache_hash' => '5376546cbad787ba75-03590688',
   'variables' => 
   array (
     'items' => 0,
@@ -37,10 +37,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546b6a9c6a23f4_04969824',
+  'unifunc' => 'content_546cbad82ed438_01705596',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546b6a9c6a23f4_04969824')) {function content_546b6a9c6a23f4_04969824($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_546cbad82ed438_01705596')) {function content_546cbad82ed438_01705596($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -54,6 +54,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery-ui.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.autogrowtextarea.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/masonry.pkgd.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.hideseek.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.colorbox-min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.timeago.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.livequery.js"></script>
@@ -80,9 +81,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   window.logout="http://localhost:81/mttk-php/userController/logout";
   window.userMusic="http://localhost:81/mttk-php/uploads";
   window.homePage="http://localhost:81/mttk-php/main/homePage";
-  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/546b3f1113320.png";
-  window.userLogin="lethanhtrong@gmail.com";
-  window.userName="Le Thanh Trong";
+  window.chatPage="http://localhost:81/mttk-php/main/chat";
+  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/shot0006.jpg";
+  window.userLogin="anhtiminh@yahoo.com";
+  window.userName="minh dang";
   window.compare=0;
   window.compareStatus=0;
   window.currentChatPosition=-1;
@@ -220,11 +222,10 @@ function getFriendChat() {
     url: "http://localhost:81/mttk-php/friendController/getAllChatFriends",
 
     async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
     timeout: 50000,
     success: function(data) {
-     $('#friendChatContainer>ul').append(data);
+     $('#chatContainer>ul').append(data);
      $(".inline").colorbox({inline:true,title:"<h1 style='margin-left: 180px; color:#fff!important;'>Chat</h1>", width:"30%",height:"80%"});
     }
   });
@@ -242,7 +243,7 @@ function getFriendList(email) {
     cache: false,
     timeout: 50000,
     success: function(data) {
-     $('#friendListContainer>ul').append(data);
+     $('#friendList>ul').append(data);
     }
   });
 }
@@ -934,16 +935,16 @@ function getStatus(){
         /* This requests the url "msgsrv.php"
         When it complete (or errors)*/
 
-      data=[{"status_id":"47","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZW6DFUEF&h=mp3.zing.vn","title":"S\u00f3c S\u01a1 Bai S\u00f3c Tr\u0103ng + Thi Mai","message":"soc trang","created_at":"2014-11-18 22:49:47","thumbs_up":"0","privacy_type_id":"1","email":"lethanhtrong@gmail.com","picture":"546b3f1113320.png","name":"Le Thanh Trong"},{"status_id":"45","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZW6IEBWO&h=mp3.zing.vn","title":"Neon Lights + Kraftwerk","message":"t\u1ed1i em nh\u00e9","created_at":"2014-11-18 22:46:34","thumbs_up":"0","privacy_type_id":"1","email":"lethanhtrong@gmail.com","picture":"546b3f1113320.png","name":"Le Thanh Trong"},{"status_id":"43","music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZW67WAEC&h=mp3.zing.vn","title":"Burn + Ellie Goulding","message":"fanclub","created_at":"2014-11-18 22:31:39","thumbs_up":"0","privacy_type_id":"1","email":"anhtiminh@yahoo.com","picture":"shot0006.jpg","name":"minh dang"}]
+      data=[]
 
     addStatusUserWall(data);
   }
   </script>
   <script>
 
-  window.fanclub="2";
-  window.fanclubName="minh";
-  window.fanclubDesc="toeic test";
+  window.fanclub="3";
+  window.fanclubName="group HTTT";
+  window.fanclubDesc="HTTT 2011";
 
   $(document).ready(function() {
     waitForMsg();
@@ -1103,6 +1104,9 @@ function getStatus(){
           <ul id="facebook"></ul>
         </div>
       </div>
+    </li>
+    <li>
+      <a href="#" id="chatPage">Chat</a>
     </li>
     <li id="notification_li">
       <span id="notification_count"></span>

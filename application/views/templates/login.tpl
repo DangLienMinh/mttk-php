@@ -29,7 +29,7 @@
 				<input type="password" placeholder="Re-type password" name="re_password"><br><br>
 				<input type="text" placeholder="First name" name="first_name" class="nameInput">
 				<input type="text" placeholder="Last name" name="last_name" class="nameInput"><br><br>
-				<input type="text" placeholder="Date of birth" name="birthday"/>
+				<input type="date" name="birthday"/>
 				<input type="submit" value="Register" />
 		</div>
 		{form_close()}

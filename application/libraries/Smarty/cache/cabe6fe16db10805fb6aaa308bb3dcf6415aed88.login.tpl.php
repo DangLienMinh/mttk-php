@@ -1,21 +1,21 @@
-<?php /*%%SmartyHeaderCode:21536546b6ac71aed77-90419274%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:7379546cb703223306-31954401%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'cabe6fe16db10805fb6aaa308bb3dcf6415aed88' => 
     array (
       0 => 'application\\views\\templates\\login.tpl',
-      1 => 1416316860,
+      1 => 1416410065,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '21536546b6ac71aed77-90419274',
+  'nocache_hash' => '7379546cb703223306-31954401',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546b6ac72c8dd7_09997250',
+  'unifunc' => 'content_546cb7034501a9_50960459',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546b6ac72c8dd7_09997250')) {function content_546b6ac72c8dd7_09997250($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_546cb7034501a9_50960459')) {function content_546cb7034501a9_50960459($_smarty_tpl) {?><!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -46,7 +46,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				<input type="password" placeholder="Re-type password" name="re_password"><br><br>
 				<input type="text" placeholder="First name" name="first_name" class="nameInput">
 				<input type="text" placeholder="Last name" name="last_name" class="nameInput"><br><br>
-				<input type="text" placeholder="Date of birth" name="birthday"/>
+				<input type="date" name="birthday"/>
 				<input type="submit" value="Register" />
 		</div>
 		</form>

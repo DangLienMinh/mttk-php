@@ -12,6 +12,7 @@
   <script type="text/javascript" src="{asset_url()}js/jquery-ui.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery.autogrowtextarea.min.js"></script>
   <script type="text/javascript" src="{asset_url()}js/masonry.pkgd.min.js"></script>
+  <script type="text/javascript" src="{asset_url()}js/jquery.hideseek.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery.colorbox-min.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery.timeago.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery.livequery.js"></script>
@@ -25,19 +26,17 @@
   </script>
   <script type="text/javascript" src="{asset_url()}js/jquery.emotions.js"></script>
   <script type="text/javascript">
-  //window.notifyStatus="{site_url('statusController/hienThiNotiStatus/')}";
   window.cretePlaylist="{site_url('playlistController/viewPlaylist/')}";
   window.createFanclub="{site_url('fanclubController/createFanclub/')}";
   window.profilePic="{uploads_url()}img/profilePic.jpg";
   window.userPic="{uploads_url()}img/";
   window.userWall="{site_url('statusController/layDSWallStatus/')}";
-  //window.fanclub="{site_url('statusController/layDSFanclubStatus/')}";
-  //window.friendController="{site_url('friendController/')}";
   window.playlistIcon="{base_url()}assets/img/playlistIcon.png";
   window.logoutIcon="{base_url()}assets/img/logout.png";
   window.logout="{site_url('userController/logout/')}";
   window.userMusic="{base_url('uploads/')}";
   window.homePage="{base_url('main/homePage/')}";
+  window.chatPage="{base_url('main/chat/')}";
   window.userPicCmt="{uploads_url()}img/{$userPicCmt}";
   window.userLogin="{$userLogin}";
   window.userName="{$userName}";
@@ -178,11 +177,10 @@ function getFriendChat() {
     url: "{base_url('friendController/getAllChatFriends')}",
 {literal}
     async: true,
-    /* If set to non-async, browser shows page as "Loading.."*/
     cache: false,
     timeout: 50000,
     success: function(data) {
-     $('#friendChatContainer>ul').append(data);
+     $('#chatContainer>ul').append(data);
      $(".inline").colorbox({inline:true,title:"<h1 style='margin-left: 180px; color:#fff!important;'>Chat</h1>", width:"30%",height:"80%"});
     }
   });
@@ -200,7 +198,7 @@ function getFriendList(email) {
     cache: false,
     timeout: 50000,
     success: function(data) {
-     $('#friendListContainer>ul').append(data);
+     $('#friendList>ul').append(data);
     }
   });
 }
