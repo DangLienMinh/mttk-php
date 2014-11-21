@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-19 16:45:22
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-20 18:21:45
          compiled from "application\views\templates\common\header.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:9531546cbb120c1148-04071079%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1017546e2329546200-54916475%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1416411894,
+      1 => 1416498406,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '9531546cbb120c1148-04071079',
+  'nocache_hash' => '1017546e2329546200-54916475',
   'function' => 
   array (
   ),
@@ -23,9 +23,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546cbb127703a9_01960566',
+  'unifunc' => 'content_546e2329b22645_36229393',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546cbb127703a9_01960566')) {function content_546cbb127703a9_01960566($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_546e2329b22645_36229393')) {function content_546e2329b22645_36229393($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -74,6 +74,8 @@ img/emotions-fb/";
 js/jquery.emotions.js"></script>
   <script type="text/javascript">
   window.cretePlaylist="<?php echo site_url('playlistController/viewPlaylist/');?>
+";
+  window.changeProfilePic="<?php echo site_url('profileController/changeProfileImage/');?>
 ";
   window.createFanclub="<?php echo site_url('fanclubController/createFanclub/');?>
 ";
@@ -416,7 +418,8 @@ function friendRequest() {
         $("#friend_count").hide();
       }
       $('#personalPage').append('<div class="cmtpic" align="center"><img src="' + window.userPicCmt + '" style="width:23px;height:23px;" /></div><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b>');
-      $('#cover').append('<div class="coverImg hexagon hexagon1"><div class="hexagon-in1"><div class="hexagon-in2" style="background: url('+"'"+window.userPicCmtWall+"') no-repeat; background-size: 103px 103px!important; background-position: 50%;"+'" ></div></div></div><span class="coverName"><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userNameWall + '</a></b></span>');
+      $('#cover').append('<div class="coverImg hexagon hexagon1"><div class="hexagon-in1"><div class="hexagon-in2" style="background: url('+"'"+window.userPicCmtWall+"') no-repeat; background-size: 103px 103px!important; background-position: 50%;"+'" ></div></div></div><span class="coverName"><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userNameWall + '</a><a href="'+window.changeProfilePic+'"  class="coverUpdate iframe"><div>Update Picture</div></a></b></span>');
+      $(".iframe").colorbox({iframe:true, width:"50%", height:"50%"});
       $('#logoutContainer').append('<a title="logout" href="'+window.logout+'" ><img src="'+window.logoutIcon+'" style="width:19px;height:19px;"/></a>');
     }
   });

@@ -84,6 +84,11 @@ function getStatus() {
       <div class="fanclubInfo">
       </div>
     </div>
+    <div class="reportContainer">
+      <div class="fanclubTitle"><h3>REPORT</h3></div>
+      <div class="reportInfo">
+      </div>
+    </div>
     {include file='common/mainPart.tpl' postStatus={form_open_multipart('statusController/updateStatus')}}
 </body>
 </html>

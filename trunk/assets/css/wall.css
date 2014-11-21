@@ -322,6 +322,25 @@ margin-left: -173px;
     text-decoration: none;
 }
 
+.coverUpdate{
+    display: none;
+    position: absolute;
+font-size: 9px;
+width: 70px;
+left: 66px;
+top: 77px;
+height: 25px;
+text-align: center;
+background: #000;
+background: rgba(0, 0, 0, .6);
+background: -webkit-gradient(linear, center top, center bottom, from(transparent), color-stop(.5, rgba(0, 0, 0, .6)), to(rgba(0, 0, 0, .6)));
+background: -webkit-linear-gradient(transparent, rgba(0, 0, 0, .6) 50%, rgba(0, 0, 0, .6) 100%);
+}
+.coverUpdate  div{
+    position: absolute;
+top: 9px;
+left: 3px;
+}
 #fanclubCover{
    position: relative;
 top: 60px;
@@ -1402,6 +1421,13 @@ border-top:1px solid #dedede;
 .fanclubContainer{
     position:absolute;
     top:50px;
+    left:20px;
+    width:220px;
+    height: 275px;
+}
+.reportContainer{
+    position:absolute;
+    top:325px;
     left:20px;
     width:220px;
 }

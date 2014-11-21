@@ -1,4 +1,4 @@
-<?php /*%%SmartyHeaderCode:32714546cbb11cdb0b4-47679701%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:19136546e23292d7115-78082634%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,7 +11,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1416411894,
+      1 => 1416498406,
       2 => 'file',
     ),
     '43fa4b8fd8c47d297992bda3dda6ee24684e1de9' => 
@@ -27,7 +27,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '32714546cbb11cdb0b4-47679701',
+  'nocache_hash' => '19136546e23292d7115-78082634',
   'variables' => 
   array (
     'items' => 0,
@@ -37,10 +37,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546cbb1292ac33_06398002',
+  'unifunc' => 'content_546e2329cd4332_81672310',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546cbb1292ac33_06398002')) {function content_546cbb1292ac33_06398002($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_546e2329cd4332_81672310')) {function content_546e2329cd4332_81672310($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -69,6 +69,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.emotions.js"></script>
   <script type="text/javascript">
   window.cretePlaylist="http://localhost:81/mttk-php/playlistController/viewPlaylist";
+  window.changeProfilePic="http://localhost:81/mttk-php/profileController/changeProfileImage";
   window.createFanclub="http://localhost:81/mttk-php/fanclubController/createFanclub";
   window.profilePic="http://localhost:81/mttk-php/uploads/img/profilePic.jpg";
   window.userPic="http://localhost:81/mttk-php/uploads/img/";
@@ -79,7 +80,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   window.userMusic="http://localhost:81/mttk-php/uploads";
   window.homePage="http://localhost:81/mttk-php/main/homePage";
   window.chatPage="http://localhost:81/mttk-php/main/chat";
-  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/shot0006.jpg";
+  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/546e17aaa62b9.png";
   window.userLogin="anhtiminh@yahoo.com";
   window.userName="minh dang";
   window.compare=0;
@@ -380,7 +381,8 @@ function friendRequest() {
         $("#friend_count").hide();
       }
       $('#personalPage').append('<div class="cmtpic" align="center"><img src="' + window.userPicCmt + '" style="width:23px;height:23px;" /></div><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b>');
-      $('#cover').append('<div class="coverImg hexagon hexagon1"><div class="hexagon-in1"><div class="hexagon-in2" style="background: url('+"'"+window.userPicCmtWall+"') no-repeat; background-size: 103px 103px!important; background-position: 50%;"+'" ></div></div></div><span class="coverName"><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userNameWall + '</a></b></span>');
+      $('#cover').append('<div class="coverImg hexagon hexagon1"><div class="hexagon-in1"><div class="hexagon-in2" style="background: url('+"'"+window.userPicCmtWall+"') no-repeat; background-size: 103px 103px!important; background-position: 50%;"+'" ></div></div></div><span class="coverName"><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userNameWall + '</a><a href="'+window.changeProfilePic+'"  class="coverUpdate iframe"><div>Update Picture</div></a></b></span>');
+      $(".iframe").colorbox({iframe:true, width:"50%", height:"50%"});
       $('#logoutContainer').append('<a title="logout" href="'+window.logout+'" ><img src="'+window.logoutIcon+'" style="width:19px;height:19px;"/></a>');
     }
   });
@@ -940,7 +942,7 @@ function getStatus(){
   <script>
 
   window.userNameWall=" ";
-  window.userLoginWall="TLBB1.mp3";
+  window.userLoginWall="Let_Her_Go_-_Passenger.mp3";
   window.userPicCmtWall="http://localhost:81/mttk-php/uploads/img/";
 
   $(document).ready(function() {

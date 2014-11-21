@@ -28,6 +28,31 @@ class ProfileController extends CI_Controller {
           echo base_url('/main/homePage');
     }
 
+    function updateImage()
+    {
+          $em = $this->doctrine->em;
+          $user = new Entity\UserDAO($em);
+          $data['email'] = $this->session->userdata('email');
+          if(file_exists(FCPATH.'/uploads/img/'.$user->getPreviousImage($data['email']))){
+            unlink(FCPATH.'/uploads/img/'.$user->getPreviousImage($data['email']));
+          }
+          $img=$this->input->post('image');
+          $parts = explode(',',$img);
+          $pic = base64_decode($parts[1]);
+          $data['pic']=uniqid() . '.png';
+          $file=FCPATH.'uploads\\img\\'.$data['pic'];
+          $success = file_put_contents($file,$pic);
+          
+          $user->suaProfileImage($data);
+          $this->session->set_userdata('pic', $data['pic']);
+          
+    }
+
+    function changeProfileImage(){
+        $this->smarty->view('changeProfileImage');
+    }
+
+
     public function getEducationAndReligion()
     {
         $em = $this->doctrine->em;
