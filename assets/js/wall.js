@@ -644,6 +644,19 @@ $(document).on('mouseout', '.item', function() {
 	element.hide();
 });
 
+$(document).on('mouseover', '.hexagon-in2', function() {
+	$(".coverUpdate").fadeTo('slow', 1.0, function() {});
+});
+$(document).on('mouseover', '.coverUpdate', function() {
+	$(".coverUpdate").fadeTo('fast', 1.0, function() {});
+});
+$(document).on('mouseout', '.hexagon-in2', function() {
+	$(".coverUpdate").fadeTo(0, 0, function() { });
+});
+$(document).on('mouseout', '.coverUpdate', function() {
+	$(".coverUpdate").fadeTo(0, 0, function() { });
+});
+
 $(document).on('mouseover', '.load_comment', function() {
 	var element = $(this).find('a');
 	element.show();

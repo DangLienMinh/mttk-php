@@ -1,4 +1,6 @@
-<?php /*%%SmartyHeaderCode:20627546e216e0449e9-57989823%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-20 16:27:47
+         compiled from "application\views\templates\test404.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:15349546e08730e8a29-43016364%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -9,13 +11,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '20627546e216e0449e9-57989823',
+  'nocache_hash' => '15349546e08730e8a29-43016364',
+  'function' => 
+  array (
+  ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546e216e21fc02_24844684',
-  'cache_lifetime' => 120,
-),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546e216e21fc02_24844684')) {function content_546e216e21fc02_24844684($_smarty_tpl) {?><html>
+  'unifunc' => 'content_546e08732dd581_93139356',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_546e08732dd581_93139356')) {function content_546e08732dd581_93139356($_smarty_tpl) {?><html>
 <head>
 <style type="text/css">
 .frame {
@@ -55,7 +59,8 @@ background-color: black;
 </div>
 <div class="frame holder-404">
     <div class="flexible-frame">
-        <object type="application/x-shockwave-flash" name="name" data="http://localhost:81/mttk-php/assets//pacman.swf" width="977" height="500" id="flash-404" style="visibility: visible;"><param name="quality" value="high"><param name="wmode" value="transparent"></object>
+        <object type="application/x-shockwave-flash" name="name" data="<?php echo asset_url();?>
+/pacman.swf" width="977" height="500" id="flash-404" style="visibility: visible;"><param name="quality" value="high"><param name="wmode" value="transparent"></object>
     </div>
     
 </div>

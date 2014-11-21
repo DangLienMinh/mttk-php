@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-19 16:44:06
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-20 15:53:33
          compiled from "application\views\templates\homePage.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:25665546cbac636e804-28086730%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:3367546e006d8f5374-50153948%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '53393f8994cdc457beccc4098836aa7c09985c95' => 
     array (
       0 => 'application\\views\\templates\\homePage.tpl',
-      1 => 1416324232,
+      1 => 1416495210,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '25665546cbac636e804-28086730',
+  'nocache_hash' => '3367546e006d8f5374-50153948',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546cbac6566672_59697399',
+  'unifunc' => 'content_546e006da1a2e0_15341060',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546cbac6566672_59697399')) {function content_546cbac6566672_59697399($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_546e006da1a2e0_15341060')) {function content_546e006da1a2e0_15341060($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
 function getStatus() {
@@ -106,6 +106,11 @@ function getStatus() {
     <div class="fanclubContainer">
       <div class="fanclubTitle"><h3>FANCLUB</h3></div>
       <div class="fanclubInfo">
+      </div>
+    </div>
+    <div class="reportContainer">
+      <div class="fanclubTitle"><h3>REPORT</h3></div>
+      <div class="reportInfo">
       </div>
     </div>
     <?php ob_start();?><?php echo form_open_multipart('statusController/updateStatus');?>

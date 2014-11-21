@@ -40,6 +40,21 @@ class UserDAO
 		$this->em->flush();
 	}
 
+	public function suaProfileImage($data)
+	{
+	    $user = $this->em->getReference('Entity\User', $data['email']);
+	    $user->setPicture($data['pic']);
+		$this->em->merge($user);
+		$this->em->flush();
+	}
+
+	public function getPreviousImage($email)
+	{
+	    $user = $this->em->getReference('Entity\User', $email);
+	    return $user->getPicture();
+	}
+
+
 	public function xoaUser($email)
 	{
 	    $user = $this->em->getReference('Entity\User', $email);
