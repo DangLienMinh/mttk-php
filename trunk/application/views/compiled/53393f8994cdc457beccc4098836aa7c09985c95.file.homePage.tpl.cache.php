@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-20 15:53:33
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-21 17:03:57
          compiled from "application\views\templates\homePage.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:3367546e006d8f5374-50153948%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:21059546f626d82d605-20781774%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '53393f8994cdc457beccc4098836aa7c09985c95' => 
     array (
       0 => 'application\\views\\templates\\homePage.tpl',
-      1 => 1416495210,
+      1 => 1416584962,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '3367546e006d8f5374-50153948',
+  'nocache_hash' => '21059546f626d82d605-20781774',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546e006da1a2e0_15341060',
+  'unifunc' => 'content_546f626dda8ba6_41681911',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546e006da1a2e0_15341060')) {function content_546e006da1a2e0_15341060($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_546f626dda8ba6_41681911')) {function content_546f626dda8ba6_41681911($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
 function getStatus() {
@@ -78,6 +78,22 @@ function getStatus() {
           moreNotify(id.substring(4));
         }
     });
+    /*$('#reportDate').click(function(){
+      var sdate=$('#sdate').val();
+      var edate=$('#edate').val();
+      $.ajax({
+      type: "post",
+  
+      url: "<?php echo base_url('statusController/GetFamousStatus');?>
+",
+  
+      data: 'sdate='+sdate+'&edate='+edate,
+      cache: false,
+      success: function() {
+        alert("shit");
+        }
+      });
+    });*/
 
       $("#jquery_jplayer_1").jPlayer({
         ready: function (event) {
@@ -111,6 +127,13 @@ function getStatus() {
     <div class="reportContainer">
       <div class="fanclubTitle"><h3>REPORT</h3></div>
       <div class="reportInfo">
+        <?php echo form_open_multipart('statusController/GetFamousStatus');?>
+
+        <input type="date" name="sdate"/>
+        <input type="date" name="edate"/><br>
+         <input type="submit" value="submit"/><br>
+        <?php echo form_close();?>
+
       </div>
     </div>
     <?php ob_start();?><?php echo form_open_multipart('statusController/updateStatus');?>
