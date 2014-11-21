@@ -24,10 +24,6 @@ class Main extends CI_Controller {
 	{
 		$this->smarty->view('addFanclub');
 	}
-	function test()
-	{
-		$this->smarty->view('updatestatus');
-	}
 	public function search()
 	{
 		$this->smarty->view('searchFriend');

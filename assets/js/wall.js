@@ -174,6 +174,19 @@ function addStatus(msg) {
 	}
 }
 
+function reportFamousMusic(obj) {
+	try {
+		$.each(obj, function(i, val) {
+			i = i + 1;
+			var content = '<div class="item"><div class="sttext"><div class="sttext_content"><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div></div></div>';
+			$('#container').append(content);
+			setSong('#jquery_jplayer_' + i, '#jp_interface_' + i, val.music, val.title);
+		});
+	} catch (e) {
+		alert(e);
+	}
+}
+
 function addMoreStatus(msg, jplayer_id) {
 	var obj = JSON.parse(msg);
 	try {

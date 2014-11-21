@@ -18,6 +18,20 @@ class StatusController extends CI_Controller {
         echo json_encode($result);
 	}
 
+    function GetFamousStatus()
+    {
+        $sdate=$_POST['sdate'];
+        $edate=$_POST['edate'];
+        $em = $this->doctrine->em;
+        $status = new Entity\statusDAO($em);
+        $result=$status->GetFamousStatus($sdate,$edate);
+        $this->smarty->assign('items',json_encode($result));
+        $this->smarty->assign('userPicCmt',$this->session->userdata('pic'));
+        $this->smarty->assign('userName',$this->session->userdata('first_name').' '.$this->session->userdata('last_name'));
+        $this->smarty->assign('userLogin',$this->session->userdata('email'));
+        $this->smarty->view('reportMusic');
+    }
+
     function getNextStatus()
     {
         $id=$this->input->post('status_id');

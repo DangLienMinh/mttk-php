@@ -11,11 +11,9 @@ class StatusDAO
 
 	public function getStatus($email)
 	{
-		// prepare statemen
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("CALL GetStatus(?)");
 		$sth->bindValue(1, $email);
-		// execute and fetch
 		$sth->execute();
 		$result = $sth->fetchAll();
 		return $result;
@@ -23,12 +21,10 @@ class StatusDAO
 
 	public function getNextStatus($email,$id)
 	{
-		// prepare statemen
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("CALL GetNextStatus(?,?)");
 		$sth->bindValue(1, $email);
 		$sth->bindValue(2, $id);
-		// execute and fetch
 		$sth->execute();
 		$result = $sth->fetchAll();
 		return $result;
@@ -36,11 +32,9 @@ class StatusDAO
 
 	public function layDSWallStatus($email)
 	{
-		// prepare statemen
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("CALL GetUserWall(?)");
 		$sth->bindValue(1, $email);
-		// execute and fetch
 		$sth->execute();
 		$result = $sth->fetchAll();
 		return $result;
@@ -48,11 +42,9 @@ class StatusDAO
 
 	public function layDSFanclubStatus($fanclub)
 	{
-		// prepare statemen
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("CALL GetFanclubStatus(?)");
 		$sth->bindValue(1, $fanclub);
-		// execute and fetch
 		$sth->execute();
 		$result = $sth->fetchAll();
 		return $result;
@@ -60,12 +52,10 @@ class StatusDAO
 
 	public function layDSNextWallStatus($email,$id)
 	{
-		// prepare statemen
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("CALL GetNextUserWall(?,?)");
 		$sth->bindValue(1, $email);
 		$sth->bindValue(2, $id);
-		// execute and fetch
 		$sth->execute();
 		$result = $sth->fetchAll();
 		return $result;
@@ -73,11 +63,20 @@ class StatusDAO
 
 	public function laySingleStatus($status)
 	{
-		// prepare statemen
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("CALL GetSingleStatus(?)");
 		$sth->bindValue(1, $status);
-		// execute and fetch
+		$sth->execute();
+		$result = $sth->fetchAll();
+		return $result;
+	}
+
+	public function GetFamousStatus($sdate,$edate)
+	{
+		$cnn=$this->em->getConnection();
+		$sth = $cnn->prepare("CALL GetFamousStatus(?,?)");
+		$sth->bindValue(1, $sdate);
+		$sth->bindValue(2, $edate);
 		$sth->execute();
 		$result = $sth->fetchAll();
 		return $result;
