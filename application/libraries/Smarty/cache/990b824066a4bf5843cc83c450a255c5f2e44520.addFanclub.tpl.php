@@ -1,35 +1,27 @@
-<?php /*%%SmartyHeaderCode:27884546e16c056dd79-06487972%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1209954703b89b8ad44-01650120%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '990b824066a4bf5843cc83c450a255c5f2e44520' => 
     array (
       0 => 'application\\views\\templates\\addFanclub.tpl',
-      1 => 1416323337,
+      1 => 1416641397,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '27884546e16c056dd79-06487972',
+  'nocache_hash' => '1209954703b89b8ad44-01650120',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546e16c0729cc6_82875608',
+  'unifunc' => 'content_54703b89ca7477_85572061',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546e16c0729cc6_82875608')) {function content_546e16c0729cc6_82875608($_smarty_tpl) {?><html>
+<?php if ($_valid && !is_callable('content_54703b89ca7477_85572061')) {function content_54703b89ca7477_85572061($_smarty_tpl) {?><html>
 <head>
   <meta charset="utf-8">
   <title>jQuery UI Tabs - Default functionality</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
   <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/wall.css">
-  <style type="text/css">
-  
-
-  </style>
   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.autogrowtextarea.min.js"></script>
-  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.jplayer.min.js"></script>
-  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jplayer.playlist.min.js"></script>
   <script type="text/javascript">
   
   $(document).ready(function() {
@@ -47,7 +39,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		    cache: false,
 		    timeout: 50000,
 		    success: function(data) {
-		      alert("complete");
+		      parent.jQuery.colorbox.close();
+          window.parent.location.href=data;
 		    }
 		  });
       });

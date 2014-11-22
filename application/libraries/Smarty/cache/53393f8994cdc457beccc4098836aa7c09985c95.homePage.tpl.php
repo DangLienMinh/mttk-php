@@ -1,17 +1,17 @@
-<?php /*%%SmartyHeaderCode:21059546f626d82d605-20781774%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:28744547088f624ef42-66766331%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '53393f8994cdc457beccc4098836aa7c09985c95' => 
     array (
       0 => 'application\\views\\templates\\homePage.tpl',
-      1 => 1416584962,
+      1 => 1416637263,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1416498406,
+      1 => 1416659672,
       2 => 'file',
     ),
     '43fa4b8fd8c47d297992bda3dda6ee24684e1de9' => 
@@ -27,13 +27,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '21059546f626d82d605-20781774',
+  'nocache_hash' => '28744547088f624ef42-66766331',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546f626f095858_45025208',
+  'unifunc' => 'content_547088f6e37b83_48429163',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546f626f095858_45025208')) {function content_546f626f095858_45025208($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_547088f6e37b83_48429163')) {function content_547088f6e37b83_48429163($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -43,6 +43,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/wall.css">
   <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jquery.qtip.css">
   <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/colorbox.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jquery_notification.css">
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery-ui.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.autogrowtextarea.min.js"></script>
@@ -53,6 +54,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.livequery.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.qtip.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/imagesloaded.pkgd.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery_notification_v.1.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.jplayer.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jplayer.playlist.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/wall.js"></script>
@@ -76,6 +78,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   window.userPicCmt="http://localhost:81/mttk-php/uploads/img/546e17aaa62b9.png";
   window.userLogin="anhtiminh@yahoo.com";
   window.userName="minh dang";
+  window.notifyCount=0;
   window.compare=0;
   window.compareStatus=0;
   window.currentChatPosition=-1;
@@ -147,14 +150,36 @@ function waitForMsg() {
 
         cache: false,
         success: function(times) {
-          if (times > 0) {
-            $("#notification_count").replaceWith('<span id="notification_count">' + times + '</span>');
+            var check=0;
+            if (times > 0) {
+              $("#notification_count").replaceWith('<span id="notification_count">' + times + '</span>');
+              if(window.notifyCount==0){
+                window.notifyCount=times;
+              }else{
+                if(times>window.notifyCount){
+                  check=1;
+                  window.notifyCount=times;
+                }
+              }
           } else {
             $("#notification_count").hide();
           }
+          $('#notificationsBody>ul').empty();
           $('#notificationsBody>ul').append(data);
+          if(check==1){
+            showNotification({
+                    message: "You have a new notification",
+                    type: "success",
+                    autoClose: true,
+                    duration: 5
+            });
+          }
         }
       });
+      setTimeout(
+        waitForMsg,
+        15000
+      );
     }
   });
 }
@@ -977,22 +1002,7 @@ function getStatus() {
           moreNotify(id.substring(4));
         }
     });
-    /*$('#reportDate').click(function(){
-      var sdate=$('#sdate').val();
-      var edate=$('#edate').val();
-      $.ajax({
-      type: "post",
-  
-      url: "http://localhost:81/mttk-php/statusController/GetFamousStatus",
-  
-      data: 'sdate='+sdate+'&edate='+edate,
-      cache: false,
-      success: function() {
-        alert("shit");
-        }
-      });
-    });*/
-
+    
       $("#jquery_jplayer_1").jPlayer({
         ready: function (event) {
           $(this).jPlayer("setMedia", {

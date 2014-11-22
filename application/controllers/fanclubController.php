@@ -17,6 +17,7 @@ class FanclubController extends CI_Controller {
         $em = $this->doctrine->em;
         $fanclub = new Entity\FanclubDAO($em);
         $fanclub->themFanclub($data);
+        echo base_url('main/homePage/');
     }
 
     public function themFanclubUser(){

@@ -55,22 +55,7 @@ function getStatus() {
           moreNotify(id.substring(4));
         }
     });
-    /*$('#reportDate').click(function(){
-      var sdate=$('#sdate').val();
-      var edate=$('#edate').val();
-      $.ajax({
-      type: "post",
-  {/literal}
-      url: "{base_url('statusController/GetFamousStatus')}",
-  {literal}
-      data: 'sdate='+sdate+'&edate='+edate,
-      cache: false,
-      success: function() {
-        alert("shit");
-        }
-      });
-    });*/
-
+    
       $("#jquery_jplayer_1").jPlayer({
         ready: function (event) {
           $(this).jPlayer("setMedia", {

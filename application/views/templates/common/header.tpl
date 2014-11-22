@@ -8,6 +8,7 @@
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/wall.css">
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/jquery.qtip.css">
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/colorbox.css">
+  <link rel="stylesheet" type="text/css" href="{asset_url()}css/jquery_notification.css">
   <script type="text/javascript" src="{asset_url()}js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery-ui.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery.autogrowtextarea.min.js"></script>
@@ -18,6 +19,7 @@
   <script type="text/javascript" src="{asset_url()}js/jquery.livequery.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery.qtip.js"></script>
   <script type="text/javascript" src="{asset_url()}js/imagesloaded.pkgd.min.js"></script>
+  <script type="text/javascript" src="{asset_url()}js/jquery_notification_v.1.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery.jplayer.min.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jplayer.playlist.min.js"></script>
   <script type="text/javascript" src="{asset_url()}js/wall.js"></script>
@@ -41,6 +43,7 @@
   window.userPicCmt="{uploads_url()}img/{$userPicCmt}";
   window.userLogin="{$userLogin}";
   window.userName="{$userName}";
+  window.notifyCount=0;
   window.compare=0;
   window.compareStatus=0;
   window.currentChatPosition=-1;
@@ -112,14 +115,36 @@ function waitForMsg() {
 {literal}
         cache: false,
         success: function(times) {
-          if (times > 0) {
-            $("#notification_count").replaceWith('<span id="notification_count">' + times + '</span>');
+            var check=0;
+            if (times > 0) {
+              $("#notification_count").replaceWith('<span id="notification_count">' + times + '</span>');
+              if(window.notifyCount==0){
+                window.notifyCount=times;
+              }else{
+                if(times>window.notifyCount){
+                  check=1;
+                  window.notifyCount=times;
+                }
+              }
           } else {
             $("#notification_count").hide();
           }
+          $('#notificationsBody>ul').empty();
           $('#notificationsBody>ul').append(data);
+          if(check==1){
+            showNotification({
+                    message: "You have a new notification",
+                    type: "success",
+                    autoClose: true,
+                    duration: 5
+            });
+          }
         }
       });
+      setTimeout(
+        waitForMsg,
+        15000
+      );
     }
   });
 }

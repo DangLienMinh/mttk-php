@@ -10,6 +10,11 @@ h1 {
     color: #555555;
 }
 
+#reportMusicTitle{
+    margin-left: 42%;
+margin-bottom: 1%;
+}
+
 a {
     color: #3B5998;
     text-decoration: none;
@@ -46,6 +51,7 @@ a:hover {
     background: #3b5998;
     height: 26px;
     width: 100%;
+    padding-top: 10px;
 }
 
 #nav li {

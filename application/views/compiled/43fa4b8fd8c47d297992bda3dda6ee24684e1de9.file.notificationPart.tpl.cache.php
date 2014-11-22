@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-21 17:03:58
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-22 14:05:31
          compiled from "application\views\templates\common\notificationPart.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:8697546f626edf8803-49958873%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1909054708a1bb0e238-58384800%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,15 +11,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '8697546f626edf8803-49958873',
+  'nocache_hash' => '1909054708a1bb0e238-58384800',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546f626ee137e0_25715593',
+  'unifunc' => 'content_54708a1bb2ba11_99976340',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546f626ee137e0_25715593')) {function content_546f626ee137e0_25715593($_smarty_tpl) {?><div id="noti_Container">
+<?php if ($_valid && !is_callable('content_54708a1bb2ba11_99976340')) {function content_54708a1bb2ba11_99976340($_smarty_tpl) {?><div id="noti_Container">
   <ul id="nav">
     <div style=" width:300px; margin-right:23%;margin-left:15.5%;float:left;" align="right">
       <input type="text" class="search" id="searchbox" placeholder="Search for people, fanclub"/><br />

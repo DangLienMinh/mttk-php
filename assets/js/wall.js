@@ -178,9 +178,15 @@ function reportFamousMusic(obj) {
 	try {
 		$.each(obj, function(i, val) {
 			i = i + 1;
-			var content = '<div class="item"><div class="sttext"><div class="sttext_content"><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div></div></div>';
+			var content = '<div class="item"><span id="arrow"></span><div class="sttext"><div class="sttext_content"><b>Number: '+i+'</b><p>Number of likes: '+val.thumbs_up+'</p><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div></div><br/><br/></div>';
 			$('#container').append(content);
 			setSong('#jquery_jplayer_' + i, '#jp_interface_' + i, val.music, val.title);
+			if(i==obj.length){
+				$('#container').masonry({
+		          itemSelector: '.item'
+		      });
+		      Arrow_Points();
+			}
 		});
 	} catch (e) {
 		alert(e);

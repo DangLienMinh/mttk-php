@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-21 17:03:57
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-22 14:00:38
          compiled from "application\views\templates\homePage.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:21059546f626d82d605-20781774%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:28744547088f624ef42-66766331%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '53393f8994cdc457beccc4098836aa7c09985c95' => 
     array (
       0 => 'application\\views\\templates\\homePage.tpl',
-      1 => 1416584962,
+      1 => 1416637263,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '21059546f626d82d605-20781774',
+  'nocache_hash' => '28744547088f624ef42-66766331',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546f626dda8ba6_41681911',
+  'unifunc' => 'content_547088f64432f7_57629097',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546f626dda8ba6_41681911')) {function content_546f626dda8ba6_41681911($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_547088f64432f7_57629097')) {function content_547088f64432f7_57629097($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
 function getStatus() {
@@ -78,23 +78,7 @@ function getStatus() {
           moreNotify(id.substring(4));
         }
     });
-    /*$('#reportDate').click(function(){
-      var sdate=$('#sdate').val();
-      var edate=$('#edate').val();
-      $.ajax({
-      type: "post",
-  
-      url: "<?php echo base_url('statusController/GetFamousStatus');?>
-",
-  
-      data: 'sdate='+sdate+'&edate='+edate,
-      cache: false,
-      success: function() {
-        alert("shit");
-        }
-      });
-    });*/
-
+    
       $("#jquery_jplayer_1").jPlayer({
         ready: function (event) {
           $(this).jPlayer("setMedia", {

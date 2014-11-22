@@ -4,15 +4,7 @@
   <title>jQuery UI Tabs - Default functionality</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/wall.css">
-  <style type="text/css">
-  
-
-  </style>
   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.autogrowtextarea.min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.jplayer.min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jplayer.playlist.min.js"></script>
   <script type="text/javascript">
   {literal}
   $(document).ready(function() {
@@ -30,7 +22,8 @@
 		    cache: false,
 		    timeout: 50000,
 		    success: function(data) {
-		      alert("complete");
+		      parent.jQuery.colorbox.close();
+          window.parent.location.href=data;
 		    }
 		  });
       });
