@@ -1,4 +1,4 @@
-<?php /*%%SmartyHeaderCode:12059546cba97638bc3-05785046%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:19343547089ef4eb467-59592094%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,7 +11,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1416411781,
+      1 => 1416659672,
       2 => 'file',
     ),
     '43fa4b8fd8c47d297992bda3dda6ee24684e1de9' => 
@@ -21,13 +21,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '12059546cba97638bc3-05785046',
+  'nocache_hash' => '19343547089ef4eb467-59592094',
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546cba97c3ba07_34494244',
+  'unifunc' => 'content_547089f0074053_09823756',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546cba97c3ba07_34494244')) {function content_546cba97c3ba07_34494244($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_547089f0074053_09823756')) {function content_547089f0074053_09823756($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -37,6 +37,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/wall.css">
   <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jquery.qtip.css">
   <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/colorbox.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jquery_notification.css">
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery-ui.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.autogrowtextarea.min.js"></script>
@@ -47,6 +48,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.livequery.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.qtip.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/imagesloaded.pkgd.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery_notification_v.1.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.jplayer.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jplayer.playlist.min.js"></script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/wall.js"></script>
@@ -55,23 +57,22 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   </script>
   <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.emotions.js"></script>
   <script type="text/javascript">
-  //window.notifyStatus="http://localhost:81/mttk-php/statusController/hienThiNotiStatus";
   window.cretePlaylist="http://localhost:81/mttk-php/playlistController/viewPlaylist";
+  window.changeProfilePic="http://localhost:81/mttk-php/profileController/changeProfileImage";
   window.createFanclub="http://localhost:81/mttk-php/fanclubController/createFanclub";
   window.profilePic="http://localhost:81/mttk-php/uploads/img/profilePic.jpg";
   window.userPic="http://localhost:81/mttk-php/uploads/img/";
   window.userWall="http://localhost:81/mttk-php/statusController/layDSWallStatus";
-  //window.fanclub="http://localhost:81/mttk-php/statusController/layDSFanclubStatus";
-  //window.friendController="http://localhost:81/mttk-php/friendController";
   window.playlistIcon="http://localhost:81/mttk-php/assets/img/playlistIcon.png";
   window.logoutIcon="http://localhost:81/mttk-php/assets/img/logout.png";
   window.logout="http://localhost:81/mttk-php/userController/logout";
   window.userMusic="http://localhost:81/mttk-php/uploads";
   window.homePage="http://localhost:81/mttk-php/main/homePage";
   window.chatPage="http://localhost:81/mttk-php/main/chat";
-  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/shot0006.jpg";
+  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/546e17aaa62b9.png";
   window.userLogin="anhtiminh@yahoo.com";
   window.userName="minh dang";
+  window.notifyCount=0;
   window.compare=0;
   window.compareStatus=0;
   window.currentChatPosition=-1;
@@ -143,14 +144,36 @@ function waitForMsg() {
 
         cache: false,
         success: function(times) {
-          if (times > 0) {
-            $("#notification_count").replaceWith('<span id="notification_count">' + times + '</span>');
+            var check=0;
+            if (times > 0) {
+              $("#notification_count").replaceWith('<span id="notification_count">' + times + '</span>');
+              if(window.notifyCount==0){
+                window.notifyCount=times;
+              }else{
+                if(times>window.notifyCount){
+                  check=1;
+                  window.notifyCount=times;
+                }
+              }
           } else {
             $("#notification_count").hide();
           }
+          $('#notificationsBody>ul').empty();
           $('#notificationsBody>ul').append(data);
+          if(check==1){
+            showNotification({
+                    message: "You have a new notification",
+                    type: "success",
+                    autoClose: true,
+                    duration: 5
+            });
+          }
         }
       });
+      setTimeout(
+        waitForMsg,
+        15000
+      );
     }
   });
 }
@@ -370,7 +393,8 @@ function friendRequest() {
         $("#friend_count").hide();
       }
       $('#personalPage').append('<div class="cmtpic" align="center"><img src="' + window.userPicCmt + '" style="width:23px;height:23px;" /></div><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b>');
-      $('#cover').append('<div class="coverImg hexagon hexagon1"><div class="hexagon-in1"><div class="hexagon-in2" style="background: url('+"'"+window.userPicCmtWall+"') no-repeat; background-size: 103px 103px!important; background-position: 50%;"+'" ></div></div></div><span class="coverName"><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userNameWall + '</a></b></span>');
+      $('#cover').append('<div class="coverImg hexagon hexagon1"><div class="hexagon-in1"><div class="hexagon-in2" style="background: url('+"'"+window.userPicCmtWall+"') no-repeat; background-size: 103px 103px!important; background-position: 50%;"+'" ></div></div></div><span class="coverName"><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userNameWall + '</a><a href="'+window.changeProfilePic+'"  class="coverUpdate iframe"><div>Update Picture</div></a></b></span>');
+      $(".iframe").colorbox({iframe:true, width:"50%", height:"50%"});
       $('#logoutContainer').append('<a title="logout" href="'+window.logout+'" ><img src="'+window.logoutIcon+'" style="width:19px;height:19px;"/></a>');
     }
   });

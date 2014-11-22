@@ -1,31 +1,31 @@
-<?php /*%%SmartyHeaderCode:19578546f627e0b3540-81671124%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:32496547030e8d82bb5-33692306%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'bba809bffe696de79a5dc907311b25bfe3dbe413' => 
     array (
       0 => 'application\\views\\templates\\reportMusic.tpl',
-      1 => 1416585811,
+      1 => 1416638689,
       2 => 'file',
     ),
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1416498406,
+      1 => 1416637310,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '19578546f627e0b3540-81671124',
+  'nocache_hash' => '32496547030e8d82bb5-33692306',
   'variables' => 
   array (
     'items' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546f627e5963b6_65937639',
+  'unifunc' => 'content_547030e935e469_78975077',
   'cache_lifetime' => 120,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546f627e5963b6_65937639')) {function content_546f627e5963b6_65937639($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_547030e935e469_78975077')) {function content_547030e935e469_78975077($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -917,7 +917,7 @@ $(document).on('keyup', '.search', function() {
 function getStatus(){
       var data;
 
-      data=[{"music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZWZC6O6Z&h=mp3.zing.vn","title":"Love You Like A Love Song + Selena Gomez & The Scene","thumbs_up":"2"},{"music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZWZ9FICF&h=mp3.zing.vn","title":"Luka + Olivia Ong","thumbs_up":"2"},{"music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZWZDB788&h=mp3.zing.vn","title":"What Makes You Beautiful","thumbs_up":"2"},{"music":"http:\/\/localhost:81\/mttk-php\/uploads\/Angelica_He_(H\u00e0_Khi\u1ebft)_\u2013_Th\u00e2n_B\u1ea5t_Do_K\u1ef7_(Sam_Sam_\u0110\u1ebfn_R\u1ed3i_OST)_.mp3","title":"Angelica_He_(H\u00e0_Khi\u1ebft)_\u2013_Th\u00e2n_B\u1ea5t_Do_K\u1ef7_(Sam_Sam_\u0110\u1ebfn_R\u1ed3i_OST)_","thumbs_up":"2"},{"music":"Me_Yeu_-_3_Con_Meo.mp3","title":"Me_Yeu_-_3_Con_Meo","thumbs_up":"2"},{"music":"Kho_Tam_-_Pham_Quynh_Anh.mp3","title":"Kho_Tam_-_Pham_Quynh_Anh","thumbs_up":"2"},{"music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=WlpTVEFa&h=nhacso.net","title":"Anh Y\u00eau Em","thumbs_up":"1"},{"music":"15.Forever_Friends_3.mp3","title":"Forever friend","thumbs_up":"1"},{"music":"kisstherain.mp3","title":"kisstherain","thumbs_up":"1"},{"music":"Let_Her_Go_-_Passenger.mp3","title":"Let_Her_Go_-_Passenger","thumbs_up":"0"}]
+      data=[{"music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZWZC6O6Z&h=mp3.zing.vn","title":"Love You Like A Love Song + Selena Gomez & The Scene","thumbs_up":"2"},{"music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZWZ9FICF&h=mp3.zing.vn","title":"Luka + Olivia Ong","thumbs_up":"2"},{"music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZWZDB788&h=mp3.zing.vn","title":"What Makes You Beautiful","thumbs_up":"2"},{"music":"http:\/\/localhost:81\/mttk-php\/uploads\/Angelica_He_(H\u00e0_Khi\u1ebft)_\u2013_Th\u00e2n_B\u1ea5t_Do_K\u1ef7_(Sam_Sam_\u0110\u1ebfn_R\u1ed3i_OST)_.mp3","title":"Angelica_He_(H\u00e0_Khi\u1ebft)_\u2013_Th\u00e2n_B\u1ea5t_Do_K\u1ef7_(Sam_Sam_\u0110\u1ebfn_R\u1ed3i_OST)_","thumbs_up":"2"},{"music":"Me_Yeu_-_3_Con_Meo.mp3","title":"Me_Yeu_-_3_Con_Meo","thumbs_up":"2"},{"music":"Kho_Tam_-_Pham_Quynh_Anh.mp3","title":"Kho_Tam_-_Pham_Quynh_Anh","thumbs_up":"2"},{"music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=ZWZDZIBE&h=mp3.zing.vn","title":"Nh\u1eadt K\u00fd C\u1ee7a M\u1eb9 + Hi\u1ec1n Th\u1ee5c","thumbs_up":"2"},{"music":"http:\/\/j.ginggong.com\/jDownload.ashx?id=WlpTVEFa&h=nhacso.net","title":"Anh Y\u00eau Em","thumbs_up":"1"},{"music":"15.Forever_Friends_3.mp3","title":"Forever friend","thumbs_up":"1"},{"music":"kisstherain.mp3","title":"kisstherain","thumbs_up":"1"}]
 
     reportFamousMusic(data);
     }
@@ -925,20 +925,24 @@ function getStatus(){
   <script>
   $(document).ready(function() {
     getStatus();
-
-
-   /* $('#notificationsBody ul').bind('scroll', function() {
-        if($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
-          var id=$(this).find('li:last').attr("id");
-          moreNotify(id.substring(4));
-        }
-    });*/
-
+    var msnry = $('#container').data('masonry');
+    msnry.on( 'layoutComplete', masonry_refresh );
+    function masonry_refresh(){
+      Arrow_Points();
+    }
   });
   </script>
  
 </head>
 <body>
-      <div id="container"></div>
+        <h1 id="reportMusicTitle">10 bài hát được yêu thích nhất</h1>
+    <div id="container">
+
+        <div class="timeline_container">
+          <div class="timeline">
+            <div class="plus"></div>
+          </div>
+      </div>
+    </div>
 </body>
 </html><?php }} ?>

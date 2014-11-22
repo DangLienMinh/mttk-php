@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-21 17:04:14
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-22 14:05:31
          compiled from "application\views\templates\common\header.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:27691546f627e1ebab4-05209706%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:617354708a1b00fc74-16223901%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
     array (
       0 => 'application\\views\\templates\\common\\header.tpl',
-      1 => 1416498406,
+      1 => 1416659672,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '27691546f627e1ebab4-05209706',
+  'nocache_hash' => '617354708a1b00fc74-16223901',
   'function' => 
   array (
   ),
@@ -23,9 +23,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_546f627e5102b5_05659342',
+  'unifunc' => 'content_54708a1b977903_03017404',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546f627e5102b5_05659342')) {function content_546f627e5102b5_05659342($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_54708a1b977903_03017404')) {function content_54708a1b977903_03017404($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -40,6 +40,8 @@ css/wall.css">
 css/jquery.qtip.css">
   <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>
 css/colorbox.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>
+css/jquery_notification.css">
   <script type="text/javascript" src="<?php echo asset_url();?>
 js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="<?php echo asset_url();?>
@@ -60,6 +62,8 @@ js/jquery.livequery.js"></script>
 js/jquery.qtip.js"></script>
   <script type="text/javascript" src="<?php echo asset_url();?>
 js/imagesloaded.pkgd.min.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery_notification_v.1.js"></script>
   <script type="text/javascript" src="<?php echo asset_url();?>
 js/jquery.jplayer.min.js"></script>
   <script type="text/javascript" src="<?php echo asset_url();?>
@@ -104,6 +108,7 @@ img/<?php echo $_smarty_tpl->tpl_vars['userPicCmt']->value;?>
 ";
   window.userName="<?php echo $_smarty_tpl->tpl_vars['userName']->value;?>
 ";
+  window.notifyCount=0;
   window.compare=0;
   window.compareStatus=0;
   window.currentChatPosition=-1;
@@ -179,14 +184,36 @@ function waitForMsg() {
 
         cache: false,
         success: function(times) {
-          if (times > 0) {
-            $("#notification_count").replaceWith('<span id="notification_count">' + times + '</span>');
+            var check=0;
+            if (times > 0) {
+              $("#notification_count").replaceWith('<span id="notification_count">' + times + '</span>');
+              if(window.notifyCount==0){
+                window.notifyCount=times;
+              }else{
+                if(times>window.notifyCount){
+                  check=1;
+                  window.notifyCount=times;
+                }
+              }
           } else {
             $("#notification_count").hide();
           }
+          $('#notificationsBody>ul').empty();
           $('#notificationsBody>ul').append(data);
+          if(check==1){
+            showNotification({
+                    message: "You have a new notification",
+                    type: "success",
+                    autoClose: true,
+                    duration: 5
+            });
+          }
         }
       });
+      setTimeout(
+        waitForMsg,
+        15000
+      );
     }
   });
 }
