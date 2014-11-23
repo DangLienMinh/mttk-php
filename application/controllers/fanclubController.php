@@ -113,12 +113,12 @@ class FanclubController extends CI_Controller {
             foreach($result as $k)
             {
                 if(strcmp($this->session->userdata('email'), $k['email'])==0){
-                    $friends.='<li><a class="inline" href="#inline_content"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' .base_url().'uploads/img/'.$k['picture']. '"/><span class="'.$k['email'].'">' . $k['name'] . '</span></a><button value="'.$k['email'].'">Following</button>'.$removeOption.'</li>';
+                    $friends.='<li><a href="'.site_url('statusController/layDSWallStatus/').'/'.$k['email'].'"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' .base_url().'uploads/img/'.$k['picture']. '"/><span class="'.$k['email'].'">' . $k['name'] . '</span></a><button value="'.$k['email'].'">Following</button>'.$removeOption.'</li>';
                 }else{
                     if($friend->checkFriend($this->session->userdata('email'),$k['email'])>0){
-                    $friends.='<li><a class="inline" href="#inline_content"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' .base_url().'uploads/img/'.$k['picture']. '"/><span class="'.$k['email'].'">' . $k['name'] . '</span></a><button class="unFriend" value="'.$k['email'].'">Unfriend</button>'.$removeOption.'</li>';
+                    $friends.='<li><a href="'.site_url('statusController/layDSWallStatus/').'/'.$k['email'].'"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' .base_url().'uploads/img/'.$k['picture']. '"/><span class="'.$k['email'].'">' . $k['name'] . '</span></a><button class="unFriend" value="'.$k['email'].'">Unfriend</button>'.$removeOption.'</li>';
                     }else{
-                        $friends.='<li><a class="inline" href="#inline_content"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' .base_url().'uploads/img/'.$k['picture']. '"/><span class="'.$k['email'].'">' . $k['name'] . '</span></a><button class="addFriend" value="'.$k['email'].'">Add Friend</button>'.$removeOption.'</li>';
+                        $friends.='<li><a href="'.site_url('statusController/layDSWallStatus/').'/'.$k['email'].'"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' .base_url().'uploads/img/'.$k['picture']. '"/><span class="'.$k['email'].'">' . $k['name'] . '</span></a><button class="addFriend" value="'.$k['email'].'">Add Friend</button>'.$removeOption.'</li>';
                     }
                 }
             }

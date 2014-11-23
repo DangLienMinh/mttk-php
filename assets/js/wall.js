@@ -134,6 +134,8 @@ function addStatus(msg) {
 				var is_delete = "";
 				if (val.email == window.userLogin) {
 					is_delete = '<div class="dropdown"><a class="account" ></a><div class="submenu" style="display: none; "><ul class="root"><li class="stedit"><a href="#" >Edit</a></li><li class="stdelete"><a href="#" >Delete</a></li></ul></div></div>';
+				}else{
+					//is_delete = '<div class="dropdown"><a class="account" ></a><div class="submenu" style="display: none; "><ul class="root"><li class="stedit"><a href="#" >Edit</a></li><li class="stdelete"><a href="#" >Delete</a></li></ul></div></div>';
 				}
 				var checkPlaylist = parseInt(val.music);
 				if (checkPlaylist == 1) {
@@ -418,7 +420,6 @@ $(document).on('click', '.account', function() {
 
 $(document).on('click', '.inline', function(e) {
 	e.preventDefault();
-	//alert($(this).find('span').text());
 	var userEmail = $(this).find('span').attr('class');
 	getConversation(userEmail);
 	$('#toUser').val(userEmail);

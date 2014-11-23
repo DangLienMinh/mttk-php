@@ -259,28 +259,20 @@ a:hover {
 /*------------------------------------cover part------------------------------------*/
 #coverContainer{
     margin-left: 260px;
-margin-right: 160px;
+    margin-right: 160px;
     position: relative;
     background-image: url("../img/musicCover.jpg");
     background-position:center bottom;
     height: 276px;
+    text-align: center;
 }
 #cover{
     position: absolute;
-top: 60px;
-left: 41%;
+    top: 60px;
+    left: 39%;
 
 }
-#cover .coverName{
-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-font-weight: bold;
-letter-spacing: 0;
-font-size: 30px;
-text-decoration: none;
-float: left;
-margin-top: 101px;
-margin-left: -173px;
-}
+
 .coverImg{
     float:left;
 /*    height:235px;*/
@@ -323,7 +315,16 @@ margin-left: -173px;
     height: 100px;
     }
 
-#cover .coverName a{
+#coverContainer .coverName{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    letter-spacing: 0;
+    font-size: 30px;
+    text-decoration: none;
+    padding-top: 168px;
+}
+
+#coverContainer .coverName a{
     color: #fff!important;
     text-decoration: none;
 }
@@ -331,21 +332,24 @@ margin-left: -173px;
 .coverUpdate{
     display: none;
     position: absolute;
-font-size: 9px;
-width: 70px;
-left: 66px;
-top: 77px;
-height: 25px;
-text-align: center;
-background: #000;
-background: rgba(0, 0, 0, .6);
-background: -webkit-gradient(linear, center top, center bottom, from(transparent), color-stop(.5, rgba(0, 0, 0, .6)), to(rgba(0, 0, 0, .6)));
-background: -webkit-linear-gradient(transparent, rgba(0, 0, 0, .6) 50%, rgba(0, 0, 0, .6) 100%);
+    font-size: 9px;
+    width: 70px;
+    left: 66px;
+    top: 77px;
+    height: 25px;
+    text-align: center;
+    background: #000;
+    color: #fff!important;
+    text-decoration: none;
+    background: rgba(0, 0, 0, .6);
+    background: -webkit-gradient(linear, center top, center bottom, from(transparent), color-stop(.5, rgba(0, 0, 0, .6)), to(rgba(0, 0, 0, .6)));
+    background: -webkit-linear-gradient(transparent, rgba(0, 0, 0, .6) 50%, rgba(0, 0, 0, .6) 100%);
 }
+
 .coverUpdate  div{
     position: absolute;
-top: 9px;
-left: 3px;
+    top: 9px;
+    left: 3px;
 }
 #fanclubCover{
    position: relative;
@@ -391,11 +395,10 @@ z-index: 4;
 height: 43px;
 margin-top: 233px;
 }
+
 .headlineRight{
     float: right;
-
 }
-
 
 .headlineRight>a:hover{
     text-decoration: none;
@@ -412,6 +415,39 @@ margin-top: 233px;
     visibility: hidden;
 }
 .headlineRight>a{
+    float: left;
+font-size: 14px;
+font-weight: bold;
+height: 43px;
+line-height: 3.05;
+padding: 0 17px;
+position: relative;
+vertical-align: middle;
+white-space: nowrap;
+color: #b0bdad;
+cursor: pointer;
+text-decoration: none;
+}
+
+.headlineLeft{
+    float: left;
+}
+
+.headlineLeft>a:hover{
+    text-decoration: none;
+    color: #EF2;
+}
+
+.headlineLeft:after{
+    clear: both;
+    content: ".";
+    display: block;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+}
+.headlineLeft>a{
     float: left;
 font-size: 14px;
 font-weight: bold;
@@ -629,7 +665,7 @@ text-decoration: none;
 }
 
 #container {
-    margin: 0 250px;
+    margin: 0 18.6%;
     width: 80%;
 }
 #chatTitle{
@@ -693,6 +729,42 @@ text-decoration: none;
 #friendListContainer {
     margin: 30px 61px;
     width: 86%;
+}
+
+#friendListContainer>ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background:#fff;
+}
+
+#friendListContainer>ul>li {
+    border: 1px solid #e9eaed;
+    display: inline-block;
+    margin: 0 0 13px 13px;
+    padding: 0 10px 0 0;
+    position: relative;
+    vertical-align: top;
+    width: 431px;
+}
+
+#friendListContainer>ul>li span {
+    top: 42px;
+    width: 190px;
+    position: absolute;
+}
+
+#friendListContainer>ul>li a {
+    color: #3b5998;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+}
+
+#friendListContainer>ul>li button {
+    position: relative;
+    left: 243px;
+    top: 41px;
 }
 
 #friendList>ul {
@@ -1424,11 +1496,11 @@ border-top:1px solid #dedede;
     margin-bottom: 5px;
 }
 
-.fanclubContainer{
-    position:absolute;
-    top:50px;
-    left:20px;
-    width:220px;
+.fanclubContainer {
+    position: absolute;
+    top: 8%;
+    left: 2%;
+    width: 14%;
     height: 275px;
 }
 .reportContainer{
