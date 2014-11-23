@@ -24,11 +24,9 @@ class FriendDAO
 
 	public function getFriendRequest($email)
 	{
-		// prepare statement
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("CALL GetFriendRequest(?)");
 		$sth->bindValue(1, $email);
-		// execute and fetch
 		$sth->execute();
 		$result = $sth->fetchAll();
 		return $result;
@@ -36,11 +34,9 @@ class FriendDAO
 
 	public function getAllFriends($email)
 	{
-		// prepare statement
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("CALL getAllFriends(?)");
 		$sth->bindValue(1, $email);
-		// execute and fetch
 		$sth->execute();
 		$result = $sth->fetchAll();
 		return $result;
@@ -48,11 +44,9 @@ class FriendDAO
 
 	public function getAllChatFriends($email)
 	{
-		// prepare statement
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("CALL getAllChatFriends(?)");
 		$sth->bindValue(1, $email);
-		// execute and fetch
 		$sth->execute();
 		$result = $sth->fetchAll();
 		return $result;
@@ -60,11 +54,9 @@ class FriendDAO
 
 	public function getSuggestedFriend($email)
 	{
-		// prepare statement
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("CALL getSuggestedFriend(?)");
 		$sth->bindValue(1, $email);
-		// execute and fetch
 		$sth->execute();
 		$result = $sth->fetchAll();
 		return $result;
@@ -72,48 +64,80 @@ class FriendDAO
 
 	public function acceptFriend($email,$friend)
 	{
-
-		// prepare statement
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("CALL acceptFriendRequest(?,?)");
 		$sth->bindValue(1, $email);
 		$sth->bindValue(2, $friend);
-		// execute and fetch
 		$sth->execute();
 	}
 
 	public function declineFriend($email,$friend)
 	{
-		// prepare statement
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("CALL removeFriendRequest(?,?)");
 		$sth->bindValue(1, $email);
 		$sth->bindValue(2, $friend);
-		// execute and fetch
 		$sth->execute();
 	}
 
 	public function UnFriend($email,$friend)
 	{
-		// prepare statement
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("CALL unFriend(?,?)");
 		$sth->bindValue(1, $email);
 		$sth->bindValue(2, $friend);
-		// execute and fetch
+		$sth->execute();
+	}
+
+	public function unfollowFriend($email,$friend)
+	{
+		$cnn=$this->em->getConnection();
+		$sth = $cnn->prepare("CALL unfollowFriend(?,?)");
+		$sth->bindValue(1, $email);
+		$sth->bindValue(2, $friend);
+		$sth->execute();
+	}
+
+	public function followFriend($email,$friend)
+	{
+		$cnn=$this->em->getConnection();
+		$sth = $cnn->prepare("CALL followFriend(?,?)");
+		$sth->bindValue(1, $email);
+		$sth->bindValue(2, $friend);
 		$sth->execute();
 	}
 
 	public function checkFriend($email,$friend)
 	{
-		// prepare statement
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("CALL checkFriend(?,?)");
 		$sth->bindValue(1, $email);
 		$sth->bindValue(2, $friend);
-		// execute and fetch
 		$sth->execute();
 		$result = $sth->fetch();
+		return $result;
+	}
+
+	public function checkAcceptFriend($email,$friend)
+	{
+		$cnn=$this->em->getConnection();
+		$sth = $cnn->prepare("CALL checkAcceptFriend(?,?)");
+		$sth->bindValue(1, $email);
+		$sth->bindValue(2, $friend);
+		$sth->execute();
+		$result = $sth->fetchAll();
+		return $result;
+	}
+
+
+	public function checkFriendSubscribe($email,$friend)
+	{
+		$cnn=$this->em->getConnection();
+		$sth = $cnn->prepare("CALL checkFriendSubscribe(?,?)");
+		$sth->bindValue(1, $email);
+		$sth->bindValue(2, $friend);
+		$sth->execute();
+		$result = $sth->fetchAll();
 		return $result;
 	}
 }

@@ -64,6 +64,15 @@ $( document).ajaxStop(function() {
     });
 });
 
+/*$(document).ajaxStart(function () {
+
+});*/
+/*$(document).ajaxStop(function () {
+    alert("AJAX STOP!!!");
+    //$(this).removeClass("loading");
+    //clearTimeout(timer);
+});
+*/
 function moreStatus(id,jplayer_id) {
   var dataString = 'status_id=' + id;
   $.ajax({
@@ -161,6 +170,24 @@ function suaStatus(status,msg) {
     cache: false,
     timeout: 50000,
     success: function() {
+    }
+  });
+}
+
+function checkUserWallRelation(friend) {
+  var dataString = 'friend=' + friend;
+  $.ajax({
+    type: "post",
+{/literal}
+    url: "{base_url('friendController/checkUserWallRelation')}",
+{literal}
+    data: dataString,
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('.headlineLeft').append(data);
+       $(".inline").colorbox({inline:true,title:"<h1 style='margin-left: 180px; color:#fff!important;'>Chat</h1>", width:"30%",height:"80%"});
     }
   });
 }
@@ -338,7 +365,7 @@ function wallDsPlaylist(email) {
     success: function(data) {
      var obj = JSON.parse(data);
      $.each(obj, function(i, val) {
-      $('#playlistContainer>ul').append('<li><a class="inline" href="#inline_content"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' +window.playlistIcon+ '"/><span class="'+val.Playlist_id+'">' + val.Playlist_name+ '</span></a><div class="playlistSongs"><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio">' + playlistElement + '</div></div></li>');
+      $('#playlistContainer>ul').append('<li><a class="inline" href="#"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' +window.playlistIcon+ '"/><span class="'+val.Playlist_id+'">' + val.Playlist_name+ '</span></a><div class="playlistSongs"><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio">' + playlistElement + '</div></div></li>');
       getSongWall(val.Playlist_id,i);
      });
     }
@@ -364,7 +391,8 @@ function friendRequest() {
         $("#friend_count").hide();
       }
       $('#personalPage').append('<div class="cmtpic" align="center"><img src="' + window.userPicCmt + '" style="width:23px;height:23px;" /></div><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userName + '</a></b>');
-      $('#cover').append('<div class="coverImg hexagon hexagon1"><div class="hexagon-in1"><div class="hexagon-in2" style="background: url('+"'"+window.userPicCmtWall+"') no-repeat; background-size: 103px 103px!important; background-position: 50%;"+'" ></div></div></div><span class="coverName"><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userNameWall + '</a><a href="'+window.changeProfilePic+'"  class="coverUpdate iframe"><div>Update Picture</div></a></b></span>');
+      $('#cover').append('<div class="coverImg hexagon hexagon1"><div class="hexagon-in1"><div class="hexagon-in2" style="background: url('+"'"+window.userPicCmtWall+"') no-repeat; background-size: 103px 103px!important; background-position: 50%;"+'" ></div></div></div><b><a href="'+window.changeProfilePic+'"  class="coverUpdate iframe"><div>Update Picture</div></a></b>');
+      $('#cover').parent().append('<div class="coverName"><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userNameWall + '</a></b></div>');
       $(".iframe").colorbox({iframe:true, width:"50%", height:"50%"});
       $('#logoutContainer').append('<a title="logout" href="'+window.logout+'" ><img src="'+window.logoutIcon+'" style="width:19px;height:19px;"/></a>');
     }
@@ -622,6 +650,79 @@ $(document).on('click', '.unFriend', function() {
   });
   return false;
 });
+
+$(document).on('click', '#wallUnfriend', function() {
+  var friendName = $(this).attr('rel');
+  $.ajax({
+  type: "POST",
+{/literal}
+  url:"{base_url('friendController/xoaBan')}",
+{literal}
+  data: {friend: friendName},
+  dataType: "text",
+  cache:false,
+  success:
+      function(data){
+        location.reload();
+      }
+  });
+  return false;
+});
+
+$(document).on('click', '#wallAddFriend', function() {
+  var friendName = $(this).attr('rel');
+  $.ajax({
+  type: "POST",
+{/literal}
+  url:"{base_url('friendController/themBan')}",
+{literal}
+  data: {friendEmail:friendName},
+  dataType: "text",
+  cache:false,
+  success:
+      function(data){
+        location.reload();
+      }
+  });
+  return false;
+});
+
+$(document).on('click', '#wallUnfollow', function() {
+  var friendName = $(this).attr('rel');
+  $.ajax({
+  type: "POST",
+{/literal}
+  url:"{base_url('friendController/unfollow')}",
+{literal}
+  data: {friend:friendName},
+  dataType: "text",
+  cache:false,
+  success:
+      function(data){
+        location.reload();
+      }
+  });
+  return false;
+});
+
+$(document).on('click', '#wallFollow', function() {
+  var friendName = $(this).attr('rel');
+  $.ajax({
+  type: "POST",
+{/literal}
+  url:"{base_url('friendController/follow')}",
+{literal}
+  data: {friend:friendName},
+  dataType: "text",
+  cache:false,
+  success:
+      function(data){
+        location.reload();      
+      }
+  });
+  return false;
+});
+
 
 $(document).on('keypress', '.commentInput', function(e) {
   if (e.keyCode == 13) {

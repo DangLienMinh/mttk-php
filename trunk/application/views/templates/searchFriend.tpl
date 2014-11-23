@@ -53,7 +53,7 @@ ul li {
 					try{
 						var items=[];
 						$.each(obj, function(i,val){
-						    items.push('<li><a href="seeWall/' + val.email + '">' + val.first_name+" "+val.last_name + '</a>'+'<button type="button" class="addFriend" value="' + val.email + '">'+'Add friend</button></li>');
+						    items.push('<li><a href="'+window.userWall+ '/'+ val.email + '">' + val.first_name+" "+val.last_name + '</a>'+'<button type="button" class="addFriend" value="' + val.email + '">'+'Add friend</button></li>');
 						});
 						$('#finalResult').append.apply($('#finalResult'), items);
 					}catch(e) {
