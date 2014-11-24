@@ -318,6 +318,7 @@ function getMoreConversation(userEmail,last_id) {
   });
 }
 
+
 function deleteStatus(status) {
   var dataString = 'status_id=' + status;
   $.ajax({
@@ -351,6 +352,31 @@ function getPlaylist() {
   });
 }
 
+
+function fanclubCheckAdmin(fanclub) {
+  var dataString = 'fanclub_id=' + fanclub;
+  $.ajax({
+    type: "post",
+{/literal}
+    url: "{base_url('fanclubController/checkFanlubAdmin')}",
+{literal}
+    data: dataString,
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) { 
+      if(data>0){
+        $('#fanclubContainer').find('.item').each(function(index, element) {
+          if(!$(this).find('.dropdown').length&&index!=0){
+            $(this).prepend('<div class="dropdown" style="display: none;"><a class="account" id=""></a><div class="submenu" style="display: none;"><ul class="root"><li class="stedit"><a href="#">Edit</a></li><li class="stdelete"><a href="#">Delete</a></li></ul></div></div>');
+          }
+        });
+        $('#coverContainer').find('#headlineLeave').html('Remove group');
+      }
+    }
+  });
+}
+
 function wallDsPlaylist(email) {
     var dataString = 'email=' + email;
     $.ajax({
@@ -365,7 +391,11 @@ function wallDsPlaylist(email) {
     success: function(data) {
      var obj = JSON.parse(data);
      $.each(obj, function(i, val) {
-      $('#playlistContainer>ul').append('<li><a class="inline" href="#"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' +window.playlistIcon+ '"/><span class="'+val.Playlist_id+'">' + val.Playlist_name+ '</span></a><div class="playlistSongs"><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio">' + playlistElement + '</div></div></li>');
+      if (email == window.userLogin) {
+        $('#playlistContainer>ul').append('<li><a class="removePlaylist" rel="'+val.Playlist_id+'"></a><a class="inline" href="#"><img style="width:70px;height:70px;vertical-align:middle;margin-right:7px;float:left" src="' +window.playlistIcon+ '"/><span class="'+val.Playlist_id+'">' + val.Playlist_name+ '</span></a><div class="playlistSongs"><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio">' + playlistElement + '</div></div></li>');
+      }else{
+        $('#playlistContainer>ul').append('<li><a class="inline" href="#"><img style="width:70px;height:70px;vertical-align:middle;margin-right:7px;float:left" src="' +window.playlistIcon+ '"/><span class="'+val.Playlist_id+'">' + val.Playlist_name+ '</span></a><div class="playlistSongs"><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio">' + playlistElement + '</div></div></li>');
+      }
       getSongWall(val.Playlist_id,i);
      });
     }
@@ -631,6 +661,26 @@ $(document).on('click', '.addFriend', function() {
       }
   });
   return false;
+});
+
+$(document).on('click', '.removePlaylist', function() {
+  if (confirm("Are your sure?")) {
+    var playlist=$(this).attr("rel");
+    var dataString = 'playlist_id=' + playlist;
+    var li=$(this).parent();
+    $.ajax({
+      type: "post",
+  {/literal}
+      url: "{base_url('playlistController/removePlaylist')}",
+  {literal}
+      data: dataString,
+      async: true,
+      cache: false,
+      success: function() {
+        li.fadeOut('slow');
+      }
+    });
+  }
 });
 
 $(document).on('click', '.unFriend', function() {
@@ -1009,6 +1059,71 @@ $(document).on('keyup', '.search', function() {
         }
       });
     }
+});
+
+$(document).on('click', '.removeMember', function() {
+    var parent=$(this).parent();
+    var email=parent.find('button').val();
+        $.ajax({
+        type: "post",
+  {/literal}
+        url:"{base_url('fanclubController/removeMember')}",
+  {literal}
+        cache: false,
+        data:'email='+email+'&fanclub_id='+window.fanclub,
+        success: function(response){
+          parent.fadeOut('slow');
+        }
+      });
+});
+
+
+$(document).on('click', '.addMember', function() {
+  var li=$(this).parent();
+  var member=$(this).val();
+  $.ajax({
+  type: "POST",
+{/literal}
+  url:"{base_url('fanclubController/themFanclubUser')}",
+{literal}
+  data:'user='+member+'&fanclub_id='+window.fanclub,
+  cache:false,
+  success:
+      function(){
+        location.reload();
+      }
+  });
+  return false;
+});
+
+  $(document).on('click', '#headlineLeave', function() {
+      if (confirm("Are your sure?")) {
+        $.ajax({
+        type: "post",
+  {/literal}
+        url:"{base_url('fanclubController/tuRemoveKhoiFanlub')}",
+  {literal}
+        cache: false,
+        data:'fanclub_id='+window.fanclub,
+        success: function(response){
+          window.location.href = window.homePage;
+        }
+      });
+      }
+});
+
+$(document).on('click', '.joinFanclub a', function() {
+        $.ajax({
+        type: "post",
+  {/literal}
+        url:"{base_url('fanclubController/tuThemVaoFanclub')}",
+  {literal}
+        data:'fanclub_id='+window.fanclub,
+        cache: false,
+        success: function(){
+          location.reload();
+        }
+      });
 });
 
 {/literal}

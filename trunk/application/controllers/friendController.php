@@ -26,6 +26,24 @@
         echo $friends;
 	}
 
+	/*public function index(){
+		$em = $this->doctrine->em;
+		$user = new Entity\UserDAO($em);
+		$search=  $this->input->post('search');
+		$email = $this->session->userdata('email');
+		$result=$user->timUser($search,$email);
+        $friends="";
+        if(count($result)>0){
+        	foreach($result as $k)
+	        {
+	            $friends.='<div class="display_box" align="left"><img src="'.base_url().'uploads/img/'.$k['picture'].'" style="max-width:80%; max-height:80%; float:left; margin-right:6px" /><a href="'.site_url('statusController/layDSWallStatus/').'/'. $k['email'] . '">' . $k['first_name']." ".$k['last_name'] . '</a><button type="button" class="addFriend" value="' . $k['email'] . '">'.'Add friend</button></div>';
+	        }
+        }else{
+        	$friends.="<b>No Data Found</b>";
+        }
+        echo $friends;
+	}*/
+
 	public function searchMenu(){
 		$em = $this->doctrine->em;
 		$user = new Entity\UserDAO($em);

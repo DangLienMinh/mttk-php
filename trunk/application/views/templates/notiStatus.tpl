@@ -14,76 +14,72 @@ function getStatus(){
     friendRequest();
     getStatus();
     getPlaylist();
+    getSuggest();
+    getPlaylistUpdateStatus();
+    getFanclub();
 
-    $("#notificationLink").click(function()
-    {
-      $("#friendContainer").hide();
-      $("#notificationContainer").fadeToggle(300);
-      $("#notification_count").fadeOut("slow");
-      return false;
+    $("#target").autoGrow();
+    $('#tabs').tabs({
+      activate: function(event, ui) {
+        $('#container').masonry({
+          itemSelector: '.item'
+        });
+        var msnry = $('#container').data('masonry');
+        msnry.on( 'layoutComplete', masonry_refresh );
+        function masonry_refresh(){
+          Arrow_Points();
+        }
+      }
     });
 
-    $("#friendLink").click(function()
-    {
-      $("#notificationContainer").hide();
-      $("#friendContainer").fadeToggle(300);
-      $("#friend_count").fadeOut("slow");
-      return false;
+    $('#notificationsBody ul').bind('scroll', function() {
+        if($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
+          var id=$(this).find('li:last').attr("id");
+          moreNotify(id.substring(4));
+        }
     });
-
-    $(document).click(function()
-    {
-      $("#notificationContainer").hide();
-      $("#friendContainer").hide();
-    });
-
-    $('#savePlaylist').click(function(){
-      var id=$(this).parent().find('select').find(":selected").val();
-      var title=$(this).parent().find('#titleMusic').val();
-      var music=$(this).parent().find('#urlMusic').val();
-      savePlaylist(id,title,music);
-    });
+    
+      $("#jquery_jplayer_1").jPlayer({
+        ready: function (event) {
+          $(this).jPlayer("setMedia", {
+            title: "",
+            mp3: ""
+          }).jPlayer("play");
+        },
+        swfPath: "js",
+        supplied: "mp3",
+        wmode: "window",
+        smoothPlayBar: true,
+        keyEnabled: true,
+        remainingDuration: true,
+        toggleDuration: true
+      });
+      $('.fanclubInfo').append('<div class="fanclubUserBox" align="left"><a href="'+window.createFanclub+'" class="iframe">Create new fanclub</a></div>');
+      $(".iframe").colorbox({iframe:true, width:"50%", height:"50%"});
   });
   </script>
  {/literal}
 </head>
 <body>
-  <div id="noti_Container">
-    <ul id="nav">
-    <li id="friend_li">
-      <span id="friend_count"></span>
-      <a href="#" id="friendLink">Friends</a>
-      <div id="friendContainer">
-        <div id="friendTitle">Notifications</div>
-        <div id="friendBody" class="friend">
-          <ul></ul>
-        </div>
-        <div id="friendFooter"><a href="#">See All</a></div>
-      </div>
-    </li>
-    <li id="notification_li">
-      <span id="notification_count"></span>
-      <a href="#" id="notificationLink">Notifications</a>
-      <div id="notificationContainer">
-        <div id="notificationTitle">Notifications</div>
-        <div id="notificationsBody" class="notifications">
-          <ul></ul>
-        </div>
-        <div id="notificationFooter"><a href="#">See All</a></div>
-      </div>
-    </li>
-  </ul>
-  </div>
+    {include file='common/notificationPart.tpl'}
     <div id="container">
-      <div class="timeline_container">
-        <div class="timeline">
-          <div class="plus"></div>
-        </div>
-      </div>
+  <div class="timeline_container">
+    <div class="timeline">
+      <div class="plus"></div>
     </div>
-    <div id="pop">
-      <img/>
-      <h2></h2>
-    </div>
+  </div>
+</div>
+<div id="pop">
+  <img/>
+  <h2></h2>
+</div>
+<div style="display: none; border: 1px solid black; height: 50px; width: 180px; 
+  padding: 5px; position: absolute; left: 100px; top: 100px; 
+  background-color: silver;" id="playlistBox">
+  <select></select>
+  <input type="hidden" id="titleMusic"/>
+  <input type="hidden" id="urlMusic"/>
+  <button id="savePlaylist">Save</button>
+</div>
 </body>
 </html>

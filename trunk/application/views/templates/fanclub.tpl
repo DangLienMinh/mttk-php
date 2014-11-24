@@ -24,6 +24,7 @@ function getStatus(){
     getSuggest();
     getPlaylistUpdateStatus();
     getFanclub();
+    fanclubCheckAdmin(window.fanclub);
     getMembers(window.fanclub);
     $("input[name='fanclub_id']").val(window.fanclub);
     $("#target").autoGrow();
@@ -38,6 +39,7 @@ function getStatus(){
           Arrow_Points();
         }
       }
+
     });
 
     $('#notificationsBody ul').bind('scroll', function() {
@@ -80,71 +82,22 @@ function getStatus(){
         $('#fanclubContainer').find('#view2').siblings('div').hide();
       });
 
-  });
-
-  $(document).on('click', '#displayUserFanclubBox .searchUserBox a', function() {
-    var user=$(this).attr('rel');
-    var parent=$(this).parent();
-    $.ajax({
+      $(".searchMember").keyup(function(){
+        if($(".searchMember").val()!=''){
+          $.ajax({
           type: "post",
     {/literal}
-          url:"{base_url('fanclubController/themFanclubUser')}",
+          url:"{base_url('fanclubController/searchFanclub')}",
     {literal}
           cache: false,
-          data:'fanclub_id='+window.fanclub+'&user='+user,
+          data:'search='+$(".searchMember").val()+'&fanclub='+window.fanclub,
           success: function(response){
-            parent.fadeOut('slow');
-          }
-    });
-    return false;
+            $('#display').html(response).show();
+            }
+          });
+        }
+      });
   });
-  $(document).on('keyup', '.searchUser', function() {
-      if($(".searchUser").val()!=''){
-        $.ajax({
-        type: "post",
-  {/literal}
-        url:"{base_url('fanclubController/searchFanclub')}",
-  {literal}
-        cache: false,
-        data:'search='+$(".searchUser").val()+'&fanclub='+window.fanclub,
-        success: function(response){
-          $('#displayUserFanclubBox').html(response).show();
-        }
-      });
-    }
-});
-  $(document).on('click', '.removeMember', function() {
-    var parent=$(this).parent();
-    var email=parent.find('button').val();
-        $.ajax({
-        type: "post",
-  {/literal}
-        url:"{base_url('fanclubController/removeMember')}",
-  {literal}
-        cache: false,
-        data:'email='+email+'&fanclub_id='+window.fanclub,
-        success: function(response){
-          parent.fadeOut('slow');
-        }
-      });
-});
-
-  $(document).on('click', '#headlineLeave', function() {
-      if (confirm("Are your sure?")) {
-        $.ajax({
-        type: "post",
-  {/literal}
-        url:"{base_url('fanclubController/tuRemoveKhoiFanlub')}",
-  {literal}
-        cache: false,
-        data:'fanclub_id='+window.fanclub,
-        success: function(response){
-          window.location.href = window.homePage;
-        }
-      });
-      }
-});
-  
   </script>
  {/literal}
 </head>
@@ -167,7 +120,15 @@ function getStatus(){
     {include file='common/mainPart.tpl' postStatus={form_open_multipart('statusController/themFanclubStatus')}}
   </div>
   <div id="view2" style="display:none;">
-        <div id="friendListContainer"><ul></ul></div>
+        <div id="friendListContainer">
+          <div id="searchFriend">
+            <h3>Add member</h3>
+            <input type="text" class="searchMember" id="searchbox" /><br />
+            <div id="display">
+            </div>
+          </div>
+          <ul></ul>
+        </div>
   </div>
   <div id="view3" style="display:none;">
         <div id="playlistContainer">

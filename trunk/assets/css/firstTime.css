@@ -7,7 +7,7 @@ font-size: 12px;
 #display {
     width: 250px;
     display: none;
-    float: right;
+    position:absolute;
     margin-right: 30px;
     border-left: solid 1px #dedede;
     border-right: solid 1px #dedede;
@@ -151,8 +151,8 @@ left: 60%;}
 
 #searchFriend{
     position: absolute;
-left: 52%;
-top: 27%;
+    left: 52%;
+    top: 27%;
 }
 #friendFooter{
     float:left;

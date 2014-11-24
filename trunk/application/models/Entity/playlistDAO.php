@@ -42,6 +42,13 @@ class PlaylistDAO
 		$this->em->flush();
 	}
 
+	public function removePlaylist($playlist_id)
+	{
+	    $playlist = $this->em->getReference('Entity\Playlist', $playlist_id);
+	    $this->em->remove($playlist);
+	    $this->em->flush();
+	}
+
 	
 }
 ?>
