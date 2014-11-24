@@ -79,23 +79,7 @@ function getStatus(){
         $('#fanclubContainer').find('#view2').show();
         $('#fanclubContainer').find('#view2').siblings('div').hide();
       });
-
-      $(document).on('click', '.joinFanclub a', function() {
-        $.ajax({
-        type: "post",
-  {/literal}
-        url:"{base_url('fanclubController/tuThemVaoFanclub')}",
-  {literal}
-        data:'fanclub_id='+window.fanclub,
-        cache: false,
-        success: function(){
-          location.reload();
-        }
-      });
   });
-
-  });
-
 
   </script>
  {/literal}

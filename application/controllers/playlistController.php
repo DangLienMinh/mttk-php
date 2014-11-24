@@ -48,6 +48,13 @@ class PlaylistController extends CI_Controller {
         echo base_url('main/homePage/');
     }
 
+    function removePlaylist(){
+        $em = $this->doctrine->em;
+        $playlist = new Entity\PlaylistDAO($em);
+        $playlist_id=$this->input->post('playlist_id');
+        $playlist->removePlaylist($playlist_id);
+    }
+
     function addMusic(){
         $em = $this->doctrine->em;
         $playlist_detail = new Entity\Playlist_detailDAO($em);

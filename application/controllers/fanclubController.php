@@ -50,6 +50,15 @@ class FanclubController extends CI_Controller {
         }
     }
 
+    public function checkFanlubAdmin(){
+        $email=$this->session->userdata('email');
+        $fanclub_id=$this->input->post('fanclub_id');
+        $em = $this->doctrine->em;
+        $fanclub = new Entity\FanclubDAO($em);
+        $checked=$fanclub->checkUserCreateGroup($email,$fanclub_id);
+        echo $checked[0]['checked'];
+    }
+
     public function removeMember(){
         $email=$this->input->post('email');
         $fanclub_id=$this->input->post('fanclub_id');
@@ -80,10 +89,9 @@ class FanclubController extends CI_Controller {
         $result=$user->timUserFriend($search,$email,$fanclub);
         $friends="";
         if(count($result)>0){
-            $friends.='<div class="searchUserTtile"><h3>People</h3></div>';
             foreach($result as $k)
             {
-                $friends.='<div class="searchUserBox" align="left"><img src="'.base_url().'uploads/img/'.$k['picture'].'" style="width:40px; height:40px; float:left; margin-right:6px" /><a href="#" rel="'.$k['email'].'">' . $k['first_name']." ".$k['last_name'] . '</a></div>';
+                $friends.='<div class="display_box" align="left"><img src="'.base_url().'uploads/img/'.$k['picture'].'" style="width:25px; height:25px; float:left; margin-right:6px" /><a href="'.site_url('statusController/layDSWallStatus/').'/'. $k['email'] . '">' . $k['first_name']." ".$k['last_name'] . '</a><button type="button" class="addMember" value="' . $k['email'] . '">'.'Add member</button></div>';
             }
         }else{
             $friends.="<b>No Data Found</b>";

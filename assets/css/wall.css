@@ -826,16 +826,16 @@ width: 86%;
 }
 
 #playlistContainer>ul>li span {
-    top: 42px;
+    top: 9%;
     width: 190px;
-    left: 135px;
+    left: 19%;
     position: absolute;
     font-size: 24px;
 }
 
 .playlistSongs{
-    margin-top: 120px;
-    margin-left: 105px;
+    margin-top: 20%;
+    margin-left: 27%;
 }
 
 #view3{
@@ -1244,17 +1244,6 @@ font-size:12px;
     overflow: hidden;
 }
 
-#displayUserFanclubBox {
-    width: 255px;
-    display: none;
-    border-left: solid 1px #dedede;
-    border-right: solid 1px #dedede;
-    border-bottom: solid 1px #dedede;
-    overflow: hidden;
-    position:absolute;
-    z-index: 1200;
-}
-
 .searchUserTtile{
     background:#f2f2f2;
 }
@@ -1422,6 +1411,20 @@ margin: 5px 0 0 -22px;
 cursor:pointer;
 background: url("../img/delete.png") no-repeat;
 }
+
+a.removePlaylist {
+    color: #555;
+    position: absolute;
+    z-index: 110;
+    display: block;
+    padding: 12px 0 0 20px;
+    height: 15px;
+    width: 15px;
+    margin: 2% 0 0 94%;
+    cursor: pointer;
+    background: url("../img/removePlaylist.png") no-repeat;
+}
+
 a.removeMember {
 z-index: 110;
 display: block;
@@ -1584,4 +1587,47 @@ white-space: nowrap;
 
 #markRead{
     color:#000!important;
+}
+
+#searchFriend{
+    padding-bottom:15px;
+}
+
+
+.display_box:hover {
+    background: #3b5998;
+    color: #FFF!important;
+    text-decoration: none;
+}
+.display_box {
+    padding: 4px;
+    border-top: solid 1px #dedede;
+    font-size: 12px;
+    height: 30px;
+    position: relative;
+    background: #fff;
+}
+
+#display {
+width: 250px;
+display: none;
+position:absolute;
+margin-right: 30px;
+border-left: solid 1px #dedede;
+border-right: solid 1px #dedede;
+border-bottom: solid 1px #dedede;
+overflow: hidden;
+z-index: 1000;
+}
+
+.display_box button {
+right: 10px;
+position: absolute;
+}
+
+.display_box a {
+color: black;
+font-size: 14px;
+font-weight: bold;
+text-decoration: none;
 }

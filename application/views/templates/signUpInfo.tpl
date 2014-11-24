@@ -11,7 +11,6 @@
   <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
   <script type="text/javascript" src="http://www.technicalkeeda.com/js/javascripts/plugin/json2.js"></script>
   <script type="text/javascript" src="{asset_url()}js/cropbox.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.watermarkinput.js"></script>
   <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
   <script type="text/javascript">
@@ -107,7 +106,6 @@
 
   $(function() {
       $( "#tabs" ).tabs();
-      $("#searchbox").Watermark("Search");
     });
 </script>
 <script>
@@ -193,7 +191,7 @@ function geolocate() {
    <!--  <ul id="facebook"></ul> -->
       <div id="searchFriend">
           <h3>Search Friends</h3>
-          <input type="text" class="search" id="searchbox" /><br />
+          <input type="text" class="search" id="searchbox" placeholder="Enter name"/><br />
           <div id="display">
           </div>
       </div>
