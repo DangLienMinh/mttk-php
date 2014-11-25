@@ -1,34 +1,31 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>jQuery UI Tabs - Default functionality</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/wall.css">
-  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="{asset_url()}js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript">
   {literal}
   $(document).ready(function() {
-      $('#fanclubCreate').click(function(){
-      	var name=$('#fanclubName').val();
-      	var desc=$('#fanclubDesc').val();
-      	var dataString = 'name=' + name+'&desc='+desc;
-		  $.ajax({
-		    type: "post",
-		{/literal}
-		    url: "{base_url('fanclubController/themFanclub')}",
-		{literal}
-		    data: dataString,
-		    async: true,
-		    cache: false,
-		    timeout: 50000,
-		    success: function(data) {
-		      parent.jQuery.colorbox.close();
-          window.parent.location.href=data;
-		    }
-		  });
+    $('#fanclubCreate').click(function() {
+      var name = $('#fanclubName').val();
+      var desc = $('#fanclubDesc').val();
+      var dataString = 'name=' + name + '&desc=' + desc;
+      $.ajax({
+        type: "post",
+    {/literal}
+        url: "{base_url('fanclubController/themFanclub')}",
+    {literal}
+        data: dataString,
+        async: true,
+        cache: false,
+        timeout: 50000,
+        success: function(data) {
+          parent.jQuery.colorbox.close();
+          window.parent.location.href = data;
+        }
       });
-
     });
+  });
   </script>
   {/literal}
 </head>

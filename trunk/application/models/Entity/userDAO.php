@@ -48,10 +48,24 @@ class UserDAO
 		$this->em->flush();
 	}
 
+	public function suaProfileCover($data)
+	{
+	    $user = $this->em->getReference('Entity\User', $data['email']);
+	    $user->setCoverImg($data['pic']);
+		$this->em->merge($user);
+		$this->em->flush();
+	}
+
 	public function getPreviousImage($email)
 	{
 	    $user = $this->em->getReference('Entity\User', $email);
 	    return $user->getPicture();
+	}
+
+	public function getPreviousProfileCover($email)
+	{
+	    $user = $this->em->getReference('Entity\User', $email);
+	    return $user->getCoverImg();
 	}
 
 
@@ -102,7 +116,7 @@ class UserDAO
 	}
 
 	public function getUser($email){
-		$query = $this->em->createQuery("SELECT p.first_name,p.last_name,p.birthday,p.picture FROM Entity\User p WHERE p.email=?1");
+		$query = $this->em->createQuery("SELECT p.first_name,p.last_name,p.birthday,p.picture,p.coverImg FROM Entity\User p WHERE p.email=?1");
 		$query->setParameter(1, $email);
 		$result=$query->getResult();
 		return $result;

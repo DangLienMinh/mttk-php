@@ -28,6 +28,12 @@ class Fanclub
     protected $fanclub_desc;
 
     /**
+     * @Column(type="string")
+     */
+    protected $coverImg;
+
+
+    /**
      * @ManyToOne(targetEntity="user")
      * @JoinColumn(name="email", referencedColumnName="email")
      **/
@@ -86,6 +92,17 @@ class Fanclub
     public function setCreated_at($created_at)
     {
         $this->created_at = $created_at;
+        return $this;
+    }
+    
+    public function getCoverImg()
+    {
+        return $this->coverImg;
+    }
+    
+    public function setCoverImg($coverImg)
+    {
+        $this->coverImg = $coverImg;
         return $this;
     }
    

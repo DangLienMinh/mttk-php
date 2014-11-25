@@ -153,10 +153,22 @@ class User extends \Entity\User implements \Doctrine\ORM\Proxy\Proxy
         return parent::setLast_login($last_login);
     }
 
+    public function getCoverImg()
+    {
+        $this->__load();
+        return parent::getCoverImg();
+    }
+
+    public function setCoverImg($coverImg)
+    {
+        $this->__load();
+        return parent::setCoverImg($coverImg);
+    }
+
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'email', 'password', 'first_name', 'last_name', 'picture', 'online', 'last_login', 'created_at', 'birthday');
+        return array('__isInitialized__', 'email', 'password', 'first_name', 'last_name', 'picture', 'coverImg', 'online', 'last_login', 'created_at', 'birthday');
     }
 
     public function __clone()

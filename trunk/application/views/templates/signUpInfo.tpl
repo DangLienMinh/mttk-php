@@ -4,89 +4,88 @@
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
   <meta charset="utf-8">
   <title>jQuery UI Tabs - Default functionality</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" type="text/css" href="{asset_url()}css/jquery-ui.css">
   <link rel="stylesheet" href="{asset_url()}css/firstTime.css">
   <link rel="stylesheet" href="{asset_url()}css/imgcropstyle.css">
   <script type="text/javascript" src="{asset_url()}js/jquery-2.1.1.min.js"></script>
-  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-  <script type="text/javascript" src="http://www.technicalkeeda.com/js/javascripts/plugin/json2.js"></script>
+  <script type="text/javascript" src="{asset_url()}js/jquery-ui.js"></script>
   <script type="text/javascript" src="{asset_url()}js/cropbox.js"></script>
-  <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
   <script type="text/javascript">
     window.userPic="{uploads_url()}img/";
     window.emotionsFolder="{asset_url()}img/";
   </script>
   {literal}
  <script>
-  $(document).ready(function(){
+  $(document).ready(function() {
     getSuggest();
-    $(".search").keyup(function(){
-      if($(".search").val()!=''){
+    $(".search").keyup(function() {
+      if ($(".search").val() != '') {
         $.ajax({
-        type: "post",
-  {/literal}
-        url:"{base_url('friendController/')}",
-  {literal}
-        cache: false,
-        data:'search='+$(".search").val(),
-        success: function(response){
-          $('#display').html(response).show();
-        }
-      });
-    }
-  });
+          type: "post",
+{/literal}
+          url: "{base_url('friendController/')}",
+{literal}
+          cache: false,
+          data: 'search=' + $(".search").val(),
+          success: function(response) {
+            $('#display').html(response).show();
+          }
+        });
+      }
+    });
 
     $('#facebook').on('click', '.delete', function() {
       var element = $(this);
       var I = element.attr("id");
-      $('#list'+I).fadeOut('slow', function() {$(this).remove();});
+      $('#list' + I).fadeOut('slow', function() {
+        $(this).remove();
+      });
       return false;
     });
 
     $('#facebook').on('click', 'li button', function() {
-      var li=$(this).parent();
+      var li = $(this).parent();
       $.ajax({
-         type: "POST",
+        type: "POST",
 {/literal}
-         url:"{base_url('friendController/themBan')}", 
+        url: "{base_url('friendController/themBan')}",
 {literal}
-         data: {friendEmail: $(this).val()},
-         dataType: "text",  
-         cache:false,
-         success: 
-              function(data){
-                  li.fadeOut('slow', function() {});
-              }
-          });
+        data: {
+          friendEmail: $(this).val()
+        },
+        dataType: "text",
+        cache: false,
+        success: function(data) {
+          li.fadeOut('slow', function() {});
+        }
       });
+    });
 
     $('#display').on('click', 'button', function() {
-      var parent=$(this).parent();
+      var parent = $(this).parent();
       $.ajax({
-         type: "POST",
+        type: "POST",
 {/literal}
-         url:"{base_url('friendController/themBan')}", 
+        url: "{base_url('friendController/themBan')}",
 {literal}
-         data: {friendEmail: $(this).val()},
-         dataType: "text",  
-         cache:false,
-         success: 
-              function(data){
-                parent.fadeOut('slow');
-              }
-          });
+        data: {
+          friendEmail: $(this).val()
+        },
+        dataType: "text",
+        cache: false,
+        success: function(data) {
+          parent.fadeOut('slow');
+        }
       });
+    });
   });
 
   $(document).mouseup(function(e) {
     var container = $("#display");
-
-      if (!container.is(e.target)
-          && container.has(e.target).length === 0)
-      {
-          container.hide();
-      }
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
+      container.hide();
+    }
   });
 
   function getSuggest(){
@@ -103,7 +102,6 @@
       }
   });
   }
-
   $(function() {
       $( "#tabs" ).tabs();
     });
@@ -136,46 +134,48 @@ function geolocate() {
 
 </script>
 <script type="text/javascript">
-    $(window).load(function() {
-        var options =
-        {
-            thumbBox: '.thumbBox',
-            spinner: '.spinner',
-            imgSrc: window.emotionsFolder+'avatar.png'
-        }
-        var cropper = $('.imageBox').cropbox(options);
-        $('#file').on('change', function(){
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                options.imgSrc = e.target.result;
-                cropper = $('.imageBox').cropbox(options);
-            }
-            reader.readAsDataURL(this.files[0]);
-            this.files = [];
-        })
+  $(window).load(function() {
+    var options = {
+      thumbBox: '.thumbBox',
+      spinner: '.spinner',
+      imgSrc: window.emotionsFolder + 'avatar.png'
+    }
+    var cropper = $('.imageBox').cropbox(options);
+    $('#file').on('change', function() {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        options.imgSrc = e.target.result;
+        cropper = $('.imageBox').cropbox(options);
+      }
+      reader.readAsDataURL(this.files[0]);
+      this.files = [];
+    })
 
-        $('#btnCrop').on('click', function(){
-            var img = cropper.getDataURL();
-            $('.cropped').append('<img src="'+img+'">');
-            var address1=$("#autocomplete").val();
-            $.ajax({  
-            type: "POST",  
+    $('#btnCrop').on('click', function() {
+      var img = cropper.getDataURL();
+      $('.cropped').append('<img src="' + img + '">');
+      var address1 = $("#autocomplete").val();
+      $.ajax({
+        type: "POST",
 {/literal}
-                url:"{base_url('profileController/firstTime')}",
+        url: "{base_url('profileController/firstTime')}",
 {literal}
-            data: {address:$("#autocomplete").val(),image: img},
-            success: function(data) {
-              window.location=data;
-            }
-        });
-        });
-        $('#btnZoomIn').on('click', function(){
-            cropper.zoomIn();
-        })
-        $('#btnZoomOut').on('click', function(){
-            cropper.zoomOut();
-        })
+        data: {
+          address: $("#autocomplete").val(),
+          image: img
+        },
+        success: function(data) {
+          window.location = data;
+        }
+      });
     });
+    $('#btnZoomIn').on('click', function() {
+      cropper.zoomIn();
+    })
+    $('#btnZoomOut').on('click', function() {
+      cropper.zoomOut();
+    })
+  });
 </script>
 {/literal}
 </head>
@@ -188,7 +188,6 @@ function geolocate() {
   </ul>
 
   <div id="tabs-1">
-   <!--  <ul id="facebook"></ul> -->
       <div id="searchFriend">
           <h3>Search Friends</h3>
           <input type="text" class="search" id="searchbox" placeholder="Enter name"/><br />

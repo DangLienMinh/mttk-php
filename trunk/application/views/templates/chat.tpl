@@ -8,12 +8,14 @@
     getFriendChat();
     getSuggest();
     $('#notificationsBody ul').bind('scroll', function() {
-        if($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
-          var id=$(this).find('li:last').attr("id");
-          moreNotify(id.substring(4));
-        }
+      if ($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
+        var id = $(this).find('li:last').attr("id");
+        moreNotify(id.substring(4));
+      }
     });
+
     $('#search').hideseek();
+
     $('#content').keypress(function(e) {
       if (e.keyCode == 13) {
         e.preventDefault();
@@ -44,7 +46,9 @@
             alert("Please delete some Text max 200 charts");
           }
         }
-        $('#cboxLoadedContent').animate({scrollTop: $('#cboxLoadedContent').prop("scrollHeight")}, 700);
+        $('#cboxLoadedContent').animate({
+          scrollTop: $('#cboxLoadedContent').prop("scrollHeight")
+        }, 700);
       }
     });
   });
@@ -53,14 +57,12 @@
 </head>
 <body>
   {include file='common/notificationPart.tpl'}
-
     <div id="friendChatContainer">
       <div id="chatTitle">
         <h3>Search</h3>
         <input id="search" name="search" placeholder="Start typing here" type="text" data-list=".list">
       </div>
       <div id="chatContainer">
-        
         <ul class="list"></ul>
       </div>
     </div>

@@ -68,6 +68,13 @@ class StatusController extends CI_Controller {
         $this->smarty->assign('userPicCmt',$this->session->userdata('pic'));
         $this->smarty->assign('userName',$this->session->userdata('first_name').' '.$this->session->userdata('last_name'));
         $this->smarty->assign('userLogin',$this->session->userdata('email'));
+        $cover="";
+          if($userInfo[0]['coverImg']!=""){
+            $cover=$userInfo[0]['coverImg'];
+          }else{
+            $cover='musicCover.jpg';
+          }
+        $this->smarty->assign('profileCover',$cover);
         $this->smarty->view('userWall');
     }
 
@@ -82,6 +89,13 @@ class StatusController extends CI_Controller {
         $fanclubInfo=$fanclub->getFanclubByID($fanclubid);
         $checkCreate=$fanclub->checkUserCreateGroup($this->session->userdata('email'),$fanclubid);
         $checkIn=$fanclub->checkUserMemberGroup($this->session->userdata('email'),$fanclubid);
+        $cover="";
+        if($fanclubInfo[0]['coverImg']!=""){
+            $cover=$fanclubInfo[0]['coverImg'];
+        }else{
+            $cover='musicCover.jpg';
+        }
+        $this->smarty->assign('profileCover',$cover);
         if($checkCreate[0]['checked']==0&&$checkIn[0]['checked']==0){
             $this->smarty->assign('fanclubName',$fanclubInfo[0]['fanclub_name']);
             $this->smarty->assign('fanclubDesc',$fanclubInfo[0]['fanclub_desc']);
@@ -90,6 +104,8 @@ class StatusController extends CI_Controller {
             $this->smarty->assign('userPicCmt',$this->session->userdata('pic'));
             $this->smarty->assign('userName',$this->session->userdata('first_name').' '.$this->session->userdata('last_name'));
             $this->smarty->assign('userLogin',$this->session->userdata('email'));
+            
+            $this->smarty->assign('profileCover',$cover);
             $this->smarty->view('unregisteredFanclub');
         }else{
             $this->smarty->assign('fanclubName',$fanclubInfo[0]['fanclub_name']);
