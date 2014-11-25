@@ -42,10 +42,26 @@ class ProfileController extends CI_Controller {
           $data['pic']=uniqid() . '.png';
           $file=FCPATH.'uploads\\img\\'.$data['pic'];
           $success = file_put_contents($file,$pic);
-          
           $user->suaProfileImage($data);
           $this->session->set_userdata('pic', $data['pic']);
-          
+          echo base_url('/main/homePage');
+    }
+
+    function suaProfileCover()
+    {
+          $em = $this->doctrine->em;
+          $user = new Entity\UserDAO($em);
+          $data['email'] = $this->session->userdata('email');
+          if(file_exists(FCPATH.'/uploads/img/'.$user->getPreviousProfileCover($data['email']))){
+            unlink(FCPATH.'/uploads/img/'.$user->getPreviousProfileCover($data['email']));
+          }
+          $img=$this->input->post('image');
+          $parts = explode(',',$img);
+          $pic = base64_decode($parts[1]);
+          $data['pic']=uniqid() . '.png';
+          $file=FCPATH.'uploads\\img\\'.$data['pic'];
+          $success = file_put_contents($file,$pic);
+          $user->suaProfileCover($data);
     }
 
     function changeProfileImage(){

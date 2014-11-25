@@ -63,7 +63,7 @@ class FanclubDAO
     }
 
     public function getFanclubByID($id){
-        $query = $this->em->createQuery("SELECT p.fanclub_name,p.fanclub_desc FROM Entity\Fanclub p WHERE p.fanclub_id = ?1");
+        $query = $this->em->createQuery("SELECT p.fanclub_name,p.fanclub_desc,p.coverImg FROM Entity\Fanclub p WHERE p.fanclub_id = ?1");
         $query->setParameter(1, $id);
         $results=$query->getResult();
         return $results;
@@ -127,6 +127,19 @@ class FanclubDAO
         $sth->bindValue(1, $email);
         $sth->bindValue(2, $id);
         $sth->execute();
+    }
+
+    public function suaProfileCover($data)
+    {
+        $fanclub = $this->em->getReference('Entity\Fanclub',$data['fanclub_id']);
+        $fanclub->setCoverImg($data['pic']);
+        $this->em->merge($fanclub);
+        $this->em->flush();
+    }
+    public function getPreviousProfileCover($fanclub_id)
+    {
+        $fanclub = $this->em->getReference('Entity\Fanclub', $fanclub_id);
+        return $fanclub->getCoverImg();
     }
 }
 ?>

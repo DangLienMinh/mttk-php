@@ -15,10 +15,12 @@ function getStatus(){
   window.userNameWall="{$userNameWall}";
   window.userLoginWall="{$userLoginWall}";
   window.userPicCmtWall="{uploads_url()}img/{$userPicCmtWall}";
+  window.profileCover="{$profileCover}";
 {literal}
   $(document).ready(function() {
+    $('#coverContainer').css('background-image', 'url("' + window.userPic + window.profileCover + '")');
     waitForMsg();
-    friendRequest();
+    friendRequest(window.userLoginWall);
     getStatus();
     getPlaylist();
     getSuggest();
@@ -38,91 +40,74 @@ function getStatus(){
           itemSelector: '.item'
         });
         var msnry = $('#container').data('masonry');
-        msnry.on( 'layoutComplete', masonry_refresh );
-        function masonry_refresh(){
+        msnry.on('layoutComplete', masonry_refresh);
+
+        function masonry_refresh() {
           Arrow_Points();
         }
       }
     });
 
     $('#notificationsBody ul').bind('scroll', function() {
-        if($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
-          var id=$(this).find('li:last').attr("id");
-          moreNotify(id.substring(4));
-        }
+      if ($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
+        var id = $(this).find('li:last').attr("id");
+        moreNotify(id.substring(4));
+      }
     });
 
-      $("#jquery_jplayer_1").jPlayer({
-        ready: function (event) {
-          $(this).jPlayer("setMedia", {
-            title: "",
-            mp3: ""
-          }).jPlayer("play");
+    $("#jquery_jplayer_1").jPlayer({
+      ready: function(event) {
+        $(this).jPlayer("setMedia", {
+          title: "",
+          mp3: ""
+        }).jPlayer("play");
+      },
+      swfPath: "js",
+      supplied: "mp3",
+      wmode: "window",
+      smoothPlayBar: true,
+      keyEnabled: true,
+      remainingDuration: true,
+      toggleDuration: true
+    });
+
+    var options = {
+      thumbBox: '.thumbBox',
+      spinner: '.spinner',
+      imgSrc: window.userPic + window.profileCover
+    }
+    var cropper = $('.imageBox').cropbox(options);
+
+    $('#changeCover').on('change', function() {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        options.imgSrc = e.target.result;
+        cropper = $('.imageBox').cropbox(options);
+      }
+      reader.readAsDataURL(this.files[0]);
+      this.files = [];
+    });
+
+    $('#btnCrop').on('click', function() {
+      var img = cropper.getDataURL();
+      $.ajax({
+        type: "POST",
+{/literal}
+        url: "{base_url('profileController/suaProfileCover')}",
+{literal}
+        data: {
+          image: img
         },
-        swfPath: "js",
-        supplied: "mp3",
-        wmode: "window",
-        smoothPlayBar: true,
-        keyEnabled: true,
-        remainingDuration: true,
-        toggleDuration: true
+        success: function() {
+          location.reload();
+        }
       });
+    });
 
-      $('#headlineTimeline').find('span').css("display", "block");
-      $('.headlineRight a').click(function(){
-        $(this).find('span').css("display", "block");
-        $(this).siblings("a").find('span').css("display", "none");
-        return false;
-      })
-      $('#headlineFriendList').click(function(){
-        $('#wallContainer').find('#view2').show();
-        $('#wallContainer').find('#view2').siblings('div').hide();
-      });
-      $('#headlineTimeline').click(function(){
-        $('#wallContainer').find('#view1').show();
-        $('#wallContainer').find('#view1').siblings('div').hide();
-        $('#container').masonry({
-          itemSelector: '.item'
-        });
-      });
-      $('#headlinePlaylist').click(function(){
-        $('#wallContainer').find('#view3').show();
-        $('#wallContainer').find('#view3').siblings('div').hide();
-      });
-      $('#headlineAbout').click(function(){
-        $('#wallContainer').find('#view4').show();
-        $('#wallContainer').find('#view4').siblings('div').hide();
-      });
-      $('#aboutLeft1').click(function(){
-        $('#aboutRight').find('#about1').show();
-        $('#aboutRight').find('#about1').siblings('div').hide();
-        $(this).addClass("aboutLeftSelected");
-        $(this).parent().siblings('li').find('a').removeClass("aboutLeftSelected");
-        return false;
-      });
-      $('#aboutLeft2').click(function(){
-        $('#aboutRight').find('#about2').show();
-        $('#aboutRight').find('#about2').siblings('div').hide();
-        $(this).addClass("aboutLeftSelected");
-        $(this).parent().siblings('li').find('a').removeClass("aboutLeftSelected");
-        return false;
-      });
-      $('#aboutLeft3').click(function(){
-        $('#aboutRight').find('#about3').show();
-        $('#aboutRight').find('#about3').siblings('div').hide();
-        $(this).addClass("aboutLeftSelected");
-        $(this).parent().siblings('li').find('a').removeClass("aboutLeftSelected");
-        return false;
-      });
-      $('#aboutLeft4').click(function(){
-        $('#aboutRight').find('#about4').show();
-        $('#aboutRight').find('#about4').siblings('div').hide();
-        $(this).addClass("aboutLeftSelected");
-        $(this).parent().siblings('li').find('a').removeClass("aboutLeftSelected");
-        return false;
-      });
+    $('#headlineTimeline').find('span').css("display", "block");
 
-      $('#content').keypress(function(e) {
+
+    $('#content').keypress(function(e) {
       if (e.keyCode == 13) {
         e.preventDefault();
         var boxval = $(this).val();
@@ -152,7 +137,9 @@ function getStatus(){
             alert("Please delete some Text max 200 charts");
           }
         }
-        $('#cboxLoadedContent').animate({scrollTop: $('#cboxLoadedContent').prop("scrollHeight")}, 700);
+        $('#cboxLoadedContent').animate({
+          scrollTop: $('#cboxLoadedContent').prop("scrollHeight")
+        }, 700);
       }
     });
   });
@@ -162,7 +149,13 @@ function getStatus(){
 <body>
   {include file='common/notificationPart.tpl'}
   <div id="coverContainer">
-    <div id="cover">
+    <div class="coverChange" style="display:none">
+        <input type="file" id="changeCover" style="width: 250px"/>
+        <input type="button" id="btnCrop" value="Finish"/>
+    </div>
+    <div class="imageBox">
+        <div class="thumbBox"></div>
+        <div class="spinner" style="display: none">Loading...</div>
     </div>
     <div id="headline">
       <div class="headlineRight">
@@ -173,8 +166,9 @@ function getStatus(){
         <a class="" href="#">More</a>
       </div>
       <div class="headlineLeft">
-
       </div>
+    </div>
+    <div id="cover">
     </div>
   </div>
     <div id="wallContainer">

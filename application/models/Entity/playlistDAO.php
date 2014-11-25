@@ -48,7 +48,5 @@ class PlaylistDAO
 	    $this->em->remove($playlist);
 	    $this->em->flush();
 	}
-
-	
 }
 ?>

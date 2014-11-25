@@ -42,9 +42,5 @@ class Main extends CI_Controller {
 		$this->smarty->assign('userLogin',$this->session->userdata('email'));
 		$this->smarty->view('homePage');
 	}
-	/*public function seeWall($id)
-	{
-		echo $id;
-	}*/
 }
 ?>

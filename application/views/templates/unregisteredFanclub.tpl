@@ -15,8 +15,10 @@ function getStatus(){
   window.fanclub="{$fanclub}";
   window.fanclubName="{$fanclubName}";
   window.fanclubDesc="{$fanclubDesc}";
+  window.profileCover="{$profileCover}";
 {literal}
   $(document).ready(function() {
+    $('#coverContainer').css('background-image','url("'+window.userPic+window.profileCover+'")');
     waitForMsg();
     friendRequest();
     getStatus();
@@ -47,10 +49,9 @@ function getStatus(){
         }
     });
 
-
     $('#fanclubCover').append('<div class="fanclubCoverName"><b><a href="#">' + window.fanclubName + '</a></b></div><div class="fanclubCoverDesc"><b><a href="#">' + window.fanclubDesc + '</a></b></div>');
     $('#aboutFanclubDesc').append('<p>'+window.fanclubDesc+'</p>');
-    $('#headlineFanclub').append('<span>'+window.fanclubName+'</span>');
+    $('#headlineFanclub').append(window.fanclubName);
       $("#jquery_jplayer_1").jPlayer({
         ready: function (event) {
           $(this).jPlayer("setMedia", {
@@ -65,19 +66,6 @@ function getStatus(){
         keyEnabled: true,
         remainingDuration: true,
         toggleDuration: true
-      });
-
-   $('#headlineFanclub').click(function(){
-        $('#fanclubContainer').find('#view1').show();
-        $('#fanclubContainer').find('#view1').siblings('div').hide();
-        $('#container').masonry({
-          itemSelector: '.item'
-        });
-        Arrow_Points();
-      });
-      $('#headlineMembers').click(function(){
-        $('#fanclubContainer').find('#view2').show();
-        $('#fanclubContainer').find('#view2').siblings('div').hide();
       });
   });
 

@@ -37,6 +37,11 @@ class User
     protected $picture;
 
     /**
+     * @Column(type="string")
+     */
+    protected $coverImg;
+
+    /**
      * @Column(type="integer")
      */
     protected $online;
@@ -143,6 +148,16 @@ class User
     public function setLast_login($last_login)
     {
         $this->last_login = $last_login;
+        return $this;
+    }
+    public function getCoverImg()
+    {
+        return $this->coverImg;
+    }
+    
+    public function setCoverImg($coverImg)
+    {
+        $this->coverImg = $coverImg;
         return $this;
     }
 }

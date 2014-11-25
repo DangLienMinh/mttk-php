@@ -105,10 +105,22 @@ class Fanclub extends \Entity\Fanclub implements \Doctrine\ORM\Proxy\Proxy
         return parent::setCreated_at($created_at);
     }
 
+    public function getCoverImg()
+    {
+        $this->__load();
+        return parent::getCoverImg();
+    }
+
+    public function setCoverImg($coverImg)
+    {
+        $this->__load();
+        return parent::setCoverImg($coverImg);
+    }
+
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'fanclub_id', 'fanclub_name', 'fanclub_desc', 'created_at', 'email');
+        return array('__isInitialized__', 'fanclub_id', 'fanclub_name', 'fanclub_desc', 'coverImg', 'created_at', 'email');
     }
 
     public function __clone()

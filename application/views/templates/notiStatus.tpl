@@ -6,7 +6,7 @@ function getStatus(){
       data={$items}
 {literal}
     addStatusUserWall(data);
-    }
+  }
   </script>
   <script>
   $(document).ready(function() {

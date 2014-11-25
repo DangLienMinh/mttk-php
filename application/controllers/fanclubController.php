@@ -133,6 +133,23 @@ class FanclubController extends CI_Controller {
         echo $friends;
     }
 
+    function suaFanclubCover()
+    {
+        $fanclub_id=$this->input->post('fanclub');
+        $em = $this->doctrine->em;
+        $fanclub = new Entity\FanclubDAO($em);
+        $data['fanclub_id'] = $fanclub_id;
+        if(file_exists(FCPATH.'/uploads/img/'.$fanclub->getPreviousProfileCover($data['fanclub_id']))){
+          unlink(FCPATH.'/uploads/img/'.$fanclub->getPreviousProfileCover($data['fanclub_id']));
+        }
+        $img=$this->input->post('image');
+        $parts = explode(',',$img);
+        $pic = base64_decode($parts[1]);
+        $data['pic']=uniqid() . '.png';
+        $file=FCPATH.'uploads\\img\\'.$data['pic'];
+        $success = file_put_contents($file,$pic);
+        $fanclub->suaProfileCover($data);
+    }
 
 
 }
