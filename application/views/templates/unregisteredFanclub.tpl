@@ -73,19 +73,31 @@ function getStatus(){
  {/literal}
 </head>
 <body>
-    {include file='common/notificationPart.tpl'}
-    <div id="coverContainer">
-    <div id="fanclubCover">
-    </div>
-    <div id="headline">
-      <div class="headlineRight">
-        <a id="headlineFanclub" href="#"></a>
-        <a id="headlineMembers" href="#">Members</a>
-      </div>
-    </div>
-  </div>
-  <div id="fanclubContainer">
-    <div id="view1">
+    <div id="menu" style="top: 546px; overflow-y: hidden; height: 80px; bottom: 0px;">
+       {include file='common/notificationPart.tpl'}
+      <div id="lookbook" style="display: block;">
+        <div>
+          <div id="coverContainer" style="height: 467px;">
+              <div class="coverChange" style="display:none">
+                  <input type="file" id="changeCover" style="width: 250px"/>
+                  <input type="button" id="btnCrop" value="Finish"/>
+              </div>
+              <div class="imageBox">
+                  <div class="thumbBox"></div>
+                  <div class="spinner" style="display: none">Loading...</div>
+              </div>
+              <div id="fanclubCover">
+            </div>
+              <div id="headline">
+                <div class="headlineRight">
+                  <a id="headlineFanclub" href="#"></a>
+                  <a id="headlineMembers" href="#">Members</a>
+                </div>
+              </div>
+          </div>
+        </div>
+      <div id="fanclubContainer">
+      <div id="view1">
       <div id="container">
       <div class="timeline_container">
         <div class="timeline">
@@ -119,9 +131,22 @@ function getStatus(){
     <button id="savePlaylist">Save</button>
   </div>
     </div>
-    <div id="view2" style="display:none;">
+      <div id="view2" style="display:none;">
+            <div id="friendListContainer">
+              <div id="searchFriend">
+                <h3>Add member</h3>
+                <input type="text" class="searchMember" id="searchbox" /><br />
+                <div id="display">
+                </div>
+              </div>
+              <ul></ul>
+            </div>
+      </div>
+      <div id="view2" style="display:none;">
         <div id="friendListContainer"><ul></ul></div>
   </div>
+    </div>
+      </div>
     </div>
 </body>
 </html>

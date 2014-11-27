@@ -143,13 +143,15 @@ function getStatus(){
   });
   </script>
  {/literal}
+   <link rel="stylesheet" type="text/css" href="{asset_url()}css/a.css">
+
 </head>
-  <body>
-    <div id="menu" style="top: 546px; overflow-y: hidden; height: 80px; bottom: 0px;">
+	<body>
+		<div id="menu" style="top: 546px; overflow-y: hidden; height: 80px; bottom: 0px;">
        {include file='common/notificationPart.tpl'}
-      <div id="lookbook" style="display: block;">
-        <div>
-          <div id="coverContainer" style="height: 467px;">
+			<div id="lookbook" style="display: block;">
+				<div>
+					<div id="coverContainer" style="height: 467px;">
               <div class="coverChange" style="display:none">
                   <input type="file" id="changeCover" style="width: 250px"/>
                   <input type="button" id="btnCrop" value="Finish"/>
@@ -172,15 +174,15 @@ function getStatus(){
               <div id="cover">
               </div>
           </div>
-          <div class="inner">
-            <div id="c2013">
-              <div class="col1">Chỗ này chưa biết viết cái gì hết nên thôi cứ để đại mấy dòng rồi tính sau...</div>
-              <div class="col2">Chỗ này sẽ ghi thông tin tài khoản hay 1 dòng giới thiệu ngắn về chủ tài khoản đang sử dụng<br><br>bla... bla... bla...</div>
-              <div class="clear"></div>
-            </div>
-          </div>
-        </div>
-        <div id="wallContainer">
+					<div class="inner">
+						<div id="c2013">
+							<div class="col1">Chỗ này chưa biết viết cái gì hết nên thôi cứ để đại mấy dòng rồi tính sau...</div>
+							<div class="col2">Chỗ này sẽ ghi thông tin tài khoản hay 1 dòng giới thiệu ngắn về chủ tài khoản đang sử dụng<br><br>bla... bla... bla...</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+				</div>
+				<div id="wallContainer">
       <div id="view1">
         {include file='common/mainPart.tpl' postStatus={form_open_multipart('statusController/updateStatus')}}
       </div>
@@ -242,11 +244,11 @@ function getStatus(){
         </div>
       </div>
     </div>
-        <div id="inside">
-          <div id="lookbook-shop-now" style="height: 448px; background-position: 0px 50%;"></div>
-          <a href="#" target="_blank" class="bt3 lookbookshopnow">ABC NOW</a>
-        </div>
-      </div>
-    </div>
-  </body>
+				<div id="inside">
+					<div id="lookbook-shop-now" style="height: 448px; background-position: 0px 50%;"></div>
+					<a href="#" target="_blank" class="bt3 lookbookshopnow">ABC NOW</a>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>

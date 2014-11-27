@@ -515,7 +515,9 @@ $(window).scroll(function() {
 			moreWallStatus(id, jplayer_id, userEmail);
 		} else if (window.location.href.indexOf("layDSFanclubStatus") > -1) {
 
-		} else {
+		} else if(window.location.href.indexOf("hienThiNotiStatus") > -1){
+
+		}else {
 			moreStatus(id, jplayer_id);
 		}
 	}

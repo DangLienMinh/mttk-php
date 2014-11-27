@@ -1,10 +1,37 @@
-{include file='common/header.tpl'}
-{literal}
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-27 17:56:01
+         compiled from "application\views\templates\notiStatus.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:25108547757a12e1698-68114529%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '7aef88f2254b428ca8164bfc0bf4456c5220e591' => 
+    array (
+      0 => 'application\\views\\templates\\notiStatus.tpl',
+      1 => 1417107099,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '25108547757a12e1698-68114529',
+  'function' => 
+  array (
+  ),
+  'variables' => 
+  array (
+    'items' => 0,
+  ),
+  'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_547757a140f2a3_80586845',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_547757a140f2a3_80586845')) {function content_547757a140f2a3_80586845($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+
+
 function getStatus(){
       var data;
-{/literal}
-      data={$items}
-{literal}
+
+      data=<?php echo $_smarty_tpl->tpl_vars['items']->value;?>
+
+
     addStatusUserWall(data);
   }
   </script>
@@ -58,11 +85,12 @@ function getStatus(){
       $(".iframe").colorbox({iframe:true, width:"50%", height:"50%"});
   });
   </script>
- {/literal}
+ 
 </head>
 <body>
     <div id="menu" style="top: 546px; overflow-y: hidden; height: 80px; bottom: 0px;">
-    {include file='common/notificationPart.tpl'}
+    <?php echo $_smarty_tpl->getSubTemplate ('common/notificationPart.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+
   </div>
     <div id="container">
   <div class="timeline_container">
@@ -84,4 +112,4 @@ function getStatus(){
   <button id="savePlaylist">Save</button>
 </div>
 </body>
-</html>
+</html><?php }} ?>

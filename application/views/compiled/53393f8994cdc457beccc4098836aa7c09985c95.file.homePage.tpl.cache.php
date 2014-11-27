@@ -1,11 +1,34 @@
-{include file='common/header.tpl'}
-{literal}
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-27 17:56:19
+         compiled from "application\views\templates\homePage.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:32306547757b3369647-11984773%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '53393f8994cdc457beccc4098836aa7c09985c95' => 
+    array (
+      0 => 'application\\views\\templates\\homePage.tpl',
+      1 => 1417105720,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '32306547757b3369647-11984773',
+  'function' => 
+  array (
+  ),
+  'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_547757b3561d86_15651236',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_547757b3561d86_15651236')) {function content_547757b3561d86_15651236($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+
+
 function getStatus() {
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('statusController/index')}",
-{literal}
+
+    url: "<?php echo base_url('statusController/index');?>
+",
+
     async: true,
     cache: false,
     timeout: 50000,
@@ -79,11 +102,12 @@ function getStatus() {
     });
   });
   </script>
- {/literal}
+ 
 </head>
 <body>
   <div id="menu" style="top: 546px; overflow-y: hidden; height: 80px; bottom: 0px;">
-    {include file='common/notificationPart.tpl'}
+    <?php echo $_smarty_tpl->getSubTemplate ('common/notificationPart.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+
     <div class="fanclubContainer">
       <div class="fanclubTitle"><h3>FANCLUB</h3></div>
       <div class="fanclubInfo">
@@ -92,16 +116,20 @@ function getStatus() {
     <div class="reportContainer">
       <div class="fanclubTitle"><h3>REPORT</h3></div>
       <div class="reportInfo">
-        {form_open_multipart('statusController/GetFamousStatus')}
+        <?php echo form_open_multipart('statusController/GetFamousStatus');?>
+
         <input type="date" name="sdate"/>
         <input type="date" name="edate"/><br>
          <input type="submit" value="submit"/><br>
-        {form_close()}
+        <?php echo form_close();?>
+
       </div>
     </div>
     
   </div>
-    {include file='common/mainPart.tpl' postStatus={form_open_multipart('statusController/updateStatus')}}
+    <?php ob_start();?><?php echo form_open_multipart('statusController/updateStatus');?>
+<?php $_tmp1=ob_get_clean();?><?php echo $_smarty_tpl->getSubTemplate ('common/mainPart.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array('postStatus'=>$_tmp1), 0);?>
+
 
 </body>
-</html>
+</html><?php }} ?>

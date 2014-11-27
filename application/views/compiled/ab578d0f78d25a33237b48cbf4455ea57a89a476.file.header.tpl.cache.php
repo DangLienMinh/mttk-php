@@ -1,52 +1,116 @@
-<!doctype html>
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-27 17:57:06
+         compiled from "application\views\templates\common\header.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:29550547757e2501825-67826207%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
+    array (
+      0 => 'application\\views\\templates\\common\\header.tpl',
+      1 => 1417106150,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '29550547757e2501825-67826207',
+  'function' => 
+  array (
+  ),
+  'variables' => 
+  array (
+    'userPicCmt' => 0,
+    'userLogin' => 0,
+    'userName' => 0,
+  ),
+  'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_547757e2b42856_96648908',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_547757e2b42856_96648908')) {function content_547757e2b42856_96648908($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Music</title>
-  <link rel="stylesheet" type="text/css" href="{asset_url()}css/jquery-ui.css">
-  <link rel="stylesheet" type="text/css" href="{asset_url()}css/jplayer.blue.monday.playlist.css">
-  <link rel="stylesheet" type="text/css" href="{asset_url()}css/wall.css">
-  <link rel="stylesheet" type="text/css" href="{asset_url()}css/jquery.qtip.css">
-  <link rel="stylesheet" type="text/css" href="{asset_url()}css/colorbox.css">
-  <link rel="stylesheet" type="text/css" href="{asset_url()}css/jquery_notification.css">
-  <link rel="stylesheet" type="text/css" href="{asset_url()}css/a.css">
-  <script type="text/javascript" src="{asset_url()}js/jquery-2.1.1.min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery-ui.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.autogrowtextarea.min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/masonry.pkgd.min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.hideseek.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.colorbox-min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.timeago.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.livequery.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.qtip.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/imagesloaded.pkgd.min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery_notification_v.1.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/cropbox.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.jplayer.min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jplayer.playlist.min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/wall.js"></script>
+  <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>
+css/jquery-ui.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>
+css/jplayer.blue.monday.playlist.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>
+css/wall.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>
+css/jquery.qtip.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>
+css/colorbox.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>
+css/jquery_notification.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>
+css/a.css">
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery-ui.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery.autogrowtextarea.min.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/masonry.pkgd.min.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery.hideseek.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery.colorbox-min.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery.timeago.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery.livequery.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery.qtip.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/imagesloaded.pkgd.min.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery_notification_v.1.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/cropbox.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery.jplayer.min.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jplayer.playlist.min.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/wall.js"></script>
 
   <script type="text/javascript">
-    window.emotionsFolder="{asset_url()}img/emotions-fb/";
+    window.emotionsFolder="<?php echo asset_url();?>
+img/emotions-fb/";
   </script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.emotions.js"></script>
+  <script type="text/javascript" src="<?php echo asset_url();?>
+js/jquery.emotions.js"></script>
   <script type="text/javascript">
 
-  window.cretePlaylist="{site_url('playlistController/viewPlaylist/')}";
-  window.changeProfilePic="{site_url('profileController/changeProfileImage/')}";
-  window.createFanclub="{site_url('fanclubController/createFanclub/')}";
-  window.userWall="{site_url('statusController/layDSWallStatus/')}";
-  window.mainController="{site_url('main/')}";
-  window.logout="{site_url('userController/logout/')}";
+  window.cretePlaylist="<?php echo site_url('playlistController/viewPlaylist/');?>
+";
+  window.changeProfilePic="<?php echo site_url('profileController/changeProfileImage/');?>
+";
+  window.createFanclub="<?php echo site_url('fanclubController/createFanclub/');?>
+";
+  window.userWall="<?php echo site_url('statusController/layDSWallStatus/');?>
+";
+  window.mainController="<?php echo site_url('main/');?>
+";
+  window.logout="<?php echo site_url('userController/logout/');?>
+";
 
-  window.playlistIcon="{asset_url()}img/";
+  window.playlistIcon="<?php echo asset_url();?>
+img/";
 
-  window.userMusic="{uploads_url()}";
-  window.userPic="{uploads_url()}img/";
+  window.userMusic="<?php echo uploads_url();?>
+";
+  window.userPic="<?php echo uploads_url();?>
+img/";
 
-  window.userPicCmt="{uploads_url()}img/{$userPicCmt}";
-  window.userLogin="{$userLogin}";
-  window.userName="{$userName}";
+  window.userPicCmt="<?php echo uploads_url();?>
+img/<?php echo $_smarty_tpl->tpl_vars['userPicCmt']->value;?>
+";
+  window.userLogin="<?php echo $_smarty_tpl->tpl_vars['userLogin']->value;?>
+";
+  window.userName="<?php echo $_smarty_tpl->tpl_vars['userName']->value;?>
+";
   window.notifyCount=0;
   window.compare=0;
   window.compareStatus=0;
@@ -55,7 +119,7 @@
   window.chosenMusic = "";
   window.title="";
 
-{literal}
+
 
 $(document).ajaxStop(function() {
     $('#container').masonry({
@@ -81,9 +145,10 @@ function moreStatus(id,jplayer_id) {
   var dataString = 'status_id=' + id;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('statusController/getNextStatus')}",
-{literal}
+
+    url: "<?php echo base_url('statusController/getNextStatus');?>
+",
+
     data: dataString,
     async: true,
     cache: false,
@@ -98,9 +163,10 @@ function moreWallStatus(id,jplayer_id,email) {
   var dataString = 'status_id=' + id+'&email='+email;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('statusController/getNextWallStatus')}",
-{literal}
+
+    url: "<?php echo base_url('statusController/getNextWallStatus');?>
+",
+
     data: dataString,
     async: true,
     cache: false,
@@ -114,18 +180,20 @@ function moreWallStatus(id,jplayer_id,email) {
 function waitForMsg() {
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('notiController/getOldNotify')}",
-{literal}
+
+    url: "<?php echo base_url('notiController/getOldNotify');?>
+",
+
     async: true,
     cache: false,
     timeout: 50000,
     success: function(data) {
       $.ajax({
         type: "post",
-{/literal}
-        url: "{base_url('notiController/getNewNotifyNumber')}",
-{literal}
+
+        url: "<?php echo base_url('notiController/getNewNotifyNumber');?>
+",
+
         cache: false,
         success: function(times) {
             var check=0;
@@ -166,9 +234,10 @@ function suaStatus(status,msg) {
   var dataString = 'status_id=' + status+'&msg='+msg;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('statusController/suaStatus')}",
-{literal}
+
+    url: "<?php echo base_url('statusController/suaStatus');?>
+",
+
     data: dataString,
     async: true,
     cache: false,
@@ -182,9 +251,10 @@ function checkUserWallRelation(friend) {
   var dataString = 'friend=' + friend;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('friendController/checkUserWallRelation')}",
-{literal}
+
+    url: "<?php echo base_url('friendController/checkUserWallRelation');?>
+",
+
     data: dataString,
     async: true,
     cache: false,
@@ -199,9 +269,10 @@ function checkUserWallRelation(friend) {
 function setAllNotifyIsRead() {
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('notiController/setAllNotifyIsRead')}",
-{literal}
+
+    url: "<?php echo base_url('notiController/setAllNotifyIsRead');?>
+",
+
     async: true,
     cache: false,
     timeout: 50000,
@@ -214,9 +285,10 @@ function moreNotify(id) {
   var dataString = 'noti_id=' + id;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('notiController/getNextOldNotify')}",
-{literal}
+
+    url: "<?php echo base_url('notiController/getNextOldNotify');?>
+",
+
     data: dataString,
     async: true,
     cache: false,
@@ -231,9 +303,10 @@ function getFriendChat() {
 
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('friendController/getAllChatFriends')}",
-{literal}
+
+    url: "<?php echo base_url('friendController/getAllChatFriends');?>
+",
+
     async: true,
     cache: false,
     timeout: 50000,
@@ -248,9 +321,10 @@ function getFriendList(email) {
   var dataString = 'email=' + email;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('friendController/getAllFriends')}",
-{literal}
+
+    url: "<?php echo base_url('friendController/getAllFriends');?>
+",
+
     async: true,
     data:dataString,
     cache: false,
@@ -265,9 +339,10 @@ function getMembers(fanclub) {
   var dataString = 'fanclub_id=' + fanclub;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('fanclubController/getAllMembers')}",
-{literal}
+
+    url: "<?php echo base_url('fanclubController/getAllMembers');?>
+",
+
     async: true,
     data:dataString,
     cache: false,
@@ -289,9 +364,10 @@ function getConversation(userEmail) {
   var dataString = 'email=' + window.userChat;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('messageController/getFirstMessages')}",
-{literal}
+
+    url: "<?php echo base_url('messageController/getFirstMessages');?>
+",
+
     data: dataString,
     async: true,
     cache: false,
@@ -310,9 +386,10 @@ function getMoreConversation(userEmail,last_id) {
   var dataString = 'email=' + userEmail+'&started='+last_id;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('messageController/getMoreMessages')}",
-{literal}
+
+    url: "<?php echo base_url('messageController/getMoreMessages');?>
+",
+
     data: dataString,
     async: true,
     cache: false,
@@ -328,9 +405,10 @@ function deleteStatus(status) {
   var dataString = 'status_id=' + status;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('statusController/xoaStatus')}",
-{literal}
+
+    url: "<?php echo base_url('statusController/xoaStatus');?>
+",
+
     data: dataString,
     async: true,
     cache: false,
@@ -343,9 +421,10 @@ function deleteStatus(status) {
 function getPlaylist() {
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('playlistController/getDSPlaylist')}",
-{literal}
+
+    url: "<?php echo base_url('playlistController/getDSPlaylist');?>
+",
+
     async: true,
     cache: false,
     timeout: 50000,
@@ -362,9 +441,10 @@ function fanclubCheckAdmin(fanclub) {
   var dataString = 'fanclub_id=' + fanclub;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('fanclubController/checkFanlubAdmin')}",
-{literal}
+
+    url: "<?php echo base_url('fanclubController/checkFanlubAdmin');?>
+",
+
     data: dataString,
     async: true,
     cache: false,
@@ -387,9 +467,10 @@ function wallDsPlaylist(email) {
     var dataString = 'email=' + email;
     $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('playlistController/wallDsPlaylist')}",
-{literal}
+
+    url: "<?php echo base_url('playlistController/wallDsPlaylist');?>
+",
+
     data: dataString,
     async: true,
     cache: false,
@@ -411,9 +492,10 @@ function wallDsPlaylist(email) {
 function friendRequest(userWall) {
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('friendController/getFriendRequest')}",
-{literal}
+
+    url: "<?php echo base_url('friendController/getFriendRequest');?>
+",
+
     async: true,
     cache: false,
     timeout: 50000,
@@ -444,9 +526,10 @@ function savePlaylist(id,title,url) {
   var dataString = 'playlist_id=' + id+'&title='+title+'&music='+url;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('playlistController/addMusic')}",
-{literal}
+
+    url: "<?php echo base_url('playlistController/addMusic');?>
+",
+
     data: dataString,
     cache: false,
     success: function() {
@@ -459,9 +542,10 @@ function getComment(status) {
   var dataString = 'status_id=' + status;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('commentController/layComment')}",
-{literal}
+
+    url: "<?php echo base_url('commentController/layComment');?>
+",
+
     data: dataString,
     async: true,
     cache: false,
@@ -481,9 +565,10 @@ function getLastComment(status,count) {
   var dataString = 'status_id=' + status+'&count='+count;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('commentController/layLastComment')}",
-{literal}
+
+    url: "<?php echo base_url('commentController/layLastComment');?>
+",
+
     data: dataString,
     async: true,
     cache: false,
@@ -498,9 +583,10 @@ function getLike(status) {
   var isLike = 0;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('thumb_up_downController/layLikeUser')}",
-{literal}
+
+    url: "<?php echo base_url('thumb_up_downController/layLikeUser');?>
+",
+
     data: dataString,
     async: true,
     cache: false,
@@ -518,9 +604,10 @@ function getLike(status) {
   }).done(function() {
     $.ajax({
       type: "post",
-{/literal}
-      url: "{base_url('thumb_up_downController/layLike')}",
-{literal}
+
+      url: "<?php echo base_url('thumb_up_downController/layLike');?>
+",
+
       data: dataString,
       async: true,
       cache: false,
@@ -559,9 +646,10 @@ function getSong(name, inter, songUrl) {
   $.ajax({
     type: "post",
     data:dataString,
-{/literal}
-    url: "{base_url('playlistController/getDSSongs')}",
-{literal}
+
+    url: "<?php echo base_url('playlistController/getDSSongs');?>
+",
+
     async: true,
     cache: false,
     timeout: 50000,
@@ -574,9 +662,10 @@ function getSong(name, inter, songUrl) {
 function getSuggest(){
     $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('friendController/getSuggestedFriend')}",
-{literal}
+
+    url: "<?php echo base_url('friendController/getSuggestedFriend');?>
+",
+
     async: true,
     cache: false,
     timeout: 50000,
@@ -589,9 +678,10 @@ function getSuggest(){
 function getPlaylistUpdateStatus() {
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('playlistController/getDSPlaylist')}",
-{literal}
+
+    url: "<?php echo base_url('playlistController/getDSPlaylist');?>
+",
+
     async: true,
     cache: false,
     timeout: 50000,
@@ -609,9 +699,10 @@ function getSongUpdateStatus(data) {
   $.ajax({
     type: "post",
     data:dataString,
-{/literal}
-    url: "{base_url('playlistController/getDSSongs')}",
-{literal}
+
+    url: "<?php echo base_url('playlistController/getDSSongs');?>
+",
+
     async: true,
     cache: false,
     timeout: 50000,
@@ -636,9 +727,10 @@ function getSongWall(id,number) {
   $.ajax({
     type: "post",
     data:dataString,
-{/literal}
-    url: "{base_url('playlistController/getDSSongs')}",
-{literal}
+
+    url: "<?php echo base_url('playlistController/getDSSongs');?>
+",
+
     async: true,
     cache: false,
     timeout: 50000,
@@ -659,9 +751,10 @@ $(document).on('click', '.addFriend', function() {
   var li=$(this).parent();
   $.ajax({
   type: "POST",
-{/literal}
-  url:"{base_url('friendController/themBan')}",
-{literal}
+
+  url:"<?php echo base_url('friendController/themBan');?>
+",
+
   data: {friendEmail: $(this).val()},
   dataType: "text",
   cache:false,
@@ -680,9 +773,10 @@ $(document).on('click', '.removePlaylist', function() {
     var li=$(this).parent();
     $.ajax({
       type: "post",
-  {/literal}
-      url: "{base_url('playlistController/removePlaylist')}",
-  {literal}
+  
+      url: "<?php echo base_url('playlistController/removePlaylist');?>
+",
+  
       data: dataString,
       async: true,
       cache: false,
@@ -697,9 +791,10 @@ $(document).on('click', '.unFriend', function() {
   var li=$(this).parent();
   $.ajax({
   type: "POST",
-{/literal}
-  url:"{base_url('friendController/xoaBan')}",
-{literal}
+
+  url:"<?php echo base_url('friendController/xoaBan');?>
+",
+
   data: {friend: $(this).val()},
   dataType: "text",
   cache:false,
@@ -715,9 +810,10 @@ $(document).on('click', '#wallUnfriend', function() {
   var friendName = $(this).attr('rel');
   $.ajax({
   type: "POST",
-{/literal}
-  url:"{base_url('friendController/xoaBan')}",
-{literal}
+
+  url:"<?php echo base_url('friendController/xoaBan');?>
+",
+
   data: {friend: friendName},
   dataType: "text",
   cache:false,
@@ -733,9 +829,10 @@ $(document).on('click', '#wallAddFriend', function() {
   var friendName = $(this).attr('rel');
   $.ajax({
   type: "POST",
-{/literal}
-  url:"{base_url('friendController/themBan')}",
-{literal}
+
+  url:"<?php echo base_url('friendController/themBan');?>
+",
+
   data: {friendEmail:friendName},
   dataType: "text",
   cache:false,
@@ -751,9 +848,10 @@ $(document).on('click', '#wallUnfollow', function() {
   var friendName = $(this).attr('rel');
   $.ajax({
   type: "POST",
-{/literal}
-  url:"{base_url('friendController/unfollow')}",
-{literal}
+
+  url:"<?php echo base_url('friendController/unfollow');?>
+",
+
   data: {friend:friendName},
   dataType: "text",
   cache:false,
@@ -769,9 +867,10 @@ $(document).on('click', '#wallFollow', function() {
   var friendName = $(this).attr('rel');
   $.ajax({
   type: "POST",
-{/literal}
-  url:"{base_url('friendController/follow')}",
-{literal}
+
+  url:"<?php echo base_url('friendController/follow');?>
+",
+
   data: {friend:friendName},
   dataType: "text",
   cache:false,
@@ -795,14 +894,16 @@ $(document).on('keypress', '.commentInput', function(e) {
       alert("Please Enter Some Text");
     } else {
       $("#flash" + Id).show();
-{/literal}
-      $("#flash" + Id).fadeIn(400).html('<img src="{asset_url()}img/ajax-loader.gif" align="absmiddle"> loading.....');
-{literal}
+
+      $("#flash" + Id).fadeIn(400).html('<img src="<?php echo asset_url();?>
+img/ajax-loader.gif" align="absmiddle"> loading.....');
+
       $.ajax({
         type: "post",
-{/literal}
-        url: "{base_url('commentController/themComment')}",
-{literal}
+
+        url: "<?php echo base_url('commentController/themComment');?>
+",
+
         data: dataString,
         cache: false,
         success: function(html) {
@@ -821,9 +922,10 @@ $(document).on('click', '.delete_button', function() {
   var parent = $(this).parent();
   $.ajax({
     type: "POST",
-{/literal}
-    url: "{base_url('commentController/xoaComment')}",
-{literal}
+
+    url: "<?php echo base_url('commentController/xoaComment');?>
+",
+
     data: dataString,
     cache: false,
     success: function() {
@@ -849,9 +951,10 @@ $(document).on('click', '.like', function() {
   var dataString = 'status_id=' + New_ID + '&rel=' + REL;
   $.ajax({
     type: "POST",
-{/literal}
-    url: "{base_url('thumb_up_downController/themXoaLike')}",
-{literal}
+
+    url: "<?php echo base_url('thumb_up_downController/themXoaLike');?>
+",
+
     data: dataString,
     cache: false,
     success: function(data) {
@@ -885,9 +988,10 @@ $(document).on('click', '.view_comments', function() {
   var dataString = 'status_id=' + status;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('commentController/layAllComment')}",
-{literal}
+
+    url: "<?php echo base_url('commentController/layAllComment');?>
+",
+
     data: dataString,
     async: true,
     cache: false,
@@ -902,9 +1006,10 @@ $(document).on('keyup', '#music_name', function() {
   $("#musicContainer").show();
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('statusController/chooseMusic')}",
-{literal}
+
+    url: "<?php echo base_url('statusController/chooseMusic');?>
+",
+
     cache: false,
     data: 'music_name=' + $("#music_name").val(),
     success: function(response) {
@@ -922,9 +1027,10 @@ $(document).on('change', '.editbox', function(e) {
   var dataString = 'data=' + boxval+'&name='+name+'&email='+window.userLoginWall;
   $.ajax({
     type: "POST",
-{/literal}
-    url: "{base_url('profileController/updateInfo')}",
-{literal}
+
+    url: "<?php echo base_url('profileController/updateInfo');?>
+",
+
     data: dataString,
     cache: false,
     success: function() {
@@ -942,9 +1048,10 @@ $(document).on('change', '.editInput', function(e) {
   var dataString = 'data=' + boxval+'&name='+name+'&email='+window.userLoginWall;;
   $.ajax({
     type: "POST",
-{/literal}
-    url: "{base_url('profileController/updateInfo')}",
-{literal}
+
+    url: "<?php echo base_url('profileController/updateInfo');?>
+",
+
     data: dataString,
     cache: false,
     success: function() {
@@ -961,9 +1068,10 @@ $(document).on('change', '.editCheckbox', function(e) {
   var dataString = 'data=' + boxval+'&name='+name+'&email='+window.userLoginWall;;
   $.ajax({
     type: "POST",
-{/literal}
-    url: "{base_url('profileController/updateInfo')}",
-{literal}
+
+    url: "<?php echo base_url('profileController/updateInfo');?>
+",
+
     data: dataString,
     cache: false,
     success: function() {
@@ -977,9 +1085,10 @@ function getEducation(email) {
   var dataString = 'email=' + email;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('profileController/getEducationAndReligion')}",
-{literal}
+
+    url: "<?php echo base_url('profileController/getEducationAndReligion');?>
+",
+
     data: dataString,
     async: true,
     cache: false,
@@ -994,9 +1103,10 @@ function getBasicInfo(email) {
   var dataString = 'email=' + email;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('profileController/getBasicInfo')}",
-{literal}
+
+    url: "<?php echo base_url('profileController/getBasicInfo');?>
+",
+
     data: dataString,
     async: true,
     cache: false,
@@ -1011,9 +1121,10 @@ function getUserDetail(email) {
   var dataString = 'email=' + email;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('profileController/getUserDetail')}",
-{literal}
+
+    url: "<?php echo base_url('profileController/getUserDetail');?>
+",
+
     data: dataString,
     async: true,
     cache: false,
@@ -1028,9 +1139,10 @@ function getFavorite(email) {
   var dataString = 'email=' + email;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('profileController/getFavorite')}",
-{literal}
+
+    url: "<?php echo base_url('profileController/getFavorite');?>
+",
+
     data: dataString,
     async: true,
     cache: false,
@@ -1044,9 +1156,10 @@ function getFavorite(email) {
 function getFanclub() {
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('fanclubController/getFanclub')}",
-{literal}
+
+    url: "<?php echo base_url('fanclubController/getFanclub');?>
+",
+
     async: true,
     cache: false,
     timeout: 50000,
@@ -1059,9 +1172,10 @@ $(document).on('keyup', '.search', function() {
   if ($(".search").val() != '') {
     $.ajax({
       type: "post",
-{/literal}
-      url: "{base_url('friendController/searchMenu')}",
-{literal}
+
+      url: "<?php echo base_url('friendController/searchMenu');?>
+",
+
       cache: false,
       data: 'search=' + $(".search").val(),
       success: function(response) {
@@ -1076,9 +1190,10 @@ $(document).on('click', '.removeMember', function() {
   var email = parent.find('button').val();
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('fanclubController/removeMember')}",
-{literal}
+
+    url: "<?php echo base_url('fanclubController/removeMember');?>
+",
+
     cache: false,
     data: 'email=' + email + '&fanclub_id=' + window.fanclub,
     success: function(response) {
@@ -1093,9 +1208,10 @@ $(document).on('click', '.addMember', function() {
   var member=$(this).val();
   $.ajax({
   type: "POST",
-{/literal}
-  url:"{base_url('fanclubController/themFanclubUser')}",
-{literal}
+
+  url:"<?php echo base_url('fanclubController/themFanclubUser');?>
+",
+
   data:'user='+member+'&fanclub_id='+window.fanclub,
   cache:false,
   success:
@@ -1110,9 +1226,10 @@ $(document).on('click', '#headlineLeave', function() {
   if (confirm("Are your sure?")) {
     $.ajax({
       type: "post",
-{/literal}
-      url: "{base_url('fanclubController/tuRemoveKhoiFanlub')}",
-{literal}
+
+      url: "<?php echo base_url('fanclubController/tuRemoveKhoiFanlub');?>
+",
+
       cache: false,
       data: 'fanclub_id=' + window.fanclub,
       success: function(response) {
@@ -1125,9 +1242,10 @@ $(document).on('click', '#headlineLeave', function() {
 $(document).on('click', '.joinFanclub a', function() {
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('fanclubController/tuThemVaoFanclub')}",
-{literal}
+
+    url: "<?php echo base_url('fanclubController/tuThemVaoFanclub');?>
+",
+
     data: 'fanclub_id=' + window.fanclub,
     cache: false,
     success: function() {
@@ -1140,9 +1258,10 @@ $(document).on('keyup', '.searchMember', function() {
   if ($(".searchMember").val() != '') {
     $.ajax({
       type: "post",
-{/literal}
-      url: "{base_url('fanclubController/searchFanclub')}",
-{literal}
+
+      url: "<?php echo base_url('fanclubController/searchFanclub');?>
+",
+
       cache: false,
       data: 'search=' + $(".searchMember").val() + '&fanclub=' + window.fanclub,
       success: function(response) {
@@ -1151,4 +1270,4 @@ $(document).on('keyup', '.searchMember', function() {
     });
   }
 });
-{/literal}
+<?php }} ?>
