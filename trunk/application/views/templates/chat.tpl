@@ -56,7 +56,9 @@
  {/literal}
 </head>
 <body>
-  {include file='common/notificationPart.tpl'}
+  <div id="menu" style="top: 546px; overflow-y: hidden; height: 80px; bottom: 0px;">
+    {include file='common/notificationPart.tpl'}
+  </div>
     <div id="friendChatContainer">
       <div id="chatTitle">
         <h3>Search</h3>

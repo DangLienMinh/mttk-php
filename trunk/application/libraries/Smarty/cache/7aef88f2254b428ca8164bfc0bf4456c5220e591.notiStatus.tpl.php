@@ -1,52 +1,85 @@
-<!doctype html>
+<?php /*%%SmartyHeaderCode:25108547757a12e1698-68114529%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '7aef88f2254b428ca8164bfc0bf4456c5220e591' => 
+    array (
+      0 => 'application\\views\\templates\\notiStatus.tpl',
+      1 => 1417107099,
+      2 => 'file',
+    ),
+    'ab578d0f78d25a33237b48cbf4455ea57a89a476' => 
+    array (
+      0 => 'application\\views\\templates\\common\\header.tpl',
+      1 => 1417106150,
+      2 => 'file',
+    ),
+    '43fa4b8fd8c47d297992bda3dda6ee24684e1de9' => 
+    array (
+      0 => 'application\\views\\templates\\common\\notificationPart.tpl',
+      1 => 1417106040,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '25108547757a12e1698-68114529',
+  'variables' => 
+  array (
+    'items' => 0,
+  ),
+  'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_547757a19915f9_21589258',
+  'cache_lifetime' => 120,
+),true); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_547757a19915f9_21589258')) {function content_547757a19915f9_21589258($_smarty_tpl) {?><!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Music</title>
-  <link rel="stylesheet" type="text/css" href="{asset_url()}css/jquery-ui.css">
-  <link rel="stylesheet" type="text/css" href="{asset_url()}css/jplayer.blue.monday.playlist.css">
-  <link rel="stylesheet" type="text/css" href="{asset_url()}css/wall.css">
-  <link rel="stylesheet" type="text/css" href="{asset_url()}css/jquery.qtip.css">
-  <link rel="stylesheet" type="text/css" href="{asset_url()}css/colorbox.css">
-  <link rel="stylesheet" type="text/css" href="{asset_url()}css/jquery_notification.css">
-  <link rel="stylesheet" type="text/css" href="{asset_url()}css/a.css">
-  <script type="text/javascript" src="{asset_url()}js/jquery-2.1.1.min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery-ui.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.autogrowtextarea.min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/masonry.pkgd.min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.hideseek.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.colorbox-min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.timeago.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.livequery.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.qtip.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/imagesloaded.pkgd.min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery_notification_v.1.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/cropbox.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.jplayer.min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jplayer.playlist.min.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/wall.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jquery-ui.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jplayer.blue.monday.playlist.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/wall.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jquery.qtip.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/colorbox.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/jquery_notification.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:81/mttk-php/assets/css/a.css">
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery-ui.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.autogrowtextarea.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/masonry.pkgd.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.hideseek.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.colorbox-min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.timeago.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.livequery.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.qtip.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/imagesloaded.pkgd.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery_notification_v.1.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/cropbox.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.jplayer.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jplayer.playlist.min.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/wall.js"></script>
 
   <script type="text/javascript">
-    window.emotionsFolder="{asset_url()}img/emotions-fb/";
+    window.emotionsFolder="http://localhost:81/mttk-php/assets/img/emotions-fb/";
   </script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.emotions.js"></script>
+  <script type="text/javascript" src="http://localhost:81/mttk-php/assets/js/jquery.emotions.js"></script>
   <script type="text/javascript">
 
-  window.cretePlaylist="{site_url('playlistController/viewPlaylist/')}";
-  window.changeProfilePic="{site_url('profileController/changeProfileImage/')}";
-  window.createFanclub="{site_url('fanclubController/createFanclub/')}";
-  window.userWall="{site_url('statusController/layDSWallStatus/')}";
-  window.mainController="{site_url('main/')}";
-  window.logout="{site_url('userController/logout/')}";
+  window.cretePlaylist="http://localhost:81/mttk-php/playlistController/viewPlaylist";
+  window.changeProfilePic="http://localhost:81/mttk-php/profileController/changeProfileImage";
+  window.createFanclub="http://localhost:81/mttk-php/fanclubController/createFanclub";
+  window.userWall="http://localhost:81/mttk-php/statusController/layDSWallStatus";
+  window.mainController="http://localhost:81/mttk-php/main";
+  window.logout="http://localhost:81/mttk-php/userController/logout";
 
-  window.playlistIcon="{asset_url()}img/";
+  window.playlistIcon="http://localhost:81/mttk-php/assets/img/";
 
-  window.userMusic="{uploads_url()}";
-  window.userPic="{uploads_url()}img/";
+  window.userMusic="http://localhost:81/mttk-php/uploads/";
+  window.userPic="http://localhost:81/mttk-php/uploads/img/";
 
-  window.userPicCmt="{uploads_url()}img/{$userPicCmt}";
-  window.userLogin="{$userLogin}";
-  window.userName="{$userName}";
+  window.userPicCmt="http://localhost:81/mttk-php/uploads/img/a6551.jpg";
+  window.userLogin="duongphuocloc@gmail.com";
+  window.userName="phuoc loc";
   window.notifyCount=0;
   window.compare=0;
   window.compareStatus=0;
@@ -55,7 +88,7 @@
   window.chosenMusic = "";
   window.title="";
 
-{literal}
+
 
 $(document).ajaxStop(function() {
     $('#container').masonry({
@@ -81,9 +114,9 @@ function moreStatus(id,jplayer_id) {
   var dataString = 'status_id=' + id;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('statusController/getNextStatus')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/statusController/getNextStatus",
+
     data: dataString,
     async: true,
     cache: false,
@@ -98,9 +131,9 @@ function moreWallStatus(id,jplayer_id,email) {
   var dataString = 'status_id=' + id+'&email='+email;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('statusController/getNextWallStatus')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/statusController/getNextWallStatus",
+
     data: dataString,
     async: true,
     cache: false,
@@ -114,18 +147,18 @@ function moreWallStatus(id,jplayer_id,email) {
 function waitForMsg() {
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('notiController/getOldNotify')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/notiController/getOldNotify",
+
     async: true,
     cache: false,
     timeout: 50000,
     success: function(data) {
       $.ajax({
         type: "post",
-{/literal}
-        url: "{base_url('notiController/getNewNotifyNumber')}",
-{literal}
+
+        url: "http://localhost:81/mttk-php/notiController/getNewNotifyNumber",
+
         cache: false,
         success: function(times) {
             var check=0;
@@ -166,9 +199,9 @@ function suaStatus(status,msg) {
   var dataString = 'status_id=' + status+'&msg='+msg;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('statusController/suaStatus')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/statusController/suaStatus",
+
     data: dataString,
     async: true,
     cache: false,
@@ -182,9 +215,9 @@ function checkUserWallRelation(friend) {
   var dataString = 'friend=' + friend;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('friendController/checkUserWallRelation')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/friendController/checkUserWallRelation",
+
     data: dataString,
     async: true,
     cache: false,
@@ -199,9 +232,9 @@ function checkUserWallRelation(friend) {
 function setAllNotifyIsRead() {
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('notiController/setAllNotifyIsRead')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/notiController/setAllNotifyIsRead",
+
     async: true,
     cache: false,
     timeout: 50000,
@@ -214,9 +247,9 @@ function moreNotify(id) {
   var dataString = 'noti_id=' + id;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('notiController/getNextOldNotify')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/notiController/getNextOldNotify",
+
     data: dataString,
     async: true,
     cache: false,
@@ -231,9 +264,9 @@ function getFriendChat() {
 
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('friendController/getAllChatFriends')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/friendController/getAllChatFriends",
+
     async: true,
     cache: false,
     timeout: 50000,
@@ -248,9 +281,9 @@ function getFriendList(email) {
   var dataString = 'email=' + email;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('friendController/getAllFriends')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/friendController/getAllFriends",
+
     async: true,
     data:dataString,
     cache: false,
@@ -265,9 +298,9 @@ function getMembers(fanclub) {
   var dataString = 'fanclub_id=' + fanclub;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('fanclubController/getAllMembers')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/fanclubController/getAllMembers",
+
     async: true,
     data:dataString,
     cache: false,
@@ -289,9 +322,9 @@ function getConversation(userEmail) {
   var dataString = 'email=' + window.userChat;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('messageController/getFirstMessages')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/messageController/getFirstMessages",
+
     data: dataString,
     async: true,
     cache: false,
@@ -310,9 +343,9 @@ function getMoreConversation(userEmail,last_id) {
   var dataString = 'email=' + userEmail+'&started='+last_id;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('messageController/getMoreMessages')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/messageController/getMoreMessages",
+
     data: dataString,
     async: true,
     cache: false,
@@ -328,9 +361,9 @@ function deleteStatus(status) {
   var dataString = 'status_id=' + status;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('statusController/xoaStatus')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/statusController/xoaStatus",
+
     data: dataString,
     async: true,
     cache: false,
@@ -343,9 +376,9 @@ function deleteStatus(status) {
 function getPlaylist() {
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('playlistController/getDSPlaylist')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/playlistController/getDSPlaylist",
+
     async: true,
     cache: false,
     timeout: 50000,
@@ -362,9 +395,9 @@ function fanclubCheckAdmin(fanclub) {
   var dataString = 'fanclub_id=' + fanclub;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('fanclubController/checkFanlubAdmin')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/fanclubController/checkFanlubAdmin",
+
     data: dataString,
     async: true,
     cache: false,
@@ -387,9 +420,9 @@ function wallDsPlaylist(email) {
     var dataString = 'email=' + email;
     $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('playlistController/wallDsPlaylist')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/playlistController/wallDsPlaylist",
+
     data: dataString,
     async: true,
     cache: false,
@@ -411,9 +444,9 @@ function wallDsPlaylist(email) {
 function friendRequest(userWall) {
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('friendController/getFriendRequest')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/friendController/getFriendRequest",
+
     async: true,
     cache: false,
     timeout: 50000,
@@ -444,9 +477,9 @@ function savePlaylist(id,title,url) {
   var dataString = 'playlist_id=' + id+'&title='+title+'&music='+url;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('playlistController/addMusic')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/playlistController/addMusic",
+
     data: dataString,
     cache: false,
     success: function() {
@@ -459,9 +492,9 @@ function getComment(status) {
   var dataString = 'status_id=' + status;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('commentController/layComment')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/commentController/layComment",
+
     data: dataString,
     async: true,
     cache: false,
@@ -481,9 +514,9 @@ function getLastComment(status,count) {
   var dataString = 'status_id=' + status+'&count='+count;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('commentController/layLastComment')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/commentController/layLastComment",
+
     data: dataString,
     async: true,
     cache: false,
@@ -498,9 +531,9 @@ function getLike(status) {
   var isLike = 0;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('thumb_up_downController/layLikeUser')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/thumb_up_downController/layLikeUser",
+
     data: dataString,
     async: true,
     cache: false,
@@ -518,9 +551,9 @@ function getLike(status) {
   }).done(function() {
     $.ajax({
       type: "post",
-{/literal}
-      url: "{base_url('thumb_up_downController/layLike')}",
-{literal}
+
+      url: "http://localhost:81/mttk-php/thumb_up_downController/layLike",
+
       data: dataString,
       async: true,
       cache: false,
@@ -559,9 +592,9 @@ function getSong(name, inter, songUrl) {
   $.ajax({
     type: "post",
     data:dataString,
-{/literal}
-    url: "{base_url('playlistController/getDSSongs')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/playlistController/getDSSongs",
+
     async: true,
     cache: false,
     timeout: 50000,
@@ -574,9 +607,9 @@ function getSong(name, inter, songUrl) {
 function getSuggest(){
     $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('friendController/getSuggestedFriend')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/friendController/getSuggestedFriend",
+
     async: true,
     cache: false,
     timeout: 50000,
@@ -589,9 +622,9 @@ function getSuggest(){
 function getPlaylistUpdateStatus() {
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('playlistController/getDSPlaylist')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/playlistController/getDSPlaylist",
+
     async: true,
     cache: false,
     timeout: 50000,
@@ -609,9 +642,9 @@ function getSongUpdateStatus(data) {
   $.ajax({
     type: "post",
     data:dataString,
-{/literal}
-    url: "{base_url('playlistController/getDSSongs')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/playlistController/getDSSongs",
+
     async: true,
     cache: false,
     timeout: 50000,
@@ -636,9 +669,9 @@ function getSongWall(id,number) {
   $.ajax({
     type: "post",
     data:dataString,
-{/literal}
-    url: "{base_url('playlistController/getDSSongs')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/playlistController/getDSSongs",
+
     async: true,
     cache: false,
     timeout: 50000,
@@ -659,9 +692,9 @@ $(document).on('click', '.addFriend', function() {
   var li=$(this).parent();
   $.ajax({
   type: "POST",
-{/literal}
-  url:"{base_url('friendController/themBan')}",
-{literal}
+
+  url:"http://localhost:81/mttk-php/friendController/themBan",
+
   data: {friendEmail: $(this).val()},
   dataType: "text",
   cache:false,
@@ -680,9 +713,9 @@ $(document).on('click', '.removePlaylist', function() {
     var li=$(this).parent();
     $.ajax({
       type: "post",
-  {/literal}
-      url: "{base_url('playlistController/removePlaylist')}",
-  {literal}
+  
+      url: "http://localhost:81/mttk-php/playlistController/removePlaylist",
+  
       data: dataString,
       async: true,
       cache: false,
@@ -697,9 +730,9 @@ $(document).on('click', '.unFriend', function() {
   var li=$(this).parent();
   $.ajax({
   type: "POST",
-{/literal}
-  url:"{base_url('friendController/xoaBan')}",
-{literal}
+
+  url:"http://localhost:81/mttk-php/friendController/xoaBan",
+
   data: {friend: $(this).val()},
   dataType: "text",
   cache:false,
@@ -715,9 +748,9 @@ $(document).on('click', '#wallUnfriend', function() {
   var friendName = $(this).attr('rel');
   $.ajax({
   type: "POST",
-{/literal}
-  url:"{base_url('friendController/xoaBan')}",
-{literal}
+
+  url:"http://localhost:81/mttk-php/friendController/xoaBan",
+
   data: {friend: friendName},
   dataType: "text",
   cache:false,
@@ -733,9 +766,9 @@ $(document).on('click', '#wallAddFriend', function() {
   var friendName = $(this).attr('rel');
   $.ajax({
   type: "POST",
-{/literal}
-  url:"{base_url('friendController/themBan')}",
-{literal}
+
+  url:"http://localhost:81/mttk-php/friendController/themBan",
+
   data: {friendEmail:friendName},
   dataType: "text",
   cache:false,
@@ -751,9 +784,9 @@ $(document).on('click', '#wallUnfollow', function() {
   var friendName = $(this).attr('rel');
   $.ajax({
   type: "POST",
-{/literal}
-  url:"{base_url('friendController/unfollow')}",
-{literal}
+
+  url:"http://localhost:81/mttk-php/friendController/unfollow",
+
   data: {friend:friendName},
   dataType: "text",
   cache:false,
@@ -769,9 +802,9 @@ $(document).on('click', '#wallFollow', function() {
   var friendName = $(this).attr('rel');
   $.ajax({
   type: "POST",
-{/literal}
-  url:"{base_url('friendController/follow')}",
-{literal}
+
+  url:"http://localhost:81/mttk-php/friendController/follow",
+
   data: {friend:friendName},
   dataType: "text",
   cache:false,
@@ -795,14 +828,14 @@ $(document).on('keypress', '.commentInput', function(e) {
       alert("Please Enter Some Text");
     } else {
       $("#flash" + Id).show();
-{/literal}
-      $("#flash" + Id).fadeIn(400).html('<img src="{asset_url()}img/ajax-loader.gif" align="absmiddle"> loading.....');
-{literal}
+
+      $("#flash" + Id).fadeIn(400).html('<img src="http://localhost:81/mttk-php/assets/img/ajax-loader.gif" align="absmiddle"> loading.....');
+
       $.ajax({
         type: "post",
-{/literal}
-        url: "{base_url('commentController/themComment')}",
-{literal}
+
+        url: "http://localhost:81/mttk-php/commentController/themComment",
+
         data: dataString,
         cache: false,
         success: function(html) {
@@ -821,9 +854,9 @@ $(document).on('click', '.delete_button', function() {
   var parent = $(this).parent();
   $.ajax({
     type: "POST",
-{/literal}
-    url: "{base_url('commentController/xoaComment')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/commentController/xoaComment",
+
     data: dataString,
     cache: false,
     success: function() {
@@ -849,9 +882,9 @@ $(document).on('click', '.like', function() {
   var dataString = 'status_id=' + New_ID + '&rel=' + REL;
   $.ajax({
     type: "POST",
-{/literal}
-    url: "{base_url('thumb_up_downController/themXoaLike')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/thumb_up_downController/themXoaLike",
+
     data: dataString,
     cache: false,
     success: function(data) {
@@ -885,9 +918,9 @@ $(document).on('click', '.view_comments', function() {
   var dataString = 'status_id=' + status;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('commentController/layAllComment')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/commentController/layAllComment",
+
     data: dataString,
     async: true,
     cache: false,
@@ -902,9 +935,9 @@ $(document).on('keyup', '#music_name', function() {
   $("#musicContainer").show();
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('statusController/chooseMusic')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/statusController/chooseMusic",
+
     cache: false,
     data: 'music_name=' + $("#music_name").val(),
     success: function(response) {
@@ -922,9 +955,9 @@ $(document).on('change', '.editbox', function(e) {
   var dataString = 'data=' + boxval+'&name='+name+'&email='+window.userLoginWall;
   $.ajax({
     type: "POST",
-{/literal}
-    url: "{base_url('profileController/updateInfo')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/profileController/updateInfo",
+
     data: dataString,
     cache: false,
     success: function() {
@@ -942,9 +975,9 @@ $(document).on('change', '.editInput', function(e) {
   var dataString = 'data=' + boxval+'&name='+name+'&email='+window.userLoginWall;;
   $.ajax({
     type: "POST",
-{/literal}
-    url: "{base_url('profileController/updateInfo')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/profileController/updateInfo",
+
     data: dataString,
     cache: false,
     success: function() {
@@ -961,9 +994,9 @@ $(document).on('change', '.editCheckbox', function(e) {
   var dataString = 'data=' + boxval+'&name='+name+'&email='+window.userLoginWall;;
   $.ajax({
     type: "POST",
-{/literal}
-    url: "{base_url('profileController/updateInfo')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/profileController/updateInfo",
+
     data: dataString,
     cache: false,
     success: function() {
@@ -977,9 +1010,9 @@ function getEducation(email) {
   var dataString = 'email=' + email;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('profileController/getEducationAndReligion')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/profileController/getEducationAndReligion",
+
     data: dataString,
     async: true,
     cache: false,
@@ -994,9 +1027,9 @@ function getBasicInfo(email) {
   var dataString = 'email=' + email;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('profileController/getBasicInfo')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/profileController/getBasicInfo",
+
     data: dataString,
     async: true,
     cache: false,
@@ -1011,9 +1044,9 @@ function getUserDetail(email) {
   var dataString = 'email=' + email;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('profileController/getUserDetail')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/profileController/getUserDetail",
+
     data: dataString,
     async: true,
     cache: false,
@@ -1028,9 +1061,9 @@ function getFavorite(email) {
   var dataString = 'email=' + email;
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('profileController/getFavorite')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/profileController/getFavorite",
+
     data: dataString,
     async: true,
     cache: false,
@@ -1044,9 +1077,9 @@ function getFavorite(email) {
 function getFanclub() {
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('fanclubController/getFanclub')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/fanclubController/getFanclub",
+
     async: true,
     cache: false,
     timeout: 50000,
@@ -1059,9 +1092,9 @@ $(document).on('keyup', '.search', function() {
   if ($(".search").val() != '') {
     $.ajax({
       type: "post",
-{/literal}
-      url: "{base_url('friendController/searchMenu')}",
-{literal}
+
+      url: "http://localhost:81/mttk-php/friendController/searchMenu",
+
       cache: false,
       data: 'search=' + $(".search").val(),
       success: function(response) {
@@ -1076,9 +1109,9 @@ $(document).on('click', '.removeMember', function() {
   var email = parent.find('button').val();
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('fanclubController/removeMember')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/fanclubController/removeMember",
+
     cache: false,
     data: 'email=' + email + '&fanclub_id=' + window.fanclub,
     success: function(response) {
@@ -1093,9 +1126,9 @@ $(document).on('click', '.addMember', function() {
   var member=$(this).val();
   $.ajax({
   type: "POST",
-{/literal}
-  url:"{base_url('fanclubController/themFanclubUser')}",
-{literal}
+
+  url:"http://localhost:81/mttk-php/fanclubController/themFanclubUser",
+
   data:'user='+member+'&fanclub_id='+window.fanclub,
   cache:false,
   success:
@@ -1110,9 +1143,9 @@ $(document).on('click', '#headlineLeave', function() {
   if (confirm("Are your sure?")) {
     $.ajax({
       type: "post",
-{/literal}
-      url: "{base_url('fanclubController/tuRemoveKhoiFanlub')}",
-{literal}
+
+      url: "http://localhost:81/mttk-php/fanclubController/tuRemoveKhoiFanlub",
+
       cache: false,
       data: 'fanclub_id=' + window.fanclub,
       success: function(response) {
@@ -1125,9 +1158,9 @@ $(document).on('click', '#headlineLeave', function() {
 $(document).on('click', '.joinFanclub a', function() {
   $.ajax({
     type: "post",
-{/literal}
-    url: "{base_url('fanclubController/tuThemVaoFanclub')}",
-{literal}
+
+    url: "http://localhost:81/mttk-php/fanclubController/tuThemVaoFanclub",
+
     data: 'fanclub_id=' + window.fanclub,
     cache: false,
     success: function() {
@@ -1140,9 +1173,9 @@ $(document).on('keyup', '.searchMember', function() {
   if ($(".searchMember").val() != '') {
     $.ajax({
       type: "post",
-{/literal}
-      url: "{base_url('fanclubController/searchFanclub')}",
-{literal}
+
+      url: "http://localhost:81/mttk-php/fanclubController/searchFanclub",
+
       cache: false,
       data: 'search=' + $(".searchMember").val() + '&fanclub=' + window.fanclub,
       success: function(response) {
@@ -1151,4 +1184,131 @@ $(document).on('keyup', '.searchMember', function() {
     });
   }
 });
-{/literal}
+
+
+function getStatus(){
+      var data;
+
+      data=[{"status_id":"34","music":"1","title":"","message":"shit","created_at":"2014-11-06 22:36:14","thumbs_up":"1","privacy_type_id":"1","email":"duongphuocloc@gmail.com","picture":"a6551.jpg","name":"phuoc loc"}]
+
+    addStatusUserWall(data);
+  }
+  </script>
+  <script>
+  $(document).ready(function() {
+    waitForMsg();
+    friendRequest();
+    getStatus();
+    getPlaylist();
+    getSuggest();
+    getPlaylistUpdateStatus();
+    getFanclub();
+
+    $("#target").autoGrow();
+    $('#tabs').tabs({
+      activate: function(event, ui) {
+        $('#container').masonry({
+          itemSelector: '.item'
+        });
+        var msnry = $('#container').data('masonry');
+        msnry.on( 'layoutComplete', masonry_refresh );
+        function masonry_refresh(){
+          Arrow_Points();
+        }
+      }
+    });
+
+    $('#notificationsBody ul').bind('scroll', function() {
+        if($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
+          var id=$(this).find('li:last').attr("id");
+          moreNotify(id.substring(4));
+        }
+    });
+    
+      $("#jquery_jplayer_1").jPlayer({
+        ready: function (event) {
+          $(this).jPlayer("setMedia", {
+            title: "",
+            mp3: ""
+          }).jPlayer("play");
+        },
+        swfPath: "js",
+        supplied: "mp3",
+        wmode: "window",
+        smoothPlayBar: true,
+        keyEnabled: true,
+        remainingDuration: true,
+        toggleDuration: true
+      });
+      $('.fanclubInfo').append('<div class="fanclubUserBox" align="left"><a href="'+window.createFanclub+'" class="iframe">Create new fanclub</a></div>');
+      $(".iframe").colorbox({iframe:true, width:"50%", height:"50%"});
+  });
+  </script>
+ 
+</head>
+<body>
+    <div id="menu" style="top: 546px; overflow-y: hidden; height: 80px; bottom: 0px;">
+    <div id="m">
+        <a><img src="http://localhost:81/mttk-php/assets/img/logo.png" class="logo"></a>
+        <ul id="mon_menu">
+          <li id="personalPage">
+          </li>
+          <li><a href="#" id="homePage">HOME</a></li>
+          <li id="friend_li">
+            <span id="friend_count"></span>
+            <a href="#" id="friendLink">FRIENDS</a>
+            <div id="friendContainer">
+              <div id="friendTitle">Friend requests</div>
+              <div id="friendBody" class="friend">
+                <ul></ul>
+              </div>
+              <div id="friendFooter">
+                <h3>Suggest Friends</h3>
+                <ul id="facebook"></ul>
+              </div>
+            </div>
+          </li>
+          <li><a href="#" id="chatPage">MESSAGES</a></li>
+          <li id="notification_li">
+            <span id="notification_count"></span>
+            <a href="#" id="notificationLink">NOTIFICATIONS</a>
+            <div id="notificationContainer">
+              <div id="notificationTitle">
+                Notifications
+                <a href="#" id="markRead">Mark all read</a>
+              </div>
+              <div id="notificationsBody" class="notifications">
+                <ul></ul>
+              </div>
+              <div id="notificationFooter"><a href="#">See All</a></div>
+            </div>
+          </li>
+        </ul>
+        <div id="logoutContainer" class="social">
+        </div>
+        <input type="text" class="search" id="searchbox" placeholder="Search for people, fanclub"/><br />
+        <div id="displayUserBox">
+        </div>
+      </div>
+  </div>
+    <div id="container">
+  <div class="timeline_container">
+    <div class="timeline">
+      <div class="plus"></div>
+    </div>
+  </div>
+</div>
+<div id="pop">
+  <img/>
+  <h2></h2>
+</div>
+<div style="display: none; border: 1px solid black; height: 50px; width: 180px; 
+  padding: 5px; position: absolute; left: 100px; top: 100px; 
+  background-color: silver;" id="playlistBox">
+  <select></select>
+  <input type="hidden" id="titleMusic"/>
+  <input type="hidden" id="urlMusic"/>
+  <button id="savePlaylist">Save</button>
+</div>
+</body>
+</html><?php }} ?>

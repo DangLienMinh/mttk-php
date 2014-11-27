@@ -1,20 +1,56 @@
-{include file='common/header.tpl'}
-{literal}
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-27 17:57:06
+         compiled from "application\views\templates\userWall.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:10985547757e21e5984-38432124%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '0f921ff09c337117641cd650c5ceaa3930b1bdcf' => 
+    array (
+      0 => 'application\\views\\templates\\userWall.tpl',
+      1 => 1417099468,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '10985547757e21e5984-38432124',
+  'function' => 
+  array (
+  ),
+  'variables' => 
+  array (
+    'items' => 0,
+    'userNameWall' => 0,
+    'userLoginWall' => 0,
+    'userPicCmtWall' => 0,
+    'profileCover' => 0,
+  ),
+  'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_547757e247e2a4_36625187',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_547757e247e2a4_36625187')) {function content_547757e247e2a4_36625187($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+
+
 function getStatus(){
       var data;
-{/literal}
-      data={$items}
-{literal}
+
+      data=<?php echo $_smarty_tpl->tpl_vars['items']->value;?>
+
+
     addStatusUserWall(data);
     }
   </script>
   <script>
-{/literal}
-  window.userNameWall="{$userNameWall}";
-  window.userLoginWall="{$userLoginWall}";
-  window.userPicCmtWall="{uploads_url()}img/{$userPicCmtWall}";
-  window.profileCover="{$profileCover}";
-{literal}
+
+  window.userNameWall="<?php echo $_smarty_tpl->tpl_vars['userNameWall']->value;?>
+";
+  window.userLoginWall="<?php echo $_smarty_tpl->tpl_vars['userLoginWall']->value;?>
+";
+  window.userPicCmtWall="<?php echo uploads_url();?>
+img/<?php echo $_smarty_tpl->tpl_vars['userPicCmtWall']->value;?>
+";
+  window.profileCover="<?php echo $_smarty_tpl->tpl_vars['profileCover']->value;?>
+";
+
   $(document).ready(function() {
     $('#coverContainer').css('background', 'url("' + window.userPic + window.profileCover + '")').css('background-size', 'cover');
     waitForMsg();
@@ -90,9 +126,10 @@ function getStatus(){
       var img = cropper.getDataURL();
       $.ajax({
         type: "POST",
-{/literal}
-        url: "{base_url('profileController/suaProfileCover')}",
-{literal}
+
+        url: "<?php echo base_url('profileController/suaProfileCover');?>
+",
+
         data: {
           image: img
         },
@@ -114,14 +151,16 @@ function getStatus(){
         if (boxval.length > 0) {
           if (boxval.length < 200) {
             $("#flash").show();
-{/literal}
-            $("#flash").fadeIn(400).html('<img src="{asset_url()}img/ajax-loader.gif" align="absmiddle">&nbsp;<span class="loading">Loading Update...</span>');
-{literal}
+
+            $("#flash").fadeIn(400).html('<img src="<?php echo asset_url();?>
+img/ajax-loader.gif" align="absmiddle">&nbsp;<span class="loading">Loading Update...</span>');
+
             $.ajax({
               type: "POST",
-{/literal}
-              url: "{base_url('messageController/addMessage')}",
-{literal}
+
+              url: "<?php echo base_url('messageController/addMessage');?>
+",
+
               data: dataString,
               cache: false,
               success: function(html) {
@@ -142,11 +181,12 @@ function getStatus(){
     });
   });
   </script>
- {/literal}
+ 
 </head>
   <body>
     <div id="menu" style="top: 546px; overflow-y: hidden; height: 80px; bottom: 0px;">
-       {include file='common/notificationPart.tpl'}
+       <?php echo $_smarty_tpl->getSubTemplate ('common/notificationPart.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+
       <div id="lookbook" style="display: block;">
         <div>
           <div id="coverContainer" style="height: 467px;">
@@ -182,7 +222,9 @@ function getStatus(){
         </div>
         <div id="wallContainer">
       <div id="view1">
-        {include file='common/mainPart.tpl' postStatus={form_open_multipart('statusController/updateStatus')}}
+        <?php ob_start();?><?php echo form_open_multipart('statusController/updateStatus');?>
+<?php $_tmp1=ob_get_clean();?><?php echo $_smarty_tpl->getSubTemplate ('common/mainPart.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array('postStatus'=>$_tmp1), 0);?>
+
       </div>
       <div id="view4" style="display:none;">
         <div id="aboutContainer">
@@ -226,7 +268,10 @@ function getStatus(){
           <ol id="update" style="list-style:none;">
           </ol>
           <div id="flash"></div>
-          <audio id="chatAudio"><source src="{asset_url()}sound/notify.ogg" type="audio/ogg"><source src="{asset_url()}sound/notify.mp3" type="audio/mpeg"><source src="{asset_url()}sound/notify.wav" type="audio/wav"></audio>
+          <audio id="chatAudio"><source src="<?php echo asset_url();?>
+sound/notify.ogg" type="audio/ogg"><source src="<?php echo asset_url();?>
+sound/notify.mp3" type="audio/mpeg"><source src="<?php echo asset_url();?>
+sound/notify.wav" type="audio/wav"></audio>
           <div>
               <div align="left">
               <table>
@@ -249,4 +294,4 @@ function getStatus(){
       </div>
     </div>
   </body>
-</html>
+</html><?php }} ?>

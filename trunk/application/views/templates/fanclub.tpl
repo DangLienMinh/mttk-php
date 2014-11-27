@@ -106,48 +106,60 @@ function getStatus(){
  {/literal}
 </head>
 <body>
-    {include file='common/notificationPart.tpl'}
-    <div id="coverContainer">
-    <div class="coverChange" style="display:none">
-      <input type="file" id="changeCover" style="width: 250px"/>
-      <input type="button" id="btnCrop" value="Finish"/>
-    </div>
-
-    <div class="imageBox">
-        <div class="thumbBox"></div>
-        <div class="spinner" style="display: none">Loading...</div>
-    </div>
-    <div id="fanclubCover">
-    </div>
-    <div id="headline">
-      <div class="headlineRight">
-        <a id="headlineFanclub" href="#"></a>
-        <a id="headlineMembers" href="#">Members</a>
-        <a id="headlineEvent" href="#">Events</a>
-        <a id="headlineLeave" href="#">Leave group</a>
+    <div id="menu" style="top: 546px; overflow-y: hidden; height: 80px; bottom: 0px;">
+       {include file='common/notificationPart.tpl'}
+      <div id="lookbook" style="display: block;">
+        <div>
+          <div id="coverContainer" style="height: 467px;">
+              <div class="coverChange" style="display:none">
+                  <input type="file" id="changeCover" style="width: 250px"/>
+                  <input type="button" id="btnCrop" value="Finish"/>
+              </div>
+              <div class="imageBox">
+                  <div class="thumbBox"></div>
+                  <div class="spinner" style="display: none">Loading...</div>
+              </div>
+              <div id="fanclubCover">
+            </div>
+              <div id="headline">
+                <div class="headlineRight">
+                  <a id="headlineFanclub" href="#"></a>
+                  <a id="headlineMembers" href="#">Members</a>
+                  <a id="headlineEvent" href="#">Events</a>
+                  <a id="headlineLeave" href="#">Leave group</a>
+                  <a class="" href="#">More</a>
+                </div>
+                <div class="headlineLeft">
+                </div>
+              </div>
+          </div>
+        </div>
+      <div id="fanclubContainer">
+      <div id="view1">
+          {include file='common/mainPart.tpl' postStatus={form_open_multipart('statusController/themFanclubStatus')}}
+      </div>
+      <div id="view2" style="display:none;">
+            <div id="friendListContainer">
+              <div id="searchFriend">
+                <h3>Add member</h3>
+                <input type="text" class="searchMember" id="searchbox" /><br />
+                <div id="display">
+                </div>
+              </div>
+              <ul></ul>
+            </div>
+      </div>
+      <div id="view3" style="display:none;">
+            <div id="playlistContainer">
+              <ul></ul>
+            </div>
       </div>
     </div>
-  </div>
-  <div id="fanclubContainer">
-  <div id="view1">
-    {include file='common/mainPart.tpl' postStatus={form_open_multipart('statusController/themFanclubStatus')}}
-  </div>
-  <div id="view2" style="display:none;">
-        <div id="friendListContainer">
-          <div id="searchFriend">
-            <h3>Add member</h3>
-            <input type="text" class="searchMember" id="searchbox" /><br />
-            <div id="display">
-            </div>
-          </div>
-          <ul></ul>
+        <div id="inside">
+          <div id="lookbook-shop-now" style="height: 448px; background-position: 0px 50%;"></div>
+          <a href="#" target="_blank" class="bt3 lookbookshopnow">ABC NOW</a>
         </div>
-  </div>
-  <div id="view3" style="display:none;">
-        <div id="playlistContainer">
-          <ul></ul>
-        </div>
-  </div>
-</div>
+      </div>
+    </div>
 </body>
 </html>
