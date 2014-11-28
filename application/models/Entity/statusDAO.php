@@ -98,6 +98,32 @@ class StatusDAO
 		return $status->getStatus_id();
 	}
 
+	public function themShareStatus($data)
+	{
+		$status = new Status;
+		$shareStatus = $this->em->getReference('Entity\Status', $data['status']);
+	    $email = $this->em->getReference('Entity\User', $data['email']);
+	    $privacy = $this->em->getReference('Entity\Privacy_type', 1);
+	    $status->setPrivacy_type_id($privacy);
+		$status->setEmail($email);
+		$status->setTitle($shareStatus->getTitle());
+		$status->setThumbs_up(0);
+		$status->setMessage( $data['message']);
+		$status->setMusic( $shareStatus->getMusic());
+		$this->em->persist($status);
+		$this->em->flush();
+		return $status->getStatus_id();
+	}
+
+	public function notifyShare($data){
+		$cnn=$this->em->getConnection();
+		$sth = $cnn->prepare("CALL notifyShare(?,?,?)");
+		$sth->bindValue(1, $data['status']);
+		$sth->bindValue(2, $data['newStatus']);
+		$sth->bindValue(3, $data['email']);
+		$sth->execute();
+	}
+
 	public function suaStatus($id,$msg)
 	{
 	    $status = $this->em->getReference('Entity\Status', $id);

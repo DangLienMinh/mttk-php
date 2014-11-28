@@ -653,7 +653,7 @@ text-decoration: none;
 }
 
 .strmsg {
-    margin-top: 17px;
+    margin-top: 25px;
     margin-bottom: 7px;
 }
 
@@ -663,12 +663,15 @@ text-decoration: none;
     display: block;
     font-size: 13px;
     line-height: 20px;
-    margin-left: 70px;
     min-height: 50px;
     moz-border-radius: 4px;
-    overflow: hidden;
     webkit-border-radius: 4px;
     word-wrap: break-word;
+}
+
+.topPart{
+    position: relative;
+    left:10px;
 }
 
 .sttext b {
@@ -1010,7 +1013,8 @@ width: 86%;
 }
 
 .sttext_content {
-    margin: 12px 12px 0px 12px;
+/*    margin: 12px 12px 0px 12px;*/
+    margin: 12px 12px 0px 16px;
 }
 
 .sttext_content a {
