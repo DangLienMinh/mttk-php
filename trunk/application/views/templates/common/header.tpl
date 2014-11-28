@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>Music</title>
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/jquery-ui.css">
-  <link rel="stylesheet" type="text/css" href="{asset_url()}css/jplayer.blue.monday.playlist.css">
+  <link rel="stylesheet" type="text/css" href="{asset_url()}css/jplayer.blue.monday.css">
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/wall.css">
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/jquery.qtip.css">
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/colorbox.css">
@@ -32,6 +32,7 @@
   <script type="text/javascript" src="{asset_url()}js/jquery.emotions.js"></script>
   <script type="text/javascript">
 
+  window.shareStatus="{site_url('statusController/hienThiShareStatus/')}";
   window.cretePlaylist="{site_url('playlistController/viewPlaylist/')}";
   window.changeProfilePic="{site_url('profileController/changeProfileImage/')}";
   window.createFanclub="{site_url('fanclubController/createFanclub/')}";
@@ -154,10 +155,10 @@ function waitForMsg() {
           }
         }
       });
-      /*setTimeout(
+      setTimeout(
         waitForMsg,
         15000
-      );*/
+      );
     }
   });
 }
@@ -1151,4 +1152,21 @@ $(document).on('keyup', '.searchMember', function() {
     });
   }
 });
+
+$(document).on('click', '#shareStatus', function() {
+  var id=$(this).prev('div').find('div').attr('id');
+  id= id.split("status").pop();
+    $.ajax({
+      type: "post",
+{/literal}
+      url: "{base_url('shareController/themShare')}",
+{literal}
+      cache: false,
+      data: 'status_id=' + id+'&message='+$('#target').val(),
+      success: function(response) {
+        parent.window.location.href = window.mainController + '/homePage/';
+      }
+    });
+});
+
 {/literal}

@@ -78,33 +78,6 @@ class StatusController extends CI_Controller {
         $this->smarty->view('userWall');
     }
 
-    function test($email)
-    {
-        $em = $this->doctrine->em;
-        $status = new Entity\statusDAO($em);
-        $result=$status->layDSWallStatus($email);
-        $result= json_encode($result);
-
-        $user = new Entity\UserDAO($em);
-        $userInfo=$user->getUser($email);
-
-        $this->smarty->assign('items',$result);
-        $this->smarty->assign('userLoginWall',$email);
-        $this->smarty->assign('userNameWall',$userInfo[0]['first_name'].' '.$userInfo[0]['last_name']);
-        $this->smarty->assign('userPicCmtWall',$userInfo[0]['picture']);
-        $this->smarty->assign('userPicCmt',$this->session->userdata('pic'));
-        $this->smarty->assign('userName',$this->session->userdata('first_name').' '.$this->session->userdata('last_name'));
-        $this->smarty->assign('userLogin',$this->session->userdata('email'));
-        $cover="";
-          if($userInfo[0]['coverImg']!=""){
-            $cover=$userInfo[0]['coverImg'];
-          }else{
-            $cover='musicCover.jpg';
-          }
-        $this->smarty->assign('profileCover',$cover);
-        $this->smarty->view('test');
-    }
-
     function layDSFanclubStatus($fanclubid)
     {
         $em = $this->doctrine->em;
@@ -226,10 +199,7 @@ class StatusController extends CI_Controller {
         $em = $this->doctrine->em;
         $status = new Entity\statusDAO($em);
         $status->themStatus($data);
-        $this->smarty->assign('userPicCmt',$this->session->userdata('pic'));
-        $this->smarty->assign('userName',$this->session->userdata('first_name').' '.$this->session->userdata('last_name'));
-        $this->smarty->assign('userLogin',$this->session->userdata('email'));
-        $this->smarty->view('homePage');
+        redirect('/main/homePage/', 'refresh');
     }
 
     public function themFanclubStatus()
@@ -293,6 +263,18 @@ class StatusController extends CI_Controller {
         $this->smarty->assign('userName',$this->session->userdata('first_name').' '.$this->session->userdata('last_name'));
         $this->smarty->assign('userLogin',$this->session->userdata('email'));
         $this->smarty->view('notiStatus');
+    }
+
+    public function hienThiShareStatus($statusParam){
+        $em = $this->doctrine->em;
+        $status = new Entity\statusDAO($em);
+        $result=$status->laySingleStatus($statusParam);
+        $result= json_encode($result);
+        $this->smarty->assign('items',$result);
+        $this->smarty->assign('userPicCmt',$this->session->userdata('pic'));
+        $this->smarty->assign('userName',$this->session->userdata('first_name').' '.$this->session->userdata('last_name'));
+        $this->smarty->assign('userLogin',$this->session->userdata('email'));
+        $this->smarty->view('shareWindow');
     }
 }
 ?>
