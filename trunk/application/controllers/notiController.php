@@ -1,37 +1,35 @@
 <?php
 
 class NotiController extends CI_Controller {
-
-	function __construct() {
+    
+    function __construct() {
         parent::__construct();
         $is_logged_in = $this->session->userdata('is_logged_in');
-        if(!isset($is_logged_in) || $is_logged_in!=true)
-        {
+        if (!isset($is_logged_in) || $is_logged_in != true) {
             redirect('/userController/index', 'refresh');
         }
     }
-
-    function getNewNotifyNumber(){
-        $em = $this->doctrine->em;
-        $noti = new Entity\NotificationDAO($em);
-        $result=$noti->getNewNotify($this->session->userdata('email'));
+    
+    function getNewNotifyNumber() {
+        $em     = $this->doctrine->em;
+        $noti   = new Entity\NotificationDAO($em);
+        $result = $noti->getNewNotify($this->session->userdata('email'));
         echo count($result);
     }
-
-    function setAllNotifyIsRead(){
-        $em = $this->doctrine->em;
+    
+    function setAllNotifyIsRead() {
+        $em   = $this->doctrine->em;
         $noti = new Entity\NotificationDAO($em);
         $noti->setAllNotifyIsRead($this->session->userdata('email'));
     }
-
-    function getOldNotify(){
-        $em = $this->doctrine->em;
-        $noti = new Entity\NotificationDAO($em);
-        $result=$noti->getOldNotify($this->session->userdata('email'));
-        $notiNumber=count($noti->getNewNotify($this->session->userdata('email')));
-        $notify="";
-        foreach($result as $k)
-        {
+    
+    function getOldNotify() {
+        $em         = $this->doctrine->em;
+        $noti       = new Entity\NotificationDAO($em);
+        $result     = $noti->getOldNotify($this->session->userdata('email'));
+        $notiNumber = count($noti->getNewNotify($this->session->userdata('email')));
+        $notify     = "";
+        foreach ($result as $k) {
             $noti_icon = "";
             if ($k['type'] == "1") {
                 $notiIcon = "noti_like";
@@ -39,39 +37,38 @@ class NotiController extends CI_Controller {
                 $notiIcon = "noti_comment";
             }
             if ($notiNumber > 0) {
-                $notify.='<li style="background-color:#f4f6f9"  class="noti" id="noti'.$k['notification_id'].'"><a href="' .site_url('statusController/hienThiNotiStatus/'). "/" . $k['status_id'] . "/" . $k['notification_id'] . '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'.base_url().'uploads/img/'.$k['picture'].'"/><span>' . $k['msg'] . '</span><br/><abbr class="timeago ' . $notiIcon . '" title="' . $k['created_at'] . '"></abbr></a></li>';
+                $notify .= '<li style="background-color:#f4f6f9"  class="noti" id="noti' . $k['notification_id'] . '"><a href="' . site_url('statusController/hienThiNotiStatus/') . "/" . $k['status_id'] . "/" . $k['notification_id'] . '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' . base_url() . 'uploads/img/' . $k['picture'] . '"/><span>' . $k['msg'] . '</span><br/><abbr class="timeago ' . $notiIcon . '" title="' . $k['created_at'] . '"></abbr></a></li>';
                 $notiNumber = $notiNumber - 1;
             } else {
-                $notify.='<li class="noti" id="noti'.$k['notification_id'].'"><a href="'.site_url('statusController/hienThiNotiStatus/'). "/" . $k['status_id'] . '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' .base_url().'uploads/img/'.$k['picture']. '"/><span>' . $k['msg'] . '</span><br/><abbr class="timeago ' .$notiIcon . '" title="'.$k['created_at'] . '"></abbr></a></li>';
+                $notify .= '<li class="noti" id="noti' . $k['notification_id'] . '"><a href="' . site_url('statusController/hienThiNotiStatus/') . "/" . $k['status_id'] . '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' . base_url() . 'uploads/img/' . $k['picture'] . '"/><span>' . $k['msg'] . '</span><br/><abbr class="timeago ' . $notiIcon . '" title="' . $k['created_at'] . '"></abbr></a></li>';
             }
         }
         echo $notify;
     }
-
-    function getNextOldNotify(){
-        $id=$this->input->post('noti_id');
-        $em = $this->doctrine->em;
-        $noti = new Entity\NotificationDAO($em);
-        $result=$noti->getNextOldNotify($this->session->userdata('email'),$id);
-        $notify="";
-        foreach($result as $k)
-        {
+    
+    function getNextOldNotify() {
+        $id     = $this->input->post('noti_id');
+        $em     = $this->doctrine->em;
+        $noti   = new Entity\NotificationDAO($em);
+        $result = $noti->getNextOldNotify($this->session->userdata('email'), $id);
+        $notify = "";
+        foreach ($result as $k) {
             $noti_icon = "";
             if ($k['type'] == "1") {
                 $notiIcon = "noti_like";
             } else {
                 $notiIcon = "noti_comment";
             }
-            $notify.='<li class="noti" id="noti'.$k['notification_id'].'"><a href="'.site_url('statusController/hienThiNotiStatus/'). "/" . $k['status_id'] . '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' .base_url().'uploads/img/'.$k['picture']. '"/><span>' . $k['msg'] . '</span><br/><abbr class="timeago ' .$notiIcon . '" title="'.$k['created_at'] . '"></abbr></a></li>';
+            $notify .= '<li class="noti" id="noti' . $k['notification_id'] . '"><a href="' . site_url('statusController/hienThiNotiStatus/') . "/" . $k['status_id'] . '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' . base_url() . 'uploads/img/' . $k['picture'] . '"/><span>' . $k['msg'] . '</span><br/><abbr class="timeago ' . $notiIcon . '" title="' . $k['created_at'] . '"></abbr></a></li>';
         }
         echo $notify;
     }
-
-    function getNotifyList(){
-        $em = $this->doctrine->em;
-        $noti = new Entity\NotificationDAO($em);
-        $result=$noti->getOldNotify($this->session->userdata('email'));
-        $this->smarty->assign('items',$result);
+    
+    function getNotifyList() {
+        $em     = $this->doctrine->em;
+        $noti   = new Entity\NotificationDAO($em);
+        $result = $noti->getOldNotify($this->session->userdata('email'));
+        $this->smarty->assign('items', $result);
         $this->smarty->view('notiList');
     }
 }

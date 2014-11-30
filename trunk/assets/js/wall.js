@@ -1,85 +1,83 @@
-var element = '<div class="jp-gui jp-interface"> \
-          <ul class="jp-controls"> \
-            <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li> \
-            <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li> \
-            <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li> \
-            <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li> \
-            <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li> \
-            <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li> \
-          </ul> \
-          <div class="jp-progress"> \
-            <div class="jp-seek-bar"> \
-              <div class="jp-play-bar"></div> \
-            </div> \
-          </div> \
-          <div class="jp-volume-bar"> \
-            <div class="jp-volume-bar-value"></div> \
-          </div> \
-          <div class="jp-time-holder"> \
-            <div class="jp-current-time"></div> \
-            <div class="jp-duration"></div> \
-              <ul class="jp-toggles"> \
-              <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li> \
-              <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li> \
-            </ul> \
-          </div> \
+var element = '<div class="jp-type-single"> \
+    <div class="jp-gui jp-interface"> \
+      <div class="jp-controls"> \
+        <button class="jp-play" role="button" tabindex="0">play</button> \
+        <button class="jp-stop" role="button" tabindex="0">stop</button> \
+      </div> \
+      <div class="jp-progress"> \
+        <div class="jp-seek-bar"> \
+          <div class="jp-play-bar"></div> \
         </div> \
-        <div class="jp-details"> \
-          <ul> \
-            <li><span class="jp-title"></span></li> \
-          </ul> \
+      </div> \
+      <div class="jp-volume-controls"> \
+        <button class="jp-mute" role="button" tabindex="0">mute</button> \
+        <button class="jp-volume-max" role="button" tabindex="0">max volume</button> \
+        <div class="jp-volume-bar"> \
+          <div class="jp-volume-bar-value"></div> \
         </div> \
-        <div class="jp-no-solution"> \
-          <span>Update Required</span> \
-          To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>. \
-        </div>';
+      </div> \
+      <div class="jp-time-holder"> \
+        <div class="jp-current-time" role="timer" aria-label="time">&nbsp;</div> \
+        <div class="jp-duration" role="timer" aria-label="duration">&nbsp;</div> \
+        <div class="jp-toggles"> \
+          <button class="jp-repeat" role="button" tabindex="0">repeat</button> \
+        </div> \
+      </div> \
+    </div> \
+    <div class="jp-details"> \
+      <div class="jp-title" aria-label="title">&nbsp;</div> \
+    </div> \
+    <div class="jp-no-solution"> \
+      <span>Update Required</span> \
+      To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>. \
+    </div>';
 
 var playlistElement = '<div class="jp-type-playlist"> \
-        <div class="jp-gui jp-interface"> \
-          <ul class="jp-controls"> \
-            <li><a href="javascript:;" class="jp-previous" tabindex="1">previous</a></li> \
-            <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li> \
-            <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li> \
-            <li><a href="javascript:;" class="jp-next" tabindex="1">next</a></li> \
-            <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li> \
-            <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li> \
-            <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li> \
-            <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li> \
-          </ul> \
-          <div class="jp-progress"> \
-            <div class="jp-seek-bar"> \
-              <div class="jp-play-bar"></div> \
-            </div> \
-          </div> \
-          <div class="jp-volume-bar"> \
-            <div class="jp-volume-bar-value"></div> \
-          </div> \
-          <div class="jp-current-time"></div> \
-          <div class="jp-duration"></div> \
-          <ul class="jp-toggles"> \
-            <li><a href="javascript:;" class="jp-shuffle" tabindex="1" title="shuffle">shuffle</a></li> \
-            <li><a href="javascript:;" class="jp-shuffle-off" tabindex="1" title="shuffle off">shuffle off</a></li> \
-            <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li> \
-            <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li> \
-          </ul> \
+    <div class="jp-gui jp-interface"> \
+      <div class="jp-controls"> \
+        <button class="jp-previous" role="button" tabindex="0">previous</button> \
+        <button class="jp-play" role="button" tabindex="0">play</button> \
+        <button class="jp-next" role="button" tabindex="0">next</button> \
+        <button class="jp-stop" role="button" tabindex="0">stop</button> \
+      </div> \
+      <div class="jp-progress"> \
+        <div class="jp-seek-bar"> \
+          <div class="jp-play-bar"></div> \
         </div> \
-        <div class="jp-playlist"> \
-          <ul> \
-            <li></li> \
-          </ul> \
+      </div> \
+      <div class="jp-volume-controls"> \
+        <button class="jp-mute" role="button" tabindex="0">mute</button> \
+        <button class="jp-volume-max" role="button" tabindex="0">max volume</button> \
+        <div class="jp-volume-bar"> \
+          <div class="jp-volume-bar-value"></div> \
         </div> \
-        <div class="jp-no-solution"> \
-          <span>Update Required</span> \
-          To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>. \
-        </div> \
-      </div> ';
+      </div> \
+      <div class="jp-time-holder"> \
+        <div class="jp-current-time" role="timer" aria-label="time">&nbsp;</div> \
+        <div class="jp-duration" role="timer" aria-label="duration">&nbsp;</div> \
+      </div> \
+      <div class="jp-toggles"> \
+        <button class="jp-repeat" role="button" tabindex="0">repeat</button> \
+        <button class="jp-shuffle" role="button" tabindex="0">shuffle</button> \
+      </div> \
+    </div> \
+    <div class="jp-playlist"> \
+      <ul> \
+        <li>&nbsp;</li> \
+      </ul> \
+    </div> \
+    <div class="jp-no-solution"> \
+      <span>Update Required</span> \
+      To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>. \
+    </div> \
+  </div>';
 
-
+//add new music status
 function playSelectedSong(guid, title) {
 	window.chosenMusic = guid;
 	window.title = title;
-	$("#jquery_jplayer_1").jPlayer("destroy");
 	var player = $("#jquery_jplayer_1");
+	player.jPlayer("destroy");
 	player.jPlayer({
 		ready: function(event) {
 			$(this).jPlayer("setMedia", {
@@ -97,6 +95,7 @@ function playSelectedSong(guid, title) {
 	});
 }
 
+//add new playlist status music
 function displaySongUpdateStatus(data) {
 	var obj = JSON.parse(data);
 	var cssSelector = {
@@ -110,21 +109,29 @@ function displaySongUpdateStatus(data) {
 	};
 	var myPlaylist = new jPlayerPlaylist(cssSelector, playlist, options);
 	/*Loop through the JSon array and add it to the playlist*/
-	$.each(obj, function(i, val) {
+	/*$.each(obj, function(i, val) {
 		myPlaylist.add({
 			title: val.title,
 			mp3: val.mp3
 		});
-	});
+	});*/
+	var l=obj.length;
+	for (var i=0;i<l; i++) {
+    	myPlaylist.add({
+			title: obj[i].title,
+			mp3: obj[i].mp3
+		});
+	}
 }
 
+//get user first 20 status
 function addStatus(msg) {
 	var obj = JSON.parse(msg);
 	if (obj.length > window.compareStatus) {
 		var numberToInsert = obj.length - window.compareStatus;
 		window.compareStatus = obj.length;
 		try {
-			var items = [];
+			var container=$('#container');
 			$.each(obj, function(i, val) {
 				i = i + 3;
 				if (!val.picture) {
@@ -134,10 +141,17 @@ function addStatus(msg) {
 				if (val.email == window.userLogin) {
 					is_delete = '<div class="dropdown"><a class="account" ></a><div class="submenu" style="display: none; "><ul class="root"><li class="stedit"><a href="#" >Edit</a></li><li class="stdelete"><a href="#" >Delete</a></li></ul></div></div>';
 				}
+				var privacy;
+				if(val.privacy_type_id==1){
+					privacy="Shared with: public";
+				}else{
+					privacy="Only me";
+				}
 				var checkPlaylist = parseInt(val.music);
+				//truong hop playlist
 				if (checkPlaylist == 1) {
-					var $content = $('<div class="item" id="status' + val.status_id + '"><span id="arrow"></span>' + is_delete + '<div class="stimg"><img id="' + val.email + '" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio">' + playlistElement + '</div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea style="width:305px;height:32px" placeholder=" Write your comment..." class="commentInput" id="textboxcontent' + val.status_id + '"></textarea></div></div></div>');
-					$('#container').append($content);
+					var $content = $('<div class="item" id="status' + val.status_id + '"><span id="arrow"></span>' + is_delete + '<div class="stimg"><img id="' + val.email + '" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><div class="topPart"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr><br><abbr class="privacy" title="' + privacy + '"></abbr></div></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio">' + playlistElement + '</div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a class="iframe share_button" href="'+window.shareStatus+'/'+val.status_id+'">Share</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea style="width:305px;height:32px" placeholder=" Write your comment..." class="commentInput" id="textboxcontent' + val.status_id + '"></textarea></div></div></div>');
+					container.append($content);
 					getComment(val.status_id);
 					getLike(val.status_id);
 					getSong('#jquery_jplayer_' + i, '#jp_container_' + i, checkPlaylist);
@@ -145,9 +159,10 @@ function addStatus(msg) {
 					if (numberToInsert == 0) {
 						return;
 					}
+				//truong hop upload
 				} else if (checkPlaylist > 1) {
-					var $content = $('<div class="item" id="status' + val.status_id + '"><span id="arrow"></span>' + is_delete + '<div class="stimg"><img id="' + val.email + '" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a><a href="#" class="playlist_button" id="playlist' + val.status_id + '">Playlist</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea class="commentInput" style="width:305px;height:32px" placeholder=" Write your comment..." id="textboxcontent' + val.status_id + '"></textarea></div></div></div>');
-					$('#container').append($content);
+					var $content = $('<div class="item" id="status' + val.status_id + '"><span id="arrow"></span>' + is_delete + '<div class="stimg"><img id="' + val.email + '" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><div class="topPart"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr><br><abbr class="privacy" title="' + privacy + '"></abbr></div></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a class="iframe share_button" href="'+window.shareStatus+'/'+val.status_id+'">Share</a><a href="#" class="playlist_button" id="playlist' + val.status_id + '">Playlist</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea class="commentInput" style="width:305px;height:32px" placeholder=" Write your comment..." id="textboxcontent' + val.status_id + '"></textarea></div></div></div>');
+					container.append($content);
 					getComment(val.status_id);
 					getLike(val.status_id);
 					setSong('#jquery_jplayer_' + i, '#jp_interface_' + i, window.userMusic + '/' + val.music, val.title);
@@ -155,9 +170,14 @@ function addStatus(msg) {
 					if (numberToInsert == 0) {
 						return;
 					}
+				//truong hop nhac online
 				} else {
-					var $content = $('<div class="item" id="status' + val.status_id + '"><span id="arrow"></span>' + is_delete + '<div class="stimg"><img id="' + val.email + '" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a><a href="#" class="playlist_button" id="playlist' + val.status_id + '">Playlist</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea class="commentInput" style="width:305px;height:32px" placeholder=" Write your comment..." id="textboxcontent' + val.status_id + '"></textarea></div></div></div>');
-					$('#container').append($content);
+					if(val.music==""){
+						var $content = $('<div class="item" id="status' + val.status_id + '"><span id="arrow"></span>' + is_delete + '<div class="stimg"><img id="' + val.email + '" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><div class="topPart"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr><br><abbr class="privacy" title="' + privacy + '"></abbr></div></div><div class="strmsg">' + val.message + '</div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a class="iframe share_button" href="'+window.shareStatus+'/'+val.status_id+'">Share</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea class="commentInput" style="width:305px;height:32px" placeholder=" Write your comment..." id="textboxcontent' + val.status_id + '"></textarea></div></div></div>');
+					}else{
+						var $content = $('<div class="item" id="status' + val.status_id + '"><span id="arrow"></span>' + is_delete + '<div class="stimg"><img id="' + val.email + '" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><div class="topPart"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr><br><abbr class="privacy" title="' + privacy + '"></abbr></div></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a class="iframe share_button" href="'+window.shareStatus+'/'+val.status_id+'">Share</a><a href="#" class="playlist_button" id="playlist' + val.status_id + '">Playlist</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea class="commentInput" style="width:305px;height:32px" placeholder=" Write your comment..." id="textboxcontent' + val.status_id + '"></textarea></div></div></div>');
+					}
+					container.append($content);
 					getComment(val.status_id);
 					getLike(val.status_id);
 					setSong('#jquery_jplayer_' + i, '#jp_interface_' + i, val.music, val.title);
@@ -166,6 +186,7 @@ function addStatus(msg) {
 						return;
 					}
 				}
+		        $(".iframe").colorbox({iframe:true, width:"50%", height:"50%"});
 			});
 		} catch (e) {
 			alert(e);
@@ -173,15 +194,17 @@ function addStatus(msg) {
 	}
 }
 
+//Report top 10 music
 function reportFamousMusic(obj) {
 	try {
+		var container=$('#container');
 		$.each(obj, function(i, val) {
 			i = i + 1;
 			var content = '<div class="item"><span id="arrow"></span><div class="sttext"><div class="sttext_content"><b>Number: ' + i + '</b><p>Number of likes: ' + val.thumbs_up + '</p><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div></div><br/><br/></div>';
-			$('#container').append(content);
+			container.append(content);
 			setSong('#jquery_jplayer_' + i, '#jp_interface_' + i, val.music, val.title);
 			if (i == obj.length) {
-				$('#container').masonry({
+				container.masonry({
 					itemSelector: '.item'
 				});
 				Arrow_Points();
@@ -192,36 +215,46 @@ function reportFamousMusic(obj) {
 	}
 }
 
+//get user next 10 status
 function addMoreStatus(msg, jplayer_id) {
 	var obj = JSON.parse(msg);
 	try {
-		var items = [];
+		var container=$('#container');
 		$.each(obj, function(i, val) {
 			i = i + 1 + parseInt(jplayer_id);
 			if (!val.picture) {
 				val.picture = window.userPic + '/profilePic.jpg/';
-
 			}
 			var is_delete = "";
 			if (val.email == window.userLogin) {
 				is_delete = '<div class="dropdown"><a class="account" ></a><div class="submenu" style="display: none; "><ul class="root"><li class="stedit"><a href="#" >Edit</a></li><li class="stdelete"><a href="#" >Delete</a></li></ul></div></div>';
 			}
+			var privacy;
+			if(val.privacy_type_id==1){
+				privacy="Shared with: public";
+			}else{
+				privacy="Only me";
+			}
 			var checkPlaylist = parseInt(val.music);
 			if (checkPlaylist == 1) {
-				var $content = $('<div class="item" id="status' + val.status_id + '"><span id="arrow"></span>' + is_delete + '<div class="stimg"><img id="' + val.email + '" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio">' + playlistElement + '</div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea style="width:305px;height:32px" placeholder=" Write your comment..." class="commentInput" id="textboxcontent' + val.status_id + '"></textarea></div></div></div>');
-				$('#container').append($content).masonry("appended", $content);
+				var $content = $('<div class="item" id="status' + val.status_id + '"><span id="arrow"></span>' + is_delete + '<div class="stimg"><img id="' + val.email + '" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><div class="topPart"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr><br><abbr class="privacy" title="' + privacy + '"></abbr></div></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio">' + playlistElement + '</div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea style="width:305px;height:32px" placeholder=" Write your comment..." class="commentInput" id="textboxcontent' + val.status_id + '"></textarea></div></div></div>');
+				container.append($content).masonry("appended", $content);
 				getComment(val.status_id);
 				getLike(val.status_id);
 				getSong('#jquery_jplayer_' + i, '#jp_container_' + i, checkPlaylist);
 			} else if (checkPlaylist > 1) {
-				var $content = $('<div class="item" id="status' + val.status_id + '"><span id="arrow"></span>' + is_delete + '<div class="stimg"><img id="' + val.email + '" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a><a href="#" class="playlist_button" id="playlist' + val.status_id + '">Playlist</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea class="commentInput" style="width:305px;height:32px" placeholder=" Write your comment..." id="textboxcontent' + val.status_id + '"></textarea></div></div></div>');
-				$('#container').append($content).masonry("appended", $content);
+				var $content = $('<div class="item" id="status' + val.status_id + '"><span id="arrow"></span>' + is_delete + '<div class="stimg"><img id="' + val.email + '" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><div class="topPart"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr><br><abbr class="privacy" title="' + privacy + '"></abbr></div></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a><a href="#" class="playlist_button" id="playlist' + val.status_id + '">Playlist</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea class="commentInput" style="width:305px;height:32px" placeholder=" Write your comment..." id="textboxcontent' + val.status_id + '"></textarea></div></div></div>');
+				container.append($content).masonry("appended", $content);
 				getComment(val.status_id);
 				getLike(val.status_id);
 				setSong('#jquery_jplayer_' + i, '#jp_interface_' + i, window.userMusic + '/' + val.music, val.title);
 			} else {
-				var $content = $('<div class="item" id="status' + val.status_id + '"><span id="arrow"></span>' + is_delete + '<div class="stimg"><img id="' + val.email + '" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a><a href="#" class="playlist_button" id="playlist' + val.status_id + '">Playlist</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea class="commentInput" style="width:305px;height:32px" placeholder=" Write your comment..." id="textboxcontent' + val.status_id + '"></textarea></div></div></div>');
-				$('#container').append($content).masonry("appended", $content);
+				if(val.music==""){
+					var $content = $('<div class="item" id="status' + val.status_id + '"><span id="arrow"></span>' + is_delete + '<div class="stimg"><img id="' + val.email + '" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><div class="topPart"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr><br><abbr class="privacy" title="' + privacy + '"></abbr></div></div><div class="strmsg">' + val.message + '</div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea class="commentInput" style="width:305px;height:32px" placeholder=" Write your comment..." id="textboxcontent' + val.status_id + '"></textarea></div></div></div>');
+				}else{
+					var $content = $('<div class="item" id="status' + val.status_id + '"><span id="arrow"></span>' + is_delete + '<div class="stimg"><img id="' + val.email + '" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><div class="topPart"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr><br><abbr class="privacy" title="' + privacy + '"></abbr></div></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a><a href="#" class="playlist_button" id="playlist' + val.status_id + '">Playlist</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea class="commentInput" style="width:305px;height:32px" placeholder=" Write your comment..." id="textboxcontent' + val.status_id + '"></textarea></div></div></div>');
+				}
+				container.append($content).masonry("appended", $content);
 				getComment(val.status_id);
 				getLike(val.status_id);
 				setSong('#jquery_jplayer_' + i, '#jp_interface_' + i, val.music, val.title);
@@ -232,25 +265,32 @@ function addMoreStatus(msg, jplayer_id) {
 	}
 }
 
+//first 20 user wall status
 function addStatusUserWall(obj) {
 	var numberToInsert = obj.length - window.compareStatus;
 	if (obj.length > window.compareStatus) {
 		window.compareStatus = obj.length;
 		try {
-			var items = [];
+			var container=$('#container');
 			$.each(obj, function(i, val) {
 				i = i + 3;
 				if (!val.picture) {
 					val.picture = window.userPic + '/profilePic.jpg/';
 				}
 				var is_delete = "";
+				var privacy;
 				if (val.email == window.userLogin) {
 					is_delete = '<div class="dropdown"><a class="account" ></a><div class="submenu" style="display: none; "><ul class="root"><li class="stedit"><a href="#" >Edit</a></li><li class="stdelete"><a href="#" >Delete</a></li></ul></div></div>';
 				}
+				if(val.privacy_type_id==1){
+					privacy="Shared with: public";
+				}else{
+					privacy="Only me";
+				}
 				var checkPlaylist = parseInt(val.music);
 				if (checkPlaylist == 1) {
-					var $content = $('<div class="item" id="status' + val.status_id + '"><span id="arrow"></span>' + is_delete + '<div class="stimg"><img id="' + val.email + '" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio">' + playlistElement + '</div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea style="width:305px;height:32px" placeholder=" Write your comment..." class="commentInput" id="textboxcontent' + val.status_id + '"></textarea></div></div></div>');
-					$('#container').append($content);
+					var $content = $('<div class="item" id="status' + val.status_id + '"><span id="arrow"></span>' + is_delete + '<div class="stimg"><img id="' + val.email + '" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><div class="topPart"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr><br><abbr class="privacy" title="' + privacy + '"></abbr></div></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio">' + playlistElement + '</div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea style="width:305px;height:32px" placeholder=" Write your comment..." class="commentInput" id="textboxcontent' + val.status_id + '"></textarea></div></div></div>');
+					container.append($content);
 					getComment(val.status_id);
 					getLike(val.status_id);
 					getSong('#jquery_jplayer_' + i, '#jp_container_' + i, checkPlaylist);
@@ -259,8 +299,8 @@ function addStatusUserWall(obj) {
 						return;
 					}
 				} else if (checkPlaylist > 1) {
-					var $content = $('<div class="item" id="status' + val.status_id + '"><span id="arrow"></span>' + is_delete + '<div class="stimg"><img id="' + val.email + '" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a><a href="#" class="playlist_button" id="playlist' + val.status_id + '">Playlist</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea class="commentInput" style="width:305px;height:32px" placeholder=" Write your comment..." id="textboxcontent' + val.status_id + '"></textarea></div></div></div>');
-					$('#container').append($content);
+					var $content = $('<div class="item" id="status' + val.status_id + '"><span id="arrow"></span>' + is_delete + '<div class="stimg"><img id="' + val.email + '" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><div class="topPart"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr><br><abbr class="privacy" title="' + privacy+ '"></abbr></div></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a><a href="#" class="playlist_button" id="playlist' + val.status_id + '">Playlist</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea class="commentInput" style="width:305px;height:32px" placeholder=" Write your comment..." id="textboxcontent' + val.status_id + '"></textarea></div></div></div>');
+					container.append($content);
 					getComment(val.status_id);
 					getLike(val.status_id);
 					setSong('#jquery_jplayer_' + i, '#jp_interface_' + i, window.userMusic + '/' + val.music, val.title);
@@ -269,8 +309,12 @@ function addStatusUserWall(obj) {
 						return;
 					}
 				} else {
-					var $content = $('<div class="item" id="status' + val.status_id + '"><span id="arrow"></span>' + is_delete + '<div class="stimg"><img id="' + val.email + '" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a><a href="#" class="playlist_button" id="playlist' + val.status_id + '">Playlist</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea class="commentInput" style="width:305px;height:32px" placeholder=" Write your comment..." id="textboxcontent' + val.status_id + '"></textarea></div></div></div>');
-					$('#container').append($content);
+					if(val.music==""){
+						var $content = $('<div class="item" id="status' + val.status_id + '"><span id="arrow"></span>' + is_delete + '<div class="stimg"><img id="' + val.email + '" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><div class="topPart"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr><br><abbr class="privacy" title="' + privacy + '"></abbr></div></div><div class="strmsg">' + val.message + '</div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea class="commentInput" style="width:305px;height:32px" placeholder=" Write your comment..." id="textboxcontent' + val.status_id + '"></textarea></div></div></div>');
+					}else{
+						var $content = $('<div class="item" id="status' + val.status_id + '"><span id="arrow"></span>' + is_delete + '<div class="stimg"><img id="' + val.email + '" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><div class="topPart"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr><br><abbr class="privacy" title="' + privacy + '"></abbr></div></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a><a href="#" class="playlist_button" id="playlist' + val.status_id + '">Playlist</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div id="flash' + val.status_id + '" class="flash_load"></div><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea class="commentInput" style="width:305px;height:32px" placeholder=" Write your comment..." id="textboxcontent' + val.status_id + '"></textarea></div></div></div>');
+					}
+					container.append($content);
 					getComment(val.status_id);
 					getLike(val.status_id);
 					setSong('#jquery_jplayer_' + i, '#jp_interface_' + i, val.music, val.title);
@@ -286,6 +330,37 @@ function addStatusUserWall(obj) {
 	}
 }
 
+//get share status to display in the share dialog
+function addStatusShare(obj) {
+		try {
+			var container=$('#container');
+			$.each(obj, function(i, val) {
+				i = i + 3;
+				var checkPlaylist = parseInt(val.music);
+				if (checkPlaylist == 1) {
+					var $content = $('<div id="status' + val.status_id + '"><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio">' + playlistElement + '</div></div>');
+					container.append($content);
+					getSong('#jquery_jplayer_' + i, '#jp_container_' + i, checkPlaylist);
+				} else if (checkPlaylist > 1) {
+					var $content = $('<div id="status' + val.status_id + '"><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div>');
+					container.append($content);
+					setSong('#jquery_jplayer_' + i, '#jp_interface_' + i, window.userMusic + '/' + val.music, val.title);
+				} else {
+					if(val.music==""){
+						var $content = $('<div id="status' + val.status_id + '"></div>');
+					}else{
+						var $content = $('<div id="status' + val.status_id + '"><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div>');
+					}
+					container.append($content);
+					setSong('#jquery_jplayer_' + i, '#jp_interface_' + i, val.music, val.title);
+				}
+			});
+		} catch (e) {
+			alert(e);
+		}
+	}
+
+//get chat message
 function addConversation(msg) {
 	var obj = JSON.parse(msg);
 	var b = $("#inline_content ol li:last").attr("id");
@@ -314,6 +389,7 @@ function addConversation(msg) {
 	}
 }
 
+//get more chat message by click read more
 function addMoreConversation(msg) {
 	var obj = JSON.parse(msg);
 	try {
@@ -326,7 +402,6 @@ function addMoreConversation(msg) {
 				$(div_data).prependTo('#inline_content ol').emotions();
 				$('#' + val.message_id).prepend('<img style="width:30px;height:30px;vertical-align:middle;margin-right:7px;float:left" src="' + window.userPic + val.picture + '"/>');
 			}
-			//$('#inline_content ol').prepend(div_data).emotions();
 		});
 		window.currentChatPosition = $("#inline_content ol li:first").attr("id");
 		if ($('#inline_content ol>div>a').length) {} else
@@ -336,6 +411,7 @@ function addMoreConversation(msg) {
 	}
 }
 
+//set jplayer song name and url
 function setSong(name, inter, songUrl, title) {
 	$(name).jPlayer({
 		ready: function(event) {
@@ -355,6 +431,7 @@ function setSong(name, inter, songUrl, title) {
 	});
 }
 
+//display song in playlists
 function displaySong(name, inter, data) {
 	var obj = JSON.parse(data);
 	var cssSelector = {
@@ -369,37 +446,49 @@ function displaySong(name, inter, data) {
 	};
 	var myPlaylist = new jPlayerPlaylist(cssSelector, playlist, options);
 	/*Loop through the JSon array and add it to the playlist*/
-	$.each(obj, function(i, val) {
+	/*$.each(obj, function(i, val) {
 		myPlaylist.add({
 			title: val.title,
 			mp3: val.mp3
 		});
-	});
+	});*/
+	var l=obj.length;
+	for (var i=0;i<l; i++) {
+    	myPlaylist.add({
+			title: obj[i].title,
+			mp3: obj[i].mp3
+		});
+	}
 }
 
+//add arrow for each status in timeline vertical line
 function Arrow_Points() {
 	var s = $('#container').find('.item');
-	$.each(s, function(i, obj) {
-		var posLeft = $(obj).css("left");
-		$(obj).addClass('borderclass');
+	var l=s.length;
+	for (var i=0;i<l; i++) {
+		var posLeft = $(s[i]).css("left");
+		$(s[i]).addClass('borderclass');
 		if (posLeft == "0px") {
 			html = "<span id='arrow' class='rightCorner'></span>";
-			$(obj).find('#arrow').replaceWith(html);
+			$(s[i]).find('#arrow').replaceWith(html);
 		} else {
 			html = "<span id='arrow' class='leftCorner'></span>";
-			$(obj).find('#arrow').replaceWith(html);
+			$(s[i]).find('#arrow').replaceWith(html);
 		}
-	});
+	}
 }
+
+//home page click
 $(document).on('click', '#homePage', function() {
 	window.location = window.mainController + '/homePage/';
 });
 
+//message page click
 $(document).on('click', '#chatPage', function() {
 	window.location = window.mainController + '/chat/';
 });
 
-
+//setting status pane
 $(document).on('click', '.account', function() {
 	var X = $(this).attr('id');
 
@@ -412,8 +501,7 @@ $(document).on('click', '.account', function() {
 	}
 });
 
-
-
+//click on user chat head
 $(document).on('click', '.inline', function(e) {
 	e.preventDefault();
 	var userEmail = $(this).find('span').attr('class');
@@ -424,6 +512,7 @@ $(document).on('click', '.inline', function(e) {
 	}
 });
 
+//more chat message
 $(document).on('click', '.more', function(e) {
 	var userEmail = $('#toUser').val();
 	var last_id = $(this).attr('id');
@@ -432,6 +521,7 @@ $(document).on('click', '.more', function(e) {
 	return false;
 });
 
+//comment button click on each status
 $(document).on('click', '.comment_button', function() {
 	var element = $(this);
 	var I = element.attr("id");
@@ -439,6 +529,7 @@ $(document).on('click', '.comment_button', function() {
 	return false;
 });
 
+//playlist button click on each status
 $(document).on('click', '.playlist_button', function() {
 	var $this = $(this);
 	var musicUrl = $this.parents().eq(2).find('[id^="jp_audio_"]').attr('src');
@@ -452,6 +543,7 @@ $(document).on('click', '.playlist_button', function() {
 	return false;
 });
 
+//vertical timeline line hover
 $('.timeline_container').mousemove(function(e) {
 	var topdiv = $("#containertop").height();
 	var pag = e.pageY - topdiv - 26;
@@ -466,23 +558,26 @@ $('.timeline_container').mousemove(function(e) {
 	});
 });
 
+// user icon hover display bigger image
 function setPop(email, name, img) {
 	$("#pop img").replaceWith('<img src="' + img + '"style="width:106px;height:106px"/>');
 	$("#pop h2").replaceWith('<h2><a href="' + window.userWall + "/" + email + '">' + name + '</a></h2>');
 }
 
+//choose music from the suggest box
 $(document).on('click', '#finalResult>li a', function() {
 	$("#music_url").val(window.chosenMusic);
 	$("#title").val(window.title);
 	$('#music_name').val('');
 });
 
+//select the other playlist name, update all song in that playlsit
 $(document).on('change', '#playlistBoxUpdateStatus select', function() {
-
 	var id = $(this).parent().find('select').find(":selected").val();
 	getSongUpdateStatus(id);
 });
 
+//notification click display the notification pane
 $(document).on('click', '#notificationLink', function() {
 	$("#friendContainer").hide();
 	$("#notificationContainer").fadeToggle(300);
@@ -490,6 +585,7 @@ $(document).on('click', '#notificationLink', function() {
 	return false;
 });
 
+//add friend notification click display the friend pane
 $(document).on('click', '#friendLink', function() {
 	$("#notificationContainer").hide();
 	$("#friendContainer").fadeToggle(300);
@@ -497,6 +593,7 @@ $(document).on('click', '#friendLink', function() {
 	return false;
 });
 
+//add new song in status to playlsit
 $(document).on('click', '#savePlaylist', function() {
 	var id = $(this).parent().find('select').find(":selected").val();
 	var title = $(this).parent().find('#titleMusic').val();
@@ -504,7 +601,9 @@ $(document).on('click', '#savePlaylist', function() {
 	savePlaylist(id, title, music);
 });
 
+//window scroll event
 $(window).scroll(function() {
+	//scroll to the bottom of window
 	if ($(window).scrollTop() == $(document).height() - $(window).height()) {
 		var element = $('#container').find('.item:last');
 		var id = element.attr('id').substring(6);
@@ -517,12 +616,16 @@ $(window).scroll(function() {
 
 		} else if(window.location.href.indexOf("hienThiNotiStatus") > -1){
 
+		}
+		 else if(window.location.href.indexOf("hienThiShareStatus") > -1){
+
 		}else {
 			moreStatus(id, jplayer_id);
 		}
 	}
 });
 
+//window click and hide some child container if they are opened
 $(document).click(function(e) {
 	var container = $("#notificationContainer");
 
@@ -533,17 +636,39 @@ $(document).click(function(e) {
 	}
 	container = $("#friendContainer");
 
-	if (!container.is(e.target) // if the target of the click isn't the container...
-		&& container.has(e.target).length === 0) // ... nor a descendant of the container
+	if (!container.is(e.target)
+		&& container.has(e.target).length === 0)
 	{
 		container.hide();
 	}
 	$("#musicContainer").hide();
 	container = $("#playlistBox");
 
+	if (!container.is(e.target)
+		&& container.has(e.target).length === 0)
+	{
+		container.hide();
+	}
+});
+
+//window click and hide some child container if they are opened
+$(document).mouseup(function(e) {
+	$(".submenu").hide();
+	$(".account").attr('id', '');
+	$('.edit').hide();
+	$('.text_wrapper').show();
+	$('.text_wrapper1').show();
+	$('#displayUserBox').hide();
+	var container = $("#displayUserFanclubBox");
+
 	if (!container.is(e.target) // if the target of the click isn't the container...
 		&& container.has(e.target).length === 0) // ... nor a descendant of the container
 	{
+		container.hide();
+	}
+	container = $("#display");
+
+	if (!container.is(e.target) && container.has(e.target).length === 0) {
 		container.hide();
 	}
 });
@@ -557,17 +682,19 @@ $(document).on('click', '.delete', function() {
 	return false;
 });
 
+//status delete
 $(document).on('click', '.stdelete', function() {
+	var container=$('#container');
 	if (confirm("Are your sure?")) {
 		var topParent = $(this).parent().parent().parent().parent();
 		var status_id = topParent.find('.staction').find('.comment_button').attr('id');
 		deleteStatus(status_id);
 		topParent.fadeOut('slow');
-		$('#container').masonry('remove', topParent);
-		$('#container').masonry({
+		container.masonry('remove', topParent);
+		container.masonry({
 			itemSelector: '.item'
 		});
-		var msnry = $('#container').data('masonry');
+		var msnry = container.data('masonry');
 		msnry.on('layoutComplete', function() {
 			Arrow_Points();
 		});
@@ -575,6 +702,7 @@ $(document).on('click', '.stdelete', function() {
 	}
 });
 
+//status edit
 $(document).on('click', '.stedit', function(e) {
 	e.preventDefault();
 	var topParent = $(this).parent().parent().parent().parent();
@@ -584,6 +712,7 @@ $(document).on('click', '.stedit', function(e) {
 	topParent.find('.strmsg').append('<textarea style="width:288px;height:40px">' + status_msg + '</textarea><br/><button id="' + status_id + '" value="Change" class="editStatus">Finish editing</button><button value="Change" class="cancelEdit">Cancel</button>');
 });
 
+//finish edit button
 $(document).on('click', '.editStatus', function() {
 	var id = $(this).attr('id');
 	var content = $(this).prev().prev().val();
@@ -596,6 +725,7 @@ $(document).on('click', '.cancelEdit', function() {
 
 });
 
+//edit personal information button click
 $(document).on('click', '.edit_link', function() {
 	var parent = $(this).parent();
 	var checkType = parent.find('.text_wrapper');
@@ -625,80 +755,72 @@ $(document).on('click', '.insertAbout', function() {
 	return false;
 });
 
+//edit personal information textarea mousup
 $(document).on('mouseup', '.editbox', function() {
 	return false;
 });
+
+//edit personal information input mousup
 $(document).on('mouseup', '.editInput', function() {
 	return false;
 });
 
-
-$(document).mouseup(function(e) {
-	$(".submenu").hide();
-	$(".account").attr('id', '');
-	$('.edit').hide();
-	$('.text_wrapper').show();
-	$('.text_wrapper1').show();
-	$('#displayUserBox').hide();
-	var container = $("#displayUserFanclubBox");
-
-	if (!container.is(e.target) // if the target of the click isn't the container...
-		&& container.has(e.target).length === 0) // ... nor a descendant of the container
-	{
-		container.hide();
-	}
-	container = $("#display");
-
-	if (!container.is(e.target) && container.has(e.target).length === 0) {
-		container.hide();
-	}
-});
-
+//status hover event
 $(document).on('mouseover', '.item', function() {
 	var item1 = $(".dropdown");
 	var element = $(this).find(item1);
 	element.show();
 });
 
+//status blur event
 $(document).on('mouseout', '.item', function() {
 	var item1 = $(".dropdown");
 	var element = $(this).find(item1);
 	element.hide();
 });
 
+//personal page user image hover 
 $(document).on('mouseover', '.hexagon-in2', function() {
 	$(".coverUpdate").fadeTo('slow', 1.0, function() {});
 });
+
+//personal page user image hover 
 $(document).on('mouseover', '.coverUpdate', function() {
 	$(".coverUpdate").fadeTo('fast', 1.0, function() {});
 });
 $(document).on('mouseout', '.hexagon-in2', function() {
 	$(".coverUpdate").fadeTo(0, 0, function() {});
 });
+
+//personal page user image blur 
 $(document).on('mouseout', '.coverUpdate', function() {
 	$(".coverUpdate").fadeTo(0, 0, function() {});
 });
 
+//comment hover
 $(document).on('mouseover', '.load_comment', function() {
 	var element = $(this).find('a');
 	element.show();
 });
 
-$(document).on('click', '#markRead', function(e) {
-	e.preventDefault();
-	var element = $(this).parent().parent().find('ul').find('li');
-	element.each(function() {
-		$(this).css('background-color', 'white');
-	});
-	setAllNotifyIsRead();
-	return false;
-});
-
+//comment blur
 $(document).on('mouseout', '.load_comment', function() {
 	var element = $(this).find('a');
 	element.hide();
 });
 
+//notification mark all read
+$(document).on('click', '#markRead', function(e) {
+	e.preventDefault();
+	var element = $(this).parent().parent().find('ul').find('li');
+	for (var i=0;i<element.length; i++) {
+		$(element[i]).css('background-color', 'white');
+	}
+	setAllNotifyIsRead();
+	return false;
+});
+
+//hover user img in status or comment display the big picture
 $(document).on('mouseover', '.stimg,.load_comment>img', function(event) {
 	if ($(this).hasClass("stimg")) {
 		var element = $(this).find("img");
@@ -733,22 +855,26 @@ $(document).on('mouseover', '.stimg,.load_comment>img', function(event) {
 	}, event);
 });
 
+//fanclub name hover display settings
 $(document).on('mouseover', '.fanclubUserBox', function() {
 	var item1 = $(".leaveClub");
 	var element = $(this).find(item1);
 	element.show();
 });
 
+//fanclub name blur hide settings
 $(document).on('mouseout', '.fanclubUserBox', function() {
 	var item1 = $(".leaveClub");
 	var element = $(this).find(item1);
 	element.hide();
 });
 
+//change cover image in personal page
 $(document).on('click', '#changeCover', function() {
 	$('.imageBox').css('display', 'block');
 });
 
+//first fanclub menu click 
 $(document).on('click', '#headlineFanclub', function() {
 	$('#fanclubContainer').find('#view1').show();
 	$('#fanclubContainer').find('#view1').siblings('div').hide();
@@ -758,20 +884,26 @@ $(document).on('click', '#headlineFanclub', function() {
 	Arrow_Points();
 });
 
+//second fanclub menu click 
 $(document).on('click', '#headlineMembers', function() {
 	$('#fanclubContainer').find('#view2').show();
 	$('#fanclubContainer').find('#view2').siblings('div').hide();
 });
 
+//fanclub menu css bold 
 $(document).on('click', '.headlineRight a', function() {
 	$(this).find('span').css("display", "block");
 	$(this).siblings("a").find('span').css("display", "none");
 	return false;
 })
+
+//second personal page menu click 
 $(document).on('click', '#headlineFriendList', function() {
 	$('#wallContainer').find('#view2').show();
 	$('#wallContainer').find('#view2').siblings('div').hide();
 });
+
+//first personal page menu click 
 $(document).on('click', '#headlineTimeline', function() {
 	$('#wallContainer').find('#view1').show();
 	$('#wallContainer').find('#view1').siblings('div').hide();
@@ -779,14 +911,20 @@ $(document).on('click', '#headlineTimeline', function() {
 		itemSelector: '.item'
 	});
 });
+
+//fourth personal page menu click 
 $(document).on('click', '#headlinePlaylist', function() {
 	$('#wallContainer').find('#view3').show();
 	$('#wallContainer').find('#view3').siblings('div').hide();
 });
+
+//third personal page menu click 
 $(document).on('click', '#headlineAbout', function() {
 	$('#wallContainer').find('#view4').show();
 	$('#wallContainer').find('#view4').siblings('div').hide();
 });
+
+//about pane education in personal page click 
 $(document).on('click', '#aboutLeft1', function() {
 	$('#aboutRight').find('#about1').show();
 	$('#aboutRight').find('#about1').siblings('div').hide();
@@ -794,6 +932,8 @@ $(document).on('click', '#aboutLeft1', function() {
 	$(this).parent().siblings('li').find('a').removeClass("aboutLeftSelected");
 	return false;
 });
+
+//about pane contact info in personal page click 
 $(document).on('click', '#aboutLeft2', function() {
 	$('#aboutRight').find('#about2').show();
 	$('#aboutRight').find('#about2').siblings('div').hide();
@@ -801,6 +941,8 @@ $(document).on('click', '#aboutLeft2', function() {
 	$(this).parent().siblings('li').find('a').removeClass("aboutLeftSelected");
 	return false;
 });
+
+//about pane details about you in personal page click 
 $(document).on('click', '#aboutLeft3', function() {
 	$('#aboutRight').find('#about3').show();
 	$('#aboutRight').find('#about3').siblings('div').hide();
@@ -808,6 +950,8 @@ $(document).on('click', '#aboutLeft3', function() {
 	$(this).parent().siblings('li').find('a').removeClass("aboutLeftSelected");
 	return false;
 });
+
+//about pane favorite in personal page click 
 $(document).on('click', '#aboutLeft4', function() {
 	$('#aboutRight').find('#about4').show();
 	$('#aboutRight').find('#about4').siblings('div').hide();

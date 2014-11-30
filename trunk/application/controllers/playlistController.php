@@ -1,78 +1,76 @@
 <?php
 
 class PlaylistController extends CI_Controller {
-
-	function __construct() {
+    
+    function __construct() {
         parent::__construct();
         $is_logged_in = $this->session->userdata('is_logged_in');
-        if(!isset($is_logged_in) || $is_logged_in!=true)
-        {
+        if (!isset($is_logged_in) || $is_logged_in != true) {
             redirect('/userController/index', 'refresh');
         }
     }
-
-    function getDSPlaylist(){
-        $em = $this->doctrine->em;
-        $playlist = new Entity\PlaylistDAO($em);
-        $result=$playlist->layDSPlaylist($this->session->userdata('email'));
-        $playlists="";
-        foreach($result as $k)
-        {
-            $playlists.='<option value="'.$k['Playlist_id'].'">'.$k['Playlist_name'].'</option>';
+    
+    function getDSPlaylist() {
+        $em        = $this->doctrine->em;
+        $playlist  = new Entity\PlaylistDAO($em);
+        $result    = $playlist->layDSPlaylist($this->session->userdata('email'));
+        $playlists = "";
+        foreach ($result as $k) {
+            $playlists .= '<option value="' . $k['Playlist_id'] . '">' . $k['Playlist_name'] . '</option>';
         }
         echo $playlists;
     }
     
-    function wallDsPlaylist(){
-        $em = $this->doctrine->em;
+    function wallDsPlaylist() {
+        $em       = $this->doctrine->em;
         $playlist = new Entity\PlaylistDAO($em);
-        $result=$playlist->layDSPlaylist($this->input->post('email'));
+        $result   = $playlist->layDSPlaylist($this->input->post('email'));
         echo json_encode($result);
     }
-
-    function getDSSongs(){
-        $id=$this->input->post('playlist_id');
-        $em = $this->doctrine->em;
+    
+    function getDSSongs() {
+        $id       = $this->input->post('playlist_id');
+        $em       = $this->doctrine->em;
         $playlist = new Entity\Playlist_detailDAO($em);
-        $result=$playlist->layPlaylistSongs($id);
+        $result   = $playlist->layPlaylistSongs($id);
         echo json_encode($result);
     }
-
-    function createPlaylist(){
-        $em = $this->doctrine->em;
-        $playlist = new Entity\PlaylistDAO($em);
-        $data['playlistName']=$this->input->post('playlistName');
-        $data['email']=$this->session->userdata('email');
-        $data['privacy']=1;
+    
+    function createPlaylist() {
+        $em                   = $this->doctrine->em;
+        $playlist             = new Entity\PlaylistDAO($em);
+        $data['playlistName'] = $this->input->post('playlistName');
+        $data['email']        = $this->session->userdata('email');
+        $data['privacy']      = 1;
         $playlist->createPlaylist($data);
         echo base_url('main/homePage/');
     }
-
-    function removePlaylist(){
-        $em = $this->doctrine->em;
-        $playlist = new Entity\PlaylistDAO($em);
-        $playlist_id=$this->input->post('playlist_id');
+    
+    function removePlaylist() {
+        $em          = $this->doctrine->em;
+        $playlist    = new Entity\PlaylistDAO($em);
+        $playlist_id = $this->input->post('playlist_id');
         $playlist->removePlaylist($playlist_id);
     }
-
-    function addMusic(){
-        $em = $this->doctrine->em;
+    
+    function addMusic() {
+        $em              = $this->doctrine->em;
         $playlist_detail = new Entity\Playlist_detailDAO($em);
-        if(!empty($this->input->post('h'))){
-            $data['id']=$this->input->post('playlist_id');
-            $data['title']=$this->input->post('title');
-            $data['music']=$this->input->post('music').'&h='.$this->input->post('h');
-        }else{
-            $data['id']=$this->input->post('playlist_id');
-            $data['title']=$this->input->post('title');
-            $data['music']=$this->input->post('music');
+        if (!empty($this->input->post('h'))) {
+            $data['id']    = $this->input->post('playlist_id');
+            $data['title'] = $this->input->post('title');
+            $data['music'] = $this->input->post('music') . '&h=' . $this->input->post('h');
+        } else {
+            $data['id']    = $this->input->post('playlist_id');
+            $data['title'] = $this->input->post('title');
+            $data['music'] = $this->input->post('music');
         }
         $playlist_detail->addMusic($data);
     }
-
-    function viewPlaylist(){
+    
+    function viewPlaylist() {
         $this->smarty->view('createPlaylist');
     }
-
+    
 }
 ?>

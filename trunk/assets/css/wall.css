@@ -695,6 +695,17 @@ text-decoration: none;
     margin-right: 20px;
     padding-right: 18px;
     text-transform: uppercase;
+    padding-top: 5px;
+}
+
+.privacy {
+    background: url('../img/privacy.png') right no-repeat;
+    font-size: 9px;
+    height: 14px;
+    margin-right: 20px;
+    padding-right: 18px;
+    text-transform: uppercase;
+    padding-top: 5px;
 }
 
 .noti_like {
