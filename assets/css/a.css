@@ -49,10 +49,9 @@
 #mon_menu>li>a:hover { border-top: 3px solid #000; }
 #mon_menu>li>a.active { border-top: 3px solid #000; }
 #personalPage>b>a{
-	width: 130px;
 	cursor: pointer;
 	color: #000;
-	display: block;
+	display: inline-block;
 	text-decoration: none;
 	font-size: 14px;
 	border-top: 3px solid #fcf9ef;

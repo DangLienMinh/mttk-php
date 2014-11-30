@@ -279,7 +279,6 @@ function getMembers(fanclub) {
   });
 }
 
-
 function getConversation(userEmail) {
   if(typeof userEmail !== 'undefined'){
     if( window.userChat!=userEmail){
@@ -527,27 +526,28 @@ function getLike(status) {
       cache: false,
       success: function(data) {
         var obj = JSON.parse(data);
-        var new_like_count = obj.length - 3;
-        if (obj.length > 0) {
-          $.each(obj, function(i, val) {
+        var l=obj.length;
+        var new_like_count = l - 3;
+        if (l > 0) {
+          for (var i = 0; i < l; i++) {
             if (isLike == 1) {
-              if (obj.length > 1) {
-                $("#youlike" + status).append('<span id="you' + status + '"><a href="' + val.email + '">You,&nbsp;</a></span>');
+              if (l > 1) {
+                $("#youlike" + status).append('<span id="you' + status + '"><a href="' + obj[i].email + '">You,&nbsp;</a></span>');
               } else {
-                $("#youlike" + status).append('<span id="you' + status + '"><a href="' + val.email + '">You</a></span>');
+                $("#youlike" + status).append('<span id="you' + status + '"><a href="' + obj[i].email + '">You</a></span>');
               }
               isLike = 0;
             } else {
-              if(i==obj.length-1){
-                $("#youlike" + status).append('<a href="' + window.userWall + "/" + val.email  + '">' + val.name + '</a>');
-              }else{
-                $("#youlike" + status).append('<a href="' + window.userWall + "/" + val.email  + '">' + val.name +', '+ '</a>');
+              if (i == l - 1) {
+                $("#youlike" + status).append('<a href="' + window.userWall + "/" + obj[i].email + '">' + obj[i].name + '</a>');
+              } else {
+                $("#youlike" + status).append('<a href="' + window.userWall + "/" + obj[i].email + '">' + obj[i].name + ', ' + '</a>');
               }
             }
             if (new_like_count > 0) {
               $("#youlike" + status).append(' and ' + new_like_count + ' other friends like this');
             }
-          });
+          }
           $("#youlike" + status).append(' like this');
         }
       }
@@ -604,6 +604,7 @@ function getPlaylistUpdateStatus() {
   });
 }
 
+//add new playlist status music
 function getSongUpdateStatus(data) {
   $("#playlist_id").val(data);
   var dataString="playlist_id="+data;
@@ -645,12 +646,13 @@ function getSongWall(id,number) {
     timeout: 50000,
     success: function(data) {
       var obj = JSON.parse(data);
-      $.each(obj, function(i, val) {
-        myPlaylist.add({
-          title: val.title,
-          mp3: val.mp3
+      var l=obj.length;
+      for (var i=0;i<l; i++) {
+          myPlaylist.add({
+          title: obj[i].title,
+          mp3: obj[i].mp3
         });
-      });
+      }
     }
   });
 }
@@ -899,6 +901,7 @@ $(document).on('click', '.view_comments', function() {
   });
 });
 
+//add new music status
 $(document).on('keyup', '#music_name', function() {
   $("#musicContainer").show();
   $.ajax({
