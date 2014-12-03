@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <title>Music</title>
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/jquery-ui.css">
-  <link rel="stylesheet" type="text/css" href="{asset_url()}css/jplayer.blue.monday.css">
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/wall.css">
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/jquery.qtip.css">
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/colorbox.css">
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/jquery_notification.css">
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/a.css">
+  <link rel="stylesheet" type="text/css" href="{asset_url()}css/jplayer.blue.monday.css">
   <script type="text/javascript" src="{asset_url()}js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery-ui.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery.autogrowtextarea.min.js"></script>
@@ -466,9 +466,10 @@ function getComment(status) {
     async: true,
     cache: false,
     success: function(data) {
-      var checkComment=data.charAt(0);
+      //var checkComment=data.charAt(0);
+      var checkComment=data.substr(0, data.indexOf('<'));
       if($.isNumeric(checkComment)){
-        $("#loadplace"+status).append(data.substring(1));
+        $("#loadplace"+status).append(data.substring(data.indexOf('<')));
         getLastComment(status,checkComment);
       }else{
         $("#loadplace"+status).append(data);
@@ -797,10 +798,12 @@ $(document).on('keypress', '.commentInput', function(e) {
     if (test == '') {
       alert("Please Enter Some Text");
     } else {
-      $("#flash" + Id).show();
+/*      $("#flash" + Id).show();
 {/literal}
       $("#flash" + Id).fadeIn(400).html('<img src="{asset_url()}img/ajax-loader.gif" align="absmiddle"> loading.....');
-{literal}
+{literal}*/
+      
+      //$("#flash" + Id).hide();
       $.ajax({
         type: "post",
 {/literal}
@@ -810,7 +813,6 @@ $(document).on('keypress', '.commentInput', function(e) {
         cache: false,
         success: function(html) {
           $("#loadplace" + Id).append(html);
-          $("#flash" + Id).hide();
         }
       });
     }
@@ -849,25 +851,16 @@ $(document).on('click', '.like', function() {
   var sid = ID.split("like");
   var New_ID = sid[1];
   var REL = $(this).attr("rel");
-  var dataString = 'status_id=' + New_ID + '&rel=' + REL;
-  $.ajax({
-    type: "POST",
-{/literal}
-    url: "{base_url('thumb_up_downController/themXoaLike')}",
-{literal}
-    data: dataString,
-    cache: false,
-    success: function(data) {
-      if (REL == 'Like') {
+  if (REL == 'Like') {
         if ($('#youlike' + New_ID).children().length > 0) {
-          $("#youlike" + New_ID).slideDown('fast').prepend("<span id='you" + New_ID + "'><a href='#'>You</a></span>,&nbsp;");
+          $("#youlike" + New_ID).slideDown('fast').prepend("<span id='you" + New_ID + "'><a href='#'>You</a>,&nbsp;</span>");
           $("#likes" + New_ID).html("<span id='you" + New_ID + "'><a href='#'>You </a></span>");
           $('#' + ID).html('Unlike').attr('rel', 'Unlike').attr('title', 'Unlike');
         } else {
           $("#youlike" + New_ID).slideDown('fast').html("<span id='you" + New_ID + "'><a href='#'>You </a></span>&nbsp;like this");
           $('#' + ID).html('Unlike').attr('rel', 'Unlike').attr('title', 'Unlike');
         }
-      } else {
+  } else {
         if ($('#youlike' + New_ID).children().length > 1) {
           $("#you" + New_ID).slideUp('fast');
           $("#you" + New_ID).remove();
@@ -877,7 +870,16 @@ $(document).on('click', '.like', function() {
           $("#you" + New_ID).remove();
           $('#' + ID).attr('rel', 'Like').attr('title', 'Like').html('Like');
         }
-      }
+  }   
+  var dataString = 'status_id=' + New_ID + '&rel=' + REL;
+  $.ajax({
+    type: "POST",
+{/literal}
+    url: "{base_url('thumb_up_downController/themXoaLike')}",
+{literal}
+    data: dataString,
+    cache: false,
+    success: function(data) {
     }
   });
   return false;

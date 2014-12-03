@@ -66,11 +66,14 @@ function getStatus() {
       swfPath: "js",
       supplied: "mp3",
       wmode: "window",
+      useStateClassSkin: true,
+      autoBlur: false,
       smoothPlayBar: true,
       keyEnabled: true,
       remainingDuration: true,
       toggleDuration: true
     });
+
     $('.fanclubInfo').append('<div class="fanclubUserBox" align="left"><a href="' + window.createFanclub + '" class="iframe">Create new fanclub</a></div>');
     $(".iframe").colorbox({
       iframe: true,

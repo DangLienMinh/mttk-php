@@ -4,7 +4,7 @@
       <div class="plus"></div>
     </div>
   </div>
-  <div class="item">
+  <div class="item" id="updateWallStatus">
     {$postStatus}
     <div id="tabs">
       <ul>
