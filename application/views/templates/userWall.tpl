@@ -6,7 +6,7 @@ function getStatus(){
       data={$items}
 {literal}
     addStatusUserWall(data);
-    }
+  }
   </script>
   <script>
 {/literal}
@@ -30,6 +30,11 @@ function getStatus(){
     getFriendList(window.userLoginWall);
     wallDsPlaylist(window.userLoginWall);
     checkUserWallRelation(window.userLoginWall);
+
+    if(window.userLoginWall!=window.userLogin){
+      $('#updateWallStatus').remove();
+    }
+
     $('#search').hideseek();
     $("#target").autoGrow();
     $('#tabs').tabs({

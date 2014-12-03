@@ -105,7 +105,8 @@ function displaySongUpdateStatus(data) {
 	var playlist = [];
 	var options = {
 		swfPath: "js",
-		supplied: "mp3"
+		supplied: "mp3",
+		useStateClassSkin: true
 	};
 	var myPlaylist = new jPlayerPlaylist(cssSelector, playlist, options);
 	/*Loop through the JSon array and add it to the playlist*/
@@ -426,6 +427,7 @@ function setSong(name, inter, songUrl, title) {
 		wmode: "window",
 		smoothPlayBar: true,
 		keyEnabled: true,
+		useStateClassSkin: true,
 		remainingDuration: true,
 		toggleDuration: true
 	});
@@ -442,6 +444,7 @@ function displaySong(name, inter, data) {
 	var playlist = [];
 	var options = {
 		swfPath: "js",
+		useStateClassSkin: true,
 		supplied: "mp3"
 	};
 	var myPlaylist = new jPlayerPlaylist(cssSelector, playlist, options);
