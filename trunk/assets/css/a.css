@@ -156,7 +156,7 @@ text-transform: uppercase;
 	position: relative; 
 	top: 0; 
 	width: 100%; 
-	background: url(../img/cover.jpg) 50% 80px no-repeat fixed; height: 0; -webkit-background-size: contain; -moz-background-size: contain; -o-background-size: contain; background-size: contain;
+	/*background: url(../img/cover.jpg) 50% 80px no-repeat fixed; height: 0; -webkit-background-size: contain; -moz-background-size: contain; -o-background-size: contain; background-size: contain;*/
 }
 
 #lookbook #titre { margin: -150px 0 35px 0; }

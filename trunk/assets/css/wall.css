@@ -518,7 +518,7 @@ text-decoration: none;
 /*------------------------------------timeline part------------------------------------*/
 
 .delete_button {
-    background-image: url("../img/delete.png");
+    background-image: url("../img/xDelete.png");
     cursor: pointer;
     display: none;
     float: right;
@@ -624,16 +624,6 @@ text-decoration: none;
     word-wrap: break-word;
 }
 
-.flash_load {
-    display: none;
-    height: 20px;
-    margin-bottom: 5px;
-    margin-left: 50px;
-    margin-right: 50px;
-    padding: 6px;
-    width: 400px;
-}
-
 .stbody {
     border-bottom: dashed 1px #cc0000;
     margin-bottom: 10px;
@@ -667,6 +657,10 @@ text-decoration: none;
     moz-border-radius: 4px;
     webkit-border-radius: 4px;
     word-wrap: break-word;
+}
+
+.hideAction{
+    display:none;
 }
 
 .topPart{
@@ -1462,7 +1456,7 @@ position: absolute;
 top: -12px;
 left: -84px;
 z-index: 100;
-width: 74px;
+width: 78px;
 display: none;
 margin-left: 10px;
 padding: 40px 0 5px;
