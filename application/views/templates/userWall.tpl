@@ -14,6 +14,7 @@ function getStatus(){
   window.userLoginWall="{$userLoginWall}";
   window.userPicCmtWall="{uploads_url()}img/{$userPicCmtWall}";
   window.profileCover="{$profileCover}";
+  window.relation="{$relation}";
 {literal}
   $(document).ready(function() {
     $('#coverContainer').css('background', 'url("' + window.userPic + window.profileCover + '")').css('background-size', 'cover');
@@ -118,10 +119,6 @@ function getStatus(){
         var dataString = 'email=' + user + '&message=' + boxval;
         if (boxval.length > 0) {
           if (boxval.length < 200) {
-            $("#flash").show();
-{/literal}
-            $("#flash").fadeIn(400).html('<img src="{asset_url()}img/ajax-loader.gif" align="absmiddle">&nbsp;<span class="loading">Loading Update...</span>');
-{literal}
             $.ajax({
               type: "POST",
 {/literal}
@@ -132,7 +129,6 @@ function getStatus(){
               success: function(html) {
                 $(html).appendTo('#inline_content ol').emotions();
                 $('#content').val('');
-                $("#flash").hide();
                 $('#content').focus();
               }
             });
@@ -230,8 +226,7 @@ function getStatus(){
         <div id='inline_content' style='padding:10px; background:#fff;'>
           <ol id="update" style="list-style:none;">
           </ol>
-          <div id="flash"></div>
-          <audio id="chatAudio"><source src="{asset_url()}sound/notify.ogg" type="audio/ogg"><source src="{asset_url()}sound/notify.mp3" type="audio/mpeg"><source src="{asset_url()}sound/notify.wav" type="audio/wav"></audio>
+          <audio id="chatAudio"><source src="{asset_url()}sound/notify.mp3" type="audio/mpeg"></audio>
           <div>
               <div align="left">
               <table>

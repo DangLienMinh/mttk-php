@@ -51,10 +51,24 @@ class StatusController extends CI_Controller {
         $status = new Entity\statusDAO($em);
         $result = $status->layDSWallStatus($email);
         $result = json_encode($result);
-        
+        $friend  = new Entity\FriendDAO($em);
         $user     = new Entity\UserDAO($em);
         $userInfo = $user->getUser($email);
-        
+        if ($friend->checkFriend($this->session->userdata('email'), $email) > 0) {
+            $checkAcceptFriend = $friend->checkAcceptFriend($this->session->userdata('email'), $email);
+            if ($checkAcceptFriend[0]['accept'] > 0) {
+                $this->smarty->assign('relation', 1);
+            }else{
+                $this->smarty->assign('relation', 2);
+            }
+        }else{
+            if (strcmp($email, $this->session->userdata('email')) == 0) {
+                $this->smarty->assign('relation', 1);
+            }else{
+                $this->smarty->assign('relation', 0);
+            }
+            
+        }
         $this->smarty->assign('items', $result);
         $this->smarty->assign('userLoginWall', $email);
         $this->smarty->assign('userNameWall', $userInfo[0]['first_name'] . ' ' . $userInfo[0]['last_name']);

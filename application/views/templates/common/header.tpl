@@ -107,7 +107,7 @@ function moreWallStatus(id,jplayer_id,email) {
     cache: false,
     timeout: 50000,
     success: function(data) {
-      addMoreStatus(data,jplayer_id);
+      addMoreWallStatus(data,jplayer_id);
     }
   });
 }
@@ -510,10 +510,12 @@ function getLike(status) {
       if (obj.length > 0) {
         isLike = 1;
         $("#like" + status).replaceWith('<a href="#" class="like like_button" id="like' + status + '" title="UnLike" rel="UnLike">UnLike</a>');
-        $("#loadplace" + status).prev('div').append('<div class="likeUsers" id="youlike' + status + '"></div>');
+        //$("#loadplace" + status).prev('div').append('<div class="likeUsers" id="youlike' + status + '"></div>');
+        $('<div class="likeUsers" id="youlike' + status + '"></div>').insertBefore($("#loadplace" + status));
       } else {
         $("#like" + status).replaceWith('<a href="#" class="like like_button" id="like' + status + '" title="Like" rel="Like">Like</a>');
-        $("#loadplace" + status).prev('div').append('<div class="likeUsers" id="youlike' + status + '"></div>');
+        //$("#loadplace" + status).prev('div').append('<div class="likeUsers" id="youlike' + status + '"></div>');
+        $('<div class="likeUsers" id="youlike' + status + '"></div>').insertBefore($("#loadplace" + status));
       }
     }
   }).done(function() {
@@ -658,6 +660,24 @@ function getSongWall(id,number) {
   });
 }
 
+function unfollowUser(friendName){
+  $.ajax({
+  type: "POST",
+{/literal}
+  url:"{base_url('friendController/unfollow')}",
+{literal}
+  data: {friend:friendName},
+  dataType: "text",
+  cache:false,
+  success:
+      function(data){
+        location.reload();
+      }
+  });
+  return false;
+}
+
+
 
 $(document).on('click', '.addFriend', function() {
   var li=$(this).parent();
@@ -751,24 +771,6 @@ $(document).on('click', '#wallAddFriend', function() {
   return false;
 });
 
-$(document).on('click', '#wallUnfollow', function() {
-  var friendName = $(this).attr('rel');
-  $.ajax({
-  type: "POST",
-{/literal}
-  url:"{base_url('friendController/unfollow')}",
-{literal}
-  data: {friend:friendName},
-  dataType: "text",
-  cache:false,
-  success:
-      function(data){
-        location.reload();
-      }
-  });
-  return false;
-});
-
 $(document).on('click', '#wallFollow', function() {
   var friendName = $(this).attr('rel');
   $.ajax({
@@ -798,12 +800,6 @@ $(document).on('keypress', '.commentInput', function(e) {
     if (test == '') {
       alert("Please Enter Some Text");
     } else {
-/*      $("#flash" + Id).show();
-{/literal}
-      $("#flash" + Id).fadeIn(400).html('<img src="{asset_url()}img/ajax-loader.gif" align="absmiddle"> loading.....');
-{literal}*/
-      
-      //$("#flash" + Id).hide();
       $.ajax({
         type: "post",
 {/literal}
