@@ -142,7 +142,7 @@ function addStatus(msg) {
 				if (val.email == window.userLogin) {
 					is_delete = '<div class="dropdown"><a class="account" ></a><div class="submenu" style="display: none; "><ul class="root"><li class="stedit"><a href="#" >Edit</a></li><li class="stdelete"><a href="#" >Delete</a></li></ul></div></div>';
 				}else{
-					is_delete = '<div class="dropdown"><a class="account" ></a><div class="submenu" style="display: none; "><ul class="root"><li class="stUnfollow"><a rel="'+val.email+'" href="#" >Unfollow</a></li><li class="stReport"><a href="#" >Report</a></li></ul></div></div>';
+					is_delete = '<div class="dropdown"><a class="account" ></a><div class="submenu" style="display: none; "><ul class="root"><li class="stUnfollow"><a rel="'+val.email+'" href="#" >Unfollow</a></li><li class="stReport"><a class="iframe" rel="'+val.status_id+'" href="'+window.reportAdmin+'/'+val.email+'/'+ val.name+'/'+val.picture+'/'+val.status_id+'" >Report</a></li></ul></div></div>';
 				}
 				var privacy;
 				if(val.privacy_type_id==1){
@@ -815,10 +815,9 @@ $(document).on('click', '.stUnfollow a', function(e) {
 
 //wall unfollow button click
 $(document).on('click', '#wallUnfollow', function() {
-	 var friendName = $(this).attr('rel');
-	 unfollowUser(friendName);
+	var friendName = $(this).attr('rel');
+	unfollowUser(friendName);
 });
-
 
 //finish edit button
 $(document).on('click', '.editStatus', function() {
