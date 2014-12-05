@@ -34,6 +34,7 @@
 
   window.shareStatus="{site_url('statusController/hienThiShareStatus/')}";
   window.cretePlaylist="{site_url('playlistController/viewPlaylist/')}";
+  window.reportAdmin="{site_url('reportadminController/viewReport/')}";
   window.changeProfilePic="{site_url('profileController/changeProfileImage/')}";
   window.createFanclub="{site_url('fanclubController/createFanclub/')}";
   window.userWall="{site_url('statusController/layDSWallStatus/')}";
@@ -1169,5 +1170,10 @@ $(document).on('click', '#shareStatus', function() {
       }
     });
 });
+
+/*$(document).on('click', '.stReport a', function() {
+   var status = $(this).attr('rel');
+});*/
+
 
 {/literal}
