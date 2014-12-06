@@ -26,13 +26,26 @@ class ReportadminController extends CI_Controller {
         $this->smarty->view('reportStatus');
     }
 
-    function viewAdminPanel() {
-       /* $this->smarty->assign('pic', $pic);
-        $result=str_replace("%20"," ",$name);
-        $this->smarty->assign('status', $status);
-        $this->smarty->assign('name', $result);
-        $this->smarty->assign('email', $email);*/
+    function viewAdminReportStatus() {
         $this->smarty->view('admin');
+    }
+
+    function viewAdminPanel() {
+        $em              = $this->doctrine->em;
+        $report         = new Entity\ReportadminDAO($em);
+        $userNumber    = $report->getDayNewUser();
+        $statusNumber    = $report->getDayNewStatus();
+        $fanclubNumber    = $report->getDayNewFanclub();
+        $userGraph      =$report->getUserGraph();
+        $fanclubGraph      =$report->getFanclubGraph();
+        $statusGraph      =$report->getStatusGraph();
+        $this->smarty->assign('userGraph',json_encode($userGraph));
+        $this->smarty->assign('fanclubGraph',json_encode($fanclubGraph));
+        $this->smarty->assign('statusGraph',json_encode($statusGraph));
+        $this->smarty->assign('userNumber',$userNumber[0]['soUser']);
+        $this->smarty->assign('statusNumber',$statusNumber[0]['soStatus']);
+        $this->smarty->assign('fanclubNumber',$fanclubNumber[0]['soFanclub']);
+        $this->smarty->view('adminIndex');
     }
 
     public function getReportStatus() {
