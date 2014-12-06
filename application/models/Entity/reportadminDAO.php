@@ -46,15 +46,6 @@ class reportadminDAO
 	    $this->em->flush();
 	}
 
-	/*public function notifyAcceptReport($data){
-		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL notifyShare(?,?,?)");
-		$sth->bindValue(1, $data['status']);
-		$sth->bindValue(2, $data['newStatus']);
-		$sth->bindValue(3, $data['email']);
-		$sth->execute();
-	}*/
-
 	public function notifyCancelReport($status,$user){
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("CALL notifyCancelReport(?,?)");
@@ -84,6 +75,61 @@ class reportadminDAO
 		$this->em->flush();
 	}
 
+	public function getDayNewStatus(){
+		$cnn=$this->em->getConnection();
+        $sth = $cnn->prepare("CALL getDayNewStatus()");
+        $sth->execute();
+        $result = $sth->fetchAll();
+        return $result;
+	}
+
+	public function getDayNewUser(){
+		$cnn=$this->em->getConnection();
+        $sth = $cnn->prepare("CALL getDayNewUser()");
+        $sth->execute();
+        $result = $sth->fetchAll();
+        return $result;
+	}
+
+	public function getDayNewFanclub(){
+		$cnn=$this->em->getConnection();
+        $sth = $cnn->prepare("CALL getDayNewFanclub()");
+        $sth->execute();
+        $result = $sth->fetchAll();
+        return $result;
+	}
+
+	public function getUserGraph(){
+		$cnn=$this->em->getConnection();
+        $sth = $cnn->prepare("CALL getUserGraph()");
+        $sth->execute();
+        $result = $sth->fetchAll();
+        return $result;
+	}
+
+	public function getFanclubGraph(){
+		$cnn=$this->em->getConnection();
+        $sth = $cnn->prepare("CALL getFanclubGraph()");
+        $sth->execute();
+        $result = $sth->fetchAll();
+        return $result;
+	}
+
+	public function getStatusGraph(){
+		$cnn=$this->em->getConnection();
+        $sth = $cnn->prepare("CALL getStatusGraph()");
+        $sth->execute();
+        $result = $sth->fetchAll();
+        return $result;
+	}
+
 	
 }
+/*$cnn=$this->em->getConnection();
+        $sth = $cnn->prepare("CALL checkUserCreateGroup(?,?)");
+        $sth->bindValue(1, $email);
+        $sth->bindValue(2, $id);
+        $sth->execute();
+        $result = $sth->fetchAll();
+        return $result;*/
 ?>
