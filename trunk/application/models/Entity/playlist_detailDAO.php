@@ -22,11 +22,9 @@ class Playlist_detailDAO
 
 	public function layPlaylistSongs($id)
 	{
-		// prepare statemen
 		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL GetSongs(?)");
+		$sth = $cnn->prepare("select title,mp3 from playlist_detail where playlist_id=? order by title");
 		$sth->bindValue(1, $id);
-		// execute and fetch
 		$sth->execute();
 		$result = $sth->fetchAll();
 		return $result;

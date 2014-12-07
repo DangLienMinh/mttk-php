@@ -11,11 +11,9 @@ class NotificationDAO
 
 	public function getNewNotify($email)
 	{
-		// prepare statement
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("CALL GetNewNotify(?)");
 		$sth->bindValue(1, $email);
-		// execute and fetch
 		$sth->execute();
 		$result = $sth->fetchAll();
 		return $result;
@@ -23,11 +21,10 @@ class NotificationDAO
 
 	public function getOldNotify($email)
 	{
-		// prepare statement
 		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL GetOldNotify(?)");
+		$sth = $cnn->prepare("SELECT notification_id,msg,type,privacy_type_id,notification.created_at,notification.email,is_read,status_id,(select picture from user where email=user_make_noti) as picture FROM notification, user 
+ WHERE notification.email=user.email and notification.email=? and type!=4 order by is_read ASC,created_at DESC LIMIT 6");
 		$sth->bindValue(1, $email);
-		// execute and fetch
 		$sth->execute();
 		$result = $sth->fetchAll();
 		return $result;
@@ -35,12 +32,11 @@ class NotificationDAO
 
 	public function getNextOldNotify($email,$id)
 	{
-		// prepare statement
 		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL GetNextOldNotify(?,?)");
+		$sth = $cnn->prepare("SELECT notification_id,msg,type,privacy_type_id,notification.created_at,notification.email,is_read,status_id,(select picture from user where email=user_make_noti) as picture FROM notification, user 
+ WHERE notification.email=user.email and notification.email=? and type!=4 and notification_id<? order by is_read ASC,created_at DESC LIMIT 5");
 		$sth->bindValue(1, $email);
 		$sth->bindValue(2, $id);
-		// execute and fetch
 		$sth->execute();
 		$result = $sth->fetchAll();
 		return $result;
@@ -48,32 +44,18 @@ class NotificationDAO
 
 	public function setNotifyIsRead($notification_id)
 	{
-		// prepare statement
 		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL setNotifyIsRead(?)");
+		$sth = $cnn->prepare("UPDATE notification set is_read=1 where notification_id=?");
 		$sth->bindValue(1, $notification_id);
-		// execute and fetch
 		$sth->execute();
 	}
 
 	public function setAllNotifyIsRead($email)
 	{
-		// prepare statement
 		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL setAllNotifyIsRead(?)");
+		$sth = $cnn->prepare("UPDATE notification set is_read=1 where is_read=0 and email=?");
 		$sth->bindValue(1, $email);
-		// execute and fetch
 		$sth->execute();
 	}
-
-	/*public function setOffNotify($email)
-	{
-		// prepare statement
-		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL setOffNotify(?)");
-		$sth->bindValue(1, $email);
-		// execute and fetch
-		$sth->execute();
-	}*/
 }
 ?>

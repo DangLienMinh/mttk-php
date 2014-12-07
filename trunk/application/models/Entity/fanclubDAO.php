@@ -18,7 +18,6 @@ class FanclubDAO
         $fanclub->setFanclub_desc($data['desc']);
         $this->em->persist($fanclub);
         $this->em->flush();
-        //return $comment->getComment_id();
     }
 
     public function themFanclubUser($data)
@@ -55,8 +54,9 @@ class FanclubDAO
 
     public function timFanclub($name){
         $cnn=$this->em->getConnection();
-        $sth = $cnn->prepare("CALL TimFanclub(?)");
+        $sth = $cnn->prepare("select fanclub_id,fanclub_name,fanclub_desc,(select count(*)+1 from fanclub_users where fanclub_id=(select fanclub_id from fanclub where fanclub_name=?)) as soluong from fanclub where fanclub_name=? order by fanclub_name LIMIT 5");
         $sth->bindValue(1, $name);
+        $sth->bindValue(2, $name);
         $sth->execute();
         $result = $sth->fetchAll();
         return $result;
@@ -71,7 +71,7 @@ class FanclubDAO
 
     public function checkUserCreateGroup($email,$id){
         $cnn=$this->em->getConnection();
-        $sth = $cnn->prepare("CALL checkUserCreateGroup(?,?)");
+        $sth = $cnn->prepare("SELECT count(*) as checked from fanclub where email=? and fanclub_id=?");
         $sth->bindValue(1, $email);
         $sth->bindValue(2, $id);
         $sth->execute();
@@ -81,7 +81,7 @@ class FanclubDAO
 
     public function checkUserMemberGroup($email,$id){
         $cnn=$this->em->getConnection();
-        $sth = $cnn->prepare("CALL checkUserMemberGroup(?,?)");
+        $sth = $cnn->prepare("SELECT count(*) as checked from fanclub_users where email=? and fanclub_id=?");
         $sth->bindValue(1, $email);
         $sth->bindValue(2, $id);
         $sth->execute();
@@ -89,11 +89,11 @@ class FanclubDAO
         return $result;
     }
 
-
     public function getFanclub($email){
         $cnn=$this->em->getConnection();
-        $sth = $cnn->prepare("CALL getFanclubList(?)");
+        $sth = $cnn->prepare("SELECT p.fanclub_id,p.fanclub_name,p.fanclub_desc FROM Fanclub p WHERE p.email = ? or p.fanclub_id in(select h.fanclub_id from Fanclub_users h where h.email=?) order by p.fanclub_name LIMIT 10");
         $sth->bindValue(1, $email);
+        $sth->bindValue(2, $email);
         $sth->execute();
         $result = $sth->fetchAll();
         return $result;
@@ -101,11 +101,11 @@ class FanclubDAO
 
     public function getMembers($id)
     {
-        // prepare statement
         $cnn=$this->em->getConnection();
-        $sth = $cnn->prepare("CALL getAllMembers(?)");
+        $sth = $cnn->prepare("(SELECT CONCAT(first_name,' ',last_name) as name,picture,user.email from user,fanclub where user.email=fanclub.email and fanclub.fanclub_id=?) UNION
+(SELECT CONCAT(first_name,' ',last_name) as name,picture,user.email from user,fanclub_users where user.email=fanclub_users.email and fanclub_users.fanclub_id=?) ORDER BY name");
         $sth->bindValue(1, $id);
-        // execute and fetch
+        $sth->bindValue(2, $id);
         $sth->execute();
         $result = $sth->fetchAll();
         return $result;

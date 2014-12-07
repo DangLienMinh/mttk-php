@@ -11,8 +11,6 @@ class ProfileDAO
 
 	public function themProfile($data)
 	{
-		// prepare statemen
-		//echo $data['email'].$data['address'].$data['pic'];
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("CALL firstLogin(?,?,?)");
 		$sth->bindValue(1, $data['email']);
@@ -24,7 +22,9 @@ class ProfileDAO
 	public function getProfile($email)
 	{
 		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL getProfile(?)");
+		$sth = $cnn->prepare("select profile_id,p.email,gender,nickname,language,p.privacy_type_id,about_me,relationship,looking_for,phone,interests,
+			education,hobbies,fav_movies,fav_artists,fav_books,fav_animals,religion,everything_else,address,birthday 
+			from profile p,user u where p.email=u.email and p.email=?");
 		$sth->bindValue(1, $email);
 		$sth->execute();
 		$result = $sth->fetchAll();
@@ -52,6 +52,7 @@ class ProfileDAO
 		$this->em->merge($profile);
 		$this->em->flush();
 	}
+	
 	public function suaPhone($email,$data)
 	{
 		$query = $this->em->createQuery("SELECT p.profile_id FROM Entity\Profile p WHERE p.email = ?1");

@@ -12,16 +12,7 @@ class reportadminDAO
     public function getReportStatus()
 	{
 		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL getReportStatus()");
-		$sth->execute();
-		$result = $sth->fetchAll();
-		return $result;
-	}
-
-	public function getReportFanclub()
-	{
-		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL getReportFanclub()");
+		$sth = $cnn->prepare("SELECT * from reportadmin where status_id is not null order by status_id");
 		$sth->execute();
 		$result = $sth->fetchAll();
 		return $result;
@@ -29,13 +20,10 @@ class reportadminDAO
 
 	public function getGenderGraph()
 	{
-		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL getGenderGraph()");
-		$sth->execute();
-		$result = $sth->fetchAll();
+		$query = $this->em->createQuery("SELECT p.gender,count(p.profile_id) as number FROM Entity\profile p GROUP BY p.gender");
+		$result=$query->getResult();
 		return $result;
 	}
-	
 	
 	public function addReportStatus($data)
 	{
@@ -87,7 +75,8 @@ class reportadminDAO
 
 	public function getDayNewStatus(){
 		$cnn=$this->em->getConnection();
-        $sth = $cnn->prepare("CALL getDayNewStatus()");
+        $sth = $cnn->prepare("SELECT count(*) as soStatus from status where 
+		DAY(CURDATE())=DAY(created_at) and MONTH(CURDATE())=MONTH(created_at) and YEAR(CURDATE())=YEAR(created_at);");
         $sth->execute();
         $result = $sth->fetchAll();
         return $result;
@@ -95,7 +84,8 @@ class reportadminDAO
 
 	public function getDayNewReport(){
 		$cnn=$this->em->getConnection();
-        $sth = $cnn->prepare("CALL getDayNewReport()");
+        $sth = $cnn->prepare("SELECT count(p.report_id) as soReport from reportadmin p WHERE 
+		DAY(CURDATE())=DAY(p.created_at) and MONTH(CURDATE())=MONTH(p.created_at) and YEAR(CURDATE())=YEAR(p.created_at)");
         $sth->execute();
         $result = $sth->fetchAll();
         return $result;
@@ -103,7 +93,8 @@ class reportadminDAO
 
 	public function getDayNewUser(){
 		$cnn=$this->em->getConnection();
-        $sth = $cnn->prepare("CALL getDayNewUser()");
+        $sth = $cnn->prepare("SELECT count(*) as soUser from user where 
+		DAY(CURDATE())=DAY(created_at) and MONTH(CURDATE())=MONTH(created_at) and YEAR(CURDATE())=YEAR(created_at);");
         $sth->execute();
         $result = $sth->fetchAll();
         return $result;
@@ -111,7 +102,8 @@ class reportadminDAO
 
 	public function getDayNewFanclub(){
 		$cnn=$this->em->getConnection();
-        $sth = $cnn->prepare("CALL getDayNewFanclub()");
+        $sth = $cnn->prepare("SELECT count(*) as soFanclub from fanclub where 
+		DAY(CURDATE())=DAY(created_at) and MONTH(CURDATE())=MONTH(created_at) and YEAR(CURDATE())=YEAR(created_at)");
         $sth->execute();
         $result = $sth->fetchAll();
         return $result;
@@ -146,7 +138,6 @@ class reportadminDAO
 		$result=$query->getResult();
 		return $result;
 	}
-	
 }
 
 ?>
