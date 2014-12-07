@@ -11,12 +11,10 @@ class MessageDAO
 
     public function getFirstMessages($data)
 	{
-		// prepare statement
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("CALL getFirstMessages(?,?)");
 		$sth->bindValue(1, $data['from']);
 		$sth->bindValue(2, $data['to']);
-		// execute and fetch
 		$sth->execute();
 		$result = $sth->fetchAll();
 		return $result;
@@ -24,13 +22,11 @@ class MessageDAO
 
 	public function getMoreMessages($data)
 	{
-		// prepare statement
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("CALL getMoreMessages(?,?,?)");
 		$sth->bindValue(1, $data['from']);
 		$sth->bindValue(2, $data['to']);
 		$sth->bindValue(3, $data['started']);
-		// execute and fetch
 		$sth->execute();
 		$result = $sth->fetchAll();
 		return $result;

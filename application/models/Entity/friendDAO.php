@@ -25,7 +25,8 @@ class FriendDAO
 	public function getFriendRequest($email)
 	{
 		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL GetFriendRequest(?)");
+		$sth = $cnn->prepare("select picture,CONCAT(first_name,' ',last_name) as name,email from user 
+	where email in(select email from friend where friend.friend_name=? and accept=0)");
 		$sth->bindValue(1, $email);
 		$sth->execute();
 		$result = $sth->fetchAll();
@@ -35,8 +36,10 @@ class FriendDAO
 	public function getAllFriends($email)
 	{
 		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL getAllFriends(?)");
+		$sth = $cnn->prepare("(select CONCAT(first_name,' ',last_name) as name,picture,user.email from friend,user where friend.friend_name=user.email and friend.email=? and accept=1) UNION
+(select CONCAT(first_name,' ',last_name) as name,picture,user.email from friend,user where friend.email=user.email and friend.friend_name=? and accept=1) ORDER BY name");
 		$sth->bindValue(1, $email);
+		$sth->bindValue(2, $email);
 		$sth->execute();
 		$result = $sth->fetchAll();
 		return $result;
@@ -45,8 +48,10 @@ class FriendDAO
 	public function getAllChatFriends($email)
 	{
 		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL getAllChatFriends(?)");
+		$sth = $cnn->prepare("(select CONCAT(first_name,' ',last_name) as name,picture,user.email,online from friend,user where friend.friend_name=user.email and friend.email=? and accept=1) UNION
+(select CONCAT(first_name,' ',last_name) as name,picture,user.email,online from friend,user where friend.email=user.email and friend.friend_name=? and accept=1) ORDER BY online desc,name");
 		$sth->bindValue(1, $email);
+		$sth->bindValue(2, $email);
 		$sth->execute();
 		$result = $sth->fetchAll();
 		return $result;
@@ -55,8 +60,12 @@ class FriendDAO
 	public function getSuggestedFriend($email)
 	{
 		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL getSuggestedFriend(?)");
+		$sth = $cnn->prepare("select u.email,u.picture,CONCAT(u.first_name,' ',u.last_name) as name 
+from user u where u.email not in (select friend_name from friend 
+where friend.email=?) and u.email not in (select email from friend where friend.friend_name=?) and u.email!='admin@socialmusic.com' and u.email!=? LIMIT 10");
 		$sth->bindValue(1, $email);
+		$sth->bindValue(2, $email);
+		$sth->bindValue(3, $email);
 		$sth->execute();
 		$result = $sth->fetchAll();
 		return $result;
@@ -65,18 +74,18 @@ class FriendDAO
 	public function acceptFriend($email,$friend)
 	{
 		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL acceptFriendRequest(?,?)");
-		$sth->bindValue(1, $email);
-		$sth->bindValue(2, $friend);
+		$sth = $cnn->prepare("update friend set accept=1 where email=? and friend_name=?");
+		$sth->bindValue(1, $friend);
+		$sth->bindValue(2, $email);
 		$sth->execute();
 	}
 
 	public function declineFriend($email,$friend)
 	{
 		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL removeFriendRequest(?,?)");
-		$sth->bindValue(1, $email);
-		$sth->bindValue(2, $friend);
+		$sth = $cnn->prepare("delete from friend where email=? and friend_name=?");
+		$sth->bindValue(1, $friend);
+		$sth->bindValue(2, $email);
 		$sth->execute();
 	}
 
@@ -92,27 +101,33 @@ class FriendDAO
 	public function unfollowFriend($email,$friend)
 	{
 		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL unfollowFriend(?,?)");
+		$sth = $cnn->prepare("update friend set is_subscriber=0 where email=? and friend_name=? or email=? and friend_name=?");
 		$sth->bindValue(1, $email);
 		$sth->bindValue(2, $friend);
+		$sth->bindValue(3, $friend);
+		$sth->bindValue(4, $email);
 		$sth->execute();
 	}
 
 	public function followFriend($email,$friend)
 	{
 		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL followFriend(?,?)");
+		$sth = $cnn->prepare("update friend set is_subscriber=1 where email=? and friend_name=? or email=? and friend_name=?");
 		$sth->bindValue(1, $email);
 		$sth->bindValue(2, $friend);
+		$sth->bindValue(3, $friend);
+		$sth->bindValue(4, $email);
 		$sth->execute();
 	}
 
 	public function checkFriend($email,$friend)
 	{
 		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL checkFriend(?,?)");
+		$sth = $cnn->prepare("select * from friend where email=? and friend_name=? or email=? and friend_name=?");
 		$sth->bindValue(1, $email);
 		$sth->bindValue(2, $friend);
+		$sth->bindValue(3, $friend);
+		$sth->bindValue(4, $email);
 		$sth->execute();
 		$result = $sth->fetch();
 		return $result;
@@ -121,21 +136,24 @@ class FriendDAO
 	public function checkAcceptFriend($email,$friend)
 	{
 		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL checkAcceptFriend(?,?)");
+		$sth = $cnn->prepare("select accept from friend where email=? and friend_name=? or email=? and friend_name=?");
 		$sth->bindValue(1, $email);
 		$sth->bindValue(2, $friend);
+		$sth->bindValue(3, $friend);
+		$sth->bindValue(4, $email);
 		$sth->execute();
 		$result = $sth->fetchAll();
 		return $result;
 	}
 
-
 	public function checkFriendSubscribe($email,$friend)
 	{
 		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL checkFriendSubscribe(?,?)");
+		$sth = $cnn->prepare("select is_subscriber from friend where email=? and friend_name=? or email=? and friend_name=?");
 		$sth->bindValue(1, $email);
 		$sth->bindValue(2, $friend);
+		$sth->bindValue(3, $friend);
+		$sth->bindValue(4, $email);
 		$sth->execute();
 		$result = $sth->fetchAll();
 		return $result;

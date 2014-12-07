@@ -22,23 +22,19 @@ class Thumb_up_downDAO
 
     public function xoaLike($data)
     {
-        // prepare statemen
         $cnn=$this->em->getConnection();
         $sth = $cnn->prepare("CALL dislikeStatus(?,?)");
         $sth->bindValue(1, $data['email']);
         $sth->bindValue(2, $data['status']);
-        // execute and fetch
         $sth->execute();
     }
 
     public function layLike($status_id,$user)
     {
-        // prepare statemen
         $cnn=$this->em->getConnection();
         $sth = $cnn->prepare("CALL GetLike(?,?)");
         $sth->bindValue(1, $status_id);
         $sth->bindValue(2, $user);
-        // execute and fetch
         $sth->execute();
         $result = $sth->fetchAll();
         return $result;
@@ -46,12 +42,10 @@ class Thumb_up_downDAO
 
     public function layLikeUser($status_id,$user)
     {
-        // prepare statemen
         $cnn=$this->em->getConnection();
-        $sth = $cnn->prepare("CALL GetLikeUser(?,?)");
+        $sth = $cnn->prepare("select thumb_up_down_id from thumb_up_down where status_id=? and friend_name=?");
         $sth->bindValue(1, $status_id);
         $sth->bindValue(2, $user);
-        // execute and fetch
         $sth->execute();
         $result = $sth->fetchAll();
         return $result;

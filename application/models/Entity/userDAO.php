@@ -8,18 +8,6 @@ class UserDAO
 	function __construct($em) {
        $this->em=$em;
    }
-	/*public function layThongTin(Entity\User $temp)
-	{
-		$user = new Entity\User;
-		$user->setEmail($temp->getEmail());
-		$user->setPassword($temp->getPassword());
-		$user->setFirst_name($temp->getFirst_name());
-		$user->setLast_name($temp->getLast_name());
-		$user->setPicture($temp->getPicture());
-		$user->setOnline($temp->getOnline());
-		$user->setCreated_at($temp->getCreated_at());
-		$user->setBirthday($temp->getBirthday());
-	}*/
 
 	public function themUser($data)
 	{
@@ -68,7 +56,6 @@ class UserDAO
 	    return $user->getCoverImg();
 	}
 
-
 	public function xoaUser($email)
 	{
 	    $user = $this->em->getReference('Entity\User', $email);
@@ -77,7 +64,6 @@ class UserDAO
 	}
 
 	public function timUser($name){
-		//$query = $this->em->createQuery("SELECT CONCAT(CONCAT(p.first_name,' '),p.last_name) FROM Entity\User p WHERE p.first_name like ?1")
 		$query = $this->em->createQuery("SELECT p.email,p.first_name,p.last_name,p.picture FROM Entity\User p WHERE p.first_name like ?1 or p.last_name like ?2 order by p.email");
 		$str='%'.$name.'%';
 		$query->setParameter(1, $str);
@@ -93,7 +79,6 @@ class UserDAO
 		$sth->bindValue(1, $name);
 		$sth->bindValue(2, $email);
 		$sth->bindValue(3, $fanclub);
-		// execute and fetch
 		$sth->execute();
 		$result = $sth->fetchAll();
 		return $result;
@@ -129,9 +114,8 @@ class UserDAO
 
 	public function capNhatLastLogin($email){
 		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL LastLogin(?)");
+		$sth = $cnn->prepare("UPDATE user p SET p.last_login=now() WHERE p.email=?");
 		$sth->bindValue(1, $email);
-		// execute and fetch
 		$sth->execute();
 
 		$user = $this->em->getReference('Entity\User', $email);

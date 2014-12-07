@@ -33,7 +33,8 @@ class StatusDAO
 	public function layDSWallStatus($email)
 	{
 		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL GetUserWall(?)");
+		$sth = $cnn->prepare("select status_id,status.privacy_type_id,music,title,message,status.created_at,thumbs_up,privacy_type_id,status.email,picture,CONCAT(first_name,' ',last_name) as name 
+from status,user where status.email=user.email and status.email=? order by created_at desc LIMIT 10");
 		$sth->bindValue(1, $email);
 		$sth->execute();
 		$result = $sth->fetchAll();
@@ -43,7 +44,10 @@ class StatusDAO
 	public function layDSFanclubStatus($fanclub)
 	{
 		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL GetFanclubStatus(?)");
+		$sth = $cnn->prepare("select status_id,music,title,message,status.created_at,thumbs_up,privacy_type_id,status.email,picture,
+CONCAT(first_name,' ',last_name) as name from status,user where status.email=user.email 
+and status.status_id in(select status_id from fanclub_updates where fanclub_id=?) 
+and privacy_type_id=1 and status.email=user.email order by created_at desc LIMIT 10");
 		$sth->bindValue(1, $fanclub);
 		$sth->execute();
 		$result = $sth->fetchAll();
@@ -53,7 +57,8 @@ class StatusDAO
 	public function layDSNextWallStatus($email,$id)
 	{
 		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL GetNextUserWall(?,?)");
+		$sth = $cnn->prepare("select status_id,music,title,message,status.created_at,thumbs_up,privacy_type_id,status.email,picture,CONCAT(first_name,' ',last_name) as name 
+from status,user where status.email=user.email and status.email=? and status.privacy_type_id=1 and status_id<?  order by created_at desc Limit 10");
 		$sth->bindValue(1, $email);
 		$sth->bindValue(2, $id);
 		$sth->execute();
@@ -64,7 +69,8 @@ class StatusDAO
 	public function laySingleStatus($status)
 	{
 		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL GetSingleStatus(?)");
+		$sth = $cnn->prepare("select status_id,music,title,message,status.created_at,thumbs_up,privacy_type_id,status.email,picture,CONCAT(first_name,' ',last_name) as name 
+from status,user where status.email=user.email and status.status_id=?;");
 		$sth->bindValue(1, $status);
 		$sth->execute();
 		$result = $sth->fetchAll();
@@ -74,7 +80,7 @@ class StatusDAO
 	public function GetFamousStatus($sdate,$edate)
 	{
 		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("CALL GetFamousStatus(?,?)");
+		$sth = $cnn->prepare("SELECT music,title,thumbs_up from status where created_at between ? and  ? order by thumbs_up desc LIMIT 10");
 		$sth->bindValue(1, $sdate);
 		$sth->bindValue(2, $edate);
 		$sth->execute();

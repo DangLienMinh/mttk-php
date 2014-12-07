@@ -210,10 +210,7 @@ class FriendController extends CI_Controller {
         $email  = $this->session->userdata('email');
         $friend = new Entity\FriendDAO($em);
         $friend->acceptFriend($email, $friendName);
-        $this->smarty->assign('userPicCmt', $this->session->userdata('pic'));
-        $this->smarty->assign('userName', $this->session->userdata('first_name') . ' ' . $this->session->userdata('last_name'));
-        $this->smarty->assign('userLogin', $this->session->userdata('email'));
-        $this->smarty->view('homePage');
+        redirect('/main/homePage', 'refresh');
     }
     
     public function removeFriendRequest($friendName) {
@@ -222,10 +219,7 @@ class FriendController extends CI_Controller {
         $email  = $this->session->userdata('email');
         $friend = new Entity\FriendDAO($em);
         $friend->declineFriend($email, $friendName);
-        $this->smarty->assign('userPicCmt', $this->session->userdata('pic'));
-        $this->smarty->assign('userName', $this->session->userdata('first_name') . ' ' . $this->session->userdata('last_name'));
-        $this->smarty->assign('userLogin', $this->session->userdata('email'));
-        $this->smarty->view('homePage');
+        redirect('/main/homePage', 'refresh');
     }
 }
 
