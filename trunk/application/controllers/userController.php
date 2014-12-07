@@ -81,10 +81,15 @@ class UserController extends CI_Controller {
             );
             
             $this->session->set_userdata($data);
-            if ($result[0]['picture'] != '')
-                redirect('/main/homePage', 'refresh');
-            else
-                redirect('/main/firstTime', 'refresh');
+            if($result[0]['email']=='admin@socialmusic.com'){
+                redirect('/reportadminController/viewAdminPanel', 'refresh');
+            }else{
+                if ($result[0]['picture'] != '')
+                    redirect('/main/homePage', 'refresh');
+                else
+                    redirect('/main/firstTime', 'refresh');
+            }
+            
             return TRUE;
         } else {
             $this->form_validation->set_message('checkLoginInfo', 'Sorry your email or password is not correct');

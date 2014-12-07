@@ -13,18 +13,102 @@
     <link rel="stylesheet" type="text/css" href="{asset_url()}css/sb-admin.css">
     <link rel="stylesheet" type="text/css" href="{asset_url()}css/morris.css">
     <link rel="stylesheet" type="text/css" href="{asset_url()}font-awesome-4.1.0/css/font-awesome.min.css">
-
     <script>
         $(document).ready(function() {
             var user = {$userGraph};
             var status = {$statusGraph};
             var fanclub = {$fanclubGraph};
-            for (var i=0;i<user.length; i++) {
-                alert(user[i].y+" "+status[i].y);
-            }
-
+            var gender = {$genderGraph};
+            {literal}
+            Morris.Area({
+                element: 'morris-area-chart',
+                data: [
+                    {
+                        period: user[0].date,
+                        user: user[0].user,
+                        status: status[0].Status,
+                        fanclub: fanclub[0].Fanclub
+                    }, {
+                        period: user[1].date,
+                        user: user[1].user,
+                        status: status[1].Status,
+                        fanclub: fanclub[1].Fanclub
+                    }, {
+                        period: user[2].date,
+                        user: user[2].user,
+                        status: status[2].Status,
+                        fanclub: fanclub[2].Fanclub
+                    }, {
+                        period: user[3].date,
+                        user: user[3].user,
+                        status: status[3].Status,
+                        fanclub: fanclub[3].Fanclub
+                    }, {
+                        period: user[4].date,
+                        user: user[4].user,
+                        status: status[4].Status,
+                        fanclub: fanclub[4].Fanclub
+                    }, {
+                        period: user[5].date,
+                        user: user[5].user,
+                        status: status[5].Status,
+                        fanclub: fanclub[5].Fanclub
+                    }, {
+                        period: user[6].date,
+                        user: user[6].user,
+                        status: status[6].Status,
+                        fanclub: fanclub[6].Fanclub
+                    }, {
+                        period: user[7].date,
+                        user: user[7].user,
+                        status: status[7].Status,
+                        fanclub: fanclub[7].Fanclub
+                    }, {
+                        period: user[8].date,
+                        user: user[8].user,
+                        status: status[8].Status,
+                        fanclub: fanclub[8].Fanclub
+                    }, {
+                        period: user[9].date,
+                        user: user[9].user,
+                        status: status[9].Status,
+                        fanclub: fanclub[9].Fanclub
+                    },{
+                        period: user[10].date,
+                        user: user[10].user,
+                        status: status[10].Status,
+                        fanclub: fanclub[10].Fanclub
+                    },{
+                        period: user[11].date,
+                        user: user[11].user,
+                        status: status[11].Status,
+                        fanclub: fanclub[11].Fanclub
+                    }
+                ] ,
+                xkey: 'period',
+                ykeys: ['user', 'status', 'fanclub'],
+                labels: ['user', 'status', 'fanclub'],
+                pointSize: 2,
+                hideHover: 'auto',
+                resize: true
+            });
+            Morris.Donut({
+                    element: 'morris-donut-chart',
+                    data: [{
+                        label: "Unidentified",
+                        value: gender[0].number
+                    }, {
+                        label: gender[1].gender,
+                        value: gender[1].number
+                    }, {
+                        label: gender[2].gender,
+                        value: gender[2].number
+                    }],
+                    resize: true
+            });
         });
-        
+
+        {/literal}
 
     </script>
 </head>
@@ -45,87 +129,7 @@
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu message-dropdown">
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-footer">
-                            <a href="#">Read All New Messages</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu alert-dropdown">
-                        <li>
-                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">View All</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Administrator <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -138,7 +142,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="{$logout}"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -147,36 +151,13 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                        <a href="{$indexReportUrl}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
+                        <a href="{$statusReportUrl}"><i class="fa fa-fw fa-music"></i> Status Reports</a>
                     </li>
                     <li>
-                        <a href="tables.html"><i class="fa fa-fw fa-table"></i> Tables</a>
-                    </li>
-                    <li>
-                        <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a>
-                    </li>
-                    <li>
-                        <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
-                    </li>
-                    <li>
-                        <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
+                        <a href="{$userReportUrl}"><i class="fa fa-fw fa-user"></i> Manage Users</a>
                     </li>
                 </ul>
             </div>
@@ -230,7 +211,7 @@
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <i class="fa fa-tasks fa-5x"></i>
+                                        <i class="fa fa-user fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge">{$userNumber}</div>
@@ -252,7 +233,7 @@
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <i class="fa fa-shopping-cart fa-5x"></i>
+                                        <i class="fa fa-users fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge">{$fanclubNumber}</div>
@@ -274,11 +255,11 @@
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <i class="fa fa-support fa-5x"></i>
+                                        <i class="fa fa-frown-o fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">13</div>
-                                        <div>Support Tickets!</div>
+                                        <div class="huge">{$reportNumber}</div>
+                                        <div>New Reports!</div>
                                     </div>
                                 </div>
                             </div>
@@ -298,10 +279,24 @@
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Area Chart</h3>
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Status_Fanclub_User yearly report</h3>
                             </div>
                             <div class="panel-body">
                                 <div id="morris-area-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> Gender graph</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div id="morris-donut-chart"></div>
+                                <div class="text-right">
+                                </div>
                             </div>
                         </div>
                     </div>

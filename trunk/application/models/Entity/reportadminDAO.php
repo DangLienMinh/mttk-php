@@ -26,6 +26,16 @@ class reportadminDAO
 		$result = $sth->fetchAll();
 		return $result;
 	}
+
+	public function getGenderGraph()
+	{
+		$cnn=$this->em->getConnection();
+		$sth = $cnn->prepare("CALL getGenderGraph()");
+		$sth->execute();
+		$result = $sth->fetchAll();
+		return $result;
+	}
+	
 	
 	public function addReportStatus($data)
 	{
@@ -83,6 +93,14 @@ class reportadminDAO
         return $result;
 	}
 
+	public function getDayNewReport(){
+		$cnn=$this->em->getConnection();
+        $sth = $cnn->prepare("CALL getDayNewReport()");
+        $sth->execute();
+        $result = $sth->fetchAll();
+        return $result;
+	}
+
 	public function getDayNewUser(){
 		$cnn=$this->em->getConnection();
         $sth = $cnn->prepare("CALL getDayNewUser()");
@@ -123,13 +141,12 @@ class reportadminDAO
         return $result;
 	}
 
+	public function manageAllUsers(){
+		$query = $this->em->createQuery("SELECT p.email,p.first_name,p.last_name,p.picture,p.created_at,p.last_login FROM Entity\User p ORDER BY p.created_at desc");
+		$result=$query->getResult();
+		return $result;
+	}
 	
 }
-/*$cnn=$this->em->getConnection();
-        $sth = $cnn->prepare("CALL checkUserCreateGroup(?,?)");
-        $sth->bindValue(1, $email);
-        $sth->bindValue(2, $id);
-        $sth->execute();
-        $result = $sth->fetchAll();
-        return $result;*/
+
 ?>
