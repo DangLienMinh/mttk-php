@@ -24,7 +24,7 @@
             $.ajax({
                   type: "post",
             {/literal}
-                  url: "{base_url('reportadminController/getReportStatus')}",
+                  url: "{base_url('reportadminController/getReportUser')}",
             {literal}
                   cache: false,
                   success: function(data) {
@@ -32,16 +32,15 @@
                   }
             });
         });
-        $(document).on('click', '.delete_button', function() {
+        $(document).on('click', '.delete_button', function(e) {
+            e.preventDefault();
            var parent=$(this).parent().parent();
-           var user=parent.children(":eq(2)").html();
-           var status=parent.children(":eq(1)").find('a').html();
-           var report=$(this).attr("rel");
-           var dataString='report_id='+report+'&status_id='+status+'&user='+user;
+           var user=parent.children(":eq(1)").html();
+           var dataString='email='+user;
            $.ajax({
                   type: "post",
             {/literal}
-                  url: "{base_url('reportadminController/cancelReportRequest')}",
+                  url: "{base_url('reportadminController/removeUser')}",
             {literal}
                   cache: false,
                   data:dataString,
@@ -49,6 +48,7 @@
                     parent.fadeOut('slow');
                   }
             });
+           return false;
         });
 
         $(document).on('click', '.accept_button', function() {
@@ -114,10 +114,10 @@
                     <li>
                         <a href="{$indexReportUrl}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="{$statusReportUrl}"><i class="fa fa-fw fa-music"></i> Status Reports</a>
                     </li>
-                    <li  >
+                    <li  class="active">
                         <a href="{$userReportUrl}"><i class="fa fa-fw fa-user"></i> Manage Users</a>
                     </li>
                 </ul>
@@ -133,14 +133,14 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Reported Status
+                            Manage user
                         </h1>
                         <ol class="breadcrumb">
                             <li>
                                 <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-music"></i> Reported Status
+                                <i class="fa fa-user"></i> Manage Users
                             </li>
                         </ol>
                     </div>
@@ -155,10 +155,10 @@
                                 <thead>
                                     <tr>
                                         <th style="width: 43px;">STT</th>
-                                        <th style="width: 7%">STATUS</th>
-                                        <th style="width: 20%">USER REPORT</th>
-                                        <th style="width: 24%">REASON</th>
-                                        <th style="width: 16%">REPORT DATE</th>
+                                        <th style="width: 24%">EMAIL</th>
+                                        <th style="width: 20%">FULL NAME</th>
+                                        <th style="width: 24%">CREATED DAY</th>
+                                        <th style="width: 16%">LAST LOGIN</th>
                                         <th>ACTION</th>
                                     </tr>
                                 </thead>
