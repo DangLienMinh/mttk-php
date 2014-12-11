@@ -627,6 +627,24 @@ function getSongUpdateStatus(data) {
   });
 }
 
+//get wall about
+function getWallAbout(email) {
+  var dataString="email="+email;
+  $.ajax({
+    type: "post",
+    data:dataString,
+{/literal}
+    url: "{base_url('profileController/getWallAbout')}",
+{literal}
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $(".col1").html(data);
+    }
+  });
+}
+
 function getSongWall(id,number) {
   var dataString="playlist_id="+id;
   var cssSelector = {

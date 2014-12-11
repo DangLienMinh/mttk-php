@@ -129,6 +129,7 @@ function displaySongUpdateStatus(data) {
 function addStatus(msg) {
 	var obj = JSON.parse(msg);
 	if (obj.length > window.compareStatus) {
+		
 		var numberToInsert = obj.length - window.compareStatus;
 		window.compareStatus = obj.length;
 		try {
@@ -978,8 +979,15 @@ $(document).on('mouseout', '.fanclubUserBox', function() {
 
 //change cover image in personal page
 $(document).on('click', '#changeCover', function() {
+	$(".headlineLeft").show();
 	$('.imageBox').css('display', 'block');
 });
+
+$(document).on('click', '#btnCancel', function() {
+	$(".headlineLeft").hide();
+	$('.imageBox').css('display', 'none');
+});
+
 
 //first fanclub menu click 
 $(document).on('click', '#headlineFanclub', function() {

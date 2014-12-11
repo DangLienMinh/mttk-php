@@ -63,6 +63,18 @@ class ProfileController extends CI_Controller {
     function changeProfileImage() {
         $this->smarty->view('changeProfileImage');
     }
+
+    function getWallAbout(){
+      $em      = $this->doctrine->em;
+      $email   = $this->input->post('email');
+      $profile = new Entity\ProfileDAO($em);
+      $result  = $profile->getProfile($email);
+      $content="";
+      foreach ($result as $k) {
+        $content.="<p>Address: ".$k['address']."</p><p>Email: ".$email."</p><p>Education: ".$k['education']."</p>";
+      }
+      echo $content;
+    }
     
     
     public function getEducationAndReligion() {
@@ -364,5 +376,7 @@ class ProfileController extends CI_Controller {
                 break;
         }
     }
+
+    
 }
 ?>

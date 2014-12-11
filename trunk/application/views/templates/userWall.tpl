@@ -24,6 +24,7 @@ function getStatus(){
     getPlaylist();
     getSuggest();
     getPlaylistUpdateStatus();
+    getWallAbout(window.userLoginWall);
     getEducation(window.userLoginWall);
     getBasicInfo(window.userLoginWall);
     getUserDetail(window.userLoginWall);
@@ -152,8 +153,9 @@ function getStatus(){
         <div>
           <div id="coverContainer" style="height: 467px;">
               <div class="coverChange" style="display:none">
-                  <input type="file" id="changeCover" style="width: 250px"/>
-                  <input type="button" id="btnCrop" value="Finish"/>
+                  <div id="uploadCover">
+                    <input type="file" id="changeCover" style="width: 250px"/>
+                  </div>
               </div>
               <div class="imageBox">
                   <div class="thumbBox"></div>
@@ -167,7 +169,9 @@ function getStatus(){
                   <a id="headlinePlaylist" href="#">Playlist</a>
                   <a class="" href="#">More</a>
                 </div>
-                <div class="headlineLeft">
+                <div class="headlineLeft" style="display:none;">
+                  <a id="btnCrop" href="#">Finish</a>
+                  <a id="btnCancel" href="#">Cancel</a>
                 </div>
               </div>
               <div id="cover">
@@ -175,8 +179,8 @@ function getStatus(){
           </div>
           <div class="inner">
             <div id="c2013">
-              <div class="col1">Chỗ này chưa biết viết cái gì hết nên thôi cứ để đại mấy dòng rồi tính sau...</div>
-              <div class="col2">Chỗ này sẽ ghi thông tin tài khoản hay 1 dòng giới thiệu ngắn về chủ tài khoản đang sử dụng<br><br>bla... bla... bla...</div>
+              <div class="col1"></div>
+              <div class="col2">Email: anhtiminh@yahoo.com Address:Mac dinh chi 406 education: dai hoc cong nghe thong tin</div>
               <div class="clear"></div>
             </div>
           </div>

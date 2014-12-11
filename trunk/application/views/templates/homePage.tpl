@@ -11,16 +11,6 @@ function getStatus() {
     timeout: 50000,
     success: function(data) {
       addStatus(data);
-      setTimeout(
-        getStatus,
-        600000
-      );
-    },
-    error: function(XMLHttpRequest, textStatus, errorThrown) {
-      addStatus("error", textStatus + " (" + errorThrown + ")");
-      setTimeout(
-        getStatus,
-        15000);
     }
   });
 }
