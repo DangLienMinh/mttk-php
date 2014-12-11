@@ -1,7 +1,6 @@
 <?php
 namespace Entity;
 use Doctrine\Common\Collections\ArrayCollection;
-
 class ProfileDAO
 {
 	private $em;

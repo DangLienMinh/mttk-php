@@ -386,17 +386,18 @@ overflow: hidden;
     background: -webkit-linear-gradient(transparent, rgba(0, 0, 0, .6) 50%, rgba(0, 0, 0, .6) 100%);
 }
 
-#changeCover{
-    position: absolute;
-    margin-top: 243px;
-    left: 27px;
-    z-index: 2000;
+
+#uploadCover {
+    cursor:pointer;
+   background: url("../img/uploadIcon.png") no-repeat;
+   background-size: 35px 35px;
+height: 40px;
+position: absolute;
 }
-#btnCrop{
-    position: absolute;
-    top: 10%;
-    left: 91%;
-    z-index: 2000;
+
+#uploadCover input {
+   filter: alpha(opacity=0);
+   opacity: 0;
 }
 
 .coverUpdate  div{
@@ -477,7 +478,7 @@ padding: 0 17px;
 position: relative;
 vertical-align: middle;
 white-space: nowrap;
-color: #b0bdad;
+color: white;
 cursor: pointer;
 text-decoration: none;
 }
@@ -510,7 +511,7 @@ padding: 0 17px;
 position: relative;
 vertical-align: middle;
 white-space: nowrap;
-color: #b0bdad;
+color: white;
 cursor: pointer;
 text-decoration: none;
 }
