@@ -210,7 +210,7 @@ class FriendController extends CI_Controller {
         $email  = $this->session->userdata('email');
         $friend = new Entity\FriendDAO($em);
         $friend->acceptFriend($email, $friendName);
-        redirect('/main/homePage', 'refresh');
+        redirect('/', 'refresh');
     }
     
     public function removeFriendRequest($friendName) {
@@ -219,7 +219,7 @@ class FriendController extends CI_Controller {
         $email  = $this->session->userdata('email');
         $friend = new Entity\FriendDAO($em);
         $friend->declineFriend($email, $friendName);
-        redirect('/main/homePage', 'refresh');
+        redirect('/', 'refresh');
     }
 }
 

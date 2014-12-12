@@ -200,7 +200,7 @@ class StatusController extends CI_Controller {
         $em              = $this->doctrine->em;
         $status          = new Entity\statusDAO($em);
         $status->themStatus($data);
-        redirect('/main/homePage/', 'refresh');
+        redirect('/', 'refresh');
     }
     
     public function themFanclubStatus() {

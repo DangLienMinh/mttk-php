@@ -43,7 +43,7 @@ class PlaylistController extends CI_Controller {
         $data['email']        = $this->session->userdata('email');
         $data['privacy']      = 1;
         $playlist->createPlaylist($data);
-        echo base_url('main/homePage/');
+        echo base_url('/');
     }
     
     function removePlaylist() {
