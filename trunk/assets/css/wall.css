@@ -35,7 +35,9 @@ a:hover {
     margin:0 auto!important;
 }
 /*------------------------------------noti part------------------------------------*/
-
+.vietHoaTen>b{
+    text-transform: capitalize;
+}
 
 #noti_Container {
     position: relative;
@@ -771,7 +773,7 @@ text-decoration: none;
     position: relative;
     vertical-align: top;
     width: 302px;
-     z-index: 3000;
+     z-index: 200;
      float: left;
 }
 

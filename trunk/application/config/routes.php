@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "welcome";
+$route['default_controller'] = "main/homePage";
 $route['404_override'] = 'not_found';
 
 //For pages those have a static name

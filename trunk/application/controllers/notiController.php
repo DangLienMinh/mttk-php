@@ -40,7 +40,7 @@ class NotiController extends CI_Controller {
                 $notify .= '<li style="background-color:#f4f6f9"  class="noti" id="noti' . $k['notification_id'] . '"><a href="' . site_url('statusController/hienThiNotiStatus/') . "/" . $k['status_id'] . "/" . $k['notification_id'] . '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' . base_url() . 'uploads/img/' . $k['picture'] . '"/><span>' . $k['msg'] . '</span><br/><abbr class="timeago ' . $notiIcon . '" title="' . $k['created_at'] . '"></abbr></a></li>';
                 $notiNumber = $notiNumber - 1;
             } else {
-                $notify .= '<li class="noti" id="noti' . $k['notification_id'] . '"><a href="' . site_url('statusController/hienThiNotiStatus/') . "/" . $k['status_id'] . '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' . base_url() . 'uploads/img/' . $k['picture'] . '"/><span>' . $k['msg'] . '</span><br/><abbr class="timeago ' . $notiIcon . '" title="' . $k['created_at'] . '"></abbr></a></li>';
+                $notify .= '<li class="noti" id="noti' . $k['notification_id'] . '"><a href="' . site_url('statusController/hienThiNotiStatus/') . "/" . $k['status_id'] . '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' . base_url() . 'uploads/img/' . $k['picture'] . '"/><span class="vietHoaTen">' . $k['msg'] . '</span><br/><abbr class="timeago ' . $notiIcon . '" title="' . $k['created_at'] . '"></abbr></a></li>';
             }
         }
         echo $notify;
@@ -59,7 +59,7 @@ class NotiController extends CI_Controller {
             } else {
                 $notiIcon = "noti_comment";
             }
-            $notify .= '<li class="noti" id="noti' . $k['notification_id'] . '"><a href="' . site_url('statusController/hienThiNotiStatus/') . "/" . $k['status_id'] . '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' . base_url() . 'uploads/img/' . $k['picture'] . '"/><span>' . $k['msg'] . '</span><br/><abbr class="timeago ' . $notiIcon . '" title="' . $k['created_at'] . '"></abbr></a></li>';
+            $notify .= '<li class="noti" id="noti' . $k['notification_id'] . '"><a href="' . site_url('statusController/hienThiNotiStatus/') . "/" . $k['status_id'] . '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' . base_url() . 'uploads/img/' . $k['picture'] . '"/><span class="vietHoaTen">' . $k['msg'] . '</span><br/><abbr class="timeago ' . $notiIcon . '" title="' . $k['created_at'] . '"></abbr></a></li>';
         }
         echo $notify;
     }

@@ -23,7 +23,7 @@ class ProfileController extends CI_Controller {
         $profile         = new Entity\ProfileDAO($em);
         $profile->themProfile($data);
         $this->session->set_userdata('pic', $data['pic']);
-        echo base_url('/main/homePage');
+        echo base_url('/');
     }
     
     function updateImage() {
@@ -41,7 +41,7 @@ class ProfileController extends CI_Controller {
         $success     = file_put_contents($file, $pic);
         $user->suaProfileImage($data);
         $this->session->set_userdata('pic', $data['pic']);
-        echo base_url('/main/homePage');
+        echo base_url('/');
     }
     
     function suaProfileCover() {

@@ -79,8 +79,9 @@ function getStatus(){
         <div>
           <div id="coverContainer" style="height: 467px;">
               <div class="coverChange" style="display:none">
-                  <input type="file" id="changeCover" style="width: 250px"/>
-                  <input type="button" id="btnCrop" value="Finish"/>
+                  <div id="uploadCover">
+                    <input type="file" id="changeCover" style="width: 250px"/>
+                  </div>
               </div>
               <div class="imageBox">
                   <div class="thumbBox"></div>

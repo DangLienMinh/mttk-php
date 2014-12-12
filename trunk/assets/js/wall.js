@@ -568,12 +568,12 @@ function Arrow_Points() {
 
 //home page click
 $(document).on('click', '#homePage', function() {
-	window.location = window.mainController + '/homePage/';
+	window.location = window.mainController;
 });
 
 //message page click
 $(document).on('click', '#chatPage', function() {
-	window.location = window.mainController + '/chat/';
+	window.location = window.mainController + 'main/chat/';
 });
 
 //setting status pane

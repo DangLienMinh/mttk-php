@@ -38,7 +38,7 @@
   window.changeProfilePic="{site_url('profileController/changeProfileImage/')}";
   window.createFanclub="{site_url('fanclubController/createFanclub/')}";
   window.userWall="{site_url('statusController/layDSWallStatus/')}";
-  window.mainController="{site_url('main/')}";
+  window.mainController="{site_url('/')}";
   window.logout="{site_url('userController/logout/')}";
 
   window.playlistIcon="{asset_url()}img/";
@@ -1137,7 +1137,7 @@ $(document).on('click', '#headlineLeave', function() {
       cache: false,
       data: 'fanclub_id=' + window.fanclub,
       success: function(response) {
-        window.location.href = window.mainController + '/homePage/';
+        window.location.href = window.mainController;
       }
     });
   }
@@ -1184,7 +1184,7 @@ $(document).on('click', '#shareStatus', function() {
       cache: false,
       data: 'status_id=' + id+'&message='+$('#target').val(),
       success: function(response) {
-        parent.window.location.href = window.mainController + '/homePage/';
+        parent.window.location.href = window.mainController;
       }
     });
 });
