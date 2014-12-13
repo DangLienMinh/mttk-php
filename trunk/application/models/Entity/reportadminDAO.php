@@ -1,22 +1,13 @@
 <?php
 namespace Entity;
 use Doctrine\Common\Collections\ArrayCollection;
-
+use Doctrine\ORM\Tools\Pagination\Paginator;
 class reportadminDAO
 {
 	private $em;
 	function __construct($em) {
        $this->em=$em;
     }
-
-    public function getReportStatus()
-	{
-		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("SELECT * from reportadmin where status_id is not null order by status_id");
-		$sth->execute();
-		$result = $sth->fetchAll();
-		return $result;
-	}
 
 	public function getGenderGraph()
 	{
@@ -133,10 +124,56 @@ class reportadminDAO
         return $result;
 	}
 
-	public function manageAllUsers(){
-		$query = $this->em->createQuery("SELECT p.email,p.first_name,p.last_name,p.picture,p.created_at,p.last_login FROM Entity\User p ORDER BY p.created_at desc");
-		$result=$query->getResult();
+	/*ublic function getReportStatus()
+	{
+		$cnn=$this->em->getConnection();
+		$sth = $cnn->prepare("SELECT * from reportadmin where status_id is not null order by status_id");
+		$sth->execute();
+		$result = $sth->fetchAll();
 		return $result;
+	}*/
+
+	public function count_report(){
+		$cnn=$this->em->getConnection();
+        $sth = $cnn->prepare("SELECT count(*) as checked from reportadmin where status_id is not null");
+        $sth->execute();
+        $result = $sth->fetchAll();
+        return $result[0]['checked'];
+	}
+
+	public function fetch_report_pagination($start,$limit){
+		$qb = $this->em->createQueryBuilder();
+		$qb->select('u')
+            ->from('\Entity\Reportadmin', 'u')
+            ->orderBy('u.status_id','DESC')
+            ->setMaxResults($limit)
+            ->setFirstResult($start);
+
+		$query = $qb->getQuery();
+		$paginator = new Paginator($query);
+		return $paginator;
+	}
+
+	public function count_user(){
+		$cnn=$this->em->getConnection();
+        $sth = $cnn->prepare("SELECT count(*) as checked from user");
+        $sth->execute();
+        $result = $sth->fetchAll();
+        return $result[0]['checked'];
+	}
+
+
+	public function fetch_user_pagination($start,$limit){
+		$qb = $this->em->createQueryBuilder();
+		$qb->select('u')
+            ->from('\Entity\User', 'u')
+            ->orderBy('u.created_at','DESC')
+            ->setMaxResults($limit)
+            ->setFirstResult($start);
+
+		$query = $qb->getQuery();
+		$paginator = new Paginator($query);
+		return $paginator;
 	}
 }
 

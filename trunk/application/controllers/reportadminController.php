@@ -26,21 +26,21 @@ class ReportadminController extends CI_Controller {
         $this->smarty->view('reportStatus');
     }
 
-    function viewAdminReportStatus() {
+    /*function viewAdminReportStatus() {
         $this->smarty->assign('statusReportUrl',site_url('reportadminController/viewAdminReportStatus'));
         $this->smarty->assign('userReportUrl',site_url('reportadminController/viewAdminUserReport'));
         $this->smarty->assign('indexReportUrl',site_url('reportadminController/viewAdminPanel'));
         $this->smarty->assign('logout',site_url('userController/logout'));
         $this->smarty->view('admin');
     }
-
-    function viewAdminUserReport() {
+*/
+    /*function viewAdminUserReport() {
         $this->smarty->assign('statusReportUrl',site_url('reportadminController/viewAdminReportStatus'));
         $this->smarty->assign('userReportUrl',site_url('reportadminController/viewAdminUserReport'));
         $this->smarty->assign('indexReportUrl',site_url('reportadminController/viewAdminPanel'));
         $this->smarty->assign('logout',site_url('userController/logout'));
         $this->smarty->view('userReport');
-    }
+    }*/
 
     function viewAdminPanel() {
         $em              = $this->doctrine->em;
@@ -68,7 +68,7 @@ class ReportadminController extends CI_Controller {
         $this->smarty->view('adminIndex');
     }
 
-    public function getReportStatus() {
+    /*public function getReportStatus() {
         $em           = $this->doctrine->em;
         $report      = new Entity\ReportadminDAO($em);
         $result       = $report->getReportStatus();
@@ -79,20 +79,55 @@ class ReportadminController extends CI_Controller {
             $i+=1;
         }
         echo $data;
-    }
+    }*/
 
-    public function getReportUser() {
+    public function viewAdminReportStatus(){
         $em           = $this->doctrine->em;
         $report      = new Entity\ReportadminDAO($em);
-        $result       = $report->manageAllUsers();
 
+        $config['base_url'] = base_url()."reportadminController/viewAdminReportStatus";
+        $config['total_rows'] = $report->count_report();
+        $config['per_page'] = 8;
+        $config['uri_segment'] = 3;
+        $choice =$config['total_rows'] / $config['per_page'];
+        $config['num_links'] = $choice;
+        $config['full_tag_open'] = "<ul class='pagination'>";
+        $config['full_tag_close'] ="</ul>";
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        $config['cur_tag_open'] = "<li class='disabled'><li class='active'><a href='#'>";
+        $config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
+        $config['next_tag_open'] = "<li>";
+        $config['next_tagl_close'] = "</li>";
+        $config['prev_tag_open'] = "<li>";
+        $config['prev_tagl_close'] = "</li>";
+        $config['first_tag_open'] = "<li>";
+        $config['first_tagl_close'] = "</li>";
+        $config['last_tag_open'] = "<li>";
+        $config['last_tagl_close'] = "</li>";
+        $this->pagination->initialize($config);
+        $page=0;
+        if($this->uri->segment(3)!=""){
+            $page=$this->uri->segment(3);
+        }else{
+            $page=0;
+        }
+        
+        $result=$report->fetch_report_pagination($page,$config["per_page"]);
         $data="";
-        $i=1;
+        $i=$page+1;
         foreach ($result as $k) {
-            $data .= '<tr><td>'.$i.'</td><td><a href="' . site_url('statusController/layDSWallStatus/') . "/" . $k['email'] . '">'.$k['email'].'</a></td><td>'.$k['first_name'].' '.$k['last_name'].'</td><td>'.$k['created_at']->format('Y-m-d H:i:s').'</td><td>'.$k['last_login']->format('Y-m-d H:i:s').'</td><td><a class="delete_button" rel="'.$k['email'].'" href="#"></a><a rel="'.$k['email'].'" class="accept_button" href="#"></a></td></tr>';
+            $data .= '<tr><td>'.$i.'</td><td><a href="' . site_url('statusController/hienThiNotiStatus/') . "/" . $k->getStatus_id()->getStatus_id() . '">'.$k->getStatus_id()->getStatus_id().'</a></td><td>'.$k->getEmail()->getEmail().'</td><td>'.$k->getReason().'</td><td>'.$k->getCreated_at()->format('Y-m-d H:i:s').'</td><td><a class="delete_button" rel="'.$k->getReport_id().'" href="#"></a><a rel="'.$k->getReport_id().'" class="accept_button" href="#"></a></td></tr>';
             $i+=1;
         }
-        echo $data;
+        $this->smarty->assign('statusReportUrl',site_url('reportadminController/viewAdminReportStatus'));
+        $this->smarty->assign('userReportUrl',site_url('reportadminController/viewAdminUserReport'));
+        $this->smarty->assign('indexReportUrl',site_url('reportadminController/viewAdminPanel'));
+        $this->smarty->assign('logout',site_url('userController/logout'));
+        $this->smarty->assign('results',$data);
+        $this->smarty->assign('links',$this->pagination->create_links());
+        $this->smarty->view('admin');
+        
     }
 
     public function acceptReportRequest(){
@@ -120,20 +155,59 @@ class ReportadminController extends CI_Controller {
 
     public function removeUser(){
         $email = $_POST['email'];
-        $user           = $this->doctrine->em;
+        $em           = $this->doctrine->em;
         $user      = new Entity\UserDAO($em);
-        $user->removeUser($email);
+        $user->xoaUser($email);
     }
-    
-    /*public function getMoreMessages() {
-        $em              = $this->doctrine->em;
-        $data['to']      = $this->input->post('email');
-        $data['from']    = $this->session->userdata('email');
-        $data['started'] = $this->input->post('started');
-        $message         = new Entity\MessageDAO($em);
-        $result          = $message->getMoreMessages($data);
-        echo json_encode($result);
-    }*/
+
+    public function viewAdminUserReport(){
+        $em           = $this->doctrine->em;
+        $report      = new Entity\ReportadminDAO($em);
+
+        $config['base_url'] = base_url()."reportadminController/viewAdminUserReport";
+        $config['total_rows'] = $report->count_user();
+        $config['per_page'] = 8;
+        $config['uri_segment'] = 3;
+        $choice =$config['total_rows'] / $config['per_page'];
+        $config['num_links'] = $choice;
+        $config['full_tag_open'] = "<ul class='pagination'>";
+        $config['full_tag_close'] ="</ul>";
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        $config['cur_tag_open'] = "<li class='disabled'><li class='active'><a href='#'>";
+        $config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
+        $config['next_tag_open'] = "<li>";
+        $config['next_tagl_close'] = "</li>";
+        $config['prev_tag_open'] = "<li>";
+        $config['prev_tagl_close'] = "</li>";
+        $config['first_tag_open'] = "<li>";
+        $config['first_tagl_close'] = "</li>";
+        $config['last_tag_open'] = "<li>";
+        $config['last_tagl_close'] = "</li>";
+        $this->pagination->initialize($config);
+        $page=0;
+        if($this->uri->segment(3)!=""){
+            $page=$this->uri->segment(3);
+        }else{
+            $page=0;
+        }
+        
+        $result=$report->fetch_user_pagination($page,$config["per_page"]);
+        $data="";
+        $i=$page+1;
+        foreach ($result as $k) {
+            $data .= '<tr><td>'.$i.'</td><td><a href="' . site_url('statusController/layDSWallStatus/') . "/" . $k->getEmail(). '">'.$k->getEmail().'</a></td><td>'.$k->getFirst_name().' '.$k->getLast_name().'</td><td>'.$k->getCreated_at()->format('Y-m-d H:i:s').'</td><td>'.$k->getLast_login()->format('Y-m-d H:i:s').'</td><td><a class="delete_button" rel="'.$k->getEmail().'" href="#"></a><a rel="'.$k->getEmail().'" class="accept_button" href="#"></a></td></tr>';
+            $i+=1;
+        }
+        $this->smarty->assign('statusReportUrl',site_url('reportadminController/viewAdminReportStatus'));
+        $this->smarty->assign('userReportUrl',site_url('reportadminController/viewAdminUserReport'));
+        $this->smarty->assign('indexReportUrl',site_url('reportadminController/viewAdminPanel'));
+        $this->smarty->assign('logout',site_url('userController/logout'));
+        $this->smarty->assign('results',$data);
+        $this->smarty->assign('links',$this->pagination->create_links());
+        $this->smarty->view('userReport');
+        
+    }
 }
 
 ?>
