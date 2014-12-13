@@ -5,37 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin panel</title>
-    <!-- jQuery -->
     <script type="text/javascript" src="{asset_url()}js/jquery-2.1.1.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
     <script type="text/javascript" src="{asset_url()}js/bootstrap.min.js"></script>
-    <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" type="text/css" href="{asset_url()}css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{asset_url()}css/sb-admin.css">
     <link rel="stylesheet" type="text/css" href="{asset_url()}font-awesome-4.1.0/css/font-awesome.min.css">
      {literal}
     <style>
      table { table-layout: fixed; width:100%!important;}
-
     </style>
     <script>
         $(document).ready(function() {
-            $.ajax({
-                  type: "post",
-            {/literal}
-                  url: "{base_url('reportadminController/getReportUser')}",
-            {literal}
-                  cache: false,
-                  success: function(data) {
-                    $("#reportContent").html(data);
-                  }
-            });
         });
         $(document).on('click', '.delete_button', function(e) {
             e.preventDefault();
            var parent=$(this).parent().parent();
-           var user=parent.children(":eq(1)").html();
+           var user=parent.children(":eq(1)").find('a').html();
            var dataString='email='+user;
            $.ajax({
                   type: "post",
@@ -51,7 +36,7 @@
            return false;
         });
 
-        $(document).on('click', '.accept_button', function() {
+        /*$(document).on('click', '.accept_button', function() {
            var parent=$(this).parent().parent();
            var user=parent.children(":eq(2)").html();
            var status=parent.children(":eq(1)").find('a').html();
@@ -68,13 +53,12 @@
                     parent.fadeOut('slow');
                   }
             });
-        });
+        });*/
     {/literal}
     </script>
 </head>
 <body>
     <div id="wrapper">
-
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -163,12 +147,14 @@
                                     </tr>
                                 </thead>
                                 <tbody id="reportContent">
+                                    {$results}
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
+            {$links}
         </div>
     </div>
 </body>

@@ -21,7 +21,7 @@
     </style>
     <script>
         $(document).ready(function() {
-            $.ajax({
+            /*$.ajax({
                   type: "post",
             {/literal}
                   url: "{base_url('reportadminController/getReportStatus')}",
@@ -30,7 +30,7 @@
                   success: function(data) {
                     $("#reportContent").html(data);
                   }
-            });
+            });*/
         });
         $(document).on('click', '.delete_button', function() {
            var parent=$(this).parent().parent();
@@ -163,12 +163,14 @@
                                     </tr>
                                 </thead>
                                 <tbody id="reportContent">
+                                    {$results}
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
+            {$links}
         </div>
     </div>
 </body>
