@@ -52,6 +52,7 @@ class UserController extends CI_Controller {
                     'is_logged_in' => true,
                     'first_name' => $data['first_name'],
                     'last_name' => $data['last_name'],
+                    'password' => $data['password'],
                     'birth_date' => $data['birthday']
                 );
                 $this->session->set_userdata($data);
@@ -73,7 +74,19 @@ class UserController extends CI_Controller {
             return FALSE;
         }
     }
-    
+
+    public function suaPassword(){
+        $pass=$this->input->post('pass');
+        $em               = $this->doctrine->em;
+        $user             = new Entity\UserDAO($em);
+        $user->suaPassword($this->session->userdata('email'),md5($pass));
+    }
+
+    public function viewSuaPassword()
+    {
+        $this->smarty->assign('password', $this->session->userdata('password'));
+        $this->smarty->view('changePassword');
+    }
     public function checkLoginInfo() {
         $data['email']    = $this->input->post('email_login');
         $data['password'] = $this->input->post('pass_login');
@@ -87,6 +100,7 @@ class UserController extends CI_Controller {
                 'first_name' => $result[0]['first_name'],
                 'pic' => $result[0]['picture'],
                 'last_name' => $result[0]['last_name'],
+                'password' => $data['password'],
                 'birth_date' => $result[0]['birthday']
             );
 

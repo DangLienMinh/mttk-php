@@ -146,3 +146,84 @@ text-decoration: none;
 white-space: nowrap;
 }
 
+.cancelButton{
+	color: black!important;
+	background-repeat: no-repeat!important;
+	background-size: auto!important;
+	background-position: 0 -98px!important;
+	background-color: #e9eaed!important;
+	border: 1px solid #999!important;
+	border-bottom-color: #888!important;
+	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .1)!important;
+}
+
+.ptm {
+padding-top: 10px;
+}
+.uiInfoTableFixed {
+table-layout: fixed;
+}
+.uiInfoTable {
+border: 0;
+border-collapse: collapse;
+border-spacing: 0;
+width: 100%;
+}
+table {
+display: table;
+border-collapse: separate;
+border-spacing: 2px;
+border-color: gray;
+}
+#facebook .hidden_elem {
+display: none !important;
+}
+tr {
+display: table-row;
+vertical-align: inherit;
+border-color: inherit;
+}
+.clearfix {
+zoom: 1;
+}
+.uiInfoTable .dataRow .label {
+padding-top: 8px;
+}
+.fbSettingsEditorFields .label, .fbNotifSettingsEditorFields .label {
+min-width: 100px;
+}
+.uiInfoTable .label {
+color: #666;
+font-weight: bold;
+padding-right: 10px;
+text-align: right;
+width: 130px;
+}
+.uiInfoTable .label, .uiInfoTable .data, .uiInfoTable .rightCol {
+padding: 3px 0 1px 0;
+text-align: left;
+vertical-align: top;
+}
+th {
+font-weight: bold;
+}
+td, th {
+display: table-cell;
+vertical-align: inherit;
+}
+.uiInfoTable .dataRow .data, .uiInfoTable .dataRow .rightCol {
+padding-top: 5px;
+}
+.uiInfoTable .data>input, .uiInfoTable .data>label input, .uiInfoTable .rightCol>input, .uiInfoTable .rightCol>label input {
+margin-left: 0;
+}
+.inputtext, .inputpassword {
+padding-bottom: 4px;
+}
+textarea, .inputtext, .inputpassword {
+border: 1px solid #bdc7d8;
+margin: 0;
+padding: 3px;
+-webkit-appearance: none;
+-webkit-border-radius: 0;
+}

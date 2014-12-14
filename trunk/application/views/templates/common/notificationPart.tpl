@@ -34,7 +34,15 @@
             </div>
           </li>
         </ul>
-        <div id="logoutContainer" class="social">
+        <!-- <div id="logoutContainer" class="social"> -->
+        <div class="settingDropdown social">
+          <a class="settingIcon" ></a>
+          <div class="settingSubmenu" style="display: none;">
+            <ul class="root">
+              <li class="settingPassword"></li>
+              <li class="settingLogout"></li>
+            </ul>
+          </div>
         </div>
         <input type="text" class="search" id="searchbox" placeholder="Search for people, fanclub"/><br />
         <div id="displayUserBox">
