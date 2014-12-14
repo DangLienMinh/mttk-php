@@ -35,6 +35,7 @@
   window.shareStatus="{site_url('statusController/hienThiShareStatus/')}";
   window.cretePlaylist="{site_url('playlistController/viewPlaylist/')}";
   window.reportAdmin="{site_url('reportadminController/viewReport/')}";
+  window.suaPassword="{site_url('userController/viewSuaPassword/')}";
   window.changeProfilePic="{site_url('profileController/changeProfileImage/')}";
   window.createFanclub="{site_url('fanclubController/createFanclub/')}";
   window.userWall="{site_url('statusController/layDSWallStatus/')}";
@@ -68,6 +69,7 @@ $(document).ajaxStop(function() {
     {
       $(this).timeago(); // Calling Timeago Funtion 
     });
+    $(".iframe").colorbox({iframe:true, width:"50%", height:"60%"});
 });
 
 /*$(document).ajaxStart(function () {
@@ -353,7 +355,7 @@ function getPlaylist() {
     success: function(data) {
       $('#playlistBox select').append(data);
       $('#playlistBox').append('<br/><a class="iframe" href="'+window.cretePlaylist+'">Create Playlist</a>');
-      $(".iframe").colorbox({iframe:true, width:"50%", height:"50%"});
+      //$(".iframe").colorbox({iframe:true, width:"50%", height:"50%"});
     }
   });
 }
@@ -435,8 +437,10 @@ function friendRequest(userWall) {
         $('.coverChange').css('display','block');
       }
       $('#cover').parent().append('<div class="coverName"><b><a href="' + window.userWall + "/" + window.userLogin + '">' + window.userNameWall + '</a></b></div>');
-      $(".iframe").colorbox({iframe:true, width:"50%", height:"50%"});
-      $('#logoutContainer').append('<a title="logout" href="'+window.logout+'" ><img src="'+window.playlistIcon+'/logout.png'+'" style="width:19px;height:19px;"/></a>');
+      
+      $('.settingLogout').append('<a title="logout" href="'+window.logout+'" >Log out</a>');
+      $(".settingPassword").append('<a class="iframe" href="'+window.suaPassword+'" >Change Password</a>');
+      //$(".iframe").colorbox({iframe:true, width:"50%", height:"70%"});
     }
   });
 }

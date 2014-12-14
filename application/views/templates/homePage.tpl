@@ -65,11 +65,11 @@ function getStatus() {
     });
 
     $('.fanclubInfo').append('<div class="fanclubUserBox" align="left"><a href="' + window.createFanclub + '" class="iframe">Create new fanclub</a></div>');
-    $(".iframe").colorbox({
+    /*$(".iframe").colorbox({
       iframe: true,
       width: "50%",
       height: "50%"
-    });
+    });*/
   });
   </script>
  {/literal}

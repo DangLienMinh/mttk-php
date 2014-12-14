@@ -190,7 +190,7 @@ function addStatus(msg) {
 						return;
 					}
 				}
-		        $(".iframe").colorbox({iframe:true, width:"50%", height:"50%"});
+		        //$(".iframe").colorbox({iframe:true, width:"50%", height:"50%"});
 			});
 		} catch (e) {
 			alert(e);
@@ -585,6 +585,19 @@ $(document).on('click', '.account', function() {
 		$(this).attr('id', '0');
 	} else {
 		$(this).parent().find(".submenu").show();
+		$(this).attr('id', '1');
+	}
+});
+
+//notification panel setting status pane
+$(document).on('click', '.settingIcon', function() {
+	var X = $(this).attr('id');
+
+	if (X == 1) {
+		$(this).parent().find(".settingSubmenu").hide();
+		$(this).attr('id', '0');
+	} else {
+		$(this).parent().find(".settingSubmenu").show();
 		$(this).attr('id', '1');
 	}
 });

@@ -29,6 +29,7 @@ class Main extends CI_Controller {
 	{
 		$this->smarty->view('searchFriend');
 	}
+	
 	public function chat()
 	{
 		$this->smarty->assign('userPicCmt',$this->session->userdata('pic'));

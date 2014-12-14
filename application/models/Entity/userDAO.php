@@ -123,5 +123,13 @@ class UserDAO
 		$this->em->merge($user);
 		$this->em->flush();
 	}
+
+	public function suaPassword($email,$pass)
+	{
+	    $user = $this->em->getReference('Entity\User', $email);
+	    $user->setPassword($pass);
+		$this->em->merge($user);
+		$this->em->flush();
+	}
 }
 ?>

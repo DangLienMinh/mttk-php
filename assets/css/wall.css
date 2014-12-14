@@ -1732,3 +1732,59 @@ font-size: 14px;
 font-weight: bold;
 text-decoration: none;
 }
+
+div.settingDropdown {
+color: #555;
+margin: 3px 0px 0 0;
+position: relative;
+height: 17px;
+text-align:left;
+float:right;
+
+}
+
+.settingDropdown  li a {
+   
+    color: #555555;
+    display: block;
+    font-family: arial;
+    font-weight: bold;
+    padding: 6px 15px;
+  cursor: pointer;
+text-decoration:none;
+}
+
+.settingDropdown li a:hover{
+    background:#155FB0;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+a.settingIcon {
+
+position: absolute;
+z-index: 110;
+display: block;
+padding: 11px 0 0 20px;
+height: 15px;
+width: 15px;
+margin: -18px 0 0 -23px;
+cursor: pointer;
+background: url("../img/setting.png") no-repeat;
+background-size: 23px 22px;
+}
+
+div.settingSubmenu
+{
+background: #fff;
+position: absolute;
+top: -25px;
+left: -118px;
+z-index: 100;
+width: 120px;
+display: none;
+margin-left: 10px;
+padding: 40px 0 5px;
+border-radius: 6px;
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+}
