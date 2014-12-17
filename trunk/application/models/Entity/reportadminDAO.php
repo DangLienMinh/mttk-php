@@ -9,6 +9,7 @@ class reportadminDAO
        $this->em=$em;
     }
 
+    //get report gender of user of mymusic
 	public function getGenderGraph()
 	{
 		$query = $this->em->createQuery("SELECT p.gender,count(p.profile_id) as number FROM Entity\profile p GROUP BY p.gender");
@@ -16,6 +17,7 @@ class reportadminDAO
 		return $result;
 	}
 	
+	//add new status report by other user
 	public function addReportStatus($data)
 	{
 		$report = new Reportadmin;
@@ -28,6 +30,7 @@ class reportadminDAO
 		$this->em->flush();
 	}
 
+	//the user report about the status is removed
 	public function solvedUserReport($report_id)
 	{
 		$report = $this->em->getReference('Entity\Reportadmin', $report_id);
@@ -35,6 +38,7 @@ class reportadminDAO
 	    $this->em->flush();
 	}
 
+	//notify the user that reports stautus that their report is canceled
 	public function notifyCancelReport($status,$user){
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("CALL notifyCancelReport(?,?)");
@@ -43,6 +47,7 @@ class reportadminDAO
 		$sth->execute();
 	}
 
+	//notify the user that reports stautus that their report is accepted
 	public function notifyAcceptReport($status,$user){
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("CALL notifyAcceptReport(?,?)");
@@ -51,19 +56,7 @@ class reportadminDAO
 		$sth->execute();
 	}
 
-
-	public function addReportFanclub($data)
-	{
-		$report = new Reportadmin;
-		$user = $this->em->getReference('Entity\User',$data['email']);
-		$fanclub = $this->em->getReference('Entity\Fanclub',$data['fanclub_id']);
-		$report->setReason($data['reason']);
-		$report->setEmail($user);
-		$report->setFanclub_id($fanclub);
-		$this->em->persist($report);
-		$this->em->flush();
-	}
-
+	//get current day new status updated
 	public function getDayNewStatus(){
 		$cnn=$this->em->getConnection();
         $sth = $cnn->prepare("SELECT count(*) as soStatus from status where 
@@ -73,6 +66,7 @@ class reportadminDAO
         return $result;
 	}
 
+	//get current day new status reported
 	public function getDayNewReport(){
 		$cnn=$this->em->getConnection();
         $sth = $cnn->prepare("SELECT count(p.report_id) as soReport from reportadmin p WHERE 
@@ -82,6 +76,7 @@ class reportadminDAO
         return $result;
 	}
 
+	//get current day new user register
 	public function getDayNewUser(){
 		$cnn=$this->em->getConnection();
         $sth = $cnn->prepare("SELECT count(*) as soUser from user where 
@@ -91,6 +86,7 @@ class reportadminDAO
         return $result;
 	}
 
+	//get current day new fanclub created
 	public function getDayNewFanclub(){
 		$cnn=$this->em->getConnection();
         $sth = $cnn->prepare("SELECT count(*) as soFanclub from fanclub where 
@@ -100,6 +96,7 @@ class reportadminDAO
         return $result;
 	}
 
+	//get number of user register in current year
 	public function getUserGraph(){
 		$cnn=$this->em->getConnection();
         $sth = $cnn->prepare("CALL getUserGraph()");
@@ -108,6 +105,7 @@ class reportadminDAO
         return $result;
 	}
 
+	//get number of facnlub create in current year
 	public function getFanclubGraph(){
 		$cnn=$this->em->getConnection();
         $sth = $cnn->prepare("CALL getFanclubGraph()");
@@ -116,6 +114,7 @@ class reportadminDAO
         return $result;
 	}
 
+	//get number of status update in current year
 	public function getStatusGraph(){
 		$cnn=$this->em->getConnection();
         $sth = $cnn->prepare("CALL getStatusGraph()");
@@ -124,15 +123,7 @@ class reportadminDAO
         return $result;
 	}
 
-	/*ublic function getReportStatus()
-	{
-		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("SELECT * from reportadmin where status_id is not null order by status_id");
-		$sth->execute();
-		$result = $sth->fetchAll();
-		return $result;
-	}*/
-
+	//count all the status report
 	public function count_report(){
 		$cnn=$this->em->getConnection();
         $sth = $cnn->prepare("SELECT count(*) as checked from reportadmin where status_id is not null");
@@ -141,6 +132,7 @@ class reportadminDAO
         return $result[0]['checked'];
 	}
 
+	//get report status with pagination
 	public function fetch_report_pagination($start,$limit){
 		$qb = $this->em->createQueryBuilder();
 		$qb->select('u')
@@ -154,6 +146,7 @@ class reportadminDAO
 		return $paginator;
 	}
 
+	//count all the user
 	public function count_user(){
 		$cnn=$this->em->getConnection();
         $sth = $cnn->prepare("SELECT count(*) as checked from user");
@@ -162,7 +155,7 @@ class reportadminDAO
         return $result[0]['checked'];
 	}
 
-
+	//get user with pagination
 	public function fetch_user_pagination($start,$limit){
 		$qb = $this->em->createQueryBuilder();
 		$qb->select('u')

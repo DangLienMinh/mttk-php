@@ -9,6 +9,7 @@ class MessageDAO
        $this->em=$em;
     }
 
+    //get first 20 messages of current user and other user
     public function getFirstMessages($data)
 	{
 		$cnn=$this->em->getConnection();
@@ -20,6 +21,7 @@ class MessageDAO
 		return $result;
 	}
 
+	//get next 10 messages of current user and other user
 	public function getMoreMessages($data)
 	{
 		$cnn=$this->em->getConnection();
@@ -32,6 +34,7 @@ class MessageDAO
 		return $result;
 	}
 	
+	//add new message of current user and other user
 	public function addMessage($data)
 	{
 		$message = new Message;

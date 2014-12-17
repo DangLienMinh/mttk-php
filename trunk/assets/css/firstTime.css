@@ -1,160 +1,165 @@
 body {
-background-color: #e8eaed;
-font-family: Helvetica, Arial, 'lucida grande',tahoma,verdana,arial,sans-serif;
-font-size: 12px;
+  background-color: #e8eaed;
+  font-family: Helvetica, Arial, 'lucida grande',tahoma,verdana,arial,sans-serif;
+  font-size: 12px;
 }
 
 #display {
-    width: 250px;
-    display: none;
-    position:absolute;
-    margin-right: 30px;
-    border-left: solid 1px #dedede;
-    border-right: solid 1px #dedede;
-    border-bottom: solid 1px #dedede;
-    overflow: hidden;
-
+  width: 250px;
+  display: none;
+  position: absolute;
+  margin-right: 30px;
+  border-left: solid 1px #dedede;
+  border-right: solid 1px #dedede;
+  border-bottom: solid 1px #dedede;
+  overflow: hidden;
 }
 
-
 .display_box {
-    padding: 4px;
-    border-top: solid 1px #dedede;
-    font-size: 12px;
-    height: 30px;
-    position: relative;
-    background:#fff;
+  padding: 4px;
+  border-top: solid 1px #dedede;
+  font-size: 12px;
+  height: 30px;
+  position: relative;
+  background: #fff;
 }
 
 .display_box:hover {
-    background: #3b5998;
-    color: #FFF!important;
-    text-decoration: none;
+  background: #3b5998;
+  color: #FFF!important;
+  text-decoration: none;
 }
 
 .display_box a {
-    color: black;
-    font-size: 14px;
-    font-weight: bold;
-    text-decoration: none;
+  color: black;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .display_box button {
-    right: 10px;
-    position: absolute;
+  right: 10px;
+  position: absolute;
 }
 
-#tabs{
-      width:40%;
-      margin: 0px auto;
-    }
-    #tabs-1{
-      overflow: hidden;
-    }
-    #target{
-      width: 100%;
+#tabs {
+  width: 40%;
+  margin: 0px auto;
+}
+
+#tabs-1 {
+  overflow: hidden;
+}
+
+#target {
+  width: 100%;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  box-sizing: border-box; 
-    }
-        .action
-        {
-            width: 400px;
-            height: 30px;
-            margin: 10px 0;
-        }
-        .cropped>img
-        {
-            margin-right: 10px;
-        }
-
-#zoom{
-    position: absolute;
-top: 35px;
-left: 343px;
-}
-#zoom input{
-    margin-right:5px;
-    width:30px;
-}
-#zoom h3{
-    text-align: center;
+  box-sizing: border-box;
 }
 
-#btnCrop{
-    position: absolute;
-left: 87%;
-top: 92%;
+.action {
+  width: 400px;
+  height: 30px;
+  margin: 10px 0;
 }
 
-.cropped{position: absolute;
-top: 49%;
-left: 60%;}
+.cropped>img {
+  margin-right: 10px;
+}
+
+#zoom {
+  position: absolute;
+  top: 35px;
+  left: 343px;
+}
+
+#zoom input {
+  margin-right: 5px;
+  width: 30px;
+}
+
+#zoom h3 {
+  text-align: center;
+}
+
+#btnCrop {
+  position: absolute;
+  left: 87%;
+  top: 92%;
+}
+
+.cropped {
+  position: absolute;
+  top: 49%;
+  left: 60%;
+}
 
 #facebook {
-    height: 60px;
-    width: 210px;
-    overflow: hidden;
-    padding: 1px 10px 14px 10px;
-    margin:0 auto;
+  height: 60px;
+  width: 210px;
+  overflow: hidden;
+  padding: 1px 10px 14px 10px;
+  margin: 0 auto;
 }
 
 #facebook li {
-    border: 0;
-    margin: 0;
-    list-style: none;
-    height: 60px;
-    padding: 5px;
-    width:147px;
+  border: 0;
+  margin: 0;
+  list-style: none;
+  height: 60px;
+  padding: 5px;
+  width: 147px;
 }
 
 #facebook a {
-    color: #000000;
-    text-decoration: none;
+  color: #000000;
+  text-decoration: none;
 }
 
 #facebook button {
-    float:left;
+  float: left;
 }
 
 #facebook .user-title {
-    float:left;
-    display: block;
-    font-weight: bold;
-    margin-bottom: 4px;
-    font-size: 11px;
-    color: #36538D;
+  float: left;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 4px;
+  font-size: 11px;
+  color: #36538D;
 }
 
 #facebook img {
-    float: left;
-    margin-right: 14px;
-    padding: 4px;
+  float: left;
+  margin-right: 14px;
+  padding: 4px;
 }
 
 #facebook .del {
-    float: right;
-    font-weight: bold;
-    color: #666666;
+  float: right;
+  font-weight: bold;
+  color: #666666;
 }
 
 #facebook .del a {
-    color: #000000;
+  color: #000000;
 }
 
 #facebook .del a:hover {
-    background-color: #36538D;
-    padding-left: 1px;
-    padding-right: 1px;
-    color: #ffffff;
+  background-color: #36538D;
+  padding-left: 1px;
+  padding-right: 1px;
+  color: #ffffff;
 }
 
-#searchFriend{
-    position: absolute;
-    left: 52%;
-    top: 27%;
+#searchFriend {
+  position: absolute;
+  left: 52%;
+  top: 27%;
 }
-#friendFooter{
-    float:left;
-    border-right: 1px solid black;
+
+#friendFooter {
+  float: left;
+  border-right: 1px solid black;
 }

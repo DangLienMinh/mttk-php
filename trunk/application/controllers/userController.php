@@ -1,15 +1,17 @@
 <?php
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 class UserController extends CI_Controller {
+
+    //check if user have logged in
     function index() {
         if($this->session->userdata('email')!=""){
             redirect('/','refresh');
         }else{
             $this->smarty->view('login');
         }
-        
     }
     
+    //login
     public function login1() {
         $this->form_validation->set_rules('email_login', 'Email', 'trim|required|valid_email');
         $this->form_validation->set_rules('pass_login', 'Password', 'trim|required|md5|callback_checkLoginInfo');
@@ -18,6 +20,8 @@ class UserController extends CI_Controller {
             $this->smarty->view('login');
         }
     }
+    
+    //logout
     public function logout() {
         $em    = $this->doctrine->em;
         $user  = new Entity\UserDAO($em);
@@ -59,9 +63,9 @@ class UserController extends CI_Controller {
                 redirect('/main/firstTime', 'refresh');
             }
         }
-        
     }
     
+    //check email
     public function email_check($str) {
         $em       = $this->doctrine->em;
         $user     = new Entity\UserDAO($em);
@@ -75,6 +79,7 @@ class UserController extends CI_Controller {
         }
     }
 
+    //change password
     public function suaPassword(){
         $pass=$this->input->post('pass');
         $em               = $this->doctrine->em;
@@ -82,11 +87,14 @@ class UserController extends CI_Controller {
         $user->suaPassword($this->session->userdata('email'),md5($pass));
     }
 
+    //view change password page
     public function viewSuaPassword()
     {
         $this->smarty->assign('password', $this->session->userdata('password'));
         $this->smarty->view('changePassword');
     }
+
+    //check login information ->form validation
     public function checkLoginInfo() {
         $data['email']    = $this->input->post('email_login');
         $data['password'] = $this->input->post('pass_login');
@@ -113,7 +121,6 @@ class UserController extends CI_Controller {
                 else
                     redirect('/main/firstTime', 'refresh');
             }
-            
             return TRUE;
         } else {
             $this->form_validation->set_message('checkLoginInfo', 'Sorry your email or password is not correct');

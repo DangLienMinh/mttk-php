@@ -9,6 +9,7 @@ class FanclubDAO
        $this->em=$em;
    }
 
+   //add a new fanclub
     public function themFanclub($data)
     {
         $fanclub = new Fanclub;
@@ -20,6 +21,7 @@ class FanclubDAO
         $this->em->flush();
     }
 
+    //add new user to fanclub by other member in the fanclub
     public function themFanclubUser($data)
     {
         $cnn=$this->em->getConnection();
@@ -30,6 +32,7 @@ class FanclubDAO
         $sth->execute();
     }
 
+    //user add themself to fanclub by finding the fanclub
     public function tuThemVaoFanclub($data)
     {
         $fanclub = new Fanclub_users;
@@ -41,6 +44,7 @@ class FanclubDAO
         $this->em->flush();
     }
 
+    //member post new status in the fanclub
     public function themFanclubUpdate($data)
     {
         $fanclub = new Fanclub_updates;
@@ -52,6 +56,7 @@ class FanclubDAO
         $this->em->flush();
     }
 
+    //search fanclub by name
     public function timFanclub($name){
         $cnn=$this->em->getConnection();
         $sth = $cnn->prepare("select fanclub_id,fanclub_name,fanclub_desc,(select count(*)+1 from fanclub_users where fanclub_id=(select fanclub_id from fanclub where fanclub_name=?)) as soluong from fanclub where fanclub_name=? order by fanclub_name LIMIT 5");
@@ -62,6 +67,7 @@ class FanclubDAO
         return $result;
     }
 
+    //search fanclub by fanclub_id
     public function getFanclubByID($id){
         $query = $this->em->createQuery("SELECT p.fanclub_name,p.fanclub_desc,p.coverImg FROM Entity\Fanclub p WHERE p.fanclub_id = ?1");
         $query->setParameter(1, $id);
@@ -69,6 +75,7 @@ class FanclubDAO
         return $results;
     }
 
+    //check user is the fanclub creator
     public function checkUserCreateGroup($email,$id){
         $cnn=$this->em->getConnection();
         $sth = $cnn->prepare("SELECT count(*) as checked from fanclub where email=? and fanclub_id=?");
@@ -79,6 +86,7 @@ class FanclubDAO
         return $result;
     }
 
+    //check user is the member in fanclub
     public function checkUserMemberGroup($email,$id){
         $cnn=$this->em->getConnection();
         $sth = $cnn->prepare("SELECT count(*) as checked from fanclub_users where email=? and fanclub_id=?");
@@ -89,6 +97,7 @@ class FanclubDAO
         return $result;
     }
 
+    //get all the fanclubs the user involved
     public function getFanclub($email){
         $cnn=$this->em->getConnection();
         $sth = $cnn->prepare("SELECT p.fanclub_id,p.fanclub_name,p.fanclub_desc FROM Fanclub p WHERE p.email = ? or p.fanclub_id in(select h.fanclub_id from Fanclub_users h where h.email=?) order by p.fanclub_name LIMIT 10");
@@ -99,6 +108,7 @@ class FanclubDAO
         return $result;
     }
 
+    //get all the members of the fanclub
     public function getMembers($id)
     {
         $cnn=$this->em->getConnection();
@@ -111,6 +121,7 @@ class FanclubDAO
         return $result;
     }
 
+    //admin removes member from their fanclub
     public function removeMember($email,$id)
     {
        $cnn=$this->em->getConnection();
@@ -120,6 +131,7 @@ class FanclubDAO
         $sth->execute();
     }
 
+    //admin removes their fanclub
     public function removeFanclub($email,$id)
     {
        $cnn=$this->em->getConnection();
@@ -129,6 +141,7 @@ class FanclubDAO
         $sth->execute();
     }
 
+    //change the cover photo of the fanclub
     public function suaProfileCover($data)
     {
         $fanclub = $this->em->getReference('Entity\Fanclub',$data['fanclub_id']);
@@ -136,6 +149,8 @@ class FanclubDAO
         $this->em->merge($fanclub);
         $this->em->flush();
     }
+
+    //get the provious fanclub cover for deleting to add new cover
     public function getPreviousProfileCover($fanclub_id)
     {
         $fanclub = $this->em->getReference('Entity\Fanclub', $fanclub_id);

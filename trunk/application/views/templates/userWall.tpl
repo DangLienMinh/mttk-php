@@ -169,6 +169,8 @@ function getStatus(){
                   <a id="headlinePlaylist" href="#">Playlist</a>
                   <a class="" href="#">More</a>
                 </div>
+                <div class="headlineFriendRelation">
+                </div>
                 <div class="headlineLeft" style="display:none;">
                   <a id="btnCrop" href="#">Finish</a>
                   <a id="btnCancel" href="#">Cancel</a>

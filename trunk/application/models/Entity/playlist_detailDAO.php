@@ -9,6 +9,7 @@ class Playlist_detailDAO
        $this->em=$em;
     }
 
+    //add new music to the playlist
 	public function addMusic($data)
 	{
 		$playlistDetail = new Playlist_detail;
@@ -20,6 +21,7 @@ class Playlist_detailDAO
 		$this->em->flush();
 	}
 
+	//get all the songs in the playlist
 	public function layPlaylistSongs($id)
 	{
 		$cnn=$this->em->getConnection();

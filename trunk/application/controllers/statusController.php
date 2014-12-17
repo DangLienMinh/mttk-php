@@ -1,6 +1,7 @@
 <?php
 class StatusController extends CI_Controller {
     
+    //check if user have logged in
     function __construct() {
         parent::__construct();
         $is_logged_in = $this->session->userdata('is_logged_in');
@@ -9,6 +10,7 @@ class StatusController extends CI_Controller {
         }
     }
     
+    //get status in home page
     function index() {
         $em     = $this->doctrine->em;
         $status = new Entity\statusDAO($em);
@@ -16,6 +18,7 @@ class StatusController extends CI_Controller {
         echo json_encode($result);
     }
     
+    //get report famous status
     function GetFamousStatus() {
         $sdate  = $_POST['sdate'];
         $edate  = $_POST['edate'];
@@ -29,6 +32,7 @@ class StatusController extends CI_Controller {
         $this->smarty->view('reportMusic');
     }
     
+    //get next 10 home page status
     function getNextStatus() {
         $id     = $this->input->post('status_id');
         $em     = $this->doctrine->em;
@@ -37,6 +41,7 @@ class StatusController extends CI_Controller {
         echo json_encode($result);
     }
     
+    //get next user wall status
     function getNextWallStatus() {
         $id     = $this->input->post('status_id');
         $email  = $this->input->post('email');
@@ -46,6 +51,7 @@ class StatusController extends CI_Controller {
         echo json_encode($result);
     }
     
+    //get user wall status
     function layDSWallStatus($email) {
         $em     = $this->doctrine->em;
         $status = new Entity\statusDAO($em);
@@ -86,6 +92,7 @@ class StatusController extends CI_Controller {
         $this->smarty->view('userWall');
     }
     
+    //get fanclub status
     function layDSFanclubStatus($fanclubid) {
         $em      = $this->doctrine->em;
         $status  = new Entity\statusDAO($em);
@@ -126,6 +133,7 @@ class StatusController extends CI_Controller {
         }
     }
     
+    //update status choose music
     public function chooseMusic() {
         if (@$_POST['music_name']) {
             $music    = $_POST["music_name"];
@@ -145,6 +153,7 @@ class StatusController extends CI_Controller {
         }
     }
     
+    //remove status
     public function xoaStatus() {
         $id      = $this->input->post('status_id');
         $em      = $this->doctrine->em;
@@ -153,6 +162,7 @@ class StatusController extends CI_Controller {
         $status->xoaStatus($id, $linkUrl);
     }
     
+    //alter status
     public function suaStatus() {
         $id     = $this->input->post('status_id');
         $msg    = $this->input->post('msg');
@@ -161,6 +171,7 @@ class StatusController extends CI_Controller {
         $status->suaStatus($id, $msg);
     }
     
+    //update new status
     public function updateStatus() {
         $data['status']  = "";
         $data['music']   = "";
@@ -183,9 +194,6 @@ class StatusController extends CI_Controller {
                 $this->load->library('upload', $config);
                 
                 if (!$this->upload->do_upload("musicFile")) {
-                    /*$error = $this->upload->display_errors();
-                    $this->smarty->assign('error',$error);
-                    $this->smarty->view('upload');*/
                 } else {
                     $uploaded       = array(
                         'upload_data' => $this->upload->data()
@@ -203,6 +211,7 @@ class StatusController extends CI_Controller {
         redirect('/', 'refresh');
     }
     
+    //add new fanclub status
     public function themFanclubStatus() {
         $data['status']  = "";
         $data['music']   = "";
@@ -245,6 +254,7 @@ class StatusController extends CI_Controller {
         redirect('/statusController/layDSFanclubStatus/' . $data['fanclub_id'] . '/', 'refresh');
     }
     
+    //get status when user click on notification
     public function hienThiNotiStatus($statusParam, $noti_id = -1) {
         $em = $this->doctrine->em;
         if ($noti_id != -1) {
@@ -261,6 +271,7 @@ class StatusController extends CI_Controller {
         $this->smarty->view('notiStatus');
     }
     
+    //get share status when user click in notification
     public function hienThiShareStatus($statusParam) {
         $em     = $this->doctrine->em;
         $status = new Entity\statusDAO($em);

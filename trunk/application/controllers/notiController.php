@@ -2,6 +2,7 @@
 
 class NotiController extends CI_Controller {
     
+    //check if user have logged in
     function __construct() {
         parent::__construct();
         $is_logged_in = $this->session->userdata('is_logged_in');
@@ -10,6 +11,7 @@ class NotiController extends CI_Controller {
         }
     }
     
+    //get new notify number
     function getNewNotifyNumber() {
         $em     = $this->doctrine->em;
         $noti   = new Entity\NotificationDAO($em);
@@ -17,12 +19,14 @@ class NotiController extends CI_Controller {
         echo count($result);
     }
     
+    //mark all notifications as read
     function setAllNotifyIsRead() {
         $em   = $this->doctrine->em;
         $noti = new Entity\NotificationDAO($em);
         $noti->setAllNotifyIsRead($this->session->userdata('email'));
     }
     
+    //get first 6 notification
     function getOldNotify() {
         $em         = $this->doctrine->em;
         $noti       = new Entity\NotificationDAO($em);
@@ -46,6 +50,7 @@ class NotiController extends CI_Controller {
         echo $notify;
     }
     
+    //get next 5 notifications
     function getNextOldNotify() {
         $id     = $this->input->post('noti_id');
         $em     = $this->doctrine->em;
@@ -62,14 +67,6 @@ class NotiController extends CI_Controller {
             $notify .= '<li class="noti" id="noti' . $k['notification_id'] . '"><a href="' . site_url('statusController/hienThiNotiStatus/') . "/" . $k['status_id'] . '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' . base_url() . 'uploads/img/' . $k['picture'] . '"/><span class="vietHoaTen">' . $k['msg'] . '</span><br/><abbr class="timeago ' . $notiIcon . '" title="' . $k['created_at'] . '"></abbr></a></li>';
         }
         echo $notify;
-    }
-    
-    function getNotifyList() {
-        $em     = $this->doctrine->em;
-        $noti   = new Entity\NotificationDAO($em);
-        $result = $noti->getOldNotify($this->session->userdata('email'));
-        $this->smarty->assign('items', $result);
-        $this->smarty->view('notiList');
     }
 }
 ?>
