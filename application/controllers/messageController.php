@@ -1,5 +1,7 @@
  <?php
 class MessageController extends CI_Controller {
+
+    //check if user have logged in
     function __construct() {
         parent::__construct();
         $is_logged_in = $this->session->userdata('is_logged_in');
@@ -8,6 +10,7 @@ class MessageController extends CI_Controller {
         }
     }
     
+    //add new  chat message
     public function addMessage() {
         $data['to']      = $this->input->post('email');
         $data['from']    = $this->session->userdata('email');
@@ -17,10 +20,11 @@ class MessageController extends CI_Controller {
         $em              = $this->doctrine->em;
         $message         = new Entity\MessageDAO($em);
         $message_id      = $message->addMessage($data);
+        //ajax add chat message
         echo '<li class="chatRight" id="' . $message_id . '"><p>' . $data['message'] . "</p></li>";
-        
     }
     
+    //get first 10 messages
     public function getFirstMessages() {
         $em           = $this->doctrine->em;
         $data['to']   = $this->input->post('email');
@@ -30,6 +34,7 @@ class MessageController extends CI_Controller {
         echo json_encode($result);
     }
     
+    //get next 10 messages
     public function getMoreMessages() {
         $em              = $this->doctrine->em;
         $data['to']      = $this->input->post('email');

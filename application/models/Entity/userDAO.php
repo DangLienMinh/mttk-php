@@ -9,6 +9,7 @@ class UserDAO
        $this->em=$em;
    }
 
+   //user register
 	public function themUser($data)
 	{
 	    $user = new User;
@@ -21,6 +22,7 @@ class UserDAO
 		$this->em->flush();
 	}
 
+	//change user information
 	public function suaUser($email)
 	{
 	    $user = $this->em->getReference('Entity\User', $email);
@@ -28,6 +30,7 @@ class UserDAO
 		$this->em->flush();
 	}
 
+	//change user wall profile image
 	public function suaProfileImage($data)
 	{
 	    $user = $this->em->getReference('Entity\User', $data['email']);
@@ -36,6 +39,7 @@ class UserDAO
 		$this->em->flush();
 	}
 
+	//change user wall profile cover
 	public function suaProfileCover($data)
 	{
 	    $user = $this->em->getReference('Entity\User', $data['email']);
@@ -44,18 +48,21 @@ class UserDAO
 		$this->em->flush();
 	}
 
+	//get previous profile image
 	public function getPreviousImage($email)
 	{
 	    $user = $this->em->getReference('Entity\User', $email);
 	    return $user->getPicture();
 	}
 
+	//get previous profile cover
 	public function getPreviousProfileCover($email)
 	{
 	    $user = $this->em->getReference('Entity\User', $email);
 	    return $user->getCoverImg();
 	}
 
+	//delete user
 	public function xoaUser($email)
 	{
 	    $user = $this->em->getReference('Entity\User', $email);
@@ -63,6 +70,7 @@ class UserDAO
 	    $this->em->flush();
 	}
 
+	//find user by name
 	public function timUser($name){
 		$query = $this->em->createQuery("SELECT p.email,p.first_name,p.last_name,p.picture FROM Entity\User p WHERE p.first_name like ?1 or p.last_name like ?2 order by p.email");
 		$str='%'.$name.'%';
@@ -73,6 +81,7 @@ class UserDAO
 		return $results;
 	}
 
+	//find friend of the user
 	public function timUserFriend($name,$email,$fanclub){
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("CALL timUserFriend(?,?,?)");
@@ -84,7 +93,7 @@ class UserDAO
 		return $result;
 	}
 
-
+	//get data of user login
 	public function timUserLogin($data){
 		$data['password']= Md5($data['password']);
 		$query = $this->em->createQuery("SELECT p.email,p.first_name,p.last_name,p.birthday,p.picture FROM Entity\User p WHERE p.email=?1 and p.password= ?2");
@@ -100,6 +109,7 @@ class UserDAO
 		return $result;
 	}
 
+	//get user information by email
 	public function getUser($email){
 		$query = $this->em->createQuery("SELECT p.first_name,p.last_name,p.birthday,p.picture,p.coverImg FROM Entity\User p WHERE p.email=?1");
 		$query->setParameter(1, $email);
@@ -107,11 +117,13 @@ class UserDAO
 		return $result;
 	}
 
+	//check if the user is logged in
 	public function checkLogin( $email){
 		$user = $this->em->getReference('Entity\User', $email);
 		return $user->getOnline();
 	}
 
+	//update the last login of the user
 	public function capNhatLastLogin($email){
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("UPDATE user p SET p.last_login=now() WHERE p.email=?");
@@ -124,6 +136,7 @@ class UserDAO
 		$this->em->flush();
 	}
 
+	//change password of current user
 	public function suaPassword($email,$pass)
 	{
 	    $user = $this->em->getReference('Entity\User', $email);

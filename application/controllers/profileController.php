@@ -2,6 +2,7 @@
 
 class ProfileController extends CI_Controller {
     
+    //check if user have logged in
     function __construct() {
         parent::__construct();
         $is_logged_in = $this->session->userdata('is_logged_in');
@@ -10,6 +11,7 @@ class ProfileController extends CI_Controller {
         }
     }
     
+    //add data for user first time log in
     function firstTime() {
         $data['address'] = $this->input->post('address');
         $img             = $this->input->post('image');
@@ -26,6 +28,7 @@ class ProfileController extends CI_Controller {
         echo base_url('/');
     }
     
+    //update user profile image
     function updateImage() {
         $em            = $this->doctrine->em;
         $user          = new Entity\UserDAO($em);
@@ -44,6 +47,7 @@ class ProfileController extends CI_Controller {
         echo base_url('/');
     }
     
+    //update user cover image
     function suaProfileCover() {
         $em            = $this->doctrine->em;
         $user          = new Entity\UserDAO($em);
@@ -60,10 +64,12 @@ class ProfileController extends CI_Controller {
         $user->suaProfileCover($data);
     }
     
+    //change profile image site
     function changeProfileImage() {
         $this->smarty->view('changeProfileImage');
     }
 
+    //get wall about information
     function getWallAbout(){
       $em      = $this->doctrine->em;
       $email   = $this->input->post('email');
@@ -76,7 +82,7 @@ class ProfileController extends CI_Controller {
       echo $content;
     }
     
-    
+    //get wall education and religion information
     public function getEducationAndReligion() {
         $em      = $this->doctrine->em;
         $email   = $this->input->post('email');
@@ -117,6 +123,7 @@ class ProfileController extends CI_Controller {
         echo $content;
     }
     
+    //get wall basic information
     public function getBasicInfo() {
         $em      = $this->doctrine->em;
         $email   = $this->input->post('email');
@@ -187,6 +194,7 @@ class ProfileController extends CI_Controller {
         echo $content;
     }
     
+    //get wall user detail information
     public function getUserDetail() {
         $em      = $this->doctrine->em;
         $email   = $this->input->post('email');
@@ -242,6 +250,7 @@ class ProfileController extends CI_Controller {
         echo $content;
     }
     
+    //get wall user favorite information
     public function getFavorite() {
         $em      = $this->doctrine->em;
         $email   = $this->input->post('email');
@@ -323,6 +332,7 @@ class ProfileController extends CI_Controller {
         echo $content;
     }
     
+    //update about information
     public function updateInfo() {
         $em      = $this->doctrine->em;
         $check   = $this->input->post('name');
@@ -376,7 +386,5 @@ class ProfileController extends CI_Controller {
                 break;
         }
     }
-
-    
 }
 ?>

@@ -9,6 +9,7 @@ class NotificationDAO
        $this->em=$em;
     }
 
+    //get new notification for current user that they have not read
 	public function getNewNotify($email)
 	{
 		$cnn=$this->em->getConnection();
@@ -19,6 +20,7 @@ class NotificationDAO
 		return $result;
 	}
 
+	//get first 6 notification order by created day
 	public function getOldNotify($email)
 	{
 		$cnn=$this->em->getConnection();
@@ -30,6 +32,7 @@ class NotificationDAO
 		return $result;
 	}
 
+	//get next 5 notification order by created day	
 	public function getNextOldNotify($email,$id)
 	{
 		$cnn=$this->em->getConnection();
@@ -42,6 +45,7 @@ class NotificationDAO
 		return $result;
 	}
 
+	//set notification is read by the user
 	public function setNotifyIsRead($notification_id)
 	{
 		$cnn=$this->em->getConnection();
@@ -50,6 +54,7 @@ class NotificationDAO
 		$sth->execute();
 	}
 
+	//mark all notification as is read
 	public function setAllNotifyIsRead($email)
 	{
 		$cnn=$this->em->getConnection();

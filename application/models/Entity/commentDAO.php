@@ -9,6 +9,7 @@ class CommentDAO
        $this->em=$em;
    }
 
+   //add a new comment and get id return
     public function themComment($data)
     {
         $comment = new Comment;
@@ -22,6 +23,7 @@ class CommentDAO
         return $comment->getComment_id();
     }
 
+    //remove comment by id
     public function xoaComment($id)
     {
         $comment = $this->em->getReference('Entity\Comment', $id);
@@ -29,6 +31,7 @@ class CommentDAO
         $this->em->flush();
     }
 
+    //get comment by id
     public function layComment($status_id)
     {
         $cnn=$this->em->getConnection();
@@ -41,6 +44,7 @@ class CommentDAO
         return $result;
     }
 
+    //get the latest comment of the status
     public function layLastComment($status_id,$count)
     {
         $cnn=$this->em->getConnection();

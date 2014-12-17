@@ -9,6 +9,7 @@ class Thumb_up_downDAO
        $this->em=$em;
    }
 
+   //add new like to status
     public function themLike($data)
     {
         $like = new Thumb_up_down;
@@ -20,6 +21,7 @@ class Thumb_up_downDAO
         $this->em->flush();
     }
 
+    //remove like from status
     public function xoaLike($data)
     {
         $cnn=$this->em->getConnection();
@@ -29,6 +31,7 @@ class Thumb_up_downDAO
         $sth->execute();
     }
 
+    //get all likes of status
     public function layLike($status_id,$user)
     {
         $cnn=$this->em->getConnection();
@@ -40,6 +43,7 @@ class Thumb_up_downDAO
         return $result;
     }
 
+    //check if current user like the status
     public function layLikeUser($status_id,$user)
     {
         $cnn=$this->em->getConnection();

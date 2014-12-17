@@ -2,6 +2,7 @@
 
 class PlaylistController extends CI_Controller {
     
+    //check if user have logged in
     function __construct() {
         parent::__construct();
         $is_logged_in = $this->session->userdata('is_logged_in');
@@ -10,6 +11,7 @@ class PlaylistController extends CI_Controller {
         }
     }
     
+    //get all playlists name of user
     function getDSPlaylist() {
         $em        = $this->doctrine->em;
         $playlist  = new Entity\PlaylistDAO($em);
@@ -21,6 +23,7 @@ class PlaylistController extends CI_Controller {
         echo $playlists;
     }
     
+    //get all playlist with songs in user wall
     function wallDsPlaylist() {
         $em       = $this->doctrine->em;
         $playlist = new Entity\PlaylistDAO($em);
@@ -28,6 +31,7 @@ class PlaylistController extends CI_Controller {
         echo json_encode($result);
     }
     
+    //get all songs of playlist
     function getDSSongs() {
         $id       = $this->input->post('playlist_id');
         $em       = $this->doctrine->em;
@@ -36,6 +40,7 @@ class PlaylistController extends CI_Controller {
         echo json_encode($result);
     }
     
+    //create new playlist
     function createPlaylist() {
         $em                   = $this->doctrine->em;
         $playlist             = new Entity\PlaylistDAO($em);
@@ -46,6 +51,7 @@ class PlaylistController extends CI_Controller {
         echo base_url('/');
     }
     
+    //remove a playlist
     function removePlaylist() {
         $em          = $this->doctrine->em;
         $playlist    = new Entity\PlaylistDAO($em);
@@ -53,9 +59,11 @@ class PlaylistController extends CI_Controller {
         $playlist->removePlaylist($playlist_id);
     }
     
+    //add new song to playlist
     function addMusic() {
         $em              = $this->doctrine->em;
         $playlist_detail = new Entity\Playlist_detailDAO($em);
+        //check if song  is a link from other site
         if (!empty($this->input->post('h'))) {
             $data['id']    = $this->input->post('playlist_id');
             $data['title'] = $this->input->post('title');
@@ -68,6 +76,7 @@ class PlaylistController extends CI_Controller {
         $playlist_detail->addMusic($data);
     }
     
+    //view create playlist site
     function viewPlaylist() {
         $this->smarty->view('createPlaylist');
     }

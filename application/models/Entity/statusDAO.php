@@ -9,6 +9,7 @@ class StatusDAO
        $this->em=$em;
     }
 
+    //get the first 10 status in home
 	public function getStatus($email)
 	{
 		$cnn=$this->em->getConnection();
@@ -19,6 +20,7 @@ class StatusDAO
 		return $result;
 	}
 
+	//get the next 10 status in home
 	public function getNextStatus($email,$id)
 	{
 		$cnn=$this->em->getConnection();
@@ -30,6 +32,7 @@ class StatusDAO
 		return $result;
 	}
 
+	//get user wall status
 	public function layDSWallStatus($email)
 	{
 		$cnn=$this->em->getConnection();
@@ -41,6 +44,7 @@ from status,user where status.email=user.email and status.email=? order by creat
 		return $result;
 	}
 
+	//get first 10 fanclub status
 	public function layDSFanclubStatus($fanclub)
 	{
 		$cnn=$this->em->getConnection();
@@ -54,6 +58,7 @@ and privacy_type_id=1 and status.email=user.email order by created_at desc LIMIT
 		return $result;
 	}
 
+	//get next 10 fanclub status
 	public function layDSNextWallStatus($email,$id)
 	{
 		$cnn=$this->em->getConnection();
@@ -66,6 +71,7 @@ from status,user where status.email=user.email and status.email=? and status.pri
 		return $result;
 	}
 
+	//get single status by status_id
 	public function laySingleStatus($status)
 	{
 		$cnn=$this->em->getConnection();
@@ -77,6 +83,7 @@ from status,user where status.email=user.email and status.status_id=?;");
 		return $result;
 	}
 
+	//get top 10 status by time
 	public function GetFamousStatus($sdate,$edate)
 	{
 		$cnn=$this->em->getConnection();
@@ -88,6 +95,7 @@ from status,user where status.email=user.email and status.status_id=?;");
 		return $result;
 	}
 
+	//add new status
 	public function themStatus($data)
 	{
 		$status = new Status;
@@ -104,6 +112,7 @@ from status,user where status.email=user.email and status.status_id=?;");
 		return $status->getStatus_id();
 	}
 
+	//add new share status
 	public function themShareStatus($data)
 	{
 		$status = new Status;
@@ -121,6 +130,7 @@ from status,user where status.email=user.email and status.status_id=?;");
 		return $status->getStatus_id();
 	}
 
+	//notify owner other user share status
 	public function notifyShare($data){
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("CALL notifyShare(?,?,?)");
@@ -130,6 +140,7 @@ from status,user where status.email=user.email and status.status_id=?;");
 		$sth->execute();
 	}
 
+	//alter message in the status
 	public function suaStatus($id,$msg)
 	{
 	    $status = $this->em->getReference('Entity\Status', $id);
@@ -138,6 +149,7 @@ from status,user where status.email=user.email and status.status_id=?;");
 		$this->em->flush();
 	}
 
+	//remove a status
 	public function xoaStatus($status,$linkUrl)
 	{
 	    $status = $this->em->getReference('Entity\Status', $status);

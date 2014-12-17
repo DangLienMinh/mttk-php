@@ -1,3 +1,4 @@
+//jplayer audio structure
 var element = '<div class="jp-type-single"> \
     <div class="jp-gui jp-interface"> \
       <div class="jp-controls"> \
@@ -32,6 +33,7 @@ var element = '<div class="jp-type-single"> \
       To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>. \
     </div>';
 
+//jplayer playlist structure
 var playlistElement = '<div class="jp-type-playlist"> \
     <div class="jp-gui jp-interface"> \
       <div class="jp-controls"> \
@@ -76,6 +78,7 @@ var playlistElement = '<div class="jp-type-playlist"> \
 function playSelectedSong(guid, title) {
 	window.chosenMusic = guid;
 	window.title = title;
+	//initialize jplayer
 	var player = $("#jquery_jplayer_1");
 	player.jPlayer("destroy");
 	player.jPlayer({
@@ -110,12 +113,6 @@ function displaySongUpdateStatus(data) {
 	};
 	var myPlaylist = new jPlayerPlaylist(cssSelector, playlist, options);
 	/*Loop through the JSon array and add it to the playlist*/
-	/*$.each(obj, function(i, val) {
-		myPlaylist.add({
-			title: val.title,
-			mp3: val.mp3
-		});
-	});*/
 	var l=obj.length;
 	for (var i=0;i<l; i++) {
     	myPlaylist.add({
@@ -240,18 +237,21 @@ function addMoreStatus(msg, jplayer_id) {
 				privacy="Only me";
 			}
 			var checkPlaylist = parseInt(val.music);
+			//truong hop playlist
 			if (checkPlaylist == 1) {
 				var $content = $('<div class="item" id="status' + val.status_id + '"><span id="arrow"></span>' + is_delete + '<div class="stimg"><img id="' + val.email + '" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><div class="topPart"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr><br><abbr class="privacy" title="' + privacy + '"></abbr></div></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio">' + playlistElement + '</div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea style="width:305px;height:32px" placeholder=" Write your comment..." class="commentInput" id="textboxcontent' + val.status_id + '"></textarea></div></div></div>');
 				container.append($content).masonry("appended", $content);
 				getComment(val.status_id);
 				getLike(val.status_id);
 				getSong('#jquery_jplayer_' + i, '#jp_container_' + i, checkPlaylist);
+				//truong hop upload
 			} else if (checkPlaylist > 1) {
 				var $content = $('<div class="item" id="status' + val.status_id + '"><span id="arrow"></span>' + is_delete + '<div class="stimg"><img id="' + val.email + '" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><div class="topPart"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr><br><abbr class="privacy" title="' + privacy + '"></abbr></div></div><div class="strmsg">' + val.message + '</div><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a><a href="#" class="playlist_button" id="playlist' + val.status_id + '">Playlist</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea class="commentInput" style="width:305px;height:32px" placeholder=" Write your comment..." id="textboxcontent' + val.status_id + '"></textarea></div></div></div>');
 				container.append($content).masonry("appended", $content);
 				getComment(val.status_id);
 				getLike(val.status_id);
 				setSong('#jquery_jplayer_' + i, '#jp_interface_' + i, window.userMusic + '/' + val.music, val.title);
+				//truong hop nhac online
 			} else {
 				if(val.music==""){
 					var $content = $('<div class="item" id="status' + val.status_id + '"><span id="arrow"></span>' + is_delete + '<div class="stimg"><img id="' + val.email + '" src="' + window.userPic + val.picture + '" style="width:70px;height:70px"/></div><div class="sttext"><div class="sttext_content"><div class="topPart"><b><a href="' + window.userWall + "/" + val.email + '">' + val.name + '</a></b><div class="sttime"><abbr class="timeago" title="' + val.created_at + '"></abbr><br><abbr class="privacy" title="' + privacy + '"></abbr></div></div><div class="strmsg">' + val.message + '</div></div><div class="sttext_content2"><div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a href="#" class="share_button" id=share"' + val.status_id + '">Share</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea class="commentInput" style="width:305px;height:32px" placeholder=" Write your comment..." id="textboxcontent' + val.status_id + '"></textarea></div></div></div>');
@@ -402,37 +402,9 @@ function addMoreWallStatus(msg, jplayer_id) {
 	} catch (e) {
 		alert(e);
 	}
-}
+}    
 
-//get share status to display in the share dialog
-function addStatusShare(obj) {
-		try {
-			var container=$('#container');
-			$.each(obj, function(i, val) {
-				i = i + 3;
-				var checkPlaylist = parseInt(val.music);
-				if (checkPlaylist == 1) {
-					var $content = $('<div id="status' + val.status_id + '"><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio">' + playlistElement + '</div></div>');
-					container.append($content);
-					getSong('#jquery_jplayer_' + i, '#jp_container_' + i, checkPlaylist);
-				} else if (checkPlaylist > 1) {
-					var $content = $('<div id="status' + val.status_id + '"><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div>');
-					container.append($content);
-					setSong('#jquery_jplayer_' + i, '#jp_interface_' + i, window.userMusic + '/' + val.music, val.title);
-				} else {
-					if(val.music==""){
-						var $content = $('<div id="status' + val.status_id + '"></div>');
-					}else{
-						var $content = $('<div id="status' + val.status_id + '"><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div>');
-					}
-					container.append($content);
-					setSong('#jquery_jplayer_' + i, '#jp_interface_' + i, val.music, val.title);
-				}
-			});
-		} catch (e) {
-			alert(e);
-		}
-	}
+
 
 //get chat message
 function addConversation(msg) {
@@ -518,6 +490,36 @@ function setSong(name, inter, songUrl, title) {
 	});
 }
 
+//get share status to display in the share dialog
+function addStatusShare(obj) {
+    try {
+      var container=$('#reportBody');
+      $.each(obj, function(i, val) {
+        i = i + 3;
+        var checkPlaylist = parseInt(val.music);
+        if (checkPlaylist == 1) {
+          var $content = $('<div id="status' + val.status_id + '"><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio">' + playlistElement + '</div></div>');
+          container.append($content);
+          getSong('#jquery_jplayer_' + i, '#jp_container_' + i, checkPlaylist);
+        } else if (checkPlaylist > 1) {
+          var $content = $('<div id="status' + val.status_id + '"><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div>');
+          container.append($content);
+          setSong('#jquery_jplayer_' + i, '#jp_interface_' + i, window.userMusic + '/' + val.music, val.title);
+        } else {
+          if(val.music==""){
+            var $content = $('<div id="status' + val.status_id + '"></div>');
+          }else{
+            var $content = $('<div id="status' + val.status_id + '"><div id="jquery_jplayer_' + i + '" class="jp-jplayer"></div><div id="jp_container_' + i + '" class="jp-audio"><div class="jp-type-single" id="jp_interface_' + i + '">' + element + '</div></div></div>');
+          }
+          container.append($content);
+          setSong('#jquery_jplayer_' + i, '#jp_interface_' + i, val.music, val.title);
+        }
+      });
+    } catch (e) {
+      alert(e);
+    }
+  }
+
 //display song in playlists
 function displaySong(name, inter, data) {
 	var obj = JSON.parse(data);
@@ -534,12 +536,6 @@ function displaySong(name, inter, data) {
 	};
 	var myPlaylist = new jPlayerPlaylist(cssSelector, playlist, options);
 	/*Loop through the JSon array and add it to the playlist*/
-	/*$.each(obj, function(i, val) {
-		myPlaylist.add({
-			title: val.title,
-			mp3: val.mp3
-		});
-	});*/
 	var l=obj.length;
 	for (var i=0;i<l; i++) {
     	myPlaylist.add({

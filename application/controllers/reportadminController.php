@@ -1,5 +1,7 @@
  <?php
 class ReportadminController extends CI_Controller {
+
+    //check if user have logged in
     function __construct() {
         parent::__construct();
         $is_logged_in = $this->session->userdata('is_logged_in');
@@ -8,6 +10,7 @@ class ReportadminController extends CI_Controller {
         }
     }
     
+    //add new status report
     public function addReportStatus() {
         $data['status_id']      = $_POST['status_id'];
         $data['email']    = $this->session->userdata('email');
@@ -17,6 +20,7 @@ class ReportadminController extends CI_Controller {
         $message_id      = $report->addReportStatus($data);
     }
 
+    //view report status site
     function viewReport($email,$name,$pic,$status) {
         $this->smarty->assign('pic', $pic);
         $result=str_replace("%20"," ",$name);
@@ -26,22 +30,7 @@ class ReportadminController extends CI_Controller {
         $this->smarty->view('reportStatus');
     }
 
-    /*function viewAdminReportStatus() {
-        $this->smarty->assign('statusReportUrl',site_url('reportadminController/viewAdminReportStatus'));
-        $this->smarty->assign('userReportUrl',site_url('reportadminController/viewAdminUserReport'));
-        $this->smarty->assign('indexReportUrl',site_url('reportadminController/viewAdminPanel'));
-        $this->smarty->assign('logout',site_url('userController/logout'));
-        $this->smarty->view('admin');
-    }
-*/
-    /*function viewAdminUserReport() {
-        $this->smarty->assign('statusReportUrl',site_url('reportadminController/viewAdminReportStatus'));
-        $this->smarty->assign('userReportUrl',site_url('reportadminController/viewAdminUserReport'));
-        $this->smarty->assign('indexReportUrl',site_url('reportadminController/viewAdminPanel'));
-        $this->smarty->assign('logout',site_url('userController/logout'));
-        $this->smarty->view('userReport');
-    }*/
-
+    //view admin panel site
     function viewAdminPanel() {
         $em              = $this->doctrine->em;
         $report         = new Entity\ReportadminDAO($em);
@@ -68,19 +57,7 @@ class ReportadminController extends CI_Controller {
         $this->smarty->view('adminIndex');
     }
 
-    /*public function getReportStatus() {
-        $em           = $this->doctrine->em;
-        $report      = new Entity\ReportadminDAO($em);
-        $result       = $report->getReportStatus();
-        $data="";
-        $i=1;
-        foreach ($result as $k) {
-            $data .= '<tr><td>'.$i.'</td><td><a href="' . site_url('statusController/hienThiNotiStatus/') . "/" . $k['status_id'] . '">'.$k['status_id'].'</a></td><td>'.$k['email'].'</td><td>'.$k['reason'].'</td><td>'.$k['created_at'].'</td><td><a class="delete_button" rel="'.$k['report_id'].'" href="#"></a><a rel="'.$k['report_id'].'" class="accept_button" href="#"></a></td></tr>';
-            $i+=1;
-        }
-        echo $data;
-    }*/
-
+    //view admin report status site
     public function viewAdminReportStatus(){
         $em           = $this->doctrine->em;
         $report      = new Entity\ReportadminDAO($em);
@@ -130,6 +107,7 @@ class ReportadminController extends CI_Controller {
         
     }
 
+    //accept user report status
     public function acceptReportRequest(){
         $report_id      = $_POST['report_id'];
         $status_id      = $_POST['status_id'];
@@ -143,6 +121,7 @@ class ReportadminController extends CI_Controller {
         $status->xoaStatus($status_id, $linkUrl);
     }
 
+    //cancel user report status
     public function cancelReportRequest(){
         $report_id      = $_POST['report_id'];
         $status_id      = $_POST['status_id'];
@@ -153,6 +132,7 @@ class ReportadminController extends CI_Controller {
         $report->solvedUserReport($report_id);
     }
 
+    //remove user
     public function removeUser(){
         $email = $_POST['email'];
         $em           = $this->doctrine->em;
@@ -160,6 +140,7 @@ class ReportadminController extends CI_Controller {
         $user->xoaUser($email);
     }
 
+    //;view user mange site
     public function viewAdminUserReport(){
         $em           = $this->doctrine->em;
         $report      = new Entity\ReportadminDAO($em);
@@ -206,8 +187,6 @@ class ReportadminController extends CI_Controller {
         $this->smarty->assign('results',$data);
         $this->smarty->assign('links',$this->pagination->create_links());
         $this->smarty->view('userReport');
-        
     }
 }
-
 ?>

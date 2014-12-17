@@ -1,5 +1,7 @@
  <?php
 class FriendController extends CI_Controller {
+
+    //check if user have logged in
     function __construct() {
         parent::__construct();
         $is_logged_in = $this->session->userdata('is_logged_in');
@@ -8,6 +10,7 @@ class FriendController extends CI_Controller {
         }
     }
     
+    //search friend in view of user first log in by name
     public function index() {
         $em      = $this->doctrine->em;
         $user    = new Entity\UserDAO($em);
@@ -24,6 +27,7 @@ class FriendController extends CI_Controller {
         echo $friends;
     }
     
+    //search user or fanclub on menu
     public function searchMenu() {
         $em      = $this->doctrine->em;
         $user    = new Entity\UserDAO($em);
@@ -49,6 +53,7 @@ class FriendController extends CI_Controller {
         echo $friends;
     }
     
+    //add new friend
     public function themBan() {
         $friend_name = "";
         if (@$_POST['friendEmail']) {
@@ -60,6 +65,7 @@ class FriendController extends CI_Controller {
         }
     }
     
+    //remove friendship
     public function xoaBan() {
         $unfriend = $_POST["friend"];
         $email    = $this->session->userdata('email');
@@ -68,6 +74,7 @@ class FriendController extends CI_Controller {
         $friend->UnFriend($email, $unfriend);
     }
     
+    //unfollow friend
     public function unfollow() {
         $unfollow = $_POST["friend"];
         $email    = $this->session->userdata('email');
@@ -76,6 +83,7 @@ class FriendController extends CI_Controller {
         $friend->unfollowFriend($email, $unfollow);
     }
     
+    //follow friend
     public function follow() {
         $follow = $_POST["friend"];
         $email  = $this->session->userdata('email');
@@ -84,6 +92,7 @@ class FriendController extends CI_Controller {
         $friend->followFriend($email, $follow);
     }
     
+    //get all friends in user wall
     public function getAllFriends() {
         $em      = $this->doctrine->em;
         $email   = $this->input->post('email');
@@ -98,7 +107,6 @@ class FriendController extends CI_Controller {
                 }else{
                     $friends .= '<li><a href="' . site_url('statusController/layDSWallStatus/') . '/' . $k['email'] . '"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' . base_url() . 'uploads/img/' . $k['picture'] . '"/><span class="' . $k['email'] . '">' . $k['name'] . '</span></a><button class="unFriend" value="' . $k['email'] . '">Cancel request</button></li>';
                 }
-                
             }
         } else {
             foreach ($result as $k) {
@@ -121,6 +129,7 @@ class FriendController extends CI_Controller {
         echo $friends;
     }
     
+    //get all friend in messages
     public function getAllChatFriends() {
         $em      = $this->doctrine->em;
         $email   = $this->session->userdata('email');
@@ -139,6 +148,7 @@ class FriendController extends CI_Controller {
         echo $friends;
     }
     
+    //check user relationship when they visit other user wall
     public function checkUserWallRelation() {
         $em          = $this->doctrine->em;
         $friend_name = $this->input->post('friend');
@@ -168,6 +178,7 @@ class FriendController extends CI_Controller {
         echo $result;
     }
     
+    //get suggested friend
     public function getSuggestedFriend() {
         $em      = $this->doctrine->em;
         $email   = $this->session->userdata('email');
@@ -177,7 +188,7 @@ class FriendController extends CI_Controller {
         $i       = 1;
         if (count($result) > 0) {
             foreach ($result as $k) {
-                $friends .= '<li id="list' . $i . '"><img style="width:30px;height:30px;vertical-align:middle;margin-right:7px;float:left" src="' . base_url() . 'uploads/img/' . $k['picture'] . '"/><span class="del"><a href="#" class="delete" id="' . $i . '">X</a></span><a href="" class="user-title">' . $k['name'] . '</a><button type="button" class="addFriend" value="' . $k['email'] . '">' . 'Add friend</button></li>';
+                $friends .= '<li id="list' . $i . '"><img style="width:30px;height:30px;vertical-align:middle;margin-right:7px;float:left" src="' . base_url() . 'uploads/img/' . $k['picture'] . '"/><span class="del"><a href="#" class="delete" id="' . $i . '">X</a></span><a href="" class="user-title">' . $k['name'] . '</a><br><button type="button" class="addFriend" value="' . $k['email'] . '">' . 'Add friend</button></li>';
                 ++$i;
             }
         }
@@ -194,7 +205,7 @@ class FriendController extends CI_Controller {
         $dem     = 0;
         foreach ($result as $k) {
             if ($dem < 6) {
-                $friends .= '<li style="background:#f4f6f9"  class="noti"><a href="' . site_url('statusController/layDSWallStatus/') . "/" . $k['email'] . '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' . base_url() . 'uploads/img/' . $k['picture'] . '"/><span>' . $k['name'] . '</span></a><div class="friendAction"><button id="friendAccept" onClick="window.location.href=' . "'" . site_url('friendController/') . "/acceptFriendRequest/" . $k['email'] . "'" . '">Accept</button><button id="friendDecline" onClick="window.location.href=' . "'" . site_url('friendController/') . "/removeFriendRequest/" . $k['email'] . "'" . '">Decline</button></div></li>';
+                $friends .= '<li style="background:#f4f6f9"  class="noti"><a href="' . site_url('statusController/layDSWallStatus/') . "/" . $k['email'] . '"><img style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' . base_url() . 'uploads/img/' . $k['picture'] . '"/><span class="titleName">' . $k['name'] . '</span></a><div class="friendAction"><button id="friendAccept" onClick="window.location.href=' . "'" . site_url('friendController/') . "/acceptFriendRequest/" . $k['email'] . "'" . '">Accept</button><button id="friendDecline" onClick="window.location.href=' . "'" . site_url('friendController/') . "/removeFriendRequest/" . $k['email'] . "'" . '">Decline</button></div></li>';
                 $dem = $dem + 1;
             }
         }
@@ -205,6 +216,7 @@ class FriendController extends CI_Controller {
         }
     }
     
+    //accept friend request
     public function acceptFriendRequest($friendName) {
         $em     = $this->doctrine->em;
         $email  = $this->session->userdata('email');
@@ -213,6 +225,7 @@ class FriendController extends CI_Controller {
         redirect('/', 'refresh');
     }
     
+    //remove friend request
     public function removeFriendRequest($friendName) {
         
         $em     = $this->doctrine->em;

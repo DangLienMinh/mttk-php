@@ -9,6 +9,7 @@ class FriendDAO
        $this->em=$em;
    }
 
+   //add new friend 
 	public function themFriend($email,$friend_name)
 	{
 	    $friend = new Friend;
@@ -22,6 +23,7 @@ class FriendDAO
 		$this->em->flush();
 	}
 
+	//get all the friend requests for current user
 	public function getFriendRequest($email)
 	{
 		$cnn=$this->em->getConnection();
@@ -33,6 +35,7 @@ class FriendDAO
 		return $result;
 	}
 
+	//get all friends for current users
 	public function getAllFriends($email)
 	{
 		$cnn=$this->em->getConnection();
@@ -45,6 +48,7 @@ class FriendDAO
 		return $result;
 	}
 
+	//get all friends for messages
 	public function getAllChatFriends($email)
 	{
 		$cnn=$this->em->getConnection();
@@ -57,12 +61,13 @@ class FriendDAO
 		return $result;
 	}
 
+	//get suggested friends for current user
 	public function getSuggestedFriend($email)
 	{
 		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("select u.email,u.picture,CONCAT(u.first_name,' ',u.last_name) as name 
-from user u where u.email not in (select friend_name from friend 
-where friend.email=?) and u.email not in (select email from friend where friend.friend_name=?) and u.email!='admin@socialmusic.com' and u.email!=? LIMIT 10");
+		$sth = $cnn->prepare("select u.email,u.picture,CONCAT(u.first_name,' ',u.last_name) as name from user u 
+		where u.email not in (select friend_name from friend where friend.email=?) and u.email not in 
+		(select email from friend where friend.friend_name=?) and u.email!='admin@socialmusic.com' and u.email!=? LIMIT 10");
 		$sth->bindValue(1, $email);
 		$sth->bindValue(2, $email);
 		$sth->bindValue(3, $email);
@@ -71,6 +76,7 @@ where friend.email=?) and u.email not in (select email from friend where friend.
 		return $result;
 	}
 
+	//current user accepted other friend request and they becom friend
 	public function acceptFriend($email,$friend)
 	{
 		$cnn=$this->em->getConnection();
@@ -80,6 +86,7 @@ where friend.email=?) and u.email not in (select email from friend where friend.
 		$sth->execute();
 	}
 
+	//current user declined other friend request and they becom friend
 	public function declineFriend($email,$friend)
 	{
 		$cnn=$this->em->getConnection();
@@ -89,6 +96,7 @@ where friend.email=?) and u.email not in (select email from friend where friend.
 		$sth->execute();
 	}
 
+	//current user unfriends other user
 	public function UnFriend($email,$friend)
 	{
 		$cnn=$this->em->getConnection();
@@ -98,6 +106,7 @@ where friend.email=?) and u.email not in (select email from friend where friend.
 		$sth->execute();
 	}
 
+	//current user unfollows other user
 	public function unfollowFriend($email,$friend)
 	{
 		$cnn=$this->em->getConnection();
@@ -109,6 +118,7 @@ where friend.email=?) and u.email not in (select email from friend where friend.
 		$sth->execute();
 	}
 
+	//current user follows other user
 	public function followFriend($email,$friend)
 	{
 		$cnn=$this->em->getConnection();
@@ -120,6 +130,7 @@ where friend.email=?) and u.email not in (select email from friend where friend.
 		$sth->execute();
 	}
 
+	//check if current user is friend with other user
 	public function checkFriend($email,$friend)
 	{
 		$cnn=$this->em->getConnection();
@@ -133,6 +144,7 @@ where friend.email=?) and u.email not in (select email from friend where friend.
 		return $result;
 	}
 
+	//check current user accept other user friend request
 	public function checkAcceptFriend($email,$friend)
 	{
 		$cnn=$this->em->getConnection();
@@ -146,6 +158,7 @@ where friend.email=?) and u.email not in (select email from friend where friend.
 		return $result;
 	}
 
+	//check if current user follow or not follow other user
 	public function checkFriendSubscribe($email,$friend)
 	{
 		$cnn=$this->em->getConnection();

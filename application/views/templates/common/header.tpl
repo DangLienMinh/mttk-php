@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Music</title>
+  <title>MyMusic</title>
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/jquery-ui.css">
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/wall.css">
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/jquery.qtip.css">
@@ -60,6 +60,7 @@
 
 {literal}
 
+//do some job when ajax request stop
 $(document).ajaxStop(function() {
     $('#container').masonry({
         itemSelector: '.item'
@@ -81,6 +82,8 @@ $(document).ajaxStop(function() {
     //clearTimeout(timer);
 });
 */
+
+//get more status
 function moreStatus(id,jplayer_id) {
   var dataString = 'status_id=' + id;
   $.ajax({
@@ -98,6 +101,7 @@ function moreStatus(id,jplayer_id) {
   });
 }
 
+//get more wall status
 function moreWallStatus(id,jplayer_id,email) {
   var dataString = 'status_id=' + id+'&email='+email;
   $.ajax({
@@ -115,6 +119,7 @@ function moreWallStatus(id,jplayer_id,email) {
   });
 }
 
+//get notifications
 function waitForMsg() {
   $.ajax({
     type: "post",
@@ -166,6 +171,7 @@ function waitForMsg() {
   });
 }
 
+//alter status message
 function suaStatus(status,msg) {
   var dataString = 'status_id=' + status+'&msg='+msg;
   $.ajax({
@@ -182,6 +188,7 @@ function suaStatus(status,msg) {
   });
 }
 
+//check user relationship when they visit other user wall
 function checkUserWallRelation(friend) {
   var dataString = 'friend=' + friend;
   $.ajax({
@@ -194,7 +201,7 @@ function checkUserWallRelation(friend) {
     cache: false,
     timeout: 50000,
     success: function(data) {
-      $('.headlineLeft').append(data);
+      $('.headlineFriendRelation').append(data);
        $(".inline").colorbox({inline:true,title:"<h1 style='margin-left: 180px; color:#fff!important;'>Chat</h1>", width:"30%",height:"80%"});
     }
   });
@@ -214,6 +221,7 @@ function setAllNotifyIsRead() {
   });
 }
 
+//get more notify
 function moreNotify(id) {
   var dataString = 'noti_id=' + id;
   $.ajax({
@@ -231,8 +239,8 @@ function moreNotify(id) {
   });
 }
 
+//get all friend in message site
 function getFriendChat() {
-
   $.ajax({
     type: "post",
 {/literal}
@@ -248,6 +256,7 @@ function getFriendChat() {
   });
 }
 
+//get all friend in user wall
 function getFriendList(email) {
   var dataString = 'email=' + email;
   $.ajax({
@@ -265,6 +274,7 @@ function getFriendList(email) {
   });
 }
 
+//get all members in fanclub
 function getMembers(fanclub) {
   var dataString = 'fanclub_id=' + fanclub;
   $.ajax({
@@ -282,6 +292,7 @@ function getMembers(fanclub) {
   });
 }
 
+//get conversation by the email
 function getConversation(userEmail) {
   if(typeof userEmail !== 'undefined'){
     if( window.userChat!=userEmail){
@@ -309,6 +320,7 @@ function getConversation(userEmail) {
   });
 }
 
+//get more conversation by the email
 function getMoreConversation(userEmail,last_id) {
   var dataString = 'email=' + userEmail+'&started='+last_id;
   $.ajax({
@@ -326,7 +338,7 @@ function getMoreConversation(userEmail,last_id) {
   });
 }
 
-
+//delete status
 function deleteStatus(status) {
   var dataString = 'status_id=' + status;
   $.ajax({
@@ -343,6 +355,7 @@ function deleteStatus(status) {
   });
 }
 
+//get all the playlists
 function getPlaylist() {
   $.ajax({
     type: "post",
@@ -360,7 +373,7 @@ function getPlaylist() {
   });
 }
 
-
+//check admin of fanclub
 function fanclubCheckAdmin(fanclub) {
   var dataString = 'fanclub_id=' + fanclub;
   $.ajax({
@@ -471,7 +484,6 @@ function getComment(status) {
     async: true,
     cache: false,
     success: function(data) {
-      //var checkComment=data.charAt(0);
       var checkComment=data.substr(0, data.indexOf('<'));
       if($.isNumeric(checkComment)){
         $("#loadplace"+status).append(data.substring(data.indexOf('<')));
@@ -515,11 +527,9 @@ function getLike(status) {
       if (obj.length > 0) {
         isLike = 1;
         $("#like" + status).replaceWith('<a href="#" class="like like_button" id="like' + status + '" title="UnLike" rel="UnLike">UnLike</a>');
-        //$("#loadplace" + status).prev('div').append('<div class="likeUsers" id="youlike' + status + '"></div>');
         $('<div class="likeUsers" id="youlike' + status + '"></div>').insertBefore($("#loadplace" + status));
       } else {
         $("#like" + status).replaceWith('<a href="#" class="like like_button" id="like' + status + '" title="Like" rel="Like">Like</a>');
-        //$("#loadplace" + status).prev('div').append('<div class="likeUsers" id="youlike' + status + '"></div>');
         $('<div class="likeUsers" id="youlike' + status + '"></div>').insertBefore($("#loadplace" + status));
       }
     }
@@ -699,8 +709,6 @@ function unfollowUser(friendName){
   });
   return false;
 }
-
-
 
 $(document).on('click', '.addFriend', function() {
   var li=$(this).parent();
@@ -1176,26 +1184,4 @@ $(document).on('keyup', '.searchMember', function() {
     });
   }
 });
-
-$(document).on('click', '#shareStatus', function() {
-  var id=$(this).prev('div').find('div').attr('id');
-  id= id.split("status").pop();
-    $.ajax({
-      type: "post",
-{/literal}
-      url: "{base_url('shareController/themShare')}",
-{literal}
-      cache: false,
-      data: 'status_id=' + id+'&message='+$('#target').val(),
-      success: function(response) {
-        parent.window.location.href = window.mainController;
-      }
-    });
-});
-
-/*$(document).on('click', '.stReport a', function() {
-   var status = $(this).attr('rel');
-});*/
-
-
 {/literal}
