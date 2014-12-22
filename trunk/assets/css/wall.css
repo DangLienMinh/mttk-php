@@ -796,6 +796,12 @@ width: 426px;
 
 .searchMember {
   float: left;
+  width: 250px;
+  border: solid 1px #000;
+  padding: 3px;
+  position: absolute;
+  top: 5px;
+  left: 28%;
 }
 
 #friendChatContainer {
@@ -1003,7 +1009,7 @@ width: 426px;
 }
 
 .timeline {
-  background-color: #e08989;
+  background-color: #029ae3;
   display: block;
   float: left;
   height: 100%;
@@ -1381,15 +1387,15 @@ width: 426px;
 }
 
 #displayUserBox {
-  top: 70px;
-  left: 295px;
-  position: absolute;
-  width: 255px;
-  display: none;
-  border-left: solid 1px #dedede;
-  border-right: solid 1px #dedede;
-  border-bottom: solid 1px #dedede;
-  overflow: hidden;
+  top: 36px;
+left: 148px;
+position: absolute;
+width: 255px;
+display: none;
+border-left: solid 1px #dedede;
+border-right: solid 1px #dedede;
+border-bottom: solid 1px #dedede;
+overflow: hidden;
 }
 
 .searchUserTtile {
@@ -1812,9 +1818,45 @@ a.removeMember {
   overflow: auto;
 }
 
+.playlistList {
+  position: absolute;
+  margin-top: 390px;
+  left: 2%;
+  width: 14%;
+  height: 275px;
+  overflow: auto;
+}
+
+.playlistTitle {
+color: #b2b3b5;
+margin-bottom: 19px;
+}
+
+.playlistReportBox {
+  border-top: solid 1px #dedede;
+  font-size: 12px;
+  height: 20px;
+  position: relative;
+  padding: 1px;
+}
+
+.playlistReportBox:hover {
+  background: #dddee0;
+  text-decoration: none;
+}
+
+.playlistReportBox>a {
+  color: black;
+  font-size: 12px;
+  font-weight: bold;
+  text-decoration: none;
+  position: absolute;
+  top: 2px;
+}
+
 .reportContainer {
   position: absolute;
-  margin-top: 400px;
+  margin-top: 690px;
   left: 20px;
   width: 220px;
 }
@@ -1921,8 +1963,8 @@ a.removeMember {
 
 #display {
   width: 256px;
-  left: 103px;
-  top: 32px;
+  left: 378px;
+  top: 28px;
   display: none;
   position: absolute;
   margin-right: 30px;

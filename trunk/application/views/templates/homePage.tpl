@@ -24,8 +24,9 @@ function getStatus() {
     getSuggest();
     getPlaylistUpdateStatus();
     getFanclub();
+    getPlaylistReport();
 
-    $("#target").autoGrow();
+    //$("#target").autoGrow();
     $('#tabs').tabs({
       activate: function(event, ui) {
         $('#container').masonry({
@@ -65,11 +66,7 @@ function getStatus() {
     });
 
     $('.fanclubInfo').append('<div class="fanclubUserBox" align="left"><a href="' + window.createFanclub + '" class="iframe">Create new fanclub</a></div>');
-    /*$(".iframe").colorbox({
-      iframe: true,
-      width: "50%",
-      height: "50%"
-    });*/
+    $('.playlistInfo').append('<div class="playlistReportBox" align="left"><a href="' + window.cretePlaylist + '" class="iframe">Create new playlist</a></div>');
   });
   </script>
  {/literal}
@@ -80,6 +77,11 @@ function getStatus() {
     <div class="fanclubContainer">
       <div class="fanclubTitle"><h3>FANCLUB</h3></div>
       <div class="fanclubInfo">
+      </div>
+    </div>
+    <div class="playlistList">
+      <div class="playlistTitle"><h3>PLAYLIST</h3></div>
+      <div class="playlistInfo">
       </div>
     </div>
     <div class="reportContainer">

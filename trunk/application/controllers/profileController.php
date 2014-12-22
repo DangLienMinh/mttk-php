@@ -62,6 +62,7 @@ class ProfileController extends CI_Controller {
         $file        = FCPATH . 'uploads\\img\\' . $data['pic'];
         $success     = file_put_contents($file, $pic);
         $user->suaProfileCover($data);
+        echo $data['pic'];
     }
     
     //change profile image site

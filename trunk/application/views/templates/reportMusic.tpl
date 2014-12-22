@@ -10,7 +10,16 @@ function getStatus(){
   </script>
   <script>
   $(document).ready(function() {
+    waitForMsg();
     getStatus();
+    friendRequest();
+    getSuggest();
+    $('#notificationsBody ul').bind('scroll', function() {
+      if ($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
+        var id = $(this).find('li:last').attr("id");
+        moreNotify(id.substring(4));
+      }
+    });
     var msnry = $('#container').data('masonry');
     msnry.on( 'layoutComplete', masonry_refresh );
     function masonry_refresh(){
@@ -21,6 +30,7 @@ function getStatus(){
  {/literal}
 </head>
 <body>
+  {include file='common/notificationPart.tpl'}
         <h1 id="reportMusicTitle">10 bài hát được yêu thích nhất</h1>
     <div id="container">
 

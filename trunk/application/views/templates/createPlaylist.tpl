@@ -46,7 +46,7 @@
     <ul>
       <li>
         <div class="option">
-          <div class="ptm"><table class="uiInfoTable uiInfoTableFixed noBorder" role="presentation"><tbody><tr class="dataRow"><th class="label"><label for="password_old">Current</label></th><td class="data"><input type="text" class="inputtext" name="password_old" id="playlistName"></td></tr><tr><th class="label noLabel"></th><td class="data"><div>&nbsp;</div></td></tr></tbody></table></div>
+          <div class="ptm"><table class="uiInfoTable uiInfoTableFixed noBorder" role="presentation"><tbody><tr class="dataRow"><th class="label"><label for="password_old">Playlist name</label></th><td class="data"><input type="text" class="inputtext" name="password_old" id="playlistName"></td></tr><tr><th class="label noLabel"></th><td class="data"><div>&nbsp;</div></td></tr></tbody></table></div>
         </div>
         
       </li>
