@@ -12,7 +12,6 @@
   <link rel="stylesheet" type="text/css" href="{asset_url()}css/jplayer.blue.monday.css">
   <script type="text/javascript" src="{asset_url()}js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery-ui.js"></script>
-  <script type="text/javascript" src="{asset_url()}js/jquery.autogrowtextarea.min.js"></script>
   <script type="text/javascript" src="{asset_url()}js/masonry.pkgd.min.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery.hideseek.js"></script>
   <script type="text/javascript" src="{asset_url()}js/jquery.colorbox-min.js"></script>
@@ -373,6 +372,24 @@ function getPlaylist() {
   });
 }
 
+//get all the playlists
+function getPlaylistReport() {
+  $.ajax({
+    type: "post",
+{/literal}
+    url: "{base_url('playlistController/getPlaylistReport')}",
+{literal}
+    async: true,
+    cache: false,
+    timeout: 50000,
+    success: function(data) {
+      $('.playlistInfo').append(data);
+     // $('#playlistBox').append('<br/><a class="iframe" href="'+window.cretePlaylist+'">Create Playlist</a>');
+      //$(".iframe").colorbox({iframe:true, width:"50%", height:"50%"});
+    }
+  });
+}
+
 //check admin of fanclub
 function fanclubCheckAdmin(fanclub) {
   var dataString = 'fanclub_id=' + fanclub;
@@ -617,6 +634,7 @@ function getPlaylistUpdateStatus() {
     cache: false,
     timeout: 50000,
     success: function(data) {
+
       $('#playlistBoxUpdateStatus select').append(data);
       var id=$('#playlistBoxUpdateStatus select').find(":selected").val();
       getSongUpdateStatus(id);
@@ -706,7 +724,7 @@ function unfollowUser(friendName){
   cache:false,
   success:
       function(data){
-        location.reload();
+         $('#wallUnfollow').replaceWith(data);
       }
   });
   return false;
@@ -797,7 +815,7 @@ $(document).on('click', '#wallAddFriend', function() {
   dataType: "text",
   cache:false,
   success:
-      function(data){
+      function(){
         location.reload();
       }
   });
@@ -816,7 +834,7 @@ $(document).on('click', '#wallFollow', function() {
   cache:false,
   success:
       function(data){
-        location.reload();
+        $('#wallFollow').replaceWith(data);
       }
   });
   return false;
@@ -1132,10 +1150,11 @@ $(document).on('click', '.addMember', function() {
   url:"{base_url('fanclubController/themFanclubUser')}",
 {literal}
   data:'user='+member+'&fanclub_id='+window.fanclub,
-  cache:false,
-  success:
-      function(){
-        location.reload();
+  cache:false,  
+  success: function(data){
+        $("#friendListContainer").find('ul').html(data);
+        li.remove();
+        $(".searchMember").val('');
       }
   });
   return false;

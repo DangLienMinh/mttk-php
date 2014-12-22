@@ -31,7 +31,33 @@ class FanclubController extends CI_Controller {
         $data['email']      = $this->session->userdata('email');
         $em                 = $this->doctrine->em;
         $fanclub            = new Entity\FanclubDAO($em);
+        $friend       = new Entity\FriendDAO($em);
         $fanclub->themFanclubUser($data);
+        $result       = $fanclub->getMembers($data['fanclub_id']);
+        $friends      = "";
+        
+        $checked      = $fanclub->checkUserCreateGroup($this->session->userdata('email'), $data['fanclub_id']);
+        $removeOption = "";
+        //add remove option to admin
+        if ($checked[0]['checked'] > 0) {
+            $removeOption = "<a class='removeMember'></a>";
+        }
+        //loop through member results
+        foreach ($result as $k) {
+            //check if user logged in is the same in this row
+            if (strcmp($this->session->userdata('email'), $k['email']) == 0) {
+                $friends .= '<li><a href="' . site_url('statusController/layDSWallStatus/') . '/' . $k['email'] . '"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' . base_url() . 'uploads/img/' . $k['picture'] . '"/><span class="' . $k['email'] . '">' . $k['name'] . '</span></a></li>';
+            } else {
+                //check friend if is friend the button is unfriend
+                if ($friend->checkFriend($this->session->userdata('email'), $k['email']) > 0) {
+                    $friends .= '<li><a href="' . site_url('statusController/layDSWallStatus/') . '/' . $k['email'] . '"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' . base_url() . 'uploads/img/' . $k['picture'] . '"/><span class="' . $k['email'] . '">' . $k['name'] . '</span></a><button class="unFriend" value="' . $k['email'] . '">Unfriend</button>' . $removeOption . '</li>';
+                //else the button is add friend
+                } else {
+                    $friends .= '<li><a href="' . site_url('statusController/layDSWallStatus/') . '/' . $k['email'] . '"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' . base_url() . 'uploads/img/' . $k['picture'] . '"/><span class="' . $k['email'] . '">' . $k['name'] . '</span></a><button class="addFriend" value="' . $k['email'] . '">Add Friend</button>' . $removeOption . '</li>';
+                }
+            }
+        }
+        echo $friends;
     }
     
     //user add themself to fanclub
@@ -85,7 +111,7 @@ class FanclubController extends CI_Controller {
         $data    = "";
         //loop through fanclub
         foreach ($result as $k) {
-            $data .= '<div class="fanclubUserBox" align="left"><div class="leaveClub"><a></a></div><img src="' . base_url() . 'assets/img/groupIcon.png" style="width:15px; height:15px; float:left; margin-right:6px" /><a href="' . site_url('statusController/layDSFanclubStatus/') . '/' . $k['fanclub_id'] . '">' . $k['fanclub_name'] . '</a></div>';
+            $data .= '<div class="fanclubUserBox" align="left"><img src="' . base_url() . 'assets/img/groupIcon.png" style="width:15px; height:15px; float:left; margin-right:6px" /><a href="' . site_url('statusController/layDSFanclubStatus/') . '/' . $k['fanclub_id'] . '">' . $k['fanclub_name'] . '</a></div>';
         }
         echo $data;
     }
@@ -166,6 +192,7 @@ class FanclubController extends CI_Controller {
         $file        = FCPATH . 'uploads\\img\\' . $data['pic'];
         $success     = file_put_contents($file, $pic);
         $fanclub->suaProfileCover($data);
+        echo $data['pic'];
     }
     
 }

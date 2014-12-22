@@ -18,7 +18,7 @@ function getStatus(){
     getPlaylistUpdateStatus();
     getFanclub();
 
-    $("#target").autoGrow();
+    //$("#target").autoGrow();
     $('#tabs').tabs({
       activate: function(event, ui) {
         $('#container').masonry({

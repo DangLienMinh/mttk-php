@@ -93,6 +93,7 @@ function playSelectedSong(guid, title) {
 		wmode: "window",
 		smoothPlayBar: true,
 		keyEnabled: true,
+		useStateClassSkin: true,
 		remainingDuration: true,
 		toggleDuration: true
 	});
@@ -299,7 +300,7 @@ function addStatusUserWall(obj) {
 					}
 					else{
 						if(val.music!=""){
-							hideAction='<div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a class="iframe share_button" href="'+window.shareStatus+'/'+val.status_id+'">Share</a><a href="#" class="playlist_button" id="playlist' + val.status_id + '">Playlist</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea style="width:305px;height:32px" placeholder=" Write your comment..." class="commentInput" id="textboxcontent' + val.status_id + '"></textarea></div>';
+							hideAction='<div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a class="iframe share_button" href="'+window.shareStatus+'/'+val.status_id+'">Share</a><a href="#" class="playlist_button" id="playlist' + val.status_id + '">Playlist</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea style="width:383px;height:32px" placeholder=" Write your comment..." class="commentInput" id="textboxcontent' + val.status_id + '"></textarea></div>';
 						}else{
 							hideAction='<div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a class="iframe share_button" href="'+window.shareStatus+'/'+val.status_id+'">Share</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea style="width:383px;height:32px" placeholder=" Write your comment..." class="commentInput" id="textboxcontent' + val.status_id + '"></textarea></div>';
 						}
@@ -362,11 +363,11 @@ function addMoreWallStatus(msg, jplayer_id) {
 					if(checkPlaylist == 1){
 						hideAction='<div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a class="iframe share_button" href="'+window.shareStatus+'/'+val.status_id+'">Share</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea style="width:383px;height:32px" placeholder=" Write your comment..." class="commentInput" id="textboxcontent' + val.status_id + '"></textarea></div>';
 					}else if(checkPlaylist>1){
-						hideAction='<div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a class="iframe share_button" href="'+window.shareStatus+'/'+val.status_id+'">Share</a><a href="#" class="playlist_button" id="playlist' + val.status_id + '">Playlist</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea style="width:305px;height:32px" placeholder=" Write your comment..." class="commentInput" id="textboxcontent' + val.status_id + '"></textarea></div>';
+						hideAction='<div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a class="iframe share_button" href="'+window.shareStatus+'/'+val.status_id+'">Share</a><a href="#" class="playlist_button" id="playlist' + val.status_id + '">Playlist</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea style="width:383px;height:32px" placeholder=" Write your comment..." class="commentInput" id="textboxcontent' + val.status_id + '"></textarea></div>';
 					}
 					else{
 						if(val.music!=""){
-							hideAction='<div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a class="iframe share_button" href="'+window.shareStatus+'/'+val.status_id+'">Share</a><a href="#" class="playlist_button" id="playlist' + val.status_id + '">Playlist</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea style="width:305px;height:32px" placeholder=" Write your comment..." class="commentInput" id="textboxcontent' + val.status_id + '"></textarea></div>';
+							hideAction='<div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a class="iframe share_button" href="'+window.shareStatus+'/'+val.status_id+'">Share</a><a href="#" class="playlist_button" id="playlist' + val.status_id + '">Playlist</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea style="width:383px;height:32px" placeholder=" Write your comment..." class="commentInput" id="textboxcontent' + val.status_id + '"></textarea></div>';
 						}else{
 							hideAction='<div class="staction"><a href="#" class="like like_button icontext"  id="like' + val.status_id + '"></a><a href="#" class="comment_button icontext comment" id="' + val.status_id + '">Comment</a><a class="iframe share_button" href="'+window.shareStatus+'/'+val.status_id+'">Share</a></div><ul class="loadplace" id="loadplace' + val.status_id + '"></ul><div class="panel" id="slidepanel' + val.status_id + '"><div class="cmtpic"><img src="' + window.userPicCmt + '" style="width:33px;height:33px;" /></div><textarea style="width:383px;height:32px" placeholder=" Write your comment..." class="commentInput" id="textboxcontent' + val.status_id + '"></textarea></div>';
 						}
@@ -575,8 +576,7 @@ $(document).on('click', '#chatPage', function() {
 //setting status pane
 $(document).on('click', '.account', function() {
 	var X = $(this).attr('id');
-
-	if (X == 1) {
+	if (X === "1") {
 		$(this).parent().find(".submenu").hide();
 		$(this).attr('id', '0');
 	} else {
@@ -588,7 +588,6 @@ $(document).on('click', '.account', function() {
 //notification panel setting status pane
 $(document).on('click', '.settingIcon', function() {
 	var X = $(this).attr('id');
-
 	if (X == 1) {
 		$(this).parent().find(".settingSubmenu").hide();
 		$(this).attr('id', '0');
@@ -633,10 +632,19 @@ $(document).on('click', '.playlist_button', function() {
 	var title = $this.parents().eq(2).find('[id^="jp_audio_"]').attr('title');
 	$('#playlistBox #titleMusic').replaceWith('<input type="hidden" id="titleMusic" value="' + title + '"/>');
 	$('#playlistBox #urlMusic').replaceWith('<input type="hidden" id="urlMusic" value="' + musicUrl + '"/>');
-	$('#playlistBox').css({
-		left: $this.offset().left,
-		top: $this.offset().top + $this.height(),
-	}).toggle();
+
+	if (window.location.href.indexOf("layDSWallStatus") > -1) {
+		$('#playlistBox').css({
+			left: $this.offset().left,
+			top: $this.offset().top + $this.height()-617,
+		}).toggle();
+	}else{
+		$('#playlistBox').css({
+			left: $this.offset().left,
+			top: $this.offset().top + $this.height(),
+		}).toggle();
+	}
+	
 	return false;
 });
 
@@ -751,6 +759,10 @@ $(document).click(function(e) {
 	{
 		container.hide();
 	}
+
+
+
+
 });
 
 //window click and hide some child container if they are opened
@@ -893,6 +905,8 @@ $(document).on('mouseover', '.item', function() {
 $(document).on('mouseout', '.item', function() {
 	var item1 = $(".dropdown");
 	var element = $(this).find(item1);
+	/*$(this).find(".account").attr('id')
+	$(this).find('.submenu').hide();*/
 	element.hide();
 });
 
@@ -919,6 +933,7 @@ $(document).on('mouseover', '.load_comment', function() {
 	var element = $(this).find('a');
 	element.show();
 });
+
 
 //comment blur
 $(document).on('mouseout', '.load_comment', function() {
@@ -1081,5 +1096,9 @@ $(document).on('click', '#aboutLeft4', function() {
 	$('#aboutRight').find('#about4').siblings('div').hide();
 	$(this).addClass("aboutLeftSelected");
 	$(this).parent().siblings('li').find('a').removeClass("aboutLeftSelected");
+	return false;
+});
+
+$(document).on('click', '.result a', function() {
 	return false;
 });

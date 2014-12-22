@@ -87,7 +87,7 @@ from status,user where status.email=user.email and status.status_id=?;");
 	public function GetFamousStatus($sdate,$edate)
 	{
 		$cnn=$this->em->getConnection();
-		$sth = $cnn->prepare("SELECT music,title,thumbs_up from status where created_at between ? and  ? order by thumbs_up desc LIMIT 10");
+		$sth = $cnn->prepare("SELECT music,title,thumbs_up from status where music<>'' and created_at between ? and  ? order by thumbs_up desc LIMIT 10");
 		$sth->bindValue(1, $sdate);
 		$sth->bindValue(2, $edate);
 		$sth->execute();

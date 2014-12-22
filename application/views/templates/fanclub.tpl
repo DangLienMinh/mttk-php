@@ -30,7 +30,7 @@ function getStatus(){
     fanclubCheckAdmin(window.fanclub);
     getMembers(window.fanclub);
     $("input[name='fanclub_id']").val(window.fanclub);
-    $("#target").autoGrow();
+//    $("#target").autoGrow();
     $('#tabs').tabs({
       activate: function(event, ui) {
         $('#container').masonry({
@@ -96,8 +96,11 @@ function getStatus(){
           image: img,
           fanclub: id
         },
-        success: function() {
-          location.reload();
+        success: function(data) {
+          //location.reload();
+           $(".headlineLeft").hide();
+          $('#coverContainer').css('background', 'url("' + window.userPic+data + '")').css('background-size', 'cover');
+          $('.imageBox').css('display', 'none');
         }
       });
     });
@@ -122,6 +125,12 @@ function getStatus(){
               </div>
               <div id="fanclubCover">
             </div>
+            <div class="headlineInImage">
+                <div class="headlineLeft" style="display:none;">
+                  <a id="btnCrop" href="#">Finish</a>
+                  <a id="btnCancel" href="#">Cancel</a>
+                </div>
+              </div>
               <div id="headline">
                 <div class="headlineRight">
                   <a id="headlineFanclub" href="#"></a>
@@ -130,10 +139,10 @@ function getStatus(){
                   <a id="headlineLeave" href="#">Leave group</a>
                   <a class="" href="#">More</a>
                 </div>
-                <div class="headlineLeft" style="display:none;">
+                <!-- <div class="headlineLeft" style="display:none;">
                   <a id="btnCrop" href="#">Finish</a>
                   <a id="btnCancel" href="#">Cancel</a>
-                </div>
+                </div> -->
               </div>
           </div>
         </div>
@@ -145,7 +154,7 @@ function getStatus(){
             <div id="friendListContainer">
               <div id="searchFriend">
                 <h3>Add member</h3>
-                <input type="text" class="searchMember" id="searchbox" /><br />
+                <input type="text" class="searchMember" /><br />
                 <div id="display">
                 </div>
               </div>

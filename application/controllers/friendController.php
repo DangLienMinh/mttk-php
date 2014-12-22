@@ -81,6 +81,7 @@ class FriendController extends CI_Controller {
         $em       = $this->doctrine->em;
         $friend   = new Entity\FriendDAO($em);
         $friend->unfollowFriend($email, $unfollow);
+        echo '<a rel="' . $unfollow . '" id="wallfollow" href="#">Follow</a>';
     }
     
     //follow friend
@@ -90,6 +91,7 @@ class FriendController extends CI_Controller {
         $em     = $this->doctrine->em;
         $friend = new Entity\FriendDAO($em);
         $friend->followFriend($email, $follow);
+       echo '<a rel="' . $follow . '" id="wallUnfollow" href="#">UnFollow</a>';
     }
     
     //get all friends in user wall

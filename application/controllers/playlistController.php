@@ -22,6 +22,20 @@ class PlaylistController extends CI_Controller {
         }
         echo $playlists;
     }
+
+    //playlist report
+    function getPlaylistReport() {
+        $em        = $this->doctrine->em;
+        $playlist  = new Entity\PlaylistDAO($em);
+        $result    = $playlist->layDSPlaylist($this->session->userdata('email'));
+        $playlists = "";
+        //$playlists.='<div class="fanclubUserBox" align="left"><a href="http://localhost:81/mttk-php/fanclubController/createFanclub" class="iframe cboxElement">Create new fanclub</a></div>';
+        foreach ($result as $k) {
+            $playlists .= '<div class="playlistReportBox" align="left"><img src="' . base_url() . 'assets/img/playlistIconSmall.png" style="width:15px; height:15px; float:left; margin-right:6px" /><a href="#">' . $k['Playlist_name'] . '</a></div>';
+            //$playlists .= '<option value="' . $k['Playlist_id'] . '">' . $k['Playlist_name'] . '</option>';
+        }
+        echo $playlists;
+    }
     
     //get all playlist with songs in user wall
     function wallDsPlaylist() {

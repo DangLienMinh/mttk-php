@@ -103,8 +103,11 @@ function getStatus(){
         data: {
           image: img
         },
-        success: function() {
-          location.reload();
+        success: function(data) {
+          //location.reload();
+          $(".headlineLeft").hide();
+          $('#coverContainer').css('background', 'url("' + window.userPic+data + '")').css('background-size', 'cover');
+          $('.imageBox').css('display', 'none');
         }
       });
     });
@@ -250,10 +253,10 @@ function getStatus(){
         </div>
       </div>
     </div>
-        <div id="inside">
+        <!-- <div id="inside">
           <div id="lookbook-shop-now" style="height: 448px; background-position: 0px 50%;"></div>
           <a href="#" target="_blank" class="bt3 lookbookshopnow">ABC NOW</a>
-        </div>
+        </div> -->
       </div>
     </div>
   </body>

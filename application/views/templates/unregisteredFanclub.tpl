@@ -28,7 +28,7 @@ function getStatus(){
     getFanclub();
     getMembers(window.fanclub);
 
-    $("#target").autoGrow();
+    //$("#target").autoGrow();
     $('#tabs').tabs({
       activate: function(event, ui) {
         $('#container').masonry({
