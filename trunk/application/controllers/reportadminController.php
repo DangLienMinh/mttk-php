@@ -8,6 +8,7 @@ class ReportadminController extends CI_Controller {
         if (!isset($is_logged_in) || $is_logged_in != true) {
             redirect('/userController/index', 'refresh');
         }
+        $this->load->library('pagination');
     }
     
     //add new status report

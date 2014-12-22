@@ -88,7 +88,7 @@ function getStatus() {
         {form_open_multipart('statusController/GetFamousStatus')}
         <input type="date" name="sdate"/>
         <input type="date" name="edate"/><br>
-         <input type="submit" value="submit"/><br>
+         <input type="submit" value="submit" id="reportButton"/><br>
         {form_close()}
       </div>
     </div>
