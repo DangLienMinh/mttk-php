@@ -100,7 +100,7 @@ class FanclubDAO
     //get all the fanclubs the user involved
     public function getFanclub($email){
         $cnn=$this->em->getConnection();
-        $sth = $cnn->prepare("SELECT p.fanclub_id,p.fanclub_name,p.fanclub_desc FROM Fanclub p WHERE p.email = ? or p.fanclub_id in(select h.fanclub_id from Fanclub_users h where h.email=?) order by p.fanclub_name LIMIT 10");
+        $sth = $cnn->prepare("SELECT p.fanclub_id,p.fanclub_name,p.fanclub_desc FROM Fanclub p WHERE p.email = ? or p.fanclub_id in(select h.fanclub_id from Fanclub_users h where h.email=?) order by p.fanclub_name");
         $sth->bindValue(1, $email);
         $sth->bindValue(2, $email);
         $sth->execute();

@@ -38,7 +38,7 @@ function getStatus(){
     }
 
     $('#search').hideseek();
-    $("#target").autoGrow();
+    //$("#target").autoGrow();
     $('#tabs').tabs({
       activate: function(event, ui) {
         $('#container').masonry({
@@ -161,6 +161,14 @@ function getStatus(){
                   <div class="thumbBox"></div>
                   <div class="spinner" style="display: none">Loading...</div>
               </div>
+              <div class="headlineInImage">
+                 <div class="headlineFriendRelation">
+                </div>
+                <div class="headlineLeft" style="display:none;">
+                  <a id="btnCrop" href="#">Finish</a>
+                  <a id="btnCancel" href="#">Cancel</a>
+                </div>
+              </div>
               <div id="headline">
                 <div class="headlineRight">
                   <a id="headlineTimeline" href="#">TimeLine</a>
@@ -169,23 +177,17 @@ function getStatus(){
                   <a id="headlinePlaylist" href="#">Playlist</a>
                   <a class="" href="#">More</a>
                 </div>
-                <div class="headlineFriendRelation">
-                </div>
-                <div class="headlineLeft" style="display:none;">
-                  <a id="btnCrop" href="#">Finish</a>
-                  <a id="btnCancel" href="#">Cancel</a>
-                </div>
               </div>
               <div id="cover">
               </div>
           </div>
-          <div class="inner">
+          <!-- <div class="inner">
             <div id="c2013">
               <div class="col1"></div>
               <div class="col2">Email: anhtiminh@yahoo.com Address:Mac dinh chi 406 education: dai hoc cong nghe thong tin</div>
               <div class="clear"></div>
             </div>
-          </div>
+          </div> -->
         </div>
         <div id="wallContainer">
       <div id="view1">

@@ -201,7 +201,7 @@ a:hover {
 
 #friendBody ul {
   height: 310px;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
 }
 
@@ -306,8 +306,8 @@ a:hover {
 }*/
 #cover {
   position: absolute;
-  top: 67%;
-  left: 43%;
+top: 64%;
+left: 46%;
 }
 
 .coverImg {
@@ -373,8 +373,8 @@ a:hover {
   position: absolute;
   font-size: 9px;
   width: 70px;
-  left: 66px;
-  top: 77px;
+ left: 25px;
+  top: 49px;
   height: 25px;
   text-align: center;
   background: #000;
@@ -445,20 +445,20 @@ a:hover {
 
 #headline {
   clear: both;
-  position: absolute;
-  width: 100%;
-  z-index: 4;
-  height: 43px;
-  top: 89%;
+position: absolute;
+width: 100%;
+z-index: 4;
+height: 43px;
+top: 101%;
 }
 
 .headlineRight {
-  float: right;
+ position: absolute;
+left: 36%;
 }
 
 .headlineRight>a:hover {
-  text-decoration: none;
-  color: #EF2;
+  border-top: 3px solid #000;
 }
 
 .headlineRight:after {
@@ -473,17 +473,23 @@ a:hover {
 
 .headlineRight>a {
   float: left;
-  font-size: 14px;
-  font-weight: bold;
-  height: 43px;
-  line-height: 3.05;
-  padding: 0 17px;
-  position: relative;
-  vertical-align: middle;
-  white-space: nowrap;
-  color: white;
-  cursor: pointer;
-  text-decoration: none;
+line-height: 3.05;
+padding: 0 17px;
+cursor: pointer;
+color: #000;
+display: block;
+text-decoration: none;
+font-size: 14px;
+text-transform: uppercase;
+}
+
+.headlineInImage{
+  clear: both;
+position: absolute;
+width: 100%;
+z-index: 4;
+height: 43px;
+top: 91%;
 }
 
 .headlineLeft {
@@ -515,7 +521,7 @@ a:hover {
   position: relative;
   vertical-align: middle;
   white-space: nowrap;
-  color: white;
+  color: black;
   cursor: pointer;
   text-decoration: none;
 }
@@ -644,11 +650,11 @@ a:hover {
 
 .panel {
   background-color: #fff;
-  height: 45px;
-  margin-bottom: 5px;
-  margin-right: 50px;
-  padding: 6px;
-  width: 363px;
+height: 45px;
+margin-bottom: 5px;
+margin-right: 5px;
+padding: 6px;
+width: 426px;
 }
 
 .cmtpic {
@@ -1361,8 +1367,8 @@ a:hover {
   border: solid 1px #000;
   padding: 3px;
   position: absolute;
-  top: 47px;
-  left: 295px;
+  top: 13px;
+  left: 11%;
 }
 
 .search input {
@@ -1481,6 +1487,30 @@ a:hover {
 
 .friendAction{
   padding-bottom: 5px;
+}
+
+#reportButton{
+  background-color: #4e69a2;
+  border-color: #435a8b #3c5488 #334c83;
+  background-position: 0 -335px;
+  line-height: 22px;
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, .2);
+  padding: 0 8px;
+  border: 1px solid;
+  -webkit-border-radius: 2px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+  -webkit-box-sizing: content-box;
+  font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande',tahoma,verdana,arial,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-weight: bold;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
 #friendAccept{
@@ -1779,6 +1809,7 @@ a.removeMember {
   left: 2%;
   width: 14%;
   height: 275px;
+  overflow: auto;
 }
 
 .reportContainer {
@@ -1964,4 +1995,14 @@ div.settingSubmenu {
   padding: 40px 0 5px;
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+}
+
+.circle{
+  border-radius: 50%;
+  width:125px;
+  height:125px;
+}
+
+#target{
+  width:420px;
 }
