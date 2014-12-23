@@ -688,7 +688,8 @@ function getSongWall(id,number) {
   var playlist = [];
   var options = {
     swfPath: "js",
-    supplied: "mp3"
+    supplied: "mp3",
+    useStateClassSkin: true
   };
   var myPlaylist = new jPlayerPlaylist(cssSelector, playlist, options);
   $.ajax({

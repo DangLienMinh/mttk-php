@@ -34,11 +34,6 @@
   {/literal}
 </head>
 <body>
-  <!-- <div>
-    <h5>Playlist name</h5>
-    <input type="text" name="playlistName" id="playlistName"/>
-    <button type="submit" id="playlistCreate">Create</button>
-  </div> -->
   <div id="reportHeader"> 
     <h3 class="">Create new playlist</h3>
   </div>

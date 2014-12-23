@@ -62,6 +62,7 @@ function getStatus(){
         swfPath: "js",
         supplied: "mp3",
         wmode: "window",
+        useStateClassSkin: true,
         smoothPlayBar: true,
         keyEnabled: true,
         remainingDuration: true,
