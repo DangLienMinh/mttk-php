@@ -44,7 +44,7 @@ class ProfileController extends CI_Controller {
         $success     = file_put_contents($file, $pic);
         $user->suaProfileImage($data);
         $this->session->set_userdata('pic', $data['pic']);
-        echo base_url('/');
+        echo $data['pic'];
     }
     
     //update user cover image

@@ -798,7 +798,7 @@ $(document).on('click', '#wallUnfriend', function() {
   cache:false,
   success:
       function(data){
-        location.reload();
+        $('.headlineFriendRelation').html(data);
       }
   });
   return false;
@@ -815,8 +815,8 @@ $(document).on('click', '#wallAddFriend', function() {
   dataType: "text",
   cache:false,
   success:
-      function(){
-        location.reload();
+      function(data){
+        $('.headlineFriendRelation').html(data);
       }
   });
   return false;
