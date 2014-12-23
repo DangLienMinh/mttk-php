@@ -104,7 +104,6 @@ function getStatus(){
           image: img
         },
         success: function(data) {
-          //location.reload();
           $(".headlineLeft").hide();
           $('#coverContainer').css('background', 'url("' + window.userPic+data + '")').css('background-size', 'cover');
           $('.imageBox').css('display', 'none');

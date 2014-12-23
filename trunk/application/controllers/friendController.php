@@ -62,6 +62,7 @@ class FriendController extends CI_Controller {
             $em          = $this->doctrine->em;
             $friend      = new Entity\FriendDAO($em);
             $friend->themFriend($email, $friend_name);
+            echo '<a rel="' . $friend_name . '" id="wallUnfriend" href="#">Cancel friend request</a><a class="inline" href="#inline_content"><span class="' . $friend_name . '">Message</span></a>';
         }
     }
     
@@ -72,6 +73,7 @@ class FriendController extends CI_Controller {
         $em       = $this->doctrine->em;
         $friend   = new Entity\FriendDAO($em);
         $friend->UnFriend($email, $unfriend);
+        echo '<a rel="' . $unfriend . '" id="wallAddFriend" href="#">Add friend</a><a class="inline" href="#inline_content"><span class="' . $unfriend . '">Message</span></a>';
     }
     
     //unfollow friend

@@ -9,6 +9,7 @@
   <script type="text/javascript" src="{asset_url()}js/cropbox.js"></script>
   <script type="text/javascript">
   window.avatarFolder="{asset_url()}img/";
+  window.userPic="{uploads_url()}img/";
 {literal}
   $(window).load(function() {
     var options = {
@@ -39,7 +40,13 @@
           image: img
         },
         success: function(data) {
-          parent.window.location.href = data;
+          parent.jQuery.colorbox.close();
+          //$(".headlineLeft").hide();
+          window.parent.$('.coverImg').css('background', 'url("' + window.userPic+data + '")');
+          window.parent.$('.stimg img').replaceWith('<img id="anhtiminh@yahoo.com" src="'+window.userPic+data+'" style="width:70px;height:70px">');
+          window.parent.$('.cmtpic img').replaceWith('<img src="'+window.userPic+data+'" style="width:33px;height:33px;">');
+          window.parent.$('.loginUser').replaceWith('<img class="loginUser" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="'+window.userPic+data+'"/>');
+          //parent.window.location.href = data;
         }
       });
     });

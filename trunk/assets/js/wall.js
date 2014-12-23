@@ -1102,3 +1102,16 @@ $(document).on('click', '#aboutLeft4', function() {
 $(document).on('click', '.result a', function() {
 	return false;
 });
+
+/*$(document).on('click', '#friendAccept', function() {
+	$(this).parent().parent().fadeOut();
+	return false;
+});
+
+$(document).on('click', '#friendDecline', function() {
+	$(this).parent().parent().fadeOut();
+	return false;
+});
+
+*/
+

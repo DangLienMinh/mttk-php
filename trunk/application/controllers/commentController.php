@@ -28,7 +28,7 @@ class CommentController extends CI_Controller {
             $comment_id      = $comment->themComment($data);
 
             //ajax add comment to status
-            echo '<li class="load_comment"><img id="' . $data['email'] . '" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' . $img . '"/><span>' . $_POST["textcontent"] . '</span><a href="#" id="' . $comment_id . '" class="delete_button"></a><br/><abbr class="timeago" title="' . date('Y-m-d H:i:s') . '"></abbr></li>';
+            echo '<li class="load_comment"><img class="loginUser" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' . $img . '"/><span>' . $_POST["textcontent"] . '</span><a href="#" id="' . $comment_id . '" class="delete_button"></a><br/><abbr class="timeago" title="' . date('Y-m-d H:i:s') . '"></abbr></li>';
         }
     }
     
@@ -47,10 +47,13 @@ class CommentController extends CI_Controller {
             //check if current user create comment so they can delete comment
             if ($k['email'] == $this->session->userdata('email')) {
                 $is_delete = "delete_button";
+                $id="loginUser";
+            }else{
+                $id="friend";
             }
 
             //ajax add comment 
-            $comments .= '<li class="load_comment"><span id="' . $k['name'] . '"></span><img id="' . $k['email'] . '" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' . base_url() . 'uploads/img/' . $k['picture'] . '"/><span>' . $k['message'] . '</span><a href="#" id="' . $k['comment_id'] . '" class="' . $is_delete . '"></a><br/><abbr class="timeago" title="' . $k['created_at'] . '"></abbr></li>';
+            $comments .= '<li class="load_comment"><span id="' . $k['name'] . '"></span><img class="' . $id. '" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' . base_url() . 'uploads/img/' . $k['picture'] . '"/><span>' . $k['message'] . '</span><a href="#" id="' . $k['comment_id'] . '" class="' . $is_delete . '"></a><br/><abbr class="timeago" title="' . $k['created_at'] . '"></abbr></li>';
         }
         echo $comments;
     }
@@ -72,9 +75,12 @@ class CommentController extends CI_Controller {
                      //check if current user create comment so they can delete comment
                     if ($k['email'] == $this->session->userdata('email')) {
                         $is_delete = "delete_button";
+                        $id="loginUser";
+                    }else{
+                        $id="friend";
                     }
                     //ajax add comment 
-                    $comments .= '<li class="load_comment"><span id="' . $k['name'] . '"></span><img id="' . $k['email'] . '" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' . base_url() . 'uploads/img/' . $k['picture'] . '"/><span>' . $k['message'] . '</span><a href="#" id="' . $k['comment_id'] . '" class="' . $is_delete . '"></a><br/><abbr class="timeago" title="' . $k['created_at'] . '"></abbr></li>';
+                    $comments .= '<li class="load_comment"><span id="' . $k['name'] . '"></span><img class="' . $id. '" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' . base_url() . 'uploads/img/' . $k['picture'] . '"/><span>' . $k['message'] . '</span><a href="#" id="' . $k['comment_id'] . '" class="' . $is_delete . '"></a><br/><abbr class="timeago" title="' . $k['created_at'] . '"></abbr></li>';
                 }
             // if comment in status >3
             } else {
@@ -103,9 +109,12 @@ class CommentController extends CI_Controller {
             //check if current user create comment so they can delete comment
             if ($k['email'] == $this->session->userdata('email')) {
                 $is_delete = "delete_button";
+                $id="loginUser";
+            }else{
+                $id="friend";
             }
             //ajax add comment 
-            $comments .= '<li class="load_comment"><span id="' . $k['name'] . '"></span><img id="' . $k['email'] . '" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' . base_url() . 'uploads/img/' . $k['picture'] . '"/><span>' . $k['message'] . '</span><a href="#" id="' . $k['comment_id'] . '" class="' . $is_delete . '"></a><br/><abbr class="timeago" title="' . $k['created_at'] . '"></abbr></li>';
+            $comments .= '<li class="load_comment"><span id="' . $k['name'] . '"></span><img class="' . $id. '" style="width:33px;height:33px;vertical-align:middle;margin-right:7px;float:left" src="' . base_url() . 'uploads/img/' . $k['picture'] . '"/><span>' . $k['message'] . '</span><a href="#" id="' . $k['comment_id'] . '" class="' . $is_delete . '"></a><br/><abbr class="timeago" title="' . $k['created_at'] . '"></abbr></li>';
         }
         echo $comments;
     }
