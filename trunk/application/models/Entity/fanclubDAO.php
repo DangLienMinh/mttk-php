@@ -59,9 +59,13 @@ class FanclubDAO
     //search fanclub by name
     public function timFanclub($name){
         $cnn=$this->em->getConnection();
-        $sth = $cnn->prepare("select fanclub_id,fanclub_name,fanclub_desc,(select count(*)+1 from fanclub_users where fanclub_id=(select fanclub_id from fanclub where fanclub_name=?)) as soluong from fanclub where fanclub_name=? order by fanclub_name LIMIT 5");
-        $sth->bindValue(1, $name);
-        $sth->bindValue(2, $name);
+        $sth = $cnn->prepare("SELECT g.fanclub_id, fanclub_name,fanclub_desc,COUNT(m.email)+1 AS soluong
+        FROM fanclub AS g
+        LEFT JOIN fanclub_users AS m USING(fanclub_id)
+        WHERE fanclub_name like ?
+        GROUP BY g.fanclub_id
+        order by fanclub_name  LIMIT 5");
+        $sth->bindValue(1, $name.'%');
         $sth->execute();
         $result = $sth->fetchAll();
         return $result;

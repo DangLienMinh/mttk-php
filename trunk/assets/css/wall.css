@@ -315,45 +315,6 @@ left: 46%;
 /*    height:235px;*/;
 }
 
-.hexagon {
-  overflow: hidden;
-  visibility: hidden;
-  -webkit-transform: rotate(120deg);
-  -moz-transform: rotate(120deg);
-  -ms-transform: rotate(120deg);
-  -o-transform: rotate(120deg);
-  transform: rotate(120deg);
-  cursor: pointer;
-}
-
-.hexagon-in1 {
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  -webkit-transform: rotate(-60deg);
-  -moz-transform: rotate(-60deg);
-  -ms-transform: rotate(-60deg);
-  -o-transform: rotate(-60deg);
-  transform: rotate(-60deg);
-}
-
-.hexagon-in2 {
-  width: 100%;
-  height: 100%;
-  visibility: visible;
-  -webkit-transform: rotate(-60deg);
-  -moz-transform: rotate(-60deg);
-  -ms-transform: rotate(-60deg);
-  -o-transform: rotate(-60deg);
-  transform: rotate(-60deg);
-}
-
-.hexagon1 {
-  width: 200px;
-  height: 100px;
-}
-
 #coverContainer .coverName {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: bold;
@@ -424,6 +385,8 @@ left: 46%;
 #fanclubCover .fanclubCoverName a {
   color: #fff!important;
   text-decoration: none;
+  -webkit-text-stroke-width: 2px;
+-webkit-text-stroke-color: #029ae3;
 }
 
 .fanclubCoverDesc {
@@ -441,6 +404,9 @@ left: 46%;
 #fanclubCover .fanclubCoverDesc a {
   color: #fff!important;
   text-decoration: none;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #029ae3;
+  font-size: 17px;
 }
 
 #headline {
@@ -2047,4 +2013,13 @@ div.settingSubmenu {
 
 #target{
   width:420px;
+}
+
+#finalResult{
+  width: 255px;
+}
+
+#finalResult .result{
+  border-bottom: 1px solid black;
+  padding:2px;
 }

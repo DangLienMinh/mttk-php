@@ -184,7 +184,7 @@ class StatusController extends CI_Controller {
             $data['status'] = $_POST["status3"];
             $data['music']  = $_POST["playlist_id"];
             $data['title']  = "";
-        } else {
+        } else if (trim($_POST['status2']) != ''){
             if ($_FILES['musicFile']['error'] != 4) {
                 $data['title']           = $_FILES['musicFile']['name'];
                 $config['upload_path']   = './uploads/';
@@ -202,6 +202,8 @@ class StatusController extends CI_Controller {
                     $data['music']  = $config['file_name'];
                 }
             }
+        }else{
+            redirect('/', 'refresh');
         }
         $data['privacy'] = $_POST["privacy"];
         $data['email']   = $this->session->userdata('email');
@@ -257,6 +259,7 @@ class StatusController extends CI_Controller {
     //get status when user click on notification
     public function hienThiNotiStatus($statusParam, $noti_id = -1) {
         $em = $this->doctrine->em;
+
         if ($noti_id != -1) {
             $noti = new Entity\NotificationDAO($em);
             $noti->setNotifyIsRead($noti_id);

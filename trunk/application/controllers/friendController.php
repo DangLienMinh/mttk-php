@@ -38,16 +38,17 @@ class FriendController extends CI_Controller {
         if (count($result) > 0) {
             $friends .= '<div class="searchUserTtile"><h3>People</h3></div>';
             foreach ($result as $k) {
-                $friends .= '<div class="searchUserBox" align="left"><img src="' . base_url() . 'uploads/img/' . $k['picture'] . '" style="width:40px; height:40px; float:left; margin-right:6px" /><a href="' . site_url('statusController/layDSWallStatus/') . '/' . $k['email'] . '">' . $k['first_name'] . " " . $k['last_name'] . '</a></div>';
+                $friends .= '<div class="searchUserBox" align="left"><img src="' . base_url() . 'uploads/img/' . $k['picture'] . '" style="width:40px; height:40px; float:left; margin-right:6px" /><a title="'.$k['first_name'] . " " . $k['last_name'].'" style="width: 123px;height:21px;overflow: hidden;" href="' . site_url('statusController/layDSWallStatus/') . '/' . $k['email'] . '">' . $k['first_name'] . " " . $k['last_name'] . '</a></div>';
             }
-            $result1 = $fanclub->timFanclub($search);
+        }
+        $result1 = $fanclub->timFanclub($search);
             if (count($result1) > 0) {
                 $friends .= '<div class="searchUserTtile"><h3>Fanclubs</h3></div>';
                 foreach ($result1 as $k) {
-                    $friends .= '<div class="searchUserBox" align="left"><img src="' . base_url() . 'assets/img/groupIcon.png" style="width:40px; height:40px; float:left; margin-right:6px" /><a href="' . site_url('statusController/layDSFanclubStatus/') . '/' . $k['fanclub_id'] . '">' . $k['fanclub_name'] . '</a><span>' . $k['soluong'] . ' members' . '</span></div>';
+                    $friends .= '<div class="searchUserBox" align="left"><img src="' . base_url() . 'assets/img/groupIcon.png" style="width:40px; height:40px; float:left; margin-right:6px" /><a title="'.$k['fanclub_name'].'" style="width: 123px;height:21px;overflow: hidden;" href="' . site_url('statusController/layDSFanclubStatus/') . '/' . $k['fanclub_id'] . '">' . $k['fanclub_name'] . '</a><span>' . $k['soluong'] . ' members' . '</span></div>';
                 }
             }
-        } else {
+        if(count($result1) == 0&&count($result) == 0){
             $friends .= "<b>No Data Found</b>";
         }
         echo $friends;

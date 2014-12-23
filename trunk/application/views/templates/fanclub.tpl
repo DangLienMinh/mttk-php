@@ -10,6 +10,7 @@ function getStatus(){
   </script>
   <script>
 {/literal}
+  window.relation=1;
   window.fanclub="{$fanclub}";
   window.fanclubName="{$fanclubName}";
   window.fanclubDesc="{$fanclubDesc}";
@@ -62,6 +63,7 @@ function getStatus(){
       swfPath: "js",
       supplied: "mp3",
       wmode: "window",
+      useStateClassSkin: true,
       smoothPlayBar: true,
       keyEnabled: true,
       remainingDuration: true,

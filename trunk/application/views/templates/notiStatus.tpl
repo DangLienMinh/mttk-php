@@ -9,6 +9,11 @@ function getStatus(){
   }
   </script>
   <script>
+{/literal}
+    window.relation=1;
+{literal}
+  </script>
+  <script>
   $(document).ready(function() {
     waitForMsg();
     friendRequest();
@@ -50,6 +55,7 @@ function getStatus(){
         supplied: "mp3",
         wmode: "window",
         smoothPlayBar: true,
+        useStateClassSkin: true,
         keyEnabled: true,
         remainingDuration: true,
         toggleDuration: true
