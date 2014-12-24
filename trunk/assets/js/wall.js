@@ -601,6 +601,17 @@ $(document).on('click', '.settingIcon', function() {
 //click on user chat head
 $(document).on('click', '.inline', function(e) {
 	e.preventDefault();
+	if($(this).parent().hasClass("blink_me")){
+		$(this).parent().removeClass("blink_me");
+		var num=$("#message_count").html()-1;
+		if(num>0){
+			$("#message_count").replaceWith('<span id="message_count">' + num + '</span>');
+		}else{
+			$("#message_count").fadeOut();
+		}
+		
+	}
+
 	var userEmail = $(this).find('span').attr('class');
 	getConversation(userEmail);
 	$('#toUser').val(userEmail);

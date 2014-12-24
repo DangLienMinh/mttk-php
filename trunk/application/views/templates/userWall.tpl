@@ -23,6 +23,7 @@ function getStatus(){
     getStatus();
     getPlaylist();
     getSuggest();
+    getMessageNumber();
     getPlaylistUpdateStatus();
     getWallAbout(window.userLoginWall);
     getEducation(window.userLoginWall);

@@ -139,18 +139,26 @@ class FriendController extends CI_Controller {
         $em      = $this->doctrine->em;
         $email   = $this->session->userdata('email');
         $friend  = new Entity\FriendDAO($em);
+        $message  = new Entity\MessageDAO($em);
+
         $result  = $friend->getAllChatFriends($email);
         $friends = "";
+        $new="";
         foreach ($result as $k) {
+            $checked=$message->checkUnreadMessage($k['email'],$email);
             $userStatus = "";
             if ($k['online'] == 1) {
                 $userStatus = '<span class="onlineStatus green">Online</span>';
             } else {
                 $userStatus = '<span class="onlineStatus red">Offline</span>';
             }
-            $friends .= '<li>' . $userStatus . '<a class="inline" href="#inline_content"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' . base_url() . 'uploads/img/' . $k['picture'] . '"/><span class="' . $k['email'] . '">' . $k['name'] . '</span></a></li>';
+            if($checked>=1){
+                $new .= '<li class="blink_me">' . $userStatus . '<a class="inline" href="#inline_content"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' . base_url() . 'uploads/img/' . $k['picture'] . '"/><span class="' . $k['email'] . '">' . $k['name'] . '</span></a></li>';
+            }else{
+                $friends .= '<li>' . $userStatus . '<a class="inline" href="#inline_content"><img style="width:106px;height:106px;vertical-align:middle;margin-right:7px;float:left" src="' . base_url() . 'uploads/img/' . $k['picture'] . '"/><span class="' . $k['email'] . '">' . $k['name'] . '</span></a></li>';
+            }
         }
-        echo $friends;
+        echo $new.$friends;
     }
     
     //check user relationship when they visit other user wall

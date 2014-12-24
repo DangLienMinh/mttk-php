@@ -18,7 +18,10 @@
               </div>
             </div>
           </li>
-          <li><a href="#" id="chatPage">MESSAGES</a></li>
+          <li>
+            <span id="message_count"></span>
+            <a href="#" id="chatPage">MESSAGES</a>
+          </li>
           <li id="notification_li">
             <span id="notification_count"></span>
             <a href="#" id="notificationLink">NOTIFICATIONS</a>

@@ -44,6 +44,14 @@ class MessageController extends CI_Controller {
         $result          = $message->getMoreMessages($data);
         echo json_encode($result);
     }
+
+    //get new message  number
+    function getNewMessageNumber() {
+        $em     = $this->doctrine->em;
+        $noti   = new Entity\MessageDAO($em);
+        $result = $noti->getNewMessageNumber($this->session->userdata('email'));
+        echo count($result);
+    }
 }
 
 ?>
