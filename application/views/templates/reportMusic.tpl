@@ -14,6 +14,7 @@ function getStatus(){
     getStatus();
     friendRequest();
     getSuggest();
+    getMessageNumber();
     $('#notificationsBody ul').bind('scroll', function() {
       if ($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
         var id = $(this).find('li:last').attr("id");

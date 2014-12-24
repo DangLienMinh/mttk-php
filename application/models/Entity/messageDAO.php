@@ -9,6 +9,32 @@ class MessageDAO
        $this->em=$em;
     }
 
+    //get new message for current user that they have not read
+	public function getNewMessageNumber($email)
+	{
+		$cnn=$this->em->getConnection();
+		$sth = $cnn->prepare("SELECT count(*) from message where toUser=? and is_read=0 
+		and email in (select friend_name from friend where email=? and accept=1 and is_subscriber=1 UNION select email from friend where friend.friend_name=? and accept=1 and is_subscriber=1) group by email");
+		$sth->bindValue(1, $email);
+		$sth->bindValue(2, $email);
+		$sth->bindValue(3, $email);
+		$sth->execute();
+		$result = $sth->fetchAll();
+		return $result;
+	}
+
+	//get new message for current user that they have not read
+	public function checkUnreadMessage($from_user,$to_user)
+	{
+		$cnn=$this->em->getConnection();
+        $sth = $cnn->prepare("SELECT count(*) as checked from message where toUser=? and email=? and is_read=0");
+        $sth->bindValue(1, $to_user);
+		$sth->bindValue(2,$from_user);
+        $sth->execute();
+        $result = $sth->fetchAll();
+        return $result[0]['checked'];
+	}
+	
     //get first 20 messages of current user and other user
     public function getFirstMessages($data)
 	{

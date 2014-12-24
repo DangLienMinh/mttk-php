@@ -118,6 +118,25 @@ function moreWallStatus(id,jplayer_id,email) {
   });
 }
 
+function getMessageNumber(){
+  $.ajax({
+        type: "post",
+{/literal}
+        url: "{base_url('messageController/getNewMessageNumber')}",
+{literal}
+        cache: false,
+        success: function(times) {
+
+            var check=0;
+            if (times > 0) {
+              $("#message_count").replaceWith('<span id="message_count">' + times + '</span>');
+          } else {
+            $("#message_count").hide();
+          }
+        }
+      });
+}
+
 //get notifications
 function waitForMsg() {
   $.ajax({

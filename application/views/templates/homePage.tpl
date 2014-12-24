@@ -25,6 +25,7 @@ function getStatus() {
     getPlaylistUpdateStatus();
     getFanclub();
     getPlaylistReport();
+    getMessageNumber();
 
     //$("#target").autoGrow();
     $('#tabs').tabs({

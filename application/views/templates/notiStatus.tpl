@@ -22,7 +22,7 @@ function getStatus(){
     getSuggest();
     getPlaylistUpdateStatus();
     getFanclub();
-
+    getMessageNumber();
     //$("#target").autoGrow();
     $('#tabs').tabs({
       activate: function(event, ui) {

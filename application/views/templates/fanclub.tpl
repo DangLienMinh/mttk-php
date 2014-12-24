@@ -30,6 +30,7 @@ function getStatus(){
     getFanclub();
     fanclubCheckAdmin(window.fanclub);
     getMembers(window.fanclub);
+    getMessageNumber();
     $("input[name='fanclub_id']").val(window.fanclub);
 //    $("#target").autoGrow();
     $('#tabs').tabs({
