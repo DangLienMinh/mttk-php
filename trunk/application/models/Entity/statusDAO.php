@@ -37,7 +37,7 @@ class StatusDAO
 	{
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("select status_id,status.privacy_type_id,music,title,message,status.created_at,thumbs_up,privacy_type_id,status.email,picture,CONCAT(first_name,' ',last_name) as name 
-from status,user where status.email=user.email and status.email=? order by created_at desc LIMIT 10");
+from status,user where status.email=user.email and status.email=? and status.status_id not in(select status_id from fanclub_updates) order by created_at desc LIMIT 10");
 		$sth->bindValue(1, $email);
 		$sth->execute();
 		$result = $sth->fetchAll();
@@ -63,7 +63,7 @@ and privacy_type_id=1 and status.email=user.email order by created_at desc LIMIT
 	{
 		$cnn=$this->em->getConnection();
 		$sth = $cnn->prepare("select status_id,music,title,message,status.created_at,thumbs_up,privacy_type_id,status.email,picture,CONCAT(first_name,' ',last_name) as name 
-from status,user where status.email=user.email and status.email=? and status.privacy_type_id=1 and status_id<?  order by created_at desc Limit 10");
+from status,user where status.email=user.email and status.email=? and status.privacy_type_id=1 and status_id<?  and status.status_id not in(select status_id from fanclub_updates)  order by created_at desc Limit 10");
 		$sth->bindValue(1, $email);
 		$sth->bindValue(2, $id);
 		$sth->execute();
