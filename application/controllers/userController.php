@@ -9,6 +9,7 @@ class UserController extends CI_Controller {
         }else{
             $this->smarty->view('login');
         }
+        //echo FCPATH;
     }
 
     //check if user have logged in
@@ -57,6 +58,7 @@ class UserController extends CI_Controller {
                 $em                 = $this->doctrine->em;
                 $user               = new Entity\UserDAO($em);
                 $user->themUser($data);
+
                 $data = array(
                     'email' => $data['email'],
                     'is_logged_in' => true,
@@ -65,6 +67,7 @@ class UserController extends CI_Controller {
                     'password' => $data['password'],
                     'birth_date' => $data['birthday']
                 );
+                
                 $this->session->set_userdata($data);
                 redirect('/main/firstTime', 'refresh');
             }
